@@ -1,23 +1,18 @@
 import React from 'react'
+import {Card} from 'react-bootstrap'
 
 const PropFeatureGrid = ({ gridItems }) => (
-  <div className="columns is-multiline">
+  <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
     {gridItems.map((item, index) => (
-      <div key={index} className="column is-6">
+      <Card key={index} className="bg-dark text-white" style={{maxWidth:"1000px", minWidth:"300px", width:"100%", height:"400px",}}>
+        <Card.Img src={item.picture}/>
+        <Card.ImgOverlay>
         <section className="section">
-          <div className="has-text-centered">
-            <div
-              style={{
-                width: '240px',
-                display: 'inline-block',
-              }}
-            >
-              <img src={item.picture} />
-            </div>
-          </div>
-          <p>{item.description}</p>
+          <Card.Title>{item.name}</Card.Title>
+          <Card.Text>{item.description}</Card.Text>
         </section>
-      </div>
+        </Card.ImgOverlay>   
+      </Card>
     ))}
   </div>
 )

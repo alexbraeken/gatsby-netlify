@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { FirestoreProvider, FirestoreCollection } from "@react-firebase/firestore";
 import { config } from "../firebase-config";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
