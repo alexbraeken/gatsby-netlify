@@ -2,6 +2,12 @@ import React from 'react'
 import { Link } from 'gatsby'
 import github from '../img/github-icon.svg'
 import logo from '../img/logo.svg'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+
+import { FirestoreCollection } from "@react-firebase/firestore";
+
+
+
 
 const Navbar = class extends React.Component {
   constructor(props) {
@@ -75,6 +81,22 @@ const Navbar = class extends React.Component {
               <Link className="navbar-item" to="/contact/examples">
                 Form Examples
               </Link>
+              <FirestoreCollection path="/Properties/">
+              {d => {
+                        return d.isLoading ? "Loading" : 
+                        <NavDropdown title="Properties" className="navbar-item">
+                          {
+                           d.value.map((item, index)=>(
+                             <NavDropdown.Item href="#" key={index} className="navbar-item">
+                               {item.name}
+                             </NavDropdown.Item>
+                           ))
+                          }
+                        </NavDropdown>
+                    }}
+              
+              </FirestoreCollection>
+
             </div>
             <div className="navbar-end has-text-centered">
               <a

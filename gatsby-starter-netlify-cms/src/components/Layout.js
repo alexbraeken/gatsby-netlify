@@ -5,6 +5,10 @@ import Navbar from '../components/Navbar'
 import './all.sass'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
+import * as firebase from 'firebase';
+import 'firebase/firestore';
+import { FirestoreProvider, FirestoreCollection } from "@react-firebase/firestore";
+import { config } from "../firebase-config";
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
@@ -48,9 +52,11 @@ const TemplateWrapper = ({ children }) => {
           content={`${withPrefix('/')}img/og-image.jpg`}
         />
       </Helmet>
+      <FirestoreProvider {...config} firebase={firebase}>
       <Navbar />
       <div>{children}</div>
       <Footer />
+      </FirestoreProvider>
     </div>
   )
 }
