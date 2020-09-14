@@ -1,7 +1,7 @@
 ---
 templateKey: index-page
 title: Property Management & Rentals
-image: /img/algarve_holiday_lets_tavira_detached_villa_5_bedrooms_tav-83_1.jpg
+image: gatsby-starter-netlify-cms/src/img/algarve_holiday_lets_tavira_detached_villa_5_bedrooms_tav-83_1.jpg
 heading: Property Management & Rentals
 subheading: Support sustainable farming while enjoying a cup
 mainpitch:
