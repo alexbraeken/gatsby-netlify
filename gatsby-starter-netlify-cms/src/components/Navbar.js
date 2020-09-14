@@ -48,7 +48,7 @@ const Navbar = class extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Kaldi" style={{ width: '88px' }} />
+              <img src={logo} alt="Smarta" />
             </Link>
             {/* Hamburger menu */}
             <div
@@ -85,6 +85,7 @@ const Navbar = class extends React.Component {
               {d => {
                         return d.isLoading ? "Loading" : 
                         <NavDropdown title="Properties" className="navbar-item">
+                          <NavDropdown.Item href="/properties">All Properties</NavDropdown.Item>
                           {
                            d.value.map((item, index)=>(
                              <NavDropdown.Item href="#" key={index} className="navbar-item">

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import { FirestoreProvider, FirestoreCollection } from "@react-firebase/firestore";
+import { FirestoreCollection } from "@react-firebase/firestore";
 import { config } from "../../firebase-config";
 
 import Layout from '../../components/Layout'
