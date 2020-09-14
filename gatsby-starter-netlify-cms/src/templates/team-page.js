@@ -8,6 +8,9 @@ import { Container } from 'react-bootstrap';
 import { gsap } from "gsap";
 import { CSSPlugin } from 'gsap/CSSPlugin'
 import BackgroundImage from 'gatsby-background-image'
+import SubmitButton from '../components/SubmitButton'
+import backArea from '../img/mobile-back-area.svg'
+import StickyBox from "react-sticky-box"
 
 gsap.registerPlugin(CSSPlugin)
 
@@ -19,6 +22,7 @@ export const MeetTheTeamPageTemplate = ({
   heading,
   description,
   intro,
+  teams
 }) => {
   const [loaded, setLoaded] = useState(false);
   const [circleClip, setCircleClip] = useState({radius: 0, clickedRadius: 0})
@@ -26,9 +30,12 @@ export const MeetTheTeamPageTemplate = ({
   const [heroEnter, setHeroEnter] = useState(false)
   const [heroHover, setHeroHover] = useState(false)
   const [mouse, setMouse] = useState({x: 0, y: 0})
+  const [displayTeam, setDisplayTeam] = useState(null)
 
   const hero = useRef(null)
   const maskImg = useRef(null)
+  const ref = useRef()
+
 
   const {t} = useTranslation();
   const {language } = useI18next();
@@ -54,7 +61,7 @@ export const MeetTheTeamPageTemplate = ({
 
           homeSectionTitles.forEach((title) => {
             gsap.from(title, { 
-              x: -1000,
+              x: -2000,
               ease: "none",
               scrollTrigger: {
                   trigger: title,
@@ -70,6 +77,7 @@ export const MeetTheTeamPageTemplate = ({
           setLoaded(false)
         }
       }, [])
+
 
       const handleMouseMove = (e) => {
         setMouse({x: e.pageX, y: e.pageY})
@@ -95,9 +103,60 @@ export const MeetTheTeamPageTemplate = ({
         })
       }, [clicked])
 
+      useEffect(() => {
+
+        if(displayTeam){
+          gsap.to(`#roll-${displayTeam}`,
+          {
+              x: 0,
+              ease: "none",
+              duration: 0.5,
+              ease: 'Power2.easeOut' 
+          })
+        }else{
+          gsap.to(`#full-team-${ref.current}`,
+            {
+                x: 0,
+                ease: "none",
+                duration: 0.5,
+                ease: 'Power2.easeOut' 
+            }
+          )
+        }
+
+        ref.current = displayTeam
+
+      }, [displayTeam])
+
       const updateClipPath = () => {
         let circle = `circle(${circleClip.radius}px at ${clicked ? `50% 50%` : `${mouse.x}px ${mouse.y}px`})`
         gsap.set(maskImg.current, { webkitClipPath: `${circle}` })
+        
+      }
+
+      const showTeam = (team) => {
+        if(displayTeam){
+          gsap.to(`#roll-${displayTeam}`,
+          {
+            x: -2000,
+            ease: "none",
+            duration: 0.5,
+            ease: 'Power2.easeOut',
+            onComplete: ()=>{setDisplayTeam(null)}
+          }
+          )
+        }else{
+          let tl = gsap.timeline()
+          tl.to(`#full-team-${team}`,
+            {
+                x: -2000,
+                ease: "none",
+                duration: 0.5,
+                onComplete: ()=>{setDisplayTeam(team)},
+                ease: 'Power2.easeOut' 
+            }
+          )
+        }
         
       }
 
@@ -135,9 +194,9 @@ export const MeetTheTeamPageTemplate = ({
           <div style={{marginBottom:"50px", minHeight: "100vh", backgroundColor: "#000"}}>
           <section className="team-intro" style={{display: "flex", flexWrap: "wrap", height: "100%", minHeight: "100vh", flexWrap: "wrap",
     position: "relative"}}>
-                  <div style={{flex: "1 1 40%", minWidth: "350px", display: "flex", color: "orange", justifyContent:"center"}}>
+                  <div style={{flex: "1 1 40%", minWidth: "350px", display: "flex", justifyContent:"center"}}>
                   <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px"}}>{t("about")}</h2>
-                    <p className="about-section" >
+                    <p className="about-section orangeText" >
                     {intro.description[language]}
                     </p>
                   </div>
@@ -154,14 +213,67 @@ export const MeetTheTeamPageTemplate = ({
                 </section>
           </div>
           <Container style={{marginTop: "200px"}}>
-          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-250px", color: "rgba(245, 130, 30, 0.5)"}}>{heading[language]}</h2>
-            <div className="content">
-                <section className="team-section" id="team-1" >
-                    <p>{description[language]}</p>
-                    <TeamRoll />
-                </section>
+            <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-250px", color:"#333"}}>{heading[language]}</h2>
+            <div className="content" style={{margin: "30px auto"}}>
+              <p>{description[language]}</p>
             </div>
           </Container>
+          <div style={{marginBottom:"50px", minHeight: "100vh"}}>
+            {
+              Object.keys(teams).map((team, i) => {
+                return(
+                  <section className="team-section" id={`team-${team}`}>
+                              {
+                                displayTeam === team ?
+                                <div className="team-roll-container" id={`roll-${team}`}>
+                                <StickyBox style={{height:"100vh", marginBottom: "-100vh", zIndex: 1}}>
+                                  <a className='back-btn-container' href={`#team-${team}`} onClick={()=>showTeam(null)}>
+                                    <img src={backArea} />
+                                    <div className='back-btn'>
+                                      <span></span>
+                                      <span></span>
+                                      <span></span>
+                                    </div>
+                                  </a>
+                                </StickyBox>
+                                  <Container>
+                                    <div className="content">
+                                      <TeamRoll team={team}/>
+                                    </div>
+                                  </Container>
+                                </div>
+                              :
+                              <div className="full-team" id={`full-team-${team}`}>
+                                <div className="team-image-container">
+                                  <div className={"grey-in"} style={{height: "100%", overflow: "hidden"}}>
+                                    <BackgroundImage
+                                        Tag="div"
+                                        className={"parallax-bg"}
+                                        fluid={teams[team].image.childImageSharp?.fluid || teams[team].image}
+                                        backgroundColor={`#040e18`}
+                                      ></BackgroundImage>
+                                  </div>
+                                </div>
+                                <div className="team-content-container" >
+                                  <h2 className="home-section-title" style={{}}>{teams[team].heading}</h2>
+                                  <p className="about-section" >
+                                    {teams[team].description[language]}
+                                  </p>
+                                  <br />
+                                    <div onClick={()=>showTeam(team)} style={{flex: "1 1 100%"}}>
+                                      <SubmitButton text={t('Who We Are')} />
+                                    </div>
+                                </div>
+                              </div>
+                              }
+                            </section>
+                )
+              })
+            }
+
+          
+          </div>
+          
 </>
 )}
 
@@ -175,6 +287,7 @@ MeetTheTeamPageTemplate.propTypes = {
   intro: PropTypes.shape({
     description: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   }),
+  teams: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }
 
 const MeetTheTeamPage = ({ data }) => {
@@ -193,6 +306,7 @@ const MeetTheTeamPage = ({ data }) => {
         heading={post.frontmatter.heading}
         description={post.frontmatter.description}
         intro={post.frontmatter.intro}
+        teams={post.frontmatter.teams}
       />
     </Layout>
   )
@@ -259,6 +373,56 @@ export const MeetTheTeamPageQuery = graphql`
             es
           }
         }
+        teams {
+          office {
+            heading
+            image{
+              childImageSharp {
+                fluid(maxWidth: 1000, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            description{
+              en
+              pt
+              fr
+              es
+            }
+          }
+          maintenance {
+            heading
+            image{
+              childImageSharp {
+                fluid(maxWidth: 1000, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            description{
+              en
+              pt
+              fr
+              es
+            }
+          }  
+          housekeeping {
+            heading
+            image{
+              childImageSharp {
+                fluid(maxWidth: 1000, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            description{
+              en
+              pt
+              fr
+              es
+            }
+          }    
+        } 
       }
     }
     locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {

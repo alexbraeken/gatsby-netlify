@@ -34,4 +34,30 @@ intro:
          Nous sommes également fiers d'annoncer le lancement de notre nouvelle société sœur Smartamoves, notre division de vente immobilière vous aidant à réaliser votre rêve de posséder une propriété à l'étranger."
         es: "Fundada en 2009, Smartavillas.com es una empresa de gestión de alquileres y servicios inmobiliarios con sede en Tavira, en el este del Algarve. Con una cartera que se acerca a las 150 propiedades, Smartavillas ofrece una amplia gama de servicios de gestión profesional y soluciones diseñadas para satisfacer las necesidades de nuestros propietarios y clientes de alquiler. Una gran experiencia y conocimiento dentro de nuestro equipo nos ha permitido crecer rápidamente, establecer una fuerte presencia en el este del Algarve y desarrollar asociaciones duraderas con propietarios, proveedores locales y proveedores de servicios profesionales.
          También nos enorgullece anunciar el lanzamiento de nuestra nueva empresa hermana Smartamoves, nuestra división de ventas de propiedades que lo ayuda a lograr su sueño de ser propietario de una propiedad en el extranjero."
+teams:
+    office:
+        heading: "Office Team"
+        image: ../../../static/img/office.jpeg
+        description: 
+            en: "The operational heart of Smartavillas tying it all together. The office team keeps the well-oiled machine running by taking the bookings, coordinating with the other teams, communicating with guests and other business and making sure the everyone gets what they need at the right time."
+            pt: "The operational heart of Smartavillas tying it all together. The office team keeps the well-oiled machine running by taking the bookings, coordinating with the other teams, communicating with guests and other business and making sure the everyone gets what they need at the right time."
+            fr: "The operational heart of Smartavillas tying it all together. The office team keeps the well-oiled machine running by taking the bookings, coordinating with the other teams, communicating with guests and other business and making sure the everyone gets what they need at the right time."
+            es: "The operational heart of Smartavillas tying it all together. The office team keeps the well-oiled machine running by taking the bookings, coordinating with the other teams, communicating with guests and other business and making sure the everyone gets what they need at the right time."
+    maintenance:
+        heading: "Maintenance Team"
+        image: ../../../static/img/Creat_Prefect_2.jpg
+        description: 
+            en: "The maintenance team keeps our wheels turning, both literally and figuratively. Going out to properties far and wide to handle all manner of tasks to make sure both owners and guests know their holiday home will be in tip-top shape."
+            pt: "The maintenance team keeps our wheels turning, both literally and figuratively. Going out to properties far and wide to handle all manner of tasks to make sure both owners and guests know their holiday home will be in tip-top shape."
+            fr: "The maintenance team keeps our wheels turning, both literally and figuratively. Going out to properties far and wide to handle all manner of tasks to make sure both owners and guests know their holiday home will be in tip-top shape."
+            es: "The maintenance team keeps our wheels turning, both literally and figuratively. Going out to properties far and wide to handle all manner of tasks to make sure both owners and guests know their holiday home will be in tip-top shape."
+    housekeeping:
+        heading: "Housekeeping Team"
+        image: ../../../static/img/Create_Perfect_3.jpg
+        description: 
+            en: "Making sure that Smartavillas shines like a gem, the housekeeping crew work tirelessly to cover every nook and cranny and make sure both our image and record remain spotless."
+            pt: "Making sure that Smartavillas shines like a gem, the housekeeping crew work tirelessly to cover every nook and cranny and make sure both our image and record remain spotless."
+            fr: "Making sure that Smartavillas shines like a gem, the housekeeping crew work tirelessly to cover every nook and cranny and make sure both our image and record remain spotless."
+            es: "Making sure that Smartavillas shines like a gem, the housekeeping crew work tirelessly to cover every nook and cranny and make sure both our image and record remain spotless."
+            
 ---

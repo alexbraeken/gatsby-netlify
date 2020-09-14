@@ -9,6 +9,7 @@ description:
     fr: "Responsable de 20 de nos plus grandes propriétés à Caçela, Manta Rota, Altura et Castro Marim, Ofelia apporte passion et force à l'équipe d'entretien ménager avec une attitude forte et «pouvant faire». Aucun travail n'est trop grand pour Ofelia !"
     es: "Responsable de 20 de nuestras propiedades más grandes en Caçela, Manta Rota, Altura y Castro Marim, Ofelia aporta pasión y fuerza al equipo de limpieza con una fuerte actitud de 'puedo hacerlo'. ¡Ningún trabajo es demasiado grande para Ofelia!"
 jobTitle: "Operations Team: Housekeeping"
+team: housekeeping
 position: "7"
 ---
 

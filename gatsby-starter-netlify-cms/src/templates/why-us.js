@@ -39,31 +39,44 @@ export const WhyUsPageTemplate = ({
       setLoaded(true)}, 1000
       )
 
-      
+      let parallaxCont = gsap.utils.toArray('.parallax-tone-container');
+      let parallaxImg = gsap.utils.toArray('.img-cont');
+      let parallaxBg = gsap.utils.toArray('.parallax-tone-bg');
 
       let tl = gsap.timeline({
         scrollTrigger: {
-          trigger: parallaxCont.current,
+          trigger: parallaxCont,
           start: 'top bottom',
           scrub: true
         },
       });
 
-      tl.to(
-        parallaxBg.current, 
-        {
-          yPercent: -90,
-          ease: "none",
-        },
-        "<"
-      ).to(
-        parallaxImg.current, 
-        {
-          yPercent: -50,
-          ease: "none",
-        },
-        "<"
-      )
+      parallaxCont.forEach((cont, i)=>{
+        gsap.to(
+          parallaxBg[i], 
+          {
+            yPercent: -90,
+            ease: "none",
+            scrollTrigger: {
+              trigger: cont,
+              start: 'top bottom',
+              scrub: true
+            },
+          }
+        )
+        gsap.to(
+          parallaxImg[i], 
+          {
+            yPercent: -50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: cont,
+              start: 'top bottom',
+              scrub: true
+            }
+          }
+        )
+      })
 
     return () => {
       setLoaded(false)
@@ -140,7 +153,7 @@ export const WhyUsPageTemplate = ({
             </div>
     </section>
     <section className="orange-gradient" style={{
-        paddingBottom: "100px",
+        paddingBottom: "200px",
         paddingTop: "200px",
         width: "100vw",
         position: "relative",
@@ -150,7 +163,12 @@ export const WhyUsPageTemplate = ({
       <Container>
         <Row>
           <Col xs={12} md={6}>
-            <PreviewCompatibleImage imageInfo={part2Img} imgStyle={{width:"100%", height:"100%", borderRadius: '5px'}}/>
+          <div className="parallax-tone-container" ref={parallaxCont}>
+            <div ref={parallaxImg} className="img-cont" >
+            <PreviewCompatibleImage imageInfo={part2Img} className="parallax-tone-img" imgStyle={{width:"100%", height:"100%", borderRadius: '5px'}}/>
+            </div>
+            <div className="parallax-tone-bg light" ref={parallaxBg}></div>
+          </div>
           </Col>
           <Col style={{display:"flex"}} xs={12} md={6}>
           <div style={{margin: "auto"}} className="why-list">
@@ -260,8 +278,10 @@ export const WhyUsPageTemplate = ({
             </div>
     </section>
     <section style={{
+      paddingTop: "200px",
         paddingBottom: "100px",
         position: "relative"}}>
+          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)"}}>It Works</h2>
       <Container>
         <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
         <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
@@ -269,7 +289,7 @@ export const WhyUsPageTemplate = ({
             <Col xs={12} md={4}>
               <PreviewCompatibleImage imageInfo={part3.col1img} />
               <br />
-              <Container style={{textAlign:"center", paddingBottom: "20px"}}>
+              <Container className="intro-para" style={{textAlign:"center", paddingBottom: "20px"}}>
                 <h4>{part3.col1Header[language]}</h4>
                 <hr />
                 <p>
@@ -280,7 +300,7 @@ export const WhyUsPageTemplate = ({
             <Col xs={12} md={4}>
               <PreviewCompatibleImage imageInfo={part3.col2img} />
               <br />
-              <Container style={{textAlign:"center", paddingBottom: "20px"}}>
+              <Container className="intro-para" style={{textAlign:"center", paddingBottom: "20px"}}>
               <h4>{part3.col2Header[language]}</h4>
               <hr />
               <p>
@@ -291,7 +311,7 @@ export const WhyUsPageTemplate = ({
             <Col xs={12} md={4}>
               <PreviewCompatibleImage imageInfo={part3.col3img} />
               <br />
-              <Container style={{textAlign:"center", paddingBottom: "20px"}}>
+              <Container className="intro-para" style={{textAlign:"center", paddingBottom: "20px"}}>
               <h4>{part3.col3Header[language]}</h4>
               <hr />
               <p>
@@ -312,7 +332,12 @@ export const WhyUsPageTemplate = ({
         </div>
         </Col>
         <Col xs={12} md={6}>
-          <PreviewCompatibleImage imageInfo={part4Img} imgStyle={{borderRadius: "5px", marginLeft: "-150px"}}/>
+        <div className="parallax-tone-container" ref={parallaxCont}>
+            <div ref={parallaxImg} className="img-cont" >
+            <PreviewCompatibleImage imageInfo={part4Img} className="parallax-tone-img" imgStyle={{width:"100%", height:"100%", borderRadius: '5px'}}/>
+            </div>
+            <div className="parallax-tone-bg" ref={parallaxBg}></div>
+          </div>
         </Col>
         </Row> 
       </Container>    

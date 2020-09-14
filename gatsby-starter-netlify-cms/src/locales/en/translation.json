@@ -428,6 +428,7 @@
 "Please select the first day":"Please select the first day",
 "Please select the last day":"Please select the last day",
 "Selected from":"Selected from",
+"Selected":"Selected",
 "Days":"Days",
 "Clear":"Clear",
 "Questions or extra information":"Questions or extra information",
@@ -459,5 +460,10 @@
 "Estimated Price":"Estimated Price",
 "Check out Smartavillas property":"Check out Smartavillas property",
 "Language":"Language",
-"Winter Let Details":"Winter Let Details"
+"Winter Let Details":"Winter Let Details",
+"1 to 4 Persons":"1 to 4 Persons",
+"5 to 8 Persons":"5 to 8 Persons",
+"Select persons":"Select persons",
+"Select destination":"Select destination",
+"Select day":"Select day"
 }

@@ -47,9 +47,10 @@ const TeamCard = React.memo((props) =>{
 
   useEffect(() => {
 
-    let team1 = gsap.utils.toArray('#team-1 .headshot');
+    let team1 = gsap.utils.toArray(`#team-${props.team} .headshot`);
     let memberDescriptions = gsap.utils.toArray('.team-section article');
     let memberNames = gsap.utils.toArray('.member-name')
+    
 
     memberDescriptions.forEach((section, i) => {
       if(i>0){
@@ -110,23 +111,27 @@ const TeamCard = React.memo((props) =>{
 class TeamRoll extends React.PureComponent {
 
   render() {
-    const { data } = this.props
+    const { data, team } = this.props
     const { edges: members } = data.allMarkdownRemark
 
     return (
       <>
        <StickyBox>
             {members && members.length > 0 &&
-          members.map((member, index) => {
-            return member? 
-              <TeamPhoto member={member} first={index === 0 ? true : false} id={index} key={index}/>
+            members.map((member, index) => {
+              let i = 0
+              if(member.node.frontmatter.team === team){
+                i++
+              }
+            return member.node.frontmatter.team === team ? 
+              <TeamPhoto member={member} first={i === 1 ? true : false} id={index} team={team} key={index}/>
              : null
             })} 
             </StickyBox>
         {members && members.length > 0 &&
           members.map((member, index) => {
-            return member? 
-              <TeamCard member={member} id={index} length={members.length} key={index}/>
+            return member.node.frontmatter.team === team? 
+              <TeamCard member={member} id={index} length={members.length} team={team} key={index}/>
              : null
             })}
            
@@ -183,12 +188,13 @@ export default (props) => (
                 jobTitle
                 name
                 position
+                team
               }
             }
           }
         }
       }
     `}
-    render={(data, count) => <TeamRoll data={data} count={count}/>}
+    render={(data, count) => <TeamRoll data={data} count={count} team={props.team}/>}
   />
 )

@@ -10,5 +10,6 @@ description:
     es: "Responsable de reservas, informes SEF y cualquier cosa portuguesa. Una miembra valiosa de nuestro equipo, Ana tiene una experiencia considerable en el mercado local de administración de alquileres y vive para el turismo."
 jobTitle: "Office Team: Reservations Team"
 position: "4"
+team: office
 ---
 

@@ -9,6 +9,7 @@ description:
     fr: "Fiere fondateure et propriétaire de Smartavillas, responsable de la stratégie globale, des opérations, des nouvelles propriétés et des comptes clés. Toujours dynamique et ambitieuse, Rachel possède une carrière très enviable avec une vaste expérience en gestion de détail au Royaume-Uni."
     es: "Orgullosa fundadora y propietaria de Smartavillas, responsable de la estrategia general, operaciones, nuevas propiedades y cuentas clave. Siempre dinámica y ambiciosa, Rachel posee una trayectoria profesional muy envidiable con una amplia experiencia en gestión minorista senior en el Reino Unido."
 jobTitle: "Company Director. Property Liaison, Marketing, Legal Compliance"
+team: office
 position: "1"
 ---
 

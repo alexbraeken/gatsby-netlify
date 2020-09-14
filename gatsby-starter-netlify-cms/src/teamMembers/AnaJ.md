@@ -10,5 +10,6 @@ description:
     es: "Responsable de nuestra división de Cuentas, ¡Ana tiene muchos números que procesar! Nuestra más reciente miembro de la oficina, Ana tiene una amplia y variada experiencia en el sector comercial."
 jobTitle: "Office Team: Company Accounts"
 position: "3"
+team: office
 ---
 

@@ -9,6 +9,7 @@ description:
     fr: "En tant que responsable des opérations de Smartavillas, c'est son travail de s'assurer que nos propriétés sont en parfait état, bien équipées et que tout est en ordre pour l'été. Avec une vaste expérience dans la vente et la location de propriétés, Sophie apporte dynamisme et expérience à l'équipe!"
     es: "Como Gerente de Operaciones de Smartavillas, es su trabajo asegurarse de que nuestras propiedades estén en las mejores condiciones, bien equipadas y que todo esté en orden para el verano. ¡Con una amplia experiencia en ventas y alquileres de propiedades, Sophie aporta vitalidad y experiencia al equipo!"
 jobTitle: "Operations Manager"
+team: office
 position: "5"
 ---
 
