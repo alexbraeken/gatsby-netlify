@@ -48,7 +48,7 @@ const Navbar = class extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Smarta" />
+              <img src="/img/smartavillas logo.png" alt="Smarta" />
             </Link>
             {/* Hamburger menu */}
             <div
@@ -66,26 +66,14 @@ const Navbar = class extends React.Component {
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
             <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/about">
-                About
-              </Link>
-              <Link className="navbar-item" to="/products">
-                Products
-              </Link>
-              <Link className="navbar-item" to="/blog">
-                Blog
-              </Link>
-              <Link className="navbar-item" to="/contact">
-                Contact
-              </Link>
-              <Link className="navbar-item" to="/contact/examples">
-                Form Examples
+              <Link className="navbar-item" to="/">
+                Home
               </Link>
               <FirestoreCollection path="/Properties/">
               {d => {
                         return d.isLoading ? "Loading" : 
                         <NavDropdown title="Properties" className="navbar-item">
-                          <NavDropdown.Item href="/properties">All Properties</NavDropdown.Item>
+                          <NavDropdown.Item href="/properties">Our Properties</NavDropdown.Item>
                           {
                            d.value.map((item, index)=>(
                              <NavDropdown.Item href="#" key={index} className="navbar-item">
@@ -97,7 +85,18 @@ const Navbar = class extends React.Component {
                     }}
               
               </FirestoreCollection>
-
+              <Link className="navbar-item" to="/blog">
+                Traveler Tips
+              </Link>
+              <Link className="navbar-item" to="/">
+                Holiday Extras
+              </Link>
+              <Link className="navbar-item" to="/">
+                The Algarve
+              </Link>
+              <Link className="navbar-item" to="/contact">
+                Contact Us
+              </Link>
             </div>
             <div className="navbar-end has-text-centered">
               <a

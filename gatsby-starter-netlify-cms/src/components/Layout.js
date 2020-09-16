@@ -52,6 +52,10 @@ const TemplateWrapper = ({ children }) => {
           property="og:image"
           content={`${withPrefix('/')}img/og-image.jpg`}
         />
+        <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" 
+        rel="stylesheet" 
+        />
+
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
       <Navbar />
