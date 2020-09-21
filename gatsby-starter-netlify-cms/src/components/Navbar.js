@@ -76,7 +76,7 @@ const Navbar = class extends React.Component {
                           <NavDropdown.Item href="/properties">Our Properties</NavDropdown.Item>
                           {
                            d.value.map((item, index)=>(
-                             <NavDropdown.Item href="#" key={index} className="navbar-item">
+                             <NavDropdown.Item href={`/properties/${d.ids[index]}`} key={index} className="navbar-item">
                                {item.name}
                              </NavDropdown.Item>
                            ))

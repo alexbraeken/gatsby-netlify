@@ -1,36 +1,44 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link, graphql } from 'gatsby'
-import * as firebase from 'firebase';
+import React, { Component } from 'react'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
-import { config } from "../../firebase-config";
 import { Router } from "@reach/router"
 import PropertyTemplate from "../../templates/property-page"
-
 import Layout from '../../components/Layout'
 import PropFeatures from '../../components/PropFeatures'
+import Form from 'react-bootstrap/Form'
 
 
 const Properties = () => (
-    <FirestoreCollection path="/Properties/">
-        {data => {
-            return data.isLoading ? "Loading" : 
-                    <PropFeatures gridItems={data}/>
-        }}
-    </FirestoreCollection>
+    <div>
+        <FirestoreCollection path="/Properties/">
+            {data => {
+                return data.isLoading ? "Loading" : 
+                        <PropFeatures gridItems={data}/>
+            }}
+        </FirestoreCollection>
+    </div>
+    
 )
 
-const PropertiesPage = () => {
+export default class PropertiesPage extends Component {
+    state={
+        city:{},
+        propType:{},
+        dateStart:"",
+        dateFinish:""
+    }
 
-    return (
-        <Layout>   
-                <Router>
-                    <Properties path ="/properties" />
-                    <PropertyTemplate path="/properties/:id" />
-                </Router>
-        </Layout> 
-      );
+    render() {
+        return (
+            <Layout>  
+                <Form>
+                    <Form.Check type="checkbox" id="city-checkbox" label="#1"/>
+                </Form> 
+                    <Router>
+                        <Properties path ="/properties" />
+                        <PropertyTemplate path="/properties/:id" />
+                    </Router>
+            </Layout> 
+          );
+    }
 }
-
-export default PropertiesPage;
