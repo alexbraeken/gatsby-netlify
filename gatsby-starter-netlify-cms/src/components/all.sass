@@ -148,3 +148,108 @@ $font-family-sans-serif: 'Didact Gothic', sans-serif
 
 body
   font-family: $font-family-sans-serif
+
+.prdtitlesolo.productNameTitle
+  position: relative
+
+.prdtitlesolo
+  background-color: #ff6600
+  color: #fff
+
+.prdtitlesolo
+  margin-bottom: 30px
+  float: left
+  width: 96%
+  text-align: left
+  padding: 5px 2%
+  line-height: 35px
+  margin: 30px 0
+  font-size: 20px
+
+.prdtitlesolo h1
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -ms-flex-wrap: wrap
+  flex-wrap: wrap
+  position: relative
+
+.prdname
+  margin: auto 0 auto 0px
+  font-weight: bold
+  font-size: 2em
+  color: #fff
+
+.prdtitlesolo span.titleTags
+  position: static
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  width: auto
+  margin-top: 0
+  margin-left: 10px
+  font-size: 20px
+  left: 0
+  top: 100%
+  text-align: left
+  font-size: 12px
+  line-height: 30px
+
+.titleTag
+  margin: auto
+
+.header-icons
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  width: 150px
+  -ms-flex-wrap: no-wrap
+  flex-wrap: no-wrap
+  margin-left: 10px
+
+.header-icons .icon-info
+  margin: auto
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  width: 100%
+  position: relative
+
+.header-icons img
+  margin: auto 0px auto auto
+  display: block
+  height: 25px
+  width: 25px
+
+.tooltiptext
+  opacity: 0
+  -webkit-transition: opacity 0.5s
+  -o-transition: opacity 0.5s
+  transition: opacity 0.5s
+  visibility: hidden
+  width: 120px
+  background-color: black
+  color: #fff
+  text-align: center
+  padding: 5px 0
+  border-radius: 6px
+  position: absolute
+  z-index: 1
+  top: 40px
+  left: 50%
+  margin-left: -60px
+
+.tooltiptext::after
+  content: " "
+  position: absolute
+  bottom: 100%
+  left: 50%
+  margin-left: -5px
+  border-width: 5px
+  border-style: solid
+  border-color: transparent transparent black transparent
+
+.icon-info:hover .tooltiptext
+  opacity: 1
+  visibility: visible
+

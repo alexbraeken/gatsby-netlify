@@ -104,3 +104,15 @@ exports.onCreateWebpackConfig = ({
     });
   }
 };
+
+exports.onCreatePage = async ({page, actions}) => {
+  const { createPage} = actions
+
+    if (page.path.match(/^\/properties/)) {
+      createPage({
+        path: "/properties",
+        matchPath: "/properties/*",
+        component: path.resolve(`src/pages/properties/index.js`),
+      })
+    }
+}
