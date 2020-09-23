@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { FirestoreDocument } from "@react-firebase/firestore";
-import Carousel from 'react-bootstrap/Carousel'
+import Carousel from 'react-bootstrap/Carousel';
+import PropCarousel from '../components/PropCarousel';
 
 export const PropertyPageTemplate = (
 props
@@ -47,29 +48,7 @@ props
                                 </div>
                             </div>
                             <div style={{width:"100%"}}>
-                                <Carousel>
-                                    <Carousel.Item>
-                                        <img
-                                        className="d-block w-100"
-                                        src={data.value.picture}
-                                        alt="First slide"
-                                        />
-                                    </Carousel.Item>
-                                    {
-                                        data.value.photos ? 
-
-                                        data.value.photos.map( photo => (
-                                            <Carousel.Item>
-                                                <img
-                                        className="d-block w-100"
-                                        src={photo.url}
-                                        alt="First slide"
-                                        />
-                                            </Carousel.Item>   
-                                        )) : null
-                                        
-                                    }
-                                </Carousel>
+                                <PropCarousel firstSlide={data.value.picture} photos={data.value.photos}/>
                                 <br />
                             {data.value.description}
                             <br />
