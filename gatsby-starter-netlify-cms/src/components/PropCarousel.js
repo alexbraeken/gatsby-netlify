@@ -10,11 +10,12 @@ class CustomSlide extends React.Component {
       return (
         <div style={{backgroundImage: `url(${this.props.backgroundImage})`,
         height: "70vmin",
-  margin: "0px auto",
-  overflow: "hidden",
-  position: "relative",
-  backgroundSize:"cover",
-  backgroundPosition:"center"}} key={this.props.key? this.props.key : 0}>
+        margin: "0px auto",
+        overflow: "hidden",
+        position: "relative",
+        backgroundSize:"cover",
+        backgroundPosition:"center"}} 
+        key={this.props.key? this.props.key : 0}>
           <h3></h3>
         </div>
       );
@@ -31,7 +32,6 @@ class PropCarousel extends React.Component {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        className:"prop-carousel"
       };
       return (
         <Slider {...settings} >

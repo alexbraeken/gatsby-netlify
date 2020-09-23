@@ -73,7 +73,7 @@ const Navbar = class extends React.Component {
               {d => {
                         return d.isLoading ? "Loading" : 
                         <NavDropdown title="Properties" className="navbar-item">
-                          <NavDropdown.Item href="/properties">Our Properties</NavDropdown.Item>
+                          <NavDropdown.Item href="/properties" className="navbar-item">Our Properties</NavDropdown.Item>
                           {
                            d.value.map((item, index)=>(
                              <NavDropdown.Item href={`/properties/${d.ids[index]}`} key={index} className="navbar-item">

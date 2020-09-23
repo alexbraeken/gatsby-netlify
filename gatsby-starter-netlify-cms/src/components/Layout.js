@@ -2,7 +2,6 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
-import './all.sass'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
 import * as firebase from 'firebase';
@@ -10,6 +9,7 @@ import 'firebase/firestore';
 import { FirestoreProvider, FirestoreCollection } from "@react-firebase/firestore";
 import { config } from "../firebase-config";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './all.sass'
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
