@@ -8,13 +8,14 @@ import PropFeatures from '../../components/PropFeatures'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import queryString from 'query-string'
 
 
 class Properties extends Component {
 
     render(){
         return(
-            <div>
+            <div className="container">
                 <FirestoreCollection path="/Properties/">
                     {data => {
                         return data.isLoading ? "Loading" : 
@@ -30,9 +31,8 @@ class Properties extends Component {
                                         onChange={(e)=> this.props.handleChange(e,"city")}
                                         key={index}
                                         />
-                                    ))}
-                                    
-                                    
+                                    ))}      
+                                    {JSON.stringify(this.props.filterSearch)}
                                 </Form> 
                             </Container>  
                             <PropFeatures gridItems={data} state={this.props.state}/>
@@ -53,11 +53,20 @@ export default class PropertiesPage extends Component {
             city:[],
             propType:[],
             dateStart:"",
-            dateFinish:""
+            dateFinish:"",
+            amenities:[]
         }
         this.handleChange = this.handleChange.bind(this);
     }
-    
+
+    componentDidMount(){
+       const filterValues = queryString.parse(this.props.location.search);
+       const amenities = Object.keys(filterValues);
+       console.log(amenities);
+       this.setState({
+           amenities: amenities
+       })
+    } 
 
     filterList = (props, type) => {
         let filter = []
@@ -89,10 +98,11 @@ export default class PropertiesPage extends Component {
 
 
     render() {
+
         return (
             <Layout>  
                     <Router>
-                        <Properties path ="/properties" state={this.state} handleChange={this.handleChange} filterList={this.filterList}/>
+                        <Properties path ="/properties" state={this.state} handleChange={this.handleChange} filterList={this.filterList} filterSearch={this.state.amenities}/>
                         <PropertyTemplate path="/properties/:id" />
                     </Router>
             </Layout> 

@@ -2,13 +2,14 @@
 
 // Config vars
 // Kaldi logo brand color: #FD461E
-$kaldi-red: #D64000
+$smarta-orange: #f5821e
 $kaldi-red-invert: #fff
 
-$primary: $kaldi-red
+$primary: $smarta-orange
 $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
+
 
 
 
@@ -149,6 +150,15 @@ $font-family-sans-serif: 'Didact Gothic', sans-serif
 body
   font-family: $font-family-sans-serif
 
+html
+  scroll-behavior: smooth
+
+h2
+  font-size: 2rem
+
+h3 
+  font-size: 1.75rem
+
 .prdtitlesolo.productNameTitle
   position: relative
 
@@ -214,8 +224,11 @@ body
   width: 100%
   position: relative
 
+.icon-info .text-number h3
+  font-size: 20px
+
 .header-icons img
-  margin: auto 0px auto auto
+  margin: auto 2px auto auto
   display: block
   height: 25px
   width: 25px
@@ -260,3 +273,42 @@ body
   overflow: hidden
   position: relative
   background-size:cover
+
+.prop-card-container
+  margin: 10px 5px
+  height: calc(520px + 1.25rem)
+
+.prop-card
+  max-width: 1000px
+  min-width: 300px
+  width: 100%
+  height: 300px
+  background-position: center
+  background-size: cover
+  border: none
+  transition: all 0.5s
+
+.prop-card-container:hover .prop-card
+  transform: scale(1.03)
+
+.prop-card-container:hover .prop-card-text
+  margin-top: 150px
+
+.prop-card-text
+  background-color: #fff
+  color: #000
+  border-radius: 5px
+  margin-top: 200px
+  box-shadow:  20px 20px 60px #d9d9d9
+  transition: all 0.5s
+
+.amenity 
+  margin: 5px
+  border-radius: 5px
+  padding: 2px 5px
+  color: #ff6600
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+
+.amenities-list
+  display: flex
+  flex-wrap: wrap
