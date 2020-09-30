@@ -159,6 +159,13 @@ h2
 h3 
   font-size: 1.75rem
 
+a
+  color: inherit
+
+a:hover
+  color: inherit
+  text-decoration: none
+
 .prdtitlesolo.productNameTitle
   position: relative
 
@@ -274,6 +281,8 @@ h3
   position: relative
   background-size:cover
 
+//Property Cards
+
 .prop-card-container
   margin: 10px 5px
   height: calc(520px + 1.25rem)
@@ -289,10 +298,12 @@ h3
   transition: all 0.5s
 
 .prop-card-container:hover .prop-card
-  transform: scale(1.03)
+  transform: scale(1.02)
 
 .prop-card-container:hover .prop-card-text
-  margin-top: 150px
+  margin-top: 190px
+  padding-top: calc(1.5rem + 10px)
+  text-decoration: none
 
 .prop-card-text
   background-color: #fff
@@ -300,7 +311,8 @@ h3
   border-radius: 5px
   margin-top: 200px
   box-shadow:  20px 20px 60px #d9d9d9
-  transition: all 0.5s
+  transition: all 0.2s
+  padding: 1.5rem
 
 .amenity 
   margin: 5px
@@ -312,3 +324,84 @@ h3
 .amenities-list
   display: flex
   flex-wrap: wrap
+
+.prop-card-amenities-btn
+  cursor: pointer
+  transition: all 0.2s
+
+.prop-card-amenities-btn:hover
+  box-shadow: 2px 2px 10px #d9d9d9, -2px -2px 10px #8d9296;
+
+@keyframes ldio-bdjfevgtgfo-1 
+  0% 
+    top: 18px
+    height: 64px 
+  50% 
+    top: 30px
+    height: 40px 
+  100% 
+    top: 30px
+    height: 40px 
+
+@keyframes ldio-bdjfevgtgfo-2 
+  0% 
+    top: 20.999999999999996px
+    height: 58.00000000000001px 
+  50% 
+    top: 30px
+    height: 40px
+  100% 
+    top: 30px
+    height: 40px 
+
+@keyframes ldio-bdjfevgtgfo-3 
+  0% 
+    top: 24px
+    height: 52px 
+  50% 
+    top: 30px
+    height: 40px 
+  100% 
+    top: 30px
+    height: 40px 
+
+.ldio-bdjfevgtgfo div 
+  position: absolute; width: 14px 
+
+.ldio-bdjfevgtgfo div:nth-child(1) 
+  left: 18px
+  background: #f5821e
+  animation: ldio-bdjfevgtgfo-1 1s cubic-bezier(0,0.5,0.5,1) infinite
+  animation-delay: -0.2s
+
+.ldio-bdjfevgtgfo div:nth-child(2) 
+  left: 43px
+  background: #ff9539
+  animation: ldio-bdjfevgtgfo-2 1s cubic-bezier(0,0.5,0.5,1) infinite
+  animation-delay: -0.1s
+
+.ldio-bdjfevgtgfo div:nth-child(3) 
+  left: 68px
+  background: #ffb473
+  animation: ldio-bdjfevgtgfo-3 1s cubic-bezier(0,0.5,0.5,1) infinite
+  animation-delay: undefineds
+
+
+.loadingio-spinner-pulse-wbo8ab6to5q 
+  width: 58px
+  height: 58px
+  margin: auto
+  overflow: hidden
+  background: #ffffff
+
+.ldio-bdjfevgtgfo 
+  width: 100%
+  height: 100%
+  position: relative
+  transform: translateZ(0) scale(0.58)
+  backface-visibility: hidden
+  transform-origin: 0 0
+
+.ldio-bdjfevgtgfo div 
+  box-sizing: content-box
+

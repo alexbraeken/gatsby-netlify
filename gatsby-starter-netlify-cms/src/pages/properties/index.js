@@ -9,7 +9,8 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import queryString from 'query-string'
-
+import Loading from '../../components/Loading'
+import PropertiesFilter from '../../components/PropertiesFilter'
 
 class Properties extends Component {
 
@@ -18,23 +19,14 @@ class Properties extends Component {
             <div className="container">
                 <FirestoreCollection path="/Properties/">
                     {data => {
-                        return data.isLoading ? "Loading" : 
+                        return data.isLoading ? <Loading /> : 
                         <div>
-                            <Container className="justify-content-md-center">
-                                <Form>
-                                    {this.props.filterList(data.value, "city").map((city, index)=>(
-                                        <Form.Check type="checkbox" 
-                                        id="city-checkbox" 
-                                        label={city} 
-                                        value={city} 
-                                        defaultChecked= "true"
-                                        onChange={(e)=> this.props.handleChange(e,"city")}
-                                        key={index}
-                                        />
-                                    ))}      
-                                    {JSON.stringify(this.props.filterSearch)}
-                                </Form> 
-                            </Container>  
+                            <PropertiesFilter 
+                            data= {data} 
+                            filterList={this.props.filterList} 
+                            handleChange={this.props.handleChange} 
+                            state={this.props.state}
+                            handleSliderChange={this.props.handleSliderChange}/>
                             <PropFeatures gridItems={data} state={this.props.state}/>
                         </div>
                     }}
@@ -54,9 +46,12 @@ export default class PropertiesPage extends Component {
             propType:[],
             dateStart:"",
             dateFinish:"",
-            amenities:[]
+            amenities:[],
+            bedrooms: [1, 10],
+            bathrooms: [1, 10]
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleSliderChange = this.handleSliderChange.bind(this);
     }
 
     componentDidMount(){
@@ -93,6 +88,13 @@ export default class PropertiesPage extends Component {
                 [`${type}`]: array
             })
         }
+    }
+
+    handleSliderChange(array, type){
+        console.log(array)
+        this.setState({
+            [`${type}`]: array
+        })
         console.log(this.state)
     }
 
@@ -102,7 +104,12 @@ export default class PropertiesPage extends Component {
         return (
             <Layout>  
                     <Router>
-                        <Properties path ="/properties" state={this.state} handleChange={this.handleChange} filterList={this.filterList} filterSearch={this.state.amenities}/>
+                        <Properties path ="/properties" 
+                        state={this.state} 
+                        handleChange={this.handleChange} 
+                        filterList={this.filterList} 
+                        filterSearch={this.state.amenities}
+                        handleSliderChange={this.handleSliderChange}/>
                         <PropertyTemplate path="/properties/:id" />
                     </Router>
             </Layout> 

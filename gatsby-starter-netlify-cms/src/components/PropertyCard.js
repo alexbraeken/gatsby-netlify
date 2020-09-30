@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap'
 import { Link } from "@reach/router";
 import Col from 'react-bootstrap/Col'
 import { FirestoreDocument } from "@react-firebase/firestore";
+import Loading from '../components/Loading'
 
 const PropertyCard = (props) => {
 
@@ -12,9 +13,29 @@ const PropertyCard = (props) => {
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{backgroundImage: `url(${props.item.picture})`}}>
+        {showAmenities && 
+              <div className="card-img-overlay" style={{fontSize: "0.8rem", backgroundColor: "#fff", height: "fit-content", color:"#000"}}>
+                <FirestoreDocument path={`/amenities/${props.data.gridItems.ids[props.index]}`}>
+                                        {data => {
+                                            return (!data.isLoading && data.value) ? 
+                                            <div id="amenities">
+                                                <h2>Amenities</h2>
+                                                <br />
+                                                <div className="amenities-list">
+                                                {Object.entries(data.value).map((amen, index) => {
+                                                    
+                                                        return (amen[1] && amen[0] !== "__id") ? 
+                                                        <div key={index} className="amenity">{amen[0]}</div> : null
+                                                })}
+                                                <br />
+                                                </div>
+                                            </div> : <Loading />
+                                        }}
+                                    </FirestoreDocument>
+              </div>
+            }
           <Card.ImgOverlay >
-          
-          <section className="section prop-card-text" style={{padding: "1.5rem 1.5rem"}}>
+          <section className="section prop-card-text">
           <Link to={`/properties/${props.data.gridItems.ids[props.index]}`} >
             <Card.Text>
               <small className="text-muted">{props.item.type}</small>
@@ -53,28 +74,7 @@ const PropertyCard = (props) => {
               <b>{props.item.city}</b>
             </Card.Text>
             </Link>
-            {showAmenities && 
-              <Card.Text style={{fontSize: "0.8rem", position:"absolute", top:"0px", height:"100px", width:"100%"}}>
-                <FirestoreDocument path={`/amenities/${props.data.gridItems.ids[props.index]}`}>
-                                        {data => {
-                                            return (!data.isLoading && data.value) ? 
-                                            <div id="amenities">
-                                                <h2>Amenities</h2>
-                                                <br />
-                                                <div className="amenities-list">
-                                                {Object.entries(data.value).map((amen, index) => {
-                                                    
-                                                        return (amen[1] && amen[0] !== "__id") ? 
-                                                        <div key={index} className="amenity">{amen[0]}</div> : null
-                                                })}
-                                                <br />
-                                                </div>
-                                            </div> : "Loading" 
-                                        }}
-                                    </FirestoreDocument>
-              </Card.Text>
-            }
-            <Card.Footer>
+            <Card.Footer className="prop-card-amenities-btn">
             <small className="text-muted" onClick={() => setShowAmenities(!showAmenities)}>
               {showAmenities ? 
               <p>Hide Amenities</p>

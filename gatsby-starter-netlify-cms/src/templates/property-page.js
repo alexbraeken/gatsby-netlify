@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import PropCarousel from '../components/PropCarousel';
 import GoogleMapComponent from '../components/GoogleMapComponent';
 import { Link } from 'gatsby';
+import Loading from '../components/Loading'
 
 export const PropertyPageTemplate = (
 props
@@ -19,7 +20,7 @@ props
                                     <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit"}}>
                                         <span className="prdname">{data.value.name}</span>
                                         <span className="titleTags">
-                                            <span className="titleTag">Tavira - Central </span>
+                                            <span className="titleTag">{data.value.city}</span>
                                             <div className="header-icons">
                                                 <div className="icon-info">
                                                     <img alt="smartavillas - bed" src="/img/bedroom1.png" />
@@ -111,7 +112,7 @@ props
                                 </Container>
                             <br />
                             </div>                      
-                        </div> : "Loading"
+                        </div> : <Loading />
             }}
         </FirestoreDocument>
 

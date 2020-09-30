@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import github from '../img/github-icon.svg'
 import logo from '../img/logo.svg'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import Loading from '../components/Loading'
 
 import { FirestoreCollection } from "@react-firebase/firestore";
 
@@ -69,29 +70,31 @@ const Navbar = class extends React.Component {
               <Link className="navbar-item" to="/">
                 Home
               </Link>
-              <FirestoreCollection path="/Properties/">
-              {d => {
-                        return d.isLoading ? "Loading" : 
-                        <NavDropdown title="Properties" className="navbar-item">
-                          <NavDropdown.Item href="/properties" className="navbar-item">Our Properties</NavDropdown.Item>
-                          {
-                           d.value.map((item, index)=>(
-                             <NavDropdown.Item href={`/properties/${d.ids[index]}`} key={index} className="navbar-item">
-                               {item.name}
-                             </NavDropdown.Item>
-                           ))
-                          }
-                        </NavDropdown>
-                    }}
-              
-              </FirestoreCollection>
+              <NavDropdown title="Properties" className="navbar-item">
+                <NavDropdown.Item href="/properties" className="navbar-item">Our Properties</NavDropdown.Item>
+                <FirestoreCollection path="/Properties/">
+                {d => {
+                          return d.isLoading ? <Loading /> : 
+                          <>
+                            {d.value.map((item, index)=>(
+                              <NavDropdown.Item href={`/properties/${d.ids[index]}`} key={index} className="navbar-item">
+                                {item.name}
+                              </NavDropdown.Item>
+                              ))
+                            }
+                            </>
+                          
+                      }}
+                
+                </FirestoreCollection>
+              </NavDropdown>
               <Link className="navbar-item" to="/blog">
                 Traveler Tips
               </Link>
               <Link className="navbar-item" to="/">
                 Holiday Extras
               </Link>
-              <Link className="navbar-item" to="/">
+              <Link className="navbar-item" to="/algarve">
                 The Algarve
               </Link>
               <Link className="navbar-item" to="/contact">
