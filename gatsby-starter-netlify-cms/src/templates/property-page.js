@@ -6,11 +6,17 @@ import Col from 'react-bootstrap/Col';
 import PropCarousel from '../components/PropCarousel';
 import GoogleMapComponent from '../components/GoogleMapComponent';
 import { Link } from 'gatsby';
-import Loading from '../components/Loading'
+import Loading from '../components/Loading';
+import BookingWidget from '../components/BookingWidget';
+import CalendarWidget from '../components/CalendarWidget';
 
 export const PropertyPageTemplate = (
 props
-) => (
+) =>
+{
+   
+    return (
+        <>
         <FirestoreDocument path={`/Properties/${props.id}`}>
             {data => {
                 return (!data.isLoading && data.value) ? 
@@ -81,6 +87,10 @@ props
                                                 <li>City: <span style={{float: "right"}}>{data.value.city}</span></li>
                                             </ul>
                                             
+                                            <hr />
+                                            
+                                            <BookingWidget id={props.id}/>
+
                                         </Col>
                                     </Row>
                                     <br/>
@@ -103,6 +113,10 @@ props
                                         }}
                                     </FirestoreDocument>
                                     <hr />
+                                    <h2>Calendar</h2>
+                                    <br />
+                                    <CalendarWidget id={props.id}/>
+                                    <hr />
                                     <div id="location">
                                     <h2>Location</h2>
                                     <br />
@@ -115,8 +129,9 @@ props
                         </div> : <Loading />
             }}
         </FirestoreDocument>
-
+</>
 )
+}
 
 const PropertyPage = (data) => {
     return(

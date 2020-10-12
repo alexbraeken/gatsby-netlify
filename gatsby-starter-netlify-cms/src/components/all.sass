@@ -296,9 +296,11 @@ a:hover
   background-size: cover
   border: none
   transition: all 0.5s
+  backface-visibility: hidden
+  -webkit-font-smoothing: subpixel-antialiased
 
 .prop-card-container:hover .prop-card
-  transform: scale(1.02)
+  transform: scale(1.019) translateZ(0)
 
 .prop-card-container:hover .prop-card-text
   margin-top: 190px

@@ -55,7 +55,9 @@ const TemplateWrapper = ({ children }) => {
         <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" 
         rel="stylesheet" 
         />
+                  <script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js"/>
 
+<script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
       <Navbar />
