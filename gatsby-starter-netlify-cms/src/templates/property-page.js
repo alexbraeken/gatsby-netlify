@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FirestoreDocument } from "@react-firebase/firestore";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,12 +9,22 @@ import { Link } from 'gatsby';
 import Loading from '../components/Loading';
 import BookingWidget from '../components/BookingWidget';
 import CalendarWidget from '../components/CalendarWidget';
+import StickyBox from "react-sticky-box";
+import GalleryModal from '../components/GalleryModal';
 
-export const PropertyPageTemplate = (
-props
-) =>
+export const PropertyPageTemplate = ( props ) =>
 {
-   
+   const [bookDates, setBookDates] = useState({})
+   const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+   const onDateChange = (range) => {
+    setBookDates({
+        from:range.from,
+        to: range.to})
+   }
     return (
         <>
         <FirestoreDocument path={`/Properties/${props.id}`}>
@@ -61,7 +71,7 @@ props
                                 </Container>
                             </div>
                             <div style={{width:"100%"}}>
-                                <PropCarousel firstSlide={data.value.picture} photos={data.value.photos}/>
+                                <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <br />
                                 <Container>
                                     <section>
@@ -69,63 +79,86 @@ props
                                         <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#location">Location</Link>
                                     </div>
                                     <br />
-                                    <Row id="about">
-                                        <Col xs={12} md={9}>
-                                            <h2>About</h2>
-                                            <br />
-                                            <p>
-                                            {data.value.description}
-                                            </p>
-                                        </Col>
-                                        <Col xs={12} md={3}>
-                                            <h4 className="text-muted">Key Features</h4>
+                                    <Row>
+                                    <Col>
+                                        <Row id="about">
+                                            <Col xs={12} md={9}>
+                                                <h2>About</h2>
+                                                <br />
+                                                <p>
+                                                {data.value.description}
+                                                </p>
+                                            </Col>
+                                        </Row>
+                                    <Row>
+                                        <Col >
+                                            <br/>
                                             <hr />
-                                            <ul>
-                                                <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
-                                                <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
-                                                <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
-                                                <li>City: <span style={{float: "right"}}>{data.value.city}</span></li>
-                                            </ul>
-                                            
-                                            <hr />
-                                            
-                                            <BookingWidget id={props.id}/>
-
+                                            <FirestoreDocument path={`/amenities/${props.id}`}>
+                                                {data => {
+                                                    return (!data.isLoading && data.value) ? 
+                                                    <div id="amenities">
+                                                        <h2>Amenities</h2>
+                                                        <br />
+                                                        <div className="amenities-list">
+                                                        {Object.entries(data.value).map((amen, index) => {
+                                                            
+                                                                return (amen[1] && amen[0] !== "__id") ? 
+                                                                <div key={index} className="amenity">{amen[0]}</div> : null
+                                                        })}
+                                                        <br />
+                                                        </div>
+                                                    </div> : "Loading" 
+                                                }}
+                                            </FirestoreDocument>
                                         </Col>
                                     </Row>
-                                    <br/>
-                                    <hr />
-                                    <FirestoreDocument path={`/amenities/${props.id}`}>
-                                        {data => {
-                                            return (!data.isLoading && data.value) ? 
-                                            <div id="amenities">
-                                                <h2>Amenities</h2>
+                                    
+                                    
+                                    <Row>
+                                        <Col xs={12} md={9}>
+                                            <hr />
+                                            <div id="calendar">
+                                                <h2>Calendar</h2>
                                                 <br />
-                                                <div className="amenities-list">
-                                                {Object.entries(data.value).map((amen, index) => {
-                                                    
-                                                        return (amen[1] && amen[0] !== "__id") ? 
-                                                        <div key={index} className="amenity">{amen[0]}</div> : null
-                                                })}
-                                                <br />
-                                                </div>
-                                            </div> : "Loading" 
-                                        }}
-                                    </FirestoreDocument>
-                                    <hr />
-                                    <h2>Calendar</h2>
-                                    <br />
-                                    <CalendarWidget id={props.id}/>
+                                                <CalendarWidget id={props.id} onChange={onDateChange}/>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                    </Col>
+                                        <Col xs={12} md={3} style={{display: "flex", alignItems: "flex-start"}}>
+                                            <StickyBox>
+                                                <h4 className="text-muted">Key Features</h4>
+                                                <hr />
+                                                <ul>
+                                                    <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
+                                                    <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
+                                                    <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
+                                                    <li>City: <span style={{float: "right"}}>{data.value.city}</span></li>
+                                                </ul>
+                                                
+                                                <hr />
+                                                
+                                                <BookingWidget id={props.id} dateRange={bookDates}/>
+                                            </StickyBox>
+                                        </Col>
+                                    </Row>
+                                    </section>
+                                    </Container>
+                                    <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
                                     <hr />
                                     <div id="location">
-                                    <h2>Location</h2>
-                                    <br />
-                                    <GoogleMapComponent isMarkerShown="true" lat={data.value.latitude} lng={data.value.longitude}/>
+                                        <Container>
+                                        <h2>Location</h2>
+                                        <br />
+                                        </Container>
+                                        <GoogleMapComponent isMarkerShown="true" lat={data.value.latitude} lng={data.value.longitude}/>
                                     </div>
-                                    </section>
+                                    
                                 </Container>
                             <br />
-                            </div>                      
+                            <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
+                            </div>                 
                         </div> : <Loading />
             }}
         </FirestoreDocument>

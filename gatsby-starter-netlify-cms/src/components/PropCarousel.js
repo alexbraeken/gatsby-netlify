@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "@reach/router";
+import { Container } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class CustomSlide extends React.Component {
     render() {
@@ -23,25 +25,33 @@ class CustomSlide extends React.Component {
   }
 
 
-class PropCarousel extends React.Component {
+const PropCarousel = (props) => {
 
-    render() {
-      var settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
       return (
-        <Slider {...settings} >
-            <CustomSlide backgroundImage={this.props.firstSlide} />
-            {this.props.photos ? this.props.photos.map((photo, index)=> (
+        <>
+        <Slider {...settings} style={{position:"relative"}}>
+            <CustomSlide backgroundImage={props.firstSlide} />
+            {props.photos ? props.photos.map((photo, index)=> (
                 <CustomSlide backgroundImage={photo.url} key={index} />
             )): null}
         </Slider>
+        {props.photos ? 
+          <div style={{position:"absolute",height:"100%",width:"100%"}}>
+            <Container>
+              <Button onClick={props.handleShow}
+              style={{position:"absolute", bottom:"2rem", right:"0", backgroundColor:"transparent"}}>Gallery</Button>
+            </Container>
+          </div> : null }
+        </>
       );
-    }
-  }
+}
 
 export default PropCarousel
