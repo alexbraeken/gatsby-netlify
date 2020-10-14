@@ -11,11 +11,14 @@ import BookingWidget from '../components/BookingWidget';
 import CalendarWidget from '../components/CalendarWidget';
 import StickyBox from "react-sticky-box";
 import GalleryModal from '../components/GalleryModal';
+import Amenity from '../components/Amenities';
+import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 export const PropertyPageTemplate = ( props ) =>
 {
    const [bookDates, setBookDates] = useState({})
    const [show, setShow] = useState(false);
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -75,11 +78,11 @@ export const PropertyPageTemplate = ( props ) =>
                                 <br />
                                 <Container>
                                     <section>
-                                    <div>
-                                        <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#location">Location</Link>
+                                    <div id="prop-nav">
+                                        <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#location">Location</Link>
                                     </div>
                                     <br />
-                                    <Row>
+                                    <Row id="prop-summary">
                                     <Col>
                                         <Row id="about">
                                             <Col xs={12} md={9}>
@@ -104,7 +107,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                         {Object.entries(data.value).map((amen, index) => {
                                                             
                                                                 return (amen[1] && amen[0] !== "__id") ? 
-                                                                <div key={index} className="amenity">{amen[0]}</div> : null
+                                                                <div key={index} className="amenity">
+                                                                    <Amenity amenity = {amen[0]} /></div> : null
                                                         })}
                                                         <br />
                                                         </div>
@@ -123,6 +127,22 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <br />
                                                 <CalendarWidget id={props.id} onChange={onDateChange}/>
                                             </div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={12} md={9}>
+                                            <hr />
+                                            <FirestoreDocument path={`/Descriptions/${props.id}`}>
+                                            {data => {
+                                                    return (!data.isLoading && data.value) ? 
+                                                    <div id="neighborhood">
+                                                        <h2>Neighborhood</h2>
+                                                        <br />
+                                                        {data.value.en_US.neighborhood}
+                                                        <br />
+                                                    </div> : <Loading /> 
+                                                }}
+                                            </FirestoreDocument>
                                         </Col>
                                     </Row>
                                     </Col>
@@ -166,9 +186,44 @@ export const PropertyPageTemplate = ( props ) =>
 )
 }
 
-const PropertyPage = (data) => {
+export const PropertyNav = (props) => {
+
     return(
-            <PropertyPageTemplate id={data.id}/>
+        <div className="prop-nav" style={{...props.navStyles}}>
+            <Container>
+                <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#location">Location</Link>
+            </Container>
+        </div>
+    )
+} 
+
+const PropertyPage = (data) => {
+
+    const [propNav, setPropNav] = useState(false);
+    const [headerStyle, setHeaderStyle] = useState({
+        transition: 'all 300ms ease-in'
+      })
+
+    useScrollPosition(({ prevPos, currPos }) => {
+        const propSumOffset = document.getElementById("prop-summary").getBoundingClientRect().top;
+        const isShow = -100 > propSumOffset;
+        if (isShow !== propNav) setPropNav(isShow)
+
+        const shouldBeStyle = {
+            visibility: isShow ? 'visible' : 'hidden',
+            transition: `all 300ms ${isShow ? 'ease-in' : 'ease-out'}`,
+            transform: isShow ? 'none' : 'translate(0, -100%)'
+          }
+      
+        if (JSON.stringify(shouldBeStyle) !== JSON.stringify(headerStyle)) 
+            return setHeaderStyle(shouldBeStyle)
+      }, [propNav, headerStyle])
+
+    return(
+        <div>
+            {<PropertyNav navStyles={headerStyle}/>}
+            <PropertyPageTemplate id={data.id} />
+        </div>
     )
 }
 

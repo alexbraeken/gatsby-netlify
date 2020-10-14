@@ -4,6 +4,7 @@ import { Link } from "@reach/router";
 import Col from 'react-bootstrap/Col'
 import { FirestoreDocument } from "@react-firebase/firestore";
 import Loading from '../components/Loading'
+import Amenity from '../components/Amenities';
 
 const PropertyCard = (props) => {
 
@@ -25,7 +26,8 @@ const PropertyCard = (props) => {
                                                 {Object.entries(data.value).map((amen, index) => {
                                                     
                                                         return (amen[1] && amen[0] !== "__id") ? 
-                                                        <div key={index} className="amenity">{amen[0]}</div> : null
+                                                        <div key={index} className="amenity">
+                                                          <Amenity amenity = {amen[0]} /></div> : null
                                                 })}
                                                 <br />
                                                 </div>

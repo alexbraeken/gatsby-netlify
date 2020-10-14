@@ -9,7 +9,8 @@ import 'firebase/firestore';
 import { FirestoreProvider, FirestoreCollection } from "@react-firebase/firestore";
 import { config } from "../firebase-config";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './all.sass'
+import './all.sass';
+import BackToTop from '../components/BackToTop';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
@@ -62,6 +63,7 @@ const TemplateWrapper = ({ children }) => {
       <FirestoreProvider {...config} firebase={firebase}>
       <Navbar />
       <div>{children}</div>
+      <BackToTop />
       <Footer />
       </FirestoreProvider>
     </div>

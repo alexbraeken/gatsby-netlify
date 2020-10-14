@@ -35,7 +35,7 @@ const CalendarWidget = (props) => {
             })
             setDisabledDays(disabledDates)
         })
-    })
+    }, [disabledDays, range])
 
     const getInitialState = () => {
         return {
