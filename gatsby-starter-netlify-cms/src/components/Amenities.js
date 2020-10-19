@@ -51,12 +51,12 @@ const Amenities = (props) => {
                                     return (!data.isLoading && data.value) ? 
                                     <Container>
                                         <Row>
-                                            <Col>
+                                            <Col xs={6} md={3}>
                                             <a href={`/properties/${id}`} className="d-block h-100">
                                                 <img className="img-fluid img-thumbnail" src={data.value.picture} alt="" />
                                             </a>
                                             </Col>
-                                            <Col>
+                                            <Col xs={6} md={9}>
                                                 <p style={{margin:"auto"}}>{data.value.name}</p>
                                             </Col>
                                         </Row>

@@ -39,6 +39,16 @@ const Navbar = class extends React.Component {
     )
   }
 
+  filterList = (props, type) => {
+    let filter = []
+    props.map(prop => {
+        filter.push(prop[`${type}`])
+    })
+
+    return [... new Set(filter)]
+
+}
+
   render() {
     return (
       <nav
@@ -76,9 +86,9 @@ const Navbar = class extends React.Component {
                 {d => {
                           return d.isLoading ? <Loading /> : 
                           <>
-                            {d.value.map((item, index)=>(
-                              <NavDropdown.Item href={`/properties/${d.ids[index]}`} key={index} className="navbar-item">
-                                {item.name}
+                            {this.filterList(d.value, "city").map((city, index)=>(
+                              <NavDropdown.Item href={`/properties?city=${city}`} key={index} className="navbar-item">
+                                {city}
                               </NavDropdown.Item>
                               ))
                             }

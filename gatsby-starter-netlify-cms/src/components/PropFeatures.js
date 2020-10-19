@@ -6,10 +6,12 @@ import PropertyCard from '../components/PropertyCard';
 
 const PropFeatureGrid = (data) => {
   
+  const filteredSearch = data.state.filteredSearch;
+
   return(
   <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
     {data.gridItems.value.map((item, index) => (
-      data.state.city.indexOf(item.city) === -1 
+      data.state.city.includes(item.city) === filteredSearch 
       && data.state.propType.indexOf(item.type) === -1
       && data.state.bedrooms[0] <= parseInt(item.bedrooms) 
       && parseInt(item.bedrooms) <= data.state.bedrooms[1]

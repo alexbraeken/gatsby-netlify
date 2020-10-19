@@ -56,7 +56,8 @@ export default class PropertiesPage extends Component {
             dateFinish:"",
             amenities:[],
             bedrooms: [1, 10],
-            bathrooms: [1, 10]
+            bathrooms: [1, 10],
+            filteredSearch: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSliderChange = this.handleSliderChange.bind(this);
@@ -64,10 +65,15 @@ export default class PropertiesPage extends Component {
 
     componentDidMount(){
        const filterValues = queryString.parse(this.props.location.search);
-       const amenities = Object.keys(filterValues);
-       console.log(amenities);
-       this.setState({
-           amenities: amenities
+       const keys = Object.keys(filterValues)
+       keys.forEach(key =>{
+           console.log(key)
+           console.log(filterValues[key])
+           this.setState({
+               [key]:filterValues[key],
+               filteredSearch: true
+           })
+           
        })
     } 
 
