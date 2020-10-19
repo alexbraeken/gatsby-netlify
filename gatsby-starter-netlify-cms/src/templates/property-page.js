@@ -13,6 +13,7 @@ import StickyBox from "react-sticky-box";
 import GalleryModal from '../components/GalleryModal';
 import Amenity from '../components/Amenities';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import logo from '../img/logo.svg'
 
 export const PropertyPageTemplate = ( props ) =>
 {
@@ -77,12 +78,12 @@ export const PropertyPageTemplate = ( props ) =>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <br />
                                 <Container>
-                                    <section>
+                                    <section id="prop-summary">
                                     <div id="prop-nav">
                                         <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#location">Location</Link>
                                     </div>
                                     <br />
-                                    <Row id="prop-summary">
+                                    <Row>
                                     <Col>
                                         <Row id="about">
                                             <Col xs={12} md={9}>
@@ -191,7 +192,7 @@ export const PropertyNav = (props) => {
     return(
         <div className="prop-nav" style={{...props.navStyles}}>
             <Container>
-                <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#location">Location</Link>
+                <Link to="/"><img src={logo} style={{height:"30px", width:"30px", marginRight:"10px"}}/></Link><Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#location">Location</Link>
             </Container>
         </div>
     )
@@ -204,8 +205,11 @@ const PropertyPage = (data) => {
         transition: 'all 300ms ease-in'
       })
 
+
     useScrollPosition(({ prevPos, currPos }) => {
-        const propSumOffset = document.getElementById("prop-summary").getBoundingClientRect().top;
+        const propSum = document.getElementById("prop-summary")
+        let propSumOffset;
+        if(propSum)propSumOffset = propSum.getBoundingClientRect().top;
         const isShow = -100 > propSumOffset;
         if (isShow !== propNav) setPropNav(isShow)
 
@@ -220,7 +224,15 @@ const PropertyPage = (data) => {
       }, [propNav, headerStyle])
 
     return(
-        <div>
+        <div exit={{
+            opacity: 0,
+            y:"-100%"}}
+        animate={{
+            opacity: 1,
+            y:0}}
+        initialxit={{
+            opacity: 0,
+            y:"-100%"}}>
             {<PropertyNav navStyles={headerStyle}/>}
             <PropertyPageTemplate id={data.id} />
         </div>

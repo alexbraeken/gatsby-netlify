@@ -16,7 +16,15 @@ class Properties extends Component {
 
     render(){
         return(
-            <div className="container">
+            <div className="container" exit={{
+            opacity: 0,
+            y:"-100%"}}
+        animate={{
+            opacity: 1,
+            y:0}}
+        initialxit={{
+            opacity: 0,
+            y:"100%"}}>
                 <FirestoreCollection path="/Properties/">
                     {data => {
                         return data.isLoading ? <Loading /> : 
@@ -102,8 +110,8 @@ export default class PropertiesPage extends Component {
     render() {
 
         return (
-            <Layout>  
-                    <Router>
+            <Layout>
+                <Router>
                         <Properties path ="/properties" 
                         state={this.state} 
                         handleChange={this.handleChange} 
@@ -111,7 +119,7 @@ export default class PropertiesPage extends Component {
                         filterSearch={this.state.amenities}
                         handleSliderChange={this.handleSliderChange}/>
                         <PropertyTemplate path="/properties/:id" />
-                    </Router>
+                </Router>       
             </Layout> 
           );
     }

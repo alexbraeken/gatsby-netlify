@@ -14,7 +14,6 @@ const BackToTop = () => {
 
     useScrollPosition(({ prevPos, currPos }) => {
         const isShow = -900 > currPos.y;
-        console.log(currPos);
         if (isShow !== showButton) setShowButton(isShow)
 
         const shouldBeStyle = {

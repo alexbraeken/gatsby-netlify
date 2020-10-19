@@ -6,6 +6,9 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { FirestoreCollection } from "@react-firebase/firestore";
 import Loading from '../components/Loading';
 import { FirestoreDocument } from "@react-firebase/firestore";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Amenities = (props) => {
 
@@ -33,14 +36,35 @@ const Amenities = (props) => {
 
     const popover = (amenity) => (
         <Popover id="popover-basic">
-            <FirestoreCollection path="/amenities/" where={{field:`${amenity}` , operator:"==", value:true}}>
+            <FirestoreCollection path="/amenities/" where={{field:`${amenity}` , operator:"==", value:true}} limit={5}>
             {data => {
                 return (!data.isLoading && data.value) ? 
                 <>
                     <Popover.Title as="h3">Properties with {amenity}</Popover.Title>
                     <Popover.Content>
-                    {console.log(data.value)}
-                    {data.value}
+                        {console.log(data.ids)}
+                        {console.log(Object.keys(data.value))}
+                        {data.ids.map((id, index)=> {
+                            return (
+                            <FirestoreDocument path={`/Properties/${id}`}>
+                                {data => {
+                                    return (!data.isLoading && data.value) ? 
+                                    <Container>
+                                        <Row>
+                                            <Col>
+                                            <a href={`/properties/${id}`} className="d-block h-100">
+                                                <img className="img-fluid img-thumbnail" src={data.value.picture} alt="" />
+                                            </a>
+                                            </Col>
+                                            <Col>
+                                                <p style={{margin:"auto"}}>{data.value.name}</p>
+                                            </Col>
+                                        </Row>
+                                    </Container> : null
+                                }}
+                            </FirestoreDocument>
+                            )
+                        })}
                     </Popover.Content> 
                 </>: <Loading />
             }}

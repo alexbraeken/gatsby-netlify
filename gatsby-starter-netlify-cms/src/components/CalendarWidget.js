@@ -35,7 +35,10 @@ const CalendarWidget = (props) => {
             })
             setDisabledDays(disabledDates)
         })
-    }, [disabledDays, range])
+        return function cleanup(){
+            setDisabledDays(getInitialState);
+        }
+    }, [])
 
     const getInitialState = () => {
         return {
@@ -125,6 +128,10 @@ border-bottom-left-radius: 50% !important;
 border-top-right-radius: 50% !important;
 border-bottom-right-radius: 50% !important;
 }
+
+.DayPicker-Caption{
+color: #ff6600;
+} 
 `}</style>
     </Helmet>
     </>

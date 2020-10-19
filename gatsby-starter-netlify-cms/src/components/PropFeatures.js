@@ -16,7 +16,6 @@ const PropFeatureGrid = (data) => {
       && data.state.bathrooms[0] <= parseInt(item.bathrooms) 
       && parseInt(item.bathrooms) <= data.state.bathrooms[1]  ?
       <PropertyCard item={item} data={data} index={index} key={index}/>: null ))}
-      
   </div>
 )}
 
