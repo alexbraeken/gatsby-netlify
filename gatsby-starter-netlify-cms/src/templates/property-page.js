@@ -15,6 +15,7 @@ import Amenity from '../components/Amenities';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import logo from '../img/logo.svg'
 
+
 export const PropertyPageTemplate = ( props ) =>
 {
    const [bookDates, setBookDates] = useState({})
@@ -37,41 +38,52 @@ export const PropertyPageTemplate = ( props ) =>
                         <div style={{display:"flex", flexWrap:"wrap"}}>
                             <div className="prdtitlesolo productNameTitle">
                                 <Container>
-                                    <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit"}}>
-                                        <span className="prdname">{data.value.name}</span>
-                                        <span className="titleTags">
-                                            <span className="titleTag">{data.value.city}</span>
-                                            <div className="header-icons">
-                                                <div className="icon-info">
-                                                    <img alt="smartavillas - bed" src="/img/bedroom1.png" />
-                                                        <span className="tooltiptext">Bedrooms</span>
+                                    <Row>     
+                                    <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit", width:"100%"}}>
+                                        <Col>
+                                            <Row>
+                                                <span className="prdname">{data.value.name}</span>
+                                            </Row>
+                                            <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
+                                            <Row>
+                                                <div className="flag under">
+                                                    <span className="prc">{data.value.baseDailyRate} €</span>
+                                                    <span className="mth"> / Day</span>
+                                                </div>
+                                            
+                                            <span className="titleTags">
+                                                <span className="titleTag"><Link to={`/properties?city=${data.value.city}`}>{data.value.city}</Link></span>
+                                                <div className="header-icons">
+                                                    <div className="icon-info">
+                                                        <img alt="smartavillas - bed" src="/img/bedroom1.png" />
+                                                            <span className="tooltiptext">Bedrooms</span>
+                                                            <div className="text-number">
+                                                                <h3>{data.value.bedrooms}</h3>
+                                                            </div>
+                                                    </div>
+                                                    <div className="icon-info">
+                                                        <img alt="smartavillas - bath" src="/img/bathroom3.png" />
+                                                        <span className="tooltiptext">Bathrooms</span>
                                                         <div className="text-number">
-                                                            <h3>{data.value.bedrooms}</h3>
+                                                            <h3>{data.value.bathrooms}</h3>
                                                         </div>
-                                                </div>
-                                                <div className="icon-info">
-                                                    <img alt="smartavillas - bath" src="/img/bathroom3.png" />
-                                                    <span className="tooltiptext">Bathrooms</span>
-                                                    <div className="text-number">
-                                                        <h3>{data.value.bathrooms}</h3>
+                                                    </div>
+                                                    <div className="icon-info">
+                                                        <img alt="smartavillas - sleeps" src="/img/people.png" />
+                                                        <span className="tooltiptext">Sleeps</span>
+                                                        <div className="text-number">
+                                                            <h3>{data.value.baseGuests}</h3>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div className="icon-info">
-                                                    <img alt="smartavillas - sleeps" src="/img/people.png" />
-                                                    <span className="tooltiptext">Sleeps</span>
-                                                    <div className="text-number">
-                                                        <h3>{data.value.baseGuests}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </span>
+                                            </span>
+                                            </Row>
+                                        </Col>
                                     </h1>
                                     <div className="winterLetsRibbon" title="Winter let">
-                                        <div className="flag under">
-                                            <span className="prc">{data.value.baseDailyRate} €</span>
-                                            <span className="mth"> / Day</span>
-                                        </div>
+                                        
                                     </div>
+                                    </Row>
                                 </Container>
                             </div>
                             <div style={{width:"100%"}}>

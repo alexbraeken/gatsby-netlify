@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "@reach/router";
 import { Container } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import ReactBnbGallery from 'react-bnb-gallery';
 
 class CustomSlide extends React.Component {
     render() {
@@ -27,6 +28,8 @@ class CustomSlide extends React.Component {
 
 const PropCarousel = (props) => {
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -37,6 +40,11 @@ const PropCarousel = (props) => {
 
       return (
         <>
+        <ReactBnbGallery
+          show={isOpen}
+          photos={props.photos.map((photo,index)=>{return(photo.url)})}
+          onClose={() => setIsOpen(false)}
+        />
         <Slider {...settings} style={{position:"relative"}}>
             <CustomSlide backgroundImage={props.firstSlide} />
             {props.photos ? props.photos.map((photo, index)=> (
@@ -46,7 +54,7 @@ const PropCarousel = (props) => {
         {props.photos ? 
           <div style={{position:"absolute",height:"100%",width:"100%"}}>
             <Container>
-              <Button onClick={props.handleShow}
+              <Button onClick={() => setIsOpen(true)}
               style={{position:"absolute", bottom:"2rem", right:"0", backgroundColor:"transparent"}}>Gallery</Button>
             </Container>
           </div> : null }

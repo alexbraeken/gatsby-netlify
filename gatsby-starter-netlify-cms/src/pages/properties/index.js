@@ -69,8 +69,10 @@ export default class PropertiesPage extends Component {
        keys.forEach(key =>{
            console.log(key)
            console.log(filterValues[key])
+        let searchArray = filterValues[key];
+        searchArray = (Array.isArray(searchArray)?searchArray:[searchArray]);
            this.setState({
-               [key]:filterValues[key],
+               [key]:searchArray,
                filteredSearch: true
            })
            

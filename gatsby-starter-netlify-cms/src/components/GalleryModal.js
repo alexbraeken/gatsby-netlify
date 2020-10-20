@@ -1,52 +1,44 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Loading from '../components/Loading';
 import { Modal, Button } from 'react-bootstrap'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { gsap } from "gsap";
 
 const GalleryModal = (props) => {
-/*
-  const animateHero = (fromHero, toHero) => {
-    
-    let clone = fromHero.cloneNode(true);
-        
-    let from = calculatePosition(fromHero);
-    let to = calculatePosition(toHero);
-    
-    TweenLite.set([fromHero, toHero], { visibility: "hidden" });
-    TweenLite.set(clone, { position: "absolute", margin: 0 });
-    
-    body.appendChild(clone);  
-        
-    let style = {
-      x: to.left - from.left,
-      y: to.top - from.top,
-      width: to.width,
-      height: to.height,
-      autoRound: false,
-      ease: Power1.easeOut,
-      onComplete: onComplete
-    };
-     
-    TweenLite.set(clone, from);  
-    TweenLite.to(clone, 0.3, style)
-      
-    const onComplete = () => {
-      
-      TweenLite.set(toHero, { visibility: "visible" });
-      body.removeChild(clone);
+
+  const img = React.createRef();
+  const srcImg = React.createRef();
+
+  const [focusImg, setFocusImg] = useState(null);
+  const [coords, setCoords ] = useState({width:0, height:0, x:0, y:0});
+
+  let tween;
+
+  useEffect(() => {
+    if(focusImg){
+      tween = gsap.fromTo(img.current, {x:coords.x, y:coords.y, width:coords.width, height:coords.height, opacity:0.1}, { width:"100%", height:"unset", opacity:1, duration: 0.7, ease:"ease-in"})
     }
+    return () => {
+    }
+  }, [img, coords])
+
+  const handleClick = (src) => {
+    setCoords(calculatePosition(srcImg))
+    setFocusImg(src);
   }
-  
+
   const calculatePosition = (element) => {
-      
-    let rect = element.getBoundingClientRect();
+    var root  = document.documentElement;
+    var body  = document.body;
     
-    let scrollTop  = window.pageYOffset || root.scrollTop  || body.scrollTop  || 0;
-    let scrollLeft = window.pageXOffset || root.scrollLeft || body.scrollLeft || 0;
+    var rect = element.current.getBoundingClientRect();
     
-    let clientTop  = root.clientTop  || body.clientTop  || 0;
-    let clientLeft = root.clientLeft || body.clientLeft || 0;
+    var scrollTop  = window.pageYOffset || root.scrollTop  || body.scrollTop  || 0;
+    var scrollLeft = window.pageXOffset || root.scrollLeft || body.scrollLeft || 0;
+    
+    var clientTop  = root.clientTop  || body.clientTop  || 0;
+    var clientLeft = root.clientLeft || body.clientLeft || 0;
       
     return {
       top: Math.round(rect.top + scrollTop - clientTop),
@@ -56,23 +48,26 @@ const GalleryModal = (props) => {
     };
   }
 
-  https://codepen.io/yasirhaleem/pen/yLyvavQ
-    */
     return (
         <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-90w">
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
     <Modal.Body>{props.photos ? 
-      <Row>
-        {props.photos.map((photo, index)=> (
-          <Col lg={3} md={4} key={index}>
-            <a href="#" className="d-block mb-4 h-100">
-              <img className="img-fluid img-thumbnail" src={photo.url} alt="" alt=""/>
-            </a>
-          </Col>
-        )
-        )} 
+      <Row>{!!focusImg ? (<img src={focusImg}  ref={img} onClick={()=>setFocusImg(null)}/>) :
+        <>
+          {props.photos.map((photo, index)=> (
+            <Col lg={3} md={4} key={index} >
+              <a href="#" className="d-block mb-4 h-100">
+                <div ref={srcImg}>
+                  <img className="img-fluid img-thumbnail" src={photo.url} alt="" onClick={()=>handleClick(photo.url)} />
+                </div>
+              </a>
+            </Col>
+          ))
+          }
+        </>
+        } 
       </Row>: <Loading />}</Modal.Body>
       </Modal>
     )

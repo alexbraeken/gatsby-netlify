@@ -11,6 +11,7 @@ import { config } from "../firebase-config";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './all.sass';
 import BackToTop from '../components/BackToTop';
+import 'react-bnb-gallery/dist/style.css'
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
@@ -56,7 +57,6 @@ const TemplateWrapper = ({ children }) => {
         <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" 
         rel="stylesheet" 
         />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" />
                   <script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js"/>
 
 <script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
