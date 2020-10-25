@@ -16,6 +16,7 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import logo from '../img/logo.svg'
 
 
+
 export const PropertyPageTemplate = ( props ) =>
 {
    const [bookDates, setBookDates] = useState({})

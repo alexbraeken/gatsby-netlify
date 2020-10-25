@@ -16,7 +16,18 @@ const Navbar = class extends React.Component {
     this.state = {
       active: false,
       navBarActiveClass: '',
+      style: {
+        
+      }
     }
+  }
+
+  componentDidMount(){
+    if(window.location.pathname === "/")this.setState({style: {
+      position: 'absolute',
+      width: '100%',
+      background: 'transparent'}
+    })
   }
 
   toggleHamburger = () => {
@@ -55,7 +66,7 @@ const Navbar = class extends React.Component {
         className="navbar is-transparent"
         role="navigation"
         aria-label="main-navigation"
-      >
+        style={this.state.style}     >
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">

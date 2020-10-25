@@ -36,9 +36,10 @@ const PropertyCard = (props) => {
                                     </FirestoreDocument>
               </div>
             }
-          <Card.ImgOverlay >
+          <Card.ImgOverlay style={{position:"relative"}}>
+          <Link  to={`/properties/${props.data.gridItems.ids[props.index]}`}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
           <section className="section prop-card-text">
-          <Link to={`/properties/${props.data.gridItems.ids[props.index]}`} >
+          <Link to={`/properties/${props.data.gridItems.ids[props.index]}`}  style={{position:"relative", zIndex:"2"}}>
             <Card.Text>
               <small className="text-muted">{props.item.type}</small>
               <small className="text-muted" style={{float:"right"}}>{props.item.baseDailyRate} € / Day</small>
@@ -76,14 +77,19 @@ const PropertyCard = (props) => {
               <b>{props.item.city}</b>
             </Card.Text>
             </Link>
-            <Card.Footer className="prop-card-amenities-btn">
-            <small className="text-muted" onClick={() => setShowAmenities(!showAmenities)}>
-              {showAmenities ? 
-              <p>Hide Amenities</p>
-              :<p>Show Amenities</p>
-                }</small>
-            </Card.Footer>
-            
+            <Card.Footer className="prop-card-footer-container" style={{borderRadius: "0 0 5px 5px"}}>
+                <small className="prop-card-btn" onClick={() => setShowAmenities(!showAmenities)}>
+                {showAmenities ? 
+                <p className="card-footer-btn-txt">Hide Amenities</p>
+                :<p className="card-footer-btn-txt">Amenities</p>
+                  }</small>
+                <small className="prop-card-btn" onClick={()=> props.handleGalleryClick(props.item.photos)}>
+                <p className="card-footer-btn-txt">Gallery</p>
+                  </small>
+                <small className="prop-card-btn">
+                <p className="card-footer-btn-txt">Calendar</p>
+                  </small>
+            </Card.Footer>     
           </section>
           
           </Card.ImgOverlay>   

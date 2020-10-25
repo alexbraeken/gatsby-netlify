@@ -11,32 +11,74 @@ import Row from 'react-bootstrap/Row'
 import queryString from 'query-string'
 import Loading from '../../components/Loading'
 import PropertiesFilter from '../../components/PropertiesFilter'
+import StickyBox from "react-sticky-box";
+import { Col } from 'react-bootstrap';
+import GoogleMapComponent from '../../components/GoogleMapComponent';
+import ReactBnbGallery from 'react-bnb-gallery';
 
 class Properties extends Component {
+    
+    constructor(props){
+        super(props);
+        this.state={
+            show:false,
+            photos:[],
+            sort:""
+        }
+        this.handleClose = this.handleClose.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleGalleryClick = this.handleGalleryClick.bind(this);
+        this.handleSort = this.handleSort.bind(this);
+    }
+
+    handleGalleryClick(photos){
+        this.setState({
+            show:true,
+            photos:photos
+        })
+    }
+
+    handleClose(){
+        this.setState({show:false})
+    };
+    handleShow(){
+        this.setState({show:true})
+    };
+
+    handleSort(sort){
+        this.setState({sort:sort})
+    }
 
     render(){
         return(
-            <div className="container" exit={{
-            opacity: 0,
-            y:"-100%"}}
-        animate={{
-            opacity: 1,
-            y:0}}
-        initialxit={{
-            opacity: 0,
-            y:"100%"}}>
+            <div>
                 <FirestoreCollection path="/Properties/">
                     {data => {
-                        return data.isLoading ? <Loading /> : 
-                        <div>
-                            <PropertiesFilter 
-                            data= {data} 
-                            filterList={this.props.filterList} 
-                            handleChange={this.props.handleChange} 
-                            state={this.props.state}
-                            handleSliderChange={this.props.handleSliderChange}/>
-                            <PropFeatures gridItems={data} state={this.props.state}/>
-                        </div>
+                        return data.isLoading ? <Loading /> :
+                        <Container style={{width:"100vw", maxWidth:"none"}}> 
+                            <Row>
+                                <Col xs={12} md={3} id="filter-sidebar">
+                                <StickyBox>
+                                <PropertiesFilter 
+                                data= {data} 
+                                filterList={this.props.filterList} 
+                                handleChange={this.props.handleChange} 
+                                state={this.props.state}
+                                handleSliderChange={this.props.handleSliderChange}
+                                handleSort={this.handleSort}/>
+                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={this.props.state}/>
+                                </StickyBox>
+                                </Col>
+                                <Col xs={12} md={9}>
+                                <PropFeatures gridItems={data} state={this.props.state} handleGalleryClick={this.handleGalleryClick} sort={this.state.sort}/>
+                                </Col>
+                            </Row>
+                            <ReactBnbGallery
+                                show={this.state.show}
+                                photos={this.state.photos.map((photo,index)=>{ console.log(photo.url); return(photo.url)})}
+                                onClose={this.handleClose}
+                                /> 
+                        </Container>
                     }}
                 </FirestoreCollection>
             </div>
