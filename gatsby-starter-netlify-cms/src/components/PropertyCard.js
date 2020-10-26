@@ -5,10 +5,12 @@ import Col from 'react-bootstrap/Col'
 import { FirestoreDocument } from "@react-firebase/firestore";
 import Loading from '../components/Loading'
 import Amenity from '../components/Amenities';
+import CardCalendar from '../components/CardCalendar'
 
 const PropertyCard = (props) => {
 
     const [showAmenities, setShowAmenities] = useState();
+    const [showCalendar, setShowCalendar] = useState();
 
     return (
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
@@ -36,10 +38,16 @@ const PropertyCard = (props) => {
                                     </FirestoreDocument>
               </div>
             }
+            {showCalendar && 
+            <div className="card-img-overlay" style={{backgroundColor: "#fff", height: "fit-content"}}>
+              <CardCalendar id={props.item.uid}/>
+            </div>
+
+            }
           <Card.ImgOverlay style={{position:"relative"}}>
-          <Link  to={`/properties/${props.data.gridItems.ids[props.index]}`}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
+          <Link  to={`/properties/${props.item.uid}`}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
           <section className="section prop-card-text">
-          <Link to={`/properties/${props.data.gridItems.ids[props.index]}`}  style={{position:"relative", zIndex:"2"}}>
+          <Link to={`/properties/${props.item.uid}`}  style={{position:"relative", zIndex:"2"}}>
             <Card.Text>
               <small className="text-muted">{props.item.type}</small>
               <small className="text-muted" style={{float:"right"}}>{props.item.baseDailyRate} € / Day</small>
@@ -87,7 +95,7 @@ const PropertyCard = (props) => {
                 <p className="card-footer-btn-txt">Gallery</p>
                   </small>
                 <small className="prop-card-btn">
-                <p className="card-footer-btn-txt">Calendar</p>
+                <p className="card-footer-btn-txt" onClick={()=>setShowCalendar(!showCalendar)}>Calendar</p>
                   </small>
             </Card.Footer>     
           </section>

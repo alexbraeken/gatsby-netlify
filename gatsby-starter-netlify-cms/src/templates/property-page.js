@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { FirestoreDocument } from "@react-firebase/firestore";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -14,6 +14,7 @@ import GalleryModal from '../components/GalleryModal';
 import Amenity from '../components/Amenities';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import logo from '../img/logo.svg'
+import { ButtonGroup } from '@material-ui/core';
 
 
 
@@ -21,7 +22,8 @@ export const PropertyPageTemplate = ( props ) =>
 {
    const [bookDates, setBookDates] = useState({})
    const [show, setShow] = useState(false);
-
+   const [showAllAmenities, setShowAllAemnities] = useState(false)
+   const [amenitiesLength, setAmenitiesLength] = useState(0)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -31,6 +33,33 @@ export const PropertyPageTemplate = ( props ) =>
         from:range.from,
         to: range.to})
    }
+
+   const sortAmenities = (amenities) => {
+
+
+    let list= [];
+    amenities.forEach((amenity, index)=> {
+        if(amenity[1]){
+            list.push(amenity)
+        }
+    })
+
+
+    list.push(["length", list.length]);
+    
+
+
+ return list.sort((a, b)=>
+ (a[0] !== "TV" && b[0] === "TV") ? 1 :
+ (b[0] !== "TV" && a[0] === "TV" )? -1 : 
+ (a[0] !== "airConditioning" && b[0] === "airConditioning")? 1 :
+ (b[0] !== "airConditioning" && a[0] === "airConditioning")? -1 : 
+ (a[0] !== "internetWifi" && b[0] === "internetWifi")? 1 :
+ (b[0] !== "internetWifi" && a[0] === "internetWifi")? -1 :
+ (a[0] !== "pool" && b[0] === "pool")? 1 :
+ (b[0] !== "pool" && a[0] === "pool")? -1 :0)
+}
+
     return (
         <>
         <FirestoreDocument path={`/Properties/${props.id}`}>
@@ -118,14 +147,22 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <h2>Amenities</h2>
                                                         <br />
                                                         <div className="amenities-list">
-                                                        {Object.entries(data.value).map((amen, index) => {
-                                                            
-                                                                return (amen[1] && amen[0] !== "__id") ? 
+                                                        {sortAmenities(Object.entries(data.value)).map((amen, index) => {
+                                                            if(showAllAmenities){
+                                                                return (amen[1] && amen[0] !== "__id" && amen[0] !== "length") ? 
                                                                 <div key={index} className="amenity">
-                                                                    <Amenity amenity = {amen[0]} /></div> : null
+                                                                    <Amenity amenity = {amen[0]} /></div> : null ;
+                                                            }else{
+                                                                if(amen[0])setAmenitiesLength(amen[1]);
+                                                                return (amen[1] && amen[0] !== "__id" && amen[0] !== "length" && index < 10) ? 
+                                                                <div key={index} className="amenity">
+                                                                    <Amenity amenity = {amen[0]} /></div> : null ;
+                                                            }      
                                                         })}
                                                         <br />
                                                         </div>
+                                                        <br />
+                                                        <button className="btn" type="" onClick={()=>setShowAllAemnities(!showAllAmenities)}>{showAllAmenities?<>Less...</>:<p>Show all {amenitiesLength-1}...</p>}</button>
                                                     </div> : "Loading" 
                                                 }}
                                             </FirestoreDocument>

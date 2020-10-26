@@ -80,6 +80,8 @@ class PropertiesFilter extends Component {
                             <option value="price-max">Daily Rate $$$ &#8594; $</option>
                             <option value="bedrooms-min">Bedrooms Increasing</option>
                             <option value="bedrooms-max">Bedrooms Decreasing</option>
+                            <option value="a-z">A &#8594; Z</option>
+                            <option value="z-a">Z &#8594; A</option>
                         </Form.Control>
                     </Form.Group>
                 </Row>
