@@ -57,7 +57,8 @@ return (
     defaultCenter={{ lat: props.lat, lng: props.lng }}
   >
     {(props.isMarkerShown && props.list)?props.list.map((prop, index)=>{
-      return (props.state.city.includes(prop.city) === filteredSearch && props.state.propType.indexOf(prop.type) === -1
+      return (props.state.city[prop.city] === filteredSearch 
+      && props.state.type[prop.type]
       && props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
       && parseInt(prop.bedrooms) <= props.state.bedrooms[1]
       && props.state.bathrooms[0] <= parseInt(prop.bathrooms) 

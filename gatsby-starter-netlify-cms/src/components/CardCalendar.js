@@ -48,7 +48,7 @@ const CardCalendar = (props) => {
           to: undefined,
         };
       }
-      
+    const modifiers = {disabledDays: disabledDays};
     const modifiersStyles = {
         disabledDays : {
             color: "#DCE0E0",
@@ -56,7 +56,7 @@ const CardCalendar = (props) => {
             cursor: "default",
             backgroundColor: "#0000004d",
             borderRadius: "initial"
-        }
+        },
     }
 
   return (
@@ -66,6 +66,7 @@ const CardCalendar = (props) => {
       disabledDays={
           disabledDays
       }
+      modifiers={modifiers}
       modifiersStyles={modifiersStyles}
     />
   );

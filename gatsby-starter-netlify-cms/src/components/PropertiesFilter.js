@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Button from 'react-bootstrap/Button'
 
 
 class PropertiesFilter extends Component {
@@ -22,10 +23,10 @@ class PropertiesFilter extends Component {
 
 
     componentDidMount(){
-        if(this.props.state.city.length > 0 )
+       /* if(this.props.state.city.length > 0 )
         {
             this.setState({defaultChecked:false})
-        }
+        }*/
     }
 
     render(){
@@ -36,18 +37,18 @@ class PropertiesFilter extends Component {
                 <Container>
                 <Row>
                 <h3 className="filter-header">City: </h3>
-                {
-                this.props.filterList(this.props.data.value, "city").map((city, index)=>{
-                    city = city? city: "";
+                {this.props.state.city.length > 0 &&
+                this.props.state.city.map((city, index)=>{
+                    let name = city? Object.keys(city)[0]: "";
                     return (
                     <Form.Check 
                     custom
                     type="checkbox" 
                     className="filter-checkbox"
                     id={`city-checkbox-`+index} 
-                    label={city}  
-                    value={city} 
-                    checked={(((this.props.state.city.includes(city) && this.props.state.filteredSearch) || (!this.props.state.city.includes(city) && !this.props.state.filteredSearch))?true:false)}
+                    label={name}  
+                    value={name} 
+                    checked = {Object.values(city)[0]}
                     onChange={(e)=> this.props.handleChange(e,"city")}
                     key={index}
                     />
@@ -56,19 +57,22 @@ class PropertiesFilter extends Component {
                 </Row>
                 <Row>
                 <h3 className="filter-header">Lodging Type: </h3>
-                {this.props.filterList(this.props.data.value, "type").map((propType, index)=>(
+                {this.props.state.type.length > 0 && 
+                this.props.state.type.map((type, index)=>{
+                    return (
                     <Form.Check 
                     custom                    
                     type="checkbox" 
                     className="filter-checkbox"
                     id={`type-checkbox-`+index}
-                    label={propType} 
-                    value={propType} 
-                    defaultChecked= "true"
-                    onChange={(e)=> this.props.handleChange(e,"propType")}
+                    label={Object.keys(type)[0]} 
+                    value={Object.keys(type)[0]} 
+                    checked= {true}
+                    onChange={(e)=> this.props.handleChange(e,"type")}
                     key={index}
                     />
-                ))} 
+                )}
+                )} 
                 </Row>
                 <RangeSlider name="Bedrooms" type="bedrooms" step={1} min={1} max={10} handleSliderChange={this.props.handleSliderChange}/>  
                 <RangeSlider name="Bathrooms" type="bathrooms" step={1} min={1} max={10} handleSliderChange={this.props.handleSliderChange}/>  

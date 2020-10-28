@@ -21,6 +21,7 @@ export const IndexPageTemplate = ({
 
   const [animationPlaying, setAnimationPlaying] = useState(false)
   const [delta, setDelta] = useState({prev: 0, curr: 0})
+  const [atTop, setAtTop] = useState(true)
 
   const logo = useRef(null);
   const shadow =useRef(null)
@@ -28,6 +29,7 @@ export const IndexPageTemplate = ({
   const suitcase = useRef(null)
   const home = useRef(null)
   const swim = useRef(null)
+  const heroOverlay = useRef(null)
 
 
 useEffect(() => {
@@ -77,13 +79,24 @@ const handleLogoHover = () => {
 useScrollPosition(({ prevPos, currPos }) => {
   let prevDelta = delta.curr;
   setDelta({prev: prevDelta, curr: (currPos.y - prevPos.y)})
+  if(currPos.y<0 && atTop){
+    gsap.to(shadow.current, 0.5, {opacity:0, ease:"Power2.easeOut"})
+    gsap.to(heroOverlay.current, 1, {height:0, ease:"Power2.easeOut"})
+  }
 })
 
 
 
   return(
   <div>
-    <div className="main-hero" id = "main-hero">
+    <div className="main-hero" id = "main-hero" style={{
+                  backgroundImage: `url(${
+                    image.childImageSharp
+                      ? image.childImageSharp.fluid.src
+                      : image
+                  })`,
+                }}>
+      <div id="hero-overlay" ref={heroOverlay}></div>
   <div className="logo-container">
   <div className="hero-left">
     <img className="hero-logo" id="hero-logo" ref={logo} onMouseEnter={handleLogoHover} src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDU2IiBoZWlnaHQ9IjQ1NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiA8IS0tIENyZWF0ZWQgd2l0aCBNZXRob2QgRHJhdyAtIGh0dHA6Ly9naXRodWIuY29tL2R1b3BpeGVsL01ldGhvZC1EcmF3LyAtLT4NCiA8Zz4NCiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPg0KICA8cmVjdCBmaWxsPSJub25lIiBpZD0iY2FudmFzX2JhY2tncm91bmQiIGhlaWdodD0iNDU4IiB3aWR0aD0iNDU4IiB5PSItMSIgeD0iLTEiLz4NCiAgPGcgZGlzcGxheT0ibm9uZSIgb3ZlcmZsb3c9InZpc2libGUiIHk9IjAiIHg9IjAiIGhlaWdodD0iMTAwJSIgd2lkdGg9IjEwMCUiIGlkPSJjYW52YXNHcmlkIj4NCiAgIDxyZWN0IGZpbGw9InVybCgjZ3JpZHBhdHRlcm4pIiBzdHJva2Utd2lkdGg9IjAiIHk9IjAiIHg9IjAiIGhlaWdodD0iMTAwJSIgd2lkdGg9IjEwMCUiLz4NCiAgPC9nPg0KIDwvZz4NCiA8Zz4NCiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPg0KICA8ZWxsaXBzZSByeT0iMjA3LjUiIHJ4PSIyMDcuNSIgaWQ9InN2Z182IiBjeT0iMjI4IiBjeD0iMjI4IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlPSIjMDAwMDAwIiBmaWxsPSIjMDAwMDAwIi8+DQogIDxlbGxpcHNlIHJ5PSIyMDMuNSIgcng9IjIwMy41IiBpZD0ic3ZnXzgiIGN5PSIyMjgiIGN4PSIyMjgiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2U9IiNmZmZmZmYiIGZpbGw9IiNmZmZmZmYiLz4NCiAgPGVsbGlwc2Ugc3Ryb2tlPSIjZmY2NjAwIiByeT0iMTg1LjUwMDAxIiByeD0iMTg1LjUwMDAxIiBpZD0ic3ZnXzQiIGN5PSIyMjciIGN4PSIyMjkiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSIjZmY2NjAwIi8+DQogIDxyZWN0IHN0cm9rZT0iIzAwMDAwMCIgaWQ9InN2Z18xMCIgaGVpZ2h0PSIxNDQuMDAwMDEiIHdpZHRoPSIxODYiIHk9IjIwNi40NTMxNCIgeD0iMTM1IiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0iIzAwMDAwMCIvPg0KICA8cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgMjMwLjA1NzQzNDA4MjAzMTMsMjIyLjA4MDg3MTU4MjAzMTIyKSAiIGlkPSJzdmdfMTEiIGQ9Im0xMzguMDU3NDksMzE0LjA4MDg4bDAsLTE4My45OTk5OWwxODMuOTk5OTIsMTgzLjk5OTk5bC0xODMuOTk5OTIsMHoiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2U9IiMwMDAwMDAiIGZpbGw9IiMwMDAwMDAiLz4NCiA8L2c+DQo8L3N2Zz4=" alt="Smarta" />

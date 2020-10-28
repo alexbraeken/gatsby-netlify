@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {useState, useEffect, Component} from 'react'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
 import { Router } from "@reach/router"
@@ -16,74 +16,75 @@ import { Col } from 'react-bootstrap';
 import GoogleMapComponent from '../../components/GoogleMapComponent';
 import ReactBnbGallery from 'react-bnb-gallery';
 
-class Properties extends Component {
-    
-    constructor(props){
-        super(props);
-        this.state={
-            show:false,
-            photos:[],
-            sort:""
+const Properties = (props) => {
+
+    const [show, setShow]=useState(false)
+    const [photos, setPhotos] =useState([])
+    const [sort, setSort] = useState("")
+    const [data, setData] = useState(null);
+
+
+    useEffect(() => {
+        console.log(data)
+        if(data){
+            props.filterList(data);
         }
-        this.handleClose = this.handleClose.bind(this);
-        this.handleShow = this.handleShow.bind(this);
-        this.handleGalleryClick = this.handleGalleryClick.bind(this);
-        this.handleSort = this.handleSort.bind(this);
+    }, [data])
+
+
+    const handleGalleryClick = (photos) => {
+        setShow(true);
+        setPhotos(photos);
     }
 
-    handleGalleryClick(photos){
-        this.setState({
-            show:true,
-            photos:photos
-        })
-    }
-
-    handleClose(){
-        this.setState({show:false})
-    };
-    handleShow(){
-        this.setState({show:true})
+    const handleClose = () => {
+        setShow(false)
     };
 
-    handleSort(sort){
-        this.setState({sort:sort})
+    const handleShow = () => {
+        setShow(true);
+    };
+
+    const handleSort = (sort) => {
+        setSort(sort)
     }
 
-    render(){
         return(
             <div>
                 <FirestoreCollection path="/Properties/">
-                    {data => {
-                        return data.isLoading ? <Loading /> :
+                    {data => {       
+                        return data.isLoading ? <Loading /> : 
+                        <>
+                        {setData(data.value)}
+
                         <Container style={{width:"100vw", maxWidth:"none"}}> 
                             <Row>
                                 <Col xs={12} md={3} id="filter-sidebar">
                                 <StickyBox>
                                 <PropertiesFilter 
                                 data= {data} 
-                                filterList={this.props.filterList} 
-                                handleChange={this.props.handleChange} 
-                                state={this.props.state}
-                                handleSliderChange={this.props.handleSliderChange}
-                                handleSort={this.handleSort}/>
-                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={this.props.state}/>
+                                handleChange={props.handleChange} 
+                                state={props.state}
+                                handleSliderChange={props.handleSliderChange}
+                                handleSort={()=>handleSort}/>
+                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state}/>
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={9}>
-                                <PropFeatures gridItems={data} state={this.props.state} handleGalleryClick={this.handleGalleryClick} sort={this.state.sort}/>
+                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={()=>handleGalleryClick} sort={sort}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
-                                show={this.state.show}
-                                photos={this.state.photos.map((photo,index)=>{ console.log(photo.url); return(photo.url)})}
-                                onClose={this.handleClose}
+                                show={show}
+                                photos={photos.map((photo,index)=>{ console.log(photo.url); return(photo.url)})}
+                                onClose={()=>handleClose}
                                 /> 
                         </Container>
+                        </>
                     }}
                 </FirestoreCollection>
             </div>
         )
-    }
 }
 
 
@@ -93,16 +94,19 @@ export default class PropertiesPage extends Component {
         super(props);
         this.state={
             city:[],
-            propType:[],
+            type:[],
             dateStart:"",
             dateFinish:"",
             amenities:[],
             bedrooms: [1, 10],
             bathrooms: [1, 10],
-            filteredSearch: false
+            filteredSearch: false,
+            searchArray: [],
+            dataLength: 0
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSliderChange = this.handleSliderChange.bind(this);
+        this.filterList = this.filterList.bind(this);
     }
 
     componentDidMount(){
@@ -114,38 +118,62 @@ export default class PropertiesPage extends Component {
         let searchArray = filterValues[key];
         searchArray = (Array.isArray(searchArray)?searchArray:[searchArray]);
            this.setState({
-               [key]:searchArray,
+               searchArray:{
+                   [`${key}`]:searchArray
+               },
                filteredSearch: true
+           }, ()=>{
+               console.log(this.state.searchArray)
            })
            
        })
+       console.log("mounted prop page: " + this.state);
     } 
 
-    filterList = (props, type) => {
-        let filter = []
-        props.map(prop => {
-            filter.push(prop[`${type}`])
-        })
+    filterList(props){
 
-        return [... new Set(filter)]
-
+            let filterTypes = ["city", "type"]
+            filterTypes.forEach(filterType => {
+                let list = []
+                let filter = []
+                props.map(prop=>{
+                    filter.push(prop[filterType])
+                })
+                filter = [... new Set(filter)]
+                console.log(this.state.filteredSearch)
+                filter.forEach((item, index)=>{
+                    let exists = ((!!this.state.searchArray[`${filterType}`] && this.state.searchArray[`${filterType}`].indexOf(item) !== -1) == this.state.filteredSearch)
+                    console.log(item + " exists " + exists)
+                    list = [...list, {[item]:exists}]
+                })
+                this.setState({
+                    [filterType]: list
+                },()=>{
+                    console.log("filter list:")
+                    console.log(this.state.city)
+                    this.setState({dataLength : props.length})
+                })   
+            })   
     }
 
 
     handleChange (e, type){
-        let array = this.state[`${type}`];
-        if(array.indexOf(e.target.value) === -1 ){
-            array.push(e.target.value)
-            this.setState({
-                [`${type}`]: array
-            })
-        }
-        else{
-            array.splice(array.indexOf(e.target.value), 1)
-            this.setState({
-                [`${type}`]: array
-            })
-        }
+        console.log("clicked " + e.target.value)
+        let index = this.state[`${type}`].forEach((elem, index)=> {
+            console.log(Object.keys(elem)[0])
+            console.log(e.target.value)
+            if(Object.keys(elem)[0] == e.target.value)return index;
+        })
+        console.log(index)
+        let currentState = this.state[`${type}`]
+
+        let checked = Object.values(this.state[`${type}`][index])
+
+        this.setState({
+            [type]:currentState
+        }, ()=> {
+            console.log(this.state[type])
+        })
     }
 
     handleSliderChange(array, type){

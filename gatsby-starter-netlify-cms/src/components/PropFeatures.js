@@ -3,15 +3,18 @@ import {Card} from 'react-bootstrap'
 import { Link } from "@reach/router";
 import Col from 'react-bootstrap/Col'
 import PropertyCard from '../components/PropertyCard';
+import { gsap } from "gsap";
+
+gsap.registerPlugin(gsap);
 
 const PropFeatureGrid = (data) => {
 
   const [propList, setPropList] = useState([data.gridItems.value])
 
-  useEffect(() => {
+  /*useEffect(() => {
     
     const list = data.gridItems.value.map((item, index) => {
-      if((data.state.city.includes(item.city) === data.state.filteredSearch)
+      if((data.state.city[item.city] === data.state.filteredSearch)
       && (data.state.propType.indexOf(item.type) === -1)
       && (data.state.bedrooms[0] <= parseInt(item.bedrooms))
       && (parseInt(item.bedrooms) <= data.state.bedrooms[1])
@@ -44,7 +47,7 @@ const PropFeatureGrid = (data) => {
     return () => {
       setPropList([])
     }
-  }, [data])
+  }, [data])*/
 
 
   return(

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTv, faFan, faDog, faHotTub, faWifi, faSwimmingPool } from '@fortawesome/free-solid-svg-icons';
+import { faTv, faFan, faDog, faHotTub, faWifi, faSwimmingPool, faTree } from '@fortawesome/free-solid-svg-icons';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { FirestoreCollection } from "@react-firebase/firestore";
@@ -26,6 +26,8 @@ const Amenities = (props) => {
                 return <div><FontAwesomeIcon icon={faWifi}/><b> Wifi</b></div>
             case "pool":
                 return <div><FontAwesomeIcon icon={faSwimmingPool}/><b> Pool</b></div>
+            case "garden":
+                return <div><FontAwesomeIcon icon={faTree}/><b> Garden</b></div>
             default:
                 let text;
                 let temp = amenity.replace( /([A-Z])/g, " $1" );

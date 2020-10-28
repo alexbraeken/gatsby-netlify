@@ -487,12 +487,12 @@ a:hover
 
 //home hero
 .main-hero
+  position: relative
   height: 100vh
   width: 100vw
   margin: 0
   padding: 0
-  background: rgb(255,166,0)
-  background: linear-gradient(180deg, rgba(255,166,0,1) 0%, rgba(255,132,0,1) 12%, rgba(255,98,0,1) 33%, rgba(255,68,0,1) 100%)
+  
 
 
 .logo-container
@@ -589,6 +589,16 @@ $min-margin: 10px;
   height: auto
   max-height: 250px
 
+//hero overlay
+#hero-overlay
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  background: rgb(255,166,0)
+  background: linear-gradient(180deg, rgba(255,166,0,1) 0%, rgba(255,132,0,1) 12%, rgba(255,98,0,1) 33%, rgba(255,68,0,1) 100%)
+
 
 //Filter
 .filter-checkbox
@@ -612,25 +622,19 @@ $min-margin: 10px;
 .DayPicker
   display: inline-block
   font-size: 1rem
-  width: 100%
   position: relative
   z-index: 1
   background: #fff
   color: #000
+  border-radius: 5px
+  
+
+.card-img-overlay .DayPicker
+  width: 100%
   background: #ffa600
   background: linear-gradient(180deg, #ffa600 0%, #ff8400 12%, #ff6200 33%, #ff4400 100%)
-  border-radius: 5px
   box-shadow: 0px 11px 12px -8px black
-
-.DayPicker-Day
-  &--disabled
-    color: #DCE0E0
-    text-decoration-line: line-through
-    cursor: default
-    background-color: #0000004d
-    border-radius: initial
 
 .DayPicker-Weekday
   color: #fff
 
-  
