@@ -608,3 +608,29 @@ $min-margin: 10px;
   border-radius: 5px
   padding-top: 15px
   padding-bottom: 15px
+
+.DayPicker
+  display: inline-block
+  font-size: 1rem
+  width: 100%
+  position: relative
+  z-index: 1
+  background: #fff
+  color: #000
+  background: #ffa600
+  background: linear-gradient(180deg, #ffa600 0%, #ff8400 12%, #ff6200 33%, #ff4400 100%)
+  border-radius: 5px
+  box-shadow: 0px 11px 12px -8px black
+
+.DayPicker-Day
+  &--disabled
+    color: #DCE0E0
+    text-decoration-line: line-through
+    cursor: default
+    background-color: #0000004d
+    border-radius: initial
+
+.DayPicker-Weekday
+  color: #fff
+
+  

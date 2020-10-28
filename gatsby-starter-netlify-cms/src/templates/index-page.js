@@ -31,10 +31,8 @@ export const IndexPageTemplate = ({
 
 
 useEffect(() => {
-  console.log("start")
   setAnimationPlaying(true)
   let width = logo.current.scrollWidth;
-  console.log(width);
   gsap.fromTo(logo.current, 1, {y:-1000}, {y:0, ease: "Bounce.easeOut", delay:1 / 2})
   gsap.fromTo(shadow.current, 1, {width:"10px"}, {width: width, ease: "Bounce.easeOut", delay:1 / 2})
   gsap.fromTo(suitcase.current, 1, {opacity:0, y:50}, {opacity:1, y:0, ease: "power4.out", delay: 1})
@@ -71,7 +69,6 @@ const handleLogoHover = () => {
     setAnimationPlaying(true);
     gsap.to(logo.current, 1 / 4, {y:-70, ease:"Power2.easeOut"})
     gsap.to(logo.current, 0.75 , {y:0, ease:"Bounce.easeOut", delay:1 / 4, onComplete: ()=>{setAnimationPlaying(false)}})
-    console.log("shadow: " + shadow + " and " + width)
     gsap.to(shadow.current,  1 / 4, {width: width/2, ease:"Power2.easeOut"})
     gsap.to(shadow.current, 0.75, {width: width, ease:"Bounce.easeOut", delay: 1/4})
   }
@@ -79,7 +76,6 @@ const handleLogoHover = () => {
 
 useScrollPosition(({ prevPos, currPos }) => {
   let prevDelta = delta.curr;
-  console.log(currPos.y - prevPos.y);
   setDelta({prev: prevDelta, curr: (currPos.y - prevPos.y)})
 })
 

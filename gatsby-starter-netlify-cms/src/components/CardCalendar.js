@@ -1,10 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import { gsap } from "gsap";
+
+gsap.registerPlugin(gsap);
 
 const CardCalendar = (props) => {
 
     const [disabledDays, setDisabledDays] = useState([new Date(2020, 10, 25), new Date(2020, 11, 5)]);
+
+    const calendar = useRef(null);
 
     const startYear = new Date().getFullYear();
     const startMonth = new Date().getMonth();
@@ -12,7 +17,6 @@ const CardCalendar = (props) => {
     const uri = `https://platform.hostfully.com/api/notavailabledates_get_api.jsp?jsoncallback=jsonpCallbackGetNotAvailableDates&propertyUID=${props.id}&handleCheckInCheckOut=false`
     
     useEffect(() => {
-
         fetch(uri)
         .then(response => {
             
@@ -30,10 +34,13 @@ const CardCalendar = (props) => {
             })
             setDisabledDays(disabledDates)
         })
+
+        gsap.fromTo(calendar.current, {y:-50},{y:0, duration:1, ease: "Bounce.easeOut"})
+
         return function cleanup(){
             setDisabledDays(getInitialState);
         }
-    }, [])
+    }, [calendar])
 
     const getInitialState = () => {
         return {
@@ -44,13 +51,16 @@ const CardCalendar = (props) => {
       
     const modifiersStyles = {
         disabledDays : {
-            backgroundColor: '#dedcdc',
-            color: '#fff'
+            color: "#DCE0E0",
+            textDecorationLine: "line-through",
+            cursor: "default",
+            backgroundColor: "#0000004d",
+            borderRadius: "initial"
         }
     }
 
   return (
-    <DayPicker
+    <DayPicker ref={calendar}
       initialMonth={new Date(startYear, startMonth)}
       numberOfMonths= {1}
       disabledDays={
