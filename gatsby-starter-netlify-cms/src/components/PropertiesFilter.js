@@ -37,9 +37,9 @@ class PropertiesFilter extends Component {
                 <Container>
                 <Row>
                 <h3 className="filter-header">City: </h3>
-                {this.props.state.city.length > 0 &&
-                this.props.state.city.map((city, index)=>{
-                    let name = city? Object.keys(city)[0]: "";
+                {Object.keys(this.props.state.city).length !== 0 &&
+                Object.keys(this.props.state.city).map((city, index)=>{
+                    let name = city? city: "";
                     return (
                     <Form.Check 
                     custom
@@ -48,7 +48,7 @@ class PropertiesFilter extends Component {
                     id={`city-checkbox-`+index} 
                     label={name}  
                     value={name} 
-                    checked = {Object.values(city)[0]}
+                    checked = {this.props.state.city[city]}
                     onChange={(e)=> this.props.handleChange(e,"city")}
                     key={index}
                     />
@@ -57,22 +57,23 @@ class PropertiesFilter extends Component {
                 </Row>
                 <Row>
                 <h3 className="filter-header">Lodging Type: </h3>
-                {this.props.state.type.length > 0 && 
-                this.props.state.type.map((type, index)=>{
+                { console.log(this.props.state.type)}
+                {Object.keys(this.props.state.type).length !== 0 && 
+                Object.keys(this.props.state.type).map((type, index)=>{
                     return (
                     <Form.Check 
                     custom                    
                     type="checkbox" 
                     className="filter-checkbox"
                     id={`type-checkbox-`+index}
-                    label={Object.keys(type)[0]} 
-                    value={Object.keys(type)[0]} 
-                    checked= {true}
+                    label={type} 
+                    value={type} 
+                    checked= {this.props.state.type[type]}
                     onChange={(e)=> this.props.handleChange(e,"type")}
                     key={index}
                     />
                 )}
-                )} 
+                )}
                 </Row>
                 <RangeSlider name="Bedrooms" type="bedrooms" step={1} min={1} max={10} handleSliderChange={this.props.handleSliderChange}/>  
                 <RangeSlider name="Bathrooms" type="bathrooms" step={1} min={1} max={10} handleSliderChange={this.props.handleSliderChange}/>  

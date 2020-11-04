@@ -15,6 +15,9 @@ import StickyBox from "react-sticky-box";
 import { Col } from 'react-bootstrap';
 import GoogleMapComponent from '../../components/GoogleMapComponent';
 import ReactBnbGallery from 'react-bnb-gallery';
+import { gsap } from "gsap";
+
+gsap.registerPlugin(gsap);
 
 const Properties = (props) => {
 
@@ -22,7 +25,30 @@ const Properties = (props) => {
     const [photos, setPhotos] =useState([])
     const [sort, setSort] = useState("")
     const [data, setData] = useState(null);
+    const [winterLets, setWinterLets] = useState([])
 
+
+    const uri = "https://api.hostfully.com/v2/properties?tags=winter%20let&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
+
+useEffect(() => {
+  console.log("fetching")
+  fetch(uri, {
+    headers:{
+      "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+    }
+  })
+        .then(response => {
+            
+            return response.text()
+        })
+        .then(data => {
+          console.log(JSON.parse(data));
+          setWinterLets(JSON.parse(data).propertiesUids)
+        })
+  return () => {
+    setWinterLets([])
+  }
+}, [])
 
     useEffect(() => {
         console.log(data)
@@ -66,18 +92,18 @@ const Properties = (props) => {
                                 handleChange={props.handleChange} 
                                 state={props.state}
                                 handleSliderChange={props.handleSliderChange}
-                                handleSort={()=>handleSort}/>
+                                handleSort={handleSort}/>
                                 <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state}/>
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={9}>
-                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={()=>handleGalleryClick} sort={sort}/>
+                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
                                 show={show}
                                 photos={photos.map((photo,index)=>{ console.log(photo.url); return(photo.url)})}
-                                onClose={()=>handleClose}
+                                onClose={handleClose}
                                 /> 
                         </Container>
                         </>
@@ -93,14 +119,14 @@ export default class PropertiesPage extends Component {
     constructor(props){
         super(props);
         this.state={
-            city:[],
-            type:[],
+            city:{},
+            type:{},
             dateStart:"",
             dateFinish:"",
             amenities:[],
             bedrooms: [1, 10],
             bathrooms: [1, 10],
-            filteredSearch: false,
+            filteredSearch: {},
             searchArray: [],
             dataLength: 0
         }
@@ -117,12 +143,17 @@ export default class PropertiesPage extends Component {
            console.log(filterValues[key])
         let searchArray = filterValues[key];
         searchArray = (Array.isArray(searchArray)?searchArray:[searchArray]);
-           this.setState({
+           this.setState((state, props)=>({
+               ...state,
                searchArray:{
+                   ...state.searchArray,
                    [`${key}`]:searchArray
                },
-               filteredSearch: true
-           }, ()=>{
+               filteredSearch: {
+                   ...state.filteredSearch,
+                   [`${key}`]: true
+               }
+           }), ()=>{
                console.log(this.state.searchArray)
            })
            
@@ -134,17 +165,17 @@ export default class PropertiesPage extends Component {
 
             let filterTypes = ["city", "type"]
             filterTypes.forEach(filterType => {
-                let list = []
+                let list = {}
                 let filter = []
                 props.map(prop=>{
                     filter.push(prop[filterType])
                 })
                 filter = [... new Set(filter)]
-                console.log(this.state.filteredSearch)
+                console.log(this.state.filteredSearch[filterType])
                 filter.forEach((item, index)=>{
-                    let exists = ((!!this.state.searchArray[`${filterType}`] && this.state.searchArray[`${filterType}`].indexOf(item) !== -1) == this.state.filteredSearch)
+                    let exists = ((!!this.state.searchArray[filterType] && this.state.searchArray[filterType].indexOf(item) !== -1) == this.state.filteredSearch[filterType] || !this.state.filteredSearch[filterType])
                     console.log(item + " exists " + exists)
-                    list = [...list, {[item]:exists}]
+                    list[item] = exists;
                 })
                 this.setState({
                     [filterType]: list
@@ -158,23 +189,17 @@ export default class PropertiesPage extends Component {
 
 
     handleChange (e, type){
-        console.log("clicked " + e.target.value)
-        let index = this.state[`${type}`].forEach((elem, index)=> {
-            console.log(Object.keys(elem)[0])
-            console.log(e.target.value)
-            if(Object.keys(elem)[0] == e.target.value)return index;
-        })
-        console.log(index)
-        let currentState = this.state[`${type}`]
-
-        let checked = Object.values(this.state[`${type}`][index])
-
-        this.setState({
-            [type]:currentState
-        }, ()=> {
+        console.log(e.target.value)
+        console.log(this.state[type][e.target.value])
+        let target = e.target.value
+        this.setState((prevState, currentProps) => ({
+            ...prevState,
+            [type] : {...prevState[type],
+                [target]: !this.state[type][target] }
+        }), ()=>{
             console.log(this.state[type])
-        })
-    }
+        }
+        )}
 
     handleSliderChange(array, type){
         console.log(array)

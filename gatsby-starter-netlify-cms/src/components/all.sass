@@ -254,7 +254,7 @@ a:hover
   background-color: black
   color: #fff
   text-align: center
-  padding: 5px 0
+  padding: 0
   border-radius: 6px
   position: absolute
   z-index: 1
@@ -638,3 +638,95 @@ $min-margin: 10px;
 .DayPicker-Weekday
   color: #fff
 
+
+//Ribbon
+
+.ribbon 
+  position: absolute
+  right: -5px; top: -5px
+  z-index: 1
+  overflow: hidden
+  width: 75px; height: 75px
+  text-align: right
+
+.ribbon span 
+  font-size: 10px
+  font-weight: bold
+  color: #FFF
+  text-transform: uppercase
+  text-align: center
+  line-height: 20px
+  transform: rotate(45deg)
+  -webkit-transform: rotate(45deg)
+  width: 100px
+  display: block
+  background: #79A70A
+  background: linear-gradient(#2989D8 0%, #1E5799 100%)
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1)
+  position: absolute
+  top: 19px; right: -21px
+
+.ribbon span::before 
+  content: ""
+  position: absolute; left: 0px; top: 100%
+  z-index: -1
+  border-left: 3px solid #1E5799
+  border-right: 3px solid transparent
+  border-bottom: 3px solid transparent
+  border-top: 3px solid #1E5799
+
+.ribbon span::after 
+  content: ""
+  position: absolute; right: 0px; top: 100%
+  z-index: -1
+  border-left: 3px solid transparent
+  border-right: 3px solid #1E5799
+  border-bottom: 3px solid transparent
+  border-top: 3px solid #1E5799
+
+//featured
+
+.home-feature
+  margin-left: 0
+  margin-right: 0
+  padding: 20px
+
+.home-feature-image, .home-feature-description
+  padding: 0
+
+.home-feature-image
+  z-index: 1
+
+.home-feature-description
+  position: relative
+  background: #fff
+  color: #000
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+.home-feature-description::after
+  position: absolute
+  content: ""
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  border-top-right-radius: 20px
+  border-bottom-right-radius: 20px
+  box-shadow: 6px 5px 12px #d9d9d9, -5px -4px 6px #ffffff
+
+.home-feature-text
+  margin: auto
+  padding: 20px 15% 20px 20px
+
+
+.carousel-control-next-icon, .carousel-control-prev-icon
+  background-color: #000
+  border-radius: 50%
+
+.carousel-control-next, .carousel-control-prev
+  height: 50px
+
+.feature-text-price
+  font-weight: bold
+  color: $primary

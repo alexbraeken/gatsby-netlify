@@ -8,6 +8,10 @@ import BlogRoll from '../components/BlogRoll'
 import SearchWidget from '../components/SearchWidget'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { gsap } from "gsap";
+import Container from 'react-bootstrap/Container'
+import { FirestoreCollection } from "@react-firebase/firestore";
+import Loading from '../components/Loading';
+import FeatureCarousel from '../components/FeatureCarousel'
 
 export const IndexPageTemplate = ({
   image,
@@ -22,6 +26,8 @@ export const IndexPageTemplate = ({
   const [animationPlaying, setAnimationPlaying] = useState(false)
   const [delta, setDelta] = useState({prev: 0, curr: 0})
   const [atTop, setAtTop] = useState(true)
+  const [featuredProps, setFeaturedProps] = useState([])
+
 
   const logo = useRef(null);
   const shadow =useRef(null)
@@ -63,6 +69,28 @@ useEffect(() => {
   }
 }, [delta, logo, shadow])
 
+const uri = "https://api.hostfully.com/v2/properties?tags=featured&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
+
+useEffect(() => {
+  console.log("fetching")
+  fetch(uri, {
+    headers:{
+      "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+    }
+  })
+        .then(response => {
+            
+            return response.text()
+        })
+        .then(data => {
+          console.log(JSON.parse(data));
+          setFeaturedProps(JSON.parse(data).propertiesUids)
+        })
+  return () => {
+    setFeaturedProps([])
+  }
+}, [])
+
 
 const handleLogoHover = () => {
   console.log("hovering") 
@@ -84,7 +112,6 @@ useScrollPosition(({ prevPos, currPos }) => {
     gsap.to(heroOverlay.current, 1, {height:0, ease:"Power2.easeOut"})
   }
 })
-
 
 
   return(
@@ -117,51 +144,29 @@ useScrollPosition(({ prevPos, currPos }) => {
 </div>
     
     <section className="section section--gradient">
-      <div className="container">
+      <Container>
         <div className="section">
-          <div className="columns">
             <div className="column is-10 is-offset-1">
               <div className="content">
-                <div className="content">
-                  <div className="tile">
-                    <h1 className="title">{mainpitch.title}</h1>
-                  </div>
-                  <div className="tile">
-                    <h3 className="subtitle">{mainpitch.description}</h3>
-                  </div>
-                </div>
-                <div className="columns">
-                  <div className="column is-12">
-                    <h3 className="has-text-weight-semibold is-size-2">
-                      {heading}
-                    </h3>
-                    <p>{description}</p>
-                  </div>
-                </div>
-                <Features gridItems={intro.blurbs} />
-                <div className="columns">
-                  <div className="column is-12 has-text-centered">
-                    <Link className="btn" to="/products">
-                      See all products
-                    </Link>
-                  </div>
-                </div>
-                <div className="column is-12">
-                  <h3 className="has-text-weight-semibold is-size-2">
-                    Latest stories
-                  </h3>
-                  <BlogRoll />
-                  <div className="column is-12 has-text-centered">
-                    <Link className="btn" to="/blog">
-                      Read more
-                    </Link>
-                  </div>
-                </div>
               </div>
             </div>
-          </div>
         </div>
-      </div>
+      </Container>
+      <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
+                  {featuredProps && featuredProps.length > 0 &&
+                  <FirestoreCollection path="/Properties/" where={{field:"uid" , operator:"in", value:featuredProps}} limit={5}>
+                    {data => {
+                        return (!data.isLoading && data.value) ? 
+                        <div>
+                          <h2>Featured Properties</h2>
+                          <FeatureCarousel properties={data.value} />
+                        </div> 
+                        : <Loading />
+                      }
+                    }
+                  </FirestoreCollection>
+                  }
+                </Container>
     </section>
   </div>
 )} 

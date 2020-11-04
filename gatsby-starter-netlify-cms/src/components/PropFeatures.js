@@ -11,11 +11,11 @@ const PropFeatureGrid = (data) => {
 
   const [propList, setPropList] = useState([data.gridItems.value])
 
-  /*useEffect(() => {
+  useEffect(() => {
     
     const list = data.gridItems.value.map((item, index) => {
-      if((data.state.city[item.city] === data.state.filteredSearch)
-      && (data.state.propType.indexOf(item.type) === -1)
+      if((data.state.city[item.city])
+      && (data.state.type[item.type])
       && (data.state.bedrooms[0] <= parseInt(item.bedrooms))
       && (parseInt(item.bedrooms) <= data.state.bedrooms[1])
       && (data.state.bathrooms[0] <= parseInt(item.bathrooms)) 
@@ -25,6 +25,7 @@ const PropFeatureGrid = (data) => {
   })
 
     if(data.sort === "price-min"){
+      console.log(data.sort)
       list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.baseDailyRate > b.baseDailyRate) ? 1 : ((b.baseDailyRate > a.baseDailyRate) ? -1 : 0))));
     }
     if(data.sort === "price-max"){
@@ -47,16 +48,21 @@ const PropFeatureGrid = (data) => {
     return () => {
       setPropList([])
     }
-  }, [data])*/
+  }, [data])
 
 
   return(
   <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
     {propList && propList.map((item, index) => 
-    {
+    {    
       if(item != null){
+        let winterLet = false
+      if(data.winterLets.indexOf(item.uid)!== -1){
+        console.log(item.uid)
+        winterLet = true
+      }
         return(
-          <PropertyCard item={item} data={data} index={index} key={index} handleGalleryClick={data.handleGalleryClick}/>
+          <PropertyCard item={item} data={data} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet}/>
           )}
       })
       }

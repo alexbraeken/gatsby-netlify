@@ -6,6 +6,7 @@ import { FirestoreDocument } from "@react-firebase/firestore";
 import Loading from '../components/Loading'
 import Amenity from '../components/Amenities';
 import CardCalendar from '../components/CardCalendar'
+import BedBathPax from '../components/BedBathPax'
 
 const PropertyCard = (props) => {
 
@@ -16,6 +17,9 @@ const PropertyCard = (props) => {
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{backgroundImage: `url(${props.item.picture})`}}>
+          {props.winterLet && 
+          <div className="ribbon"><span>Winter Let</span></div>
+          }
         {showAmenities && 
               <div className="card-img-overlay" style={{fontSize: "0.8rem", backgroundColor: "#fff", height: "fit-content", color:"#000"}}>
                 <FirestoreDocument path={`/amenities/${props.data.gridItems.ids[props.index]}`}>
@@ -54,29 +58,7 @@ const PropertyCard = (props) => {
             </Card.Text>
             <hr style={{margin:"0.5rem 0"}}/>
             <Card.Title style={{textAlign:"center"}}>{props.item.name}</Card.Title>
-            <div className="header-icons" style={{margin:"auto"}}>
-              <div className="icon-info">
-                  <img alt="smartavillas - bed" src="/img/bedroom1.png" />
-                      <span className="tooltiptext">Bedrooms</span>
-                      <div className="text-number">
-                          <h3>{props.item.bedrooms}</h3>
-                      </div>
-              </div>
-              <div className="icon-info">
-                  <img alt="smartavillas - bath" src="/img/bathroom3.png" />
-                  <span className="tooltiptext">Bathrooms</span>
-                  <div className="text-number">
-                      <h3>{props.item.bathrooms}</h3>
-                  </div>
-              </div>
-              <div className="icon-info">
-                  <img alt="smartavillas - sleeps" src="/img/people.png" />
-                  <span className="tooltiptext">Sleeps</span>
-                  <div className="text-number">
-                      <h3>{props.item.baseGuests}</h3>
-                  </div>
-              </div>
-            </div>
+            <BedBathPax bedrooms={props.item.bedrooms} bathrooms={props.item.bathrooms} baseGuests={props.item.baseGuests} color="rgba(0,0,0)"/>
             <hr style={{margin:"0.5rem 0"}}/>
             <Card.Text style={{fontSize: "0.8rem"}}>
               {props.item.shortDescription}
