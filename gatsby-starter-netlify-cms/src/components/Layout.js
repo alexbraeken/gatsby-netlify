@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Helmet } from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
@@ -14,7 +14,17 @@ import BackToTop from '../components/BackToTop';
 import 'react-bnb-gallery/dist/style.css'
 
 const TemplateWrapper = ({ children }) => {
+
+  const [searchCities, setSearchCities] = useState([])
+
   const { title, description } = useSiteMetadata()
+
+  const newChildren = React.Children.map(children, child => {
+    return React.cloneElement(child, {
+      searchCities: searchCities
+    })
+  })
+
   return (
     <div>
       <Helmet>
@@ -63,8 +73,8 @@ const TemplateWrapper = ({ children }) => {
         <script type="text/javascript" src="https://platform.hostfully.com/assets/widgets/searchwidget/searchwidget.js" />
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
-      <Navbar />
-      <div>{children}</div>
+      <Navbar setSearchCities={setSearchCities}/>
+      <div>{newChildren}</div>
       <BackToTop />
       <Footer />
       </FirestoreProvider>

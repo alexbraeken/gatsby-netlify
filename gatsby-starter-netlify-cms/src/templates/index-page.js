@@ -9,9 +9,11 @@ import SearchWidget from '../components/SearchWidget'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { gsap } from "gsap";
 import Container from 'react-bootstrap/Container'
-import { FirestoreCollection } from "@react-firebase/firestore";
-import Loading from '../components/Loading';
+import { FirestoreCollection } from "@react-firebase/firestore"
+import Loading from '../components/Loading'
 import FeatureCarousel from '../components/FeatureCarousel'
+import SearchFilter from '../components/SearchFilter'
+
 
 export const IndexPageTemplate = ({
   image,
@@ -27,7 +29,6 @@ export const IndexPageTemplate = ({
   const [delta, setDelta] = useState({prev: 0, curr: 0})
   const [atTop, setAtTop] = useState(true)
   const [featuredProps, setFeaturedProps] = useState([])
-
 
   const logo = useRef(null);
   const shadow =useRef(null)
@@ -114,6 +115,7 @@ useScrollPosition(({ prevPos, currPos }) => {
 })
 
 
+
   return(
   <div>
     <div className="main-hero" id = "main-hero" style={{
@@ -141,6 +143,7 @@ useScrollPosition(({ prevPos, currPos }) => {
     </div>
   </div>
     </div>
+    <SearchFilter className="search-filter" />  
 </div>
     
     <section className="section section--gradient">

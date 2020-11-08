@@ -16,6 +16,7 @@ import { Col } from 'react-bootstrap';
 import GoogleMapComponent from '../../components/GoogleMapComponent';
 import ReactBnbGallery from 'react-bnb-gallery';
 import { gsap } from "gsap";
+import { forEach } from 'lodash';
 
 gsap.registerPlugin(gsap);
 
@@ -26,6 +27,8 @@ const Properties = (props) => {
     const [sort, setSort] = useState("")
     const [data, setData] = useState(null);
     const [winterLets, setWinterLets] = useState([])
+    const [searchOperator, setSearchOperator] = useState("not-in")
+    const [propertyIds, setPropertyIds] = useState([])
 
 
     const uri = "https://api.hostfully.com/v2/properties?tags=winter%20let&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
@@ -49,6 +52,8 @@ useEffect(() => {
     setWinterLets([])
   }
 }, [])
+
+//Call hostfully api here if date search 
 
     useEffect(() => {
         console.log(data)
@@ -75,11 +80,14 @@ useEffect(() => {
         setSort(sort)
     }
 
+
         return(
             <div>
+                {console.log(propertyIds)}
+                {console.log(searchOperator)}
                 <FirestoreCollection path="/Properties/">
                     {data => {       
-                        return data.isLoading ? <Loading /> : 
+                        return (!data.isLoading && data.value) ?  
                         <>
                         {setData(data.value)}
 
@@ -92,12 +100,14 @@ useEffect(() => {
                                 handleChange={props.handleChange} 
                                 state={props.state}
                                 handleSliderChange={props.handleSliderChange}
-                                handleSort={handleSort}/>
+                                handleSort={handleSort}
+                                handleSelectDeselectAll={props.handleSelectDeselectAll}
+                                />
                                 <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state}/>
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={9}>
-                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets}/>
+                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
@@ -106,7 +116,7 @@ useEffect(() => {
                                 onClose={handleClose}
                                 /> 
                         </Container>
-                        </>
+                        </> : <Loading /> 
                     }}
                 </FirestoreCollection>
             </div>
@@ -128,11 +138,12 @@ export default class PropertiesPage extends Component {
             bathrooms: [1, 10],
             filteredSearch: {},
             searchArray: [],
-            dataLength: 0
+            dataLength: 0,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSliderChange = this.handleSliderChange.bind(this);
         this.filterList = this.filterList.bind(this);
+        this.handleSelectDeselectAll = this.handleSelectDeselectAll.bind(this);
     }
 
     componentDidMount(){
@@ -197,9 +208,23 @@ export default class PropertiesPage extends Component {
             [type] : {...prevState[type],
                 [target]: !this.state[type][target] }
         }), ()=>{
-            console.log(this.state[type])
-        }
-        )}
+                console.log(this.state[type])
+            }
+        )
+    }
+    
+    handleSelectDeselectAll(type, seldesel){
+        Object.keys(this.state[type]).forEach((key, index)=>{
+            this.setState((prevState, currentProps) => ({
+                ...prevState,
+                [type] : {...prevState[type],
+                [key] : seldesel}
+            })
+            )
+        }, ()=>{console.log(this.state[type])})
+
+    }
+
 
     handleSliderChange(array, type){
         console.log(array)
@@ -220,7 +245,8 @@ export default class PropertiesPage extends Component {
                         handleChange={this.handleChange} 
                         filterList={this.filterList} 
                         filterSearch={this.state.amenities}
-                        handleSliderChange={this.handleSliderChange}/>
+                        handleSliderChange={this.handleSliderChange}
+                        handleSelectDeselectAll={this.handleSelectDeselectAll}/>
                         <PropertyTemplate path="/properties/:id" />
                 </Router>       
             </Layout> 

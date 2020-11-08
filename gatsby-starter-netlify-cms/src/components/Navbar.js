@@ -55,9 +55,8 @@ const Navbar = class extends React.Component {
     props.map(prop => {
         filter.push(prop[`${type}`])
     })
-
+    
     return [... new Set(filter)]
-
 }
 
   render() {

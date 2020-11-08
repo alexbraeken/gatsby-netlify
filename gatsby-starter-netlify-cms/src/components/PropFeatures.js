@@ -10,6 +10,9 @@ gsap.registerPlugin(gsap);
 const PropFeatureGrid = (data) => {
 
   const [propList, setPropList] = useState([data.gridItems.value])
+  
+  let advancedSearch = (data.propertyIds.length>0) ? true : false
+
 
   useEffect(() => {
     
@@ -19,7 +22,8 @@ const PropFeatureGrid = (data) => {
       && (data.state.bedrooms[0] <= parseInt(item.bedrooms))
       && (parseInt(item.bedrooms) <= data.state.bedrooms[1])
       && (data.state.bathrooms[0] <= parseInt(item.bathrooms)) 
-      && (parseInt(item.bathrooms) <= data.state.bathrooms[1])){  
+      && (parseInt(item.bathrooms) <= data.state.bathrooms[1])
+      && (advancedSearch === (data.propertyIds.indexOf(item.uid) !== -1))){  
         return item
     } else { return null}
   })

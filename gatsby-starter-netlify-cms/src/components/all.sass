@@ -3,9 +3,11 @@
 // Config vars
 // Kaldi logo brand color: #FD461E
 $smarta-orange: #f5821e
+$smarta-light-orange: #ffad77
 $kaldi-red-invert: #fff
 
 $primary: $smarta-orange
+$light-orange: $smarta-light-orange
 $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
@@ -601,15 +603,15 @@ $min-margin: 10px;
 
 
 //Filter
-.filter-checkbox
-  flex: 1 1 50%
 
 .filter-header
   flex: 1 1 100%
+  color: #000
 
 #filter-sidebar
   background: #ffa600
-  background: linear-gradient(180deg, #ffa600 0%, #ff8400 12%, #ff6200 33%, #ff4400 100%)
+  //background: linear-gradient(180deg, #ffa600 0%, #ff8400 12%, #ff6200 33%, #ff4400 100%)
+  background:#fff
   box-shadow: 1px 0px 10px -4px black
 
 .filter-container
@@ -618,6 +620,119 @@ $min-margin: 10px;
   border-radius: 5px
   padding-top: 15px
   padding-bottom: 15px
+  & .button
+      background: #fff
+      position: relative
+      background: #fff
+      margin-bottom: 25px
+      border-radius: 4px
+      text-align: center
+      cursor: pointer
+      transition: all 0.1s ease-in-out
+      box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2)
+      padding: 0rem 0.8rem
+      margin: 0.5rem
+      border: none
+      color: $primary
+      &:hover 
+        opacity: 0.3
+        box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2)
+
+.custom-control-label::before
+  color: #000
+  box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1)
+  border: none
+
+
+.filter-checkbox-container 
+  flex: 1 1 50%
+  display: block
+  position: relative
+  padding-left: 35px
+  cursor: pointer
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+
+
+.filter-checkbox
+    --background: #fff 
+    --border: #D1D6EE 
+    --border-hover: #BBC1E1 
+    --border-active: #1E2235 
+    --tick: #fff
+    display: flex 
+    position: relative 
+    input,
+    svg 
+        width: 21px 
+        height: 21px 
+        display: block
+    .label-text
+      padding-left: 5px 
+    input 
+        -webkit-appearance: none 
+        -moz-appearance: none 
+        position: relative 
+        outline: none 
+        background: var(--background) 
+        border: none 
+        margin: 0 5px 0 0 
+        padding: 0 
+        cursor: pointer 
+        border-radius: 4px 
+        transition: box-shadow .3s 
+        box-shadow: inset 0 0 0 var(--s, 1px) var(--b, var(--border))
+        &:hover 
+            --s: 2px
+            --b: var(--border-hover)
+        &:checked 
+            --b: var(--border-active)
+    svg 
+        pointer-events: none
+        fill: none
+        stroke-width: 2px
+        stroke-linecap: round
+        stroke-linejoin: round
+        stroke: $primary
+        position: absolute
+        top: 0
+        left: 0
+        width: 21px
+        height: 21px
+        transform: scale(var(--scale, 1)) translateZ(0)
+    &.path
+        input
+            &:checked
+                --s: 2px
+                transition-delay: .4s
+                & + svg
+                    --a: 16.1 86.12
+                    --o: 102.22
+        svg
+            stroke-dasharray: var(--a, 86.12)
+            stroke-dashoffset: var(--o, 86.12)
+            transition: stroke-dasharray .6s, stroke-dashoffset .6s
+    &.bounce
+        --stroke: var(--tick)
+        input
+            &:checked
+                --s: 11px
+                & + svg
+                    animation: bounce .4s linear forwards .2s
+        svg
+            --scale: 0
+    
+@keyframes bounce
+    50%
+        transform: scale(1.2)
+    75%
+        transform: scale(0.9)
+    100%
+        transform: scale(1)
+
 
 .DayPicker
   display: inline-block
@@ -730,3 +845,105 @@ $min-margin: 10px;
 .feature-text-price
   font-weight: bold
   color: $primary
+
+//Home page search
+.InputFromTo, .InputFromTo-to
+  & .DayPickerInput
+      height: 100%
+      padding: 0 0 0 5px
+      & input
+          height: 100%
+          width: 100%
+          border: none
+          border-radius: 4px
+          cursor: pointer
+      & input:focus
+          border-color: $light-orange
+          box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
+          outline: none!important
+
+.InputFromTo .DayPickerInput, .InputFromTo-to
+  flex: 1 1 48%
+
+.InputFromTo-to .DayPickerInput
+  width: 100%
+
+.input-guests
+  flex: 1 1 10%
+  margin: auto
+  height: 100%
+  padding-left: 5px
+  z-index: 1
+
+.submit-search-btn
+  flex: 1 1 10%
+  margin-left: 5px
+  & a 
+    border: 4px solid #3F3F3F
+    color: #3F3F3F
+    display: inline-block
+    font-size: 18px
+    font-weight: bold
+    line-height: 24px
+    margin: auto
+    padding: 12px 32px 12px 82px
+    position: relative
+    text-decoration: none
+    background: $primary
+    border-radius: 4px
+    & .label, .icon-arrow 
+        backface-visibility: hidden
+        transform: translateZ(0)
+        perspective: 1000
+    & .label 
+        display: inline-block
+        transition: transform .5s cubic-bezier(0.86, 0, 0.07, 1)
+        margin-bottom: 0
+    & .icon-arrow 
+        fill: #3F3F3F
+        height: 15px
+        top: 17px
+        transition: transform .5s cubic-bezier(0.86, 0, 0.07, 1), opacity .4s cubic-bezier(0.86, 0, 0.07, 1)
+        width: 35px
+    & .icon-arrow.before 
+        left: 32px
+        margin-right: 15px
+        position: absolute
+        transform-origin: left center
+    & .icon-arrow.after 
+        margin-left: 15px
+        opacity: 0
+        position: absolute
+        right: 32px
+        transform: translateX(75%) scaleX(0.1)
+        transform-origin: right center
+    &:hover .label 
+        transform: translateX(-52px)
+    &:hover .icon-arrow.before 
+        opacity: 0
+        transform: translateX(-75%) scaleX(0.1)
+    &:hover .icon-arrow.after 
+        opacity: 1
+        transform: translateX(0) scaleX(1)
+    &:active 
+        border-color: #FD6154
+        color: #FD6154
+    &:active .icon-arrow 
+        fill: #FD6154
+
+.optionContainer li:hover
+  background: $light-orange
+
+//Form Focus
+.home-search-dropdown:focus
+  border-color: $light-orange
+  box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
+
+.home-search-container
+  width: 80%
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  margin: 100px auto auto auto
+  height: 50px
+
