@@ -10,12 +10,19 @@ gsap.registerPlugin(gsap);
 const PropFeatureGrid = (data) => {
 
   const [propList, setPropList] = useState([data.gridItems.value])
-  
-  let advancedSearch = (data.propertyIds.length>0) ? true : false
-
+  const [advancedSearch, setAdvancedSearch] = useState(false)
 
   useEffect(() => {
-    
+    console.log(data.propertyIds)
+    if(data.propertyIds){(data.propertyIds.length>0) ? setAdvancedSearch(true) : setAdvancedSearch(false)}
+    return () => {
+      setAdvancedSearch(false)
+    }
+  }, [data.propertyIds])
+  
+
+  useEffect(() => {
+    console.log(advancedSearch)
     const list = data.gridItems.value.map((item, index) => {
       if((data.state.city[item.city])
       && (data.state.type[item.type])
@@ -62,7 +69,6 @@ const PropFeatureGrid = (data) => {
       if(item != null){
         let winterLet = false
       if(data.winterLets.indexOf(item.uid)!== -1){
-        console.log(item.uid)
         winterLet = true
       }
         return(

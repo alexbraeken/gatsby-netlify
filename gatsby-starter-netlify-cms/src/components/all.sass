@@ -670,6 +670,8 @@ $min-margin: 10px;
         width: 21px 
         height: 21px 
         display: block
+        min-width: 21px
+        min-height: 21px
     .label-text
       padding-left: 5px 
     input 
@@ -947,3 +949,52 @@ $min-margin: 10px;
   margin: 100px auto auto auto
   height: 50px
 
+//Top Date Picker
+.top-date-picker
+  position: absolute
+  width: 500px
+  border-radius: 50%
+  left: 50%
+  z-index: 1
+  background: #fff
+  display: flex
+  top: -45px
+  height: 70px
+  transition: all 0.2s ease-in-out
+
+.top-date-picker-text
+  position: absolute
+  bottom: 0
+  width: 100%
+  left: 0
+  display: flex
+  justify-content: center
+  cursor: pointer
+  & small
+      padding: 5px 
+
+.top-date-picker:hover
+  box-shadow: 0 0 0 0.3rem rgba(245,130,30,.25)
+  background-color: #f1f1f1
+  top: -40px;
+
+//Calendar Modal
+.calendar-modal
+  & .InputFromTo
+      display: flex
+  & .InputFromTo, .InputFromTo-to
+    & .DayPickerInput
+        padding: 0 0 0 5px
+        & input
+            border: 1px solid grey
+            border-radius: 4px
+            cursor: pointer
+        & input:focus
+            border-color: $light-orange
+            box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
+            outline: none!important
+  & .InputFromTo .DayPickerInput, .InputFromTo-to
+      flex: 1 1 48%
+
+  & .InputFromTo-to .DayPickerInput
+      width: 100%

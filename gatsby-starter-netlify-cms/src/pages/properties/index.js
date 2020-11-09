@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component} from 'react'
+import React, {useState, useEffect, Component, useRef} from 'react'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
 import { Router } from "@reach/router"
@@ -17,6 +17,8 @@ import GoogleMapComponent from '../../components/GoogleMapComponent';
 import ReactBnbGallery from 'react-bnb-gallery';
 import { gsap } from "gsap";
 import { forEach } from 'lodash';
+import DatePicker from '../../components/DatePicker'
+import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 gsap.registerPlugin(gsap);
 
@@ -31,32 +33,60 @@ const Properties = (props) => {
     const [propertyIds, setPropertyIds] = useState([])
 
 
-    const uri = "https://api.hostfully.com/v2/properties?tags=winter%20let&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
-
-useEffect(() => {
-  console.log("fetching")
-  fetch(uri, {
-    headers:{
-      "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+    const container = useRef(null)
+    const datePicker = useRef(null)
+    /* useEffect(() => {
+        const uri = "https://api.hostfully.com/v2/properties?tags=winter%20let&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
+        console.log("fetching")
+        fetch(uri, {
+        headers:{
+        "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+        }
+    })
+            .then(response => {
+                
+                return response.text()
+            })
+            .then(data => {
+            console.log(JSON.parse(data));
+            setWinterLets(JSON.parse(data).propertiesUids)
+            })
+    return () => {
+        setWinterLets([])
     }
-  })
-        .then(response => {
-            
-            return response.text()
-        })
-        .then(data => {
-          console.log(JSON.parse(data));
-          setWinterLets(JSON.parse(data).propertiesUids)
-        })
-  return () => {
-    setWinterLets([])
-  }
-}, [])
-
-//Call hostfully api here if date search 
+    }, [])*/
 
     useEffect(() => {
-        console.log(data)
+        console.log(props.state.from)
+        return () => {
+        }
+    }, [props.state.searchArray.from])
+
+//Call hostfully api here if date search 
+    useEffect(() => {
+        if(props.state.searchArray.from && props.state.searchArray.to){
+        const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
+        
+        console.log("fetching date ids: " + uri)
+        fetch(uri, {
+        headers:{
+        "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+            }
+        })
+                .then(response => {
+                    
+                    return response.text()
+                })
+                .then(data => {
+                console.log(JSON.parse(data));
+                setPropertyIds(JSON.parse(data).propertiesUids)
+                })
+        return () => {
+            setPropertyIds([])
+        }
+    }}, [])
+
+    useEffect(() => {
         if(data){
             props.filterList(data);
         }
@@ -80,18 +110,30 @@ useEffect(() => {
         setSort(sort)
     }
 
+    const handleNewIds = (ids) =>{
+        setPropertyIds(ids)
+    }
+
+    useScrollPosition(({ prevPos, currPos }) => {   
+        if(currPos.y<0 && container.current.getBoundingClientRect().top){
+            datePicker.current.style={position:"fixed"}
+        }
+      })
+
 
         return(
             <div>
-                {console.log(propertyIds)}
-                {console.log(searchOperator)}
                 <FirestoreCollection path="/Properties/">
                     {data => {       
                         return (!data.isLoading && data.value) ?  
                         <>
                         {setData(data.value)}
 
-                        <Container style={{width:"100vw", maxWidth:"none"}}> 
+                        <Container style={{width:"100vw", maxWidth:"none"}} ref={container}>
+                            {props.state.searchArray.from && props.state.searchArray.to &&
+                            <DatePicker from={props.state.searchArray.from[0]} to={props.state.searchArray.to[0]} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}
+                            className="top-date-picker" 
+                            ref={datePicker}/> }
                             <Row>
                                 <Col xs={12} md={3} id="filter-sidebar">
                                 <StickyBox>
@@ -112,7 +154,7 @@ useEffect(() => {
                             </Row>
                             <ReactBnbGallery
                                 show={show}
-                                photos={photos.map((photo,index)=>{ console.log(photo.url); return(photo.url)})}
+                                photos={photos.map((photo,index)=>{return(photo.url)})}
                                 onClose={handleClose}
                                 /> 
                         </Container>
@@ -144,6 +186,7 @@ export default class PropertiesPage extends Component {
         this.handleSliderChange = this.handleSliderChange.bind(this);
         this.filterList = this.filterList.bind(this);
         this.handleSelectDeselectAll = this.handleSelectDeselectAll.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
     }
 
     componentDidMount(){
@@ -169,7 +212,7 @@ export default class PropertiesPage extends Component {
            })
            
        })
-       console.log("mounted prop page: " + this.state);
+       console.log( this.state);
     } 
 
     filterList(props){
@@ -182,17 +225,16 @@ export default class PropertiesPage extends Component {
                     filter.push(prop[filterType])
                 })
                 filter = [... new Set(filter)]
-                console.log(this.state.filteredSearch[filterType])
+
                 filter.forEach((item, index)=>{
                     let exists = ((!!this.state.searchArray[filterType] && this.state.searchArray[filterType].indexOf(item) !== -1) == this.state.filteredSearch[filterType] || !this.state.filteredSearch[filterType])
-                    console.log(item + " exists " + exists)
+
                     list[item] = exists;
                 })
                 this.setState({
                     [filterType]: list
                 },()=>{
-                    console.log("filter list:")
-                    console.log(this.state.city)
+
                     this.setState({dataLength : props.length})
                 })   
             })   
@@ -211,6 +253,15 @@ export default class PropertiesPage extends Component {
                 console.log(this.state[type])
             }
         )
+    }
+
+    handleDateChange (date){
+        this.setState((prevState, currentProps) => ({
+            ...prevState,
+            searchArray: {...prevState.searchArray,
+            from:[date.from],
+            to:[date.to]}
+        }))
     }
     
     handleSelectDeselectAll(type, seldesel){
@@ -246,7 +297,8 @@ export default class PropertiesPage extends Component {
                         filterList={this.filterList} 
                         filterSearch={this.state.amenities}
                         handleSliderChange={this.handleSliderChange}
-                        handleSelectDeselectAll={this.handleSelectDeselectAll}/>
+                        handleSelectDeselectAll={this.handleSelectDeselectAll}
+                        handleDateChange= {this.handleDateChange}/>
                         <PropertyTemplate path="/properties/:id" />
                 </Router>       
             </Layout> 

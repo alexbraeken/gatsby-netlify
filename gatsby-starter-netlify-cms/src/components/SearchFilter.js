@@ -14,7 +14,10 @@ const SearchFilter = (props) => {
 
     const toRef = useRef(null)
     const searchBar = useRef(null)
+    const multiselect = useRef(null)
+    const guests = useRef(null)
 
+  
 
     useEffect(() => {
         gsap.fromTo(searchBar.current, 1, {opacity:0, y: -200}, {opacity: 1, y: 0, ease:"power4.out", delay: 4})
@@ -23,12 +26,30 @@ const SearchFilter = (props) => {
     }, [searchBar])
 
     const searchOnSelect = () =>{
-
+      
     }
     
     const searchOnRemove = () => {
-    
+      
     }
+
+
+    const submitSearch = () => {
+      
+      let uri = "/properties"
+
+      if(multiselect.current.state.selectedValues.length>0 || dates.from || dates.to || guests.current.value) uri+="?"
+      console.log(multiselect.current.state.selectedValues)
+      if(multiselect.current.state.selectedValues.length>0){
+        multiselect.current.state.selectedValues.forEach(city=>{uri+="city="+city.name+"&"})
+      }
+      if(dates.from)uri+="from="+dates.from.toISOString()+"&"
+      if(dates.to)uri+="to="+dates.to.toISOString()+"&"
+      if(guests.current.value)uri+="guests="+guests.current.value+"&"
+      uri = encodeURI(uri)
+      window.location.href= uri
+    }
+
 
     const showFromMonth = () => {
         const { from, to } = dates;
@@ -41,7 +62,6 @@ const SearchFilter = (props) => {
       }
     
     const handleFromChange = (from) => {
-        // Change the from date and focus the "to" input field
         console.log(from)
         if(dates.to)
         setDates({ from: from, to: dates.to });
@@ -108,14 +128,15 @@ const SearchFilter = (props) => {
     return (
         <div className="home-search-container" ref={searchBar}>
         <Multiselect
-                    options={[{name:"Tavira", id:0}, {name: "Faro", id:1}]} // Options to display in the dropdown
+                    options={[{name:"Tavira", id:0}, {name: "Faro", id:1}, {name: "San Francisco", id: 2}]} // Options to display in the dropdown
                     // Preselected value to persist in dropdown
-                    onSelect={() => searchOnSelect} // Function will trigger on select event
-                    onRemove={() => searchOnRemove} // Function will trigger on remove event
+                    onSelect={searchOnSelect} // Function will trigger on select event
+                    onRemove={searchOnRemove} // Function will trigger on remove event
                     displayValue="name" // Property name to display in the dropdown options
                     avoidHighlightFirstOption={true}
                     style={styles}
-                    placeholder="Choose A Destination"/>
+                    placeholder="Choose A Destination"
+                    ref={multiselect}/>
         <div className="InputFromTo" style={{display: "flex",
             flex: "1 1 20%",
             justifyContent: "center",
@@ -160,22 +181,22 @@ const SearchFilter = (props) => {
         </span>
         </div>
         <Form.Group className="input-guests">
-            <Form.Control as="select" className="home-search-dropdown" style={{height:"100%"}}>
+            <Form.Control as="select" className="home-search-dropdown" style={{height:"100%"}} ref={guests}>
                 <option value="">Guests</option>
-                <option value="price-min">1</option>
-                <option value="price-min">2</option>
-                <option value="price-min">3</option>
-                <option value="price-min">4</option>
-                <option value="price-min">5</option>
-                <option value="price-min">6</option>
-                <option value="price-min">7</option>
-                <option value="price-min">8</option>
-                <option value="price-min">9</option>
-                <option value="price-min">10</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
             </Form.Control>
         </Form.Group>
-        <div className="submit-search-btn">
-            <a href="">
+        <div className="submit-search-btn" onClick={submitSearch}>
+            <a>
                 <svg className="icon-arrow before">
                     <use xlinkHref="#arrow" />
                 </svg>
