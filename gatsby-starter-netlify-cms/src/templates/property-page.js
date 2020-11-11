@@ -4,25 +4,27 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import PropCarousel from '../components/PropCarousel';
-import GoogleMapComponent from '../components/GoogleMapComponent';
-import { Link } from 'gatsby';
-import Loading from '../components/Loading';
-import BookingWidget from '../components/BookingWidget';
-import CalendarWidget from '../components/CalendarWidget';
-import StickyBox from "react-sticky-box";
-import GalleryModal from '../components/GalleryModal';
-import Amenity from '../components/Amenities';
+import GoogleMapComponent from '../components/GoogleMapComponent'
+import { Link } from 'gatsby'
+import Loading from '../components/Loading'
+import BookingWidget from '../components/BookingWidget'
+import CalendarWidget from '../components/CalendarWidget'
+import StickyBox from "react-sticky-box"
+import GalleryModal from '../components/GalleryModal'
+import Amenity from '../components/Amenities'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import logo from '../img/logo.svg'
-import { ButtonGroup } from '@material-ui/core';
-
+import { ButtonGroup } from '@material-ui/core'
+import BedBathPax from '../components/BedBathPax'
 
 
 export const PropertyPageTemplate = ( props ) =>
 {
    const [bookDates, setBookDates] = useState({})
+   const [propName, setPropName] = useState(null)
    const [show, setShow] = useState(false);
    const [showAllAmenities, setShowAllAemnities] = useState(false)
+   const [showNotesReadMore, setShowNotesReadMore] = useState(false)
    const [amenitiesLength, setAmenitiesLength] = useState(0)
 
     const handleClose = () => setShow(false);
@@ -34,8 +36,11 @@ export const PropertyPageTemplate = ( props ) =>
         to: range.to})
    }
 
-   const sortAmenities = (amenities) => {
+   const handleName = (name) =>{
+    setPropName(name)
+}
 
+   const sortAmenities = (amenities) => {
 
     let list= [];
     amenities.forEach((amenity, index)=> {
@@ -90,7 +95,7 @@ export const PropertyPageTemplate = ( props ) =>
                                     <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit", width:"100%"}}>
                                         <Col>
                                             <Row>
-                                                <span className="prdname">{data.value.name}</span>
+                                                <span className="prdname">{propName}</span>
                                             </Row>
                                             <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
                                             <Row>
@@ -140,7 +145,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 <Container>
                                     <section id="prop-summary">
                                     <div id="prop-nav">
-                                        <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#location">Location</Link>
+                                        <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
                                     </div>
                                     <br />
                                     <Row>
@@ -198,22 +203,57 @@ export const PropertyPageTemplate = ( props ) =>
                                             </div>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col xs={12} md={9}>
-                                            <hr />
-                                            <FirestoreDocument path={`/Descriptions/${props.id}`}>
+                                    <FirestoreDocument path={`/Descriptions/${props.id}`}>
                                             {data => {
                                                     return (!data.isLoading && data.value) ? 
-                                                    <div id="neighborhood">
-                                                        <h2>Neighborhood</h2>
-                                                        <br />
-                                                        {data.value.en_US.neighborhood}
-                                                        <br />
-                                                    </div> : <Loading /> 
+                                                    <>
+                                                    {handleName(data.value.en_US.name)}
+                                                    {data.value.en_US.space &&
+                                                    <Row>
+                                                        <Col xs={12} md={9}>
+                                                            <hr />
+                                                                <div id="space">
+                                                                    <h2>Space</h2>
+                                                                    <br />
+                                                                    {data.value.en_US.space}
+                                                                    <br />
+                                                                </div>
+                                                        </Col>
+                                                    </Row>
+                                                    }
+                                                    { data.value.en_US.neighborhood && 
+                                                    <Row>
+                                                        <Col xs={12} md={9}>
+                                                            <hr />
+                                                                <div id="neighborhood">
+                                                                    <h2>Neighborhood</h2>
+                                                                    <br />
+                                                                    {data.value.en_US.neighborhood}
+                                                                    <br />
+                                                                </div>
+                                                        </Col>
+                                                    </Row>
+                                                    }
+                                                    {data.value.en_US.notes && 
+                                                    <Row>
+                                                        <Col xs={12} md={9}>
+                                                            <hr />
+                                                                <div id="notes">
+                                                                    <h2>Notes</h2>
+                                                                    <br />
+                                                                    {data.value.en_US.notes.substring(0,400)}
+                                                                    {showNotesReadMore && <span id="more">{data.value.en_US.notes.substring(400)}</span>}
+                                                                    <br />
+                                                                    <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>Read More...</p>}</button>
+                                                                    <br />
+                                                                </div>
+                                                        </Col>
+                                                    </Row>}
+                                                    </> 
+                                                : <Loading /> 
                                                 }}
-                                            </FirestoreDocument>
-                                        </Col>
-                                    </Row>
+                                    </FirestoreDocument>
+
                                     </Col>
                                         <Col xs={12} md={3} style={{display: "flex", alignItems: "flex-start"}}>
                                             <StickyBox>
@@ -225,7 +265,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
                                                     <li>City: <span style={{float: "right"}}>{data.value.city}</span></li>
                                                 </ul>
-                                                
+                                                <br />
+                                                <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
                                                 <hr />
                                                 
                                                 <BookingWidget id={props.id} dateRange={bookDates}/>
@@ -260,7 +301,8 @@ export const PropertyNav = (props) => {
     return(
         <div className="prop-nav" style={{...props.navStyles}}>
             <Container>
-                <Link to="/"><img src={logo} style={{height:"30px", width:"30px", marginRight:"10px"}}/></Link><Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#location">Location</Link>
+                <Link to="/"><img src={logo} style={{height:"30px", width:"30px", marginRight:"10px"}}/></Link><Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
+                                    
             </Container>
         </div>
     )
@@ -284,7 +326,8 @@ const PropertyPage = (data) => {
         const shouldBeStyle = {
             visibility: isShow ? 'visible' : 'hidden',
             transition: `all 300ms ${isShow ? 'ease-in' : 'ease-out'}`,
-            transform: isShow ? 'none' : 'translate(0, -100%)'
+            transform: isShow ? 'none' : 'translate(0, -100%)',
+            zIndex: 2
           }
       
         if (JSON.stringify(shouldBeStyle) !== JSON.stringify(headerStyle)) 

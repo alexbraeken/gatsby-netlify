@@ -15,15 +15,8 @@ import 'react-bnb-gallery/dist/style.css'
 
 const TemplateWrapper = ({ children }) => {
 
-  const [searchCities, setSearchCities] = useState([])
-
   const { title, description } = useSiteMetadata()
 
-  const newChildren = React.Children.map(children, child => {
-    return React.cloneElement(child, {
-      searchCities: searchCities
-    })
-  })
 
   return (
     <div>
@@ -73,8 +66,8 @@ const TemplateWrapper = ({ children }) => {
         <script type="text/javascript" src="https://platform.hostfully.com/assets/widgets/searchwidget/searchwidget.js" />
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
-      <Navbar setSearchCities={setSearchCities}/>
-      <div>{newChildren}</div>
+      <Navbar/>
+      <div>{children}</div>
       <BackToTop />
       <Footer />
       </FirestoreProvider>

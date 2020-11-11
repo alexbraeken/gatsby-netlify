@@ -77,7 +77,7 @@ const CalendarModal = (props) => {
     }
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-90w">
+        <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-container">
         <Modal.Header closeButton>
           <Modal.Title>Choose New Dates</Modal.Title>
         </Modal.Header>

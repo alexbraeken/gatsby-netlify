@@ -115,7 +115,7 @@ const Properties = (props) => {
     }
 
     useScrollPosition(({ prevPos, currPos }) => {   
-        if(currPos.y<0 && container.current.getBoundingClientRect().top){
+        if(currPos.y<0 && container.current.getBoundingClientRect().top && datePicker.current){
             datePicker.current.style={position:"fixed"}
         }
       })

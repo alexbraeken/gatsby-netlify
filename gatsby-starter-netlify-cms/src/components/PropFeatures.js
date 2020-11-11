@@ -72,7 +72,7 @@ const PropFeatureGrid = (data) => {
         winterLet = true
       }
         return(
-          <PropertyCard item={item} data={data} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet}/>
+          <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet}/>
           )}
       })
       }

@@ -16,13 +16,13 @@ const PropertyCard = (props) => {
     return (
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
-        <Card className="bg-dark text-white prop-card" style={{backgroundImage: `url(${props.item.picture})`}}>
+        <Card className="bg-dark text-white prop-card" style={{backgroundImage: `url(${props.item.picture})`}} id={props.item.uid}>
           {props.winterLet && 
           <div className="ribbon"><span>Winter Let</span></div>
           }
         {showAmenities && 
               <div className="card-img-overlay" style={{fontSize: "0.8rem", backgroundColor: "#fff", height: "fit-content", color:"#000"}}>
-                <FirestoreDocument path={`/amenities/${props.data.gridItems.ids[props.index]}`}>
+                <FirestoreDocument path={`/amenities/${props.item.uid}`}>
                                         {data => {
                                             return (!data.isLoading && data.value) ? 
                                             <div id="amenities">
