@@ -34,6 +34,7 @@ const PropFeatureGrid = (data) => {
         return item
     } else { return null}
   })
+  
 
     if(data.sort === "price-min"){
       console.log(data.sort)
@@ -72,7 +73,7 @@ const PropFeatureGrid = (data) => {
         winterLet = true
       }
         return(
-          <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet}/>
+          <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet} totalDays={data.totalDays}/>
           )}
       })
       }

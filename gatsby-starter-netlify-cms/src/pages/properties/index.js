@@ -31,7 +31,8 @@ const Properties = (props) => {
     const [winterLets, setWinterLets] = useState([])
     const [searchOperator, setSearchOperator] = useState("not-in")
     const [propertyIds, setPropertyIds] = useState([])
-
+    const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
+    const [totalDays, setTotalDays] = useState(1)
 
     const container = useRef(null)
     const datePicker = useRef(null)
@@ -81,6 +82,7 @@ const Properties = (props) => {
                 console.log(JSON.parse(data));
                 setPropertyIds(JSON.parse(data).propertiesUids)
                 })
+        setTotalDays((new Date(props.state.searchArray.to[0])-(new Date(props.state.searchArray.from[0]))))
         return () => {
             setPropertyIds([])
         }
@@ -114,26 +116,35 @@ const Properties = (props) => {
         setPropertyIds(ids)
     }
 
-    useScrollPosition(({ prevPos, currPos }) => {   
-        if(currPos.y<0 && container.current.getBoundingClientRect().top && datePicker.current){
-            datePicker.current.style={position:"fixed"}
+    const handleTotalDays = (total) => {
+        setTotalDays(total)
+    }
+
+    useScrollPosition(({ prevPos, currPos }) => {
+        console.log(container.current.getBoundingClientRect().top)   
+        console.log(currPos.y)
+        if(container.current.getBoundingClientRect().top < 0 && stickyStyle.position === "absolute"){
+            setStickyStyle({position: "fixed"})
+        }
+        if(container.current.getBoundingClientRect().top > 0 && stickyStyle.position === "fixed"){
+            setStickyStyle({position: "absolute"})
         }
       })
 
 
         return(
-            <div>
+            <div ref={container}>
                 <FirestoreCollection path="/Properties/">
                     {data => {       
                         return (!data.isLoading && data.value) ?  
                         <>
                         {setData(data.value)}
 
-                        <Container style={{width:"100vw", maxWidth:"none"}} ref={container}>
+                        <Container style={{width:"100vw", maxWidth:"none"}} >
                             {props.state.searchArray.from && props.state.searchArray.to &&
-                            <DatePicker from={props.state.searchArray.from[0]} to={props.state.searchArray.to[0]} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}
-                            className="top-date-picker" 
-                            ref={datePicker}/> }
+                            <DatePicker from={props.state.searchArray.from[0]} to={props.state.searchArray.to[0]} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleTotalDays={handleTotalDays}
+                            className="top-date-picker" style={stickyStyle}
+                            /> }
                             <Row>
                                 <Col xs={12} md={3} id="filter-sidebar">
                                 <StickyBox>
@@ -149,7 +160,7 @@ const Properties = (props) => {
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={9}>
-                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds}/>
+                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} totalDays={totalDays}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery

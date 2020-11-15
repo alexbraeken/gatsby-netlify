@@ -44,7 +44,7 @@ return (
 <LoadScript
       googleMapsApiKey="AIzaSyCC0VPgtgvuBoukr23_t9SVQuY_mWjrau8"
       preventGoogleFontsLoading={true}
-    >{console.log(zoom)}
+    >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={{

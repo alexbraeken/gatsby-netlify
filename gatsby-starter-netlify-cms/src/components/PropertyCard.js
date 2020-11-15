@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Card} from 'react-bootstrap'
 import { Link } from "@reach/router";
 import Col from 'react-bootstrap/Col'
@@ -10,8 +10,24 @@ import BedBathPax from '../components/BedBathPax'
 
 const PropertyCard = (props) => {
 
-    const [showAmenities, setShowAmenities] = useState();
-    const [showCalendar, setShowCalendar] = useState();
+    const [showAmenities, setShowAmenities] = useState()
+    const [showCalendar, setShowCalendar] = useState()
+    const [displayPrice, setDisplayPrice] = useState(null)
+    const [durationSearch, setDurationSearch] = useState(false)
+
+    useEffect(() => {
+
+      if(props.totalDays && props.totalDays>1){
+        setDisplayPrice(props.totalDays*props.item.baseDailyRate)
+        setDurationSearch(true)
+      }else{
+        setDisplayPrice(props.item.baseDailyRate)
+      }
+      return () => {
+        setDisplayPrice(null)
+        setDurationSearch(false)
+      }
+    }, [props])
 
     return (
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
@@ -54,7 +70,8 @@ const PropertyCard = (props) => {
           <Link to={`/properties/${props.item.uid}`}  style={{position:"relative", zIndex:"2"}}>
             <Card.Text>
               <small className="text-muted">{props.item.type}</small>
-              <small className="text-muted" style={{float:"right"}}>{props.item.baseDailyRate} € / Day</small>
+              <small className="text-muted" style={{float:"right"}}>
+          {displayPrice}€ {durationSearch? <>for {props.totalDays} days</>:<>/ Day</>}</small>
             </Card.Text>
             <hr style={{margin:"0.5rem 0"}}/>
             <Card.Title style={{textAlign:"center"}}>{props.item.name}</Card.Title>

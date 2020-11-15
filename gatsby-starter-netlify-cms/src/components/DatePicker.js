@@ -25,10 +25,17 @@ const DatePicker = (props) => {
         }
     }, [])
 
+    useEffect(()=>{
+        if(dates.from && dates.to){
+            const diffTime = Math.abs(dates.to - dates.from)
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+            props.handleTotalDays(diffDays)
+        }   
+    },[dates])
    
 
     return (
-        <div className="top-date-picker" >
+        <div className="top-date-picker" style={props.style}>
             <Container>
                 <Row>
             <div className="top-date-picker-text" onClick={handleShowCalendar}>
@@ -36,7 +43,7 @@ const DatePicker = (props) => {
             </div>
             </Row>
         </Container>
-        <CalendarModal show={showCalendar} handleClose={handleClose} dates={dates} setDates={setDates} handleNewIds={props.handleNewIds}/>
+        <CalendarModal show={showCalendar} handleClose={handleClose} dates={dates} setDates={setDates} handleNewIds={props.handleNewIds} />
         </div>
     )
 }
