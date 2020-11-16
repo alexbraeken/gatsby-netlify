@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component, useRef} from 'react'
+import React, {useState, useEffect, Component, useRef, useCallback} from 'react'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
 import { Router } from "@reach/router"
@@ -19,10 +19,12 @@ import { gsap } from "gsap";
 import { forEach } from 'lodash';
 import DatePicker from '../../components/DatePicker'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 gsap.registerPlugin(gsap);
 
-const Properties = (props) => {
+const Properties = React.memo((props) => {
 
     const [show, setShow]=useState(false)
     const [photos, setPhotos] =useState([])
@@ -33,6 +35,8 @@ const Properties = (props) => {
     const [propertyIds, setPropertyIds] = useState([])
     const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
     const [totalDays, setTotalDays] = useState(1)
+    const [expanded, setExpanded] = useState(false)
+    const [filterExpanded, setFilterExpanded] = useState(true)
 
     const container = useRef(null)
     const datePicker = useRef(null)
@@ -95,30 +99,36 @@ const Properties = (props) => {
     }, [data])
 
 
-    const handleGalleryClick = (photos) => {
+    const handleGalleryClick = useCallback((photos) => {
         setShow(true);
         setPhotos(photos);
-    }
+    }, [photos])
 
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         setShow(false)
-    };
+    });
 
-    const handleShow = () => {
-        setShow(true);
-    };
 
-    const handleSort = (sort) => {
+    const handleSort = useCallback((sort) => {
         setSort(sort)
-    }
+    }, [sort])
 
-    const handleNewIds = (ids) =>{
+    const handleNewIds = useCallback((ids) =>{
         setPropertyIds(ids)
-    }
+    })
 
-    const handleTotalDays = (total) => {
+    const handleTotalDays = useCallback((total) => {
         setTotalDays(total)
-    }
+    })
+
+    const handleExpand = useCallback(() => {
+        setExpanded(!expanded);
+    })
+
+    const handleFilterExpand = useCallback(() =>{
+        console.log(filterExpanded)
+        setFilterExpanded(!filterExpanded)
+    })
 
     useScrollPosition(({ prevPos, currPos }) => {
         console.log(container.current.getBoundingClientRect().top)   
@@ -146,8 +156,19 @@ const Properties = (props) => {
                             className="top-date-picker" style={stickyStyle}
                             /> }
                             <Row>
-                                <Col xs={12} md={3} id="filter-sidebar">
+                                <Col xs={12} md={expanded? 6 : 3} id="filter-sidebar" style={{transition:"all 1s"}}>
                                 <StickyBox>
+                                    <Container fluid style={{
+                                        display: "flex",
+                                        justifyContent: "space-between"}}>
+                                        <h3>Filters: </h3> 
+                                        <div className="expandBtn" style={{float:"right"}} onClick={handleFilterExpand}>
+                                            {filterExpanded ? 
+                                            <FontAwesomeIcon icon={faChevronUp} style={{margin:"auto"}}/> 
+                                            : <FontAwesomeIcon icon={faChevronDown} style={{margin:"auto"}}/>}
+                                        </div>
+                                    </Container>
+                                <div className={`filter-form ${filterExpanded? "":"filter-shrink"}`}>
                                 <PropertiesFilter 
                                 data= {data} 
                                 handleChange={props.handleChange} 
@@ -155,11 +176,17 @@ const Properties = (props) => {
                                 handleSliderChange={props.handleSliderChange}
                                 handleSort={handleSort}
                                 handleSelectDeselectAll={props.handleSelectDeselectAll}
+                                expanded={expanded}
+                                handleExpand={handleExpand}
                                 />
-                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state}/>
+                                </div>
+                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state} height={filterExpanded? "300px": "95vh"}/>
+                                <div className="expandBtn filterExpand" onClick={handleExpand}>
+                                    {expanded ? <FontAwesomeIcon icon={faChevronLeft} style={{margin:"auto"}}/> : <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto"}}/> }
+                                </div>
                                 </StickyBox>
                                 </Col>
-                                <Col xs={12} md={9}>
+                                <Col xs={12} md={expanded? 6 : 9}>
                                 <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} totalDays={totalDays}/>
                                 </Col>
                             </Row>
@@ -174,7 +201,7 @@ const Properties = (props) => {
                 </FirestoreCollection>
             </div>
         )
-}
+})
 
 
 

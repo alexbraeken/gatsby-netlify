@@ -70,7 +70,7 @@ const PropertyCard = (props) => {
           <Link to={`/properties/${props.item.uid}`}  style={{position:"relative", zIndex:"2"}}>
             <Card.Text>
               <small className="text-muted">{props.item.type}</small>
-              <small className="text-muted" style={{float:"right"}}>
+              <small className="feature-text-price" style={{float:"right"}}>
           {displayPrice}€ {durationSearch? <>for {props.totalDays} days</>:<>/ Day</>}</small>
             </Card.Text>
             <hr style={{margin:"0.5rem 0"}}/>

@@ -7,9 +7,8 @@ import Container from 'react-bootstrap/Container'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import Button from 'react-bootstrap/Button'
+
+
 
 
 class PropertiesFilter extends Component {
@@ -17,7 +16,7 @@ class PropertiesFilter extends Component {
     constructor(props){
         super(props);
         this.state={
-            defaultChecked:true
+            defaultChecked:true,
         }
     }
 
@@ -29,10 +28,13 @@ class PropertiesFilter extends Component {
         }*/
     }
 
+    
+
     render(){
         
         return(
             <Container className="justify-content-md-center filter-container">
+                
             <Form>
                 <Container>
                 <Row>

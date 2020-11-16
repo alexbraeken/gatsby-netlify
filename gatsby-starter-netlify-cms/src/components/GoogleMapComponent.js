@@ -4,9 +4,6 @@ import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import icon from '../img/smartavillas marker 2.svg'
 
-const containerStyle = {
-  height: '400px'
-};
 
 
 const GoogleMapComponent = (props) =>{
@@ -46,7 +43,7 @@ return (
       preventGoogleFontsLoading={true}
     >
       <GoogleMap
-        mapContainerStyle={containerStyle}
+        mapContainerStyle={{height:props.height}}
         center={{
           lat: props.lat || center.lat,
           lng: props.lng || center.lng

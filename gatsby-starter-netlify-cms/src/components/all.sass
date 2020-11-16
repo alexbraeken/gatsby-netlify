@@ -736,6 +736,35 @@ $min-margin: 10px;
     100%
         transform: scale(1)
 
+.expandBtn
+  border-radius: 50%
+  width: 28px
+  height: 28px
+  background: #fff
+  display: flex
+  cursor: pointer
+  box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.02)
+  transition: all 0.3s
+  &:hover
+    background: $primary
+    box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02)
+  
+.filterExpand
+  position: absolute
+  right: 0
+  top: 50%
+
+.filter-form
+  overflow: hidden
+  transition: all 1s
+  height: 100%
+
+.filter-shrink
+  height: 0px
+
+@media only screen and (max-width: 900px)
+  .filterExpand
+    display: none
 
 .DayPicker
   display: inline-block
@@ -949,6 +978,8 @@ $min-margin: 10px;
   justify-content: center
   margin: 100px auto auto auto
   height: 50px
+  position: relative
+  z-index: 2
 
 //Top Date Picker
 .top-date-picker
@@ -1004,3 +1035,114 @@ $min-margin: 10px;
 
   & .InputFromTo-to .DayPickerInput
       width: 100%
+
+//traveler tips Cards
+.card__img 
+  visibility: hidden
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  width: 100%
+  height: 235px
+  border-top-left-radius: 12px
+  border-top-right-radius: 12px
+  
+
+
+.card__info-hover 
+  position: absolute
+  padding: 16px
+  width: 100%
+  opacity: 0
+  top: 0
+
+
+.card__img--hover 
+  -webkit-transition: 0.2s all ease-out
+  -o-transition: 0.2s all ease-out
+  transition: 0.2s all ease-out
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  width: 100%
+  position: absolute
+  height: 235px
+  border-top-left-radius: 12px
+  border-top-right-radius: 12px
+  top: 0
+  
+
+.activity-card 
+  margin: 12px
+  -webkit-transition: all .4s cubic-bezier(0.175, 0.885, 0, 1)
+  -o-transition: all .4s cubic-bezier(0.175, 0.885, 0, 1)
+  transition: all .4s cubic-bezier(0.175, 0.885, 0, 1)
+  background-color: #fff
+  width: 20%
+  min-width: 200px
+  position: relative
+  border-radius: 12px
+  overflow: hidden
+  -webkit-box-shadow: 12px 12px 12px 0px rgba(0, 0, 0,0.1)
+  box-shadow: 12px 12px 12px 0px rgba(0, 0, 0,0.1)
+  text-align: left
+
+.activity-card:hover 
+  -webkit-box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1)
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1)
+  -webkit-transform: scale(1.10, 1.10)
+  -ms-transform: scale(1.10, 1.10)
+  transform: scale(1.10, 1.10)
+
+
+.card__info 
+  z-index: 2
+  background-color: #fff
+  border-bottom-left-radius: 12px
+  border-bottom-right-radius: 12px
+  padding: 16px 24px 24px 24px
+
+
+.card__category 
+  font-family: 'Raleway', sans-serif
+  text-transform: uppercase
+  font-size: 13px
+  letter-spacing: 2px
+  font-weight: 500
+  color: #868686
+
+
+.card__title 
+  margin-top: 5px
+  margin-bottom: 10px
+
+
+.card__details 
+  font-size: 12px
+  font-family: 'Raleway', sans-serif
+  font-weight: 500
+  display: none
+
+
+.card__link 
+  font-weight: 600
+  text-decoration: none
+  color: rgb(245, 130, 30)
+
+
+.activity-card:hover .card__img--hover 
+  height: 100%
+  opacity: 0.3
+
+
+.activity-card:hover .card__info 
+  background-color: transparent
+  position: relative
+
+
+.activity-card:hover .card__info-hover 
+    opacity: 1
+
+
+.activity-card:hover .card__details 
+  display: block

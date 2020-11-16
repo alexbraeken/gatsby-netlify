@@ -108,7 +108,7 @@ const Navbar = class extends React.Component {
                 
                 </FirestoreCollection>
               </NavDropdown>
-              <Link className="navbar-item" to="/blog">
+              <Link className="navbar-item" to="/travelerTips/">
                 Traveler Tips
               </Link>
               <Link className="navbar-item" to="/">

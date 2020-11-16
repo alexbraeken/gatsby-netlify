@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 
 gsap.registerPlugin(gsap);
 
-const PropFeatureGrid = (data) => {
+const PropFeatureGrid = React.memo((data) => {
 
   const [propList, setPropList] = useState([data.gridItems.value])
   const [advancedSearch, setAdvancedSearch] = useState(false)
@@ -78,7 +78,7 @@ const PropFeatureGrid = (data) => {
       })
       }
   </div>
-)}
+)})
 
 
 export default PropFeatureGrid

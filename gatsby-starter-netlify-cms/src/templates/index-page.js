@@ -8,7 +8,7 @@ import BlogRoll from '../components/BlogRoll'
 import SearchWidget from '../components/SearchWidget'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { gsap } from "gsap";
-import Container from 'react-bootstrap/Container'
+import {Container, Col, Row, Card} from 'react-bootstrap'
 import { FirestoreCollection } from "@react-firebase/firestore"
 import Loading from '../components/Loading'
 import FeatureCarousel from '../components/FeatureCarousel'
@@ -147,15 +147,112 @@ useScrollPosition(({ prevPos, currPos }) => {
 </div>
     
     <section className="section section--gradient">
-      <Container>
-        <div className="section">
-            <div className="column is-10 is-offset-1">
-              <div className="content">
-              </div>
-            </div>
-        </div>
+      <section style={{
+        paddingBottom: "100px",
+        width: "100vw",
+        position: "relative",
+        marginLeft: "-50vw",
+        left: "50%"}}>
+      <Container style={{zIndex:"2"}}>
+        <Row>
+          <Col xs={12} md={8} style={{display:"flex", flexWrap:"wrap"}}>
+          <h1 style={{fontSize:"2.5rem"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com Property Rentals & Management</h1>
+          <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
+          <h2>If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further!!</h2>
+          </Col>
+          <Col xs={12} md={4}>
+            <img src="/img/Tavira River Scene.jpg" />
+          </Col>
+        </Row>
       </Container>
-      <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
+      <div style={{ 
+          width: "100vw",
+          position: "absolute",
+          top: "auto",
+          bottom: "0",
+          right: "0",
+          height: "100px",
+          zIndex: "1",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#f5821e" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              bottom: "-1px",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
+            </svg>
+            </div>
+      </section>
+      <section style={{
+        paddingBottom: "100px",
+        width: "100vw",
+        position: "relative",
+        marginLeft: "-50vw",
+        left: "50%",
+        backgroundColor:"#f5821e"}}>
+      <Container style={{zIndex:"2"}}>
+        <Row>
+          <Col xs={12} md={3} style={{display:"flex"}}>
+            <Card style={{borderRadius: "4px"}}>
+              <Card.Body style={{textAlign:"center"}}>
+                <h2>Trusted since 2009</h2>
+                <hr />
+                <p>We are a small and friendly company that really puts you - the customer - first.</p>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={12} md={3} style={{display:"flex"}}>
+            <Card style={{borderRadius: "4px"}}>
+              <Card.Body style={{textAlign:"center"}}>
+                <h2>Great Service</h2>
+                <hr />
+                <p>We pride ourselves on tailoring our services to meet your needs.</p>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={12} md={3} style={{display:"flex"}}>
+            <Card style={{borderRadius: "4px"}}>
+              <Card.Body style={{textAlign:"center"}}>
+                <h2>Amazing Location</h2>
+                <hr />
+                <p>Spectacular scenery, sandy beaches, good food, friendly people and great golf</p>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={12} md={3} style={{display:"flex"}}>
+            <Card style={{borderRadius: "4px"}}>
+              <Card.Body style={{textAlign:"center"}}>
+                <h2>100 + Quality Accommodations</h2>
+                <hr />
+                <p>At affordable prices - in the Eastern Algarve, with Tavira being the focal point.</p>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+      <div style={{ 
+          width: "100vw",
+          position: "absolute",
+          top: "auto",
+          bottom: "0",
+          right: "0",
+          height: "100px",
+          zIndex: "1",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              bottom: "-1px",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
+            </svg>
+            </div>
+      </section>
+      <Container style={{paddingLeft:"0", paddingRight:"0"}}>
                   {featuredProps && featuredProps.length > 0 &&
                   <FirestoreCollection path="/Properties/" where={{field:"uid" , operator:"in", value:featuredProps}} limit={5}>
                     {data => {
@@ -169,7 +266,7 @@ useScrollPosition(({ prevPos, currPos }) => {
                     }
                   </FirestoreCollection>
                   }
-                </Container>
+      </Container>
     </section>
   </div>
 )} 
