@@ -29,6 +29,7 @@ const PropertyCard = (props) => {
       }
     }, [props])
 
+
     return (
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         

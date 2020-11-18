@@ -35,7 +35,7 @@ const Properties = React.memo((props) => {
     const [propertyIds, setPropertyIds] = useState([])
     const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
     const [totalDays, setTotalDays] = useState(1)
-    const [expanded, setExpanded] = useState(false)
+    const [horizontalExpanded, setHorizontalExpanded] = useState(false)
     const [filterExpanded, setFilterExpanded] = useState(true)
 
     const container = useRef(null)
@@ -122,7 +122,8 @@ const Properties = React.memo((props) => {
     })
 
     const handleExpand = useCallback(() => {
-        setExpanded(!expanded);
+        setHorizontalExpanded(!horizontalExpanded);
+        setFilterExpanded(!horizontalExpanded && filterExpanded? false: filterExpanded)
     })
 
     const handleFilterExpand = useCallback(() =>{
@@ -131,8 +132,6 @@ const Properties = React.memo((props) => {
     })
 
     useScrollPosition(({ prevPos, currPos }) => {
-        console.log(container.current.getBoundingClientRect().top)   
-        console.log(currPos.y)
         if(container.current.getBoundingClientRect().top < 0 && stickyStyle.position === "absolute"){
             setStickyStyle({position: "fixed"})
         }
@@ -156,7 +155,7 @@ const Properties = React.memo((props) => {
                             className="top-date-picker" style={stickyStyle}
                             /> }
                             <Row>
-                                <Col xs={12} md={expanded? 6 : 3} id="filter-sidebar" style={{transition:"all 1s"}}>
+                                <Col xs={12} md={horizontalExpanded? 6 : 3} id="filter-sidebar" style={{transition:"all 1s"}}>
                                 <StickyBox>
                                     <Container fluid style={{
                                         display: "flex",
@@ -168,7 +167,7 @@ const Properties = React.memo((props) => {
                                             : <FontAwesomeIcon icon={faChevronDown} style={{margin:"auto"}}/>}
                                         </div>
                                     </Container>
-                                <div className={`filter-form ${filterExpanded? "":"filter-shrink"}`}>
+                                <div className={`filter-form ${filterExpanded? "":"filter-shrink"}`} >
                                 <PropertiesFilter 
                                 data= {data} 
                                 handleChange={props.handleChange} 
@@ -176,17 +175,17 @@ const Properties = React.memo((props) => {
                                 handleSliderChange={props.handleSliderChange}
                                 handleSort={handleSort}
                                 handleSelectDeselectAll={props.handleSelectDeselectAll}
-                                expanded={expanded}
+                                expanded={horizontalExpanded}
                                 handleExpand={handleExpand}
                                 />
                                 </div>
                                 <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state} height={filterExpanded? "300px": "95vh"}/>
                                 <div className="expandBtn filterExpand" onClick={handleExpand}>
-                                    {expanded ? <FontAwesomeIcon icon={faChevronLeft} style={{margin:"auto"}}/> : <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto"}}/> }
+                                    {horizontalExpanded ? <FontAwesomeIcon icon={faChevronLeft} style={{margin:"auto"}}/> : <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto"}}/> }
                                 </div>
                                 </StickyBox>
                                 </Col>
-                                <Col xs={12} md={expanded? 6 : 9}>
+                                <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
                                 <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} totalDays={totalDays}/>
                                 </Col>
                             </Row>

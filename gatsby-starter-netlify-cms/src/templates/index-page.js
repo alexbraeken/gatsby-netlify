@@ -248,7 +248,7 @@ useScrollPosition(({ prevPos, currPos }) => {
               height: "100%",
               position: "absolute",
             }}> 
-            <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
+            <path d="M0 100 C 50 0 75 100 100 75 L 100 100 Z"></path> 
             </svg>
             </div>
       </section>

@@ -31,7 +31,7 @@ collections:
 
   - name: "activity"
     label: "Activity"
-    folder: "gatsby-starter-netlify-cms/src/activities/activiy"
+    folder: "gatsby-starter-netlify-cms/src/activities"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
@@ -44,6 +44,19 @@ collections:
       - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Tags", name: "tags", widget: "list"}
+      
+  - name: "algarveSlides"
+    label: "Algarve Natural Parks and Reserves"
+    folder: "gatsby-starter-netlify-cms/src/algarveSlides"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "algarve-slide"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Link", name: "link", widget: "string"}
+      - {label: "Visible Link", name: "visibleLink", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Featured Image", name: "featuredimage", widget: image}
 
   - name: "pages"
     label: "Pages"

@@ -2,6 +2,8 @@ import React from 'react'
 
 import Layout from '../../components/Layout'
 import ActivitiesRoll from '../../components/ActivitiesRoll'
+import { Container } from 'react-bootstrap';
+import AlgarveCarousel from '../../components/AlgarveCarousel';
 
 export default class TravelerTipsIndex extends React.Component {
   render() {
@@ -26,11 +28,14 @@ export default class TravelerTipsIndex extends React.Component {
           </h1>
         </div>
         <section className="section">
-          <div className="container">
+          <Container>
             <div className="content">
               <ActivitiesRoll />
             </div>
-          </div>
+            <div className="content full-width algarve-carousel">
+              <AlgarveCarousel />
+            </div>
+          </Container>
         </section>
       </Layout>
     )
