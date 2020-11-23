@@ -9,5 +9,6 @@ link: https://www.facebook.com/happytuktourstavira
 visibleLink: Happy Tuk Tours Facebook
 tags:
   - Excursions
+  - Tavira
 ---
 

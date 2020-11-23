@@ -2,32 +2,40 @@ import React from 'react'
 import { Link } from 'gatsby'
 import github from '../img/github-icon.svg'
 import logo from '../img/logo.svg'
-import NavDropdown from 'react-bootstrap/NavDropdown'
 import Loading from '../components/Loading'
-
+import Container from 'react-bootstrap/Container'
 import { FirestoreCollection } from "@react-firebase/firestore";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown} from '@fortawesome/free-solid-svg-icons';
 
 
 
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props)
+    this.nav = React.createRef();
+    this.dropdownArrow = React.createRef();
     this.state = {
       active: false,
       navBarActiveClass: '',
+      dropdown: false,
+      dropdownClass: '',  
       style: {
-        
-      }
+      
+      },
+      menuPadding:{}
     }
   }
 
   componentDidMount(){
-    if(window.location.pathname === "/")this.setState({style: {
+    if(window.location.pathname === "/"){
+      this.setState({style: {
       position: 'absolute',
       width: '100%',
       background: 'transparent'}
     })
+    this.setState({menuPadding: {paddingTop:`${this.nav.current.getBoundingClientRect().height}px`}})
+  }
   }
 
   toggleHamburger = () => {
@@ -50,6 +58,18 @@ const Navbar = class extends React.Component {
     )
   }
 
+  toggleDropDown = () => {
+    this.setState({
+      dropdown: !this.state.dropdown
+    },
+    () => {
+      this.state.dropdown?
+      this.setState({dropdownClass: 'dropdown-active'})
+      : this.setState({dropdownClass: ''});
+    })
+    this.dropdownArrow.current.style.transform = (this.dropdownArrow.current.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+  }
+
   filterList = (props, type) => {
     let filter = []
     props.map(prop => {
@@ -61,11 +81,13 @@ const Navbar = class extends React.Component {
 
   render() {
     return (
+      <>
       <nav
-        className="navbar is-transparent"
+        className="navbar"
         role="navigation"
         aria-label="main-navigation"
-        style={this.state.style}     >
+        style={this.state.style}     
+        ref={this.nav}>
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
@@ -90,24 +112,9 @@ const Navbar = class extends React.Component {
               <Link className="navbar-item" to="/">
                 Home
               </Link>
-              <NavDropdown title="Properties" className="navbar-item">
-                <NavDropdown.Item href="/properties" className="navbar-item">Our Properties</NavDropdown.Item>
-                <FirestoreCollection path="/Properties/">
-                {d => {
-                          return d.isLoading ? <Loading /> : 
-                          <>
-                            {this.filterList(d.value, "city").map((city, index)=>(
-                              <NavDropdown.Item href={`/properties?city=${city}`} key={index} className="navbar-item">
-                                {city}
-                              </NavDropdown.Item>
-                              ))
-                            }
-                            </>
-                          
-                      }}
-                
-                </FirestoreCollection>
-              </NavDropdown>
+              <div className="navbar-item" onClick={()=>this.toggleDropDown()} style={{cursor:"pointer"}}>
+                Our Properties <div ref={this.dropdownArrow} className="dropdown-arrow"><FontAwesomeIcon icon={faChevronDown}/></div>
+              </div>
               <Link className="navbar-item" to="/travelerTips/">
                 Traveler Tips
               </Link>
@@ -136,6 +143,52 @@ const Navbar = class extends React.Component {
           </div>
         </div>
       </nav>
+      <div className={`dropdown-submenu ${this.state.dropdownClass}`} style={this.state.menuPadding} onMouseLeave={()=>this.toggleDropDown()}>
+        <Container style={{display:"grid"}}>
+          <div style={{gridColumn: 1}}>
+          <a href={`/properties`}>
+            <div  className="navbar-item">
+              All Properties
+            </div>
+          </a>
+          </div>
+          <FirestoreCollection path="/Properties/">
+                      {d => {
+                                return d.isLoading ? <Loading /> : 
+                                <>
+                                {console.log(d.value)}
+                                <div style={{gridColumn:2}}>
+                                  <h4>City</h4>
+                                  <hr />
+                                  {this.filterList(d.value, "city").map((city, index)=>(
+                                    <a href={`/properties?city=${city}`} key={index}>
+                                      <div  className="navbar-item">
+                                        {city}
+                                      </div>
+                                    </a>
+                                    ))
+                                  }
+                                  </div>
+                                  <div style={{gridColumn:3}}>
+                                  <h4>Lodging Type</h4>
+                                  <hr />
+                                  {this.filterList(d.value, "type").map((type, index)=>(
+                                    <a href={`/properties?type=${type}`} key={index}>
+                                      <div  className="navbar-item">
+                                        {type[0].toUpperCase() + type.slice(1).toLowerCase()}
+                                      </div>
+                                    </a>
+                                    ))
+                                  }
+                                  </div>
+                                  </>
+                                
+                            }}
+                      
+          </FirestoreCollection>
+          </Container>
+      </div>
+      </>
     )
   }
 }

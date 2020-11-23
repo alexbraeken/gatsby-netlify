@@ -9,5 +9,7 @@ link: ""
 visibleLink: ""
 tags:
   - Horse Riding
+  - Tavira
+  - Cabanas
 ---
 

@@ -13,10 +13,11 @@ import { FirestoreCollection } from "@react-firebase/firestore"
 import Loading from '../components/Loading'
 import FeatureCarousel from '../components/FeatureCarousel'
 import SearchFilter from '../components/SearchFilter'
-
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
 export const IndexPageTemplate = ({
   image,
+  pitchImage,
   title,
   heading,
   subheading,
@@ -28,7 +29,8 @@ export const IndexPageTemplate = ({
   const [animationPlaying, setAnimationPlaying] = useState(false)
   const [delta, setDelta] = useState({prev: 0, curr: 0})
   const [atTop, setAtTop] = useState(true)
-  const [featuredProps, setFeaturedProps] = useState([])
+  const [featuredIds, setFeaturedIds] = useState([])
+
 
   const logo = useRef(null);
   const shadow =useRef(null)
@@ -85,10 +87,10 @@ useEffect(() => {
         })
         .then(data => {
           console.log(JSON.parse(data));
-          setFeaturedProps(JSON.parse(data).propertiesUids)
+          setFeaturedIds(JSON.parse(data).propertiesUids)
         })
   return () => {
-    setFeaturedProps([])
+    setFeaturedIds([])
   }
 }, [])
 
@@ -113,6 +115,7 @@ useScrollPosition(({ prevPos, currPos }) => {
     gsap.to(heroOverlay.current, 1, {height:0, ease:"Power2.easeOut"})
   }
 })
+
 
 
 
@@ -161,7 +164,7 @@ useScrollPosition(({ prevPos, currPos }) => {
           <h2>If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further!!</h2>
           </Col>
           <Col xs={12} md={4}>
-            <img src="/img/Tavira River Scene.jpg" />
+            <PreviewCompatibleImage imageInfo={pitchImage} />
           </Col>
         </Row>
       </Container>
@@ -253,14 +256,17 @@ useScrollPosition(({ prevPos, currPos }) => {
             </div>
       </section>
       <Container style={{paddingLeft:"0", paddingRight:"0"}}>
-                  {featuredProps && featuredProps.length > 0 &&
-                  <FirestoreCollection path="/Properties/" where={{field:"uid" , operator:"in", value:featuredProps}} limit={5}>
+                  <FirestoreCollection path="/Properties/">
                     {data => {
-                        return (!data.isLoading && data.value) ? 
-                        <div>
-                          <h2>Featured Properties</h2>
-                          <FeatureCarousel properties={data.value} />
-                        </div> 
+                        return (!data.isLoading && data.value) ?
+                        <>
+                        {featuredIds.length > 0 && 
+                          <div>
+                            <h2>Featured Properties</h2>
+                            <FeatureCarousel ids={featuredIds} properties={data.value}/>
+                          </div>
+                        }
+                          </>
                         : <Loading />
                       }
                     }
@@ -277,6 +283,7 @@ IndexPageTemplate.propTypes = {
   heading: PropTypes.string,
   subheading: PropTypes.string,
   mainpitch: PropTypes.object,
+  pitchImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   description: PropTypes.string,
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
@@ -294,6 +301,7 @@ const IndexPage = ({ data }) => {
         heading={frontmatter.heading}
         subheading={frontmatter.subheading}
         mainpitch={frontmatter.mainpitch}
+        pitchImage={frontmatter.pitchImage}
         description={frontmatter.description}
         intro={frontmatter.intro}
       />
@@ -328,6 +336,13 @@ export const pageQuery = graphql`
         mainpitch {
           title
           description
+        }
+        pitchImage {
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
         description
         intro {

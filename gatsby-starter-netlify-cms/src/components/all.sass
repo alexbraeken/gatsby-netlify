@@ -1291,3 +1291,25 @@ $min-margin: 10px;
   & .slide__text
       transform: translateY(0%)
       opacity: 1
+
+.dropdown-submenu
+  position: absolute
+  opacity: 0
+  transform: translateY(-100%)
+  width: 100%
+  transition: all 0.3s ease-in-out
+  z-index: 20
+  background-color: #fff
+  box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02)
+
+.dropdown-active
+  opacity: 1
+  transform: translateY(0)
+
+.dropdown-arrow
+  padding: 4px
+  transition: all 0.3s
+
+a.navbar-item:hover, .navbar-item:hover
+  color: #fff
+  background-color: $primary

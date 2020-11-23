@@ -2,6 +2,7 @@
 templateKey: index-page
 title: Smartavillas
 image: ../../static/img/smartavillas_home_1.jpg
+pitchImage: ../../static/img/Tavira River Scene.jpg
 heading: Smartavillas
 subheading: Holiday Rentals Villas and Apartments 
 mainpitch:

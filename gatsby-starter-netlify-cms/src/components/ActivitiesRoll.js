@@ -3,38 +3,70 @@ import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
 
-class ActivitiesRoll extends React.Component {
+const ActivityCard = React.memo((props) =>{
+  return(
+    <article className="activity-card">
+                { props.activity.frontmatter.featuredimage ? 
+                (
+            <div className="card__img" style={{
+                background:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`, 
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
+            { props.activity.frontmatter.featuredimage ? (
+            <div className="card__img--hover" style={{
+                background:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
+            
+            <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
+            
+              <h3 className="card__title">{props.activity.frontmatter.title}</h3>
+            <span className="card__details">{props.activity.frontmatter.description}<br />
+              <a className="card__link" href={props.activity.frontmatter.link}>{props.activity.frontmatter.visibleLink}</a></span></div>
+            </article>
+  )
+})
+
+
+class ActivitiesRoll extends React.PureComponent {
+
   render() {
     const { data } = this.props
     const { edges: activities } = data.allMarkdownRemark
 
+    const list = [];
+    if(activities && this.props.location && Object.keys(this.props.location).length>0){
+      activities.forEach(({ node: activity }) =>{
+        if(activity.frontmatter.tags.indexOf(this.props.location.location) !== -1){ 
+          list.push(activity) 
+        } else return null
+      })
+    } 
+    else{
+      if(activities){activities.forEach(({ node: activity }) =>{ 
+        list.push(activity)
+      })
+      } 
+      else return null
+    }
+
     return (
-      <div className="columns is-multiline">
-        {activities &&
-          activities.map(({ node: activity }, index) => (
-            <article className="activity-card card--6" key={index}>
-                { activity.frontmatter.featuredimage ? 
-                (
-            <div className="card__img" style={{
-                background:`url('${activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`, 
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
-            { activity.frontmatter.featuredimage ? (
-            <div className="card__img--hover" style={{
-                background:`url('${activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
-            
-            <div className="card__info"><span className="card__category">{activity.frontmatter.category}</span>
-            
-              <h3 className="card__title">{activity.frontmatter.title}</h3>
-            <span className="card__details">{activity.frontmatter.description}<br />
-              <a className="card__link" href={activity.frontmatter.link}>{activity.frontmatter.visibleLink}</a></span></div>
-            </article>
-          ))}
+      <>
+      {this.props.location && Object.keys(this.props.location).length>0 && list.length > 0 &&
+        <>
+          <h2>Activities Nearby</h2>
+          <br />
+        </>
+        }
+      <div className="columns is-multiline" style={{justifyContent:"center"}}>
+        {list && list.length > 0 &&
+          list.map((activity, index) => {
+            return activity? <ActivityCard activity={activity}  key={index}/> : null
+            })}
       </div>
+      </>
     )
   }
 }
@@ -47,7 +79,7 @@ ActivitiesRoll.propTypes = {
   }),
 }
 
-export default () => (
+export default (props) => (
   <StaticQuery
     query={graphql`
       query ActivitiesRollQuery {
@@ -84,6 +116,6 @@ export default () => (
         }
       }
     `}
-    render={(data, count) => <ActivitiesRoll data={data} count={count} />}
+    render={(data, count) => <ActivitiesRoll data={data} count={count} location={props}/>}
   />
 )

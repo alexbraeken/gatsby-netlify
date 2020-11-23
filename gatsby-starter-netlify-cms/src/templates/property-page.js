@@ -16,6 +16,7 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import logo from '../img/logo.svg'
 import { ButtonGroup } from '@material-ui/core'
 import BedBathPax from '../components/BedBathPax'
+import ActivitiesRoll from '../components/ActivitiesRoll'
 
 
 export const PropertyPageTemplate = ( props ) =>
@@ -282,9 +283,12 @@ export const PropertyPageTemplate = ( props ) =>
                                         <h2>Location</h2>
                                         <br />
                                         </Container>
-                                        <GoogleMapComponent isMarkerShown="true" lat={data.value.latitude} lng={data.value.longitude}/>
+                                        <GoogleMapComponent isMarkerShown="true" lat={data.value.latitude} lng={data.value.longitude} height={"500px"}/>
                                     </div>
-                                    
+                                    <hr />
+                                    <Container style={{textAlign: "center"}}>
+                                        <ActivitiesRoll location={data.value.city}/>
+                                    </Container>
                                 </Container>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
@@ -351,3 +355,4 @@ const PropertyPage = (data) => {
 }
 
 export default PropertyPage
+

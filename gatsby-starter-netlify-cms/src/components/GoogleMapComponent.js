@@ -25,7 +25,7 @@ const GoogleMapComponent = (props) =>{
       setCenter(null)
       setZoom(null)
     }
-  }, [props])
+  }, [])
 
 
  if (loadError) {

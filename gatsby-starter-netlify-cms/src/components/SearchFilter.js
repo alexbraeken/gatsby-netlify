@@ -128,11 +128,19 @@ const SearchFilter = (props) => {
     return (
         <div className="home-search-container" ref={searchBar}>
         <Multiselect
-                    options={[{name:"Tavira", id:0}, {name: "Faro", id:1}, {name: "San Francisco", id: 2}]} // Options to display in the dropdown
-                    // Preselected value to persist in dropdown
-                    onSelect={searchOnSelect} // Function will trigger on select event
-                    onRemove={searchOnRemove} // Function will trigger on remove event
-                    displayValue="name" // Property name to display in the dropdown options
+                    options={[
+                      {name:"Tavira", id:0}, 
+                      {name: "Faro", id:1}, 
+                      {name: "Cabanas de Tavira", id: 2},
+                      {name: "Castro Marim", id: 3},
+                      {name: "Altura", id: 4},
+                      {name: "Vila Nova de Cacela", id: 5},
+                      {name: "Conceição", id: 6},
+                      {name: "Fuseta", id: 7},
+                      {name: "Moncarapacho", id: 8}]} 
+                    onSelect={searchOnSelect} 
+                    onRemove={searchOnRemove} 
+                    displayValue="name" 
                     avoidHighlightFirstOption={true}
                     style={styles}
                     placeholder="Choose A Destination"
