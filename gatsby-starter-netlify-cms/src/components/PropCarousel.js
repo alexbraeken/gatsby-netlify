@@ -55,7 +55,7 @@ const PropCarousel = (props) => {
           <div style={{position:"absolute",height:"100%",width:"100%"}}>
             <Container>
               <Button onClick={() => setIsOpen(true)}
-              style={{position:"absolute", bottom:"2rem", right:"0", backgroundColor:"transparent"}}>Gallery</Button>
+              style={{position:"absolute", bottom:"2rem", right:"0", backgroundColor:"#000"}}>Gallery</Button>
             </Container>
           </div> : null }
         </>
