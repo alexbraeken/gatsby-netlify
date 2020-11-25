@@ -8,6 +8,6 @@ description: "The 'Via Algarviana' is a marked out walking/cycling trail (GR rou
 link: http://www.viaalgarviana.org
 visibleLink: www.viaalgarviana.org
 tags:
-  - Excursions
+  - Excursion
 ---
 

@@ -9,13 +9,13 @@ const ActivityCard = React.memo((props) =>{
                 { props.activity.frontmatter.featuredimage ? 
                 (
             <div className="card__img" style={{
-                background:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`, 
+                backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`, 
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
             { props.activity.frontmatter.featuredimage ? (
             <div className="card__img--hover" style={{
-                background:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`,
+              backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
@@ -35,11 +35,19 @@ class ActivitiesRoll extends React.PureComponent {
   render() {
     const { data } = this.props
     const { edges: activities } = data.allMarkdownRemark
-
+    console.log(this.props.location)
+    console.log(this.props.filter)
     const list = [];
-    if(activities && this.props.location && Object.keys(this.props.location).length>0){
+    if(activities && this.props.location){
       activities.forEach(({ node: activity }) =>{
-        if(activity.frontmatter.tags.indexOf(this.props.location.location) !== -1){ 
+        if(activity.frontmatter.tags.indexOf(this.props.location) !== -1){ 
+          list.push(activity) 
+        } else return null
+      })
+    }
+    else if (activities && this.props.filter){
+      activities.forEach(({ node: activity }) =>{
+        if(activity.frontmatter.tags.indexOf(this.props.filter) !== -1){ 
           list.push(activity) 
         } else return null
       })
@@ -79,7 +87,10 @@ ActivitiesRoll.propTypes = {
   }),
 }
 
-export default (props) => (
+export default (props) => {
+  const filter = props.filter? props.filter : null
+  const location = props.location ? props.location : null
+return(
   <StaticQuery
     query={graphql`
       query ActivitiesRollQuery {
@@ -116,6 +127,7 @@ export default (props) => (
         }
       }
     `}
-    render={(data, count) => <ActivitiesRoll data={data} count={count} location={props}/>}
+    render={(data, count) => <ActivitiesRoll data={data} count={count} location={location} filter={filter}/>}
   />
 )
+}

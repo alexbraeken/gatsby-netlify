@@ -99,7 +99,7 @@ const SearchFilter = (props) => {
         },
         inputField: { 
             margin: "5px",
-            fontSize: "1.2rem"
+            fontSize: "1rem"
         },
         chips: { 
           background: "#f5821e",

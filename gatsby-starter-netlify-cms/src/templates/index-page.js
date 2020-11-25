@@ -271,7 +271,6 @@ useScrollPosition(({ prevPos, currPos }) => {
                       }
                     }
                   </FirestoreCollection>
-                  }
       </Container>
     </section>
   </div>

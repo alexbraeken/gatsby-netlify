@@ -9,6 +9,6 @@ link: https://www.quadalgarve.com/
 visibleLink: www.quadalgarve.com
 tags:
   - Quad Bike Tours
-  - Excursions
+  - Excursion
 ---
 

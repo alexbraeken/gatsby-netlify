@@ -115,6 +115,9 @@ const Navbar = class extends React.Component {
               <div className="navbar-item" onClick={()=>this.toggleDropDown()} style={{cursor:"pointer"}}>
                 Our Properties <div ref={this.dropdownArrow} className="dropdown-arrow"><FontAwesomeIcon icon={faChevronDown}/></div>
               </div>
+              <Link className="navbar-item" to="/team/">
+                Our Business
+              </Link>
               <Link className="navbar-item" to="/travelerTips/">
                 Traveler Tips
               </Link>
