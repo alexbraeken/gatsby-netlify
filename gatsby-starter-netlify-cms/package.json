@@ -56,6 +56,8 @@
     "react-dom": "^16.8.4",
     "react-google-maps": "^9.4.5",
     "react-helmet": "^6.0.0",
+    "react-instagram-authless-feed": "github:jamesmoriarty/react-instagram-authless-feed",
+    "react-instagram-embed": "^2.0.0",
     "react-slick": "^0.27.11",
     "react-spring": "^8.0.27",
     "react-sticky-box": "^0.9.3",

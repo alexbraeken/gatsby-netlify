@@ -163,8 +163,15 @@ const Properties = React.memo((props) => {
                                         <h3>Filters: </h3> 
                                         <div className="expandBtn" style={{float:"right"}} onClick={handleFilterExpand}>
                                             {filterExpanded ? 
-                                            <FontAwesomeIcon icon={faChevronUp} style={{margin:"auto"}}/> 
-                                            : <FontAwesomeIcon icon={faChevronDown} style={{margin:"auto"}}/>}
+                                            <>
+                                                <p>Hide</p>
+                                                <FontAwesomeIcon icon={faChevronUp} style={{margin:"auto 5px"}}/> 
+                                            </>
+                                            : 
+                                            <>
+                                                <p>Show</p>
+                                                <FontAwesomeIcon icon={faChevronDown} style={{margin:"auto 5px"}}/>
+                                            </>}
                                         </div>
                                     </Container>
                                 <div className={`filter-form ${filterExpanded? "":"filter-shrink"}`} >
@@ -181,7 +188,16 @@ const Properties = React.memo((props) => {
                                 </div>
                                 <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state} height={filterExpanded? "300px": "95vh"}/>
                                 <div className="expandBtn filterExpand" onClick={handleExpand}>
-                                    {horizontalExpanded ? <FontAwesomeIcon icon={faChevronLeft} style={{margin:"auto"}}/> : <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto"}}/> }
+                                    {horizontalExpanded ? 
+                                    <>
+                                        <p>Hide</p>
+                                        <FontAwesomeIcon icon={faChevronLeft} style={{margin:"auto 5px"}}/>
+                                    </> 
+                                    :
+                                    <>
+                                        <p>Expand</p> 
+                                    <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
+                                    </>}
                                 </div>
                                 </StickyBox>
                                 </Col>

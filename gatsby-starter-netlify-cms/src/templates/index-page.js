@@ -14,6 +14,7 @@ import Loading from '../components/Loading'
 import FeatureCarousel from '../components/FeatureCarousel'
 import SearchFilter from '../components/SearchFilter'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+import Feed from "react-instagram-authless-feed"
 
 export const IndexPageTemplate = ({
   image,
@@ -22,7 +23,7 @@ export const IndexPageTemplate = ({
   heading,
   subheading,
   mainpitch,
-  description,
+  news,
   intro,
 }) =>{
 
@@ -161,7 +162,7 @@ useScrollPosition(({ prevPos, currPos }) => {
           <Col xs={12} md={8} style={{display:"flex", flexWrap:"wrap"}}>
           <h1 style={{fontSize:"2.5rem"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com Property Rentals & Management</h1>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-          <h2>If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further!!</h2>
+          <h2>{mainpitch.description}</h2>
           </Col>
           <Col xs={12} md={4}>
             <PreviewCompatibleImage imageInfo={pitchImage} />
@@ -196,42 +197,70 @@ useScrollPosition(({ prevPos, currPos }) => {
         left: "50%",
         backgroundColor:"#f5821e"}}>
       <Container style={{zIndex:"2"}}>
-        <Row>
-          <Col xs={12} md={3} style={{display:"flex"}}>
-            <Card style={{borderRadius: "4px"}}>
-              <Card.Body style={{textAlign:"center"}}>
-                <h2>Trusted since 2009</h2>
-                <hr />
-                <p>We are a small and friendly company that really puts you - the customer - first.</p>
+        <Row style={{justifyContent:"center"}}>
+          <Col className="home-card-container" xs={12} md={3} >
+            <Card className="home-card">
+      <a href="/team" aria-label="team"></a><div className="home-card-bg" style={{
+                  backgroundImage: "url('https://wallpaperaccess.com/full/1126753.jpg')"}}></div>  
+                  
+              <Card.Body className="home-card-body">
+              <div className="home-card-title">
+                  <h2>Trusted since 2009</h2>
+                </div>         
+              </Card.Body>
+              
+            </Card>
+            <div className="home-card-para">
+                  <p>We are a small and friendly company that really puts you - the customer - first.</p>
+            </div>
+          </Col>
+          <Col xs={12} md={3} className="home-card-container" >
+            <Card className="home-card">
+      <a href="#" aria-label="service"> </a> 
+        <div className="home-card-bg"
+      style={{backgroundImage: "url('https://insidecolumbia.net/wp-content/uploads/2019/11/Exterior-Photos-3-copy_featuredImage-750x430.jpg')"}}></div>
+       
+              <Card.Body className="home-card-body">
+              <div className="home-card-title">
+                <h2 >Great Service</h2>
+              </div>
+             
               </Card.Body>
             </Card>
+            <div className="home-card-para">
+                <p style={{textAlign:"center"}}>We pride ourselves on tailoring our services to meet your needs.</p>
+                </div>
           </Col>
-          <Col xs={12} md={3} style={{display:"flex"}}>
-            <Card style={{borderRadius: "4px"}}>
-              <Card.Body style={{textAlign:"center"}}>
-                <h2>Great Service</h2>
-                <hr />
-                <p>We pride ourselves on tailoring our services to meet your needs.</p>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} md={3} style={{display:"flex"}}>
-            <Card style={{borderRadius: "4px"}}>
-              <Card.Body style={{textAlign:"center"}}>
+          <Col className="home-card-container" xs={12} md={3} >
+            <Card className="home-card">
+      <a href="#" aria-label="locations"></a><div className="home-card-bg"
+      style={{backgroundImage: "url('https://da28rauy2a860.cloudfront.net/completehome/wp-content/uploads/2019/10/08145046/sc-2036-1.jpg')"}}></div>  
+              <Card.Body className="home-card-body">
+              <div className="home-card-title">
                 <h2>Amazing Location</h2>
-                <hr />
-                <p>Spectacular scenery, sandy beaches, good food, friendly people and great golf</p>
+              </div>
+              
               </Card.Body>
             </Card>
+            <div className="home-card-para">
+                <p style={{textAlign:"center"}}>Spectacular scenery, sandy beaches, good food, friendly people and great golf</p>
+                </div>
           </Col>
-          <Col xs={12} md={3} style={{display:"flex"}}>
-            <Card style={{borderRadius: "4px"}}>
-              <Card.Body style={{textAlign:"center"}}>
+          <Col className="home-card-container" xs={12} md={3} >
+            <Card className="home-card">
+      <a href="#" aria-label="properties"></a><div className="home-card-bg"
+      style={{backgroundImage: "url('https://q-xx.bstatic.com/xdata/images/hotel/840x460/216998982.jpg?k=05cc23092019a463ec92f35bc1bd6a1f3ace27f962db9c4aef249f341e27222e&o=')"}}></div>  
+              <Card.Body className="home-card-body">
+              <div className="home-card-title">
                 <h2>100 + Quality Accommodations</h2>
-                <hr />
-                <p>At affordable prices - in the Eastern Algarve, with Tavira being the focal point.</p>
+              </div>
+              
               </Card.Body>
+              
             </Card>
+            <div className="home-card-para">
+                <p style={{textAlign:"center"}}>At affordable prices - in the Eastern Algarve, with Tavira being the focal point.</p>
+                </div>
           </Col>
         </Row>
       </Container>
@@ -272,6 +301,18 @@ useScrollPosition(({ prevPos, currPos }) => {
                     }
                   </FirestoreCollection>
       </Container>
+      <section style={{paddingTop:"40px"}}>
+        <Container>
+          <h2>News & Tidbits</h2>
+          <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
+          <div dangerouslySetInnerHTML={{ __html: `<div> ${news} </div>` }} />
+        </Container>
+      </section>
+      <section>
+        <Container>
+         
+        </Container>
+      </section>
     </section>
   </div>
 )} 
@@ -283,7 +324,7 @@ IndexPageTemplate.propTypes = {
   subheading: PropTypes.string,
   mainpitch: PropTypes.object,
   pitchImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  description: PropTypes.string,
+  news: PropTypes.string,
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
@@ -301,7 +342,7 @@ const IndexPage = ({ data }) => {
         subheading={frontmatter.subheading}
         mainpitch={frontmatter.mainpitch}
         pitchImage={frontmatter.pitchImage}
-        description={frontmatter.description}
+        news={frontmatter.news}
         intro={frontmatter.intro}
       />
     </Layout>
@@ -343,7 +384,7 @@ export const pageQuery = graphql`
             }
           }
         }
-        description
+        news
         intro {
           blurbs {
             image {

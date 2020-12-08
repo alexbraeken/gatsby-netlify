@@ -75,7 +75,7 @@ const PropertyCard = (props) => {
           {displayPrice}€ {durationSearch? <>for {props.totalDays} days</>:<>/ Day</>}</small>
             </Card.Text>
             <hr style={{margin:"0.5rem 0"}}/>
-            <Card.Title style={{textAlign:"center"}}>{props.item.name}</Card.Title>
+            <Card.Title style={{textAlign:"center"}}><span className="prop-card-title">{props.item.name}</span></Card.Title>
             <BedBathPax bedrooms={props.item.bedrooms} bathrooms={props.item.bathrooms} baseGuests={props.item.baseGuests} color="rgba(0,0,0)"/>
             <hr style={{margin:"0.5rem 0"}}/>
             <Card.Text style={{fontSize: "0.8rem"}}>

@@ -8,15 +8,15 @@ subheading: Holiday Rentals Villas and Apartments
 mainpitch:
   title: Why Smartavillas
   description: >
-    Kaldi is the coffee store for everyone who believes that great coffee
-    shouldn't just taste good, it should do good too. We source all of our beans
-    directly from small scale sustainable farmers and make sure part of the
-    profits are reinvested in their communities.
-description: >-
-  Kaldi is the ultimate spot for coffee lovers who want to learn about their
-  java’s origin and support the farmers that grew it. We take coffee production,
-  roasting and brewing seriously and we’re glad to pass that knowledge to
-  anyone.
+    If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further!!
+news: "
+<h3>CLEAN & SAFE SEAL</h3>
+<br />
+<p>
+Smartavillas is committed to providing both the best and safest experience to all our guests and employees. As such we are striving to acquire the Clean & Safe seal for all our properties guaranteeing our efforts to do so.
+</p>
+<p>
+We are also driven to ensure all our guests have as much clear and valuable information as possible which you can find in our F.A.Q.</p>"
 intro:
   blurbs:
     - image: ../../static/img/coffee.png

@@ -106,30 +106,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </div>
                                             
                                             <span className="titleTags">
-                                                <span className="titleTag"><Link to={`/properties?city=${data.value.city}`}>{data.value.city}</Link></span>
-                                                <div className="header-icons">
-                                                    <div className="icon-info">
-                                                        <img alt="smartavillas - bed" src="/img/bedroom1.png" />
-                                                            <span className="tooltiptext">Bedrooms</span>
-                                                            <div className="text-number">
-                                                                <h3>{data.value.bedrooms}</h3>
-                                                            </div>
-                                                    </div>
-                                                    <div className="icon-info">
-                                                        <img alt="smartavillas - bath" src="/img/bathroom3.png" />
-                                                        <span className="tooltiptext">Bathrooms</span>
-                                                        <div className="text-number">
-                                                            <h3>{data.value.bathrooms}</h3>
-                                                        </div>
-                                                    </div>
-                                                    <div className="icon-info">
-                                                        <img alt="smartavillas - sleeps" src="/img/people.png" />
-                                                        <span className="tooltiptext">Sleeps</span>
-                                                        <div className="text-number">
-                                                            <h3>{data.value.baseGuests}</h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <span className="titleTag"><Link to={`/properties?city=${data.value.city}`}>{data.value.city}</Link></span >
+                                                <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
                                             </span>
                                             </Row>
                                         </Col>

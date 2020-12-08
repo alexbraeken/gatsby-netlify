@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './all.sass';
 import BackToTop from '../components/BackToTop';
 import 'react-bnb-gallery/dist/style.css'
+import NewsAlert from '../components/newsAlert'
 
 const TemplateWrapper = ({ children }) => {
 
@@ -66,6 +67,7 @@ const TemplateWrapper = ({ children }) => {
         <script type="text/javascript" src="https://platform.hostfully.com/assets/widgets/searchwidget/searchwidget.js" />
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
+      <NewsAlert />
       <Navbar/>
       <div>{children}</div>
       <BackToTop />

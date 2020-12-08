@@ -46,6 +46,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        path: `${__dirname}/src/newsAlert`,
+        name: 'newsAlert',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/static/img`,
         name: 'images',
       },
