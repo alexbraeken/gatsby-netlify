@@ -117,19 +117,6 @@ class PropertiesFilter extends Component {
                 </Row>
                 <RangeSlider name="Bedrooms" type="bedrooms" step={1} min={1} max={10} handleSliderChange={this.props.handleSliderChange}/>  
                 <RangeSlider name="Bathrooms" type="bathrooms" step={1} min={1} max={10} handleSliderChange={this.props.handleSliderChange}/>  
-                <Row>
-                    <Form.Group>
-                        <Form.Control as="select" onChange={(e)=>this.props.handleSort(e.target.value)}>
-                            <option value="">Sort By</option>
-                            <option value="price-min">Daily Rate $ &#8594; $$$</option>
-                            <option value="price-max">Daily Rate $$$ &#8594; $</option>
-                            <option value="bedrooms-min">Bedrooms Increasing</option>
-                            <option value="bedrooms-max">Bedrooms Decreasing</option>
-                            <option value="a-z">A &#8594; Z</option>
-                            <option value="z-a">Z &#8594; A</option>
-                        </Form.Control>
-                    </Form.Group>
-                </Row>
                 </Container>
             </Form> 
         </Container>  

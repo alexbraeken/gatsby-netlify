@@ -18,7 +18,6 @@ import { ButtonGroup } from '@material-ui/core'
 import BedBathPax from '../components/BedBathPax'
 import ActivitiesRoll from '../components/ActivitiesRoll'
 
-
 export const PropertyPageTemplate = ( props ) =>
 {
    const [bookDates, setBookDates] = useState({})
@@ -27,6 +26,37 @@ export const PropertyPageTemplate = ( props ) =>
    const [showAllAmenities, setShowAllAemnities] = useState(false)
    const [showNotesReadMore, setShowNotesReadMore] = useState(false)
    const [amenitiesLength, setAmenitiesLength] = useState(0)
+   const [smartaOpinion, setSmartaOpinion] = useState(null)
+
+    useEffect(() => {
+        
+        const propId = (document.location.pathname.split('/')[2])
+        console.log(propId)
+        if(propId){
+ 
+            const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${propId}`
+            
+            console.log("fetching opinion ids: " + uri)
+            fetch(uri, {
+            headers:{
+            "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+                }
+            })
+                    .then(response => {
+                        
+                        return response.text()
+                    })
+                    .then(data => {
+                    console.log(JSON.parse(data));
+                    if(JSON.parse(data).length>0 && JSON.parse(data)[0].text!== undefined){
+                        setSmartaOpinion(JSON.parse(data)[0].text)
+                    }
+                    })
+            return () => {
+                setSmartaOpinion(null)
+            }
+        }
+    }, [])
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -101,7 +131,7 @@ export const PropertyPageTemplate = ( props ) =>
                                             <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
                                             <Row>
                                                 <div className="flag under">
-                                                    <span className="prc">{data.value.baseDailyRate} €</span>
+                                                    <span className="prc">From {data.value.baseDailyRate} €</span>
                                                     <span className="mth"> / Day</span>
                                                 </div>
                                             
@@ -247,7 +277,16 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <br />
                                                 <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
                                                 <hr />
-                                                
+                                                {smartaOpinion &&
+                                                <div>
+                                                    <h4>Smartavillas' Opinion:</h4>
+                                                    <br />
+                                                <p>
+                                                   {smartaOpinion} 
+                                                </p>
+                                                </div> 
+                                                }
+                                                <hr />
                                                 <BookingWidget id={props.id} dateRange={bookDates}/>
                                             </StickyBox>
                                         </Col>

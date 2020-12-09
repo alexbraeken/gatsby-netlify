@@ -3,7 +3,72 @@ module.exports = {
     title: 'Smartavillas - Holiday Rentals Villas and Apartments in the Eastern Algarve',
     description:
       'Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With its spectacular scenery, sandy beaches, good food, friendly people and great golf, we can think of no other reason why you would choose to holiday anywhere else! If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further. We pride ourselves on tailoring our services to meet your needs. We are a small and friendly company that really puts you - the customer - first.',
-  },
+    menuLinks: [
+      {
+        "name": "Home",
+        "link": "/",
+        "subNav": null
+      },
+      {
+        "name": "Our Properties",
+        "link": "",
+        "subNav": [{"name":"propertiesList"}]
+      },
+      {
+        "name": "Our Business",
+        "link": "/team/",
+        "subNav": [{
+          "name": "Why Book With Us?",
+          "link": "/whyBookSmartavillas",
+        },
+        {
+          "name": "Why Use Smartavillas?",
+          "link": "/whyUseSmartavillas",
+        },
+        {
+          "name": "Meet the Team",
+          "link": "/team",
+        },
+        ]
+      },
+      {
+        "name": "Traveler Tips",
+        "link": "/travelerTips/",
+        "subNav": null
+      },
+      {
+        "name": "Holiday Extras",
+        "link": "",
+        "subNav": null
+      },
+      {
+        "name": "The Algarve",
+        "link": "",
+        "subNav": [{
+          "name": "The Algarve",
+          "link": "/location/algarve",
+        },
+        {
+          "name": "Tavira",
+          "link": "/location/tavira",
+        },
+        {
+          "name": "Altura & Castro Marim",
+          "link": "/location/alturaCastroMarim",
+        },
+        {
+          "name": "Cacela & Manta Rota",
+          "link": "/location/cacelaMantaRota",
+        },
+      ]
+      },
+      {
+        "name": "Contact Us",
+        "link": "/contact",
+        "subNav": null
+      },
+    ]
+    },
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',

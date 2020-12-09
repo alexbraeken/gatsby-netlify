@@ -161,6 +161,17 @@ const Properties = React.memo((props) => {
                                         display: "flex",
                                         justifyContent: "space-between"}}>
                                         <h3>Filters: </h3> 
+                                        <Form.Group>
+                                            <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)}>
+                                                <option value="">Sort By</option>
+                                                <option value="price-min">Daily Rate $ &#8594; $$$</option>
+                                                <option value="price-max">Daily Rate $$$ &#8594; $</option>
+                                                <option value="bedrooms-min">Bedrooms Increasing</option>
+                                                <option value="bedrooms-max">Bedrooms Decreasing</option>
+                                                <option value="a-z">A &#8594; Z</option>
+                                                <option value="z-a">Z &#8594; A</option>
+                                            </Form.Control>
+                                        </Form.Group>
                                         <div className="expandBtn" style={{float:"right"}} onClick={handleFilterExpand}>
                                             {filterExpanded ? 
                                             <>
@@ -180,7 +191,6 @@ const Properties = React.memo((props) => {
                                 handleChange={props.handleChange} 
                                 state={props.state}
                                 handleSliderChange={props.handleSliderChange}
-                                handleSort={handleSort}
                                 handleSelectDeselectAll={props.handleSelectDeselectAll}
                                 expanded={horizontalExpanded}
                                 handleExpand={handleExpand}

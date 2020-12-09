@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import { Link, graphql, StaticQuery } from 'gatsby'
 import github from '../img/github-icon.svg'
 import logo from '../img/logo.svg'
 import Loading from '../components/Loading'
@@ -8,6 +9,55 @@ import { FirestoreCollection } from "@react-firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown} from '@fortawesome/free-solid-svg-icons';
 
+
+const PropertiesDropDown = React.memo((props) => {
+  return(
+    <>
+  <div style={{gridColumn: 1}}>
+          <a href={`/properties`}>
+            <div  className="navbar-item">
+              All Properties
+            </div>
+          </a>
+          </div>
+          <FirestoreCollection path="/Properties/">
+                      {d => {
+                                return (!d.isLoading && d.value) ?  
+                                <>
+                                {console.log(d.value)}
+                                <div style={{gridColumn:2}}>
+                                  <h4>City</h4>
+                                  <hr />
+                                  {props.filterList(d.value, "city").map((city, index)=>(
+                                    <a href={`/properties?city=${city}`} key={index}>
+                                      <div  className="navbar-item">
+                                        {city}
+                                      </div>
+                                    </a>
+                                    ))
+                                  }
+                                  </div>
+                                  <div style={{gridColumn:3}}>
+                                  <h4>Lodging Type</h4>
+                                  <hr />
+                                  {props.filterList(d.value, "type").map((type, index)=>(
+                                    <a href={`/properties?type=${type}`} key={index}>
+                                      <div  className="navbar-item">
+                                        {type[0].toUpperCase() + type.slice(1).toLowerCase()}
+                                      </div>
+                                    </a>
+                                    ))
+                                  }
+                                  </div>
+                                  </>
+                                  : <Loading /> 
+                                
+                            }}
+                      
+          </FirestoreCollection>
+          </>
+          )
+})
 
 
 const Navbar = class extends React.Component {
@@ -19,7 +69,9 @@ const Navbar = class extends React.Component {
       active: false,
       navBarActiveClass: '',
       dropdown: false,
-      dropdownClass: '',  
+      dropdownClass: '',
+      subNav: null,
+      activeSubnav: null,  
       style: {
       
       },
@@ -58,16 +110,34 @@ const Navbar = class extends React.Component {
     )
   }
 
-  toggleDropDown = () => {
-    this.setState({
-      dropdown: !this.state.dropdown
-    },
-    () => {
-      this.state.dropdown?
-      this.setState({dropdownClass: 'dropdown-active'})
-      : this.setState({dropdownClass: ''});
-    })
-    this.dropdownArrow.current.style.transform = (this.dropdownArrow.current.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+  toggleDropDown = (subNavLinks, index) => {
+    console.log(subNavLinks)
+    if(index && this.state.activeSubnav && this.state.activeSubnav !== index){
+      let arrow = document.getElementById(`arrow-${this.state.activeSubnav}`)
+      arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+      this.setState({
+        subNav: subNavLinks,
+        activeSubnav: index},
+        () => {
+          arrow = document.getElementById(`arrow-${this.state.activeSubnav}`)
+          arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+        })
+    }
+    else{
+      let arrow = this.state.activeSubnav ? document.getElementById(`arrow-${this.state.activeSubnav}`) : document.getElementById(`arrow-${index}`)
+
+      this.setState({
+        dropdown: !this.state.dropdown,
+        subNav: subNavLinks || null,
+        activeSubnav: index || null
+      },
+      () => {
+        this.state.dropdown?
+        this.setState({dropdownClass: 'dropdown-active'})
+        : this.setState({dropdownClass: ''});
+      })
+      arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+    }
   }
 
   filterList = (props, type) => {
@@ -80,6 +150,10 @@ const Navbar = class extends React.Component {
 }
 
   render() {
+
+    const { data } = this.props
+    const Links = data.site.siteMetadata.menuLinks
+
     return (
       <>
       <nav
@@ -109,27 +183,22 @@ const Navbar = class extends React.Component {
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
             <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/">
-                Home
-              </Link>
-              <div className="navbar-item" onClick={()=>this.toggleDropDown()} style={{cursor:"pointer"}}>
-                Our Properties <div ref={this.dropdownArrow} className="dropdown-arrow"><FontAwesomeIcon icon={faChevronDown}/></div>
-              </div>
-              <Link className="navbar-item" to="/team/">
-                Our Business
-              </Link>
-              <Link className="navbar-item" to="/travelerTips/">
-                Traveler Tips
-              </Link>
-              <Link className="navbar-item" to="/">
-                Holiday Extras
-              </Link>
-              <Link className="navbar-item" to="/algarve">
-                The Algarve
-              </Link>
-              <Link className="navbar-item" to="/contact">
-                Contact Us
-              </Link>
+              {console.log(Links)}
+              {Links && Links.length > 0 &&
+          Links.map((Link, index) => {
+            return Link.subNav  ? 
+            <div className="navbar-item" onClick={()=>this.toggleDropDown(Link.subNav, index)} style={{cursor:"pointer"}} key={index}>
+                {Link.name} <div className="dropdown-arrow" id={`arrow-${index}`}><FontAwesomeIcon icon={faChevronDown}/></div>
+            </div>
+            :
+            <>
+            <a href={`${Link.link}`} key={index}>
+                                      <div  className="navbar-item">
+                                      {Link.name}
+                                      </div>
+                                    </a> 
+            </>
+            })}
             </div>
             <div className="navbar-end has-text-centered">
               <a
@@ -148,52 +217,61 @@ const Navbar = class extends React.Component {
       </nav>
       <div className={`dropdown-submenu ${this.state.dropdownClass}`} style={this.state.menuPadding} onMouseLeave={()=>this.toggleDropDown()}>
         <Container style={{display:"grid"}}>
-          <div style={{gridColumn: 1}}>
-          <a href={`/properties`}>
-            <div  className="navbar-item">
-              All Properties
-            </div>
-          </a>
-          </div>
-          <FirestoreCollection path="/Properties/">
-                      {d => {
-                                return d.isLoading ? <Loading /> : 
-                                <>
-                                {console.log(d.value)}
-                                <div style={{gridColumn:2}}>
-                                  <h4>City</h4>
-                                  <hr />
-                                  {this.filterList(d.value, "city").map((city, index)=>(
-                                    <a href={`/properties?city=${city}`} key={index}>
-                                      <div  className="navbar-item">
-                                        {city}
-                                      </div>
-                                    </a>
-                                    ))
-                                  }
-                                  </div>
-                                  <div style={{gridColumn:3}}>
-                                  <h4>Lodging Type</h4>
-                                  <hr />
-                                  {this.filterList(d.value, "type").map((type, index)=>(
-                                    <a href={`/properties?type=${type}`} key={index}>
-                                      <div  className="navbar-item">
-                                        {type[0].toUpperCase() + type.slice(1).toLowerCase()}
-                                      </div>
-                                    </a>
-                                    ))
-                                  }
-                                  </div>
-                                  </>
-                                
-                            }}
-                      
-          </FirestoreCollection>
-          </Container>
+          {this.state.subNav && this.state.subNav[0].name !== "propertiesList" ? 
+          <>
+          {this.state.subNav.map((link, index)=>{
+            return link ? 
+            <a href={`${link.link}`} key={index}>
+              <div  className="navbar-item">
+                {link.name}
+              </div>
+            </a>
+            : null }
+          )}
+          </>
+          :
+          <>
+            {this.state.subNav && this.state.subNav[0].name == "propertiesList" ?
+            <> 
+              <PropertiesDropDown filterList={this.filterList}/>
+            </>
+            : 
+            null}
+          </>
+          }
+        </Container>
       </div>
       </>
     )
   }
 }
 
-export default Navbar
+Navbar.propTypes = {
+  data: PropTypes.shape({
+    allMarkdownRemark: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }),
+}
+
+export default (props) => (
+  <StaticQuery
+    query={graphql`
+      query NavbarQuery {
+        site {
+          siteMetadata {
+            menuLinks {
+              link
+              name
+              subNav {
+                link
+                name
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={(data, count) => <Navbar data={data} count={count}/>}
+  />
+)

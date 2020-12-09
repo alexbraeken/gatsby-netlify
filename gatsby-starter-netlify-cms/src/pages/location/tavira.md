@@ -1,0 +1,9 @@
+---
+heading: Tavira
+path: /location
+templateKey: location-page
+title: Tavira
+image: ../../../static/img/tavira.jpg
+description: "Tavira lies at the centre of the Eastern Algarve coast and is a most picturesque town. Once known as the capital of the Algarve, it stands proud amongst Portuguese history books and you will not fail to be enthralled by its unspoiled charm, character, and tranquility. As you wander along the cobbled streets, you'll see an abundance of history. A Roman bridge links the 2 parts of the town across the River Gilao, its sides decorated with traditional old bars and restaurants where visitors can get busy doing nothing simply watching the world go by and the fish that jump in the river! For those who enjoy sightseeing, there are so many churches (37 in total!) to view, along with the town castle, several monuments and above all, a visit to the ‘Camara Obscura’ is not only highly recommended but absolutely fascinating and uses an optical instrument to offer a 360° panoramic-view of the town which is the perfect way to capture the essence of Tavira Otherwise, you can take a tour of the whole town in a miniature 'train' or a beautiful horse-drawn carriage. Diners have a huge choice of restaurants, many specializing in seafood and those who enjoy cooking at home should head for the fantastic municipal market where a wealth of fresh food is on offer each morning: fish, seafood, meat, deli, fruit, and vegetables - much of it caught, reared, killed, made, grown and picked locally. During the high season, there are open-air festivals and evening events with dancing, music and other local shows which everyone is welcome to enjoy. Tavira is a lovely family orientated town, with a charming ambiance and a wonderful, ‘laid back’ atmosphere, and certainly has something for everyone."
+conclusion: ""
+---

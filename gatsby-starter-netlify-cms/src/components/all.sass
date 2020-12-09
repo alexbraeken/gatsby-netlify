@@ -1332,6 +1332,11 @@ $min-margin: 10px
       transform: translateY(0%)
       opacity: 1
 
+//navbar
+.navbar-start
+  & a
+      display: flex
+
 .dropdown-submenu
   position: absolute
   opacity: 0
@@ -1353,6 +1358,7 @@ $min-margin: 10px
 a.navbar-item:hover, .navbar-item:hover
   color: #fff
   background-color: $primary
+
 
 //Meet the team
 .flex-img-col
@@ -1579,6 +1585,7 @@ a.navbar-item:hover, .navbar-item:hover
   position: relative
   justify-content: center
   background-color: $light-orange
+  z-index: 100
   transition: all 0.3s ease-in-out
   &:hover
     background-color: $primary

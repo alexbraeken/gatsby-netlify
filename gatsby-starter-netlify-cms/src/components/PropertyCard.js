@@ -72,7 +72,15 @@ const PropertyCard = (props) => {
             <Card.Text>
               <small className="text-muted">{props.item.type}</small>
               <small className="feature-text-price" style={{float:"right"}}>
-          {displayPrice}€ {durationSearch? <>for {props.totalDays} days</>:<>/ Day</>}</small>
+              {durationSearch? 
+              <>
+              {displayPrice}€ for {props.totalDays} days
+              </>
+              :
+              <>
+              From {displayPrice}€/ Day
+              </>
+              }</small>
             </Card.Text>
             <hr style={{margin:"0.5rem 0"}}/>
             <Card.Title style={{textAlign:"center"}}><span className="prop-card-title">{props.item.name}</span></Card.Title>

@@ -14,7 +14,6 @@ import Loading from '../components/Loading'
 import FeatureCarousel from '../components/FeatureCarousel'
 import SearchFilter from '../components/SearchFilter'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
-import Feed from "react-instagram-authless-feed"
 
 export const IndexPageTemplate = ({
   image,
