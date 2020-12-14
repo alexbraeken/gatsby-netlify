@@ -5,15 +5,68 @@ import Layout from '../components/Layout'
 import Features from '../components/Features'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
+import Testimonials from '../components/Testimonials'
+import Carousel from 'react-bootstrap/Carousel'
 
+
+class CustomSlide extends React.Component {
+  render() {
+    
+    return (
+      <div style={{backgroundImage: `url(${this.props.slide.slide? this.props.slide.slide.childImageSharp.fluid.src: null})`,
+      minHeight: "400px",
+      height: "50vh",
+      width:"100vw",
+      margin: "0px auto",
+      overflow: "hidden",
+      position: "relative",
+      backgroundSize:"cover",
+      backgroundPosition:"center",
+      padding: "40px"}}>
+          <div className="slide__content">
+              <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
+              <path className="slide__overlay-path" d="M0,0 150,0 300,405 0,405"></path> 
+              </svg>
+              <div className="slide__text">
+              <h2 className="slide__text-heading">{this.props.slide.title}</h2>
+              </div>
+              </div>
+        <h3></h3>
+    <p></p>
+      </div>
+    );
+  }
+}
 
 export const WhyBookPageTemplate = ({
   image,
   title,
-  heading,
-  description,
-  conclusion
+  part1,
+  part1Img,
+  part2,
+  sliderImg1,
+  sliderImageTitle1,
+  sliderImg2,
+  sliderImageTitle2,
+  sliderImg3,
+  sliderImageTitle3,
+  part3,
+  part3Img,
+  testimonialHeader
 }) => {
+
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+      setIndex(selectedIndex);
+    };
+
+  const slides = [{slide: sliderImg1, title: sliderImageTitle1}, 
+    {slide: sliderImg2, title: sliderImageTitle2}, 
+    {slide: sliderImg3, title: sliderImageTitle3}]
+
+    const nextIcon = <span aria-hidden="true" className="carousel-control-next-icon feature-next-icon" />
+    const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
 
 
   return(
@@ -45,10 +98,19 @@ export const WhyBookPageTemplate = ({
         paddingBottom: "100px",
         position: "relative"}}>
       <Container>
-        <div className="section">
-          <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
-          <p>{description}</p>
-        </div>
+        <Row>
+          <Col>
+          {console.log(part1)}
+            <div className="section">
+              <h3 className="has-text-weight-semibold is-size-2">{part1.header}</h3>
+              <p>{part1.text}</p>
+            </div>
+        </Col>
+        <Col xs={12} md={4}>
+          {console.log(part1Img)}
+            <PreviewCompatibleImage imageInfo={part1Img} />
+        </Col>
+        </Row>
       </Container>
       <div style={{ 
           width: "100vw",
@@ -80,6 +142,26 @@ export const WhyBookPageTemplate = ({
           
       <Container>
         <Row>
+          <Col xs={12} md={6}>
+          <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
+              {slides &&
+            slides.map((slide, index) => {
+                  return<Carousel.Item key={index}>
+                      <Row>
+                          <CustomSlide slide={slide} key={index}/>
+                      </Row>
+          </Carousel.Item>
+              })}
+          </Carousel>
+          </Col>
+          <Col style={{display:"flex"}}>
+          <div style={{margin: "auto"}}>
+          <h3 className="has-text-weight-semibold is-size-2">{part2.header}</h3>
+            <p>
+              {part2.text}
+            </p>
+          </div>
+          </Col>
         </Row>
       </Container>
       <div style={{ 
@@ -106,9 +188,30 @@ export const WhyBookPageTemplate = ({
         paddingBottom: "100px",
         position: "relative"}}>
       <Container>
-        <p>
-          {conclusion}
-        </p>
+        <Row>
+          <Col style={{display:"flex"}}>
+            <div style={{margin: "auto"}}>
+            <h3 className="has-text-weight-semibold is-size-2">{part3.header}</h3>
+              <p>
+                {part3.text}
+              </p>
+            </div>
+          </Col>
+          <Col xs={12} md={4}>
+            <PreviewCompatibleImage imageInfo={part3Img} />
+          </Col>
+        </Row>
+      </Container>
+    </section>
+    <section>
+      <Container>
+        <Row>
+          <Col>
+          <h3 className="has-text-weight-semibold is-size-2">{testimonialHeader}</h3>
+          <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
+          <Testimonials />
+          </Col>
+        </Row>
       </Container>
     </section>
   </div>
@@ -117,9 +220,18 @@ export const WhyBookPageTemplate = ({
 WhyBookPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
-  heading: PropTypes.string,
-  description: PropTypes.string,
-  conclusion: PropTypes.string,
+  part1: PropTypes.object,
+  part1Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  part2: PropTypes.object,
+  sliderImg1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  sliderImageTitle1: PropTypes.string,
+  sliderImg2: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  sliderImageTitle2: PropTypes.string,
+  sliderImg3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  sliderImageTitle3: PropTypes.string,
+  part3Img:PropTypes.object,
+  part3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  testimonialHeader: PropTypes.string,
 }
 
 const WhyBookPage = ({ data }) => {
@@ -130,9 +242,18 @@ const WhyBookPage = ({ data }) => {
       <WhyBookPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}
-        heading={frontmatter.heading}
-        description={frontmatter.description}
-        conclusion={frontmatter.conclusion}
+        part1={frontmatter.part1}
+        part1Img={frontmatter.part1Img}
+        part2={frontmatter.part2}
+        sliderImg1={frontmatter.sliderImg1}
+        sliderImageTitle1={frontmatter.sliderImageTitle1}
+        sliderImg2={frontmatter.sliderImg2}
+        sliderImageTitle2={frontmatter.sliderImageTitle2}
+        sliderImg3={frontmatter.sliderImg3}
+        sliderImageTitle3={frontmatter.sliderImageTitle3}
+        part3Img={frontmatter.part3Img}
+        part3={frontmatter.part3}
+        testimonialHeader={frontmatter.testimonialHeader}
       />
     </Layout>
   )
@@ -162,8 +283,62 @@ export const WhyBookPageQuery = graphql`
           publicURL
         }
         heading
-        description
-        conclusion
+        part1 {
+          header
+          text
+        }
+        part1Img{
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
+        part2 {
+          header
+          text
+        }
+        sliderImg1{
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
+        sliderImageTitle1
+        sliderImg2{
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
+        sliderImageTitle2
+        sliderImg3{
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
+        sliderImageTitle3
+        part3Img{
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
+        part3{
+          header
+          text
+        }
+        testimonialHeader
       }
     }
   }

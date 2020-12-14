@@ -205,6 +205,7 @@ useScrollPosition(({ prevPos, currPos }) => {
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                   <h2>Trusted since 2009</h2>
+                  <a href="/team" className="home-card-button-link"><button className="btn">Read More...</button></a>
                 </div>         
               </Card.Body>
               
@@ -215,13 +216,14 @@ useScrollPosition(({ prevPos, currPos }) => {
           </Col>
           <Col xs={12} md={3} className="home-card-container" >
             <Card className="home-card">
-      <a href="#" aria-label="service"> </a> 
+      <a href="/whyBookSmartavillas" aria-label="service"> </a> 
         <div className="home-card-bg"
       style={{backgroundImage: "url('https://insidecolumbia.net/wp-content/uploads/2019/11/Exterior-Photos-3-copy_featuredImage-750x430.jpg')"}}></div>
        
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                 <h2 >Great Service</h2>
+                <a href="/whyBookSmartavillas" className="home-card-button-link"><button className="btn">Read More...</button></a>
               </div>
              
               </Card.Body>
@@ -232,11 +234,12 @@ useScrollPosition(({ prevPos, currPos }) => {
           </Col>
           <Col className="home-card-container" xs={12} md={3} >
             <Card className="home-card">
-      <a href="#" aria-label="locations"></a><div className="home-card-bg"
+      <a href="/location/algarve" aria-label="locations"></a><div className="home-card-bg"
       style={{backgroundImage: "url('https://da28rauy2a860.cloudfront.net/completehome/wp-content/uploads/2019/10/08145046/sc-2036-1.jpg')"}}></div>  
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                 <h2>Amazing Location</h2>
+                <a href="/location/algarve" className="home-card-button-link"><button className="btn">Read More...</button></a>
               </div>
               
               </Card.Body>
@@ -247,11 +250,12 @@ useScrollPosition(({ prevPos, currPos }) => {
           </Col>
           <Col className="home-card-container" xs={12} md={3} >
             <Card className="home-card">
-      <a href="#" aria-label="properties"></a><div className="home-card-bg"
+      <a href="/properties" aria-label="properties"></a><div className="home-card-bg"
       style={{backgroundImage: "url('https://q-xx.bstatic.com/xdata/images/hotel/840x460/216998982.jpg?k=05cc23092019a463ec92f35bc1bd6a1f3ace27f962db9c4aef249f341e27222e&o=')"}}></div>  
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                 <h2>100 + Quality Accommodations</h2>
+                <a href="/properties" className="home-card-button-link"><button className="btn">Read More...</button></a>
               </div>
               
               </Card.Body>

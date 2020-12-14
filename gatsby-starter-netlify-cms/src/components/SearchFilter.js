@@ -87,7 +87,8 @@ const SearchFilter = (props) => {
     const styles = {
         multiselectContainer: { flex: "1 1 25%",
         margin: "auto",
-        height:"100%"
+        height:"100%",
+        minWidth: "200px"
         },
         searchBox: { 
           border: "none",
@@ -149,7 +150,9 @@ const SearchFilter = (props) => {
             flex: "1 1 20%",
             justifyContent: "center",
             position: "relative",
-            margin: "auto",height:"100%"}}>
+            margin: "auto",
+            height:"100%",
+            minWidth: "200px"}}>
         <DayPickerInput
           value={from}
           placeholder="From"

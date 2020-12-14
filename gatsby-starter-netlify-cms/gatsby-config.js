@@ -111,6 +111,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        path: `${__dirname}/src/testimonials`,
+        name: 'testimonials',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/src/newsAlert`,
         name: 'newsAlert',
       },

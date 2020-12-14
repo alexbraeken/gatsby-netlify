@@ -10,9 +10,11 @@ import {Container, Col, Row} from 'react-bootstrap'
 export const WhyUsPageTemplate = ({
   image,
   title,
-  heading,
-  description,
-  conclusion
+  part1,
+  part1Img,
+  part2,
+  part2Img,
+  part3,
 }) => {
 
 
@@ -45,10 +47,17 @@ export const WhyUsPageTemplate = ({
         paddingBottom: "100px",
         position: "relative"}}>
       <Container>
+        <Row>
+          <Col>
         <div className="section">
-          <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
-          <p>{description}</p>
+          <h3 className="has-text-weight-semibold is-size-2">{part1.header}</h3>
+          <p>{part1.text}</p>
         </div>
+        </Col>
+        <Col>
+          <PreviewCompatibleImage imageInfo={part1Img} />
+        </Col>
+        </Row> 
       </Container>
       <div style={{ 
           width: "100vw",
@@ -80,6 +89,17 @@ export const WhyUsPageTemplate = ({
           
       <Container>
         <Row>
+          <Col>
+            <PreviewCompatibleImage imageInfo={part2Img} />
+          </Col>
+          <Col style={{display:"flex"}}>
+          <div style={{margin: "auto"}}>
+            <h3 className="has-text-weight-semibold is-size-2">{part2.header}</h3>
+              <p>
+                {part2.text}
+              </p>
+            </div>
+          </Col>
         </Row>
       </Container>
       <div style={{ 
@@ -106,9 +126,43 @@ export const WhyUsPageTemplate = ({
         paddingBottom: "100px",
         position: "relative"}}>
       <Container>
-        <p>
-          {conclusion}
-        </p>
+        <h3 className="has-text-weight-semibold is-size-2">{part3.header}</h3>
+        <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
+          <Row>
+            <Col>
+              <PreviewCompatibleImage imageInfo={part3.col1img} />
+              <br />
+              <Container style={{textAlign:"center"}}>
+                <h4>{part3.col1Header}</h4>
+                <hr />
+                <p>
+                  {part3.col1}
+                </p>
+              </Container>
+            </Col>
+            <Col>
+              <PreviewCompatibleImage imageInfo={part3.col2img} />
+              <br />
+              <Container style={{textAlign:"center"}}>
+              <h4>{part3.col2Header}</h4>
+              <hr />
+              <p>
+                {part3.col2}
+              </p>
+              </Container>
+            </Col>
+            <Col>
+              <PreviewCompatibleImage imageInfo={part3.col3img} />
+              <br />
+              <Container style={{textAlign:"center"}}>
+              <h4>{part3.col3Header}</h4>
+              <hr />
+              <p>
+                {part3.col3}
+              </p>
+              </Container>
+            </Col>
+        </Row>
       </Container>
     </section>
   </div>
@@ -118,8 +172,11 @@ WhyUsPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   heading: PropTypes.string,
-  description: PropTypes.string,
-  conclusion: PropTypes.string,
+  part1: PropTypes.object,
+  part1Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  part2: PropTypes.object,
+  part2Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  part3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }
 
 const WhyUsPage = ({ data }) => {
@@ -130,9 +187,11 @@ const WhyUsPage = ({ data }) => {
       <WhyUsPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}
-        heading={frontmatter.heading}
-        description={frontmatter.description}
-        conclusion={frontmatter.conclusion}
+        part1={frontmatter.part1}
+        part1Img={frontmatter.part1Img}
+        part2={frontmatter.part2}
+        part2Img={frontmatter.part2Img}
+        part3={frontmatter.part3}
       />
     </Layout>
   )
@@ -161,9 +220,63 @@ export const WhyUsPageQuery = graphql`
           }
           publicURL
         }
-        heading
-        description
-        conclusion
+        part1 {
+          header
+          text
+        }
+        part1Img {
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
+        part2 {
+          header
+          text
+        }
+        part2Img {
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
+        part3 {
+          header
+          col1Header
+          col1
+          col1img {
+            childImageSharp {
+              fluid(maxWidth: 500, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+            publicURL
+          }
+          col2Header
+          col2
+          col2img {
+            childImageSharp {
+              fluid(maxWidth: 500, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+            publicURL
+          }
+          col3Header
+          col3
+          col3img {
+            childImageSharp {
+              fluid(maxWidth: 500, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+            publicURL
+          }
+        }
       }
     }
   }
