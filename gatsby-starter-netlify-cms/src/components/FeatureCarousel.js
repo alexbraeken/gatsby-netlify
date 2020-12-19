@@ -1,17 +1,19 @@
 import React, {useState} from 'react'
 import Carousel from 'react-bootstrap/Carousel'
-import BedBathPax from '../components/BedBathPax'
+import BedBathPax from './BedBathPax'
 import { Link } from 'gatsby'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import SubmitButton from'./SubmitButton'
+import { Helmet } from 'react-helmet'
 
 class CustomSlide extends React.Component {
     render() {
       
       return (
         <div style={{backgroundImage: `url(${this.props.backgroundImage})`,
-        minHeight: "40vmin",
+        minHeight: "70vmin",
         height: "100%",
         margin: "0px auto",
         overflow: "hidden",
@@ -36,6 +38,7 @@ const FeatureCarousel = (props) => {
     const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
 
     return (
+      <>
         <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
             {props.properties ? props.properties.map((prop, index)=>{
                 return (props.ids.indexOf(prop.uid)!== -1)?
@@ -60,7 +63,7 @@ const FeatureCarousel = (props) => {
                     </Row>
                     <Row style={{marginTop:"10px"}}>
                       <Container style={{zIndex:1, width:"auto", display:"flex", justifyContent:"center"}}>
-                        <Link to={`/properties/${prop.uid}`}><button className="btn">View Property</button></Link>
+                        <SubmitButton text="View Property" link={`/properties/${prop.uid}`}/>
                       </Container>
                     </Row>
                   </div>
@@ -69,6 +72,14 @@ const FeatureCarousel = (props) => {
             </Carousel.Item> : null
             }): null }
         </Carousel>
+        <Helmet>
+          <style>
+            {`.carousel .carousel-control-next, .carousel .carousel-control-prev{
+            width: 9%
+            }`}
+          </style>
+        </Helmet>
+        </>
     )
 }
 

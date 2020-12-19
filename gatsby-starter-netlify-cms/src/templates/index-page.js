@@ -14,6 +14,8 @@ import Loading from '../components/Loading'
 import FeatureCarousel from '../components/FeatureCarousel'
 import SearchFilter from '../components/SearchFilter'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+import SubmitButton from '../components/SubmitButton'
+import { Helmet } from 'react-helmet'
 
 export const IndexPageTemplate = ({
   image,
@@ -39,6 +41,7 @@ export const IndexPageTemplate = ({
   const home = useRef(null)
   const swim = useRef(null)
   const heroOverlay = useRef(null)
+  const diamond = useRef(null)
 
 
 useEffect(() => {
@@ -116,6 +119,18 @@ useScrollPosition(({ prevPos, currPos }) => {
   }
 })
 
+const handleSectionHover = (side) => {
+  console.log(diamond.current.style.borderRadius)
+  diamond.current.style.borderRadius = side === "left" ? "0 50% 0 0" : "0 0 0 50%"
+  diamond.current.style.width = "50px"
+  diamond.current.style.height = "50px"
+}
+
+const handleSectionLeave = () => {
+  diamond.current.style.borderRadius = "50%"
+  diamond.current.style.width = "25px"
+  diamond.current.style.height = "25px"
+}
 
 
 
@@ -159,7 +174,7 @@ useScrollPosition(({ prevPos, currPos }) => {
       <Container style={{zIndex:"2"}}>
         <Row>
           <Col xs={12} md={8} style={{display:"flex", flexWrap:"wrap"}}>
-          <h1 style={{fontSize:"2.5rem"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com Property Rentals & Management</h1>
+          <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com Property Rentals & Management</h1>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <h2>{mainpitch.description}</h2>
           </Col>
@@ -195,9 +210,56 @@ useScrollPosition(({ prevPos, currPos }) => {
         marginLeft: "-50vw",
         left: "50%",
         backgroundColor:"#f5821e"}}>
-      <Container style={{zIndex:"2"}}>
+          <div className="feature-container">
+          <h2 style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}>What We <span style={{color:"#fff"}}>Offer!</span></h2>
+          <br />
+    <Row>
+      
+      <div className="row-container">
+        <div id="diamond-split" ref={diamond}>        
+      </div>
+     </div>
+      
+      <Col id="left-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("left")} onMouseLeave={()=>handleSectionLeave()}>
+        <div className="featured-content " style={{
+          backgroundImage:"url('https://da28rauy2a860.cloudfront.net/completehome/wp-content/uploads/2019/10/08145046/sc-2036-1.jpg')",
+          }}>
+        </div>
+        <div className="content-text">
+          <h3 style={{color: "#fff", fontWeight:"bold"}}>Plan the trip of your dreams with us!</h3>
+            <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
+            <p>
+              Book your trip with us and enjoy the best the Algarve has to offer with our spectacular selection of properties and best in class customer service.
+              We have dedicated classic customer care with modern technology to provide a worry free vacation. <a href="/whyBookSmartavillas" style={{fontWeight:"bold", textDecoration:"underline"}}>Read more...</a>
+            </p>
+            <br />
+            <SubmitButton text="See Our Properties" link="/properties"/>
+            </div>
+      </Col>
+      <Col id="right-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("right")} onMouseLeave={()=>handleSectionLeave()}>
+        <div className="featured-content" 
+        style={{
+          backgroundImage:"url('https://insidecolumbia.net/wp-content/uploads/2019/11/Exterior-Photos-3-copy_featuredImage-750x430.jpg')"
+         }}>
+        </div>
+        <div className="content-text">
+          <h3 style={{color: "#fff", fontWeight:"bold"}}>Property Management Like no other in the Algarve</h3>
+            <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
+            <p>
+              We pride ourselves on tailoring our services to meet your needs. Join hundreds of property owners and enjoy the benefits our best in the region service provide.
+            </p>
+            <br />
+          <SubmitButton text="Read More" link="/whyUseSmartavillas"/>
+            </div>
+      </Col>
+    </Row>
+  </div>
+      <Container style={{zIndex:"2", paddingTop: "30px"}}>
+      <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>At Home in the <span style={{color:"#fff"}}>Algarve</span></h2>
+      <br />
         <Row style={{justifyContent:"center"}}>
-          <Col className="home-card-container" xs={12} md={3} >
+          
+          <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
       <a href="/team" aria-label="team"></a><div className="home-card-bg" style={{
                   backgroundImage: "url('https://wallpaperaccess.com/full/1126753.jpg')"}}></div>  
@@ -214,25 +276,7 @@ useScrollPosition(({ prevPos, currPos }) => {
                   <p>We are a small and friendly company that really puts you - the customer - first.</p>
             </div>
           </Col>
-          <Col xs={12} md={3} className="home-card-container" >
-            <Card className="home-card">
-      <a href="/whyBookSmartavillas" aria-label="service"> </a> 
-        <div className="home-card-bg"
-      style={{backgroundImage: "url('https://insidecolumbia.net/wp-content/uploads/2019/11/Exterior-Photos-3-copy_featuredImage-750x430.jpg')"}}></div>
-       
-              <Card.Body className="home-card-body">
-              <div className="home-card-title">
-                <h2 >Great Service</h2>
-                <a href="/whyBookSmartavillas" className="home-card-button-link"><button className="btn">Read More...</button></a>
-              </div>
-             
-              </Card.Body>
-            </Card>
-            <div className="home-card-para">
-                <p style={{textAlign:"center"}}>We pride ourselves on tailoring our services to meet your needs.</p>
-                </div>
-          </Col>
-          <Col className="home-card-container" xs={12} md={3} >
+          <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
       <a href="/location/algarve" aria-label="locations"></a><div className="home-card-bg"
       style={{backgroundImage: "url('https://da28rauy2a860.cloudfront.net/completehome/wp-content/uploads/2019/10/08145046/sc-2036-1.jpg')"}}></div>  
@@ -248,14 +292,14 @@ useScrollPosition(({ prevPos, currPos }) => {
                 <p style={{textAlign:"center"}}>Spectacular scenery, sandy beaches, good food, friendly people and great golf</p>
                 </div>
           </Col>
-          <Col className="home-card-container" xs={12} md={3} >
+          <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
       <a href="/properties" aria-label="properties"></a><div className="home-card-bg"
       style={{backgroundImage: "url('https://q-xx.bstatic.com/xdata/images/hotel/840x460/216998982.jpg?k=05cc23092019a463ec92f35bc1bd6a1f3ace27f962db9c4aef249f341e27222e&o=')"}}></div>  
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                 <h2>100 + Quality Accommodations</h2>
-                <a href="/properties" className="home-card-button-link"><button className="btn">Read More...</button></a>
+                <a href="/properties" className="home-card-button-link"><button className="btn">Book Now...</button></a>
               </div>
               
               </Card.Body>
@@ -287,6 +331,26 @@ useScrollPosition(({ prevPos, currPos }) => {
             </svg>
             </div>
       </section>
+      <Container style={{margin:"50px auto"}}>
+        <Helmet>
+          <style>
+            {`
+            #subscribe-form #mlb2-3228322.ml-form-embedContainer .ml-form-embedWrapper.embedForm{
+              max-width:80%
+            }
+            @media only screen and (max-width: 900px){
+              #subscribe-form #mlb2-3228322.ml-form-embedContainer .ml-form-embedWrapper.embedForm{
+                max-width:400px
+              }
+            }`}
+          </style>
+        </Helmet>
+      <div className="ml-form-embed"
+        data-account="2710252:s7t2o9x9p0"
+        data-form="3228322:d1b6m6"
+        id="subscribe-form">
+      </div>
+      </Container>
       <Container style={{paddingLeft:"0", paddingRight:"0"}}>
                   <FirestoreCollection path="/Properties/">
                     {data => {
@@ -294,7 +358,7 @@ useScrollPosition(({ prevPos, currPos }) => {
                         <>
                         {featuredIds.length > 0 && 
                           <div>
-                            <h2>Featured Properties</h2>
+                            <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Featured Properties</h2>
                             <FeatureCarousel ids={featuredIds} properties={data.value}/>
                           </div>
                         }

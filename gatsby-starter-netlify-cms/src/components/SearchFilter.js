@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import { gsap } from "gsap"
 
 import { formatDate, parseDate } from 'react-day-picker/moment'
+import SubmitButton from './SubmitButton'
 
 const SearchFilter = (props) => {
 
@@ -85,9 +86,10 @@ const SearchFilter = (props) => {
 
 
     const styles = {
-        multiselectContainer: { flex: "1 1 25%",
+        multiselectContainer: {
+        flex: "1 1 25%",
         margin: "auto",
-        height:"100%",
+        height:"50px",
         minWidth: "200px"
         },
         searchBox: { 
@@ -147,11 +149,10 @@ const SearchFilter = (props) => {
                     placeholder="Choose A Destination"
                     ref={multiselect}/>
         <div className="InputFromTo" style={{display: "flex",
-            flex: "1 1 20%",
             justifyContent: "center",
             position: "relative",
-            margin: "auto",
-            height:"100%",
+            margin: "5px auto",
+            height:"50px",
             minWidth: "200px"}}>
         <DayPickerInput
           value={from}
@@ -206,24 +207,8 @@ const SearchFilter = (props) => {
                 <option value="10">10</option>
             </Form.Control>
         </Form.Group>
-        <div className="submit-search-btn" onClick={submitSearch}>
-            <a>
-                <svg className="icon-arrow before">
-                    <use xlinkHref="#arrow" />
-                </svg>
-                <span className="label">See What We Have!</span>
-                <svg className="icon-arrow after">
-                    <use xlinkHref="#arrow"/>
-                </svg>
-            </a>
-            <svg style={{display: "none"}}>
-            <defs>
-                <symbol id="arrow" viewBox="0 0 35 15">
-                    <title>Arrow</title>
-                    <path d="M27.172 5L25 2.828 27.828 0 34.9 7.071l-7.07 7.071L25 11.314 27.314 9H0V5h27.172z "/>
-                </symbol>
-            </defs>
-            </svg>
+        <div onClick={submitSearch}>
+        <SubmitButton text="See What We Have!" />
         </div>
         <Helmet>
           <style>{`

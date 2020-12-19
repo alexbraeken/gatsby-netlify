@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
-import github from '../img/github-icon.svg'
-import logo from '../img/logo.svg'
+import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
+import logo from '../img/smartavillas logo.png'
 import Loading from '../components/Loading'
 import Container from 'react-bootstrap/Container'
 import { FirestoreCollection } from "@react-firebase/firestore";
@@ -14,6 +14,9 @@ const PropertiesDropDown = React.memo((props) => {
   return(
     <>
   <div style={{gridColumn: 1}}>
+    <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
+      <h4 className="dropdown-title" style={{color:"#fff"}}>All</h4>
+    </div>
           <a href={`/properties`}>
             <div  className="navbar-item">
               All Properties
@@ -26,8 +29,10 @@ const PropertiesDropDown = React.memo((props) => {
                                 <>
                                 {console.log(d.value)}
                                 <div style={{gridColumn:2}}>
-                                  <h4>City</h4>
-                                  <hr />
+                                  <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
+                                    <h4 className="dropdown-title" style={{color:"#fff"}}>City</h4>
+                                  </div>
+                                  
                                   {props.filterList(d.value, "city").map((city, index)=>(
                                     <a href={`/properties?city=${city}`} key={index}>
                                       <div  className="navbar-item">
@@ -38,8 +43,9 @@ const PropertiesDropDown = React.memo((props) => {
                                   }
                                   </div>
                                   <div style={{gridColumn:3}}>
-                                  <h4>Lodging Type</h4>
-                                  <hr />
+                                  <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
+                                    <h4 className="dropdown-title" style={{color:"#fff"}}>Lodging Type</h4>
+                                  </div>
                                   {props.filterList(d.value, "type").map((type, index)=>(
                                     <a href={`/properties?type=${type}`} key={index}>
                                       <div  className="navbar-item">
@@ -165,7 +171,7 @@ const Navbar = class extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
-              <img src="/img/smartavillas logo.png" alt="Smarta" />
+              <img src={logo} alt="Smarta" />
             </Link>
             {/* Hamburger menu */}
             <div
@@ -203,13 +209,14 @@ const Navbar = class extends React.Component {
             <div className="navbar-end has-text-centered">
               <a
                 className="navbar-item"
-                href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
+                href="https://platform.hostfully.com/login.jsp"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span className="icon">
-                  <img src={github} alt="Github" />
+                  <img src={hostfully} alt="Hostfully" /> 
                 </span>
+                Login
               </a>
             </div>
           </div>

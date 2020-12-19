@@ -99,7 +99,7 @@ export default function RangeSlider(props) {
 
   return (
     <div className={classes.root}>
-      <Typography id="range-slider" gutterBottom>
+      <Typography id="range-slider" className="label" gutterBottom>
         {name}
       </Typography>
       <IOSSlider

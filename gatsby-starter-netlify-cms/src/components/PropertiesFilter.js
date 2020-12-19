@@ -40,8 +40,10 @@ class PropertiesFilter extends Component {
                 <Row>
                 <Container fluid className="filter-header">
                     <Row>
-                        <Col xs={12} lg={4}>
-                            <span style={{fontSize:"1.3rem"}}>City: </span>
+                        <Col xs={12} lg={4} style={{display:"flex"}}>
+                            <div className="label">
+                                <span>City: </span>
+                            </div>
                         </Col>
                         <Col xs={12} lg={8}>
                             <Row style={{flexWrap:"nowrap"}}>
@@ -79,8 +81,10 @@ class PropertiesFilter extends Component {
                 <Row>
                 <Container fluid className="filter-header">
                     <Row>
-                        <Col xs={12} lg={4}>
-                        <span style={{fontSize:"1.3rem"}}>Lodging Type:</span>
+                        <Col xs={12} lg={4} style={{display:"flex"}}>
+                            <div className="label">
+                                <span>Lodging Type:</span>
+                            </div>
                         </Col>
                         <Col xs={12} lg={8}>
                             <Row style={{flexWrap:"nowrap"}}>

@@ -7,6 +7,7 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import Testimonials from '../components/Testimonials'
 import Carousel from 'react-bootstrap/Carousel'
+import SubmitButton from '../components/SubmitButton'
 
 
 class CustomSlide extends React.Component {
@@ -155,11 +156,12 @@ export const WhyBookPageTemplate = ({
           </Carousel>
           </Col>
           <Col style={{display:"flex"}}>
-          <div style={{margin: "auto"}}>
+          <div style={{margin: "auto", textAlign: "center"}}>
           <h3 className="has-text-weight-semibold is-size-2">{part2.header}</h3>
             <p>
               {part2.text}
             </p>
+            <SubmitButton text="See Our Properties" link="/properties" backgroundColor="#fff"/>
           </div>
           </Col>
         </Row>

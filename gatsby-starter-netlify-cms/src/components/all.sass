@@ -86,6 +86,9 @@ $black: #2b2523
 .margin-top-0
   margin-top: 0 !important
 
+.navbar-item
+  font-weight: bold
+
 .navbar-item .icon
   color: $primary
 // Override for use of svg's from https://simpleicons.org/
@@ -145,6 +148,11 @@ $menu-label-color: $white-ter
 
 @import "~bulma"
 
+.navbar-item .icon:only-child
+  margin-right: 0.75rem
+
+.navbar-item img
+  max-height: 1.5rem
 
 // responsiveness
 +tablet-only
@@ -293,14 +301,6 @@ a:hover
   opacity: 1
   visibility: visible
 
-
-//Carousel
-.prop-carousel
-  height: 70vmin
-  margin: 0px auto
-  overflow: hidden
-  position: relative
-  background-size:cover
 
 //Property Cards
 
@@ -629,7 +629,10 @@ $min-margin: 10px
 .filter-header
   flex: 1 1 100%
   color: #000
-
+  & .label
+      position: relative
+      margin: auto
+      width: 100%
 #filter-sidebar
   background: #ffa600
   //background: linear-gradient(180deg, #ffa600 0%, #ff8400 12%, #ff6200 33%, #ff4400 100%)
@@ -638,7 +641,6 @@ $min-margin: 10px
 
 .filter-container
   background: rgba(256,256,256,0.4)
-  margin-top: 15px
   border-radius: 5px
   padding-top: 15px
   padding-bottom: 15px
@@ -656,6 +658,7 @@ $min-margin: 10px
       margin: 0.5rem
       border: none
       color: $primary
+      height: 1.5em
       &:hover 
         opacity: 0.3
         box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2)
@@ -687,13 +690,14 @@ $min-margin: 10px
     --tick: #fff
     display: flex 
     position: relative 
+    font-size: 0.7rem
     input,
     svg 
-        width: 21px 
-        height: 21px 
+        width: 17px 
+        height: 17px 
         display: block
-        min-width: 21px
-        min-height: 21px
+        min-width: 17px
+        min-height: 17px
     .label-text
       padding-left: 5px 
     input 
@@ -724,8 +728,8 @@ $min-margin: 10px
         position: absolute
         top: 0
         left: 0
-        width: 21px
-        height: 21px
+        width: 17px
+        height: 17px
         transform: scale(var(--scale, 1)) translateZ(0)
     &.path
         input
@@ -919,9 +923,6 @@ $min-margin: 10px
   background-color: #000
   border-radius: 50%
 
-.carousel-control-next, .carousel-control-prev
-  height: 50px
-
 .feature-text-price
   font-weight: bold
   color: $primary
@@ -937,6 +938,7 @@ $min-margin: 10px
           border: none
           border-radius: 4px
           cursor: pointer
+          padding: .375rem .75rem
       & input:focus
           border-color: $light-orange
           box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
@@ -944,7 +946,7 @@ $min-margin: 10px
 
 @media (max-width: 991px)
   .InputFromTo .DayPickerInput
-    padding: 5px 5px 5px 0
+    padding: 0
   .InputFromTo-to .DayPickerInput
     padding: 5px 0
 
@@ -953,29 +955,32 @@ $min-margin: 10px
   flex: 1 1 48%
 
 .InputFromTo-to .DayPickerInput
+  padding: 0 0 0 5px
   width: 100%
 
 .input-guests
   flex: 1 1 10%
   margin: auto
-  height: 100%
+  height: 50px
   min-width: 200px
   padding-left: 5px
   z-index: 1
 
 .submit-search-btn
   flex: 1 1 10%
-  margin-left: 5px
-  min-width: 200px
+  margin: 5px
+  min-width: fit-content
+  height: 50px
   & a 
     border: 4px solid #3F3F3F
     width: 100%
+    height: 50px
     max-width: 400px
     color: #3F3F3F
-    display: inline-block
+    display: block
     font-size: 18px
     font-weight: bold
-    line-height: 24px
+    line-height: 18px
     margin: auto
     padding: 12px 32px 12px 82px
     position: relative
@@ -994,7 +999,7 @@ $min-margin: 10px
     & .icon-arrow 
         fill: #3F3F3F
         height: 15px
-        top: 17px
+        top: 15px
         transition: transform .5s cubic-bezier(0.86, 0, 0.07, 1), opacity .4s cubic-bezier(0.86, 0, 0.07, 1)
         width: 35px
     & .icon-arrow.before 
@@ -1023,11 +1028,18 @@ $min-margin: 10px
     &:active .icon-arrow 
         fill: #FD6154
 
+
+.home-search-container .InputFromTo
+  flex: 1 1 20%
+
 @media (max-width: 991px)
   .submit-search-btn
     margin: auto
   .input-guests
     padding: 5px 0
+  .home-search-container .InputFromTo, .input-guests, .submit-search-btn
+    flex: 1 1 100%
+
 .optionContainer li:hover
   background: $light-orange
 
@@ -1042,7 +1054,7 @@ $min-margin: 10px
   flex-wrap: wrap
   justify-content: center
   margin: 100px auto auto auto
-  height: 50px
+  height: auto
   position: relative
   z-index: 2
 
@@ -1376,6 +1388,11 @@ $min-margin: 10px
   padding: 4px
   transition: all 0.3s
 
+.dropdown-title
+  font-weight: bold
+  color: $primary
+  text-decoration: underline
+
 a.navbar-item:hover, .navbar-item:hover
   color: #fff
   background-color: $primary
@@ -1527,9 +1544,6 @@ a.navbar-item:hover, .navbar-item:hover
   &:hover
     .home-card-bg
       filter: brightness(1) drop-shadow(2px 4px 6px black)
-    .home-card-para
-      transform: translateY(0)
-      opacity: 1
     .home-card .home-card-button-link .btn
       color: #fff
     &:after
@@ -1550,7 +1564,8 @@ a.navbar-item:hover, .navbar-item:hover
   border: none
   width: 300px
   height: 300px
-  flex: 1 1 100%
+  flex: 0 1 300px
+  margin: auto
   background-color: transparent
   transition: all 0.3s ease-in-out
   & a
@@ -1594,13 +1609,11 @@ a.navbar-item:hover, .navbar-item:hover
 
 .home-card-para
   flex: 1 1 100%
-  transition: all 0.3s ease-in-out
-  transform: translateY(-100%)
-  opacity: 0
   margin-top: 20px
   & p
       text-align: center
       font-size: 1.3rem
+      color: #fff
 
 //Gradient background
 .gradient-bg
@@ -1632,3 +1645,98 @@ a.navbar-item:hover, .navbar-item:hover
 .newsAlert-news
   color: #fff
   transition: all 0.3s ease-in-out
+
+#diamond-split
+  background-color: $primary
+  transform: rotateZ(45deg)
+  border-radius: 50%
+  transition: all 0.5s
+  z-index: 1
+  position: relative
+  margin: auto
+  width: 25px 
+  height: 25px
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 1px, rgba(0, 0, 0, 0.3) 0px 4px 8px, rgba(0, 0, 0, 0.02) 0px 0px 0px 1px;
+  pointer-events: none
+
+#left-section
+  margin-right: 2px
+  margin-left: 15px;
+
+#right-section
+  margin-left: 2px
+  margin-right: 15px;
+
+#right-section, #left-section
+  padding: 0
+  overflow: hidden
+  box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)
+  border-radius: 30% 4px 30% 4px
+  min-width: 350px
+
+.featured-content
+  min-height: 60vh
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center
+  border-radius: 4px
+  position: relative
+  box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)
+  transition: all 0.3s ease-in-out
+  
+
+.content-text
+  position: absolute
+  bottom: 50px
+  padding: 10px
+  left: 50px 
+  color: #fff
+  max-width: 400px
+  z-index: 1
+  & .submit-search-btn
+      width: fit-content
+      margin: 5px 0
+  & p a:hover
+      color: $primary
+  &::after
+    content: ""
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    background-color: #000
+    opacity: 0
+    transform: scale(1.5)
+    z-index: -1
+    border-radius: 4px
+    transition: all 0.3s ease-in-out
+
+
+.feature-container
+  width: 100vw
+  position: relative
+  margin-left: -50vw
+  left: 50%
+  padding-top: 30px
+  padding-bottom: 50px
+  & .row-container
+      position: absolute
+      display: flex
+      width: 100%
+      margin-right: 15px
+      margin-left: 15px
+      height: calc(100% - 160px)
+
+@media only screen and (max-width: 650px)
+  .content-text
+    left: 5%
+    max-width: 90%;   
+
+.zoom-bg:hover
+  & .featured-content
+      transform: scale(1.03)
+  & .content-text::after
+      transform: scale(1)
+      opacity: 0.5
+
