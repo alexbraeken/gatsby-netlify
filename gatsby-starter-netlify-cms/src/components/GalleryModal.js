@@ -34,8 +34,8 @@ const GalleryModal = (props) => {
     
     var rect = element.current.getBoundingClientRect();
     
-    var scrollTop  = window.pageYOffset || root.scrollTop  || body.scrollTop  || 0;
-    var scrollLeft = window.pageXOffset || root.scrollLeft || body.scrollLeft || 0;
+    var scrollTop  = window ? window.pageYOffset: false || root.scrollTop  || body.scrollTop  || 0;
+    var scrollLeft = window ? window.pageXOffset: false || root.scrollLeft || body.scrollLeft || 0;
     
     var clientTop  = root.clientTop  || body.clientTop  || 0;
     var clientLeft = root.clientLeft || body.clientLeft || 0;

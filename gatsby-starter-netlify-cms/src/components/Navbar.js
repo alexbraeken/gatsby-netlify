@@ -86,7 +86,7 @@ const Navbar = class extends React.Component {
   }
 
   componentDidMount(){
-    if(window.location.pathname === "/"){
+    if(window && window.location.pathname === "/"){
       this.setState({style: {
       position: 'absolute',
       width: '100%',

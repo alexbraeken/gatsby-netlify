@@ -73,13 +73,7 @@ export default (props) => (
                 description
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
-                featuredimage {
-                  childImageSharp {
-                    fluid(maxWidth: 600) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
+                featuredimage 
                 jobTitle
                 name
                 position

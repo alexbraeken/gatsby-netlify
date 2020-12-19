@@ -85,13 +85,7 @@ export default () => (
                   visibleLink  
                   templateKey
                   date(formatString: "MMMM DD, YYYY")
-                  featuredimage {
-                    childImageSharp {
-                      fluid(maxWidth: 2000) {
-                        ...GatsbyImageSharpFluid
-                      }
-                    }
-                  }
+                  featuredimage 
                 }
               }
             }

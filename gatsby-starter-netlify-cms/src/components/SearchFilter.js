@@ -48,7 +48,7 @@ const SearchFilter = (props) => {
       if(dates.to)uri+="to="+dates.to.toISOString()+"&"
       if(guests.current.value)uri+="guests="+guests.current.value+"&"
       uri = encodeURI(uri)
-      window.location.href= uri
+      if(window) window.location.href= uri
     }
 
 
