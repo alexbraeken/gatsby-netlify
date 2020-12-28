@@ -85,7 +85,14 @@ export default () => (
                   visibleLink  
                   templateKey
                   date(formatString: "MMMM DD, YYYY")
-                  featuredimage 
+                  featuredimage {
+                    childImageSharp{
+                      fluid{
+                        src
+                      }
+                    }
+                    publicURL
+                  }
                 }
               }
             }

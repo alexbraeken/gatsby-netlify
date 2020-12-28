@@ -33,6 +33,10 @@ exports.createPages = ({ actions, graphql }) => {
 
     posts.forEach((edge) => {
       const id = edge.node.id
+      if (edge.node.frontmatter.templateKey === "testimonial" 
+      && edge.node.frontmatter.templateKey === "team-member" 
+      && edge.node.frontmatter.templateKey === "algarve-slide"
+      && edge.node.frontmatter.templateKey === "activity-post"){
       createPage({
         path: edge.node.fields.slug,
         tags: edge.node.frontmatter.tags,
@@ -43,7 +47,7 @@ exports.createPages = ({ actions, graphql }) => {
         context: {
           id,
         },
-      })
+      })}
     })
 
     // Tag pages:
@@ -88,11 +92,21 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.onCreateWebpackConfig = ({
   stage,
+  loaders,
   actions,
   getConfig
 }) => {
   if (stage === 'build-html') {
     actions.setWebpackConfig({
+        module: {
+          rules: [
+            {
+              test: /multiselect-react-dropdown/,
+              use: loaders.null(),
+            },
+          ],
+        }
+      ,
       externals: getConfig().externals.concat(function(context, request, callback) {
         const regex = /^@?firebase(\/(.+))?/;
         // exclude firebase products from being bundled, so they will be loaded using require() at runtime.

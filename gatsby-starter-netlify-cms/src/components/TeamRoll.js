@@ -73,7 +73,14 @@ export default (props) => (
                 description
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
-                featuredimage 
+                featuredimage {
+                  childImageSharp{
+                    fluid{
+                      src
+                    }
+                  }
+                  publicURL
+                }
                 jobTitle
                 name
                 position

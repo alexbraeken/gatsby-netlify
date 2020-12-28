@@ -114,7 +114,14 @@ return(
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
                 featuredpost
-                featuredimage
+                featuredimage {
+                  childImageSharp{
+                    fluid{
+                      src
+                    }
+                  }
+                  publicURL
+                }
               }
             }
           }
