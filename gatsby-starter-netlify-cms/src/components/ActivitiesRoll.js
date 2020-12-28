@@ -95,7 +95,7 @@ return(
     query={graphql`
       query ActivitiesRollQuery {
         allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
+          sort: { order: DESC, fields: [frontmatter___title] }
           filter: { frontmatter: { templateKey: { eq: "activity-post" } } }
         ) {
           edges {
@@ -112,7 +112,6 @@ return(
                 link
                 visibleLink  
                 templateKey
-                date(formatString: "MMMM DD, YYYY")
                 featuredpost
                 featuredimage {
                   childImageSharp{

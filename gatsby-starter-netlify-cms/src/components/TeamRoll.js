@@ -72,7 +72,6 @@ export default (props) => (
               frontmatter {
                 description
                 templateKey
-                date(formatString: "MMMM DD, YYYY")
                 featuredimage {
                   childImageSharp{
                     fluid{

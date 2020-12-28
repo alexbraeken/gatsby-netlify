@@ -69,7 +69,7 @@ export default () => (
       query={graphql`
         query AlgarveCarouselQuery {
           allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___date] }
+            sort: { order: DESC, fields: [frontmatter___title] }
             filter: { frontmatter: { templateKey: { eq: "algarve-slide" } } }
           ) {
             edges {
@@ -84,7 +84,6 @@ export default () => (
                   link
                   visibleLink  
                   templateKey
-                  date(formatString: "MMMM DD, YYYY")
                   featuredimage {
                     childImageSharp{
                       fluid{
