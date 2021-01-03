@@ -1,5 +1,4 @@
 import React, {useState, useRef, useEffect} from 'react'
-import { Multiselect } from 'multiselect-react-dropdown'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
@@ -15,7 +14,6 @@ const SearchFilter = (props) => {
 
     const toRef = useRef(null)
     const searchBar = useRef(null)
-    const multiselect = useRef(null)
     const guests = useRef(null)
 
   
@@ -39,11 +37,6 @@ const SearchFilter = (props) => {
       
       let uri = "/properties"
 
-      if(multiselect.current.state.selectedValues.length>0 || dates.from || dates.to || guests.current.value) uri+="?"
-      console.log(multiselect.current.state.selectedValues)
-      if(multiselect.current.state.selectedValues.length>0){
-        multiselect.current.state.selectedValues.forEach(city=>{uri+="city="+city.name+"&"})
-      }
       if(dates.from)uri+="from="+dates.from.toISOString()+"&"
       if(dates.to)uri+="to="+dates.to.toISOString()+"&"
       if(guests.current.value)uri+="guests="+guests.current.value+"&"
@@ -130,24 +123,6 @@ const SearchFilter = (props) => {
 
     return (
         <div className="home-search-container" ref={searchBar}>
-        <Multiselect
-                    options={[
-                      {name:"Tavira", id:0}, 
-                      {name: "Faro", id:1}, 
-                      {name: "Cabanas de Tavira", id: 2},
-                      {name: "Castro Marim", id: 3},
-                      {name: "Altura", id: 4},
-                      {name: "Vila Nova de Cacela", id: 5},
-                      {name: "Conceição", id: 6},
-                      {name: "Fuseta", id: 7},
-                      {name: "Moncarapacho", id: 8}]} 
-                    onSelect={searchOnSelect} 
-                    onRemove={searchOnRemove} 
-                    displayValue="name" 
-                    avoidHighlightFirstOption={true}
-                    style={styles}
-                    placeholder="Choose A Destination"
-                    ref={multiselect}/>
         <div className="InputFromTo" style={{display: "flex",
             justifyContent: "center",
             position: "relative",

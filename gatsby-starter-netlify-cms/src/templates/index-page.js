@@ -24,7 +24,6 @@ export const IndexPageTemplate = ({
   subheading,
   mainpitch,
   news,
-  intro,
 }) =>{
 
   const [animationPlaying, setAnimationPlaying] = useState(false)
@@ -391,14 +390,11 @@ IndexPageTemplate.propTypes = {
   mainpitch: PropTypes.object,
   pitchImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   news: PropTypes.string,
-  intro: PropTypes.shape({
-    blurbs: PropTypes.array,
-  }),
+
 }
 
-const IndexPage = (query) => {
-  console.log(query)
-  const { frontmatter } = query.data.markdownRemark
+const IndexPage = ({ data }) => {
+  const { frontmatter } = data.markdownRemark
 
   return (
     <Layout>
@@ -410,10 +406,49 @@ const IndexPage = (query) => {
         mainpitch={frontmatter.mainpitch}
         pitchImage={frontmatter.pitchImage}
         news={frontmatter.news}
-        intro={frontmatter.intro}
+
       />
     </Layout>
   )
 }
 
+IndexPage.propTypes = {
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      frontmatter: PropTypes.object,
+    }),
+  }),
+}
+
 export default IndexPage
+
+export const pageQuery = graphql`
+query IndexPageTemplate {
+  markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+    frontmatter {
+      title
+      image {
+        childImageSharp {
+          fluid(maxWidth: 526, quality: 92) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      heading
+      subheading
+      mainpitch {
+        title
+        description
+      }
+      pitchImage {
+        childImageSharp {
+          fluid(maxWidth: 526, quality: 92) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      news
+    }
+  }
+}
+`
