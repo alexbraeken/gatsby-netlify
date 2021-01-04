@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Features from '../components/Features'
-import SearchWidget from '../components/SearchWidget'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { gsap } from "gsap";
 import {Container, Col, Row, Card} from 'react-bootstrap'
@@ -19,6 +17,11 @@ import { Helmet } from 'react-helmet'
 export const IndexPageTemplate = ({
   image,
   pitchImage,
+  tripImage,
+  listImage,
+  trustedImage,
+  locationImage,
+  accommodationsImage,
   title,
   heading,
   subheading,
@@ -171,13 +174,15 @@ const handleSectionLeave = () => {
         left: "50%"}}>
       <Container style={{zIndex:"2"}}>
         <Row>
-          <Col xs={12} md={8} style={{display:"flex", flexWrap:"wrap"}}>
-          <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com Property Rentals & Management</h1>
-          <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-          <h2>{mainpitch.description}</h2>
+          <Col xs={12} md={8} style={{display:"flex", flexWrap:"wrap", padding: "50px 0"}}>
+            <div className="intro-para">
+              <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com Property Rentals & Management</h1>
+              <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
+              <h2>{mainpitch.description}</h2>
+            </div>
           </Col>
           <Col xs={12} md={4}>
-            <PreviewCompatibleImage imageInfo={pitchImage} />
+            <PreviewCompatibleImage imageInfo={pitchImage} imgStyle={{borderRadius: "5px", marginLeft: "-150px", zIndex: "-1"}}/>
           </Col>
         </Row>
       </Container>
@@ -220,7 +225,11 @@ const handleSectionLeave = () => {
       
       <Col id="left-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("left")} onMouseLeave={()=>handleSectionLeave()}>
         <div className="featured-content " style={{
-          backgroundImage:"url('https://da28rauy2a860.cloudfront.net/completehome/wp-content/uploads/2019/10/08145046/sc-2036-1.jpg')",
+          backgroundImage: `url(${
+            tripImage.childImageSharp
+              ? tripImage.childImageSharp.fluid.src
+              : tripImage
+          })`
           }}>
         </div>
         <div className="content-text">
@@ -237,7 +246,11 @@ const handleSectionLeave = () => {
       <Col id="right-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("right")} onMouseLeave={()=>handleSectionLeave()}>
         <div className="featured-content" 
         style={{
-          backgroundImage:"url('https://insidecolumbia.net/wp-content/uploads/2019/11/Exterior-Photos-3-copy_featuredImage-750x430.jpg')"
+          backgroundImage: `url(${
+            listImage.childImageSharp
+              ? listImage.childImageSharp.fluid.src
+              : listImage
+          })`
          }}>
         </div>
         <div className="content-text">
@@ -259,8 +272,14 @@ const handleSectionLeave = () => {
           
           <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
+              {console.log(trustedImage)}
       <a href="/team" aria-label="team"></a><div className="home-card-bg" style={{
-                  backgroundImage: "url('https://wallpaperaccess.com/full/1126753.jpg')"}}></div>  
+         backgroundImage: `url(${
+          !!trustedImage.childImageSharp
+            ? trustedImage.childImageSharp.fluid.src
+            : trustedImage
+        })`
+                  }}></div>  
                   
               <Card.Body className="home-card-body">
               <div className="home-card-title">
@@ -277,7 +296,13 @@ const handleSectionLeave = () => {
           <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
       <a href="/location/algarve" aria-label="locations"></a><div className="home-card-bg"
-      style={{backgroundImage: "url('https://da28rauy2a860.cloudfront.net/completehome/wp-content/uploads/2019/10/08145046/sc-2036-1.jpg')"}}></div>  
+      style={{
+        backgroundImage: `url(${
+          !!locationImage.childImageSharp
+            ? locationImage.childImageSharp.fluid.src
+            : locationImage
+        })`
+        }}></div>  
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                 <h2>Amazing Location</h2>
@@ -293,7 +318,13 @@ const handleSectionLeave = () => {
           <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
       <a href="/properties" aria-label="properties"></a><div className="home-card-bg"
-      style={{backgroundImage: "url('https://q-xx.bstatic.com/xdata/images/hotel/840x460/216998982.jpg?k=05cc23092019a463ec92f35bc1bd6a1f3ace27f962db9c4aef249f341e27222e&o=')"}}></div>  
+      style={{
+        backgroundImage: `url(${
+          !!accommodationsImage.childImageSharp
+            ? accommodationsImage.childImageSharp.fluid.src
+            : accommodationsImage
+        })`
+        }}></div>  
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                 <h2>100 + Quality Accommodations</h2>
@@ -356,7 +387,7 @@ const handleSectionLeave = () => {
                         <>
                         {featuredIds.length > 0 && 
                           <div>
-                            <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Featured <span style={{color:"#fff"}}>Properties</span></h2>
+                            <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Featured <span style={{color:"#f5821e"}}>Properties</span></h2>
                             <FeatureCarousel ids={featuredIds} properties={data.value}/>
                           </div>
                         }
@@ -368,7 +399,7 @@ const handleSectionLeave = () => {
       </Container>
       <section style={{paddingTop:"40px"}}>
         <Container>
-        <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>News & <span style={{color:"#fff"}}>Tidbits</span></h2>
+        <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>News & <span style={{color:"#f5821e"}}>Tidbits</span></h2>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <div dangerouslySetInnerHTML={{ __html: `<div> ${news} </div>` }} />
         </Container>
@@ -389,6 +420,11 @@ IndexPageTemplate.propTypes = {
   subheading: PropTypes.string,
   mainpitch: PropTypes.object,
   pitchImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  tripImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  listImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  trustedImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  locationImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  accommodationsImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   news: PropTypes.string,
 
 }
@@ -405,6 +441,11 @@ const IndexPage = ({ data }) => {
         subheading={frontmatter.subheading}
         mainpitch={frontmatter.mainpitch}
         pitchImage={frontmatter.pitchImage}
+        tripImage={frontmatter.tripImage}
+        listImage={frontmatter.listImage}
+        trustedImage={frontmatter.trustedImage}
+        locationImage={frontmatter.locationImage}
+        accommodationsImage={frontmatter.accommodationsImage}
         news={frontmatter.news}
 
       />
@@ -443,6 +484,41 @@ query IndexPageTemplate {
       pitchImage {
         childImageSharp {
           fluid(maxWidth: 526, quality: 92) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      tripImage {
+        childImageSharp {
+          fluid(maxWidth: 1000, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      listImage {
+        childImageSharp {
+          fluid(maxWidth: 1000, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      trustedImage {
+        childImageSharp {
+          fluid(maxWidth: 1000, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      locationImage {
+        childImageSharp {
+          fluid(maxWidth: 1000, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      accommodationsImage {
+        childImageSharp {
+          fluid(maxWidth: 1000, quality: 100) {
             ...GatsbyImageSharpFluid
           }
         }

@@ -48,14 +48,14 @@ export const WhyUsPageTemplate = ({
         position: "relative"}}>
       <Container>
         <Row>
-          <Col>
-        <div className="section">
+          <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
+        <div className="section intro-para" style={{margin: "auto"}}>
           <h3 className="has-text-weight-semibold is-size-2">{part1.header}</h3>
           <p>{part1.text}</p>
         </div>
         </Col>
-        <Col>
-          <PreviewCompatibleImage imageInfo={part1Img} />
+        <Col xs={12} md={6}>
+          <PreviewCompatibleImage imageInfo={part1Img} imgStyle={{borderRadius: "5px", marginLeft: "-150px"}}/>
         </Col>
         </Row> 
       </Container>
@@ -95,9 +95,7 @@ export const WhyUsPageTemplate = ({
           <Col style={{display:"flex"}}>
           <div style={{margin: "auto"}}>
             <h3 className="has-text-weight-semibold is-size-2">{part2.header}</h3>
-              <p>
-                {part2.text}
-              </p>
+              <div dangerouslySetInnerHTML={{ __html: `<div> ${part2.text} </div>` }} />
             </div>
           </Col>
         </Row>

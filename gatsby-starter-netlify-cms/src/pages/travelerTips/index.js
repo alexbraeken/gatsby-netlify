@@ -42,6 +42,7 @@ export default class TravelerTipsIndex extends React.Component {
             Traveler Tips
           </h1>
         </div>
+        <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Activities <span style={{color:"#f5821e"}}>Nearby</span></h2>
         <Row>
           <Col xs={12} md={2}>
             <StickyBox>

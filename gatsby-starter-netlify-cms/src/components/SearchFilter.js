@@ -7,6 +7,59 @@ import { gsap } from "gsap"
 
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import SubmitButton from './SubmitButton'
+import Select from 'react-select'
+
+const options = [
+  { value: 'Tavira', label: 'Tavira' },
+  { value: 'Cabanas de Tavira', label: 'Cabanas de Tavira' },
+  { value: 'Vila Nova de Cacela', label: 'Vila Nova de Cacela' },
+  { value: 'Castro Marim', label: 'Castro Marim' },
+  { value: 'Altura', label: 'Altura' },
+  { value: 'Vila Nova de Cacela', label: 'Vila Nova de Cacela' },
+  { value: 'Conceição', label: 'Conceição' },
+  { value: 'Cabanas de Tavira', label: 'Cabanas de Tavira' },
+  { value: 'Fuseta', label: 'Fuseta' },
+  { value: 'Moncarapacho', label: 'Moncarapacho' },
+]
+
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#f5821e" : "#fff",
+    color: state.isSelected ? '#fff' : '#000',
+  }),
+  container: () => ({
+    margin: "5px auto",
+    height: "50px",
+    flex: "1 1 25%",
+    display: "flex"
+  }),
+  control: () => ({
+    width: "100%",
+    height: "50px",
+    backgroundColor: "#fff",
+    margin: "auto",
+    display: "flex",
+    borderRadius: "4px"
+  }),
+  multiValue: (styles) => {
+    return {
+      ...styles,
+      backgroundColor: "#f5821e",
+      color: "#fff"
+    };
+  },
+  multiValueLabel: (styles) => ({
+    ...styles,
+    color: "#fff",
+  }),
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = 'opacity 300ms';
+
+    return { ...provided, opacity, transition };
+  }
+}
 
 const SearchFilter = (props) => {
 
@@ -15,7 +68,7 @@ const SearchFilter = (props) => {
     const toRef = useRef(null)
     const searchBar = useRef(null)
     const guests = useRef(null)
-
+    const multiselect = useRef(null)
   
 
     useEffect(() => {
@@ -36,11 +89,20 @@ const SearchFilter = (props) => {
     const submitSearch = () => {
       
       let uri = "/properties"
-
+      if(multiselect.current.state.value 
+        || dates.from
+        || dates.to
+        || guests.current.value) uri+= "?"
+      if(multiselect.current.state.value){
+        multiselect.current.state.value.forEach((location)=>{
+          uri+="city="+location.value+"&"
+        })
+      }
       if(dates.from)uri+="from="+dates.from.toISOString()+"&"
       if(dates.to)uri+="to="+dates.to.toISOString()+"&"
       if(guests.current.value)uri+="guests="+guests.current.value+"&"
       uri = encodeURI(uri)
+      console.log(uri)
       if(window) window.location.href= uri
     }
 
@@ -123,6 +185,12 @@ const SearchFilter = (props) => {
 
     return (
         <div className="home-search-container" ref={searchBar}>
+        <Select 
+        options={options}
+        styles={customStyles}
+        isMulti
+        closeMenuOnSelect={false}
+        ref={multiselect}/>
         <div className="InputFromTo" style={{display: "flex",
             justifyContent: "center",
             position: "relative",

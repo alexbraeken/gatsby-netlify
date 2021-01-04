@@ -12,7 +12,7 @@ class CustomSlide extends React.Component {
       return (
         <div style={{backgroundImage: `url(${this.props.slide.frontmatter.featuredimage.childImageSharp.fluid.src})`,
         minHeight: "400px",
-        height: "50vh",
+        height: "70vh",
         width:"100vw",
         margin: "0px auto",
         overflow: "hidden",

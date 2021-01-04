@@ -90,15 +90,15 @@ export const LocationPageTemplate = ({
       <Container>
         <div className="section">
           <Row>
-          <Col style={{display:"flex"}}>
-          <div style={{margin:"auto"}} >
+          <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
+          <div className="intro-para" style={{margin: "auto"}}>
               <h3 className="has-text-weight-semibold is-size-2">{part1.header}</h3>
               <p>{part1.text}</p>
               </div>
             </Col>
             {part1.img && 
             <Col md={12} lg={6}>
-                <PreviewCompatibleImage imageInfo={part1.img} />
+                <PreviewCompatibleImage imageInfo={part1.img} imgStyle={{borderRadius: "5px", marginLeft: "-150px"}}/>
             </Col>}
           </Row>
         </div>
@@ -205,7 +205,7 @@ export const LocationPageTemplate = ({
       <Container style={{textAlign: "center"}}>
         <ActivitiesRoll location={location}/>
         <br />
-        <h4>For a full list of activities nearby, checkout our activities list <a href="/travelerTips">here!</a></h4>
+        <h4>For a full list of activities nearby, checkout our activities list <a href="/travelerTips"><span style={{color:"#f5821e"}}>here!</span></a></h4>
       </Container>
     </section>
   </div>
