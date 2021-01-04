@@ -356,7 +356,7 @@ const handleSectionLeave = () => {
                         <>
                         {featuredIds.length > 0 && 
                           <div>
-                            <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Featured Properties</h2>
+                            <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Featured <span style={{color:"#fff"}}>Properties</span></h2>
                             <FeatureCarousel ids={featuredIds} properties={data.value}/>
                           </div>
                         }
@@ -368,7 +368,7 @@ const handleSectionLeave = () => {
       </Container>
       <section style={{paddingTop:"40px"}}>
         <Container>
-          <h2>News & Tidbits</h2>
+        <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>News & <span style={{color:"#fff"}}>Tidbits</span></h2>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <div dangerouslySetInnerHTML={{ __html: `<div> ${news} </div>` }} />
         </Container>
@@ -429,7 +429,7 @@ query IndexPageTemplate {
       title
       image {
         childImageSharp {
-          fluid(maxWidth: 526, quality: 92) {
+          fluid(maxWidth: 2000, quality: 100) {
             ...GatsbyImageSharpFluid
           }
         }
