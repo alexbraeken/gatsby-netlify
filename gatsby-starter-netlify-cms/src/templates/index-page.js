@@ -13,6 +13,8 @@ import SearchFilter from '../components/SearchFilter'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import SubmitButton from '../components/SubmitButton'
 import { Helmet } from 'react-helmet'
+import Newsletter from '../components/Newsletter'
+
 
 export const IndexPageTemplate = ({
   image,
@@ -360,26 +362,7 @@ const handleSectionLeave = () => {
             </svg>
             </div>
       </section>
-      <Container style={{margin:"50px auto"}}>
-        <Helmet>
-          <style>
-            {`
-            #subscribe-form #mlb2-3228322.ml-form-embedContainer .ml-form-embedWrapper.embedForm{
-              max-width:80%
-            }
-            @media only screen and (max-width: 900px){
-              #subscribe-form #mlb2-3228322.ml-form-embedContainer .ml-form-embedWrapper.embedForm{
-                max-width:400px
-              }
-            }`}
-          </style>
-        </Helmet>
-      <div className="ml-form-embed"
-        data-account="2710252:s7t2o9x9p0"
-        data-form="3228322:d1b6m6"
-        id="subscribe-form">
-      </div>
-      </Container>
+      <Newsletter />
       <Container style={{paddingLeft:"0", paddingRight:"0"}}>
                   <FirestoreCollection path="/Properties/">
                     {data => {

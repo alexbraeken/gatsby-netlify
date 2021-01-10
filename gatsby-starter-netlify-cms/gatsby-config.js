@@ -39,7 +39,14 @@ module.exports = {
       {
         "name": "Holiday Extras",
         "link": "",
-        "subNav": null
+        "subNav": [{
+          "name": "Airport Transfers",
+          "link": "/holidayExtras/airport-transfers",
+        },{
+          "name": "Car Hire",
+          "link": "/holidayExtras/car-hire",
+        },
+      ]
       },
       {
         "name": "The Algarve",

@@ -89,8 +89,9 @@ export default function RangeSlider(props) {
   const step = parseInt(props.step)
   const min = parseInt(props.min)
   const max= parseInt(props.max)
+  const values = [parseInt(props.low), parseInt(props.high)]
 
-  const [value, setValue] = React.useState([min, max]);
+  const [value, setValue] = React.useState(values);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

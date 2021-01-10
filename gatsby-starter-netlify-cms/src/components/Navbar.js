@@ -18,7 +18,7 @@ const PropertiesDropDown = React.memo((props) => {
       <h4 className="dropdown-title" style={{color:"#fff"}}>All</h4>
     </div>
           <a href={`/properties`}>
-            <div  className="navbar-item">
+            <div  className="navbar-item drop-item">
               All Properties
             </div>
           </a>
@@ -35,7 +35,7 @@ const PropertiesDropDown = React.memo((props) => {
                                   
                                   {props.filterList(d.value, "city").map((city, index)=>(
                                     <a href={`/properties?city=${city}`} key={index}>
-                                      <div  className="navbar-item">
+                                      <div  className="navbar-item drop-item">
                                         {city}
                                       </div>
                                     </a>
@@ -48,7 +48,7 @@ const PropertiesDropDown = React.memo((props) => {
                                   </div>
                                   {props.filterList(d.value, "type").map((type, index)=>(
                                     <a href={`/properties?type=${type}`} key={index}>
-                                      <div  className="navbar-item">
+                                      <div  className="navbar-item drop-item">
                                         {type[0].toUpperCase() + type.slice(1).toLowerCase()}
                                       </div>
                                     </a>
@@ -229,7 +229,7 @@ const Navbar = class extends React.Component {
           {this.state.subNav.map((link, index)=>{
             return link ? 
             <a href={`${link.link}`} key={index}>
-              <div  className="navbar-item">
+              <div  className="navbar-item drop-item">
                 {link.name}
               </div>
             </a>

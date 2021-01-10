@@ -67,7 +67,7 @@ const SearchFilter = (props) => {
 
     const toRef = useRef(null)
     const searchBar = useRef(null)
-    const guests = useRef(null)
+    const bedrooms = useRef(null)
     const multiselect = useRef(null)
   
 
@@ -92,7 +92,7 @@ const SearchFilter = (props) => {
       if(multiselect.current.state.value 
         || dates.from
         || dates.to
-        || guests.current.value) uri+= "?"
+        || bedrooms.current.value) uri+= "?"
       if(multiselect.current.state.value){
         multiselect.current.state.value.forEach((location)=>{
           uri+="city="+location.value+"&"
@@ -100,7 +100,7 @@ const SearchFilter = (props) => {
       }
       if(dates.from)uri+="from="+dates.from.toISOString()+"&"
       if(dates.to)uri+="to="+dates.to.toISOString()+"&"
-      if(guests.current.value)uri+="guests="+guests.current.value+"&"
+      if(bedrooms.current.value)uri+="bedrooms="+bedrooms.current.value+"&"
       uri = encodeURI(uri)
       console.log(uri)
       if(window) window.location.href= uri
@@ -236,8 +236,8 @@ const SearchFilter = (props) => {
         </span>
         </div>
         <Form.Group className="input-guests">
-            <Form.Control as="select" className="home-search-dropdown" style={{height:"100%"}} ref={guests}>
-                <option value="">Guests</option>
+            <Form.Control as="select" className="home-search-dropdown" style={{height:"100%"}} ref={bedrooms}>
+                <option value="">Bedrooms</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

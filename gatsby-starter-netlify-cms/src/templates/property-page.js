@@ -27,6 +27,8 @@ export const PropertyPageTemplate = ( props ) =>
    const [showNotesReadMore, setShowNotesReadMore] = useState(false)
    const [amenitiesLength, setAmenitiesLength] = useState(0)
    const [smartaOpinion, setSmartaOpinion] = useState(null)
+   const [showInteractionReadMore, setShowInteractionReadMore] = useState(false)
+   const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
 
     useEffect(() => {
         
@@ -237,7 +239,10 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 <div id="neighborhood">
                                                                     <h2>Neighborhood</h2>
                                                                     <br />
-                                                                    {data.value.en_US.neighborhood}
+                                                                    {data.value.en_US.neighborhood.substring(0,400)}
+                                                                    {showNeighborhoodReadMore && <span id="more">{data.value.en_US.neighborhood.substring(400)}</span>}
+                                                                    <br />
+                                                                    <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>Read More...</p>}</button>
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -254,6 +259,21 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     {showNotesReadMore && <span id="more">{data.value.en_US.notes.substring(400)}</span>}
                                                                     <br />
                                                                     <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>Read More...</p>}</button>
+                                                                    <br />
+                                                                </div>
+                                                        </Col>
+                                                    </Row>}
+                                                    {data.value.en_US.interaction && 
+                                                    <Row>
+                                                        <Col xs={12} md={9}>
+                                                            <hr />
+                                                                <div id="notes">
+                                                                    <h2>Arrival</h2>
+                                                                    <br />
+                                                                    {data.value.en_US.interaction.substring(0,400)}
+                                                                    {showInteractionReadMore && <span id="more">{data.value.en_US.interaction.substring(400)}</span>}
+                                                                    <br />
+                                                                    <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>Read More...</p>}</button>
                                                                     <br />
                                                                 </div>
                                                         </Col>

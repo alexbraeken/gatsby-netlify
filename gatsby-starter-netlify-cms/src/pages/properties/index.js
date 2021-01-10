@@ -258,6 +258,16 @@ export default class PropertiesPage extends Component {
        keys.forEach(key =>{
            console.log(key)
            console.log(filterValues[key])
+           if(key == "bedrooms"){
+               console.log("bedrooms" + filterValues[key] + " " + key)
+                this.setState((state, props)=>({
+                    ...state,
+                    bedrooms: [parseInt(filterValues[key]), filterValues[key]+1 <11 ? filterValues[key] + 1: 10]
+                }), ()=>{
+                    console.log( this.state);
+                })
+           }
+           else{
         let searchArray = filterValues[key];
         searchArray = (Array.isArray(searchArray)?searchArray:[searchArray]);
            this.setState((state, props)=>({
@@ -273,6 +283,7 @@ export default class PropertiesPage extends Component {
            }), ()=>{
                console.log(this.state.searchArray)
            })
+        }
            
        })
        console.log( this.state);
