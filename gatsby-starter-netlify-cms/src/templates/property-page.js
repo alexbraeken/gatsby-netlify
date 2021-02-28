@@ -299,11 +299,13 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <hr />
                                                 {smartaOpinion &&
                                                 <div>
-                                                    <h4>Smartavillas' Opinion:</h4>
-                                                    <br />
-                                                <p>
-                                                   {smartaOpinion} 
-                                                </p>
+                                                    <div className="thought bubble">
+                                                        <h4>Smartavillas' Opinion:</h4>
+                                                        <br />
+                                                        <p>
+                                                           {smartaOpinion} 
+                                                        </p>
+                                                    </div>
                                                 </div> 
                                                 }
                                                 <hr />

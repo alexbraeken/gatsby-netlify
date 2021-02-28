@@ -237,7 +237,7 @@ a:hover
     margin-left: 0
 
 .titleTag
-  margin: auto 30px auto 0;
+  margin: auto 30px auto 0
 
 .titleTag a:hover
   color:#000
@@ -285,7 +285,7 @@ a:hover
   top: 40px
   left: 50%
   margin-left: -60px
-  box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02);
+  box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02)
 
 .tooltiptext::after
   content: " "
@@ -1447,7 +1447,7 @@ a.navbar-item:hover, .navbar-item:hover
   transition: all .8s
   text-align: center    
   font-size: small
-  pointer-events: none;
+  pointer-events: none
   
 
 .col-img-overlay  
@@ -1527,7 +1527,7 @@ a.navbar-item:hover, .navbar-item:hover
       box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.02)
       padding-left: 15px
       cursor: pointer
-      transform: translateX(calc(-100% + 70px));
+      transform: translateX(calc(-100% + 70px))
       transition: all 0.3s
       & span
           margin: auto
@@ -1560,14 +1560,14 @@ a.navbar-item:hover, .navbar-item:hover
     .home-card .home-card-button-link .btn
       color: #fff
     &:after
-      position: absolute;
-      content: "";
-      bottom: 0;
-      width: 90%;
-      height: 0;
-      background-color: white;
-      border-radius: 50%;
-      box-shadow: 0px 6px 3px 2px white;
+      position: absolute
+      content: ""
+      bottom: 0
+      width: 90%
+      height: 0
+      background-color: white
+      border-radius: 50%
+      box-shadow: 0px 6px 3px 2px white
 
 
   
@@ -1669,16 +1669,16 @@ a.navbar-item:hover, .navbar-item:hover
   margin: auto
   width: 25px 
   height: 25px
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 1px, rgba(0, 0, 0, 0.3) 0px 4px 8px, rgba(0, 0, 0, 0.02) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 1px, rgba(0, 0, 0, 0.3) 0px 4px 8px, rgba(0, 0, 0, 0.02) 0px 0px 0px 1px
   pointer-events: none
 
 #left-section
   margin-right: 2px
-  margin-left: 15px;
+  margin-left: 15px
 
 #right-section
   margin-left: 2px
-  margin-right: 15px;
+  margin-right: 15px
 
 #right-section, #left-section
   padding: 0
@@ -1744,7 +1744,7 @@ a.navbar-item:hover, .navbar-item:hover
 @media only screen and (max-width: 650px)
   .content-text
     left: 5%
-    max-width: 90%;   
+    max-width: 90%   
 
 .zoom-bg:hover
   & .featured-content
@@ -1760,3 +1760,41 @@ a.navbar-item:hover, .navbar-item:hover
 
 .slick-slider
   cursor: grab
+
+.thought
+  width: 90%
+  position: relative
+  max-width: 300px
+  text-align: center
+  line-height: 1em
+  margin: 40px auto
+  background-color: #fff
+  border: 8px solid $primary
+  border-radius: 200px
+  padding: 30px
+  & h4
+      font-weight: bold
+
+.thought::before, .thought::after 
+  content: ''
+  position: absolute
+  background-color: #fff
+  border: 8px solid $primary
+  
+.thought::after
+  width: 20px
+  height: 20px
+  left: 5px
+  bottom: -40px
+  -webkit-border-radius: 18px
+  -moz-border-radius: 18px
+  border-radius: 18px
+
+.thought::before
+  left: 10px
+  bottom: -30px
+  width: 40px
+  height: 40px
+  -webkit-border-radius: 28px
+  -moz-border-radius: 28px
+  border-radius: 28px
