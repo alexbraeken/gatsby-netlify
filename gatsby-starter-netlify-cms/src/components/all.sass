@@ -306,7 +306,7 @@ a:hover
 
 .prop-card-container
   margin: 10px 5px
-  height: calc(520px + 1.25rem)
+  height: calc(520px + 1.5rem)
   min-width: 333px
   max-width: 400px
 
@@ -340,7 +340,7 @@ a:hover
   border-radius: 5px
   margin-top: 200px
   transition: all 0.2s
-  padding: 1.5rem
+  padding: 1.3rem
 
 .prop-card-text:before
   position: absolute
@@ -1399,6 +1399,12 @@ $min-margin: 10px
 a.navbar-item:hover, .navbar-item:hover
   color: #fff
   background-color: $primary
+
+@media only screen and (max-width: 900px) 
+  .navbar-item
+    display: flex
+  .dropdown-submenu
+    z-index: 30
 
 .drop-item
   transition: all 0.3s

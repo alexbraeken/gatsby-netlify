@@ -174,7 +174,7 @@ const handleSectionLeave = () => {
         position: "relative",
         marginLeft: "-50vw",
         left: "50%"}}>
-      <Container style={{zIndex:"2"}}>
+      <Container style={{zIndex:"1"}}>
         <Row>
           <Col xs={12} md={8} style={{display:"flex", flexWrap:"wrap", padding: "50px 0"}}>
             <div className="intro-para">
@@ -382,7 +382,7 @@ const handleSectionLeave = () => {
       </Container>
       <section style={{paddingTop:"40px"}}>
         <Container>
-        <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>News & <span style={{color:"#f5821e"}}>Tidbits</span></h2>
+        <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>News & <span style={{color:"#f5821e"}}>Notes</span></h2>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <div dangerouslySetInnerHTML={{ __html: `<div> ${news} </div>` }} />
         </Container>

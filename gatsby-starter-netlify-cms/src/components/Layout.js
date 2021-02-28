@@ -14,10 +14,11 @@ import BackToTop from '../components/BackToTop';
 import 'react-bnb-gallery/dist/style.css'
 import NewsAlert from '../components/newsAlert'
 
+
+
 const TemplateWrapper = ({ children }) => {
 
   const { title, description } = useSiteMetadata()
-
 
   return (
     <div>
@@ -79,7 +80,7 @@ var ml_account = ml('accounts', '2710252', 's7t2o9x9p0', 'load');`}
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
       <NewsAlert />
-      <Navbar/>
+      <Navbar />
       <div>{children}</div>
       <BackToTop />
       <Footer />

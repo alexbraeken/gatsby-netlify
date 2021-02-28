@@ -45,6 +45,9 @@ module.exports = {
         },{
           "name": "Car Hire",
           "link": "/holidayExtras/car-hire",
+        },{
+          "name": "Food Packs",
+          "link": "/holidayExtras/food-packs",
         },
       ]
       },
@@ -66,6 +69,9 @@ module.exports = {
         {
           "name": "Cacela & Manta Rota",
           "link": "/location/cacelaMantaRota",
+        },{
+          "name": "Fuseta & Luz de Tavira",
+          "link": "/location/fusetaLuzdeTavira",
         },
       ]
       },

@@ -213,7 +213,7 @@ const SearchFilter = (props) => {
             onDayClick: () => console.log(toRef.current.getInput().focus())
           }}
           onDayChange={handleFromChange}
-        style={{height:"100%"}}/>
+        style={{height:"100%", zIndex:"10"}}/>
         <span className="InputFromTo-to">
           <DayPickerInput
             ref={toRef}
@@ -232,7 +232,7 @@ const SearchFilter = (props) => {
               numberOfMonths: 2,
             }}
             onDayChange={handleToChange}
-            style={{height:"100%"}}/>
+            style={{height:"100%", zIndex:"10"}}/>
         </span>
         </div>
         <Form.Group className="input-guests">
@@ -275,6 +275,9 @@ const SearchFilter = (props) => {
   }
   .InputFromTo-to .DayPickerInput-Overlay {
     margin-left: -198px;
+  }
+  .DayPickerInput-OverlayWrapper{
+    z-index: 100;
   }
 `}</style>
         </Helmet>

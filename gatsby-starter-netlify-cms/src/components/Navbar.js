@@ -7,8 +7,7 @@ import Loading from '../components/Loading'
 import Container from 'react-bootstrap/Container'
 import { FirestoreCollection } from "@react-firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown} from '@fortawesome/free-solid-svg-icons';
-
+import { faChevronDown, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
 const PropertiesDropDown = React.memo((props) => {
   return(
@@ -81,7 +80,8 @@ const Navbar = class extends React.Component {
       style: {
       
       },
-      menuPadding:{}
+      menuPadding:{},
+      isTabletOrMobile: false
     }
   }
 
@@ -94,6 +94,7 @@ const Navbar = class extends React.Component {
     })
     this.setState({menuPadding: {paddingTop:`${this.nav.current.getBoundingClientRect().height}px`}})
   }
+  this.setState({isTabletOrMobile: window.matchMedia("(max-width: 900px)").matches})
   }
 
   toggleHamburger = () => {
@@ -117,7 +118,6 @@ const Navbar = class extends React.Component {
   }
 
   toggleDropDown = (subNavLinks, index) => {
-    console.log(subNavLinks)
     if(index && this.state.activeSubnav && this.state.activeSubnav !== index){
       let arrow = document.getElementById(`arrow-${this.state.activeSubnav}`)
       arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
@@ -131,7 +131,7 @@ const Navbar = class extends React.Component {
     }
     else{
       let arrow = this.state.activeSubnav ? document.getElementById(`arrow-${this.state.activeSubnav}`) : document.getElementById(`arrow-${index}`)
-
+      console.log(this.state.dropdown)
       this.setState({
         dropdown: !this.state.dropdown,
         subNav: subNavLinks || null,
@@ -159,6 +159,7 @@ const Navbar = class extends React.Component {
 
     const { data } = this.props
     const Links = data.site.siteMetadata.menuLinks
+
 
     return (
       <>
@@ -222,8 +223,9 @@ const Navbar = class extends React.Component {
           </div>
         </div>
       </nav>
-      <div className={`dropdown-submenu ${this.state.dropdownClass}`} style={this.state.menuPadding} onMouseLeave={()=>this.toggleDropDown()}>
+      <div className={`dropdown-submenu ${this.state.dropdownClass}`} style={this.state.menuPadding} onMouseLeave={!this.state.isTabletOrMobile ? ()=>this.toggleDropDown() : null}>
         <Container style={{display:"grid"}}>
+          {this.state.isTabletOrMobile && <FontAwesomeIcon icon={faArrowLeft} onClick={()=>this.toggleDropDown()} className="submenu-return-arrow"/>}
           {this.state.subNav && this.state.subNav[0].name !== "propertiesList" ? 
           <>
           {this.state.subNav.map((link, index)=>{
