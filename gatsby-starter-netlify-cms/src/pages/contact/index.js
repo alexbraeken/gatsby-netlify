@@ -1,6 +1,7 @@
 import React from 'react'
 import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
+import { Helmet } from 'react-helmet'
 
 function encode(data) {
   return Object.keys(data)
@@ -35,6 +36,24 @@ export default class Index extends React.Component {
 
   render() {
     return (
+      <>
+      <Helmet>
+  <script type="application/ld+json">
+    {`
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "url": "https://www.smartavillas.com",
+          "name": "Smartavillas.com",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+351 281 027 089",
+            "contactType": "Reservations & Customer Support"
+          }
+        }
+      `}
+  </script>
+</Helmet>
       <Layout>
         <section className="section">
           <div className="container">
@@ -110,6 +129,7 @@ export default class Index extends React.Component {
           </div>
         </section>
       </Layout>
+      </>
     )
   }
 }

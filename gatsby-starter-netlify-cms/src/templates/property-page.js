@@ -29,6 +29,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [smartaOpinion, setSmartaOpinion] = useState(null)
    const [showInteractionReadMore, setShowInteractionReadMore] = useState(false)
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
+   const [showTransitReadMore, setShowTransitReadMore] = useState(false)
 
     useEffect(() => {
         
@@ -49,7 +50,6 @@ export const PropertyPageTemplate = ( props ) =>
                         return response.text()
                     })
                     .then(data => {
-                    console.log(JSON.parse(data));
                     if(JSON.parse(data).length>0 && JSON.parse(data)[0].text!== undefined){
                         setSmartaOpinion(JSON.parse(data)[0].text)
                     }
@@ -156,7 +156,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 <Container>
                                     <section id="prop-summary">
                                     <div id="prop-nav">
-                                        <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
+                                        <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#gettingAround">Getting Around</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
                                     </div>
                                     <br />
                                     <Row>
@@ -195,6 +195,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         })}
                                                         <br />
                                                         </div>
+                                                        <br />
                                                         <br />
                                                         <button className="btn" type="" onClick={()=>setShowAllAemnities(!showAllAmenities)}>{showAllAmenities?<>Less...</>:<p>Show all {amenitiesLength-1}...</p>}</button>
                                                     </div> : "Loading" 
@@ -240,9 +241,34 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     <h2>Neighborhood</h2>
                                                                     <br />
                                                                     {data.value.en_US.neighborhood.substring(0,400)}
-                                                                    {showNeighborhoodReadMore && <span id="more">{data.value.en_US.neighborhood.substring(400)}</span>}
+                                                                    {showNeighborhoodReadMore && <span id="more">
+                                                                        {data.value.en_US.neighborhood.substring(400)}
+                                                                        <br />
+                                                                        <br />
+                                                                        <p>Find out more about the Algarve <Link to="/location/algarve" className="orangeText">here...</Link></p>
+                                                                        </span>}
                                                                     <br />
-                                                                    <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>Read More...</p>}</button>
+                                                                    <br />
+                                                                    {data.value.en_US.neighborhood.length>400 && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>Read More...</p>}</button>}
+                                                                    <br />
+                                                                </div>
+                                                        </Col>
+                                                    </Row>
+                                                    }
+                                                    { data.value.en_US.transit && 
+                                                    <Row>
+                                                        <Col xs={12} md={9}>
+                                                            <hr />
+                                                                <div id="gettingAround">
+                                                                    <h2>Getting Around</h2>
+                                                                    <br />
+                                                                    {data.value.en_US.transit.substring(0,400)}
+                                                                    {showTransitReadMore && <span id="more">
+                                                                        {data.value.en_US.transit.substring(400)}
+                                                                        </span>}
+                                                                    <br />
+                                                                    <br />
+                                                                    {data.value.en_US.transit.length>400 && <button className="btn" type="" onClick={()=>setShowTransitReadMore(!showTransitReadMore)}>{showTransitReadMore?<>Less...</>:<p>Read More...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -258,7 +284,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     {data.value.en_US.notes.substring(0,400)}
                                                                     {showNotesReadMore && <span id="more">{data.value.en_US.notes.substring(400)}</span>}
                                                                     <br />
-                                                                    <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>Read More...</p>}</button>
+                                                                    <br />
+                                                                    {data.value.en_US.notes.length>400 && <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>Read More...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -273,7 +300,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     {data.value.en_US.interaction.substring(0,400)}
                                                                     {showInteractionReadMore && <span id="more">{data.value.en_US.interaction.substring(400)}</span>}
                                                                     <br />
-                                                                    <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>Read More...</p>}</button>
+                                                                    <br />
+                                                                    {data.value.en_US.interaction.length>400 && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>Read More...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -344,7 +372,7 @@ export const PropertyNav = (props) => {
     return(
         <div className="prop-nav" style={{...props.navStyles}}>
             <Container>
-                <Link to="/"><img src={logo} style={{height:"30px", width:"30px", marginRight:"10px"}}/></Link><Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
+                <Link to="/"><img src={logo} style={{height:"30px", width:"30px", marginRight:"10px"}}/></Link><Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#gettingAround">Getting Around</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
                                     
             </Container>
         </div>
