@@ -17,6 +17,11 @@ import logo from '../img/logo.svg'
 import { ButtonGroup } from '@material-ui/core'
 import BedBathPax from '../components/BedBathPax'
 import ActivitiesRoll from '../components/ActivitiesRoll'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+import { Tabs } from 'react-bootstrap';
+import { Tab } from 'bootstrap';
+
 
 export const PropertyPageTemplate = ( props ) =>
 {
@@ -27,6 +32,8 @@ export const PropertyPageTemplate = ( props ) =>
    const [showNotesReadMore, setShowNotesReadMore] = useState(false)
    const [amenitiesLength, setAmenitiesLength] = useState(0)
    const [smartaOpinion, setSmartaOpinion] = useState(null)
+   const [poolDimensions, setPoolDimensions] = useState(null)
+   const [travelDistances, setTravelDistances] = useState({display: false, Town: null, Beach:null, Golf:null, Airport:null})
    const [showInteractionReadMore, setShowInteractionReadMore] = useState(false)
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
@@ -38,8 +45,6 @@ export const PropertyPageTemplate = ( props ) =>
         if(propId){
  
             const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${propId}`
-            
-            console.log("fetching opinion ids: " + uri)
             fetch(uri, {
             headers:{
             "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
@@ -50,12 +55,24 @@ export const PropertyPageTemplate = ( props ) =>
                         return response.text()
                     })
                     .then(data => {
-                    if(JSON.parse(data).length>0 && JSON.parse(data)[0].text!== undefined){
-                        setSmartaOpinion(JSON.parse(data)[0].text)
-                    }
+                    if(JSON.parse(data).length>0){
+                        if(JSON.parse(data)[0].text!== undefined){
+                            setSmartaOpinion(JSON.parse(data)[0].text)
+                        }
+                        if(JSON.parse(data)[2] ||JSON.parse(data)[3] || JSON.parse(data)[4] || JSON.parse(data)[5]){
+                            setTravelDistances({
+                                display: true,
+                                Town: (JSON.parse(data)[2] && JSON.parse(data)[2].text!== undefined) ? JSON.parse(data)[2].text : null,
+                                Beach:  (JSON.parse(data)[3] && JSON.parse(data)[3].text!== undefined) ? JSON.parse(data)[3].text : null,
+                                Golf: (JSON.parse(data)[4] && JSON.parse(data)[4].text!== undefined) ? JSON.parse(data)[4].text : null,
+                                Airport: (JSON.parse(data)[5] && JSON.parse(data)[5].text!== undefined) ? JSON.parse(data)[5].text : null,
+                            })
+                        }
+                    }  
                     })
             return () => {
                 setSmartaOpinion(null)
+                setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null})
             }
         }
     }, [])
@@ -255,10 +272,11 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </Col>
                                                     </Row>
                                                     }
+                                                    <br />
                                                     { data.value.en_US.transit && 
                                                     <Row>
-                                                        <Col xs={12} md={9}>
-                                                            <hr />
+                                                        <hr />
+                                                        <Col xs={12} md={travelDistances.display? 5 : 9}>
                                                                 <div id="gettingAround">
                                                                     <h2>Getting Around</h2>
                                                                     <br />
@@ -272,6 +290,31 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     <br />
                                                                 </div>
                                                         </Col>
+                                                        {travelDistances.display && 
+                                                        <Col xs={12} md={4}>
+                                                                <div className="keyDistances">
+                                                                    <h3>Key Distances</h3>
+                                                                    <hr />
+                                                                    <div>
+                                                                        <ul>
+                                                                            {travelDistances.Town && <li>
+                                                                            <FontAwesomeIcon icon={faBuilding} style={{margin:"auto"}}/> Town:  {travelDistances.Town}
+                                                                            </li>}
+                                                                            {travelDistances.Beach && <li>
+                                                                            <FontAwesomeIcon icon={faUmbrellaBeach} style={{margin:"auto"}}/> Beach:  {travelDistances.Beach}
+                                                                            </li>}
+                                                                            {travelDistances.Golf && <li>
+                                                                            <FontAwesomeIcon icon={faGolfBall} style={{margin:"auto"}}/> Golf:  {travelDistances.Golf}
+                                                                            </li>}
+                                                                            {travelDistances.Airport && <li>
+                                                                            <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> Airport:  {travelDistances.Airport}
+                                                                            </li>}
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                        </Col>
+                                                        }
+                                                        
                                                     </Row>
                                                     }
                                                     {data.value.en_US.notes && 
@@ -313,15 +356,35 @@ export const PropertyPageTemplate = ( props ) =>
 
                                     </Col>
                                         <Col xs={12} md={3} style={{display: "flex", alignItems: "flex-start"}}>
-                                            <StickyBox>
-                                                <h4 className="text-muted">Key Features</h4>
-                                                <hr />
-                                                <ul>
-                                                    <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
-                                                    <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
-                                                    <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
-                                                    <li>City: <span style={{float: "right"}}>{data.value.city}</span></li>
-                                                </ul>
+                                            <StickyBox offsetTop={50}>
+                                                <Tabs defaultActiveKey="keyFeatures" id="keyDetails">
+                                                    <Tab eventKey="keyFeatures" title="Key Features">
+                                                    <ul>
+                                                        <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
+                                                        <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
+                                                        <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
+                                                        <li>City: <span style={{float: "right"}}>{data.value.city}</span></li>
+                                                    </ul>
+                                                    </Tab>
+                                                    <Tab eventKey="keyDistances" title="Key Distances" className="keyDistances">
+                                                        <div>
+                                                            <ul>
+                                                                {travelDistances.Town && <li>
+                                                                <FontAwesomeIcon icon={faBuilding} style={{margin:"auto"}}/> Town:  {travelDistances.Town}
+                                                                </li>}
+                                                                {travelDistances.Beach && <li>
+                                                                <FontAwesomeIcon icon={faUmbrellaBeach} style={{margin:"auto"}}/> Beach:  {travelDistances.Beach}
+                                                                </li>}
+                                                                {travelDistances.Golf && <li>
+                                                                <FontAwesomeIcon icon={faGolfBall} style={{margin:"auto"}}/> Golf:  {travelDistances.Golf}
+                                                                </li>}
+                                                                {travelDistances.Airport && <li>
+                                                                <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> Airport:  {travelDistances.Airport}
+                                                                </li>}
+                                                            </ul>
+                                                        </div>
+                                                    </Tab>
+                                                </Tabs>
                                                 <br />
                                                 <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
                                                 <hr />

@@ -13,9 +13,6 @@ $body-color: #333
 $black: #2b2523
 
 
-body
-  white-space: pre-line
-
 .navbar .navbar-menu
   box-shadow:none !important
 
@@ -1799,6 +1796,24 @@ a.navbar-item:hover, .navbar-item:hover
   -webkit-border-radius: 28px
   -moz-border-radius: 28px
   border-radius: 28px
+
+#prop-summary
+  white-space: pre-line
+
+.keyDistances
+  display: flex
+  flex-wrap: wrap
+  & h3
+      flex: 1 1 100%
+      text-align: center
+  & div
+      flex: 1 1 100%
+      & ul
+          line-height: 2.5em
+          text-align: center
+          & svg
+              min-width: 20px
+              margin-right: 10px
 
 .orangeTxt
   color: $primary
