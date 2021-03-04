@@ -3,6 +3,8 @@ import { FirestoreDocument } from "@react-firebase/firestore";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import  Tabs  from 'react-bootstrap/Tabs';
+import  Tab  from 'react-bootstrap/Tab';
 import PropCarousel from '../components/PropCarousel';
 import GoogleMapComponent from '../components/GoogleMapComponent'
 import { Link } from 'gatsby'
@@ -19,8 +21,9 @@ import BedBathPax from '../components/BedBathPax'
 import ActivitiesRoll from '../components/ActivitiesRoll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
-import { Tabs } from 'react-bootstrap';
-import { Tab } from 'bootstrap';
+
+
+
 
 
 export const PropertyPageTemplate = ( props ) =>
