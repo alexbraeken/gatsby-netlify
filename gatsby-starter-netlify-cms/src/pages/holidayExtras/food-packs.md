@@ -102,14 +102,15 @@ hero: ../../../static/img/food_pack.jpg
                                             }
                                             div.foodPackImg {
                                                 position:absolute;
-                                                top:-70px;
+                                                top:-100px;
                                                 left:50%;
-                                                width:140px;
-                                                height:140px;
-                                                line-height:140px;
+                                                width:200px;
+                                                height:200px;
                                                 text-align:center;
-                                                margin:0 0 0 -70px;
+                                                margin:0 0 0 -100px;
                                                 background-color:#ffffff;
+                                                background-size: cover;
+                                                background-position: center;
                                                 border-radius:100%;
                                                 -webkit-box-shadow: 0 0 5px #c3c3c3;
                                                 -ms-box-shadow: 0 0 5px #c3c3c3;
@@ -184,8 +185,7 @@ hero: ../../../static/img/food_pack.jpg
 
 <div class="foodPacksTables">
     <div class="foodPacksTable" id="snack-pack">
-        <div class="foodPackImg">
-            <img alt="Smartavillas.com Food Baskets - Snack Pack" data-credit="Icon by Freepik at www.flaticon.com" src="https://res.cloudinary.com/ddipteh80/image/upload/v1614528656/Smartavillas/Icons/breakfast.png">
+        <div class="foodPackImg" style="background-image: url(https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000200_snack.jpg);">
         </div>
     <div class="foodPackInnerWrapper">
         <div class="foodPackTitle">
@@ -216,8 +216,7 @@ hero: ../../../static/img/food_pack.jpg
     </p>
 </div>
 <div class="foodPacksTable"id="big-basket">
-    <div class="foodPackImg">
-        <img alt="Smartavillas.com Food Baskets - Big Basket" data-credit="Icon by Smashicon at www.flaticon.com" src="https://res.cloudinary.com/ddipteh80/image/upload/v1614528656/Smartavillas/Icons/picnic-basket.png">
+    <div class="foodPackImg" style="background-image: url(https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000197_luxury.jpg);">
     </div>
     <div class="foodPackInnerWrapper">
         <div class="foodPackTitle">
@@ -254,8 +253,7 @@ hero: ../../../static/img/food_pack.jpg
     </div>
 </div>
 <div class="foodPacksTable" id="fresh-meals">
-    <div class="foodPackImg">
-        <img alt="Smartavillas.com Food Baskets - Freshly Prepared Meals" data-credit="Icon by Freepik at www.flaticon.com" src="https://res.cloudinary.com/ddipteh80/image/upload/v1614528657/Smartavillas/Icons/chef.png">
+    <div class="foodPackImg" style="background-image: url(https://res.cloudinary.com/ddipteh80/image/upload/v1614955315/Smartavillas/Welcome%20Packs/pexels-anna-guerrero-4079522.jpg);">
     </div>
     <div class="foodPackInnerWrapper">
         <div class="foodPackTitle">
@@ -283,8 +281,7 @@ hero: ../../../static/img/food_pack.jpg
     </div>
 </div>
 <div class="foodPacksTable" id="oven-pizza">
-    <div class="foodPackImg">
-        <img alt="Smartavillas.com Oven Ready Pizzas for the Kids" data-credit="Icon by Freepik at www.flaticon.com" src="https://res.cloudinary.com/ddipteh80/image/upload/v1614528657/Smartavillas/Icons/pizza.png">
+    <div class="foodPackImg" style="background-image: url(https://res.cloudinary.com/ddipteh80/image/upload/v1614955357/Smartavillas/Welcome%20Packs/pexels-ponyo-sakana-5108601.jpg);" style="width: 80%; max-width: 600px; min-width: 400px">
     </div>
     <div class="foodPackInnerWrapper">
         <div class="foodPackTitle">
@@ -301,6 +298,8 @@ hero: ../../../static/img/food_pack.jpg
     <h3>5€ each</h3>
     <br>
     <h3>or order our BOOZY BOX!</h3>
+    <img src="https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000205_boozy_box.jpg">
+    <br>
     <b>Boozy Box</b> includes:<br>
     1 bottle red wine, 1 bottle white wine, 6 bottles local beer, large bag of crisps, large packet of nuts, 1 jar olives
     <h3>20€ each</h3>

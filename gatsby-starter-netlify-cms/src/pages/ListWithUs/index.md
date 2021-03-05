@@ -1,5 +1,5 @@
 ---
-path: /whyUseSmartavillas
+path: /ListWithUs
 templateKey: why-us
 title: Why list with SMARTAVILLAS?
 image: ../../../static/img/R18_-_000287.jpg

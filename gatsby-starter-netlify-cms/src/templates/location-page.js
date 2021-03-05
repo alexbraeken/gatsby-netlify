@@ -60,7 +60,7 @@ export const LocationPageTemplate = ({
     const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
 
   return(
-  <div className="content">
+  <div className="content newLine">
     <div
       className="full-width-image-container margin-top-0 gradient-bg"
       style={{

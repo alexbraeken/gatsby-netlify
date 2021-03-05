@@ -22,8 +22,8 @@ module.exports = {
           "link": "/whyBookSmartavillas",
         },
         {
-          "name": "Why Use Smartavillas?",
-          "link": "/whyUseSmartavillas",
+          "name": "List Your Property",
+          "link": "/ListWithUs",
         },
         {
           "name": "Meet the Team",

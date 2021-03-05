@@ -2,6 +2,7 @@ import React from 'react'
 import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
 import { Helmet } from 'react-helmet'
+import Newsletter from '../../components/Newsletter'
 
 function encode(data) {
   return Object.keys(data)
@@ -59,6 +60,9 @@ export default class Index extends React.Component {
           <div className="container">
             <div className="content">
               <h1>Contact</h1>
+              <p>
+                Get in touch with our team here!
+              </p>
               <form
                 name="contact"
                 method="post"
@@ -125,6 +129,24 @@ export default class Index extends React.Component {
                   </button>
                 </div>
               </form>
+              <br />
+              <Newsletter />
+              <br />
+
+<p>
+              <h3>Smartavillas.com Algarve Holiday Rentals</h3>
+              <ul style={{listStyle:"none"}}>
+                <li>
+                <b>Phone:</b> +351 281027089 / +351 913692170
+                </li>
+                <li>
+                <b>E-mail:</b> <a href="mailto:reservas@smartavillas.com">reservas@smartavillas.com</a>
+                </li>
+                <li>
+                <b>Address:</b> Smartavillas Unipessoal Lda (513548211) Rua Maria Helen Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal
+                </li>
+              </ul>
+</p>
             </div>
           </div>
         </section>

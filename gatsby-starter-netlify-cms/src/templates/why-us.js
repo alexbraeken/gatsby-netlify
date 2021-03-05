@@ -43,7 +43,7 @@ export const WhyUsPageTemplate = ({
         {title}
       </h2>
     </div>
-    <section style={{
+    <section className="newLine" style={{
         paddingBottom: "100px",
         position: "relative"}}>
       <Container>

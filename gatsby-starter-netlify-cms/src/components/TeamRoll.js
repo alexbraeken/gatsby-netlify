@@ -6,7 +6,6 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 const TeamCard = React.memo((props) =>{
   return(
     <div className="flex-img-col">
-        {console.log(props.member.node)}
     <div className="col-img-bg">
         <div style={{
             backgroundImage:`url(${props.member.node.frontmatter.featuredimage.childImageSharp.fluid.src})`,

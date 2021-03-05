@@ -6,6 +6,7 @@ import Features from '../components/Features'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import Carousel from 'react-bootstrap/Carousel'
+import Content, { HTMLContent } from '../components/Content'
 
 class CustomSlide extends React.Component {
   render() {
@@ -51,8 +52,12 @@ export const AlgarvePageTemplate = ({
   sliderImageTitle3,
   sliderImage4,
   sliderImageTitle4,
-  conclusion
+  conclusion, 
+  contentComponent,
+  content
 }) => {
+
+  const PageContent = contentComponent || Content
 
   const [index, setIndex] = useState(0);
 
@@ -69,7 +74,7 @@ export const AlgarvePageTemplate = ({
     const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
 
   return(
-  <div className="content">
+  <div className="content newLine">
     <div
       className="full-width-image-container margin-top-0 gradient-bg"
       style={{
@@ -101,6 +106,7 @@ export const AlgarvePageTemplate = ({
           <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
           <p>{description}</p>
         </div>
+        <PageContent className="content" content={content} />
       </Container>
       <div style={{ 
           width: "100vw",
@@ -199,39 +205,39 @@ AlgarvePageTemplate.propTypes = {
   sliderImageTitle3 : PropTypes.string,
   sliderImageTitle4 : PropTypes.string,
   conclusion: PropTypes.string,
+  contentComponent: PropTypes.func,
+  content: PropTypes.string,
 }
 
 const AlgarvePage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
-
+  const { markdownRemark:post } = data
   return (
     <Layout>
+      {console.log(post)}
       <AlgarvePageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        description={frontmatter.description}
-        sliderText={frontmatter.sliderText}
-        sliderImage1={frontmatter.sliderImage1}
-        sliderImage2={frontmatter.sliderImage2}
-        sliderImage3={frontmatter.sliderImage3}
-        sliderImage4={frontmatter.sliderImage4}
-        sliderImageTitle1={frontmatter.sliderImageTitle1}
-        sliderImageTitle2={frontmatter.sliderImageTitle2}
-        sliderImageTitle3={frontmatter.sliderImageTitle3}
-        sliderImageTitle4={frontmatter.sliderImageTitle4}
-        conclusion={frontmatter.conclusion}
+        contentComponent={HTMLContent}
+        content={post.html}
+        image={post.frontmatter.image}
+        title={post.frontmatter.title}
+        heading={post.frontmatter.heading}
+        description={post.frontmatter.description}
+        sliderText={post.frontmatter.sliderText}
+        sliderImage1={post.frontmatter.sliderImage1}
+        sliderImage2={post.frontmatter.sliderImage2}
+        sliderImage3={post.frontmatter.sliderImage3}
+        sliderImage4={post.frontmatter.sliderImage4}
+        sliderImageTitle1={post.frontmatter.sliderImageTitle1}
+        sliderImageTitle2={post.frontmatter.sliderImageTitle2}
+        sliderImageTitle3={post.frontmatter.sliderImageTitle3}
+        sliderImageTitle4={post.frontmatter.sliderImageTitle4}
+        conclusion={post.frontmatter.conclusion}
       />
     </Layout>
   )
 }
 
 AlgarvePage.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.object,
-    }),
-  }),
+  data: PropTypes.object
 }
 
 export default AlgarvePage
@@ -239,6 +245,7 @@ export default AlgarvePage
 export const algarvePageQuery = graphql`
   query AlgarvePage($id: String!) {
     markdownRemark(id: { eq: $id }) {
+      html
       frontmatter {
         title
         image {
