@@ -44,7 +44,6 @@ export const PropertyPageTemplate = ( props ) =>
     useEffect(() => {
         
         const propId = (document.location.pathname.split('/')[2])
-        console.log(propId)
         if(propId){
  
             const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${propId}`
@@ -452,6 +451,11 @@ const PropertyPage = (data) => {
         transition: 'all 300ms ease-in'
       })
 
+    useEffect(() => {
+        return () => {
+            setPropNav(false)
+        }
+    }, [])
 
     useScrollPosition(({ prevPos, currPos }) => {
         const propSum = document.getElementById("prop-summary")

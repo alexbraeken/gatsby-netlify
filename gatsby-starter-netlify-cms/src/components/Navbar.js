@@ -26,7 +26,6 @@ const PropertiesDropDown = React.memo((props) => {
                       {d => {
                                 return (!d.isLoading && d.value) ?  
                                 <>
-                                {console.log(d.value)}
                                 <div style={{gridColumn:2}}>
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
                                     <h4 className="dropdown-title" style={{color:"#fff"}}>City</h4>
@@ -131,7 +130,6 @@ const Navbar = class extends React.Component {
     }
     else{
       let arrow = this.state.activeSubnav ? document.getElementById(`arrow-${this.state.activeSubnav}`) : document.getElementById(`arrow-${index}`)
-      console.log(this.state.dropdown)
       this.setState({
         dropdown: !this.state.dropdown,
         subNav: subNavLinks || null,
@@ -190,7 +188,6 @@ const Navbar = class extends React.Component {
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
             <div className="navbar-start has-text-centered">
-              {console.log(Links)}
               {Links && Links.length > 0 &&
           Links.map((Link, index) => {
             return Link.subNav  ? 

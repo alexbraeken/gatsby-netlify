@@ -13,7 +13,7 @@ const PropFeatureGrid = React.memo((data) => {
   const [advancedSearch, setAdvancedSearch] = useState(false)
 
   useEffect(() => {
-    console.log(data.propertyIds)
+
     if(data.propertyIds){(data.propertyIds.length>0) ? setAdvancedSearch(true) : setAdvancedSearch(false)}
     return () => {
       setAdvancedSearch(false)
@@ -22,7 +22,7 @@ const PropFeatureGrid = React.memo((data) => {
   
 
   useEffect(() => {
-    console.log(advancedSearch)
+
     const list = data.gridItems.value.map((item, index) => {
       if((data.state.city[item.city])
       && (data.state.type[item.type])
@@ -37,7 +37,6 @@ const PropFeatureGrid = React.memo((data) => {
   
 
     if(data.sort === "price-min"){
-      console.log(data.sort)
       list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.baseDailyRate > b.baseDailyRate) ? 1 : ((b.baseDailyRate > a.baseDailyRate) ? -1 : 0))));
     }
     if(data.sort === "price-max"){

@@ -213,7 +213,6 @@ const AlgarvePage = ({ data }) => {
   const { markdownRemark:post } = data
   return (
     <Layout>
-      {console.log(post)}
       <AlgarvePageTemplate
         contentComponent={HTMLContent}
         content={post.html}

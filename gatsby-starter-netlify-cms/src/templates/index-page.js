@@ -14,7 +14,7 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import SubmitButton from '../components/SubmitButton'
 import { Helmet } from 'react-helmet'
 import Newsletter from '../components/Newsletter'
-
+import Content, { HTMLContent } from '../components/Content'
 
 export const IndexPageTemplate = ({
   image,
@@ -29,7 +29,11 @@ export const IndexPageTemplate = ({
   subheading,
   mainpitch,
   news,
+  contentComponent,
+  content
 }) =>{
+
+  const PageContent = contentComponent || Content
 
   const [animationPlaying, setAnimationPlaying] = useState(false)
   const [delta, setDelta] = useState({prev: 0, curr: 0})
@@ -81,7 +85,6 @@ useEffect(() => {
 const uri = "https://api.hostfully.com/v2/properties?tags=featured&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
 
 useEffect(() => {
-  console.log("fetching")
   fetch(uri, {
     headers:{
       "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
@@ -92,7 +95,6 @@ useEffect(() => {
             return response.text()
         })
         .then(data => {
-          console.log(JSON.parse(data));
           setFeaturedIds(JSON.parse(data).propertiesUids)
         })
   return () => {
@@ -102,7 +104,6 @@ useEffect(() => {
 
 
 const handleLogoHover = () => {
-  console.log("hovering") 
   let width = logo.current.scrollWidth;
   if(!animationPlaying){
     setAnimationPlaying(true);
@@ -123,7 +124,6 @@ useScrollPosition(({ prevPos, currPos }) => {
 })
 
 const handleSectionHover = (side) => {
-  console.log(diamond.current.style.borderRadius)
   diamond.current.style.borderRadius = side === "left" ? "0 50% 0 0" : "0 0 0 50%"
   diamond.current.style.width = "50px"
   diamond.current.style.height = "50px"
@@ -274,7 +274,6 @@ const handleSectionLeave = () => {
           
           <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
-              {console.log(trustedImage)}
       <a href="/team" aria-label="team"></a><div className="home-card-bg" style={{
          backgroundImage: `url(${
           !!trustedImage.childImageSharp
@@ -389,7 +388,7 @@ const handleSectionLeave = () => {
       </section>
       <section>
         <Container>
-         
+        <PageContent className="content" content={content} />
         </Container>
       </section>
     </section>
@@ -409,39 +408,37 @@ IndexPageTemplate.propTypes = {
   locationImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   accommodationsImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   news: PropTypes.string,
-
+  contentComponent: PropTypes.func,
+  content: PropTypes.string,
 }
 
 const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+  const { markdownRemark:post } = data
 
   return (
     <Layout>
       <IndexPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
-        mainpitch={frontmatter.mainpitch}
-        pitchImage={frontmatter.pitchImage}
-        tripImage={frontmatter.tripImage}
-        listImage={frontmatter.listImage}
-        trustedImage={frontmatter.trustedImage}
-        locationImage={frontmatter.locationImage}
-        accommodationsImage={frontmatter.accommodationsImage}
-        news={frontmatter.news}
-
+        image={post.frontmatter.image}
+        title={post.frontmatter.title}
+        heading={post.frontmatter.heading}
+        subheading={post.frontmatter.subheading}
+        mainpitch={post.frontmatter.mainpitch}
+        pitchImage={post.frontmatter.pitchImage}
+        tripImage={post.frontmatter.tripImage}
+        listImage={post.frontmatter.listImage}
+        trustedImage={post.frontmatter.trustedImage}
+        locationImage={post.frontmatter.locationImage}
+        accommodationsImage={post.frontmatter.accommodationsImage}
+        news={post.frontmatter.news}
+        contentComponent={HTMLContent}
+        content={post.html}
       />
     </Layout>
   )
 }
 
 IndexPage.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.object,
-    }),
-  }),
+  data: PropTypes.object
 }
 
 export default IndexPage
@@ -449,6 +446,7 @@ export default IndexPage
 export const pageQuery = graphql`
 query IndexPageTemplate {
   markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+    html
     frontmatter {
       title
       image {

@@ -35,8 +35,6 @@ class ActivitiesRoll extends React.PureComponent {
   render() {
     const { data } = this.props
     const { edges: activities } = data.allMarkdownRemark
-    console.log(this.props.location)
-    console.log(this.props.filter)
     const list = [];
     if(activities && this.props.location){
       activities.forEach(({ node: activity }) =>{

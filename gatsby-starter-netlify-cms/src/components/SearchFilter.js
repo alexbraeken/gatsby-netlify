@@ -102,7 +102,6 @@ const SearchFilter = (props) => {
       if(dates.to)uri+="to="+dates.to.toISOString()+"&"
       if(bedrooms.current.value)uri+="bedrooms="+bedrooms.current.value+"&"
       uri = encodeURI(uri)
-      console.log(uri)
       if(window) window.location.href= uri
     }
 
@@ -118,7 +117,6 @@ const SearchFilter = (props) => {
       }
     
     const handleFromChange = (from) => {
-        console.log(from)
         if(dates.to)
         setDates({ from: from, to: dates.to });
         else

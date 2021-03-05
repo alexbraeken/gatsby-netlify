@@ -44,8 +44,6 @@ const Amenities = (props) => {
                 <>
                     <Popover.Title as="h3">Properties with {amenity}</Popover.Title>
                     <Popover.Content>
-                        {console.log(data.ids)}
-                        {console.log(Object.keys(data.value))}
                         {data.ids.map((id, index)=> {
                             return (
                             <FirestoreDocument path={`/Properties/${id}`}>

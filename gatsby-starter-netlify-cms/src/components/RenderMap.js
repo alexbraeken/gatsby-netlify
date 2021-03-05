@@ -24,7 +24,6 @@ export default class renderMap extends React.Component{
     onLoad = 
        (mapInstance) => {
         this.setState({map:mapInstance})
-        console.log(this.state.map)
         mapInstance.addListener("dragend", ()=>{
           this.setState({center:{lat:this.state.map.getCenter().lat(), lng:this.state.map.getCenter().lng()}})
         })

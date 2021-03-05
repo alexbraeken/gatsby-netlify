@@ -98,6 +98,11 @@ const Footer = class extends React.Component {
                 </a>
               </div>
             </div>
+            <div style={{ maxWidth: '100vw' }}>
+              <center>
+              &#169; Smartavillas.com - All Rights Reserved
+              </center>
+            </div>
           </div>
         </div>
       </footer>

@@ -133,7 +133,6 @@ export const LocationPageTemplate = ({
           
       <Container>
         <Row>
-          {console.log(part2.slider.slider)}
           {slides ?
           <Col md={12} lg={6}>
               <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>

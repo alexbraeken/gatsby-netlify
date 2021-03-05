@@ -62,7 +62,6 @@ const Properties = React.memo((props) => {
     }, [])*/
 
     useEffect(() => {
-        console.log(props.state.from)
         return () => {
         }
     }, [props.state.searchArray.from])
@@ -72,7 +71,6 @@ const Properties = React.memo((props) => {
         if(props.state.searchArray.from && props.state.searchArray.to){
         const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
         
-        console.log("fetching date ids: " + uri)
         fetch(uri, {
         headers:{
         "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
@@ -83,7 +81,6 @@ const Properties = React.memo((props) => {
                     return response.text()
                 })
                 .then(data => {
-                console.log(JSON.parse(data));
                 setPropertyIds(JSON.parse(data).propertiesUids)
                 })
         setTotalDays((new Date(props.state.searchArray.to[0])-(new Date(props.state.searchArray.from[0]))))
@@ -127,7 +124,6 @@ const Properties = React.memo((props) => {
     })
 
     const handleFilterExpand = useCallback(() =>{
-        console.log(filterExpanded)
         setFilterExpanded(!filterExpanded)
     })
 
@@ -256,15 +252,11 @@ export default class PropertiesPage extends Component {
        const filterValues = queryString.parse(this.props.location.search);
        const keys = Object.keys(filterValues)
        keys.forEach(key =>{
-           console.log(key)
-           console.log(filterValues[key])
            if(key == "bedrooms"){
-               console.log("bedrooms" + filterValues[key] + " " + key)
                 this.setState((state, props)=>({
                     ...state,
                     bedrooms: [parseInt(filterValues[key]), filterValues[key]+1 <11 ? filterValues[key] + 1: 10]
                 }), ()=>{
-                    console.log( this.state);
                 })
            }
            else{
@@ -281,12 +273,10 @@ export default class PropertiesPage extends Component {
                    [`${key}`]: true
                }
            }), ()=>{
-               console.log(this.state.searchArray)
            })
         }
            
        })
-       console.log( this.state);
     } 
 
     filterList(props){
@@ -316,15 +306,12 @@ export default class PropertiesPage extends Component {
 
 
     handleChange (e, type){
-        console.log(e.target.value)
-        console.log(this.state[type][e.target.value])
         let target = e.target.value
         this.setState((prevState, currentProps) => ({
             ...prevState,
             [type] : {...prevState[type],
                 [target]: !this.state[type][target] }
         }), ()=>{
-                console.log(this.state[type])
             }
         )
     }
@@ -346,17 +333,15 @@ export default class PropertiesPage extends Component {
                 [key] : seldesel}
             })
             )
-        }, ()=>{console.log(this.state[type])})
+        }, ()=>{})
 
     }
 
 
     handleSliderChange(array, type){
-        console.log(array)
         this.setState({
             [`${type}`]: array
         })
-        console.log(this.state)
     }
 
 

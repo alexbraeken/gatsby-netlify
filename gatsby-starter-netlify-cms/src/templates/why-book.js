@@ -8,7 +8,7 @@ import {Container, Col, Row} from 'react-bootstrap'
 import Testimonials from '../components/Testimonials'
 import Carousel from 'react-bootstrap/Carousel'
 import SubmitButton from '../components/SubmitButton'
-
+import Newsletter from '../components/Newsletter'
 
 class CustomSlide extends React.Component {
   render() {
@@ -215,6 +215,7 @@ export const WhyBookPageTemplate = ({
         </Row>
       </Container>
     </section>
+    <Newsletter />
   </div>
 )}
 
