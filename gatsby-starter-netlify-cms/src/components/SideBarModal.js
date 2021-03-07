@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import logo from '../img/smartavillas logo.png'
 import { Link } from 'gatsby'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default function SideBarModal(props) {
 
@@ -27,6 +29,9 @@ export default function SideBarModal(props) {
         {show && <div className="sidebar-overlay" onClick={props.close}></div>}
             <Col className={`sidebar-modal ${show ? "active" : ""}`} xs={12} md={3}>
             <Container className="justify-content-md-center filter-container">
+                <div className="close-modal">
+                    <FontAwesomeIcon icon={faTimes} onClick={props.close}/> 
+                </div>
                 <Form>
                     <Container>
                         <h2 style={{textAlign: "center"}}>
