@@ -74,7 +74,7 @@ const PropertyCard = (props) => {
               <small className="feature-text-price" style={{float:"right"}}>
               {durationSearch? 
               <>
-              {displayPrice}€ for {props.totalDays} days
+              From {displayPrice}€ for {props.totalDays} days
               </>
               :
               <>

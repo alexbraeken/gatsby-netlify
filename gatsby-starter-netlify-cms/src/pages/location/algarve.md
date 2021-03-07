@@ -27,8 +27,14 @@ The Algarve has much to offer the visitor from sun-drenched beaches, excellent c
 \n
 \n
 FURTHER AFIELD
+\n
+\n
 East: The graceful Guadiana river forms a natural border with Andalucía, discharging into the blue waters of the Atlantic Ocean at the handsome town of Vila Real de Santo Antonio. Fine townhouses, pretty streets and a bustling commercial centre make for an attractive place to visit. Why not catch the ferry across the river to the white washed Spanish town of Ayamonte? - ideal for a tapas lunch in the many vibrant squares dotted around the old centre. Upstream from Vila Real, fortified Castro Marim stands guard over vast salt flats and the river beyond. Heading west towards handsome Tavira, the coast is dotted with low-key resorts and charming fishing villages and beyond Tavira, waterfront Olhão, is gateway to explore the outer islands of the Ria Formosa. Reaching the regional capital of Faro, head to the old citadel, perfectly preserved – a microcosm of old-world charm. 
+\n
+\n
 Central: Stroll through the enchanting gardens of the resplendent Palácio de Estói; visit the colourful Arabesque market place of Loulé, then head north through the ‘barrocal’ to the white-washed villages of Alte, Salir and Querença. Explore deeper into the splendid Serra do Caldeirão for spectacular vistas across undulating hills of ancient cork, carob and olive. Heading back to the ‘litoral’, for a touch of the high life, visit cosmopolitan Quinta do Lago and Vale do Lobo, perhaps followed by a round of golf at renown Vilamoura? Finish your day at a beach side eatery while taking in a beautiful sunset over the Altantic.
+\n
+\n
 West: Walk along the cliff top trail taking in the emblematic beaches of Praia da Marinha and Benagil; enjoy delicious seafood in bohemian Ferragudo, roam the narrow-cobbled streets of medieval Silves up to its magnificent red sandstone castle. Head north to the high hills of Monchique, perhaps stopping en route for a tipple of the invigorating local firewater, Medronho! Travel across the mountain ridge through forests of sweet-smelling pine and eucalyptus down to the Costa Vicentina, a truly fabulous coastline of expansive beaches offering excellent surf and an amazing array of flora and fauna. Visit the impressive lighthouse at Cape St. Vincent – witness to many a sea battle, then reach historic Lagos, frequent home of Henry the Navigator.   "
 ---
 <style>

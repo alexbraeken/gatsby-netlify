@@ -54,8 +54,8 @@ export default class renderMap extends React.Component{
     
     
   
-    handleHover = (position, name, bed, bath, guests, img) =>{
-        this.setState({overlay:{position:position, name:name, bed:bed, bath:bath, guests:guests, img:img}})
+    handleHover = (position, name, bed, bath, guests, img, baseDailyRate) =>{
+        this.setState({overlay:{position:position, name:name, bed:bed, bath:bath, guests:guests, img:img, baseDailyRate: baseDailyRate}})
     }
   
     handleMouseOut = () =>{
@@ -81,6 +81,7 @@ render(){
       <div style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
         <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}}/>
       <h4>{this.state.overlay.name}</h4>
+      <div className="map-price"><p className="feature-text-price" style={{float:"right"}}>From {this.state.overlay.baseDailyRate}€/ Day</p></div>
       <BedBathPax bedrooms={this.state.overlay.bed} bathrooms={this.state.overlay.bath} baseGuests={this.state.overlay.guests} color="rgba(0,0,0)"/>
       </div>
     </OverlayView>}
@@ -99,7 +100,7 @@ render(){
             && this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
             && parseInt(prop.bathrooms) <= this.props.props.state.bathrooms[1]
             && prop.latitude && prop.longitude)?
-                  <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clickable={true} icon={icon} onClick={()=>this.scrollToCard(prop.uid)} title={prop.name} onMouseOver={()=>this.handleHover({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture)}/>
+                  <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clickable={true} icon={icon} onClick={()=>this.scrollToCard(prop.uid)} title={prop.name} onMouseOver={()=>this.handleHover({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate)}/>
                   : null
           )})}
           </>

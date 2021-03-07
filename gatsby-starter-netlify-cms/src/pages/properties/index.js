@@ -10,23 +10,23 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import queryString from 'query-string'
 import Loading from '../../components/Loading'
-import PropertiesFilter from '../../components/PropertiesFilter'
+import SideBarModal from '../../components/SideBarModal'
 import StickyBox from "react-sticky-box";
 import { Col } from 'react-bootstrap';
 import GoogleMapComponent from '../../components/GoogleMapComponent';
 import ReactBnbGallery from 'react-bnb-gallery';
 import { gsap } from "gsap";
-import { forEach } from 'lodash';
 import DatePicker from '../../components/DatePicker'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp, faChevronDown, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 gsap.registerPlugin(gsap);
 
 const Properties = React.memo((props) => {
 
     const [show, setShow]=useState(false)
+    const [showSidebarModal, setShowSidebarModal] = useState(false)
     const [photos, setPhotos] =useState([])
     const [sort, setSort] = useState("")
     const [data, setData] = useState(null);
@@ -127,6 +127,12 @@ const Properties = React.memo((props) => {
         setFilterExpanded(!filterExpanded)
     })
 
+
+    const handleSidebarModal = useCallback(()=>{
+        setShowSidebarModal(!showSidebarModal)
+    })
+
+
     useScrollPosition(({ prevPos, currPos }) => {
         if(container.current.getBoundingClientRect().top < 0 && stickyStyle.position === "absolute"){
             setStickyStyle({position: "fixed"})
@@ -156,10 +162,11 @@ const Properties = React.memo((props) => {
                                     <Container fluid style={{
                                         display: "flex",
                                         justifyContent: "space-between"}}>
-                                        <h3>Filters: </h3> 
-                                        <Form.Group>
+                                            <div style={{display:"flex", flexWrap:"nowrap"}}>
+                                            <p style={{margin:"auto", paddingRight:"5px"}}>Sort By: </p> 
+                                        <Form.Group style={{margin:"10px auto"}}>
                                             <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)}>
-                                                <option value="">Sort By</option>
+                                                <option value="">Default</option>
                                                 <option value="price-min">Daily Rate $ &#8594; $$$</option>
                                                 <option value="price-max">Daily Rate $$$ &#8594; $</option>
                                                 <option value="bedrooms-min">Bedrooms Increasing</option>
@@ -168,35 +175,17 @@ const Properties = React.memo((props) => {
                                                 <option value="z-a">Z &#8594; A</option>
                                             </Form.Control>
                                         </Form.Group>
-                                        <div className="expandBtn" style={{float:"right"}} onClick={handleFilterExpand}>
-                                            {filterExpanded ? 
-                                            <>
-                                                <p>Hide</p>
-                                                <FontAwesomeIcon icon={faChevronUp} style={{margin:"auto 5px"}}/> 
-                                            </>
-                                            : 
-                                            <>
-                                                <p>Show</p>
-                                                <FontAwesomeIcon icon={faChevronDown} style={{margin:"auto 5px"}}/>
-                                            </>}
+                                        </div>
+                                        <div className="expandBtn" style={{float:"right", margin:"auto"}} onClick={handleSidebarModal}>  
+                                                <p>Show Filters</p>
+                                                <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
-                                <div className={`filter-form ${filterExpanded? "":"filter-shrink"}`} >
-                                <PropertiesFilter 
-                                data= {data} 
-                                handleChange={props.handleChange} 
-                                state={props.state}
-                                handleSliderChange={props.handleSliderChange}
-                                handleSelectDeselectAll={props.handleSelectDeselectAll}
-                                expanded={horizontalExpanded}
-                                handleExpand={handleExpand}
-                                />
-                                </div>
-                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state} height={filterExpanded? "300px": "95vh"}/>
+                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state} height={"95vh"}/>
                                 <div className="expandBtn filterExpand" onClick={handleExpand}>
                                     {horizontalExpanded ? 
                                     <>
-                                        <p>Hide</p>
+                                        <p>Shrink</p>
                                         <FontAwesomeIcon icon={faChevronLeft} style={{margin:"auto 5px"}}/>
                                     </> 
                                     :
@@ -217,6 +206,14 @@ const Properties = React.memo((props) => {
                                 onClose={handleClose}
                                 /> 
                         </Container>
+                        <SideBarModal 
+                            show={showSidebarModal} 
+                            close={handleSidebarModal}
+                            data= {data} 
+                            handleChange={props.handleChange} 
+                            state={props.state}
+                            handleSliderChange={props.handleSliderChange}
+                            handleSelectDeselectAll={props.handleSelectDeselectAll}/>
                         </> : <Loading /> 
                     }}
                 </FirestoreCollection>

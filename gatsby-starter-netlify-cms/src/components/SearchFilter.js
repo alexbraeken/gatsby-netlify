@@ -10,7 +10,9 @@ import SubmitButton from './SubmitButton'
 import Select from 'react-select'
 
 const options = [
-  { value: 'Tavira', label: 'Tavira' },
+  { value: 'Tavira Suburb', label: 'Tavira Suburb' },
+  { value: 'Tavira Centre', label: 'Tavira Centre' },
+  { value: 'Tavira Rural', label: 'Tavira Rural' },
   { value: 'Cabanas de Tavira', label: 'Cabanas de Tavira' },
   { value: 'Vila Nova de Cacela', label: 'Vila Nova de Cacela' },
   { value: 'Castro Marim', label: 'Castro Marim' },
@@ -20,6 +22,8 @@ const options = [
   { value: 'Cabanas de Tavira', label: 'Cabanas de Tavira' },
   { value: 'Fuseta', label: 'Fuseta' },
   { value: 'Moncarapacho', label: 'Moncarapacho' },
+  { value: 'Santa Rita', label: 'Santa Rita' },
+  { value: 'Santa Catarina', label: 'Santa Catarina' },
 ]
 
 const customStyles = {

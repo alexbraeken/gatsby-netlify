@@ -3,6 +3,8 @@ import React, {useEffect, useState, useRef} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import CalendarModal from '../components/CalendarModal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const DatePicker = (props) => {
 
@@ -39,7 +41,8 @@ const DatePicker = (props) => {
             <Container>
                 <Row>
             <div className="top-date-picker-text" onClick={handleShowCalendar}>
-    <small className="text-muted">From {dates.from && dates.from.toLocaleDateString()}- To {dates.to && dates.to.toLocaleDateString()}</small>
+    <small className="text-muted">From {dates.from && dates.from.toLocaleDateString()} - To {dates.to && dates.to.toLocaleDateString()}</small>
+    <FontAwesomeIcon icon={faSearch} style={{margin:"auto 5px"}} className="search-icon"/>
             </div>
             </Row>
         </Container>

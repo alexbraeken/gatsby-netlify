@@ -640,7 +640,7 @@ $min-margin: 10px
 .filter-container
   background: rgba(256,256,256,0.4)
   border-radius: 5px
-  padding-top: 15px
+  padding-top: 90px
   padding-bottom: 15px
   & .button
       background: #fff
@@ -1815,8 +1815,45 @@ a.navbar-item:hover, .navbar-item:hover
               min-width: 20px
               margin-right: 10px
 
-.orangeTxt
+.sidebar-modal
+  display: flex
+  background-color: #fff
+  opacity: 1
+  transition: all 0.3s
+  transform: translateX(-100%)
+  z-index: 2
+  overflow: auto
+  &.active
+    transform: translateX(0)
+
+.sidebar-modal-container
+  z-index: -1
+  &.active
+    z-index: 1
+    & .sidebar-overlay
+        background-color: rgba(0, 0, 0, 0.7)
+
+.sidebar-modal-container, .sidebar-overlay
+  width: 100vw
+
+.sidebar-overlay
+  background-color: rgba(0, 0, 0, 0.1)
+  z-index: 1
+  transition: all 0.3s
+    
+
+.sidebar-modal-container, .sidebar-modal, .sidebar-overlay
+  position: fixed
+  top: 0
+  height: 100vh
+
+.search-icon
   color: $primary
 
-.orangeBody
-  background-color: $primary
+.map-price
+  position: absolute
+  top: 7%
+  right: 7%
+  background-color: #000
+  border-radius: 5px
+  padding: 5px

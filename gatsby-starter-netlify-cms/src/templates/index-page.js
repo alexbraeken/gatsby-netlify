@@ -262,7 +262,7 @@ const handleSectionLeave = () => {
               We pride ourselves on tailoring our services to meet your needs. Join hundreds of property owners and enjoy the benefits our best in the region service provide.
             </p>
             <br />
-          <SubmitButton text="Read More" link="/whyUseSmartavillas"/>
+          <SubmitButton text="Read More" link="/ListWithUs"/>
             </div>
       </Col>
     </Row>
