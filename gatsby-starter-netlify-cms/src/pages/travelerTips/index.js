@@ -13,12 +13,19 @@ export default class TravelerTipsIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activityFilter: null
+      activityFilter: null,
+      loaded: false
     }
   }
 
   handleClick = (filter) => {
     this.setState({activityFilter: filter})
+  }
+
+  componentDidMount(){
+    setTimeout(()=>{
+      this.setState({loaded: true})}, 1000
+      )
   }
 
   render() {
@@ -31,14 +38,8 @@ export default class TravelerTipsIndex extends React.Component {
           }}
         >
           <h1
-            className="has-text-weight-bold is-size-1"
-            style={{
-              boxShadow: '0.5rem 0 0 #f40, -0.5rem 0 0 #f40',
-              backgroundColor: '#f40',
-              color: 'white',
-              padding: '1rem',
-            }}
-          >
+        className={`has-text-weight-bold is-size-1 content-header ${this.state.loaded? "loaded" : ""}`}
+        style={{color: "white"}}>
             Traveler Tips
           </h1>
         </div>

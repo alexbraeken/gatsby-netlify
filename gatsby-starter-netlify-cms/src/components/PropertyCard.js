@@ -65,7 +65,7 @@ const PropertyCard = (props) => {
             </div>
 
             }
-          <Card.ImgOverlay style={{position:"relative"}}>
+          <Card.ImgOverlay style={{position:"relative", padding:"1rem"}}>
           <Link  to={`/properties/${props.item.uid}`}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
           <section className="section prop-card-text">
           <Link to={`/properties/${props.item.uid}`}  style={{position:"relative", zIndex:"2"}}>

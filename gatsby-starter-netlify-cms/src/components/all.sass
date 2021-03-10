@@ -304,7 +304,7 @@ a:hover
 
 .prop-card-container
   margin: 10px 5px
-  height: calc(520px + 1.5rem)
+  height: calc(520px + 2rem)
   min-width: 333px
   max-width: 400px
 
@@ -1865,3 +1865,60 @@ a.navbar-item:hover, .navbar-item:hover
   right: 20px
   z-index: 10
   cursor: pointer
+
+
+.content-header
+  box-shadow: -4px 0 0 $primary
+  position: relative
+  color: white
+  padding: 1rem
+  z-index: 2
+  overflow: hidden
+  clip-path: polygon(0% 0%,0% 100%,-3% 100%,-3% 0%)
+  transition: all 1s
+  &.loaded
+    clip-path: polygon(102% 0%,102% 100%,-3% 100%,-3% 0%)
+    &:after
+      content: ""
+      background-color: $primary
+      width: 4px
+      height: 100%
+      position: absolute
+      right: 0
+      top: 0
+      z-index: -1
+      -webkit-animation: content-header-roll-in 1s
+       -moz-animation: content-header-roll-in 1s 
+        -ms-animation: content-header-roll-in 1s
+         -o-animation: content-header-roll-in 1s  
+            animation: content-header-roll-in 1s
+
+@keyframes content-header-roll-in 
+    from 
+      right: 100%
+    to    
+      right: 0
+
+
+/* Firefox < 16 */
+@-moz-keyframes fadein 
+    from  
+      right: 100%
+    to   
+      right: 0
+
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein 
+    from  
+      right: 100%
+    to    
+      right: 0
+
+
+/* Internet Explorer */
+@-ms-keyframes fadein 
+    from  
+      right: 100%
+    to    
+      right: 0

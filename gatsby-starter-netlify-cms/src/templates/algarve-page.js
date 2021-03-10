@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
@@ -60,10 +60,20 @@ export const AlgarvePageTemplate = ({
   const PageContent = contentComponent || Content
 
   const [index, setIndex] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
       };
+
+      useEffect(() => {
+        setTimeout(()=>{
+          setLoaded(true)}, 1000
+          )
+        return () => {
+          setLoaded(false)
+        }
+      }, [])
 
     const slides = [{slide: sliderImage1, title: sliderImageTitle1}, 
       {slide: sliderImage2, title: sliderImageTitle2}, 
@@ -86,15 +96,8 @@ export const AlgarvePageTemplate = ({
       }}
     >
       <h2
-        className="has-text-weight-bold is-size-1"
-        style={{
-          boxShadow: '0.5rem 0 0 #f40, -0.5rem 0 0 #f40',
-          backgroundColor: '#f40',
-          color: 'white',
-          padding: '1rem',
-          zIndex: "2"
-        }}
-      >
+        className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
+        style={{color: "white"}}>
         {title}
       </h2>
     </div>
