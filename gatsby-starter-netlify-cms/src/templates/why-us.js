@@ -54,7 +54,7 @@ export const WhyUsPageTemplate = ({
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
         <div className="section intro-para" style={{margin: "auto"}}>
           <h3 className="has-text-weight-semibold is-size-2">{part1.header}</h3>
-          <p>{part1.text}</p>
+          <div dangerouslySetInnerHTML={{ __html: `<div> ${part1.text} </div>` }} />
         </div>
         </Col>
         <Col xs={12} md={6}>

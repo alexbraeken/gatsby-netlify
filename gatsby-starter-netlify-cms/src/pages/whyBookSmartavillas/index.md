@@ -9,7 +9,7 @@ part1:
 part1Img: ../../../static/img/holiday.jpg
 part2: 
     header: "A GREAT CHOICE OF HOLIDAY HOMES" 
-    text: "You want everything to run smoothly, you want to be well informed about the transaction, and above all, you want your rental accommodation to be everything that you had hoped for, and more. We have a fantastic catalogue of holiday homes suiting all tastes from cozy one bedroom apartments to dazzling villas"
+    text: "Not only do you want to book with ease, of course you want your rental accommodation to be everything that you had hoped for, and more! We have a fantastic selection of holiday homes suiting all tastes from cosy studio apartments to large dazzling villas"
 sliderImg1: ../../../static/img/lux_villa.jpeg
 sliderImageTitle1: "Villa Jacaranda"
 sliderImg2: ../../../static/img/Master Bed 1.jpg
@@ -17,8 +17,8 @@ sliderImageTitle2: "Tavira Suites"
 sliderImg3: ../../../static/img/Pool 3.jpg
 sliderImageTitle3: "Casa Domi"
 part3: 
-    header: "YOUR HOLIDAY AND MUCH MORE..."
-    text: "At Smartavillas, we don’t want to deliver just your holiday accommodation, we like to go 1 step further and provide an experience. We can arrange car hire, airport transfers, day trips, as well as our brilliant range of shopping packs to choose from which will be ready and waiting for your arrival! We welcome any special requests to help you to make special holiday memories…"
+    header: "WE GO THE EXTRA MILE..."
+    text: "At Smartavillas, it's not only about the accommodation. For us, it's about the whole package...we believe in providing an experience. We can arrange car hire, airport transfers, day trips, restaurant bookings, birthday cakes, champagne and flowers...to name but a few! And why not indulge in our brilliant range of shopping packs or a fresh and tasty meal from our new oven-ready food menu which can be ready and waiting for your arrival. We welcome any special requests to help you make special holiday memories…"
 part3Img: ../../../static/img/praiadamantarota7.jpg
 testimonialHeader: "Here´s what our guests have to say"
 ---

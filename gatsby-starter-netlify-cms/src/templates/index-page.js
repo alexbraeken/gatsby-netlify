@@ -239,7 +239,7 @@ const handleSectionLeave = () => {
             <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
             <p>
               Book your trip with us and enjoy the best the Algarve has to offer with our spectacular selection of properties and best in class customer service.
-              We have dedicated classic customer care with modern technology to provide a worry free vacation. <a href="/whyBookSmartavillas" style={{fontWeight:"bold", textDecoration:"underline"}}>Read more...</a>
+              We have dedicated classic customer care with modern technology to provide a worry free vacation. <a href="/whyBookSmartavillas" style={{color: "#f5821e", fontWeight:"bold", textDecoration:"underline"}}>Read more...</a>
             </p>
             <br />
             <SubmitButton text="See Our Properties" link="/properties"/>
@@ -256,7 +256,7 @@ const handleSectionLeave = () => {
          }}>
         </div>
         <div className="content-text">
-          <h3 style={{color: "#fff", fontWeight:"bold"}}>Property Management Like no other in the Algarve</h3>
+          <h3 style={{color: "#fff", fontWeight:"bold"}}>Property Management like no other in the Algarve</h3>
             <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
             <p>
               We pride ourselves on tailoring our services to meet your needs. Join hundreds of property owners and enjoy the benefits our best in the region service provide.
@@ -313,7 +313,7 @@ const handleSectionLeave = () => {
               </Card.Body>
             </Card>
             <div className="home-card-para">
-                <p style={{textAlign:"center"}}>Spectacular scenery, sandy beaches, good food, friendly people and great golf</p>
+                <p style={{textAlign:"center"}}>Spectacular scenery, sandy beaches, good food, friendly people and great golf.</p>
                 </div>
           </Col>
           <Col className="home-card-container" xs={12} md={4} >
@@ -338,6 +338,57 @@ const handleSectionLeave = () => {
             <div className="home-card-para">
                 <p style={{textAlign:"center"}}>At affordable prices - in the Eastern Algarve, with Tavira being the focal point.</p>
                 </div>
+          </Col>
+        </Row>
+      </Container>
+      <div style={{ 
+          width: "100vw",
+          position: "absolute",
+          top: "auto",
+          bottom: "0",
+          right: "0",
+          height: "100px",
+          zIndex: "1",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#333333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              bottom: "-1px",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path d="M0 20 C 30 80 70 0 100 75 L 100 100 0 100 Z"></path> 
+            </svg>
+            </div>
+      </section>
+      <section style={{
+        paddingBottom: "100px",
+        width: "100vw",
+        position: "relative",
+        marginLeft: "-50vw",
+        left: "50%",
+        backgroundColor:"#333333"}}>>
+      <Container style={{marginTop: "40px"}}>
+        <Row>
+          <Col xs={12} md={8}>
+            <div style={{display: "flex", height: "100%"}}>
+              <div style={{margin: "auto", textAlign:"center"}}>
+              <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold", color: "#f5821e"}}>CLEAN & <span style={{color:"#fff"}}>SAFE SEAL</span></h2>
+          <br />
+          <p style={{color:"#fff"}}>
+            
+Smartavillas.com is committed to providing both the best and safest experience to all our guests and employees. As such we have acquired the Clean & Safe seal guaranteeing our efforts to do so.
+<br />
+<br />
+We are also driven to ensure all our guests have as much clear and valuable information as possible which you can find in our <Link to="/about/Covid-faq" style={{color:"#f5821e", textDecoration:"underline"}}>COVID-19 F.A.Q.</Link>
+          </p>
+              </div>
+            </div>
+          </Col>
+          <Col xs={12} md={4}>
+            <div style={{display: "flex"}}>
+              <img alt="Clean &amp; Safe Seal" src="https://portugalcleanandsafe.com/assets/badge.png" style={{margin: "auto", maxHeight:"300px", minHeight:"250px"}} />
+            </div>
           </Col>
         </Row>
       </Container>

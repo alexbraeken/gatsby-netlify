@@ -20,7 +20,7 @@ import { ButtonGroup } from '@material-ui/core'
 import BedBathPax from '../components/BedBathPax'
 import ActivitiesRoll from '../components/ActivitiesRoll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -61,13 +61,14 @@ export const PropertyPageTemplate = ( props ) =>
                         if(JSON.parse(data)[0].text!== undefined){
                             setSmartaOpinion(JSON.parse(data)[0].text)
                         }
-                        if(JSON.parse(data)[2] ||JSON.parse(data)[3] || JSON.parse(data)[4] || JSON.parse(data)[5]){
+                        if(JSON.parse(data)[2] ||JSON.parse(data)[3] || JSON.parse(data)[4] || JSON.parse(data)[5] || JSON.parse(data)[6]){
                             setTravelDistances({
                                 display: true,
                                 Town: (JSON.parse(data)[2] && JSON.parse(data)[2].text!== undefined) ? JSON.parse(data)[2].text : null,
                                 Beach:  (JSON.parse(data)[3] && JSON.parse(data)[3].text!== undefined) ? JSON.parse(data)[3].text : null,
                                 Golf: (JSON.parse(data)[4] && JSON.parse(data)[4].text!== undefined) ? JSON.parse(data)[4].text : null,
                                 Airport: (JSON.parse(data)[5] && JSON.parse(data)[5].text!== undefined) ? JSON.parse(data)[5].text : null,
+                                Market: (JSON.parse(data)[6] && JSON.parse(data)[5].text!== undefined) ? JSON.parse(data)[6].text : null,
                             })
                         }
                     }  
@@ -311,6 +312,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                                             {travelDistances.Airport && <li>
                                                                             <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> Airport:  {travelDistances.Airport}
                                                                             </li>}
+                                                                            {travelDistances.Market && <li>
+                                                                <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> Airport:  {travelDistances.Market}
+                                                                </li>}
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -340,7 +344,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="notes">
-                                                                    <h2>Arrival</h2>
+                                                                    <h2>Interaction</h2>
                                                                     <br />
                                                                     {data.value.en_US.interaction.substring(0,400)}
                                                                     {showInteractionReadMore && <span id="more">{data.value.en_US.interaction.substring(400)}</span>}
@@ -371,18 +375,22 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Tab eventKey="keyDistances" title="Key Distances" className="keyDistances">
                                                         <div>
                                                             <ul>
-                                                                {travelDistances.Town && <li>
+                                                                {travelDistances.Town && <li >
                                                                 <FontAwesomeIcon icon={faBuilding} style={{margin:"auto"}}/> Town:  {travelDistances.Town}
                                                                 </li>}
-                                                                {travelDistances.Beach && <li>
+                                                                {travelDistances.Beach && <li >
                                                                 <FontAwesomeIcon icon={faUmbrellaBeach} style={{margin:"auto"}}/> Beach:  {travelDistances.Beach}
                                                                 </li>}
-                                                                {travelDistances.Golf && <li>
+                                                                {travelDistances.Golf && <li >
                                                                 <FontAwesomeIcon icon={faGolfBall} style={{margin:"auto"}}/> Golf:  {travelDistances.Golf}
                                                                 </li>}
-                                                                {travelDistances.Airport && <li>
+                                                                {travelDistances.Airport && <li >
                                                                 <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> Airport:  {travelDistances.Airport}
                                                                 </li>}
+                                                                {travelDistances.Market && <li >
+                                                                <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> Supermarket:  {travelDistances.Market}
+                                                                </li>}
+                                                                
                                                             </ul>
                                                         </div>
                                                     </Tab>

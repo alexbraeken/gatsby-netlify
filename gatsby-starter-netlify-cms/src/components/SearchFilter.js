@@ -192,7 +192,8 @@ const SearchFilter = (props) => {
         styles={customStyles}
         isMulti
         closeMenuOnSelect={false}
-        ref={multiselect}/>
+        ref={multiselect}
+        placeholder="Select Locations"/>
         <div className="InputFromTo" style={{display: "flex",
             justifyContent: "center",
             position: "relative",
@@ -201,7 +202,7 @@ const SearchFilter = (props) => {
             minWidth: "200px"}}>
         <DayPickerInput
           value={from}
-          placeholder="From"
+          placeholder="Arrival Date"
           format="LL"
           formatDate={formatDate}
           parseDate={parseDate}
@@ -220,7 +221,7 @@ const SearchFilter = (props) => {
           <DayPickerInput
             ref={toRef}
             value={to}
-            placeholder="To"
+            placeholder="Departure Date"
             format="LL"
             formatDate={formatDate}
             parseDate={parseDate}

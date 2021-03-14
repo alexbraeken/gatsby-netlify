@@ -42,7 +42,7 @@ class PropertiesFilter extends Component {
                     <Row>
                         <Col xs={12} lg={4} style={{display:"flex"}}>
                             <div className="label">
-                                <span>City: </span>
+                                <span>Location: </span>
                             </div>
                         </Col>
                         <Col xs={12} lg={8}>
@@ -83,7 +83,7 @@ class PropertiesFilter extends Component {
                     <Row>
                         <Col xs={12} lg={4} style={{display:"flex"}}>
                             <div className="label">
-                                <span>Lodging Type:</span>
+                                <span>Property Type:</span>
                             </div>
                         </Col>
                         <Col xs={12} lg={8}>

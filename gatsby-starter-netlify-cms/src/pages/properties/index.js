@@ -286,10 +286,9 @@ export default class PropertiesPage extends Component {
                     filter.push(prop[filterType])
                 })
                 filter = [... new Set(filter)]
-
+                filter.sort()
                 filter.forEach((item, index)=>{
                     let exists = ((!!this.state.searchArray[filterType] && this.state.searchArray[filterType].indexOf(item) !== -1) == this.state.filteredSearch[filterType] || !this.state.filteredSearch[filterType])
-
                     list[item] = exists;
                 })
                 this.setState({
