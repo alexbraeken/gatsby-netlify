@@ -491,16 +491,8 @@ const PropertyPage = (data) => {
       }, [propNav, headerStyle])
 
     return(
-        <div exit={{
-            opacity: 0,
-            y:"-100%"}}
-        animate={{
-            opacity: 1,
-            y:0}}
-        initialxit={{
-            opacity: 0,
-            y:"-100%"}}>
-            {<PropertyNav navStyles={headerStyle}/>}
+        <div>
+            <PropertyNav navStyles={headerStyle}/>
             <PropertyPageTemplate id={data.id} />
         </div>
     )
