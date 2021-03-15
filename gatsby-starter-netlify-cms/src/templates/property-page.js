@@ -465,6 +465,10 @@ const PropertyPage = (data) => {
     useEffect(() => {
         return () => {
             setPropNav(false)
+            setHeaderStyle({
+                transition: 'all 300ms ease-in',
+                transform: 'translate(0, -200%)'
+              })
         }
     }, [])
 
