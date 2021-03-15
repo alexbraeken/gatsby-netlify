@@ -68,6 +68,7 @@ const Properties = React.memo((props) => {
 
 //Call hostfully api here if date search 
     useEffect(() => {
+        props.handlePathChange(window.location.href)
         if(props.state.searchArray.from && props.state.searchArray.to){
         const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
         
@@ -237,15 +238,24 @@ export default class PropertiesPage extends Component {
             filteredSearch: {},
             searchArray: [],
             dataLength: 0,
+            path: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSliderChange = this.handleSliderChange.bind(this);
         this.filterList = this.filterList.bind(this);
         this.handleSelectDeselectAll = this.handleSelectDeselectAll.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
+        this.handlePathChange = this.handlePathChange.bind(this)
+    }
+
+
+    handlePathChange(path){
+        this.setState({path: path})
     }
 
     componentDidMount(){
+        const path = window.location.href
+        this.setState({path: path})
        const filterValues = queryString.parse(this.props.location.search);
        const keys = Object.keys(filterValues)
        keys.forEach(key =>{
@@ -344,7 +354,7 @@ export default class PropertiesPage extends Component {
     render() {
 
         return (
-            <Layout>
+            <Layout key={this.state.path}>
                 <Router>
                         <Properties path ="/properties" 
                         state={this.state} 
@@ -353,8 +363,10 @@ export default class PropertiesPage extends Component {
                         filterSearch={this.state.amenities}
                         handleSliderChange={this.handleSliderChange}
                         handleSelectDeselectAll={this.handleSelectDeselectAll}
-                        handleDateChange= {this.handleDateChange}/>
-                        <PropertyTemplate path="/properties/:id" />
+                        handleDateChange= {this.handleDateChange}
+                        handlePathChange= {this.handlePathChange}/>
+                        <PropertyTemplate path="/properties/:id" 
+                        handlePathChange= {this.handlePathChange}/>
                 </Router>       
             </Layout> 
           );

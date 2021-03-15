@@ -16,9 +16,17 @@ import NewsAlert from '../components/newsAlert'
 
 
 
-const TemplateWrapper = ({ children }) => {
+const TemplateWrapper = ({ children, key }) => {
 
   const { title, description } = useSiteMetadata()
+  const [path, setPath] = useState('')
+
+useEffect(() => {
+  setPath(key)
+  return () => {
+    setPath('')
+  }
+}, [key])
 
   return (
     <div>
@@ -70,7 +78,7 @@ const TemplateWrapper = ({ children }) => {
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
       <NewsAlert/>
-      <Navbar key={window.location.href}/>
+      <Navbar key={path}/>
       <div>{children}</div>
       <BackToTop />
       <Footer />

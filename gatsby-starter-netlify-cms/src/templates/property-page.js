@@ -41,7 +41,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
 
     useEffect(() => {
-        
+        props.handlePathChange(window.location.href)
         const propId = (document.location.pathname.split('/')[2])
         if(propId){
  
@@ -491,8 +491,8 @@ const PropertyPage = (data) => {
 
     return(
         <div>
-            <PropertyNav navStyles={headerStyle}/>
-            <PropertyPageTemplate id={data.id} />
+            <PropertyNav navStyles={headerStyle} handlePathChange={() => data.handlePathChange()}/>
+            <PropertyPageTemplate id={data.id} handlePathChange={() => data.handlePathChange()}/>
         </div>
     )
 }
