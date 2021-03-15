@@ -79,21 +79,48 @@ const Navbar = class extends React.Component {
       style: {
       
       },
+      navClass: '',
       menuPadding:{},
       isTabletOrMobile: false
     }
   }
 
-  componentDidMount(){
-    if(window && window.location.pathname === "/"){
+  checkPathForNav = () => {
+    const path = window.location.pathname
+    const propPage = path.match(/(?<=\/properties\/).*$/)
+    if(window && path === "/"){
       this.setState({style: {
-      position: 'absolute',
-      width: '100%',
-      background: 'transparent'}
+        position: 'absolute',
+        width: '100%',
+        background: 'transparent'},
+        menuPadding: {
+          paddingTop:`${this.nav.current.getBoundingClientRect().height}px`
+        }
     })
-    this.setState({menuPadding: {paddingTop:`${this.nav.current.getBoundingClientRect().height}px`}})
+  }else if(propPage && propPage[0].length > 1){
+        this.setState({
+          style: {
+            position: 'absolute',
+            width: '100%',
+            background: 'linear-gradient(180deg, #00000073, transparent)'
+          },
+          navClass:'absolute',
+          menuPadding: {
+            paddingTop:`${this.nav.current.getBoundingClientRect().height}px`
+          }
+        })
   }
   this.setState({isTabletOrMobile: window.matchMedia("(max-width: 900px)").matches})
+  }
+
+  componentDidMount(){
+    this.checkPathForNav()
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props !== prevProps){
+      this.checkPathForNav()
+    }
   }
 
   toggleHamburger = () => {
@@ -150,7 +177,7 @@ const Navbar = class extends React.Component {
         filter.push(prop[`${type}`])
     })
     
-    return [... new Set(filter)]
+    return [... new Set(filter)].sort()
 }
 
   render() {
@@ -162,7 +189,7 @@ const Navbar = class extends React.Component {
     return (
       <>
       <nav
-        className="navbar"
+        className={`navbar ${this.state.navClass}`}
         role="navigation"
         aria-label="main-navigation"
         style={this.state.style}     

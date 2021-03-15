@@ -142,38 +142,39 @@ export const PropertyPageTemplate = ( props ) =>
             {data => {
                 return (!data.isLoading && data.value) ? 
                         <div style={{display:"flex", flexWrap:"wrap"}}>
-                            <div className="prdtitlesolo productNameTitle">
-                                <Container>
-                                    <Row>     
-                                    <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit", width:"100%"}}>
-                                        <Col>
-                                            <Row>
-                                                <span className="prdname">{propName}</span>
-                                            </Row>
-                                            <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
-                                            <Row>
-                                                <div className="flag under">
-                                                    <span className="prc">From {data.value.baseDailyRate} €</span>
-                                                    <span className="mth"> / Day</span>
-                                                </div>
-                                            
-                                            <span className="titleTags">
-                                                <span className="titleTag"><Link to={`/properties?city=${data.value.city}`}>{data.value.city}</Link></span >
-                                                <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
-                                            </span>
-                                            </Row>
-                                        </Col>
-                                    </h1>
-                                    <div className="winterLetsRibbon" title="Winter let">
-                                        
-                                    </div>
-                                    </Row>
-                                </Container>
-                            </div>
                             <div style={{width:"100%"}}>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
-                                <br />
+                                <div className="prdtitlesolo productNameTitle">
                                 <Container>
+                                    <Col>
+                                        <Row>     
+                                        <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit", width:"100%"}}>
+                                            <Col>
+                                                <Row>
+                                                    <span className="prdname">{propName}</span>
+                                                </Row>
+                                                <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
+                                                <Row>
+                                                    <div className="flag under">
+                                                        <span className="prc">From {data.value.baseDailyRate} €</span>
+                                                        <span className="mth"> / Day</span>
+                                                    </div>
+                                                
+                                                <span className="titleTags">
+                                                    <span className="titleTag"><Link to={`/properties?city=${data.value.city}`}>{data.value.city}</Link></span >
+                                                    <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
+                                                </span>
+                                                </Row>
+                                            </Col>
+                                        </h1>
+                                        <div className="winterLetsRibbon" title="Winter let">
+                                            
+                                        </div>
+                                        </Row>
+                                    </Col>
+                                </Container>
+                            </div>
+                                <Container style={{paddingTop:"30px"}}>
                                     <section id="prop-summary">
                                     <div id="prop-nav">
                                         <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#gettingAround">Getting Around</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
@@ -313,7 +314,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                             <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> Airport:  {travelDistances.Airport}
                                                                             </li>}
                                                                             {travelDistances.Market && <li>
-                                                                <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> Airport:  {travelDistances.Market}
+                                                                <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> Supermarket:  {travelDistances.Market}
                                                                 </li>}
                                                                         </ul>
                                                                     </div>
@@ -456,7 +457,9 @@ const PropertyPage = (data) => {
 
     const [propNav, setPropNav] = useState(false);
     const [headerStyle, setHeaderStyle] = useState({
-        transition: 'all 300ms ease-in'
+        transition: 'all 300ms ease-in',
+        transform: 'translate(0, -200%)'
+
       })
 
     useEffect(() => {
@@ -475,7 +478,7 @@ const PropertyPage = (data) => {
         const shouldBeStyle = {
             visibility: isShow ? 'visible' : 'hidden',
             transition: `all 300ms ${isShow ? 'ease-in' : 'ease-out'}`,
-            transform: isShow ? 'none' : 'translate(0, -100%)',
+            transform: isShow ? 'none' : 'translate(0, -200%)',
             zIndex: 2
           }
       

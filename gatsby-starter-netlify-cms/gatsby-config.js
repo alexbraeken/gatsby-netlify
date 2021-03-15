@@ -32,7 +32,7 @@ module.exports = {
         ]
       },
       {
-        "name": "Traveler Tips",
+        "name": "Traveller Tips",
         "link": "/travelerTips/",
         "subNav": null
       },

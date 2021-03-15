@@ -192,6 +192,7 @@ a:hover
 
 .prdtitlesolo.productNameTitle
   position: relative
+  margin-bottom: 20px
 
 .prdtitlesolo
   background: #ff6600
@@ -1395,9 +1396,14 @@ $min-margin: 10px
   color: $primary
   text-decoration: underline
 
-a.navbar-item:hover, .navbar-item:hover
+.absolute a.navbar-item, .absolute .navbar-item
   color: #fff
-  background-color: $primary
+
+a.navbar-item, .navbar-item
+  font-weight: unset
+  &:hover
+    color: #fff
+    background-color: $primary
 
 @media only screen and (max-width: 900px) 
   .navbar-item
