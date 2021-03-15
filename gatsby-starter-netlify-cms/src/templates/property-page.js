@@ -8,7 +8,6 @@ import  Tab  from 'react-bootstrap/Tab';
 import PropCarousel from '../components/PropCarousel';
 import GoogleMapComponent from '../components/GoogleMapComponent'
 import { Link } from 'gatsby'
-import Loading from '../components/Loading'
 import BookingWidget from '../components/BookingWidget'
 import CalendarWidget from '../components/CalendarWidget'
 import StickyBox from "react-sticky-box"
@@ -357,7 +356,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </Col>
                                                     </Row>}
                                                     </> 
-                                                : <Loading /> 
+                                                : <></> 
                                                 }}
                                     </FirestoreDocument>
 
