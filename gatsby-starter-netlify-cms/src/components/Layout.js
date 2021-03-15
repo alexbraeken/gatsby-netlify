@@ -69,8 +69,8 @@ const TemplateWrapper = ({ children }) => {
     
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
-      <NewsAlert />
-      <Navbar />
+      <NewsAlert/>
+      <Navbar key={window.location.href}/>
       <div>{children}</div>
       <BackToTop />
       <Footer />

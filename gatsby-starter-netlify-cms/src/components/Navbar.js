@@ -83,6 +83,8 @@ const Navbar = class extends React.Component {
       menuPadding:{},
       isTabletOrMobile: false
     }
+    this.checkPathForNav = this.checkPathForNav.bind(this)
+    this.componentGracefulUnmount = this.componentGracefulUnmount.bind(this)
   }
 
   checkPathForNav = () => {
@@ -113,8 +115,30 @@ const Navbar = class extends React.Component {
   this.setState({isTabletOrMobile: window.matchMedia("(max-width: 900px)").matches})
   }
 
+
+  componentGracefulUnmount(){
+    this.setState({
+      active: false,
+      navBarActiveClass: '',
+      dropdown: false,
+      dropdownClass: '',
+      subNav: null,
+      activeSubnav: null,  
+      style: {
+      
+      },
+      navClass: '',
+      menuPadding:{},
+      isTabletOrMobile: false
+    });
+
+    window.removeEventListener('beforeunload', this.componentGracefulUnmount);
+}
+
+
   componentDidMount(){
     this.checkPathForNav()
+    window.addEventListener('beforeunload', this.componentGracefulUnmount);
   }
 
   componentDidUpdate(prevProps){
