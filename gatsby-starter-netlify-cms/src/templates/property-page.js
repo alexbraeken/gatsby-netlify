@@ -434,7 +434,7 @@ export const PropertyPageTemplate = ( props ) =>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
                             </div>                 
-                        </div> : <Loading />
+                        </div> : <></>
             }}
         </FirestoreDocument>
 </>
