@@ -5,7 +5,7 @@ import 'react-day-picker/lib/style.css';
 
 const CalendarWidget = (props) => {
 
-    const [disabledDays, setDisabledDays] = useState([new Date(2020, 10, 25), new Date(2020, 11, 5)]);
+    const [disabledDays, setDisabledDays] = useState([new Date(), new Date()]);
     const [range, setRange] = useState({
         from: undefined,
         to: undefined,
@@ -30,11 +30,12 @@ const CalendarWidget = (props) => {
             dates = patt.exec(data);
             dates = dates[0].slice(1, -1)
             array = JSON.parse(dates);
-            if(Array.isArray(array)){
-            let disabledDates= array.map(date =>{
+            if(Array.isArray(array.checkIn)){
+            let disabledDates= array.checkIn.map(date =>{
                 return new Date (date.date)
             })
             setDisabledDays(disabledDates)
+            console.log(disabledDates)
         }
         })
         return function cleanup(){
@@ -60,6 +61,7 @@ const CalendarWidget = (props) => {
             }  
         }
         setRange(newRange);
+        console.log(newRange)
         props.onChange(newRange);
       }
     

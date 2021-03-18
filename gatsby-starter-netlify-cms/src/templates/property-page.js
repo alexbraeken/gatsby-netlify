@@ -27,7 +27,8 @@ import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCa
 
 export const PropertyPageTemplate = ( props ) =>
 {
-   const [bookDates, setBookDates] = useState({})
+   const [bookDates, setBookDates] = useState({from:new Date(),
+    to: null})
    const [propName, setPropName] = useState(null)
    const [show, setShow] = useState(false);
    const [showAllAmenities, setShowAllAemnities] = useState(false)
