@@ -19,7 +19,7 @@ import { ButtonGroup } from '@material-ui/core'
 import BedBathPax from '../components/BedBathPax'
 import ActivitiesRoll from '../components/ActivitiesRoll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -35,7 +35,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [amenitiesLength, setAmenitiesLength] = useState(0)
    const [smartaOpinion, setSmartaOpinion] = useState(null)
    const [poolDimensions, setPoolDimensions] = useState(null)
-   const [travelDistances, setTravelDistances] = useState({display: false, Town: null, Beach:null, Golf:null, Airport:null})
+   const [travelDistances, setTravelDistances] = useState({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
    const [showInteractionReadMore, setShowInteractionReadMore] = useState(false)
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
@@ -60,14 +60,15 @@ export const PropertyPageTemplate = ( props ) =>
                         if(JSON.parse(data)[0].text!== undefined){
                             setSmartaOpinion(JSON.parse(data)[0].text)
                         }
-                        if(JSON.parse(data)[2] ||JSON.parse(data)[3] || JSON.parse(data)[4] || JSON.parse(data)[5] || JSON.parse(data)[6]){
+                        if(JSON.parse(data)[2] ||JSON.parse(data)[3] || JSON.parse(data)[4] || JSON.parse(data)[5] || JSON.parse(data)[6] || JSON.parse(data)[9]){
                             setTravelDistances({
                                 display: true,
                                 Town: (JSON.parse(data)[2] && JSON.parse(data)[2].text!== undefined) ? JSON.parse(data)[2].text : null,
                                 Beach:  (JSON.parse(data)[3] && JSON.parse(data)[3].text!== undefined) ? JSON.parse(data)[3].text : null,
                                 Golf: (JSON.parse(data)[4] && JSON.parse(data)[4].text!== undefined) ? JSON.parse(data)[4].text : null,
                                 Airport: (JSON.parse(data)[5] && JSON.parse(data)[5].text!== undefined) ? JSON.parse(data)[5].text : null,
-                                Market: (JSON.parse(data)[6] && JSON.parse(data)[5].text!== undefined) ? JSON.parse(data)[6].text : null,
+                                Market: (JSON.parse(data)[6] && JSON.parse(data)[6].text!== undefined) ? JSON.parse(data)[6].text : null,
+                                Car: (JSON.parse(data)[9] && JSON.parse(data)[9].text!== undefined) ? JSON.parse(data)[9].text : null,
                             })
                         }
                     }  
@@ -390,7 +391,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 {travelDistances.Market && <li >
                                                                 <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> Supermarket:  {travelDistances.Market}
                                                                 </li>}
-                                                                
+                                                                {travelDistances.Car && <li className="car-essential-list">
+                                                                <FontAwesomeIcon icon={faCar} style={{margin:"auto"}}/>   {travelDistances.Car}
+                                                                </li>}
                                                             </ul>
                                                         </div>
                                                     </Tab>

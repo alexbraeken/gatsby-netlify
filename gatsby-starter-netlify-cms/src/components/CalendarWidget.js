@@ -30,10 +30,12 @@ const CalendarWidget = (props) => {
             dates = patt.exec(data);
             dates = dates[0].slice(1, -1)
             array = JSON.parse(dates);
+            if(Array.isArray(array)){
             let disabledDates= array.map(date =>{
                 return new Date (date.date)
             })
             setDisabledDays(disabledDates)
+        }
         })
         return function cleanup(){
             setDisabledDays(getInitialState);

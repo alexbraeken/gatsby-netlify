@@ -6,6 +6,7 @@ import { Link } from "@reach/router";
 import { Container } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import ReactBnbGallery from 'react-bnb-gallery';
+import { Helmet } from 'react-helmet'
 
 class CustomSlide extends React.Component {
     render() {
@@ -31,7 +32,7 @@ const PropCarousel = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -40,6 +41,13 @@ const PropCarousel = (props) => {
 
       return (
         <>
+        <Helmet>
+          <style>
+            {`.gallery .gallery-control{
+              border: none;
+            }`}
+          </style>
+        </Helmet>
         <ReactBnbGallery
           show={isOpen}
           photos={props.photos.map((photo,index)=>{return(photo.url)})}

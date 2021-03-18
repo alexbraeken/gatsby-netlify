@@ -1399,6 +1399,10 @@ $min-margin: 10px
 .absolute a.navbar-item, .absolute .navbar-item
   color: #fff
 
+@media only screen and (max-width: 900px)  
+  .absolute a.navbar-item, .absolute .navbar-item
+    color: unset
+
 a.navbar-item, .navbar-item
   font-weight: unset
   &:hover
@@ -1929,3 +1933,6 @@ a.navbar-item, .navbar-item
       right: 100%
     to    
       right: 0
+
+.car-essential-list
+  color: $primary
