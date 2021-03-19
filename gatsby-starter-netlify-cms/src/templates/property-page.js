@@ -20,7 +20,7 @@ import { ButtonGroup } from '@material-ui/core'
 import BedBathPax from '../components/BedBathPax'
 import ActivitiesRoll from '../components/ActivitiesRoll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -63,6 +63,9 @@ export const PropertyPageTemplate = ( props ) =>
                     if(JSON.parse(data).length>0){
                         if(JSON.parse(data)[0].text!== undefined){
                             setSmartaOpinion(JSON.parse(data)[0].text)
+                        }
+                        if(JSON.parse(data)[1].text!== undefined){
+                            setPoolDimensions(JSON.parse(data)[1].text)
                         }
                         if(JSON.parse(data)[8].text!== undefined){
                             setDamageWaiver(JSON.parse(data)[8].text)
@@ -377,7 +380,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
                                                         <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
                                                         <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
-                                                        <li>City: <span style={{float: "right"}}>{data.value.city}</span></li>
+                                                        <li>Location: <span style={{float: "right"}}>{data.value.city}</span></li>
+                                                        {poolDimensions && 
+                                                        <li><FontAwesomeIcon icon={faSwimmingPool} style={{margin:"auto"}}/> Pool Size: <span style={{float: "right"}}>{poolDimensions}</span></li>}
                                                     </ul>
                                                     </Tab>
                                                     <Tab eventKey="keyDistances" title="Key Distances" className="keyDistances">
