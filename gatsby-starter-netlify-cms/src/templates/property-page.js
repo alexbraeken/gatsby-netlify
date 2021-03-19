@@ -377,7 +377,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
                                                         <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
                                                         <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
-                                                        <li>City: <span style={{float: "right"}}>{data.value.city}</span></li>
+                                                        <li>Location: <span style={{float: "right"}}>{data.value.city}</span></li>
                                                     </ul>
                                                     </Tab>
                                                     <Tab eventKey="keyDistances" title="Key Distances" className="keyDistances">
