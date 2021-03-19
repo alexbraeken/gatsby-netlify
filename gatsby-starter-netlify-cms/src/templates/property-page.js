@@ -3,6 +3,7 @@ import { FirestoreDocument } from "@react-firebase/firestore";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Collapse from 'react-bootstrap/Collapse'
 import  Tabs  from 'react-bootstrap/Tabs';
 import  Tab  from 'react-bootstrap/Tab';
 import PropCarousel from '../components/PropCarousel';
@@ -19,7 +20,7 @@ import { ButtonGroup } from '@material-ui/core'
 import BedBathPax from '../components/BedBathPax'
 import ActivitiesRoll from '../components/ActivitiesRoll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -36,6 +37,8 @@ export const PropertyPageTemplate = ( props ) =>
    const [amenitiesLength, setAmenitiesLength] = useState(0)
    const [smartaOpinion, setSmartaOpinion] = useState(null)
    const [poolDimensions, setPoolDimensions] = useState(null)
+   const [damageWaiver, setDamageWaiver] = useState(null)
+   const [waiverOpen, setWaiverOpen] = useState(false)
    const [travelDistances, setTravelDistances] = useState({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
    const [showInteractionReadMore, setShowInteractionReadMore] = useState(false)
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
@@ -60,6 +63,9 @@ export const PropertyPageTemplate = ( props ) =>
                     if(JSON.parse(data).length>0){
                         if(JSON.parse(data)[0].text!== undefined){
                             setSmartaOpinion(JSON.parse(data)[0].text)
+                        }
+                        if(JSON.parse(data)[8].text!== undefined){
+                            setDamageWaiver(JSON.parse(data)[8].text)
                         }
                         if(JSON.parse(data)[2] ||JSON.parse(data)[3] || JSON.parse(data)[4] || JSON.parse(data)[5] || JSON.parse(data)[6] || JSON.parse(data)[9]){
                             setTravelDistances({
@@ -415,6 +421,19 @@ export const PropertyPageTemplate = ( props ) =>
                                                 }
                                                 <hr />
                                                 <BookingWidget id={props.id} dateRange={bookDates}/>
+                                                {damageWaiver &&
+                                                <div> 
+                                                    <br />
+                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)}>Damage Waivers</span></center>
+                                                    <Collapse in ={waiverOpen}>
+                                                        <div>
+                                                            <p>
+                                                                {damageWaiver}
+                                                            </p>
+                                                        </div>
+                                                    </Collapse>
+                                                </div>
+                                                }
                                             </StickyBox>
                                         </Col>
                                     </Row>
