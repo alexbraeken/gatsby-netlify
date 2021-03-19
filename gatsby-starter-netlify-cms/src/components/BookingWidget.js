@@ -33,7 +33,8 @@ const BookingWidget = (props) => {
 
 <script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
 <script>
-{`var widget = new Widget('leadWidget', '${props.id}', {"type":"agency","fields":[],"showAvailability":true,"lang":"US","minStay":true,"price":true,"cc":false,"emailClient":true,"saveCookie":true,"showDynamicMinStay":true,"backgroundColor":"#FFFFFF","buttonSubmit":{"backgroundColor":"#ff6600"},"showPriceDetailsLink":true,"showGetQuoteLink":false,"labelColor":"#ff6600","showTotalWithoutSD":true,"redirectURL":false,"showDiscount":true,"includeReferrerToRequest":true,"customDomainName":null,"source":null,"aid":null,"clickID":null,"valuesByDefaults":{"checkIn":{"value":"${calendarCheckIn}"},"checkOut":{"value":"${calendarCheckOut}"},"guests":{"value":""}},"pathRoot":"https://platform.hostfully.com/"});`}
+{`var widget = new Widget('leadWidget', '${props.id}', {"type":"agency","fields":["phone","notes"],"showAvailability":true,"lang":"US","minStay":true,"price":true,"cc":false,"emailClient":true,"saveCookie":true,"showDynamicMinStay":true,"backgroundColor":"#FFFFFF","buttonSubmit":{"backgroundColor":"#f5821e"},"showPriceDetailsLink":true,"showGetQuoteLink":true,"labelColor":"#f5821e","showTotalWithoutSD":true,"redirectURL":false,"showDiscount":true,"includeReferrerToRequest":true,"customDomainName":null,"source":null,"aid":"ORB-49587220416635719","clickID":null,"valuesByDefaults":{"checkIn":{"value":"${calendarCheckIn}"},"checkOut":{"value":"${calendarCheckOut}"},"guests":{"value":""},"discountCode":{"value":""}},"pathRoot":"https://platform.hostfully.com/"});`}
+
 </script>
         </Helmet>
         
