@@ -13,19 +13,16 @@ const PropertyCard = (props) => {
     const [showAmenities, setShowAmenities] = useState()
     const [showCalendar, setShowCalendar] = useState()
     const [displayPrice, setDisplayPrice] = useState(null)
-    const [durationSearch, setDurationSearch] = useState(false)
+    const [dateURI, setDateURI] = useState('')
 
     useEffect(() => {
 
-      if(props.totalDays && props.totalDays>1){
-        setDisplayPrice(props.totalDays*props.item.baseDailyRate)
-        setDurationSearch(true)
-      }else{
-        setDisplayPrice(props.item.baseDailyRate)
+      if(props.dates){
+        setDateURI(`?from=${props.dates.from}&to=${props.dates.to}`)
       }
+      setDisplayPrice(props.item.baseDailyRate)
       return () => {
         setDisplayPrice(null)
-        setDurationSearch(false)
       }
     }, [props])
 
@@ -66,21 +63,12 @@ const PropertyCard = (props) => {
 
             }
           <Card.ImgOverlay style={{position:"relative", padding:"1rem"}}>
-          <Link  to={`/properties/${props.item.uid}`}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
+          <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
           <section className="section prop-card-text">
-          <Link to={`/properties/${props.item.uid}`}  style={{position:"relative", zIndex:"2"}}>
+          <Link to={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2"}}>
             <Card.Text>
               <small className="text-muted">{props.item.type}</small>
-              <small className="feature-text-price" style={{float:"right"}}>
-              {durationSearch? 
-              <>
-              From {displayPrice}€ for {props.totalDays} days
-              </>
-              :
-              <>
-              From {displayPrice}€/ Day
-              </>
-              }</small>
+              <small className="feature-text-price" style={{float:"right"}}>From {displayPrice}€/ Day</small>
             </Card.Text>
             <hr style={{margin:"0.5rem 0"}}/>
             <Card.Title style={{textAlign:"center"}}><span className="prop-card-title">{props.item.name}</span></Card.Title>

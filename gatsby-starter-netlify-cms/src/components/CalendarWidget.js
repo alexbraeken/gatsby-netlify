@@ -17,6 +17,7 @@ const CalendarWidget = (props) => {
     const uri = `https://platform.hostfully.com/api/notavailabledates_get_api.jsp?jsoncallback=jsonpCallbackGetNotAvailableDates&propertyUID=${props.id}&handleCheckInCheckOut=false`
     
     useEffect(() => {
+        if(props.dates.from && props.dates.to)setRange({from:new Date(props.dates.from), to:new Date(props.dates.to)})
 
         fetch(uri)
         .then(response => {
@@ -35,10 +36,10 @@ const CalendarWidget = (props) => {
                 return new Date (date.date)
             })
             setDisabledDays(disabledDates)
-            console.log(disabledDates)
         }
         })
         return function cleanup(){
+            setRange(getInitialState)
             setDisabledDays(getInitialState);
         }
     }, [])

@@ -34,7 +34,7 @@ const Properties = React.memo((props) => {
     const [searchOperator, setSearchOperator] = useState("not-in")
     const [propertyIds, setPropertyIds] = useState([])
     const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
-    const [totalDays, setTotalDays] = useState(1)
+    const [dates, setDates] = useState(null)
     const [horizontalExpanded, setHorizontalExpanded] = useState(false)
     const [filterExpanded, setFilterExpanded] = useState(true)
 
@@ -84,7 +84,7 @@ const Properties = React.memo((props) => {
                 .then(data => {
                 setPropertyIds(JSON.parse(data).propertiesUids)
                 })
-        setTotalDays((new Date(props.state.searchArray.to[0])-(new Date(props.state.searchArray.from[0]))))
+        setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})
         return () => {
             setPropertyIds([])
         }
@@ -116,7 +116,7 @@ const Properties = React.memo((props) => {
     })
 
     const handleTotalDays = useCallback((total) => {
-        setTotalDays(total)
+        
     })
 
     const handleExpand = useCallback(() => {
@@ -198,7 +198,7 @@ const Properties = React.memo((props) => {
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
-                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} totalDays={totalDays}/>
+                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} dates={dates}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery

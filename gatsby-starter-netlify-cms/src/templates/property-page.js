@@ -21,7 +21,7 @@ import BedBathPax from '../components/BedBathPax'
 import ActivitiesRoll from '../components/ActivitiesRoll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool } from '@fortawesome/free-solid-svg-icons';
-
+import queryString from 'query-string'
 
 
 
@@ -43,10 +43,17 @@ export const PropertyPageTemplate = ( props ) =>
    const [showInteractionReadMore, setShowInteractionReadMore] = useState(false)
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
+   const [dates, setDates] = useState(null)
 
     useEffect(() => {
-        props.handlePathChange(window.location.href)
-        const propId = (document.location.pathname.split('/')[2])
+        const path = window.location
+        props.handlePathChange(path.href)
+
+        const searchDates = path.search? queryString.parse(path.search) : null
+        
+        if(searchDates)setBookDates({from: searchDates.from, to: searchDates.to});
+
+        const propId = (document.location.pathname.split('/')[2].slice(0,36))
         if(propId){
  
             const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${propId}`
@@ -242,7 +249,7 @@ export const PropertyPageTemplate = ( props ) =>
                                             <div id="calendar">
                                                 <h2>Calendar</h2>
                                                 <br />
-                                                <CalendarWidget id={props.id} onChange={onDateChange}/>
+                                                <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates}/>
                                             </div>
                                         </Col>
                                     </Row>
@@ -374,8 +381,8 @@ export const PropertyPageTemplate = ( props ) =>
                                     </Col>
                                         <Col xs={12} md={3} style={{display: "flex", alignItems: "flex-start"}}>
                                             <StickyBox offsetTop={50}>
-                                                <Tabs defaultActiveKey="keyFeatures" id="keyDetails">
-                                                    <Tab eventKey="keyFeatures" title="Key Features">
+                                                <Tabs defaultActiveKey="propSpecs" id="keyDetails">
+                                                    <Tab eventKey="propSpecs" title="Property Specs.">
                                                     <ul>
                                                         <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
                                                         <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
@@ -427,9 +434,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <hr />
                                                 <BookingWidget id={props.id} dateRange={bookDates}/>
                                                 {damageWaiver &&
-                                                <div> 
+                                                <div style={{paddingBottom:"20px"}}> 
                                                     <br />
-                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)}>Damage Waivers</span></center>
+                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)}>Security Deposit/Damage Waivers</span></center>
                                                     <Collapse in ={waiverOpen}>
                                                         <div>
                                                             <p>

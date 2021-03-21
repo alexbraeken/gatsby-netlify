@@ -72,7 +72,7 @@ const PropFeatureGrid = React.memo((data) => {
         winterLet = true
       }
         return(
-          <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet} totalDays={data.totalDays}/>
+          <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet} dates={data.dates}/>
           )}
       })
       }

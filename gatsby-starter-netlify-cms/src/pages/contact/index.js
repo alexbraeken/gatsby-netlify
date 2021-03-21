@@ -143,7 +143,7 @@ export default class Index extends React.Component {
                 <b>E-mail:</b> <a href="mailto:reservas@smartavillas.com">reservas@smartavillas.com</a>
                 </li>
                 <li>
-                <b>Address:</b> Smartavillas Unipessoal Lda (513548211) Rua Maria Helen Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal
+                <b>Address:</b> Smartavillas Unipessoal Lda (513548211) Rua Maria Helena Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal
                 </li>
               </ul>
 </p>
