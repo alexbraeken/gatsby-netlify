@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTv, faFan, faDog, faHotTub, faWifi, faSwimmingPool, faTree } from '@fortawesome/free-solid-svg-icons';
+import { faTv, faFan, faDog, faHotTub, faWifi, faSwimmingPool, faTree, faCompactDisc, faFireExtinguisher} from '@fortawesome/free-solid-svg-icons';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { FirestoreCollection } from "@react-firebase/firestore";
@@ -14,25 +14,32 @@ const Amenities = (props) => {
 
     const determineAmenity = (amenity) =>{
         switch(amenity){
-            case "TV":
-                return <div><FontAwesomeIcon icon={faTv}/><b> TV</b></div>
-            case "airConditioning":
-                return <div><FontAwesomeIcon icon={faFan}/><b> Air Conditioning</b></div>
+            case "hasTV":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faTv}/><b> TV</b></div>
+            case "hasAirConditioning":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faFan}/><b> Air Conditioning</b></div>
             case "allowsPets":
-                return <div><FontAwesomeIcon icon={faDog}/><b> Pets Allowed</b></div>
-            case "hotTub":
-                return <div><FontAwesomeIcon icon={faHotTub}/><b> Hot Tub</b></div>
-            case "internetWifi":
-                return <div><FontAwesomeIcon icon={faWifi}/><b> Wifi</b></div>
-            case "pool":
-                return <div><FontAwesomeIcon icon={faSwimmingPool}/><b> Pool</b></div>
-            case "garden":
-                return <div><FontAwesomeIcon icon={faTree}/><b> Garden</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faDog}/><b> Pets Allowed</b></div>
+            case "hasHotTub":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faHotTub}/><b> Hot Tub</b></div>
+            case "hasInternetWifi":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faWifi}/><b> Wifi</b></div>
+            case "hasPool":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faSwimmingPool}/><b> Pool</b></div>
+            case "hasGarden":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faTree}/><b> Garden</b></div>
+            case "hasCDDVDPlayer":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faCompactDisc}/><b> CD/DVD Player</b></div>
+            case "hasFireExtinguisher":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faFireExtinguisher}/><b> Fire Extinguisher</b></div>
             default:
                 let text;
                 let temp = amenity.replace( /([A-Z])/g, " $1" );
                 text = temp.charAt(0).toUpperCase() + temp.slice(1);
-                return <b>{text}</b>
+                if(text.includes('Has ')){
+                    text = text.slice(4)
+                }
+                return <div className="amenity-text"><b>{text}</b></div>
         }
     }
 

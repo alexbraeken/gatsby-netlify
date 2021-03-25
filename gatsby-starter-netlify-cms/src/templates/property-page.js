@@ -125,32 +125,32 @@ export const PropertyPageTemplate = ( props ) =>
 
 
  return list.sort((a, b)=>
- (a[0] !== "pool" && b[0] === "pool")? 1 :
- (b[0] !== "pool" && a[0] === "pool")? -1 :
- (a[0] !== "hotTub" && b[0] === "hotTub")? 1 :
- (b[0] !== "hotTub" && a[0] === "hotTub")? -1 :
- (a[0] !== "airConditioning" && b[0] === "airConditioning")? 1 :
- (b[0] !== "airConditioning" && a[0] === "airConditioning")? -1 : 
- (a[0] !== "dishwasher" && b[0] === "dishwasher")? 1 :
- (b[0] !== "dishwasher" && a[0] === "dishwasher")? -1 :
- (a[0] !== "washer" && b[0] === "washer")? 1 :
- (b[0] !== "washer" && a[0] === "washer")? -1 :
- (a[0] !== "hairDryer" && b[0] === "hairDryer")? 1 :
- (b[0] !== "hairDryer" && a[0] === "hairDryer")? -1 :
- (a[0] !== "linens" && b[0] === "linens")? 1 :
- (b[0] !== "linens" && a[0] === "linens")? -1 :
- (a[0] !== "towels" && b[0] === "towels")? 1 :
- (b[0] !== "towels" && a[0] === "towels")? -1 :
- (a[0] !== "balconyTerrasse" && b[0] === "balconyTerrasse")? 1 :
- (b[0] !== "balconyTerrasse" && a[0] === "balconyTerrasse")? -1 : 
- (a[0] !== "deckPatio" && b[0] === "deckPatio")? 1 :
- (b[0] !== "deckPatio" && a[0] === "deckPatio")? -1 : 
- (a[0] !== "garden" && b[0] === "garden")? 1 :
- (b[0] !== "garden" && a[0] === "garden")? -1 :    
- (a[0] !== "TV" && b[0] === "TV") ? 1 :
- (b[0] !== "TV" && a[0] === "TV" )? -1 : 
- (a[0] !== "internetWifi" && b[0] === "internetWifi")? 1 :
- (b[0] !== "internetWifi" && a[0] === "internetWifi")? -1 :0)
+ (a[0] !== "hasPool" && b[0] === "hasPool")? 1 :
+ (b[0] !== "hasPool" && a[0] === "hasPool")? -1 :
+ (a[0] !== "hasHotTub" && b[0] === "hasHotTub")? 1 :
+ (b[0] !== "hasHotTub" && a[0] === "hasHotTub")? -1 :
+ (a[0] !== "hasAirConditioning" && b[0] === "hasAirConditioning")? 1 :
+ (b[0] !== "hasAirConditioning" && a[0] === "hasAirConditioning")? -1 : 
+ (a[0] !== "hasDishwasher" && b[0] === "hasDishwasher")? 1 :
+ (b[0] !== "hasDishwasher" && a[0] === "hasDishwasher")? -1 :
+ (a[0] !== "hasWasher" && b[0] === "hasWasher")? 1 :
+ (b[0] !== "hasWasher" && a[0] === "hasWasher")? -1 :
+ (a[0] !== "hasHairDryer" && b[0] === "hasHairDryer")? 1 :
+ (b[0] !== "hasHairDryer" && a[0] === "hasHairDryer")? -1 :
+ (a[0] !== "hasLinens" && b[0] === "hasLinens")? 1 :
+ (b[0] !== "hasLinens" && a[0] === "hasLinens")? -1 :
+ (a[0] !== "hasTowels" && b[0] === "hasTowels")? 1 :
+ (b[0] !== "hasTowels" && a[0] === "hasTowels")? -1 :
+ (a[0] !== "hasBalconyTerrasse" && b[0] === "hasBalconyTerrasse")? 1 :
+ (b[0] !== "hasBalconyTerrasse" && a[0] === "hasBalconyTerrasse")? -1 : 
+ (a[0] !== "hasDeckPatio" && b[0] === "hasDeckPatio")? 1 :
+ (b[0] !== "hasDeckPatio" && a[0] === "hasDeckPatio")? -1 : 
+ (a[0] !== "hasGarden" && b[0] === "hasGarden")? 1 :
+ (b[0] !== "hasGarden" && a[0] === "hasGarden")? -1 :    
+ (a[0] !== "hasTV" && b[0] === "hasTV") ? 1 :
+ (b[0] !== "hasTV" && a[0] === "hasTV" )? -1 : 
+ (a[0] !== "hasInternetWifi" && b[0] === "hasInternetWifi")? 1 :
+ (b[0] !== "hasInternetWifi" && a[0] === "hasInternetWifi")? -1 :0)
 }
 
     return (
@@ -234,7 +234,6 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <br />
                                                         </div>
                                                         <br />
-                                                        <br />
                                                         <button className="btn" type="" onClick={()=>setShowAllAemnities(!showAllAmenities)}>{showAllAmenities?<>Less...</>:<p>Show all {amenitiesLength-1}...</p>}</button>
                                                     </div> : "Loading" 
                                                 }}
@@ -283,7 +282,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                         {data.value.en_US.neighborhood.substring(400)}
                                                                         <br />
                                                                         <br />
-                                                                        <p>Find out more about the Algarve <Link to="/location/algarve" className="orangeText">here...</Link></p>
+                                                                        <p>Find out more about the Algarve <Link to="/location/algarve"><span className="orangeText hover-highlight">here...</span></Link></p>
                                                                         </span>}
                                                                     <br />
                                                                     <br />

@@ -75,7 +75,7 @@ const PropertyCard = (props) => {
             <BedBathPax bedrooms={props.item.bedrooms} bathrooms={props.item.bathrooms} baseGuests={props.item.baseGuests} color="rgba(0,0,0)"/>
             <hr style={{margin:"0.5rem 0"}}/>
             <Card.Text style={{fontSize: "0.8rem"}}>
-              {props.item.shortDescription}
+              <p style={{textAlign: "center"}}>{props.item.shortDescription}</p>
               <br />
               <br />
               <b>{props.item.city}</b>

@@ -8,8 +8,8 @@ const BookingWidget = (props) => {
     const [calendarCheckOut, setCalendarCheckOut] = useState(null)
 
     useEffect(() => {
-        setCalendarCheckIn((props.dateRange) ? formatDate(props.dateRange.from) : null)
-        setCalendarCheckOut((props.dateRange.to) ? formatDate(props.dateRange.to) : null)
+        setCalendarCheckIn((props.dateRange.from) ? formatDate(props.dateRange.from) : '')
+        setCalendarCheckOut((props.dateRange.to) ? formatDate(props.dateRange.to) : '')
 
         return () => {
             setCalendarCheckIn(null)

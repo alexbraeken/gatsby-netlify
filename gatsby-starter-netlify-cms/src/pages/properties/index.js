@@ -37,6 +37,11 @@ const Properties = React.memo((props) => {
     const [dates, setDates] = useState(null)
     const [horizontalExpanded, setHorizontalExpanded] = useState(false)
     const [filterExpanded, setFilterExpanded] = useState(true)
+    
+    const [amenitiesList, setAmenitiesList] = useState({
+        hasPool: false,
+        isWheelchairAccessible: false
+    })
 
     const container = useRef(null)
     const datePicker = useRef(null)
@@ -64,7 +69,7 @@ const Properties = React.memo((props) => {
     useEffect(() => {
         return () => {
         }
-    }, [props.state.searchArray.from])
+    }, [props.state.searchArray.from, amenitiesList])
 
 //Call hostfully api here if date search 
     useEffect(() => {
@@ -87,6 +92,10 @@ const Properties = React.memo((props) => {
         setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})
         return () => {
             setPropertyIds([])
+            setAmenitiesList({
+                hasPool: false,
+                isWheelchairAccessible: false
+            })
         }
     }}, [])
 
@@ -132,6 +141,13 @@ const Properties = React.memo((props) => {
     const handleSidebarModal = useCallback(()=>{
         setShowSidebarModal(!showSidebarModal)
     })
+
+    const handleAmenityChange = useCallback((amenity) => {
+        let list = amenitiesList;
+        list[amenity] = !amenitiesList[`${amenity}`]
+        setAmenitiesList({...list})
+    })
+
 
 
     useScrollPosition(({ prevPos, currPos }) => {
@@ -198,7 +214,7 @@ const Properties = React.memo((props) => {
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
-                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} dates={dates}/>
+                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} dates={dates} amenitiesList={amenitiesList}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
@@ -212,6 +228,8 @@ const Properties = React.memo((props) => {
                             close={handleSidebarModal}
                             data= {data} 
                             handleChange={props.handleChange} 
+                            amenitiesList={amenitiesList}
+                            handleAmenityChange= {handleAmenityChange}
                             state={props.state}
                             handleSliderChange={props.handleSliderChange}
                             handleSelectDeselectAll={props.handleSelectDeselectAll}/>
@@ -354,7 +372,7 @@ export default class PropertiesPage extends Component {
     render() {
 
         return (
-            <Layout key={this.state.path}>
+            <Layout pathKey={this.state.path}>
                 <Router>
                         <Properties path ="/properties" 
                         state={this.state} 

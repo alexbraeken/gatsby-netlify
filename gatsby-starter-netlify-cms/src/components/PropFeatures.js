@@ -23,14 +23,31 @@ const PropFeatureGrid = React.memo((data) => {
 
   useEffect(() => {
 
+    const amenities = []
+    Object.keys(data.amenitiesList).forEach(amenity => {
+      return data.amenitiesList[amenity] ? amenities.push(amenity) : null
+    })
+
+
     const list = data.gridItems.value.map((item, index) => {
+      let amenityBool = []
+      
+      if(amenities.length > 0 && item.amenities){
+        amenities.forEach(amenity => {
+          amenityBool.push(item.amenities[`${amenity}`])
+        })
+      }else{
+        amenityBool.push(true)
+      }
+
       if((data.state.city[item.city])
       && (data.state.type[item.type])
       && (data.state.bedrooms[0] <= parseInt(item.bedrooms))
       && (parseInt(item.bedrooms) <= data.state.bedrooms[1])
       && (data.state.bathrooms[0] <= parseInt(item.bathrooms)) 
       && (parseInt(item.bathrooms) <= data.state.bathrooms[1])
-      && (advancedSearch === (data.propertyIds.indexOf(item.uid) !== -1))){  
+      && (advancedSearch === (data.propertyIds.indexOf(item.uid) !== -1))
+      && !amenityBool.includes(false)){  
         return item
     } else { return null}
   })

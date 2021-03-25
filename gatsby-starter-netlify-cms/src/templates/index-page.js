@@ -536,21 +536,21 @@ query IndexPageTemplate {
       }
       trustedImage {
         childImageSharp {
-          fluid(maxWidth: 1000, quality: 100) {
+          fluid(maxWidth: 500, quality: 92) {
             ...GatsbyImageSharpFluid
           }
         }
       }
       locationImage {
         childImageSharp {
-          fluid(maxWidth: 1000, quality: 100) {
+          fluid(maxWidth: 500, quality: 92) {
             ...GatsbyImageSharpFluid
           }
         }
       }
       accommodationsImage {
         childImageSharp {
-          fluid(maxWidth: 1000, quality: 100) {
+          fluid(maxWidth: 500, quality: 92) {
             ...GatsbyImageSharpFluid
           }
         }

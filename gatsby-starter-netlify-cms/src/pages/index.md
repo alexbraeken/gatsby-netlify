@@ -20,6 +20,6 @@ We are also driven to ensure all our guests have as much clear and valuable info
 tripImage: ../../static/img/Hero_Family.jpg
 listImage: ../../static/img/Tavira_-_R_Bridge_by_Night.jpg
 trustedImage: ../../static/img/team.jpeg
-locationImage: ../../static/img/lagos.jpeg
+locationImage: ../../static/img/tavira_island.jpg
 accommodationsImage: ../../static/img/lux_villa.jpeg
 ---

@@ -62,7 +62,6 @@ const CalendarWidget = (props) => {
             }  
         }
         setRange(newRange);
-        console.log(newRange)
         props.onChange(newRange);
       }
     

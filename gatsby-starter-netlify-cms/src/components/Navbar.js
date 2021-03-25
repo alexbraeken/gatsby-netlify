@@ -5,7 +5,7 @@ import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
 import logo from '../img/smartavillas logo.png'
 import Loading from '../components/Loading'
 import Container from 'react-bootstrap/Container'
-import { FirestoreCollection } from "@react-firebase/firestore";
+import { FirestoreCollection, FirestoreDocument } from "@react-firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
@@ -22,7 +22,7 @@ const PropertiesDropDown = React.memo((props) => {
             </div>
           </a>
           </div>
-          <FirestoreCollection path="/Properties/">
+          <FirestoreDocument path="/Navbar/Nav">
                       {d => {
                                 return (!d.isLoading && d.value) ?  
                                 <>
@@ -31,7 +31,7 @@ const PropertiesDropDown = React.memo((props) => {
                                     <h4 className="dropdown-title" style={{color:"#fff"}}>City</h4>
                                   </div>
                                   
-                                  {props.filterList(d.value, "city").map((city, index)=>(
+                                  {d.value.Locations.map((city, index)=>(
                                     <a href={`/properties?city=${city}`} key={index}>
                                       <div  className="navbar-item drop-item">
                                         {city}
@@ -44,7 +44,7 @@ const PropertiesDropDown = React.memo((props) => {
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
                                     <h4 className="dropdown-title" style={{color:"#fff"}}>Lodging Type</h4>
                                   </div>
-                                  {props.filterList(d.value, "type").map((type, index)=>(
+                                  {d.value.Types.map((type, index)=>(
                                     <a href={`/properties?type=${type}`} key={index}>
                                       <div  className="navbar-item drop-item">
                                         {type[0].toUpperCase() + type.slice(1).toLowerCase()}
@@ -58,7 +58,7 @@ const PropertiesDropDown = React.memo((props) => {
                                 
                             }}
                       
-          </FirestoreCollection>
+          </FirestoreDocument>
           </>
           )
 })

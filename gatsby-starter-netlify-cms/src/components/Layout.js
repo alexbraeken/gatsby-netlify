@@ -16,17 +16,17 @@ import NewsAlert from '../components/newsAlert'
 
 
 
-const TemplateWrapper = ({ children, key }) => {
+const TemplateWrapper = ({ children, pathKey }) => {
 
   const { title, description } = useSiteMetadata()
   const [path, setPath] = useState('')
 
 useEffect(() => {
-  setPath(key)
+  setPath(pathKey)
   return () => {
     setPath('')
   }
-}, [key])
+}, [pathKey])
 
   return (
     <div>

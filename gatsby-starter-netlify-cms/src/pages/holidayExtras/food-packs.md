@@ -2,7 +2,7 @@
 templateKey: 'content-page'
 path: /foodPacks
 title: Food Packs
-hero: ../../../static/img/food_pack.jpg
+hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
 ---
 <style>
     /*food packs*/

@@ -352,15 +352,19 @@ a:hover
 
 .amenity 
   margin: 5px
-  border-radius: 5px
-  padding: 2px 5px
-  color: #ff6600
-  box-shadow: 7px 7px 20px #d9d9d9, -8px -9px 20px #ffffff
-  cursor: pointer
+  display: flex
+  max-width: 150px
+  flex: 1 1 40%
+  & .amenity-text
+      margin: auto 2px
+      padding: 2px 5px
+      color: #ff6600
+      cursor: pointer
 
 .amenities-list
   display: flex
   flex-wrap: wrap
+  
 
 .prop-card-footer-container
   width: auto
@@ -1877,6 +1881,26 @@ a.navbar-item, .navbar-item
   z-index: 10
   cursor: pointer
 
+.orangeText
+  color: $primary
+
+.hover-highlight
+  position: relative
+  z-index: 2
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: -5%
+    width: 0
+    height: 100%
+    transition: all 0.3s
+    background-color: #000
+    border-radius: 4px
+    z-index: -1
+  &:hover:before
+    width: 110%
+    
 
 .content-header
   box-shadow: -4px 0 0 $primary

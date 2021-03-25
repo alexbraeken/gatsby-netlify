@@ -13,7 +13,6 @@ class NewsAlert extends React.PureComponent {
         <>
         { news[0] ? 
       <div className="newsAlert">
-        {console.log(news[0].node.frontmatter.link)}
           <a href={`${news[0].node.frontmatter.link}`} style={{position:"absolute", width:"100%", height:"100%"}}></a>
           <div><small style={{fontWeight:"bold"}}>{news[0].node.frontmatter.title}:</small> <small className="newsAlert-news">{news[0].node.frontmatter.news}</small></div>  
       </div>: null}
