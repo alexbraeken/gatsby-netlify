@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import Loading from '../components/Loading';
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
@@ -8,40 +8,68 @@ import { Modal, Button } from 'react-bootstrap'
 
 const CalendarModal = (props) => {
 
+    const [dates, setDates] = useState({from: null, to: null});
+    const [test, setTest] = useState(null)
+
+
+
     const toRef = useRef(null)
 
+    useEffect(() => {
+      setDates(props.dates)
+      return () => {
+        setDates({from: null, to: null})
+      }
+    }, [])
+
+
+    useEffect(() => {
+      showFromMonth()
+  }, [dates.to])
+
     const showFromMonth = () => {
-        const { from, to } = props.dates;
+        const from = new Date(dates.from)
+        const to = new Date(dates.to)
+
         if (!from) {
           return;
         }
-        if ((to.getFullYear()-from.getFullYear()*12)+(to.getMonth()-from.getMonth()) < 2 && toRef.current !== null) {
+        if (to && ((to.getFullYear()-from.getFullYear()*12)+(to.getMonth()-from.getMonth()) < 2) && toRef.current !== null) {
           toRef.current.getDayPicker().showMonth(from);
         }
       }
     
-    const handleFromChange = (from) => {
-        if(props.dates.to)
-        props.setDates({ from: from, to: props.dates.to });
-        else
-        props.setDates({from:from, to:undefined})
+    const handleFromChange = (fromDate) => {
+      console.log(fromDate)
+
+        if(dates.to){
+          setTest('stuff')
+          console.log(test)
+          setDates({ from: new Date(fromDate), to: dates.to })
+          console.log(dates)
+        }
+        else{
+          setDates({from: new Date(fromDate), to:undefined})
+          console.log(dates)
+        }
       }
     
-    useEffect(() => {
-        showFromMonth()
-    }, [props.dates.to])
+    
 
-    const handleToChange = (to) => {
-        if(props.dates.from)
-        props.setDates({ from: props.dates.from, to: to });
+    const handleToChange = (toDate) => {
+        if(dates.from)
+        setDates({ from: dates.from, to: new Date(toDate) });
         else
-        props.setDates({from:undefined, to:to})
+        setDates({from:undefined, to:new Date(toDate)})
       }
 
 
     const submitSearch = () => {
-        let fromDate = props.dates.from.toISOString()
-        let toDate = props.dates.to.toISOString()
+
+      props.handleDateChange({to: dates.to.toISOString(), from: dates.from.toISOString()})
+
+        let fromDate = dates.from.toISOString()
+        let toDate = dates.to.toISOString()
         const uri = `https://api.hostfully.com/v2/properties?checkInDate=${fromDate}&checkOutDate=${toDate}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
         
         fetch(uri, {
@@ -59,7 +87,8 @@ const CalendarModal = (props) => {
                 })
     }
 
-    const { from, to } = props.dates;
+    const from = new Date(dates.from)
+    const to = new Date(dates.to)
     const modifiers = { start: from, end: to };
 
       const modifiersStyles = {

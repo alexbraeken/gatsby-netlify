@@ -3,11 +3,13 @@ path: /location
 location: Altura
 templateKey: location-page
 title: Altura
-image: ../../../static/img/Castro_Marim.jpg
+image: ../../../static/img/altura_1.jpg
 part1: 
-    header: "Altura"
-    text: "Altura is a wonderful village which has retained most of its original Portuguese charm and character. During the day, there is a laid back, relaxed atmosphere where visitors can enjoy a coffee or a beer at one of the many small bars, or take a stroll and do some leisurely shopping. The village has a daily market selling fresh produce, patisseries, a mini-market, gift shops, and a bank, and there is also a large supermarket just towards the main road. In the evening, visitors can choose from a wide selection of restaurants to suit all tastes ranging from the cheap and cheerful Tascas to High-Quality cuisine. Overall, Altura is a lovely village, perfect for families and couples seeking to experience and enjoy a simple Portuguese beach holiday."
-    img: ../../../static/img/praiadamantarota7.jpg
+    header: "“A Popular Beach Town, Perfect for Family Holidays…"
+    text: "This pocket-sized seaside town, popular with Portuguese tourists, offers expansive dune backed Blue Flag beaches and an array of tempting eateries, serving freshly caught fish and seafood. Unassuming and conveniently located between charming Tavira and the handsome frontier town of Vila Real do Santo António, Altura is ideally positioned to enjoy the many attractions of this lesser-known part of the Algarve. With a choice of supermarkets, cafes, bars, restaurants and other amenities at your doorstep, then use of a car is not essential while airport transfers can be easily arranged
+    
+    Cuisine: Dotted around this typical Portuguese town, a varied and enticing mix of restaurants serve sumptuous dishes, many with very reasonably priced ‘dish of the day’ offerings. At the beach, two popular beach eateries compete for your attention by the long boardwalk down to the shoreline, while at nearby exclusive Praia Verde, refined dining can be found enjoying tremendous ocean views."
+    img: ../../../static/img/Altura_2.jpg
 part2:
     header: "Local Beach"
     text: "With a Blue Flag status ensuring high standards and facilities, and with a softly sloping shelf into the clean blue waters of the Atlantic Ocean, then it is clear to see why Altura is a popular family destination. Stretching East, long walks can be taken along the soft shoreline taking in the other equally splendid beaches of Praia Verde and Cabeco, then onto ever popular Monte Gordo. Heading West, the sands stretch as far as the eye can see, merging effortlessly into the vast Ria Formosa Natural Park. The summer brings a super selection of water sports."
@@ -22,7 +24,7 @@ part2:
         img3: 
             img: ../../../static/img/tavira.jpg
             title: "Tavira"
-    img: ../../../static/img/praiadamantarota7.jpg
+    img: ../../../static/img/Altura_Beach.jpg
 part3:
     header: ""
     text: ""

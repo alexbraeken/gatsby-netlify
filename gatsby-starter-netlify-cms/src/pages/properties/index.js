@@ -74,14 +74,39 @@ const Properties = React.memo((props) => {
 //Call hostfully api here if date search 
     useEffect(() => {
         props.handlePathChange(window.location.href)
-        if(props.state.searchArray.from && props.state.searchArray.to){
-        const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
+        return () => {
+            setPropertyIds([])
+            setAmenitiesList({
+                hasPool: false,
+                isWheelchairAccessible: false
+            })
+            setShow(false)
+            setShowSidebarModal(false)
+            setPhotos([])
+            setSort("")
+            setData(null);
+            setWinterLets([])
+            setSearchOperator("not-in")
+            setStickyStyle({position:"absolute"})
+            setDates(null)
+            setHorizontalExpanded(false)
+            setFilterExpanded(true)
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log(props.state.path)
+        console.log(new Date())
+        if(props.state.searchArray.from && props.state.searchArray.from[0] && props.state.searchArray.to[0]){
+            try{
+            console.log(props.state.searchArray.from[0])
+            const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
         
-        fetch(uri, {
-        headers:{
-        "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
-            }
-        })
+            fetch(uri, {
+            headers:{
+            "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+                }
+            })
                 .then(response => {
                     
                     return response.text()
@@ -89,15 +114,16 @@ const Properties = React.memo((props) => {
                 .then(data => {
                 setPropertyIds(JSON.parse(data).propertiesUids)
                 })
-        setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})
-        return () => {
-            setPropertyIds([])
-            setAmenitiesList({
-                hasPool: false,
-                isWheelchairAccessible: false
-            })
+            setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})    
         }
-    }}, [])
+        catch(err){
+            console.log(err)
+        }
+        }
+        return () => {
+            
+        }
+    }, [props.state.path, props.state.searchArray.from, props.state.searchArray.to])
 
     useEffect(() => {
         if(data){
@@ -285,6 +311,8 @@ export default class PropertiesPage extends Component {
                 })
            }
            else{
+               console.log(key)
+               console.log(filterValues[key])
         let searchArray = filterValues[key];
         searchArray = (Array.isArray(searchArray)?searchArray:[searchArray]);
            this.setState((state, props)=>({
@@ -341,12 +369,14 @@ export default class PropertiesPage extends Component {
     }
 
     handleDateChange (date){
+        console.log(date)
         this.setState((prevState, currentProps) => ({
             ...prevState,
             searchArray: {...prevState.searchArray,
             from:[date.from],
             to:[date.to]}
         }))
+        console.log(this.state)
     }
     
     handleSelectDeselectAll(type, seldesel){

@@ -63,15 +63,48 @@ module.exports = {
           "link": "/location/tavira",
         },
         {
-          "name": "Altura & Castro Marim",
-          "link": "/location/alturaCastroMarim",
+          "name": "Altura",
+          "link": "/location/altura",
         },
         {
-          "name": "Cacela & Manta Rota",
-          "link": "/location/cacelaMantaRota",
-        },{
-          "name": "Fuseta & Luz de Tavira",
-          "link": "/location/fusetaLuzdeTavira",
+          "name": "Cabanas & Conceicao De Tavira",
+          "link": "/location/cabanasConceicaoDeTavira",
+        },
+        {
+          "name": "Cacela Velha",
+          "link": "/location/cacelaVelha",
+        },
+        {
+          "name": "Castro Marim",
+          "link": "/location/castroMarim",
+        },
+        {
+          "name": "Corte Antonio Martins",
+          "link": "/location/corteAntonioMartins",
+        },
+        {
+          "name": "Fuzeta",
+          "link": "/location/fuzeta",
+        },
+        {
+          "name": "Manta Rota",
+          "link": "/location/mantaRota",
+        },
+        {
+          "name": "Moncarapacho",
+          "link": "/location/moncarapacho",
+        },
+        {
+          "name": "Santa Catarina",
+          "link": "/location/santaCatarina",
+        },
+        {
+          "name": "Santo Estevao",
+          "link": "/location/santoEstevao",
+        },
+        {
+          "name": "Vila Nova De Cacela",
+          "link": "/location/vilaNovaDeCacela",
         },
       ]
       },

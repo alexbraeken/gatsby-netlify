@@ -3,25 +3,26 @@ import { FirestoreDocument } from "@react-firebase/firestore";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Collapse from 'react-bootstrap/Collapse'
+import Collapse from 'react-bootstrap/Collapse';
 import  Tabs  from 'react-bootstrap/Tabs';
 import  Tab  from 'react-bootstrap/Tab';
 import PropCarousel from '../components/PropCarousel';
-import GoogleMapComponent from '../components/GoogleMapComponent'
-import { Link } from 'gatsby'
-import BookingWidget from '../components/BookingWidget'
-import CalendarWidget from '../components/CalendarWidget'
-import StickyBox from "react-sticky-box"
-import GalleryModal from '../components/GalleryModal'
-import Amenity from '../components/Amenities'
-import { useScrollPosition } from '@n8tb1t/use-scroll-position'
-import logo from '../img/logo.svg'
-import { ButtonGroup } from '@material-ui/core'
-import BedBathPax from '../components/BedBathPax'
-import ActivitiesRoll from '../components/ActivitiesRoll'
+import GoogleMapComponent from '../components/GoogleMapComponent';
+import { Link } from 'gatsby';
+import BookingWidget from '../components/BookingWidget';
+import CalendarWidget from '../components/CalendarWidget';
+import StickyBox from "react-sticky-box";
+import GalleryModal from '../components/GalleryModal';
+import Amenity from '../components/Amenities';
+import { useScrollPosition } from '@n8tb1t/use-scroll-position';
+import logo from '../img/logo.svg';
+import { ButtonGroup } from '@material-ui/core';
+import BedBathPax from '../components/BedBathPax';
+import ActivitiesRoll from '../components/ActivitiesRoll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool } from '@fortawesome/free-solid-svg-icons';
-import queryString from 'query-string'
+import queryString from 'query-string';
+import EnquiryModal from '../components/EnquiryModal';
 
 
 
@@ -31,7 +32,9 @@ export const PropertyPageTemplate = ( props ) =>
    const [bookDates, setBookDates] = useState({from:new Date(),
     to: null})
    const [propName, setPropName] = useState(null)
+   const [propId, setPropId] = useState(null)
    const [show, setShow] = useState(false);
+   const [enquiryShow, setEnquiryShow] = useState(false);
    const [showAllAmenities, setShowAllAemnities] = useState(false)
    const [showNotesReadMore, setShowNotesReadMore] = useState(false)
    const [amenitiesLength, setAmenitiesLength] = useState(0)
@@ -45,18 +48,20 @@ export const PropertyPageTemplate = ( props ) =>
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
    const [dates, setDates] = useState(null)
 
+
     useEffect(() => {
         const path = window.location
         props.handlePathChange(path.href)
 
-        const searchDates = path.search? queryString.parse(path.search) : null
+        const searchDates = path.search? queryString.parse(path.search) : null;
         
         if(searchDates)setBookDates({from: searchDates.from, to: searchDates.to});
 
-        const propId = (document.location.pathname.split('/')[2].slice(0,36))
-        if(propId){
- 
-            const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${propId}`
+        setPropId(props.id)
+
+        if(props.id){
+            
+            const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${props.id}`
             fetch(uri, {
             headers:{
             "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
@@ -92,13 +97,38 @@ export const PropertyPageTemplate = ( props ) =>
                     })
             return () => {
                 setSmartaOpinion(null)
-                setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null})
+                setBookDates({from:new Date(),
+                    to: null})
+                   setPropName(null)
+                   setShow(false);
+                   setShowAllAemnities(false)
+                   setShowNotesReadMore(false)
+                   setAmenitiesLength(0)
+                   setPoolDimensions(null)
+                   setDamageWaiver(null)
+                   setWaiverOpen(false)
+                   setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
+                   setShowInteractionReadMore(false)
+                   setShowNeighborhoodReadMore(false)
+                   setShowTransitReadMore(false)
             }
         }
     }, [])
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleEnquiryClose = () => setEnquiryShow(false)
+    const handleEnquiryShow = () => setEnquiryShow(true)
+
+
+    const handleShowAmenities = () => {
+        setShowAllAemnities(!showAllAmenities)
+    }
+
+    const handleAmenitiesLength = (length) => {
+        setAmenitiesLength(length)
+    }
 
    const onDateChange = (range) => {
     setBookDates({
@@ -225,7 +255,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 <div key={index} className="amenity">
                                                                     <Amenity amenity = {amen[0]} /></div> : null ;
                                                             }else{
-                                                                if(amen[0])setAmenitiesLength(amen[1]);
+                                                                if(amen[0])handleAmenitiesLength(amen[1]);
                                                                 return (amen[1] && amen[0] !== "__id" && amen[0] !== "length" && index < 10) ? 
                                                                 <div key={index} className="amenity">
                                                                     <Amenity amenity = {amen[0]} /></div> : null ;
@@ -234,7 +264,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <br />
                                                         </div>
                                                         <br />
-                                                        <button className="btn" type="" onClick={()=>setShowAllAemnities(!showAllAmenities)}>{showAllAmenities?<>Less...</>:<p>Show all {amenitiesLength-1}...</p>}</button>
+                                                        <button className="btn" type="" onClick={()=>handleShowAmenities()}>{showAllAmenities?<>Less...</>:<p>Show all {amenitiesLength-1}...</p>}</button>
                                                     </div> : "Loading" 
                                                 }}
                                             </FirestoreDocument>
@@ -432,6 +462,26 @@ export const PropertyPageTemplate = ( props ) =>
                                                 }
                                                 <hr />
                                                 <BookingWidget id={props.id} dateRange={bookDates}/>
+                                                <br />
+                                                <div className="submit-search-btn" onClick={()=> handleEnquiryShow()}>
+                                                    <a>
+                                                        <svg className="icon-arrow before">
+                                                            <use xlinkHref="#arrow" />
+                                                        </svg>
+                                                        <span className="label">Inquire about this property</span>
+                                                        <svg className="icon-arrow after">
+                                                            <use xlinkHref="#arrow"/>
+                                                        </svg>
+                                                    </a>
+                                                    <svg style={{display: "none"}}>
+                                                    <defs>
+                                                        <symbol id="arrow" viewBox="0 0 35 15">
+                                                            <title>Arrow</title>
+                                                            <path d="M27.172 5L25 2.828 27.828 0 34.9 7.071l-7.07 7.071L25 11.314 27.314 9H0V5h27.172z "/>
+                                                        </symbol>
+                                                    </defs>
+                                                    </svg>
+                                                </div>
                                                 {damageWaiver &&
                                                 <div style={{paddingBottom:"20px"}}> 
                                                     <br />
@@ -466,6 +516,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 </Container>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
+                            <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={propName}/>
                             </div>                 
                         </div> : <></>
             }}

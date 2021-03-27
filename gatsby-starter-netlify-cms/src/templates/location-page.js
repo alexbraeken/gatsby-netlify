@@ -103,7 +103,7 @@ export const LocationPageTemplate = ({
             </Col>
             {part1.img && 
             <Col md={12} lg={6}>
-                <PreviewCompatibleImage imageInfo={part1.img} imgStyle={{borderRadius: "5px", marginLeft: "-150px"}}/>
+                <PreviewCompatibleImage imageInfo={part1.img} imgStyle={{borderRadius: "5px", marginLeft: "-150px", marginRight: "-150px"}}/>
             </Col>}
           </Row>
         </div>
