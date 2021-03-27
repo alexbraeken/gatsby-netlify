@@ -468,7 +468,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <svg className="icon-arrow before">
                                                             <use xlinkHref="#arrow" />
                                                         </svg>
-                                                        <span className="label">Inquire about this property</span>
+                                                        <span className="label">Enquire about this property</span>
                                                         <svg className="icon-arrow after">
                                                             <use xlinkHref="#arrow"/>
                                                         </svg>
@@ -574,11 +574,19 @@ const PropertyPage = (data) => {
             return setHeaderStyle(shouldBeStyle)
       }, [propNav, headerStyle])
 
+      useEffect(() => {
+        setHeaderStyle({
+            transition: 'all 300ms ease-in',
+            transform: 'translate(0, -200%)'
+          })
+          
+      }, [propNav])
+
     return(
-        <div>
+        <>
             <PropertyNav navStyles={headerStyle} handlePathChange={() => data.handlePathChange()}/>
             <PropertyPageTemplate id={data.id} handlePathChange={() => data.handlePathChange()}/>
-        </div>
+        </>
     )
 }
 

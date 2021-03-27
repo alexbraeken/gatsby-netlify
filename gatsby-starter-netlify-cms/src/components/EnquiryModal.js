@@ -157,7 +157,7 @@ const CalendarModal = (props) => {
                   <svg className="icon-arrow before">
                       <use xlinkHref="#arrow" />
                   </svg>
-                  <span className="label">Inquire</span>
+                  <span className="label">Enquire</span>
                   <svg className="icon-arrow after">
                       <use xlinkHref="#arrow"/>
                   </svg>
