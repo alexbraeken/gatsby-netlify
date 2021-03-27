@@ -516,7 +516,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 </Container>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
-                            <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={propName}/>
+                            <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name}/>
                             </div>                 
                         </div> : <></>
             }}

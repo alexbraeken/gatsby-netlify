@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
 import logo from '../img/smartavillas logo.png'
-import Loading from '../components/Loading'
 import Container from 'react-bootstrap/Container'
 import { FirestoreCollection, FirestoreDocument } from "@react-firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -54,7 +53,7 @@ const PropertiesDropDown = React.memo((props) => {
                                   }
                                   </div>
                                   </>
-                                  : <Loading /> 
+                                  : null 
                                 
                             }}
                       
