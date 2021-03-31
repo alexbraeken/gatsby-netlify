@@ -87,7 +87,7 @@ const uri = "https://api.hostfully.com/v2/properties?tags=featured&agencyUid=ab8
 useEffect(() => {
   fetch(uri, {
     headers:{
-      "X-HOSTFULLY-APIKEY": process.env.HOSTFULLY_API_KEY
+      "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
     }
   })
         .then(response => {

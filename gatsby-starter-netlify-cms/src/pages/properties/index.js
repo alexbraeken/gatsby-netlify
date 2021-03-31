@@ -84,7 +84,7 @@ const Properties = React.memo((props) => {
         
             fetch(uri, {
             headers:{
-            "X-HOSTFULLY-APIKEY": process.env.HOSTFULLY_API_KEY
+            "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
                 }
             })
                 .then(response => {

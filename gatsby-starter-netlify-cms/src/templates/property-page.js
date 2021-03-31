@@ -62,7 +62,7 @@ export const PropertyPageTemplate = ( props ) =>
             const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${props.id}`
             fetch(uri, {
             headers:{
-            "X-HOSTFULLY-APIKEY": process.env.HOSTFULLY_API_KEY
+            "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
                 }
             })
                     .then(response => {
