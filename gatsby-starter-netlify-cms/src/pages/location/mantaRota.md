@@ -9,6 +9,26 @@ part1:
     text: "Sitting between Cabanas and Altura, Manta Rota offers a family atmosphere within a low rise, uncommercialised setting. Tremendous expansive golden sands, backed by impressive dunes, have deservingly been awarded the Blue Flag accolade, while an ample sprinkling of cafes, bars, restaurants and mini-markets provide for all needs. With all this on offer, it’s easy to see why Manta Rota is a firm favourite for the Portuguese, who surely know a thing or two about great beach destinations! In the summer months, there are activities at the beach as well as market stalls and open-air entertainments in the evening, whilst out of season, Manta Rota is a charming and laid-back destination! Manta Rota is the ideal place to experience a typical Portuguese holiday, with only the beach for company during the day.
     \n
     \nCuisine: From traditional to modern and from low cost to premium, all tastes and pockets are catered for with fresh flavoursome seafood being the star attraction on many a menu."
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/CM_Square.jpg
 part2:
     header: "Local Beach"

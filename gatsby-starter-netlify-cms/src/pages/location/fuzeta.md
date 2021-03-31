@@ -9,6 +9,26 @@ part1:
     text: "An honest working fishing village blessed with one of the Algarve’s finest beaches, Fuseta sits between the larger coastal towns of Olhão and Tavira. Colourful, atmospheric and authentic, the village is uncompromisingly non touristy and all the better for it. With a varied selection of shops and services and a plentiful supply of tempting restaurants and backstreet eateries, then this is a great spot to enjoy the real Algarve. Fishing boats leave from one end of the quay, small pleasure boats and the ferry to the beach iland from the other. Fuseta has a street market on Thursdays and a flea market on the first Sunday of every month. There is a newly renovated produce market situated on the quayside which is open every morning (not Sundays) where you can buy fresh fish, meat, fruit, and vegetables. On Saturdays, the market is surrounded outside by many smaller stalls offering further local produce.
     \n
     \nCuisine: By the quayside there are various outdoor restaurants, perfect for enjoying the daily catch while in the company of hospitable locals. And if fish and seafood don’t tickle your fancy, then great chicken piri-piri and other succulent meat dishes are always on offer."
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/CM_Square.jpg
 part2:
     header: "Local Beach"

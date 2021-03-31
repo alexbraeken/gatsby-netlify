@@ -9,6 +9,26 @@ part1:
     text: "This compact fortified town on the margins of the expansive Guadiana river boasts a rich history dating back to Roman times. Overlooking vast salt flats and bordered by the Reserva Natural do Sapal de Castro Marim, there is much to offer the visitor. Whitewashed houses align narrow cobbled streets winding up to the impressive castle fortifications, whose construction was ordered by King Alfonso III during the XIII Century, with presence on this strategic site dating back to the bronze age. While away a lazy afternoon visiting the castle grounds and enjoy a favourite tipple in one of several bars and cafes dotted along pretty tranquil streets. For provisions, several mini-markets offer the basics, while larger supermarkets and an excellent selection of shopping facilities can be found in the nearby handsome border town of Vila Real do Santo António, just a short drive away.
     \n
     \nCuisine: Several traditional eateries can be found within Castro Marim itself, while country restaurants dotted in the surrounding olive covered lands and small nearby villages, such as Monte Francisco, provide perfect spots to sample hearty meals at very reasonable prices. For a greater selection, and for delicious seafood, head to Vila Real where the daily catch is served simply grilled with flavoursome local produce. Or head across the border, via ferry or road, to the vibrant Andalusian town of Ayamonte, where pretty tile bedecked squares and cosy cafes and restaurants serve varied and appetizing tapas."
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/CM_Square.jpg
 part2:
     header: "Local Beach"

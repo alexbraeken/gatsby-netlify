@@ -9,6 +9,26 @@ part1:
     text: "Picture a typical bucolic Algarvian country scene of undulating hills populated with cork oak, olive and carob, of small holders tending their crops under sunny blue skies and Corte Antonio Martins comes to mind. In deep country, this small hamlet is an idyllic rural retreat, off the beaten track and truly authentic.
     \n
     \nCuisine: At the heart of the hamlet traditional country fare can be enjoyed at hospitable Casa Fernanda, while discover other country eateries nearby in the surrounding hills and for gastronomic delights, head to Monte Rei Golf for Michelin Star excellence."
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/CM_Square.jpg
 part2:
     header: "Local Beach"

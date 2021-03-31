@@ -9,6 +9,26 @@ part1:
     text: "Steeped in history, the tiny whitewashed village of Cacela Velha sits proudly on coastal cliffs offering vistas across gleaming lagoons to the vast Atlantic Ocean beyond. Settled since Phoenician times and an important outpost for the Moors, there is much to discover along the cobbled streets including the pocket-sized fort, the ancient church and a fascinating cemetery!
     
     Cuisine: Despite its size, several cafes and restaurants can be found dotted about the village with a greater selection in nearby Manta Rota and Vila Nova de Cacela."
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/Cacela Pump.jpg
 part2:
     header: "LOCAL BEACH"

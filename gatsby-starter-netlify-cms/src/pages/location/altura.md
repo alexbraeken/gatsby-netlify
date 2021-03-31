@@ -9,6 +9,26 @@ part1:
     text: "This pocket-sized seaside town, popular with Portuguese tourists, offers expansive dune backed Blue Flag beaches and an array of tempting eateries, serving freshly caught fish and seafood. Unassuming and conveniently located between charming Tavira and the handsome frontier town of Vila Real do Santo António, Altura is ideally positioned to enjoy the many attractions of this lesser-known part of the Algarve. With a choice of supermarkets, cafes, bars, restaurants and other amenities at your doorstep, then use of a car is not essential while airport transfers can be easily arranged
     
     Cuisine: Dotted around this typical Portuguese town, a varied and enticing mix of restaurants serve sumptuous dishes, many with very reasonably priced ‘dish of the day’ offerings. At the beach, two popular beach eateries compete for your attention by the long boardwalk down to the shoreline, while at nearby exclusive Praia Verde, refined dining can be found enjoying tremendous ocean views."
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/Altura_2.jpg
 part2:
     header: "Local Beach"

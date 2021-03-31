@@ -1960,3 +1960,46 @@ a.navbar-item, .navbar-item
 
 .car-essential-list
   color: $primary
+
+.mason-image
+  height: 250px
+  line-height: 250px
+  background-position: center
+  background-size: cover
+  margin: 0 1rem 1rem 0
+  flex: 1 0 auto
+  position: relative
+  cursor: pointer
+
+@for $i from 1 through 5
+  .mason-image:nth-child(#{$i}) 
+    $h: (random(300) + 100) + px;
+    width: $h
+  @media only screen and (max-width: 900px)   
+    .mason-image:nth-child(#{$i}) 
+      $h: (random(250) + 70) + px
+      width: $h
+
+.mason-title-area path 
+    d: path("M0 100 C 20 100 50 100 100 100 L 100 100 0 100 Z")
+    transition: all 0.5s
+
+
+.mason-image:hover 
+  & .mason-title-area path 
+      d: path("M0 50 C 20 0 50 0 100 50 L 100 100 0 100 Z")
+  & .mason-title
+    opacity: 1
+    bottom: 5%
+
+.mason-title
+  position: absolute
+  top: auto
+  bottom: -50px
+  left: 15%
+  max-width: 70%
+  z-index: 10
+  opacity: 0
+  transition: all 0.5s
+  & h3
+      color: #fff

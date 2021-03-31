@@ -9,6 +9,26 @@ part1:
     text: "This small sleepy country town sits neatly amidst carob and olive laden countryside under the watchful eye of the Cerro de São Miguel whose hilltop views offer tremendous panoramic vistas across swathes of central and eastern Algarve. Traditional and very much a busy working town, Moncarapacho provides for all needs with a selection of local shops and services.
     \n
     \nCuisine: Dotted around the main church square and along the busy main street, a handful of restaurants offer enticing menus, often with dish of the day options. For seafood, head to Fuzeta where the fresh daily catch is grilled at colourful unpretentious quayside eateries."
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/CM_Square.jpg
 part2:
     header: "Local Beach"

@@ -12,6 +12,26 @@ part1:
     
     \n
     \n Conceicao, as a suburb of Tavira and Cabans has a friendly feel and offers its visitors a warm welcome. Here you will find here a pleasant selection of café bars where you can sit in the sun and enjoy a refreshment or 2(!) along with 3 restaurants offering good quality Portuguese cuisine. The village also has a post office, cash machine and a mini market"
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/Cabanas_River_Crossing.jpg
 part2:
     header: "Local Beach"

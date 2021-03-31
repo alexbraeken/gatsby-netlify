@@ -176,6 +176,32 @@ hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
                                                                     transition-property: left, top, opacity;  
                                                                     }
                                                                     }
+.svg-fill1 path {
+    d: path("M0 100 C 20 0 50 0 100 100 L 100 100 0 100 Z");
+    transition: all 0.5s
+}
+
+.svg-fill2 path{
+    d: path("M0 20 C 30 80 70 0 100 75 L 100 100 0 100 Z");
+    transition: all 0.5s
+}
+
+.boozy-box:hover .svg-fill1 path {
+    d: path("M0 0 C 20 100 50 100 100 0 L 100 100 0 100 Z");
+}
+
+.boozy-box:hover .svg-fill2 path {
+    d: path("M0 80 C 30 20 70 10 100 100 L 100 100 0 100 Z");
+}
+
+.boozy-box img {
+    transition: all 0.5s
+}
+
+.boozy-box:hover img {
+    box-shadow: 0 0 7px 1px #9e9e9e;
+}
+
 </style>
 <h2 style="text-align: center;"><span style="color:#FF8C00;"><b id="docs-internal-guid-91ae58e5-7fff-b6c6-1ba7-b6606b5fba5c">Food Pack Selection &amp; Freshly Prepared Meals </b></span></h2>
 
@@ -293,19 +319,57 @@ hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
         <p>4,95€ (12in/30cm)</p>
     </div>
 </div>
-<div style="text-align:center;">
-    <p>Order bottles of wine of choice for direct delivery</p>
-    <h3>5€ each</h3>
-    <br>
-    <h3>or order our BOOZY BOX!</h3>
-    <img src="https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000205_boozy_box.jpg">
-    <br>
-    <b>Boozy Box</b> includes:<br>
-    1 bottle red wine, 1 bottle white wine, 6 bottles local beer, large bag of crisps, large packet of nuts, 1 jar olives
-    <h3>20€ each</h3>
-    <p>&nbsp;</p>
+<div style="max-width: 100%">
+<h4>Order bottles of wine of choice for direct delivery: 5€ each</h4>
+<h4>OR<h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;" class="boozy-box">
+    <div style="flex: 1 1 50%; display: flex;">
+        <img style="min-width: 250px; width: 100%; max-width: 500px; margin: auto; border-radius: 50%;" src="https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000205_boozy_box.jpg">
+    </div>
+    <div style=" flex: 1 1 50%; display: flex; border-radius: 4px; flex-wrap: wrap; border: 1px solid #E5E5E5; box-shadow: 0 0 5px #e2e2e2; position: relative;">
+        <div style="flex: 1 1 100%; text-align: center; background-color: #FF8C00; display: flex; position: relative">
+            <h3 style="color: #fff; margin: auto; padding: 10px;">ORDER OUR BOOZY BOX!</h3>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: 0;
+          right: 0;
+          height: 10px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill1"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <br>
+        <div style="flex: 1 1 100%; text-align: center; display: flex; position: relative;">
+            <p style="margin: auto; padding: 20px 10px;"><b>Boozy Box</b> includes:<br>
+            1 bottle red wine, 1 bottle white wine, 6 bottles local beer, large bag of crisps, large packet of nuts, 1 jar olives
+            </p>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: 0;
+          right: 0;
+          height: 20px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#333333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill2"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <div style="flex: 1 1 100%; text-align: center; background-color: #333333; display: flex">
+            <h3 style="color: #FF8C00; margin: auto; padding: 10px;">Only 20€ each!</h3>
+        </div>
+    </div>
+</div>
 </div>
 
-<h3 style="text-align: center;"><span style="color:#FF8C00;">Get in touch if you would like to know more!</span></h3>
+
+<h3 style="text-align: center;"><a href="/contact"><span style="color:#FF8C00;">Get in touch if you would like to know more!</span></a></h3>
 
 <p>&nbsp;</p>

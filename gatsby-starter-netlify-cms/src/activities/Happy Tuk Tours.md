@@ -10,5 +10,6 @@ visibleLink: Happy Tuk Tours Facebook
 tags:
   - Excursion
   - Tavira
+  - Cabanas
 ---
 

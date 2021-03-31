@@ -9,6 +9,23 @@ part1:
     text: "Once known as the capital of the Algarve, Tavira stands proud amongst Portuguese history books and you will not fail to be enthralled by its unspoiled charm, character, and tranquility. Delightful attractions await you including colourful cobbled streets, the famed Roman bridge over the meandering Rio Gilão, and an intriguing historical quarter replete with handsome 17th century merchants’ mansions, fine churches and convents of architectural note all bidding for your attention. Castle ramparts have been faithfully restored housing beautiful gardens of indigenous and exotic varieties, while pretty squares edged with café terraces offer the perfect pre-text for lazy afternoons while watching the World pass by. All this can be seen at the 'Camara Obscura' which delights its visitors with an aerial view of the town. On one side of the river there is a large square which has entertainment in the summer months, and by crossing the Roman Bridge to the other side, you will find a little more life in the evenings with a great selection of restaurants tucked away down the cobbled streets and a few later opening café/bars. There is a range of shops to explore, as well as the old market building recently restored with cafes and artisan stalls, as well as the traditional indoor market selling locally grown produce and fresh fish. To enjoy and see the full Tavira aspect, you can take the passenger train which follows a set route around the town, or you can personalize your experience by taking a ‘TUK TUK’ tour in smaller vehicles for 2 – 6 persons.
     \n
     \nCuisine: An abundance of excellent eateries abounds to suit all tastes and pockets, from the traditional to the more avant-garde. Fish and seafood are king here, freshly caught and served grilled, while a plethora of contemporary tapas bars have brought an edge and finesse to the local offering. Plentiful local cafés and gelaterias offer pleasing resting points while out exploring, and keen chefs will enjoy the daily market for freshly caught fish, seafood, meats and produce, all sourced locally and sold over a cacophony of local colour and commotion within the vast market place. We have made some restaurant recommendations below."
+    collage:
+        collage: true
+        img1: 
+            img: ../../../static/img/Tavira_-_R_Bridge_by_Night.jpg
+            title: "Tavira Roman Bridge"
+        img2: 
+            img: ../../../static/img/train.jpg
+            title: "Tavira Island Train"
+        img3: 
+            img: ../../../static/img/anchors.jpg
+            title: "Tavira Anchors"
+        img4: 
+            img: ../../../static/img/Tavira_-_R_Bridge_by_Night.jpg
+            title: "Tavira Roman Bridge"
+        img5: 
+            img: ../../../static/img/train.jpg
+            title: "Tavira Island Train"
     img: ../../../static/img/Tavira_Piazza.jpg
 part2:
     header: "LOCAL BEACH"

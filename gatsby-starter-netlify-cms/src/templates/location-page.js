@@ -64,9 +64,17 @@ export const LocationPageTemplate = ({
         }
       }, [])
 
+
+      const collage = part1.collage.collage ? [{img: part1.collage.img1.img, title: part1.collage.img1.title}, 
+        {img: part1.collage.img2.img, title: part1.collage.img2.title}, 
+        {img: part1.collage.img3.img, title: part1.collage.img3.title},
+        {img: part1.collage.img4.img, title: part1.collage.img4.title},
+        {img: part1.collage.img5.img, title: part1.collage.img5.title},] : null
+
     const slides = part2.slider.slider ? [{slide: part2.slider.img1.img, title: part2.slider.img1.title}, 
       {slide: part2.slider.img2.img, title: part2.slider.img2.title}, 
       {slide: part2.slider.img3.img, title: part2.slider.img3.title}] : null
+
 
     const nextIcon = <span aria-hidden="true" className="carousel-control-next-icon feature-next-icon" />
     const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
@@ -101,7 +109,42 @@ export const LocationPageTemplate = ({
               <p>{part1.text}</p>
               </div>
             </Col>
-            {part1.img && 
+            {collage && 
+            <Col md={12} lg={6}>
+              <div style={{display:"flex", flexWrap:"wrap", width:"100%"}}>
+                {collage.map((img, index)=>{
+                  return (
+                  <div className="mason-image">
+                    <PreviewCompatibleImage  imageInfo={img.img} key={index} imgStyle={{borderRadius: "5px", height:"250px", flexGrow:"1"}}/>
+                    <div className="mason-title">
+                      <h3>{img.title}</h3>
+                    </div>
+                    <div style={{ 
+          width: "100%",
+          position: "absolute",
+          top: "auto",
+          bottom: "0",
+          right: "0",
+          height: "100px",
+          zIndex: "1",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg className="mason-title-area" fill="#f5821e" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              bottom: "-1px",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path></path> 
+            </svg>
+            </div>
+                  </div>
+                  )
+                })
+                }
+              </div>
+            </Col>}
+            {!collage && part1.img && 
             <Col md={12} lg={6}>
                 <PreviewCompatibleImage imageInfo={part1.img} imgStyle={{borderRadius: "5px", marginLeft: "-150px", marginRight: "-150px"}}/>
             </Col>}
@@ -222,6 +265,7 @@ LocationPageTemplate.propTypes = {
   part1:  PropTypes.shape({
     header: PropTypes.string,
     text: PropTypes.string,
+    collage: PropTypes.object,
     img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   }),
   part2: PropTypes.shape({
@@ -281,6 +325,64 @@ export const LocationPageQuery = graphql`
         part1 {
           header
           text
+          collage {
+            collage
+            img1 {
+              title
+              img {
+                childImageSharp {
+                  fluid(maxWidth: 700, quality: 90) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+                publicURL
+              }
+            }
+            img2 {
+              title
+              img {
+                childImageSharp {
+                  fluid(maxWidth: 700, quality: 90) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+                publicURL
+              }
+            }
+            img3 {
+              title
+              img {
+                childImageSharp {
+                  fluid(maxWidth: 700, quality: 90) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+                publicURL
+              }
+            }
+            img4 {
+              title
+              img {
+                childImageSharp {
+                  fluid(maxWidth: 700, quality: 90) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+                publicURL
+              }
+            }
+            img5 {
+              title
+              img {
+                childImageSharp {
+                  fluid(maxWidth: 700, quality: 90) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+                publicURL
+              }
+            }
+          }
           img {
             childImageSharp {
               fluid(maxWidth: 1000, quality: 100) {

@@ -9,6 +9,26 @@ part1:
     text: "This picture postcard village sits several kilometres from Tavira amidst time worn vineyards and olive laden pastures; a perfect setting to unwind and embrace the slower pace of life in your rural retreat. Radiating from the main church square, several cafes and shops provide for basic needs, while larger stores and supermarkets can be found in nearby Tavira.
     \n
     \nCuisine: Several excellent restaurants, serving wholesome country fare are within easy reach, while for a greater selection head to Tavira to enjoy both traditional Portuguese cuisine, or a visit to one of several up-and-coming modern bistros and eateries."
+    collage:
+        collage: false
+        img1: 
+            img: null
+            title: null
+        img2: 
+            img: null
+            title: null
+        img3: 
+            img: null
+            title: null
+        img4: 
+            img: null
+            title: null
+        img5: 
+            img: null
+            title: null
+        img6: 
+            img: null
+            title: null
     img: ../../../static/img/CM_Square.jpg
 part2:
     header: "Local Beach"

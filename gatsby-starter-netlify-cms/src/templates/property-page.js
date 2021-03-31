@@ -581,10 +581,7 @@ const PropertyPage = (data) => {
       }, [propNav])
 
     return(
-        <>
-            <PropertyNav navStyles={headerStyle} handlePathChange={() => data.handlePathChange()}/>
             <PropertyPageTemplate id={data.id} handlePathChange={() => data.handlePathChange()}/>
-        </>
     )
 }
 
