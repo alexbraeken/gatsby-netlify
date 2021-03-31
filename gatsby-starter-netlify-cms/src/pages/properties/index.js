@@ -45,26 +45,6 @@ const Properties = React.memo((props) => {
 
     const container = useRef(null)
     const datePicker = useRef(null)
-    /* useEffect(() => {
-        const uri = "https://api.hostfully.com/v2/properties?tags=winter%20let&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
-        console.log("fetching")
-        fetch(uri, {
-        headers:{
-        "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
-        }
-    })
-            .then(response => {
-                
-                return response.text()
-            })
-            .then(data => {
-            console.log(JSON.parse(data));
-            setWinterLets(JSON.parse(data).propertiesUids)
-            })
-    return () => {
-        setWinterLets([])
-    }
-    }, [])*/
 
     useEffect(() => {
         return () => {
@@ -104,7 +84,7 @@ const Properties = React.memo((props) => {
         
             fetch(uri, {
             headers:{
-            "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+            "X-HOSTFULLY-APIKEY": process.env.HOSTFULLY_API_KEY
                 }
             })
                 .then(response => {
@@ -404,6 +384,8 @@ export default class PropertiesPage extends Component {
         return (
             <Layout pathKey={this.state.path}>
                 <Router>
+                        <PropertyTemplate path="/properties/:id" 
+                        handlePathChange= {this.handlePathChange}/>
                         <Properties path ="/properties" 
                         state={this.state} 
                         handleChange={this.handleChange} 
@@ -413,8 +395,7 @@ export default class PropertiesPage extends Component {
                         handleSelectDeselectAll={this.handleSelectDeselectAll}
                         handleDateChange= {this.handleDateChange}
                         handlePathChange= {this.handlePathChange}/>
-                        <PropertyTemplate path="/properties/:id" 
-                        handlePathChange= {this.handlePathChange}/>
+                        
                 </Router>       
             </Layout> 
           );

@@ -74,7 +74,7 @@ const CalendarModal = (props) => {
         
         fetch(uri, {
         headers:{
-        "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+        "X-HOSTFULLY-APIKEY": process.env.HOSTFULLY_API_KEY
             }
         })
                 .then(response => {

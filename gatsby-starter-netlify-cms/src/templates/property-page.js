@@ -58,13 +58,11 @@ export const PropertyPageTemplate = ( props ) =>
         if(searchDates)setBookDates({from: searchDates.from, to: searchDates.to});
 
         setPropId(props.id)
-
         if(props.id){
-            
             const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${props.id}`
             fetch(uri, {
             headers:{
-            "X-HOSTFULLY-APIKEY": "PEpXtOzoOAZGrYC8"
+            "X-HOSTFULLY-APIKEY": process.env.HOSTFULLY_API_KEY
                 }
             })
                     .then(response => {
