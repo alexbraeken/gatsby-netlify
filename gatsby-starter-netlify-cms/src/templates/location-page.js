@@ -250,6 +250,8 @@ export const LocationPageTemplate = ({
     }
     <section>
       <Container style={{textAlign: "center"}}>
+      <ActivitiesRoll location={location} type="Restaurant"/>
+        <br />
         <ActivitiesRoll location={location}/>
         <br />
         <h4>For a full list of activities nearby, checkout our activities list <a href="/travelerTips"><span style={{color:"#f5821e"}}>here!</span></a></h4>

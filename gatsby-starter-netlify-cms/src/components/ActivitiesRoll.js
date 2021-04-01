@@ -36,12 +36,32 @@ class ActivitiesRoll extends React.PureComponent {
     const { data } = this.props
     const { edges: activities } = data.allMarkdownRemark
     const list = [];
-    if(activities && this.props.location){
-      activities.forEach(({ node: activity }) =>{
-        if(activity.frontmatter.tags.indexOf(this.props.location) !== -1){ 
-          list.push(activity) 
-        } else return null
-      })
+    if(activities && this.props.location && this.props.type){
+      let BreakException;
+      try{
+        activities.forEach(({ node: activity }) =>{
+          if(activity.frontmatter.tags.indexOf(this.props.location) !== -1 && activity.frontmatter.tags.indexOf(this.props.type) !== -1){ 
+            list.push(activity)
+            if (list.length > 3) throw BreakException 
+          } else return null
+        })
+      } catch (e) {
+        if (e !== BreakException) throw e;
+      }
+    }
+    else if(activities && this.props.location){
+      let BreakException;
+      try{
+        activities.forEach(({ node: activity }) =>{
+          if(activity.frontmatter.tags.indexOf(this.props.location) !== -1){ 
+            list.push(activity)
+            if (list.length > 3) throw BreakException 
+          } else return null
+        })
+      } catch (e) {
+        if (e !== BreakException) throw e;
+      }
+      
     }
     else if (activities && this.props.filter){
       activities.forEach(({ node: activity }) =>{
@@ -60,7 +80,13 @@ class ActivitiesRoll extends React.PureComponent {
 
     return (
       <>
-      {this.props.location && Object.keys(this.props.location).length>0 && list.length > 0 &&
+      {this.props.type && list.length > 0 &&
+        <>
+          <h2>Restaurants Nearby</h2>
+          <br />
+        </>
+      }
+      {this.props.location && list.length > 0 && Object.keys(this.props.location).length>0 && list.length > 0 && !this.props.type &&
         <>
           <h2>Activities Nearby</h2>
           <br />
@@ -86,8 +112,9 @@ ActivitiesRoll.propTypes = {
 }
 
 export default (props) => {
-  const filter = props.filter? props.filter : null
-  const location = props.location ? props.location : null
+  const filter = props.filter || null
+  const location = props.location || null
+  const type = props.type || null
 return(
   <StaticQuery
     query={graphql`
@@ -125,7 +152,7 @@ return(
         }
       }
     `}
-    render={(data, count) => <ActivitiesRoll data={data} count={count} location={location} filter={filter}/>}
+    render={(data, count) => <ActivitiesRoll data={data} count={count} location={location} filter={filter} type={type}/>}
   />
 )
 }

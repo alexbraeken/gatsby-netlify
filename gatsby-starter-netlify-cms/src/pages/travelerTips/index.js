@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 import AlgarveCarousel from '../../components/AlgarveCarousel';
 import StickyBox from "react-sticky-box";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChild, faHiking, faHorse, faGolfBall, faInfinity } from '@fortawesome/free-solid-svg-icons';
+import { faChild, faHiking, faHorse, faGolfBall, faInfinity, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row } from 'react-bootstrap';
 
 export default class TravelerTipsIndex extends React.Component {
@@ -62,6 +62,9 @@ export default class TravelerTipsIndex extends React.Component {
                   </div>
                   <div className={`filter-button ${this.state.activityFilter === "Golf" ? "selected":""}`} onClick={()=>this.handleClick("Golf")}>
                       <span>Golf</span><FontAwesomeIcon icon={faGolfBall} /> 
+                  </div>
+                  <div className={`filter-button ${this.state.activityFilter === "Restaurant" ? "selected":""}`} onClick={()=>this.handleClick("Restaurant")}>
+                      <span>Restaurants</span><FontAwesomeIcon icon={faUtensils} /> 
                   </div>
               </div>
             </StickyBox>

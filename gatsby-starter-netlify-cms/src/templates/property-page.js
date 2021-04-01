@@ -541,7 +541,6 @@ const PropertyPage = (data) => {
     const [headerStyle, setHeaderStyle] = useState({
         transition: 'all 300ms ease-in',
         transform: 'translate(0, -200%)'
-
       })
 
     useEffect(() => {
