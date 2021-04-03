@@ -19,7 +19,6 @@ const options = [
   { value: 'Altura', label: 'Altura' },
   { value: 'Vila Nova de Cacela', label: 'Vila Nova de Cacela' },
   { value: 'Conceição', label: 'Conceição' },
-  { value: 'Cabanas de Tavira', label: 'Cabanas de Tavira' },
   { value: 'Fuseta', label: 'Fuseta' },
   { value: 'Moncarapacho', label: 'Moncarapacho' },
   { value: 'Santa Rita', label: 'Santa Rita' },

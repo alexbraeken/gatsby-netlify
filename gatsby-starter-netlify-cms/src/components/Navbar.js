@@ -27,7 +27,7 @@ const PropertiesDropDown = React.memo((props) => {
                                 <>
                                 <div style={{gridColumn:2}}>
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
-                                    <h4 className="dropdown-title" style={{color:"#fff"}}>City</h4>
+                                    <h4 className="dropdown-title" style={{color:"#fff"}}>Location</h4>
                                   </div>
                                   
                                   {d.value.Locations.map((city, index)=>(
@@ -41,7 +41,7 @@ const PropertiesDropDown = React.memo((props) => {
                                   </div>
                                   <div style={{gridColumn:3}}>
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
-                                    <h4 className="dropdown-title" style={{color:"#fff"}}>Lodging Type</h4>
+                                    <h4 className="dropdown-title" style={{color:"#fff"}}>Property Type</h4>
                                   </div>
                                   {d.value.Types.map((type, index)=>(
                                     <a href={`/properties?type=${type}`} key={index}>

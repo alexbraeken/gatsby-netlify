@@ -28,7 +28,7 @@ const CardCalendar = (props) => {
             data = String(data);
             dates = patt.exec(data);
             dates = dates[0].slice(1, -1)
-            array = JSON.parse(dates);
+            array = JSON.parse(dates).checkIn;
             let disabledDates= array.map(date =>{
                 return new Date (date.date)
             })

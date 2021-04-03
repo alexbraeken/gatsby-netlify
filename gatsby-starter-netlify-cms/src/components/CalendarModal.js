@@ -40,7 +40,6 @@ const CalendarModal = (props) => {
       }
     
     const handleFromChange = (fromDate) => {
-      console.log(fromDate)
 
         if(dates.to){
           setTest('stuff')

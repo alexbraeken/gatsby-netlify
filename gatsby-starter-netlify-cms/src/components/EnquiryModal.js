@@ -46,7 +46,7 @@ const CalendarModal = (props) => {
         return false;
       }
     
-      emailjs.sendForm('service_b1i70gp', 'template_ob1lgqk', formInfo, 'user_aFdspgaDFSpgRTvFP3Ap9')
+      emailjs.sendForm(process.env.GATSBY_EMAILJS_SERVICE_KEY, process.env.GATSBY_EMAILJS_TEMPLATE_KEY, formInfo, process.env.GATSBY_EMAILJS_USER)
       .then((result)=> {
         console.log(result.text)
         return true;
