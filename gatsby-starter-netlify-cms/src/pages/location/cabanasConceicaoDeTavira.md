@@ -13,41 +13,41 @@ part1:
     \n
     \n Conceicao, as a suburb of Tavira and Cabans has a friendly feel and offers its visitors a warm welcome. Here you will find here a pleasant selection of café bars where you can sit in the sun and enjoy a refreshment or 2(!) along with 3 restaurants offering good quality Portuguese cuisine. The village also has a post office, cash machine and a mini market"
     collage:
-        collage: false
+        collage: true
         img1: 
-            img: null
-            title: null
+            img: ../../../static/img/Boardwalk and River.jpg
+            title: Boardwalk and River
         img2: 
-            img: null
-            title: null
+            img: ../../../static/img/Cabanas_River_Crossing.jpg
+            title: Cabanas River Crossing
         img3: 
-            img: null
-            title: null
+            img: ../../../static/img/Boats.jpg
+            title: Cabanas Boats
         img4: 
-            img: null
-            title: null
+            img: ../../../static/img/Cabanas at Dusk.jpg
+            title: Cabanas at Dusk
         img5: 
-            img: null
-            title: null
+            img: ../../../static/img/Cabans_Beach_Island_2.jpg
+            title: Cabanas Beach Island
         img6: 
-            img: null
-            title: null
+            img: ../../../static/img/Cabas_Village.jpg
+            title: Cabas Village
     img: ../../../static/img/Cabanas_River_Crossing.jpg
 part2:
     header: "Local Beach"
     text: "Separated by an arm of the River Formosa the beach sands are reached via a short and inexpensive boat crossing, where you will find mile upon mile of dune backed golden sands lapped by the crystal blue waters of the Atlantic Ocean; a paradise just waiting to be explored and enjoyed."
-    slider:
-        slider: false
-        img1: 
-            img: ../../../static/img/Castro_Marim.jpg
-            title: Castro Marim
-        img2: 
-            img: ../../../static/img/praiadamantarota7.jpg
-            title: Manta Rota
-        img3: 
-            img: ../../../static/img/tavira.jpg
-            title: "Tavira"
     img: ../../../static/img/Cabanas_Beach.jpg
+    slider:
+        slider: true
+        img1: 
+            img: ../../../static/img/Cabanas_Beach.jpg
+            title: "Cabanas Beach"
+        img2: 
+            img: ../../../static/img/Cabanas_River_Crossing_2.jpg
+            title: "Cabanas River Crossing"
+        img3: 
+            img: ../../../static/img/Cabanas_Beach_Island.jpg
+            title: "Cabanas Beach Island"
 part3:
     header: ""
     text: ""

@@ -84,9 +84,9 @@ export const LocationPageTemplate = ({
     <div
       className="full-width-image-container margin-top-0 gradient-bg"
       style={{
-        backgroundImage: `url(${
+        backgroundImage: `url('${
           image.publicURL
-        })`,
+        }')`,
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}

@@ -408,8 +408,9 @@ export const PropertyPageTemplate = ( props ) =>
                                     </Col>
                                         <Col xs={12} md={3} style={{display: "flex", alignItems: "flex-start"}}>
                                             <StickyBox offsetTop={50}>
+                                                <div className="tabs-container">
                                                 <Tabs defaultActiveKey="propSpecs" id="keyDetails">
-                                                    <Tab eventKey="propSpecs" title="Property Specs.">
+                                                    <Tab eventKey="propSpecs" title="Property Specs." tabClassName="orangeText">
                                                     <ul>
                                                         <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
                                                         <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
@@ -419,7 +420,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <li><FontAwesomeIcon icon={faSwimmingPool} style={{margin:"auto"}}/> Pool Size: <span style={{float: "right"}}>{poolDimensions}</span></li>}
                                                     </ul>
                                                     </Tab>
-                                                    <Tab eventKey="keyDistances" title="Key Distances" className="keyDistances">
+                                                    <Tab eventKey="keyDistances" title="Key Distances" className="keyDistances" tabClassName="orangeText keyDistances">
                                                         <div>
                                                             <ul>
                                                                 {travelDistances.Town && <li >
@@ -444,6 +445,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </div>
                                                     </Tab>
                                                 </Tabs>
+                                                </div>
                                                 <br />
                                                 <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
                                                 <hr />

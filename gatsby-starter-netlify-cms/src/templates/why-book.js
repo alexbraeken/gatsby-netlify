@@ -30,6 +30,8 @@ class CustomSlide extends React.Component {
               </svg>
               <div className="slide__text">
               <h2 className="slide__text-heading">{this.props.slide.title}</h2>
+              {console.log(this.props.slide.id)}
+              <h4><a href={`/properties/${this.props.slide.id}`}><span className="orangeText hover-highlight">View This Property</span></a></h4>
               </div>
               </div>
         <h3></h3>
@@ -47,10 +49,13 @@ export const WhyBookPageTemplate = ({
   part2,
   sliderImg1,
   sliderImageTitle1,
+  sliderImgPropId1,
   sliderImg2,
   sliderImageTitle2,
+  sliderImgPropId2,
   sliderImg3,
   sliderImageTitle3,
+  sliderImgPropId3,
   part3,
   part3Img,
   testimonialHeader
@@ -72,9 +77,9 @@ export const WhyBookPageTemplate = ({
     }
   }, [])
 
-  const slides = [{slide: sliderImg1, title: sliderImageTitle1}, 
-    {slide: sliderImg2, title: sliderImageTitle2}, 
-    {slide: sliderImg3, title: sliderImageTitle3}]
+  const slides = [{slide: sliderImg1, title: sliderImageTitle1, id: sliderImgPropId1}, 
+    {slide: sliderImg2, title: sliderImageTitle2, id: sliderImgPropId2}, 
+    {slide: sliderImg3, title: sliderImageTitle3, id: sliderImgPropId3}]
 
     const nextIcon = <span aria-hidden="true" className="carousel-control-next-icon feature-next-icon" />
     const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
@@ -230,10 +235,13 @@ WhyBookPageTemplate.propTypes = {
   part2: PropTypes.object,
   sliderImg1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderImageTitle1: PropTypes.string,
+  sliderImgPropId1: PropTypes.string,
   sliderImg2: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderImageTitle2: PropTypes.string,
+  sliderImgPropId2: PropTypes.string,
   sliderImg3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderImageTitle3: PropTypes.string,
+  sliderImgPropId3: PropTypes.string,
   part3Img:PropTypes.object,
   part3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   testimonialHeader: PropTypes.string,
@@ -252,10 +260,13 @@ const WhyBookPage = ({ data }) => {
         part2={frontmatter.part2}
         sliderImg1={frontmatter.sliderImg1}
         sliderImageTitle1={frontmatter.sliderImageTitle1}
+        sliderImgPropId1={frontmatter.sliderImgPropId1}
         sliderImg2={frontmatter.sliderImg2}
         sliderImageTitle2={frontmatter.sliderImageTitle2}
+        sliderImgPropId2={frontmatter.sliderImgPropId2}
         sliderImg3={frontmatter.sliderImg3}
         sliderImageTitle3={frontmatter.sliderImageTitle3}
+        sliderImgPropId3={frontmatter.sliderImgPropId3}
         part3Img={frontmatter.part3Img}
         part3={frontmatter.part3}
         testimonialHeader={frontmatter.testimonialHeader}
@@ -313,6 +324,7 @@ export const WhyBookPageQuery = graphql`
           publicURL
         }
         sliderImageTitle1
+        sliderImgPropId1
         sliderImg2{
           childImageSharp {
             fluid(maxWidth: 1000, quality: 100) {
@@ -322,6 +334,7 @@ export const WhyBookPageQuery = graphql`
           publicURL
         }
         sliderImageTitle2
+        sliderImgPropId2
         sliderImg3{
           childImageSharp {
             fluid(maxWidth: 1000, quality: 100) {
@@ -331,6 +344,7 @@ export const WhyBookPageQuery = graphql`
           publicURL
         }
         sliderImageTitle3
+        sliderImgPropId3
         part3Img{
           childImageSharp {
             fluid(maxWidth: 1000, quality: 100) {

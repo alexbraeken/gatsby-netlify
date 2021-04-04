@@ -3,7 +3,7 @@ path: /location
 location: Corte Antonio Martins
 templateKey: location-page
 title: Corte Antonio Martins
-image: ../../../static/img/CM_Castle.jpg
+image: ../../../static/img/Corte_ant_mart2.jpg
 part1: 
     header: "A Lovely Drive Out to Find a Hidden Gem in the Countryside…"
     text: "Picture a typical bucolic Algarvian country scene of undulating hills populated with cork oak, olive and carob, of small holders tending their crops under sunny blue skies and Corte Antonio Martins comes to mind. In deep country, this small hamlet is an idyllic rural retreat, off the beaten track and truly authentic.
@@ -29,7 +29,7 @@ part1:
         img6: 
             img: null
             title: null
-    img: ../../../static/img/CM_Square.jpg
+    img: ../../../static/img/Corte_ant_mart1.jpg
 part2:
     header: "Local Beach"
     text: "The Algarve’s famed beaches are but a short drive away at Manta Rota and Altura where long stretches of golden sands can be enjoyed by young and old"
@@ -37,10 +37,10 @@ part2:
         slider: false
         img1: 
             img: ../../../static/img/Castro_Marim.jpg
-            title: Castro Marim
+            title: "Castro Marim"
         img2: 
             img: ../../../static/img/praiadamantarota7.jpg
-            title: Manta Rota
+            title: "Manta Rota"
         img3: 
             img: ../../../static/img/tavira.jpg
             title: "Tavira"

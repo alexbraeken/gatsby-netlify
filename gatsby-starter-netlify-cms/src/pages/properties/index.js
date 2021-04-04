@@ -186,12 +186,11 @@ const Properties = React.memo((props) => {
                                         display: "flex",
                                         justifyContent: "space-between"}}>
                                             <div style={{display:"flex", flexWrap:"nowrap"}}>
-                                            <p style={{margin:"auto", paddingRight:"5px"}}>Sort By: </p> 
                                         <Form.Group style={{margin:"10px auto"}}>
-                                            <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)}>
-                                                <option value="">Default</option>
-                                                <option value="price-min">Daily Rate $ &#8594; $$$</option>
-                                                <option value="price-max">Daily Rate $$$ &#8594; $</option>
+                                            <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm">
+                                                <option value="">Sort By</option>
+                                                <option value="price-min">Daily Rate € &#8594; €€€</option>
+                                                <option value="price-max">Daily Rate €€€ &#8594; €</option>
                                                 <option value="bedrooms-min">Bedrooms Increasing</option>
                                                 <option value="bedrooms-max">Bedrooms Decreasing</option>
                                                 <option value="a-z">A &#8594; Z</option>

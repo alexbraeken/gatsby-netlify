@@ -3,7 +3,7 @@ path: /location
 location: Cacela
 templateKey: location-page
 title: Cacela Velha
-image: ../../../static/img/cacela_velha.jpg
+image: ../../../static/img/Cacela_V.jpg
 part1: 
     header: "A Must Visit Location During Your Stay…"
     text: "Steeped in history, the tiny whitewashed village of Cacela Velha sits proudly on coastal cliffs offering vistas across gleaming lagoons to the vast Atlantic Ocean beyond. Settled since Phoenician times and an important outpost for the Moors, there is much to discover along the cobbled streets including the pocket-sized fort, the ancient church and a fascinating cemetery!
@@ -44,7 +44,7 @@ part2:
         img3: 
             img: null
             title: null
-    img: ../../../static/img/cacela_v_beach.jpg
+    img: ../../../static/img/Cacela_V2.jpg
 part3:
     header: ""
     text: ""

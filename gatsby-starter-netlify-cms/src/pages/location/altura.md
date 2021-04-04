@@ -3,7 +3,7 @@ path: /location
 location: Altura
 templateKey: location-page
 title: Altura
-image: ../../../static/img/altura_1.jpg
+image: ../../../static/img/Altura_Village_2.jpg
 part1: 
     header: "“A Popular Beach Town, Perfect for Family Holidays…"
     text: "This pocket-sized seaside town, popular with Portuguese tourists, offers expansive dune backed Blue Flag beaches and an array of tempting eateries, serving freshly caught fish and seafood. Unassuming and conveniently located between charming Tavira and the handsome frontier town of Vila Real do Santo António, Altura is ideally positioned to enjoy the many attractions of this lesser-known part of the Algarve. With a choice of supermarkets, cafes, bars, restaurants and other amenities at your doorstep, then use of a car is not essential while airport transfers can be easily arranged
@@ -33,6 +33,7 @@ part1:
 part2:
     header: "Local Beach"
     text: "With a Blue Flag status ensuring high standards and facilities, and with a softly sloping shelf into the clean blue waters of the Atlantic Ocean, then it is clear to see why Altura is a popular family destination. Stretching East, long walks can be taken along the soft shoreline taking in the other equally splendid beaches of Praia Verde and Cabeco, then onto ever popular Monte Gordo. Heading West, the sands stretch as far as the eye can see, merging effortlessly into the vast Ria Formosa Natural Park. The summer brings a super selection of water sports."
+    img: ../../../static/img/Castro_Marim.jpg
     slider:
         slider: false
         img1: 
@@ -44,7 +45,6 @@ part2:
         img3: 
             img: ../../../static/img/tavira.jpg
             title: "Tavira"
-    img: ../../../static/img/Altura_Beach.jpg
 part3:
     header: ""
     text: ""

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
+import Slider from "react-slick";
 
 const ActivityCard = React.memo((props) =>{
   return(
@@ -29,6 +30,63 @@ const ActivityCard = React.memo((props) =>{
   )
 })
 
+class SimpleSlider extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      slides : this.props.slides
+    }
+  }
+  render() {
+    const settings = {
+      dots: false,
+      infinite: true,
+      centerPadding: "30px",
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
+    return (
+      <div style={{height: "450px"}}>
+        <Slider {...settings}>
+          {this.state.slides.map((slide, index) => {
+            return slide? <ActivityCard activity={slide}  key={index}/> : null 
+          })}
+        </Slider>
+      </div>
+    );
+  }
+}
+
 
 class ActivitiesRoll extends React.PureComponent {
 
@@ -42,7 +100,7 @@ class ActivitiesRoll extends React.PureComponent {
         activities.forEach(({ node: activity }) =>{
           if(activity.frontmatter.tags.indexOf(this.props.location) !== -1 && activity.frontmatter.tags.indexOf(this.props.type) !== -1){ 
             list.push(activity)
-            if (list.length > 3) throw BreakException 
+            if (list.length > 10) throw BreakException 
           } else return null
         })
       } catch (e) {
@@ -55,7 +113,7 @@ class ActivitiesRoll extends React.PureComponent {
         activities.forEach(({ node: activity }) =>{
           if(activity.frontmatter.tags.indexOf(this.props.location) !== -1){ 
             list.push(activity)
-            if (list.length > 3) throw BreakException 
+            if (list.length > 10) throw BreakException 
           } else return null
         })
       } catch (e) {
@@ -92,12 +150,16 @@ class ActivitiesRoll extends React.PureComponent {
           <br />
         </>
         }
+      {(this.props.type || this.props.location) && list.length > 0 ? 
+      <SimpleSlider slides={list} /> 
+      :
       <div className="columns is-multiline" style={{justifyContent:"center"}}>
         {list && list.length > 0 &&
           list.map((activity, index) => {
             return activity? <ActivityCard activity={activity}  key={index}/> : null
             })}
       </div>
+      }
       </>
     )
   }

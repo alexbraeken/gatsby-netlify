@@ -237,7 +237,7 @@ module.exports = {
         reactGaOptions: {
             debug: true,
             gaOptions: {
-                sampleRate: 10
+                sampleRate: 100
             }
         }
       },
@@ -248,7 +248,7 @@ module.exports = {
           // The ID is part of the CookieHub URL: https://cookiehub.net/cc/YOUR_COOKIEHUB_ID.js
           cookieHubId: "31b140ff",
           // Optional parameter (default false) - Use new v2 API.
-          cookieHubV2Api: true,
+          cookieHubV2Api: false,
           // Categories configured with CookieHub
           categories: [
           { 

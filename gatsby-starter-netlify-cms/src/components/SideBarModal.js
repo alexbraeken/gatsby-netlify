@@ -21,6 +21,34 @@ const amenitiesFilterList = [
         amenity: 'Allows Pets',
         value: 'allowsPets'
     },
+    {
+        amenity: 'Air Conditioning',
+        value: 'hasAirConditioning'
+    },
+    {
+        amenity: 'Barbecue',
+        value: 'hasBarbecue'
+    },
+    {
+        amenity: 'Elevator',
+        value: 'hasElevator'
+    },
+    {
+        amenity: 'Garden',
+        value: 'hasGarden'
+    },
+    {
+        amenity: 'Gym',
+        value: 'hasGym'
+    },
+    {
+        amenity: 'Heating',
+        value: 'hasHeating'
+    },
+    {
+        amenity: 'Wi-Fi',
+        value: 'hasInternetWifi'
+    },
 ]
 
 export default function SideBarModal(props) {
@@ -49,9 +77,9 @@ export default function SideBarModal(props) {
                 </div>
                 <Form>
                     <Container>
-                        <h2 style={{textAlign: "center"}}>
+                        <h3 style={{textAlign: "center"}}>
                             Filter Search
-                        </h2>
+                        </h3>
                         <br />
                     <Row>
                     <Container fluid className="filter-header">
@@ -170,13 +198,6 @@ export default function SideBarModal(props) {
                     </Row>
                     </Container>
                 </Form>
-                <div style={{position:"absolute", bottom:"5%",left:"0", width:"100%", display:"flex"}}>
-                    <div style={{margin:"auto", textAlign:"center"}}>
-                        <Link to="/" title="Logo" >
-                            <img src={logo} alt="Smarta" style={{width:"30%"}}/>
-                        </Link>
-                    </div>
-                </div> 
             </Container>
             </Col>
         </div> 

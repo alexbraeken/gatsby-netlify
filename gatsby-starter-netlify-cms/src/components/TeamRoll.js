@@ -73,7 +73,7 @@ export default (props) => (
                 templateKey
                 featuredimage {
                   childImageSharp{
-                    fluid{
+                    fluid (maxWidth: 500, quality: 90){
                       src
                     }
                   }

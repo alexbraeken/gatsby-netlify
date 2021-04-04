@@ -148,6 +148,7 @@ const CalendarModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'message'}
                 required={true}
+                placeholder="Ask here!"
               />
             </div>
           </div>

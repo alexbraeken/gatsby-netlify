@@ -1,4 +1,6 @@
 @import "~bulma/sass/utilities/initial-variables"
+@import "~slick-carousel/slick/slick.css"
+@import "~slick-carousel/slick/slick-theme.css"
 
 // Config vars
 // Kaldi logo brand color: #FD461E
@@ -667,6 +669,10 @@ $min-margin: 10px
         opacity: 0.3
         box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2)
 
+@media only screen and (max-width: 900px)
+  .filter-container
+    margin-top: 110px
+
 .custom-control-label::before
   color: #000
   box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1)
@@ -811,7 +817,7 @@ $min-margin: 10px
   height: 0px
   transition: all 1s
 
-@media only screen and (max-width: 900px)
+@media only screen and (max-width: 700px)
   .filterExpand
     display: none
 
@@ -1839,6 +1845,7 @@ a.navbar-item, .navbar-item
   transform: translateX(-100%)
   z-index: 2
   overflow: auto
+  min-width: min-content
   &.active
     transform: translateX(0)
 
@@ -2063,3 +2070,9 @@ a.navbar-item, .navbar-item
   transition: all 0.5s
   & h3
       color: #fff
+
+.tabs-container
+  nav
+    justify-content: space-between
+    & .orangeText.active
+        color: $primary
