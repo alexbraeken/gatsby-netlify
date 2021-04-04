@@ -44,7 +44,7 @@ part2:
         img3: 
             img: null
             title: null
-    img: ../../../static/img/cacela_v_beach.jpg
+    img: ../../../static/img/Cacela_V2.jpg
 part3:
     header: ""
     text: ""
