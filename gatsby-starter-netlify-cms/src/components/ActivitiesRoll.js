@@ -39,8 +39,9 @@ class SimpleSlider extends Component {
   }
   render() {
     const settings = {
-      dots: false,
       infinite: true,
+      dots: true,
+      className: "center",
       centerPadding: "30px",
       speed: 500,
       slidesToShow: 4,
@@ -63,14 +64,16 @@ class SimpleSlider extends Component {
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
-            initialSlide: 2
+            initialSlide: 2,
+            dots: false
           }
         },
         {
           breakpoint: 480,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            dots: false
           }
         }
       ]
@@ -144,21 +147,29 @@ class ActivitiesRoll extends React.PureComponent {
           <br />
         </>
       }
-      {this.props.location && list.length > 0 && Object.keys(this.props.location).length>0 && list.length > 0 && !this.props.type &&
+      {this.props.location && list.length > 0 && Object.keys(this.props.location).length>0 && !this.props.type &&
         <>
           <h2>Activities Nearby</h2>
           <br />
         </>
         }
-      {(this.props.type || this.props.location) && list.length > 0 ? 
+      {(this.props.type || this.props.location) && list.length > 0 && 
+      list.length > 4 ?
       <SimpleSlider slides={list} /> 
       :
+      <div className="columns is-multiline" style={{justifyContent:"center"}}>
+      {list.map((activity, index) => {
+          return activity? <ActivityCard activity={activity}  key={index}/> : null
+          })}
+    </div>
+      }
+      {!(this.props.type || this.props.location) ? 
       <div className="columns is-multiline" style={{justifyContent:"center"}}>
         {list && list.length > 0 &&
           list.map((activity, index) => {
             return activity? <ActivityCard activity={activity}  key={index}/> : null
             })}
-      </div>
+      </div> : null
       }
       </>
     )

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
@@ -21,7 +21,8 @@ class CustomSlide extends React.Component {
       position: "relative",
       backgroundSize:"cover",
       backgroundPosition:"center",
-      padding: "40px"}}>
+      padding: "40px"}}
+      className="slide-image-container">
           <div className="slide__content">
               <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
               <path className="slide__overlay-path" d="M0,0 150,0 300,405 0,405"></path> 
@@ -48,10 +49,14 @@ export const LocationPageTemplate = ({
 
   const [index, setIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
-    
+     
+  const slideContainer = useRef(null)
 
   const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
+        const slides = document.getElementsByClassName("slide-image-container")
+        const bgImg = slides[selectedIndex].style.backgroundImage
+        slideContainer.current.style.backgroundImage = bgImg
       };
 
   
@@ -97,9 +102,7 @@ export const LocationPageTemplate = ({
         {title}
       </h2>
     </div> 
-    <section style={{
-        paddingBottom: "100px",
-        position: "relative"}}>
+    <section style={{position: "relative"}}>
       <Container>
         <div className="section">
           <Row>
@@ -114,8 +117,8 @@ export const LocationPageTemplate = ({
               <div style={{display:"flex", flexWrap:"wrap", width:"100%"}}>
                 {collage.map((img, index)=>{
                   return (
-                  <div className="mason-image">
-                    <PreviewCompatibleImage  imageInfo={img.img} key={index} imgStyle={{borderRadius: "5px", height:"250px", flexGrow:"1"}}/>
+                  <div className="mason-image" key={index}>
+                    <PreviewCompatibleImage  imageInfo={img.img}  imgStyle={{borderRadius: "5px", height:"250px", flexGrow:"1"}}/>
                     <div className="mason-title">
                       <h3>{img.title}</h3>
                     </div>
@@ -151,34 +154,36 @@ export const LocationPageTemplate = ({
           </Row>
         </div>
       </Container>
-      <div style={{ 
-          width: "100vw",
-          position: "absolute",
-          top: "auto",
-          bottom: "0",
-          right: "0",
-          height: "100px",
-          zIndex: "1",
-          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-            <svg fill="#f5821e" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
-              width: "100%",
-              left: "0",
-              bottom: "-1px",
-              height: "100%",
-              position: "absolute",
-            }}> 
-            <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
-            </svg>
-            </div>
     </section>
-    <section style={{
+    <section 
+    style={{
         paddingBottom: "100px",
+        paddingTop: "100px",
         width: "100vw",
         position: "relative",
         marginLeft: "-50vw",
         left: "50%",
         backgroundColor:"#f5821e"}}>
-          
+          <div style={{ 
+          width: "100vw",
+          position: "absolute",
+          top: "0",
+          bottom: "auto",
+          right: "0",
+          height: "100px",
+          zIndex: "10",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              top: "-1px",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path d="M0 0 L 100 0 100 100 C 100 100 50 0 0 100  Z"></path> 
+            </svg>
+            </div>
+      <div className="slide-container" ref={slideContainer} style={{backgroundImage:`url("${slides? slides[0].slide.childImageSharp.fluid.src : part2.img.childImageSharp.fluid.src }")`}}></div>
       <Container>
         <Row>
           {slides ?
@@ -207,7 +212,7 @@ export const LocationPageTemplate = ({
           <Col style={{display:"flex"}}>
           <div style={{margin:"auto"}} >
             <h3 className="has-text-weight-semibold is-size-2" style={{textAlign: "center"}}>{part2.header}</h3>
-            <p>
+            <p style={{color: "#fff"}}>
               {part2.text}
             </p>
           </div>
@@ -250,9 +255,9 @@ export const LocationPageTemplate = ({
     }
     <section>
       <Container style={{textAlign: "center"}}>
-      <ActivitiesRoll location={location} type="Restaurant"/>
+      <ActivitiesRoll location={location} type="Restaurant" key="Restaurant"/>
         <br />
-        <ActivitiesRoll location={location}/>
+        <ActivitiesRoll location={location}  key="all"/>
         <br />
         <h4>For a full list of activities nearby, checkout our activities list <a href="/travelerTips"><span style={{color:"#f5821e"}}>here!</span></a></h4>
       </Container>

@@ -19,9 +19,6 @@ const IOSSlider = withStyles({
     padding: '15px 0',
     marginTop: '1.3em'
   },
-  gutterBottom:{
-    marginBottom: "1.3em"
-  },
   thumb: {
     height: 28,
     width: 28,
@@ -100,7 +97,7 @@ export default function RangeSlider(props) {
 
   return (
     <div className={classes.root}>
-      <Typography id="range-slider" className="label" gutterBottom>
+      <Typography id="range-slider" className="label">
         {name}
       </Typography>
       <IOSSlider

@@ -303,6 +303,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="neighborhood">
+                                                                <div className={data.value.en_US.neighborhood.length>400 && `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`}>
                                                                     <h2>Neighborhood</h2>
                                                                     <br />
                                                                     {data.value.en_US.neighborhood.substring(0,400)}
@@ -312,6 +313,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                         <br />
                                                                         <p>Find out more about the Algarve <Link to="/location/algarve"><span className="orangeText hover-highlight">here...</span></Link></p>
                                                                         </span>}
+                                                                    </div>
                                                                     <br />
                                                                     <br />
                                                                     {data.value.en_US.neighborhood.length>400 && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>Read More...</p>}</button>}
@@ -326,12 +328,14 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <hr />
                                                         <Col xs={12} md={travelDistances.display? 5 : 9}>
                                                                 <div id="gettingAround">
+                                                                <div className={data.value.en_US.transit.length>400 && `prop-description-box ${showTransitReadMore ? 'show' : ''}`}>
                                                                     <h2>Getting Around</h2>
                                                                     <br />
                                                                     {data.value.en_US.transit.substring(0,400)}
                                                                     {showTransitReadMore && <span id="more">
                                                                         {data.value.en_US.transit.substring(400)}
                                                                         </span>}
+                                                                    </div>
                                                                     <br />
                                                                     <br />
                                                                     {data.value.en_US.transit.length>400 && <button className="btn" type="" onClick={()=>setShowTransitReadMore(!showTransitReadMore)}>{showTransitReadMore?<>Less...</>:<p>Read More...</p>}</button>}
@@ -373,10 +377,12 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="notes">
+                                                                    <div className={data.value.en_US.notes.length>400 && `prop-description-box ${showNotesReadMore ? 'show' : ''}`}>
                                                                     <h2>Notes</h2>
                                                                     <br />
                                                                     {data.value.en_US.notes.substring(0,400)}
                                                                     {showNotesReadMore && <span id="more">{data.value.en_US.notes.substring(400)}</span>}
+                                                                    </div>
                                                                     <br />
                                                                     <br />
                                                                     {data.value.en_US.notes.length>400 && <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>Read More...</p>}</button>}
@@ -388,11 +394,13 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="notes">
+                                                                <div id="interaction">
+                                                                <div className={data.value.en_US.interaction.length>400 && `prop-description-box ${showInteractionReadMore ? 'show' : ''}`}>
                                                                     <h2>Interaction</h2>
                                                                     <br />
                                                                     {data.value.en_US.interaction.substring(0,400)}
                                                                     {showInteractionReadMore && <span id="more">{data.value.en_US.interaction.substring(400)}</span>}
+                                                                </div>
                                                                     <br />
                                                                     <br />
                                                                     {data.value.en_US.interaction.length>400 && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>Read More...</p>}</button>}

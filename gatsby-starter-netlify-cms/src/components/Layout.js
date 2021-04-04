@@ -13,7 +13,7 @@ import './all.sass';
 import BackToTop from '../components/BackToTop';
 import 'react-bnb-gallery/dist/style.css'
 import NewsAlert from '../components/newsAlert'
-
+import CookieBannerCookieHub from '../components/CookieBannerCookieHub'
 
 
 const TemplateWrapper = ({ children, pathKey }) => {
@@ -82,6 +82,7 @@ useEffect(() => {
       <div>{children}</div>
       <BackToTop />
       <Footer />
+      <CookieBannerCookieHub googleTrackingId="UA-173992217-1" cookieHubId="31b140ff"/>
       </FirestoreProvider>
     </div>
   )
