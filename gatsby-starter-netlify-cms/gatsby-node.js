@@ -36,7 +36,8 @@ exports.createPages = ({ actions, graphql }) => {
       if (edge.node.frontmatter.templateKey !== "testimonial" 
       && edge.node.frontmatter.templateKey !== "team-member" 
       && edge.node.frontmatter.templateKey !== "algarve-slide"
-      && edge.node.frontmatter.templateKey !== "activity-post"){
+      && edge.node.frontmatter.templateKey !== "activity-post"
+      && edge.node.frontmatter.templateKey !== "ownerTestimonial" ){
       createPage({
         path: edge.node.fields.slug,
         tags: edge.node.frontmatter.tags,

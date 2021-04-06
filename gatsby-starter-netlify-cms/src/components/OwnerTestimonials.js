@@ -1,17 +1,18 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
+
 import TestimonialSlider from '../components/TestimonialSlider'
 
 
-const Testimonials = ({ data }) => {
+const OwnerTestimonials = ({ data }) => {
 
   return(
     <TestimonialSlider slides={data} />
 
 )}
 
-Testimonials.propTypes = {
+OwnerTestimonials.propTypes = {
   testimonials: PropTypes.arrayOf(
     PropTypes.shape({
       quote: PropTypes.string,
@@ -25,9 +26,9 @@ Testimonials.propTypes = {
 export default (props) => (
     <StaticQuery
       query={graphql`
-        query Testimonials {
+        query OnwerTestimonials {
           allMarkdownRemark(
-            filter: { frontmatter: { templateKey: { eq: "testimonial" } } } ) {
+            filter: { frontmatter: { templateKey: { eq: "ownerTestimonial" } } } ) {
             edges {
               node {
                 id
@@ -50,7 +51,7 @@ export default (props) => (
           }
         }
       `}
-      render={(data, count) => <Testimonials data={data.allMarkdownRemark} count={count}/>}
+      render={(data, count) => <OwnerTestimonials data={data.allMarkdownRemark} count={count}/>}
     />
   )
   

@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Features from '../components/Features'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
-
+import OwnerTestimonials from '../components/OwnerTestimonials'
 
 export const WhyUsPageTemplate = ({
   image,
@@ -15,6 +15,7 @@ export const WhyUsPageTemplate = ({
   part2,
   part2Img,
   part3,
+  testimonialHeader
 }) => {
 
   const [loaded, setLoaded] = useState(false);
@@ -166,6 +167,18 @@ export const WhyUsPageTemplate = ({
         </Row>
       </Container>
     </section>
+    <section style={{
+        paddingBottom: "100px"}}>
+      <Container>
+        <Row>
+          <Col>
+          <h3 className="has-text-weight-semibold is-size-2">{testimonialHeader}</h3>
+          <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
+          <OwnerTestimonials />
+          </Col>
+        </Row>
+      </Container>
+    </section>
   </div>
 )}
 
@@ -178,6 +191,7 @@ WhyUsPageTemplate.propTypes = {
   part2: PropTypes.object,
   part2Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   part3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  testimonialHeader: PropTypes.string,
 }
 
 const WhyUsPage = ({ data }) => {
@@ -193,6 +207,7 @@ const WhyUsPage = ({ data }) => {
         part2={frontmatter.part2}
         part2Img={frontmatter.part2Img}
         part3={frontmatter.part3}
+        testimonialHeader = {frontmatter.testimonialHeader}
       />
     </Layout>
   )
@@ -278,6 +293,7 @@ export const WhyUsPageQuery = graphql`
             publicURL
           }
         }
+        testimonialHeader
       }
     }
   }

@@ -39,4 +39,5 @@ part3:
     col3Header: "Agree & Sign the paperwork!"
     col3: "Once you have decided on the right package, simply complete a few forms, sign off the agreement and away we go!"
     col3img: ../../../static/img/R18_-_000283.jpg
+testimonialHeader: "Here's What Some Owners Have To Say"
 ---

@@ -15,6 +15,7 @@ import SubmitButton from '../components/SubmitButton'
 import { Helmet } from 'react-helmet'
 import Newsletter from '../components/Newsletter'
 import Content, { HTMLContent } from '../components/Content'
+import InstagramFeed from '../components/InstagramFeed';
 
 export const IndexPageTemplate = ({
   image,
@@ -436,6 +437,12 @@ We are also driven to ensure all our guests have as much clear and valuable info
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <div dangerouslySetInnerHTML={{ __html: `<div> ${news} </div>` }} />
         </Container>
+      </section>
+      <section style={{paddingTop:"40px"}}>
+      <Container>
+      <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Our <span style={{color:"#f5821e"}}>Feed</span></h2>
+      <InstagramFeed />
+      </Container>
       </section>
       <section>
         <Container>

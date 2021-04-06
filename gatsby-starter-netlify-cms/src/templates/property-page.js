@@ -303,7 +303,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="neighborhood">
-                                                                <div className={data.value.en_US.neighborhood.length>400 && `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`}>
+                                                                <div className={data.value.en_US.neighborhood.length>400 ? `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`: undefined}>
                                                                     <h2>Neighborhood</h2>
                                                                     <br />
                                                                     {data.value.en_US.neighborhood.substring(0,400)}
@@ -328,7 +328,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <hr />
                                                         <Col xs={12} md={travelDistances.display? 5 : 9}>
                                                                 <div id="gettingAround">
-                                                                <div className={data.value.en_US.transit.length>400 && `prop-description-box ${showTransitReadMore ? 'show' : ''}`}>
+                                                                <div className={data.value.en_US.transit.length>400 ? `prop-description-box ${showTransitReadMore ? 'show' : ''}`: undefined}>
                                                                     <h2>Getting Around</h2>
                                                                     <br />
                                                                     {data.value.en_US.transit.substring(0,400)}
@@ -377,7 +377,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="notes">
-                                                                    <div className={data.value.en_US.notes.length>400 && `prop-description-box ${showNotesReadMore ? 'show' : ''}`}>
+                                                                    <div className={data.value.en_US.notes.length>400 ? `prop-description-box ${showNotesReadMore ? 'show' : ''}` : undefined}>
                                                                     <h2>Notes</h2>
                                                                     <br />
                                                                     {data.value.en_US.notes.substring(0,400)}
@@ -395,7 +395,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="interaction">
-                                                                <div className={data.value.en_US.interaction.length>400 && `prop-description-box ${showInteractionReadMore ? 'show' : ''}`}>
+                                                                <div className={data.value.en_US.interaction.length>400 ? `prop-description-box ${showInteractionReadMore ? 'show' : ''}` : undefined}>
                                                                     <h2>Interaction</h2>
                                                                     <br />
                                                                     {data.value.en_US.interaction.substring(0,400)}

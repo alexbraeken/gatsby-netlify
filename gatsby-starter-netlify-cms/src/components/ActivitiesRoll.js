@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
-import Slider from "react-slick";
+import Slider from "react-slick"
 
 const ActivityCard = React.memo((props) =>{
   return(
@@ -153,15 +153,18 @@ class ActivitiesRoll extends React.PureComponent {
           <br />
         </>
         }
-      {(this.props.type || this.props.location) && list.length > 0 && 
-      list.length > 4 ?
-      <SimpleSlider slides={list} /> 
-      :
-      <div className="columns is-multiline" style={{justifyContent:"center"}}>
-      {list.map((activity, index) => {
-          return activity? <ActivityCard activity={activity}  key={index}/> : null
+      {(this.props.type || this.props.location) && list.length > 0 ? 
+      <>
+        {list.length > 4 ?
+          <SimpleSlider slides={list} /> 
+          :
+          <div className="columns is-multiline" style={{justifyContent:"center"}}>
+          {list.map((activity, index) => {
+            return activity? <ActivityCard activity={activity}  key={index}/> : null
           })}
-    </div>
+        </div>
+        } 
+      </>: null
       }
       {!(this.props.type || this.props.location) ? 
       <div className="columns is-multiline" style={{justifyContent:"center"}}>

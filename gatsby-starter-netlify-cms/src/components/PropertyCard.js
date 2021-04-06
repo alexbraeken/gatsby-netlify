@@ -35,12 +35,12 @@ const PropertyCard = (props) => {
           <div className="ribbon"><span>Winter Let</span></div>
           }
         {showAmenities && 
-              <div className="card-img-overlay" style={{fontSize: "0.8rem", backgroundColor: "#fff", height: "fit-content", color:"#000"}}>
+              <div className="card-img-overlay card-amenities" >
                 <FirestoreDocument path={`/amenities/${props.item.uid}`}>
                                         {data => {
                                             return (!data.isLoading && data.value) ? 
                                             <div id="amenities">
-                                                <h2>Amenities</h2>
+                                                <h3 style={{textAlign:"center"}}>Amenities</h3>
                                                 <br />
                                                 <div className="amenities-list">
                                                 {Object.entries(data.value).map((amen, index) => {

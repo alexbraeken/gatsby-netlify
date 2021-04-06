@@ -1,3 +1,10 @@
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+
+require("dotenv").config({
+  path: `.env.${activeEnv}`,
+})
+
+
 module.exports = {
   siteMetadata: {
     title: 'Smartavillas - Holiday Rentals Villas and Apartments in the Eastern Algarve',
@@ -164,6 +171,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        path: `${__dirname}/src/ownerTestimonials`,
+        name: 'ownerTestimonials',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/src/newsAlert`,
         name: 'newsAlert',
       },
@@ -221,7 +235,7 @@ module.exports = {
         develop: true, // Activates purging in npm run develop
         purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
       },
-    },
+    },// must be after other CSS plugins
     {
       resolve: `gatsby-plugin-google-analytics-gdpr`,
       options: {
@@ -261,7 +275,13 @@ module.exports = {
           }
           ]
       }
-  }, // must be after other CSS plugins
+  },
+  {
+    resolve: `gatsby-source-instagram-all`,
+    options: {
+      access_token: process.env.GATSBY_INSTAGRAM_TOKEN,
+    }
+  }, 
     'gatsby-plugin-netlify', // make sure to keep it last in the array
   ],
 }
