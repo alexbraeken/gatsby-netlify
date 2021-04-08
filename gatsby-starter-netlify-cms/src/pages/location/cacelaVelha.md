@@ -31,7 +31,7 @@ part1:
             title: null
     img: ../../../static/img/Cacela Pump.jpg
 part2:
-    header: "LOCAL BEACH"
+    header: "Local Beach"
     text: "By the cemetery take the steps down to the lagoon. At low tide, cross on foot or catch the fishing boat to reach one of the Algarve’s finest beaches of soft golden sands and clear blue waters. The views from the church are some of the finest in the East Algarve."
     slider:
         slider: false

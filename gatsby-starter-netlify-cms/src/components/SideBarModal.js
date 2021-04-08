@@ -38,14 +38,6 @@ const amenitiesFilterList = [
         value: 'hasGarden'
     },
     {
-        amenity: 'Gym',
-        value: 'hasGym'
-    },
-    {
-        amenity: 'Heating',
-        value: 'hasHeating'
-    },
-    {
         amenity: 'Wi-Fi',
         value: 'hasInternetWifi'
     },

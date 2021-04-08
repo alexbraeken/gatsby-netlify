@@ -7,6 +7,8 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import Carousel from 'react-bootstrap/Carousel'
 import ActivitiesRoll from '../components/ActivitiesRoll'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
 class CustomSlide extends React.Component {
   render() {
@@ -108,7 +110,22 @@ export const LocationPageTemplate = ({
           <Row>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
           <div className="intro-para" style={{margin: "auto"}}>
-              <h3 className="has-text-weight-semibold is-size-2">{part1.header}</h3>
+            <div style={{display: "flex", flexWrap: "no-wrap"}}>
+              <FontAwesomeIcon icon={faQuoteLeft} 
+                    style={{position: "relative", 
+                    marginTop: "1.5rem",
+                    marginRight: "0.5rem", 
+                    height: "50px", 
+                    width:"50px", 
+                    height: "10%",
+                    width: "10%",
+                    minHeight: "20px",
+                    minWidth: "20px",
+                    maxHeight: "40px",
+                    maxWidth: "40px"}}/>
+                    <h3 className="has-text-weight-semibold is-size-2">{part1.header}
+                    </h3>
+              </div>
               <p>{part1.text}</p>
               </div>
             </Col>

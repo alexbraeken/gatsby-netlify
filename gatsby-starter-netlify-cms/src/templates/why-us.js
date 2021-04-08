@@ -93,10 +93,10 @@ export const WhyUsPageTemplate = ({
           
       <Container>
         <Row>
-          <Col>
+          <Col xs={12} md={6}>
             <PreviewCompatibleImage imageInfo={part2Img} />
           </Col>
-          <Col style={{display:"flex"}}>
+          <Col style={{display:"flex"}} xs={12} md={6}>
           <div style={{margin: "auto"}}>
             <h3 className="has-text-weight-semibold is-size-2">{part2.header}</h3>
               <div dangerouslySetInnerHTML={{ __html: `<div> ${part2.text} </div>` }} />
@@ -131,10 +131,10 @@ export const WhyUsPageTemplate = ({
         <h3 className="has-text-weight-semibold is-size-2">{part3.header}</h3>
         <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <Row>
-            <Col>
+            <Col xs={12} md={4}>
               <PreviewCompatibleImage imageInfo={part3.col1img} />
               <br />
-              <Container style={{textAlign:"center"}}>
+              <Container style={{textAlign:"center", paddingBottom: "20px"}}>
                 <h4>{part3.col1Header}</h4>
                 <hr />
                 <p>
@@ -142,10 +142,10 @@ export const WhyUsPageTemplate = ({
                 </p>
               </Container>
             </Col>
-            <Col>
+            <Col xs={12} md={4}>
               <PreviewCompatibleImage imageInfo={part3.col2img} />
               <br />
-              <Container style={{textAlign:"center"}}>
+              <Container style={{textAlign:"center", paddingBottom: "20px"}}>
               <h4>{part3.col2Header}</h4>
               <hr />
               <p>
@@ -153,10 +153,10 @@ export const WhyUsPageTemplate = ({
               </p>
               </Container>
             </Col>
-            <Col>
+            <Col xs={12} md={4}>
               <PreviewCompatibleImage imageInfo={part3.col3img} />
               <br />
-              <Container style={{textAlign:"center"}}>
+              <Container style={{textAlign:"center", paddingBottom: "20px"}}>
               <h4>{part3.col3Header}</h4>
               <hr />
               <p>

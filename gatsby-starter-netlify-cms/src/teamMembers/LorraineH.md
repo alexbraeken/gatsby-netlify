@@ -6,6 +6,6 @@ description: Lorraine has a fabulous wealth of experience in the field of holida
  
 
 jobTitle: "Real Estate Team: Commercial, Sales and Viewings"
-position: "8"
+position: "9"
 ---
 

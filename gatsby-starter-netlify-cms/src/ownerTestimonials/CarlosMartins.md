@@ -5,6 +5,6 @@ quote: "The professionalism and quality standards that the SmartaVillas team pla
 
 The present 4 year partnership we have with Smartavillas will definitely be maintained."
 location: "Portugal"
-img: ../../static/img/Tavira_beach_Island.jpg
+img: ../../static/img/VASA.jpg
 ---
 

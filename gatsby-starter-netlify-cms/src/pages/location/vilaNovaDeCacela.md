@@ -31,7 +31,7 @@ part1:
             title: null
     img: ../../../static/img/Cacela Pump.jpg
 part2:
-    header: "LOCAL BEACH"
+    header: "Local Beach"
     text: "Nearby Manta Rota is a firm family favourite of the Portuguese, offering Blue Flag standards, golden sands and a gently sloping shelf into the clear blue waters of the Atlantic."
     slider:
         slider: false

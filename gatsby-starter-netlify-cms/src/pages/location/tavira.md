@@ -28,7 +28,7 @@ part1:
             title: "Tavira River Scene"
     img: ../../../static/img/Tavira_Piazza.jpg
 part2:
-    header: "LOCAL BEACH"
+    header: "Local Beach"
     text: "Known for its outstanding coastline, the Algarve offers an unparalleled richness of golden beaches. Voted one of the best beaches in Portugal, the “ilha de Tavira” (Tavira Island), conveniently reached from the centre of the town via short ferry crossing, is a 10km long paradise of soft golden sands, lapped by the clean, clear blue waters of the Atlantic Ocean. The island has a good selection of restaurants and beach bars all centered around its campsite, but if you are looking for a more peaceful spot, the sands are long and expansive, so a short walk will take you away from the hustle and bustle to more peaceful plains.
 
 Nearby Barril beach, once the centre of a thriving tuna fishing community can be reached on foot via Tavira island, or via a fun miniature train departing from the nearby pretty fishing village of Santa Luzia, famed for being the ‘Octopus Capital’ of the Algarve. Barril is one of the most popular beaches with children because of the miniature train journey to reach it. The train ends at the old tuna station which has now been converted into cafés, restaurants, toilets and other facilities for tourists. You will see other bits of the station building near one of the old wooden boats in a 'graveyard' of huge iron anchors protruding from the dunes once used to secure the massive tuna net to the sea bed"

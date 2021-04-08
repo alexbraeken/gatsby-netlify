@@ -9,6 +9,6 @@ Owning a property abroad means you will always have issues and things to sort, b
 
 From the initial booking, house keeping, property care and maintenance and more recently Covid restrictions, everything is handled smoothly, professionally and with a smile."
 location: "United Kingdom"
-img: ../../static/img/Quatras Aguas Boats.jpg
+img: ../../static/img/BERNARDA.jpg
 ---
 

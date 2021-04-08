@@ -7,8 +7,8 @@ part1:
     header: "WE CREATE THE PERFECT HOLIDAY RENTAL"
     text: "<p> We pride ourselves on understanding the market. We know what your customers will expect when renting a property and we will work with you to ensure that your property meets these expectations with just one simple goal in mind - that your guests have a fantastic holiday and wish to return! Our rental services include professional photography, internet advertising, high standards of hygiene and cleanliness and a professional laundry service. We appreciate that your property is a treasured investment, and we recognise that you may have different requirements and so we are happy to consider any business terms to suit you, ranging from a simple cleaning service to a full property management service. 
     
-    We are flexible in our approach and offer an 'all-inclusive' rental package or you can create your own 'tailored-made' rental package. No job is too small or large. We would be delighted to meet you and view your property to discuss how we can help you to optimize rental potential and keep your investment in tip-top condition. <a href='/contact' style='color: #f5821e; text-decoration: underline;'>Email us</a> to book an appointment now </p>"
-part1Img: ../../../static/img/holiday.jpg
+    We are flexible in our approach and offer an 'all-inclusive' rental package or you can create your own 'tailor-made' rental package. No job is too small or large. We would be delighted to meet you and view your property to discuss how we can help you to optimize rental potential and keep your investment in tip-top condition. <a href='/contact' style='color: #f5821e; text-decoration: underline;'>Email us</a> to book an appointment now </p>"
+part1Img: ../../../static/img/Creat_Prefect_2.jpg
 part2: 
     header: "WHAT MAKES US DIFFERENT" 
     text: "<ol>
@@ -32,12 +32,12 @@ part3:
     header: "HOW IT WORKS"
     col1Header: "Talk to us"
     col1: "Visit our office to discuss your requirements. We offer various marketing, property care, and general service packages to suit your needs."
-    col1img: ../../../static/img/R18_-_000312.jpg
+    col1img: ../../../static/img/Talk_to_Us.jpg
     col2Header: "Let's Visit Together"
     col2: "A visit to the property is a must to satisfy our standard requirements and to guide you through any questions."
-    col2img: ../../../static/img/holiday.jpg
+    col2img: ../../../static/img/Lets_Visit.jpg
     col3Header: "Agree & Sign the paperwork!"
     col3: "Once you have decided on the right package, simply complete a few forms, sign off the agreement and away we go!"
-    col3img: ../../../static/img/R18_-_000283.jpg
+    col3img: ../../../static/img/Agree_&_Sign.jpg
 testimonialHeader: "Here's What Some Owners Have To Say"
 ---
