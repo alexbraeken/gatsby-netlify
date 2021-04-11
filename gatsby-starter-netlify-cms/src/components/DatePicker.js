@@ -16,15 +16,17 @@ const DatePicker = (props) => {
 
     return (
         <div className="top-date-picker" style={props.style}>
-            <Container>
-                <Row>
-            <div className="top-date-picker-text" onClick={handleShowCalendar}>
-    <small className="text-muted">From {props.from && new Date(props.from).toLocaleDateString()} - To {props.to && new Date(props.to).toLocaleDateString()}</small>
-    <FontAwesomeIcon icon={faSearch} style={{margin:"auto 5px"}} className="search-icon"/>
+            <div className="top-date-picker-container">
+                <Container>
+                    <Row>
+                <div className="top-date-picker-text" onClick={handleShowCalendar}>
+        <small className="text-muted">From {props.from && new Date(props.from).toLocaleDateString()} - To {props.to && new Date(props.to).toLocaleDateString()}</small>
+        <FontAwesomeIcon icon={faSearch} style={{margin:"auto 5px"}} className="search-icon"/>
+                </div>
+                </Row>
+            </Container>
+            <CalendarModal show={showCalendar} handleClose={handleClose} dates={{from: props.from, to: props.to}} handleDateChange={props.handleDateChange} handleNewIds={props.handleNewIds} handleClearDates={props.handleClearDates}/>
             </div>
-            </Row>
-        </Container>
-        <CalendarModal show={showCalendar} handleClose={handleClose} dates={{from: props.from, to: props.to}} handleDateChange={props.handleDateChange} handleNewIds={props.handleNewIds} />
         </div>
     )
 }

@@ -32,7 +32,6 @@ class TestimonialSlider extends Component {
             <div className="testimonial-container">
               <div className="testimonial-img"
               style={{backgroundImage:`url('${testimonial.node.frontmatter.img ? testimonial.node.frontmatter.img.childImageSharp.fluid.src : ''}')`, }}>
-                {console.log(testimonial.node.frontmatter)}
                 <div className="testimonial-img-overlay"></div>
               </div>
               <div className="testimonial-text-container">

@@ -43,13 +43,10 @@ const CalendarModal = (props) => {
 
         if(dates.to){
           setTest('stuff')
-          console.log(test)
           setDates({ from: new Date(fromDate), to: dates.to })
-          console.log(dates)
         }
         else{
           setDates({from: new Date(fromDate), to:undefined})
-          console.log(dates)
         }
       }
     
@@ -65,11 +62,12 @@ const CalendarModal = (props) => {
 
     const submitSearch = () => {
 
-      props.handleDateChange({to: dates.to.toISOString(), from: dates.from.toISOString()})
+      const dateTo = typeof dates.to !== 'string' ?  dates.to.toISOString() : dates.to
+      const dateFrom = typeof dates.from !== 'string' ?  dates.from.toISOString() : dates.from
 
-        let fromDate = dates.from.toISOString()
-        let toDate = dates.to.toISOString()
-        const uri = `https://api.hostfully.com/v2/properties?checkInDate=${fromDate}&checkOutDate=${toDate}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
+      props.handleDateChange({to: dateTo, from: dateFrom})
+
+        const uri = `https://api.hostfully.com/v2/properties?checkInDate=${dateFrom}&checkOutDate=${dateTo}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
         
         fetch(uri, {
         headers:{
@@ -120,8 +118,7 @@ const CalendarModal = (props) => {
             toMonth: to,
             numberOfMonths: 2,
             modifiers,
-            modifiersStyles,
-            onDayClick: () => console.log(toRef.current.getInput().focus())
+            modifiersStyles
           }}
           onDayChange={handleFromChange}
         />
@@ -172,6 +169,7 @@ const CalendarModal = (props) => {
         </Helmet>
         </div>
         <br />
+        <div className="new-date-btn-container">
         <div className="submit-search-btn" onClick={submitSearch}>
             <a>
                 <svg className="icon-arrow before">
@@ -191,6 +189,27 @@ const CalendarModal = (props) => {
             </defs>
             </svg>
         </div>
+        <div className="submit-search-btn" onClick={props.handleClearDates}>
+            <a style={{background:"#3F3F3F", color:"#f5821e", borderColor:"#f5821e"}}>
+                <svg className="icon-arrow before" style={{fill: "#f5821e"}}>
+                    <use xlinkHref="#arrow" />
+                </svg>
+                <span className="label" style={{ color:"#f5821e"}}>Clear Dates</span>
+                <svg className="icon-arrow after" style={{fill: "#f5821e"}}>
+                    <use xlinkHref="#arrow"/>
+                </svg>
+            </a>
+            <svg style={{display: "none"}}>
+            <defs>
+                <symbol id="arrow" viewBox="0 0 35 15">
+                    <title>Arrow</title>
+                    <path d="M27.172 5L25 2.828 27.828 0 34.9 7.071l-7.07 7.071L25 11.314 27.314 9H0V5h27.172z "/>
+                </symbol>
+            </defs>
+            </svg>
+        </div>
+        </div>
+        
         </Modal.Body>
       </Modal>
     )

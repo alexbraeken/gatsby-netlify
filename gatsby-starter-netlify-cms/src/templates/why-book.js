@@ -30,7 +30,6 @@ class CustomSlide extends React.Component {
               </svg>
               <div className="slide__text">
               <h2 className="slide__text-heading">{this.props.slide.title}</h2>
-              {console.log(this.props.slide.id)}
               <h4><a href={`/properties/${this.props.slide.id}`}><span className="orangeText hover-highlight">View This Property</span></a></h4>
               </div>
               </div>

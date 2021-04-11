@@ -211,8 +211,7 @@ const SearchFilter = (props) => {
             toMonth: to,
             numberOfMonths: 2,
             modifiers,
-            modifiersStyles,
-            onDayClick: () => console.log(toRef.current.getInput().focus())
+            modifiersStyles
           }}
           onDayChange={handleFromChange}
         style={{height:"100%", zIndex:"10"}}/>

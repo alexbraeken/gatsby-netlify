@@ -13,12 +13,12 @@ const PropFeatureGrid = React.memo((data) => {
   const [advancedSearch, setAdvancedSearch] = useState(false)
 
   useEffect(() => {
-
     if(data.propertyIds){(data.propertyIds.length>0) ? setAdvancedSearch(true) : setAdvancedSearch(false)}
     return () => {
       setAdvancedSearch(false)
     }
   }, [data.propertyIds])
+
   
 
   useEffect(() => {
@@ -39,7 +39,6 @@ const PropFeatureGrid = React.memo((data) => {
       }else{
         amenityBool.push(true)
       }
-
       if((data.state.city[item.city])
       && (data.state.type[item.type])
       && (data.state.bedrooms[0] <= parseInt(item.bedrooms))
@@ -76,7 +75,7 @@ const PropFeatureGrid = React.memo((data) => {
     return () => {
       setPropList([])
     }
-  }, [data])
+  }, [data, advancedSearch])
 
 
   return(

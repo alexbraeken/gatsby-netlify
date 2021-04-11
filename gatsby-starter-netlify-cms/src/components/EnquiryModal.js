@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import Loading from '../components/Loading';
-import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
-import { Helmet } from 'react-helmet'
-import { formatDate, parseDate } from 'react-day-picker/moment'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import emailjs from 'emailjs-com';
 
 
@@ -27,19 +23,7 @@ const addArgumentToURL = (url, field, data) => {
 const CalendarModal = (props) => {
 
     const [info, setInfo] = useState(null)
-    const [propId, setPropId] = useState(null)
-    const [propName, setPropName] = useState(null)
     const [sent, setSent] = useState(false)
-
-    useEffect(() => {
-      setPropId(props.propId)
-      setPropName(props.propName)
-      return () => {
-        setPropId(null)
-        setPropName(null)
-      }
-    }, [])
-
 
     const sendEnquiry = (formInfo) => {
       if (sent) {
@@ -48,10 +32,8 @@ const CalendarModal = (props) => {
     
       emailjs.sendForm(process.env.GATSBY_EMAILJS_SERVICE_KEY, process.env.GATSBY_EMAILJS_TEMPLATE_KEY, formInfo, process.env.GATSBY_EMAILJS_USER)
       .then((result)=> {
-        console.log(result.text)
         return true;
       }, (error)=> {
-        console.log(error.text)
         return false;
       })
           
@@ -62,26 +44,37 @@ const CalendarModal = (props) => {
         e.preventDefault()
         const form = e.target
 
-        console.log(form)
-
         let enquiryResult = sendEnquiry(form);
 
         if(!enquiryResult){
-          console.log('success')
           setSent(true)
         }
       }
 
       const handleChange = (e) => {
           setInfo({ [e.target.name]: e.target.value })
-          console.log(info)
       }
 
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-container">
-        <Modal.Header closeButton>
-          <Modal.Title>Ask us about {props.propName}:</Modal.Title>
+        <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-container enquiry-modal">
+        <Modal.Header closeButton style={{background: "#3f3f3f"}}>
+          <Modal.Title style={{display: "flex", flexWrap:"nowrap"}}>
+              <div style={{
+                height:"50px", 
+                width:"50px", 
+                borderRadius:"50%", 
+                backgroundImage:`url('${props.img}')`, 
+                backgroundPosition:"center", 
+                backgroundSize:"cover",
+                margin: "auto 20px auto auto"}}>
+              </div>
+              <div className="orangeText" style={{margin: "auto"}}>
+                Ask us about {props.propName}:
+              </div>
+              <div className="close modal-content modal-header enquiry-modal" style={{display: "none"}}>
+              </div>
+          </Modal.Title>
         </Modal.Header>
     <Modal.Body className="calendar-modal">
         <br />
@@ -135,6 +128,27 @@ const CalendarModal = (props) => {
                 id={'email'}
                 required={true}
               />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'topic'}>
+              Topic
+            </label>
+            <div className="control">
+              <select
+                className="input"
+                name={'topic'}
+                onChange={(e) => handleChange(e)}
+                id={'topic'}
+                required={false}
+                style={{appearance:"auto"}}
+              >
+                <option value="General">General</option>
+                <option value="Facilities">Facilities</option>
+                <option value="Booking Related">Booking Related</option>
+                <option value="Accessibility">Accessibility</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
           </div>
           <div className="field">

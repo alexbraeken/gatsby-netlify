@@ -75,11 +75,8 @@ const Properties = React.memo((props) => {
     }, [])
 
     useEffect(() => {
-        console.log(props.state.path)
-        console.log(new Date())
         if(props.state.searchArray.from && props.state.searchArray.from[0] && props.state.searchArray.to[0]){
             try{
-            console.log(props.state.searchArray.from[0])
             const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
         
             fetch(uri, {
@@ -97,8 +94,11 @@ const Properties = React.memo((props) => {
             setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})    
         }
         catch(err){
-            console.log(err)
         }
+        }
+        if(!props.state.searchArray.from && !props.state.searchArray.to){
+            setDates(null)
+            setPropertyIds([])
         }
         return () => {
             
@@ -176,7 +176,7 @@ const Properties = React.memo((props) => {
 
                         <Container style={{width:"100vw", maxWidth:"none"}} >
                             {props.state.searchArray.from && props.state.searchArray.to &&
-                            <DatePicker from={props.state.searchArray.from[0]} to={props.state.searchArray.to[0]} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleTotalDays={handleTotalDays}
+                            <DatePicker from={props.state.searchArray.from[0]} to={props.state.searchArray.to[0]} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleTotalDays={handleTotalDays} handleClearDates={props.handleClearDates}
                             className="top-date-picker" style={stickyStyle}
                             /> }
                             <Row>
@@ -268,16 +268,12 @@ export default class PropertiesPage extends Component {
         this.filterList = this.filterList.bind(this);
         this.handleSelectDeselectAll = this.handleSelectDeselectAll.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
-        this.handlePathChange = this.handlePathChange.bind(this)
+        this.handlePathChange = this.handlePathChange.bind(this);
+        this.handleClearDates = this.handleClearDates.bind(this);
     }
 
 
     handlePathChange(path){
-        this.setState({path: path})
-    }
-
-    componentDidMount(){
-        const path = window.location.href
         this.setState({path: path})
        const filterValues = queryString.parse(this.props.location.search);
        const keys = Object.keys(filterValues)
@@ -290,8 +286,6 @@ export default class PropertiesPage extends Component {
                 })
            }
            else{
-               console.log(key)
-               console.log(filterValues[key])
         let searchArray = filterValues[key];
         searchArray = (Array.isArray(searchArray)?searchArray:[searchArray]);
            this.setState((state, props)=>({
@@ -309,6 +303,13 @@ export default class PropertiesPage extends Component {
         }
            
        })
+    }
+
+    
+
+    componentDidMount(){
+        const path = window.location.href
+        this.handlePathChange(path)
     } 
 
     filterList(props){
@@ -348,14 +349,12 @@ export default class PropertiesPage extends Component {
     }
 
     handleDateChange (date){
-        console.log(date)
         this.setState((prevState, currentProps) => ({
             ...prevState,
             searchArray: {...prevState.searchArray,
             from:[date.from],
             to:[date.to]}
         }))
-        console.log(this.state)
     }
     
     handleSelectDeselectAll(type, seldesel){
@@ -368,6 +367,18 @@ export default class PropertiesPage extends Component {
             )
         }, ()=>{})
 
+    }
+
+    handleClearDates () {
+        this.setState((prevState, currentProps) => {
+            let newState = prevState
+            delete newState.searchArray.from
+            delete newState.searchArray.to
+            newState.filteredSearch.from = false
+            newState.filteredSearch.to = false
+           
+            return newState
+            })
     }
 
 
@@ -393,7 +404,8 @@ export default class PropertiesPage extends Component {
                         handleSliderChange={this.handleSliderChange}
                         handleSelectDeselectAll={this.handleSelectDeselectAll}
                         handleDateChange= {this.handleDateChange}
-                        handlePathChange= {this.handlePathChange}/>
+                        handlePathChange= {this.handlePathChange}
+                        handleClearDates= {this.handleClearDates}/>
                         
                 </Router>       
             </Layout> 

@@ -363,6 +363,10 @@ a:hover
       padding: 2px 5px
       color: #ff6600
       cursor: pointer
+      display: flex
+      & svg
+          margin: auto 5px auto auto
+          color: #000
 
 .amenities-list
   display: flex
@@ -1089,14 +1093,21 @@ $min-margin: 10px
 //Top Date Picker
 .top-date-picker
   position: absolute
-  width: 500px
-  border-radius: 50%
   left: 50%
+  max-width: 90%
+  min-width: 300px
   z-index: 10
-  background: #fff
-  display: flex
   top: -45px
+
+.top-date-picker-container
+  position: relative
+  width: 500px
+  max-width: 100%
+  border-radius: 50%
+  left: -50%
+  display: flex
   height: 70px
+  background: #fff
   transition: all 0.2s ease-in-out
 
 .top-date-picker-text
@@ -1110,10 +1121,10 @@ $min-margin: 10px
   & small
       padding: 5px 
 
-.top-date-picker:hover
+.top-date-picker-container:hover
   box-shadow: 0 0 0 0.3rem rgba(245,130,30,.25)
   background-color: #f1f1f1
-  top: -40px
+  heigth: 85px
 
 //Calendar Modal
 
@@ -2210,6 +2221,20 @@ a.navbar-item, .navbar-item
           & .testimonial-text
               padding: 20px
 
+.new-date-btn-container
+  display: flex
+  flex-wrap: nowrap
+
 @media only screen and (max-width: 780px) 
   .testimonial-text-container svg
     display: none
+  .new-date-btn-container
+    flex-wrap: wrap
+    & .submit-search-btn
+        margin-bottom: 5px
+
+.modal-content
+  overflow: initial
+
+.enquiry-modal .modal-content .modal-header .close
+  color: #fff

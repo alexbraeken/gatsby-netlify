@@ -20,7 +20,7 @@ import { ButtonGroup } from '@material-ui/core';
 import BedBathPax from '../components/BedBathPax';
 import ActivitiesRoll from '../components/ActivitiesRoll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool, faFileContract } from '@fortawesome/free-solid-svg-icons';
 import queryString from 'query-string';
 import EnquiryModal from '../components/EnquiryModal';
 
@@ -490,6 +490,10 @@ export const PropertyPageTemplate = ( props ) =>
                                                     </defs>
                                                     </svg>
                                                 </div>
+                                                <br />
+                                                <div>
+                                                <center><a href="/about/booking-terms-conditions"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>Terms & Conditions</span></a></center>
+                                                </div>
                                                 {damageWaiver &&
                                                 <div style={{paddingBottom:"20px"}}> 
                                                     <br />
@@ -524,7 +528,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 </Container>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
-                            <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name}/>
+                            <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.picture}/>
                             </div>                 
                         </div> : <></>
             }}

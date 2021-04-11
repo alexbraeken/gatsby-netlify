@@ -441,6 +441,7 @@ We are also driven to ensure all our guests have as much clear and valuable info
       <section style={{paddingTop:"40px"}}>
       <Container>
       <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Our <span style={{color:"#f5821e"}}>Feed</span></h2>
+      <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
       <InstagramFeed />
       </Container>
       </section>
