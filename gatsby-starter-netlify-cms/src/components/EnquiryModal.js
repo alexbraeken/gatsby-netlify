@@ -19,8 +19,8 @@ const addArgumentToURL = (url, field, data) => {
   return url;
 };
 
-
-const CalendarModal = (props) => {
+//Enquiry modal on property page
+const EnquiryModal = (props) => {
 
     const [info, setInfo] = useState(null)
     const [sent, setSent] = useState(false)
@@ -195,4 +195,4 @@ const CalendarModal = (props) => {
     )
 }
 
-export default CalendarModal
+export default EnquiryModal

@@ -33,7 +33,7 @@ export default class renderMap extends React.Component{
   
     scrollToCard = (id) => {
         let card = document.getElementById(id)
-        const blink = () => {
+        if(card){const blink = () => {
           card.style.opacity = (card.style.opacity === '1' || card.style.opacity === '' ? '0.2' : '1')
         }
         card.scrollIntoView({behavior: "smooth", block: "center"})
@@ -48,7 +48,8 @@ export default class renderMap extends React.Component{
          }, 1500)
          setTimeout(function() {
           blink()
-        }, 2000)
+        }, 2000)}
+        
       }
     
     
@@ -71,7 +72,7 @@ render(){
           zoom={this.props.zoom}
           onLoad={this.onLoad}
           gestureHandling= "greedy"
-          onMouseOut={()=>this.handleMouseOut}
+          onMouseOut={()=>this.handleMouseOut()}
         >
           {this.state.overlay &&
           <OverlayView

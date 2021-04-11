@@ -1,11 +1,11 @@
-import React, {useEffect, useState, useRef} from 'react'
-
+import React, {useState} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import CalendarModal from '../components/CalendarModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
+//Date picker to open calendar modal component to change/clear dates on properties page
 const DatePicker = (props) => {
 
     const [showCalendar, setShowCalendar] = useState(false)

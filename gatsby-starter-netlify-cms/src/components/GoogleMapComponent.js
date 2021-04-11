@@ -14,7 +14,7 @@ const GoogleMapComponent = (props) =>{
   const [zoom, setZoom] = useState(null)
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCC0VPgtgvuBoukr23_t9SVQuY_mWjrau8" 
+    googleMapsApiKey: process.env.GATSBY_GOOGLE_MAPS_API_KEY 
   })
 
   useEffect(() => {

@@ -1,9 +1,6 @@
 import React, {useState} from 'react'
 import Carousel from 'react-bootstrap/Carousel'
-import BedBathPax from '../components/BedBathPax'
-import { Link, graphql, StaticQuery } from 'gatsby'
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
+import { graphql, StaticQuery } from 'gatsby'
 import Row from 'react-bootstrap/Row'
 
 class CustomSlide extends React.Component {

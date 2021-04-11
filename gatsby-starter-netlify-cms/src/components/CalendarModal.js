@@ -1,11 +1,11 @@
 import React, {useEffect, useState, useRef} from 'react'
-import Loading from '../components/Loading';
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
 import { formatDate, parseDate } from 'react-day-picker/moment'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal} from 'react-bootstrap'
 
+//Calendar Modal on properties page to change/clear dates and update results
 const CalendarModal = (props) => {
 
     const [dates, setDates] = useState({from: null, to: null});
@@ -15,6 +15,7 @@ const CalendarModal = (props) => {
 
     const toRef = useRef(null)
 
+    //Set default dates from props
     useEffect(() => {
       setDates(props.dates)
       return () => {
@@ -22,7 +23,7 @@ const CalendarModal = (props) => {
       }
     }, [])
 
-
+//Show from month if 'to' date changes
     useEffect(() => {
       showFromMonth()
   }, [dates.to])

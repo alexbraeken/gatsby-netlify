@@ -27,7 +27,7 @@ class TestimonialSlider extends Component {
       <div className="testimonial-slider">
         <div className="slick-slider slick-track slick-slide"></div>
         <Slider {...settings}>
-         {this.state.slides.edges ? this.state.slides.edges.map((testimonial) => (
+         {this.state.slides.edges?.map((testimonial) => (
            <div>
             <div className="testimonial-container">
               <div className="testimonial-img"
@@ -60,7 +60,7 @@ class TestimonialSlider extends Component {
               </div>
             </div>
           </div>
-  )): null}
+  ))}
         </Slider>
       </div>
     );

@@ -40,6 +40,7 @@ import Col from 'react-bootstrap/Col';
 
 const Amenities = (props) => {
 
+    //Add icons and format amenities list
     const determineAmenity = (amenity) =>{
         switch(amenity){
             case "hasTV":
@@ -116,15 +117,16 @@ const Amenities = (props) => {
                 return <div className="amenity-text"><GiTeapotLeaves /><b> Water Kettle</b></div>
             default:
                 let text;
-                let temp = amenity.replace( /([A-Z])/g, " $1" );
-                text = temp.charAt(0).toUpperCase() + temp.slice(1);
+                let temp = amenity.replace( /([A-Z])/g, " $1" ); //Split text at capitals
+                text = temp.charAt(0).toUpperCase() + temp.slice(1); //Capitalize first char
                 if(text.includes('Has ')){
-                    text = text.slice(4)
+                    text = text.slice(4) //remove has
                 }
                 return <div className="amenity-text"><BsCheckCircle /><b> {text}</b></div>
         }
     }
 
+    //popover component for list of properties with same amenity
     const popover = (amenity) => (
         <Popover id="popover-basic">
             <FirestoreCollection path="/amenities/" where={{field:`${amenity}` , operator:"==", value:true}} limit={5}>

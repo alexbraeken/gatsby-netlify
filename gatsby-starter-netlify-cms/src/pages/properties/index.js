@@ -40,7 +40,13 @@ const Properties = React.memo((props) => {
     
     const [amenitiesList, setAmenitiesList] = useState({
         hasPool: false,
-        isWheelchairAccessible: false
+        isWheelchairAccessible: false,
+       allowsPets: false,
+       hasAirConditioning: false,
+       hasBarbecue: false,
+       hasElevator: false,
+       hasGarden: false,
+       hasInternetWifi: false,
     })
 
     const container = useRef(null)
@@ -58,7 +64,13 @@ const Properties = React.memo((props) => {
             setPropertyIds([])
             setAmenitiesList({
                 hasPool: false,
-                isWheelchairAccessible: false
+                isWheelchairAccessible: false,
+                allowsPets: false,
+                hasAirConditioning: false,
+                hasBarbecue: false,
+                hasElevator: false,
+                hasGarden: false,
+                hasInternetWifi: false,
             })
             setShow(false)
             setShowSidebarModal(false)
@@ -75,7 +87,7 @@ const Properties = React.memo((props) => {
     }, [])
 
     useEffect(() => {
-        if(props.state.searchArray.from && props.state.searchArray.from[0] && props.state.searchArray.to[0]){
+        if(props.state.searchArray.from?.[0] && props.state.searchArray.to[0]){
             try{
             const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
         
@@ -203,7 +215,7 @@ const Properties = React.memo((props) => {
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
-                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state} height={"95vh"}/>
+                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state} propertyIds={propertyIds} amenitiesList={amenitiesList} height={"95vh"}/>
                                 <div className="expandBtn filterExpand" onClick={handleExpand}>
                                     {horizontalExpanded ? 
                                     <>

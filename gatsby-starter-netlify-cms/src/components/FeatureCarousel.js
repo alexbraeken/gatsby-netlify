@@ -40,7 +40,7 @@ const FeatureCarousel = (props) => {
     return (
       <>
         <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
-            {props.properties ? props.properties.map((prop, index)=>{
+            {props.properties?.map((prop, index)=>{
                 return (props.ids.indexOf(prop.uid)!== -1)?
                 <Carousel.Item key={index}>
                   <Row className="home-feature">
@@ -70,7 +70,7 @@ const FeatureCarousel = (props) => {
                 </Col>
                 </Row>
             </Carousel.Item> : null
-            }): null }
+            })}
         </Carousel>
         <Helmet>
           <style>

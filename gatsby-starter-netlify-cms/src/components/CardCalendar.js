@@ -5,6 +5,8 @@ import { gsap } from "gsap";
 
 gsap.registerPlugin(gsap);
 
+
+//Property Card Calendar on properties list
 const CardCalendar = (props) => {
 
     const [disabledDays, setDisabledDays] = useState([new Date(2020, 10, 25), new Date(2020, 11, 5)]);

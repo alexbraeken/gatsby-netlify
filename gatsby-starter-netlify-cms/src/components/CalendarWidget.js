@@ -3,6 +3,8 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import { Helmet } from 'react-helmet'
 import 'react-day-picker/lib/style.css';
 
+
+//Calendar Widget in Property page
 const CalendarWidget = (props) => {
 
     const [disabledDays, setDisabledDays] = useState([new Date(), new Date()]);

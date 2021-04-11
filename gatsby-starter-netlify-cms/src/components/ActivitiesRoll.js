@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Link, graphql, StaticQuery } from 'gatsby'
-import PreviewCompatibleImage from './PreviewCompatibleImage'
+import { graphql, StaticQuery } from 'gatsby'
 import Slider from "react-slick"
 
+//Individual Activity Cards
 const ActivityCard = React.memo((props) =>{
   return(
     <article className="activity-card">
@@ -30,6 +30,7 @@ const ActivityCard = React.memo((props) =>{
   )
 })
 
+//Slider Component
 class SimpleSlider extends Component {
   constructor(props) {
     super(props)
@@ -90,14 +91,20 @@ class SimpleSlider extends Component {
   }
 }
 
-
+//Activities Component
 class ActivitiesRoll extends React.PureComponent {
 
   render() {
     const { data } = this.props
     const { edges: activities } = data.allMarkdownRemark
+    //initialize empty array
     const list = [];
-    if(activities && this.props.location && this.props.type){
+
+    //If !activities guard clause
+    if(!activities) return null
+
+    //if both location and type specified
+    if(this.props.location && this.props.type){
       let BreakException;
       try{
         activities.forEach(({ node: activity }) =>{
@@ -109,8 +116,8 @@ class ActivitiesRoll extends React.PureComponent {
       } catch (e) {
         if (e !== BreakException) throw e;
       }
-    }
-    else if(activities && this.props.location){
+    } //if only locationspecified
+    else if(this.props.location){
       let BreakException;
       try{
         activities.forEach(({ node: activity }) =>{
@@ -123,20 +130,18 @@ class ActivitiesRoll extends React.PureComponent {
         if (e !== BreakException) throw e;
       }
       
-    }
-    else if (activities && this.props.filter){
+    } //only filter applied
+    else if (this.props.filter){
       activities.forEach(({ node: activity }) =>{
         if(activity.frontmatter.tags.indexOf(this.props.filter) !== -1){ 
           list.push(activity) 
         } else return null
       })
-    } 
+    } //all activities
     else{
-      if(activities){activities.forEach(({ node: activity }) =>{ 
+      activities.forEach(({ node: activity }) =>{ 
         list.push(activity)
       })
-      } 
-      else return null
     }
 
     return (

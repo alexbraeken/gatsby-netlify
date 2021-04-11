@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faBed, faShower } from '@fortawesome/free-solid-svg-icons';
 
+//Bed, bath and pax component
 const BedBathPax = (prop) => {
     return (
         <div className="header-icons" style={{margin:"auto", color:prop.color}}>

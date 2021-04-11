@@ -11,7 +11,7 @@ part1:
     \nCuisine: Along the waterfront and dotted about the narrow streets, various restaurants and local eateries provide for all tastes and pockets, with some locally renown establishments always busy – so be sure to book ahead!
     
     \n
-    \n Conceicao, as a suburb of Tavira and Cabans has a friendly feel and offers its visitors a warm welcome. Here you will find here a pleasant selection of café bars where you can sit in the sun and enjoy a refreshment or 2(!) along with 3 restaurants offering good quality Portuguese cuisine. The village also has a post office, cash machine and a mini market"
+    \n Conceicao, as a suburb of Tavira and Cabanas has a friendly feel and offers its visitors a warm welcome. Here you will find here a pleasant selection of café bars where you can sit in the sun and enjoy a refreshment or 2(!) along with 3 restaurants offering good quality Portuguese cuisine. The village also has a post office, cash machine and a mini market"
     collage:
         collage: true
         img1: 

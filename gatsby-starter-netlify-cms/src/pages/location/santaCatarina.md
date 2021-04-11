@@ -32,7 +32,7 @@ part1:
     img: ../../../static/img/SANTA_CATARINA.jpg
 part2:
     header: "Local Beach"
-    text: "For a taste of the Algarve’s renown beaches, head to Fuzeta were both the lagoon side beach and the island beach, reached by short ferry crossing, will surely delight beach lovers for their stretches of dune backed sands lapped by the clear clean waters of the Atlantic."
+    text: "For a taste of the Algarve’s renowned beaches, head to Fuzeta where both the lagoon side beach and the island beach, reached by short ferry crossing, will surely delight beach lovers for their stretches of dune backed sands lapped by the clear clean waters of the Atlantic."
     slider:
         slider: false
         img1: 

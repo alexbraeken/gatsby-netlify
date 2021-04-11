@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { Helmet } from 'react-helmet'
 
-
+//Hostfully booking widget
 const BookingWidget = (props) => {
 
     const [calendarCheckIn, setCalendarCheckIn] = useState(null)
     const [calendarCheckOut, setCalendarCheckOut] = useState(null)
 
+    //On props change, set default date used in widget url
     useEffect(() => {
         setCalendarCheckIn((props.dateRange.from) ? formatDate(props.dateRange.from) : '')
         setCalendarCheckOut((props.dateRange.to) ? formatDate(props.dateRange.to) : '')

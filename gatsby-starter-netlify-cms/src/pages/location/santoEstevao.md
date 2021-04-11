@@ -6,7 +6,7 @@ title: Santo Estêvão
 image: ../../../static/img/St_Estevao.jpg
 part1: 
     header: "A Picture Postcard Village…"
-    text: "This picture postcard village sits several kilometres from Tavira amidst time worn vineyards and olive laden pastures; a perfect setting to unwind and embrace the slower pace of life in your rural retreat. Radiating from the main church square, several cafes and shops provide for basic needs, while larger stores and supermarkets can be found in nearby Tavira.
+    text: "This picture postcard village sits several kilometres from Tavira amongst age-old vineyards and olive laden pastures; a perfect setting to unwind and embrace the slower pace of life in your rural retreat. Radiating from the main church square, several cafes and shops provide for basic needs, while larger stores and supermarkets can be found in nearby Tavira.
     \n
     \nCuisine: Several excellent restaurants, serving wholesome country fare are within easy reach, while for a greater selection head to Tavira to enjoy both traditional Portuguese cuisine, or a visit to one of several up-and-coming modern bistros and eateries."
     collage:

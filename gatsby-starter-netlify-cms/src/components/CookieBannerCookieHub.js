@@ -1,6 +1,9 @@
 import React from "react"
 import Helmet from 'react-helmet';
 
+
+//GDPR cookie banner
+
 const CookieBannerCookieHub = ({ googleTrackingId, cookieHubId }) => {
     const googleUrl = "https://www.googletagmanager.com/gtag/js?id=" + googleTrackingId
     const cookieHubUrl = "https://cookiehub.net/cc/" + cookieHubId + ".js"
