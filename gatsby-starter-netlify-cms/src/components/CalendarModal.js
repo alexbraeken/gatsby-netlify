@@ -101,7 +101,7 @@ const CalendarModal = (props) => {
     }
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-container">
+        <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-container always-top">
         <Modal.Header closeButton>
           <Modal.Title>Choose New Dates</Modal.Title>
         </Modal.Header>
@@ -210,7 +210,7 @@ const CalendarModal = (props) => {
             </svg>
         </div>
         </div>
-        
+        <div className="always-top" style={{display:"none"}}></div>
         </Modal.Body>
       </Modal>
     )

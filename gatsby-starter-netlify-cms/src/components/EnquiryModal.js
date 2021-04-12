@@ -72,7 +72,7 @@ const EnquiryModal = (props) => {
               <div className="orangeText" style={{margin: "auto"}}>
                 Ask us about {props.propName}:
               </div>
-              <div className="close modal-content modal-header enquiry-modal" style={{display: "none"}}>
+              <div className="modal close modal-content modal-header enquiry-modal" style={{display: "none"}}>
               </div>
           </Modal.Title>
         </Modal.Header>
