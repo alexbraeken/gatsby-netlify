@@ -33,7 +33,7 @@ part1:
 part2:
     header: "Local Beach"
     text: "With a Blue Flag status ensuring high standards and facilities, and with a softly sloping shelf into the clean blue waters of the Atlantic Ocean, then it is clear to see why Altura is a popular family destination. Stretching East, long walks can be taken along the soft shoreline taking in the other equally splendid beaches of Praia Verde and Cabeco, then onto ever popular Monte Gordo. Heading West, the sands stretch as far as the eye can see, merging effortlessly into the vast Ria Formosa Natural Park. The summer brings a super selection of water sports."
-    img: ../../../static/img/Castro_Marim.jpg
+    img: ../../../static/img/Altura_Beach_1.jpg
     slider:
         slider: false
         img1: 

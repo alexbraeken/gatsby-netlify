@@ -316,6 +316,7 @@ a:hover
   max-width: 1000px
   min-width: 300px
   width: 100%
+  position: relative
   height: 300px
   opacity: 1
   background-position: center
@@ -325,12 +326,11 @@ a:hover
   backface-visibility: hidden
   -webkit-font-smoothing: subpixel-antialiased
 
+
 .prop-card-container:hover 
   & .prop-card
       transform: scale(1.019) translateZ(0)
   & .prop-card-text
-      margin-top: 190px
-      padding-top: calc(1.5rem + 10px)
       text-decoration: none
   & .prop-card-title
       color: $primary

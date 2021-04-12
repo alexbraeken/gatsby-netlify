@@ -54,8 +54,8 @@ export const PropertyPageTemplate = ( props ) =>
         props.handlePathChange(path.href)
 
         const searchDates = path.search? queryString.parse(path.search) : null;
-        
-        if(searchDates)setBookDates({from: searchDates.from, to: searchDates.to});
+        console.log(searchDates)
+        setBookDates({from: searchDates?.from || null, to: searchDates?.to || null});
 
         setPropId(props.id)
         if(props.id){

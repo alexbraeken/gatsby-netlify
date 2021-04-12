@@ -44,7 +44,7 @@ part2:
         img3: 
             img: ../../../static/img/tavira.jpg
             title: "Tavira"
-    img: ../../../static/img/Cabanas_Beach.jpg
+    img: ../../../static/img/Praia_verde.jpg
 part3:
     header: ""
     text: ""

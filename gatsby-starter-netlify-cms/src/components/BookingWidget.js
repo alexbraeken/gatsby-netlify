@@ -9,8 +9,9 @@ const BookingWidget = (props) => {
 
     //On props change, set default date used in widget url
     useEffect(() => {
-        setCalendarCheckIn((props.dateRange.from) ? formatDate(props.dateRange.from) : '')
-        setCalendarCheckOut((props.dateRange.to) ? formatDate(props.dateRange.to) : '')
+        console.log(props.dateRange)
+        setCalendarCheckIn(props.dateRange.from ? formatDate(props.dateRange.from) : 'From')
+        setCalendarCheckOut(props.dateRange.to ? formatDate(props.dateRange.to) : 'To')
 
         return () => {
             setCalendarCheckIn(null)
@@ -34,8 +35,7 @@ const BookingWidget = (props) => {
 
 <script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
 <script>
-{`var widget = new Widget('leadWidget', '${props.id}', {"type":"agency","fields":["phone","notes"],"showAvailability":true,"lang":"US","minStay":true,"price":true,"cc":false,"emailClient":true,"saveCookie":true,"showDynamicMinStay":true,"backgroundColor":"#FFFFFF","buttonSubmit":{"backgroundColor":"#f5821e"},"showPriceDetailsLink":true,"showGetQuoteLink":true,"labelColor":"#f5821e","showTotalWithoutSD":true,"redirectURL":false,"showDiscount":true,"includeReferrerToRequest":true,"customDomainName":null,"source":null,"aid":"ORB-49587220416635719","clickID":null,"valuesByDefaults":{"checkIn":{"value":"${calendarCheckIn}"},"checkOut":{"value":"${calendarCheckOut}"},"guests":{"value":""},"discountCode":{"value":""}},"pathRoot":"https://platform.hostfully.com/"});`}
-
+{`var widget = new Widget('leadWidget', '${props.id}', {"maximun_availability":"2024-04-11T12:55:08.095Z","type":"agency","fields":["phone","notes"],"showAvailability":true,"lang":"US","minStay":true,"price":true,"cc":false,"emailClient":true,"saveCookie":true,"showDynamicMinStay":true,"backgroundColor":"#FFFFFF","buttonSubmit":{"backgroundColor":"#f5821e"},"showPriceDetailsLink":true,"showGetQuoteLink":true,"labelColor":"#f5821e","showTotalWithoutSD":true,"redirectURL":false,"showDiscount":true,"includeReferrerToRequest":true,"customDomainName":null,"source":null,"aid":"ORB-49587220416635719","clickID":null,"valuesByDefaults":{"checkIn":{"value":"${calendarCheckIn}"},"checkOut":{"value":"${calendarCheckOut}"},"guests":{"value":""},"discountCode":{"value":""}},"pathRoot":"https://platform.hostfully.com/"});`}
 </script>
 <style>
     {`

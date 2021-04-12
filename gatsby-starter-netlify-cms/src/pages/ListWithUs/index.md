@@ -39,5 +39,11 @@ part3:
     col3Header: "Agree & Sign the paperwork!"
     col3: "Once you have decided on the right package, simply complete a few forms, sign off the agreement and away we go!"
     col3img: ../../../static/img/Agree_&_Sign.jpg
+part4: 
+    header: "CUTTING EDGE TECHNOLOGY WITH A CLASSIC CUSTOMER FOCUSED APPROACH"
+    text: "<p> We use the newest technologies to ensure that owners, guests and we get all the necessary information and tools necessary to maximize bookings, customer satisfaction and  owner's peace of mind.</p>
+    
+    <p>Together with industry giants such as Hostfully, Stripe, Mailerlite and others, we've created tools for lightning fast bookings, enquiries, payments and customer relations. We're always looking at the cutting edge to make sure we're always providing the best experience for everyone involved.</p>"
+part4Img: ../../../static/img/hostfully.jpg
 testimonialHeader: "Here's What Some Owners Have To Say"
 ---

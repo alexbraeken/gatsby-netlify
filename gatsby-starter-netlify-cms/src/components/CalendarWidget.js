@@ -96,12 +96,11 @@ const CalendarWidget = (props) => {
           {from && !to && 'Please select the last day.'}
           {from &&
             to &&
-            `Selected from ${from.toLocaleDateString()} to
-                ${to.toLocaleDateString()}`}{' '}
+            <p>{`Selected from ${from.toLocaleDateString()} to ${to.toLocaleDateString()}`}{' '}</p>}
           {from && to && (
-            <button className="link" onClick={handleResetClick} style={{borderRadius:"5px",backgroundColor:"#fff0e5"}}>
-              Reset
-            </button>
+            <p><button className="link" onClick={handleResetClick} style={{borderRadius:"5px",backgroundColor:"#fff0e5"}}>
+              Clear
+            </button></p>
           )}
         </p>
             <DayPicker

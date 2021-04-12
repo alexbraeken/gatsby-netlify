@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import {Card} from 'react-bootstrap'
 import { Link } from "@reach/router";
-import Col from 'react-bootstrap/Col'
+import {Col, Row, Container}from 'react-bootstrap'
 import PropertyCard from '../components/PropertyCard';
 import { gsap } from "gsap";
 
@@ -29,7 +29,8 @@ const PropFeatureGrid = React.memo((data) => {
     })
 
 
-    const list = data.gridItems.value.map((item, index) => {
+    const list = []
+    data.gridItems.value.forEach((item, index) => {
       let amenityBool = []
       
       if(amenities.length > 0 && item.amenities){
@@ -47,8 +48,8 @@ const PropFeatureGrid = React.memo((data) => {
       && (parseInt(item.bathrooms) <= data.state.bathrooms[1])
       && (advancedSearch === (data.propertyIds.indexOf(item.uid) !== -1))
       && !amenityBool.includes(false)){  
-        return item
-    } else { return null}
+        list.push(item)
+    } 
   })
   
 
@@ -79,20 +80,26 @@ const PropFeatureGrid = React.memo((data) => {
 
 
   return(
-  <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
-    {propList && propList.map((item, index) => 
-    {    
-      if(item != null){
-        let winterLet = false
-      if(data.winterLets.indexOf(item.uid)!== -1){
-        winterLet = true
-      }
-        return(
-          <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet} dates={data.dates}/>
-          )}
-      })
-      }
-  </div>
+    <>
+    <Container>
+      <Row>{propList?.length > 0 ? <h4>{propList.length} Properties:</h4>: <h4>No Properties Found</h4>}</Row>
+    </Container>
+    <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
+      <br />
+      {propList && propList.map((item, index) => 
+      {    
+        if(item != null){
+          let winterLet = false
+        if(data.winterLets.indexOf(item.uid)!== -1){
+          winterLet = true
+        }
+          return(
+            <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet} dates={data.dates}/>
+            )}
+        })
+        }
+    </div>
+  </>
 )})
 
 

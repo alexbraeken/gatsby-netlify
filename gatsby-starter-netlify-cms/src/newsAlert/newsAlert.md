@@ -1,6 +1,6 @@
 ---
 templateKey: news-alert
-title: "COVID-19 H&S"
-news: "Read About Our New Health & Safety Guidelines to Tackle COVID-19"
-link: "../about/health-and-safety"
+title: "Meet The Team"
+news: "Meet the great people who make Smartavillas the greatest property management company in the Algarve"
+link: "../team"
 ---

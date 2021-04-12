@@ -15,6 +15,8 @@ export const WhyUsPageTemplate = ({
   part2,
   part2Img,
   part3,
+  part4,
+  part4Img,
   testimonialHeader
 }) => {
 
@@ -167,6 +169,21 @@ export const WhyUsPageTemplate = ({
         </Row>
       </Container>
     </section>
+    <section>
+      <Container>
+        <Row>
+          <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
+        <div className="section intro-para" style={{margin: "auto"}}>
+          <h3 className="has-text-weight-semibold is-size-2">{part4.header}</h3>
+          <div dangerouslySetInnerHTML={{ __html: `<div> ${part4.text} </div>` }} />
+        </div>
+        </Col>
+        <Col xs={12} md={6}>
+          <PreviewCompatibleImage imageInfo={part4Img} imgStyle={{borderRadius: "5px", marginLeft: "-150px"}}/>
+        </Col>
+        </Row> 
+      </Container>    
+    </section>
     <section style={{
         paddingBottom: "100px"}}>
       <Container>
@@ -191,6 +208,8 @@ WhyUsPageTemplate.propTypes = {
   part2: PropTypes.object,
   part2Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   part3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  part4: PropTypes.object,
+  part4Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   testimonialHeader: PropTypes.string,
 }
 
@@ -207,6 +226,8 @@ const WhyUsPage = ({ data }) => {
         part2={frontmatter.part2}
         part2Img={frontmatter.part2Img}
         part3={frontmatter.part3}
+        part4={frontmatter.part4}
+        part4Img={frontmatter.part4Img}
         testimonialHeader = {frontmatter.testimonialHeader}
       />
     </Layout>
@@ -292,6 +313,18 @@ export const WhyUsPageQuery = graphql`
             }
             publicURL
           }
+        }
+        part4 {
+          header
+          text
+        }
+        part4Img {
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
         }
         testimonialHeader
       }
