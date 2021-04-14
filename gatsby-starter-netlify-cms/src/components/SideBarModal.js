@@ -14,7 +14,7 @@ const amenitiesFilterList = [
         value: 'hasPool'
     },
     {
-        amenity: 'Wheelchar Accessible',
+        amenity: 'Wheelchair Accessible',
         value: 'isWheelchairAccessible'
     },
     {

@@ -1,9 +1,11 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useRef} from 'react'
 import {Card} from 'react-bootstrap'
 import { Link } from "@reach/router";
 import {Col, Row, Container}from 'react-bootstrap'
 import PropertyCard from '../components/PropertyCard';
 import { gsap } from "gsap";
+import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import Loading from '../components/Loading'
 
 gsap.registerPlugin(gsap);
 
@@ -11,6 +13,18 @@ const PropFeatureGrid = React.memo((data) => {
 
   const [propList, setPropList] = useState([data.gridItems.value])
   const [advancedSearch, setAdvancedSearch] = useState(false)
+  const [displayNumber, setDisplayNumber] = useState(20)
+  const [loadMoreTop, setLoadMoreTop] = useState(null)
+
+  const loadMore = useRef(null)
+
+
+  useEffect(() => {
+    setLoadMoreTop(loadMore.current.getBoundingClientRect().top)
+    return () => {
+      setLoadMoreTop(null)
+    }
+  }, [])
 
   useEffect(() => {
     if(data.propertyIds){(data.propertyIds.length>0) ? setAdvancedSearch(true) : setAdvancedSearch(false)}
@@ -78,6 +92,17 @@ const PropFeatureGrid = React.memo((data) => {
     }
   }, [data, advancedSearch])
 
+  useScrollPosition(({ prevPos, currPos }) => {
+    if(loadMoreTop){
+      console.log(loadMore.current.getBoundingClientRect().top)
+      if(1000 > loadMore.current.getBoundingClientRect().top){
+        if(displayNumber !== propList?.length)setDisplayNumber((displayNumber + 20) > propList?.length ? propList.length : displayNumber +20)
+        console.log(displayNumber)
+      }
+    }
+  })
+  
+
 
   return(
     <>
@@ -88,6 +113,7 @@ const PropFeatureGrid = React.memo((data) => {
       <br />
       {propList && propList.map((item, index) => 
       {    
+        if(index > displayNumber)return null
         if(item != null){
           let winterLet = false
         if(data.winterLets.indexOf(item.uid)!== -1){
@@ -98,6 +124,10 @@ const PropFeatureGrid = React.memo((data) => {
             )}
         })
         }
+        <div style={{flex: "1 1 100%", display: "flex", justifyContent:"center"}}>
+          <div ref={loadMore}>{displayNumber !== propList?.length ? <Loading />:null}
+          </div>
+        </div>
     </div>
   </>
 )})

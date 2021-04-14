@@ -37,6 +37,14 @@ const customStyles = {
     flex: "1 1 25%",
     display: "flex"
   }),
+  menu: () => ({
+    position: "absolute",
+    top: "55px",
+    left: "0",
+    zIndex: "20",
+    width: "100%"
+
+  }),
   control: () => ({
     width: "100%",
     height: "50px",

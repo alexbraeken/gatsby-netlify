@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
@@ -23,7 +23,8 @@ class CustomSlide extends React.Component {
       position: "relative",
       backgroundSize:"cover",
       backgroundPosition:"center",
-      padding: "40px"}}>
+      padding: "40px",}}
+      className="slide-image-container">
           <div className="slide__content">
               <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
               <path className="slide__overlay-path" d="M0,0 150,0 300,405 0,405"></path> 
@@ -63,10 +64,15 @@ export const WhyBookPageTemplate = ({
   const [index, setIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
+  const slideContainer = useRef(null)
+
   const handleSelect = (selectedIndex, e) => {
-      setIndex(selectedIndex);
-    };
-  
+        setIndex(selectedIndex);
+        const slides = document.getElementsByClassName("slide-image-container")
+        const bgImg = slides[selectedIndex].style.backgroundImage
+        slideContainer.current.style.backgroundImage = bgImg
+      };
+
   useEffect(() => {
     setTimeout(()=>{
       setLoaded(true)}, 1000
@@ -119,55 +125,67 @@ export const WhyBookPageTemplate = ({
         </Col>
         </Row>
       </Container>
-      <div style={{ 
-          width: "100vw",
-          position: "absolute",
-          top: "auto",
-          bottom: "0",
-          right: "0",
-          height: "100px",
-          zIndex: "1",
-          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-            <svg fill="#f5821e" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
-              width: "100%",
-              left: "0",
-              bottom: "-1px",
-              height: "100%",
-              position: "absolute",
-            }}> 
-            <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
-            </svg>
-            </div>
     </section>
-    <section style={{
+    <section 
+    style={{
         paddingBottom: "100px",
+        paddingTop: "100px",
         width: "100vw",
         position: "relative",
         marginLeft: "-50vw",
         left: "50%",
         backgroundColor:"#f5821e"}}>
-          
+          <div style={{ 
+          width: "100vw",
+          position: "absolute",
+          top: "0",
+          bottom: "auto",
+          right: "0",
+          height: "100px",
+          zIndex: "10",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              top: "-1px",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path d="M0 0 L 100 0 100 100 C 100 100 50 0 0 100  Z"></path> 
+            </svg>
+            </div>
+      <div className="slide-container" ref={slideContainer} style={{backgroundImage:`url("${slides? slides[0].slide.childImageSharp.fluid.src : part2.img.childImageSharp.fluid.src }")`}}></div>
       <Container>
         <Row>
-          <Col xs={12} md={6}>
-          <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
-              {slides &&
-            slides.map((slide, index) => {
-                  return<Carousel.Item key={index}>
-                      <Row>
-                          <CustomSlide slide={slide} key={index}/>
-                      </Row>
-          </Carousel.Item>
-              })}
-          </Carousel>
+          {slides ?
+          <Col md={12} lg={6}>
+              <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
+                  {slides.map((slide, index) => {
+                      return<Carousel.Item key={index}>
+                          <Row>
+                              <CustomSlide slide={slide} key={index}/>
+                          </Row>
+              </Carousel.Item>
+                  })}
+              </Carousel>
           </Col>
+          : 
+          <>
+          {part2.img ?
+            <Col md={12} lg={6}>
+              <PreviewCompatibleImage imageInfo={part2.img} />
+            </Col>
+            : 
+            null
+            }
+          </>
+          }
           <Col style={{display:"flex"}}>
-          <div style={{margin: "auto", textAlign: "center"}}>
-          <h3 className="has-text-weight-semibold is-size-2">{part2.header}</h3>
-            <p>
+          <div style={{margin:"auto"}} >
+            <h3 className="has-text-weight-semibold is-size-2" style={{textAlign: "center"}}>{part2.header}</h3>
+            <p style={{color: "#fff"}}>
               {part2.text}
             </p>
-            <SubmitButton text="See Our Properties" link="/properties" backgroundColor="#fff"/>
           </div>
           </Col>
         </Row>
@@ -192,25 +210,20 @@ export const WhyBookPageTemplate = ({
             </svg>
             </div>
     </section>
+    {part3 && 
     <section style={{
-        paddingBottom: "100px",
+        paddingBottom: "50px",
         position: "relative"}}>
       <Container>
         <Row>
-          <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
-            <div className="intro-para" style={{margin: "auto"}}>
-            <h3 className="has-text-weight-semibold is-size-2">{part3.header}</h3>
-              <p>
-                {part3.text}
-              </p>
-            </div>
-          </Col>
-          <Col xs={12} md={6} >
-            <PreviewCompatibleImage imageInfo={part3Img} imgStyle={{borderRadius: "5px", marginLeft: "-150px"}}/>
-          </Col>
+        <h3 className="has-text-weight-semibold is-size-2">{part3.header}</h3>
+          <p>
+            {part3.text}
+          </p>
         </Row>
       </Container>
     </section>
+    }
     <section>
       <Container>
         <Row>

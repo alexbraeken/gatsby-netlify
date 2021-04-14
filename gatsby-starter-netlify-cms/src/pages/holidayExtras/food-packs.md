@@ -177,7 +177,7 @@ hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
                                                                     }
                                                                     }
 .svg-fill1 path {
-    d: path("M0 100 C 20 0 50 0 100 100 L 100 100 0 100 Z");
+    d: path("M0 0 C 0 0 100 0 100 0 L 100 0 0 0 Z");
     transition: all 0.5s
 }
 
@@ -186,8 +186,15 @@ hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
     transition: all 0.5s
 }
 
+.boozy-box{
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center;
+    margin: 50px auto;
+}
+
 .boozy-box:hover .svg-fill1 path {
-    d: path("M0 0 C 20 100 50 100 100 0 L 100 100 0 100 Z");
+    d: path("M0 0 C 20 100 50 100 100 0 L 100 0 0 0 Z");
 }
 
 .boozy-box:hover .svg-fill2 path {
@@ -195,11 +202,66 @@ hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
 }
 
 .boozy-box img {
-    transition: all 0.5s
+    box-shadow: 20px -3px 20px 20px #eaeaea;
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    transform: translateX(40px);
+    border-radius: 50%;
+    max-width: 500px; 
+    margin: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    max-height: 400px
 }
 
 .boozy-box:hover img {
-    box-shadow: 0 0 7px 1px #9e9e9e;
+    transform: translateX(0px);
+    border-radius: 5%;
+}
+
+@media only screen and (max-width: 900px){
+    .boozy-box img {
+        max-width: 250px;
+        max-height: 250px;
+        transform:translateX(0px);
+    }
+} 
+
+
+.floating {
+    box-shadow: 20px -3px 20px 20px #eaeaea;
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    transform: rotateX(
+358deg
+) rotateY(
+340deg
+);
+}
+
+.boozy-box:hover .floating {
+    box-shadow: 0px -3px 20px 20px #eaeaea;
+    transform: rotateX(
+360deg
+) rotateY(
+360deg
+);
+}
+
+.text {
+    margin: auto; 
+    padding: 20px 10px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    text-shadow: 9px 8.7px 6px rgba(0, 0, 0, 0.5);
+    transform: translateZ(30px);
+    transition: 0.5s;
+}
+
+.boozy-box:hover .text {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    text-shadow: 0px 8.7px 6px rgba(0, 0, 0, 0.8);
 }
 
 </style>
@@ -208,144 +270,241 @@ hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
 <p>By the time you reach your destination, you have had a long journey. For your convenience, we offer you a special service. You can order a food pack or freshly prepared meal to be ready and waiting for your arrival!&nbsp;</p>
 
 <p>&nbsp;</p>
-
-<div class="foodPacksTables">
-    <div class="foodPacksTable" id="snack-pack">
-        <div class="foodPackImg" style="background-image: url(https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000200_snack.jpg);">
-        </div>
-    <div class="foodPackInnerWrapper">
-        <div class="foodPackTitle">
-            <h3><span>Snack Pack</span></h3>
-        </div>
-    <div class="foodPackSubtitle"><strong>Great Starter Pack for Day Time Arrivals</strong></div>
-        <ul>
-            <li>Tea Bags - Box of 10</li>
-            <li>Coffee Sachets - Box of 10</li>
-            <li>1 Litre Semi-Skimmed Milk</li>
-            <li>3 Litres Bottled Water</li>
-            <li>1 Litre Orange Juice</li>
-            <li>Assorted Tradicional Bread Rolls*</li>
-            <li>Tub of Butter</li>
-            <li>Sliced Ham*</li>
-            <li>Fresh Tomatoes(V)</li>
-            <li>Fresh Cheese*</li>
-        </ul>
+<div class="boozy-box">
+    <div class="img-float" style="flex: 1 1 50%; display: flex;">
+        <img src="https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000200_snack.jpg">
     </div>
-    <p>
-    Up to 6 persons 20€
-    <br>
-    7-10 persons 25€
-    <br>
-    * quantities increased
-    <br>
-    (V) Vegetarian option instead of Ham
-    </p>
-</div>
-<div class="foodPacksTable"id="big-basket">
-    <div class="foodPackImg" style="background-image: url(https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000197_luxury.jpg);">
-    </div>
-    <div class="foodPackInnerWrapper">
-        <div class="foodPackTitle">
-            <h3><span>Big Basket</span></h3>
-        </div>
-        <div class="foodPackSubtitle"><strong>Later Arrival: Booze and Breakfast Items!</strong></div>
-        <ul>
-            <li>Tea Bags - Box of 20</li>
-            <li>Coffee Sachets - Box of 20</li>
-            <li>2 Litres Semi-Skimmed Milk</li>
-            <li>5 Litres Bottled Water</li>
-            <li>1 Litre Orange Juice</li>
-            <li>Assorted Tradicional Bread Rolls</li>
-            <li>Tub of Butter</li>
-            <li>Sliced Ham*</li>
-            <li>Fresh Cheese*</li>
-            <li>Fresh Tomatoes</li>
-            <li>12 Eggs</li>
-            <li>1 Large Bag of Chips</li>
-            <li>1 Box of Cereals</li>
-            <li>Selection of Fresh Fruit</li>
-            <li>1.5 Liter Lemonade</li>
-            <li>12 Bottles Local Beer</li>
-            <li>1 Bottle White Wine</li>
-            <li>1 Bottle Red Wine</li>
-        </ul>
-        <p>
-        Up to 6 persons 50€
-        <br>
-        7-10 persons 60€
-        <br>
-        * quantities increased
-        </p>
-    </div>
-</div>
-<div class="foodPacksTable" id="fresh-meals">
-    <div class="foodPackImg" style="background-image: url(https://res.cloudinary.com/ddipteh80/image/upload/v1614955315/Smartavillas/Welcome%20Packs/pexels-anna-guerrero-4079522.jpg);">
-    </div>
-    <div class="foodPackInnerWrapper">
-        <div class="foodPackTitle">
-            <h3><span>Freshly Prepared Meals</span></h3>
-        </div>
-        <div class="foodPackSubtitle">
-            <strong>Our Local Chef Mark Wilson, Delicious Fresh Food Prepared to Order
-            <br>
-            Just warm in the oven when you arrive!</strong>
-        </div>
-        <p>MAIN COURSE - 8,95€ pp</p>
-        <ul>
-            <li>Meat or Vegetable Lasagne</li>
-            <li>Chicken Chasseur</li>
-            <li>Beef Bourguignon</li>
-            <li>Chicken Korma</li>
-        </ul>
-        <p>SIDE ORDERS/EXTRAS</p>
-        <ul>
-            <li>Mixed Salad - 2,00€</li>
-            <li>Garlic Bread - 2,00€</li>
-            <li>Rice - 2,00€</li>
-            <li>Fruit Salad - 2,50€</li>
-        </ul>
-    </div>
-</div>
-<div class="foodPacksTable" id="oven-pizza">
-    <div class="foodPackImg" style="background-image: url(https://res.cloudinary.com/ddipteh80/image/upload/v1614955357/Smartavillas/Welcome%20Packs/pexels-ponyo-sakana-5108601.jpg);" style="width: 80%; max-width: 600px; min-width: 400px">
-    </div>
-    <div class="foodPackInnerWrapper">
-        <div class="foodPackTitle">
-            <h3><span>Oven Ready Pizzas for the Kids</span></h3>
-        </div>
-        <div class="foodPackSubtitle">
-            <strong>Please specify if vegetarian is required</strong>
-        </div>
-        <p>4,95€ (12in/30cm)</p>
-    </div>
-</div>
-<div style="max-width: 100%">
-<h4>Order bottles of wine of choice for direct delivery: 5€ each</h4>
-<h4>OR<h4>
-<div style="display: flex; flex-wrap: wrap; justify-content: center;" class="boozy-box">
-    <div style="flex: 1 1 50%; display: flex;">
-        <img style="min-width: 250px; width: 100%; max-width: 500px; margin: auto; border-radius: 50%;" src="https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000205_boozy_box.jpg">
-    </div>
-    <div style=" flex: 1 1 50%; display: flex; border-radius: 4px; flex-wrap: wrap; border: 1px solid #E5E5E5; box-shadow: 0 0 5px #e2e2e2; position: relative;">
+    <div class="floating" style=" flex: 1 1 50%; display: flex; flex-wrap: wrap; border: 1px solid #E5E5E5; position: relative;">
         <div style="flex: 1 1 100%; text-align: center; background-color: #FF8C00; display: flex; position: relative">
-            <h3 style="color: #fff; margin: auto; padding: 10px;">ORDER OUR BOOZY BOX!</h3>
+            <h2 class="text" style="color: #fff; margin: auto;">Snack Pack</h2>
             <div style=" 
           width: 100%;
           position: absolute;
           top: auto;
-          bottom: 0;
+          bottom: -9px;
           right: 0;
           height: 10px;
           z-index: 1;
           transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
-            <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill1"> 
+            <svg fill="#FF8C00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill1"> 
             <path></path> 
             </svg>
             </div>
         </div>
         <br>
         <div style="flex: 1 1 100%; text-align: center; display: flex; position: relative;">
-            <p style="margin: auto; padding: 20px 10px;"><b>Boozy Box</b> includes:<br>
+            <p class="text" style="margin: auto;">
+            <b>Great Starter Pack for Day Time Arrivals</b>
+            <br>
+            Tea Bags, Coffee Sachets, 1 Litre Semi-Skimmed Milk, 3 Litres Bottled Water, 1 Litre Orange Juice, Assorted Traditional Bread Rolls*, Tub of Butter, Sliced Ham*, Fresh Tomatoes(V), Fresh Cheese*.
+            <br>
+            * quantities increased
+            <br>
+            (V) Vegetarian option instead of Ham
+            </p>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: 0;
+          right: 0;
+          height: 20px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#333333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill2"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <div style="flex: 1 1 100%; text-align: center; background-color: #333333; display: flex">
+            <h3 class="text" style="color: #FF8C00; margin: auto;">Up to 6 persons 20€
+            <br /> *7-10 persons 25€</h3>
+        </div>
+    </div>
+</div>
+</div>
+<div class="boozy-box">
+    <div class="img-float" style="flex: 1 1 50%; display: flex;">
+        <img src="https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000197_luxury.jpg">
+    </div>
+    <div class="floating" style=" flex: 1 1 50%; display: flex; flex-wrap: wrap; border: 1px solid #E5E5E5; position: relative;">
+        <div style="flex: 1 1 100%; text-align: center; background-color: #FF8C00; display: flex; position: relative">
+            <h2 class="text" style="color: #fff; margin: auto;">Big Basket</h2>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: -9px;
+          right: 0;
+          height: 10px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#FF8C00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill1"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <br>
+        <div style="flex: 1 1 100%; text-align: center; display: flex; position: relative;">
+            <p class="text" style="margin: auto;">
+            <b>Later Arrival: Booze and Breakfast Items!</b>
+            <br>Tea Bags, Coffee Sachets, 2 Litres Semi-Skimmed Milk, 5 Litres Bottled Water, 1 Litre Orange Juice, Assorted Traditional Bread Rolls, Tub of Butter, Sliced Ham*, Fresh Cheese*, Fresh Tomatoes, Eggs, Large Bag of Chips, Box of Cereals, Selection of Fresh Fruit, 1.5 Litre Lemonade, 12 Bottles Local Beer, Bottle White Wine, Bottle Red Wine.
+        <br>
+        * quantities increased
+            </p>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: 0;
+          right: 0;
+          height: 20px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#333333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill2"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <div style="flex: 1 1 100%; text-align: center; background-color: #333333; display: flex">
+            <h3 class="text" style="color: #FF8C00; margin: auto;"> Up to 6 persons 50€
+        <br>
+        *7-10 persons 60€</h3>
+        </div>
+    </div>
+</div>
+</div>
+<div class="boozy-box">
+    <div class="img-float" style="flex: 1 1 50%; display: flex;">
+        <img src="https://res.cloudinary.com/ddipteh80/image/upload/v1614955315/Smartavillas/Welcome%20Packs/pexels-anna-guerrero-4079522.jpg">
+    </div>
+    <div class="floating" style=" flex: 1 1 50%; display: flex; flex-wrap: wrap; border: 1px solid #E5E5E5; position: relative;">
+        <div style="flex: 1 1 100%; text-align: center; background-color: #FF8C00; display: flex; position: relative">
+            <h2 class="text" style="color: #fff; margin: auto;">Freshly Prepared Meals</h2>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: -9px;
+          right: 0;
+          height: 10px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#FF8C00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill1"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <br>
+        <div style="flex: 1 1 100%; text-align: center; display: flex; position: relative;">
+            <p class="text" style="flex: 1 1 100%; margin: auto;">
+            <b>Our Local Chef Mark Wilson, Delicious Fresh Food Prepared to Order
+            <br>
+            Just warm in the oven when you arrive!</b>
+            <br>
+            MAIN COURSE - 
+            <br />
+            Meat or Vegetable Lasagne, Chicken Chasseur, Beef Bourguignon or Chicken Korma
+            <br />
+            Side orders/extras: Mixed Salad, Garlic Bread, Rice, Fruit Salad</p>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: 0;
+          right: 0;
+          height: 20px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#333333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill2"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <div style="flex: 1 1 100%; text-align: center; background-color: #333333; display: flex">
+            <h4 class="text" style="color: #FF8C00; flex: 1 1 100%; margin: auto;">
+            8,95€ pp</h4>
+        </div>
+    </div>
+</div>
+</div>
+<div class="boozy-box">
+    <div class="img-float" style="flex: 1 1 50%; display: flex;">
+        <img src="https://res.cloudinary.com/ddipteh80/image/upload/v1614955357/Smartavillas/Welcome%20Packs/pexels-ponyo-sakana-5108601.jpg">
+    </div>
+    <div class="floating" style=" flex: 1 1 50%; display: flex; flex-wrap: wrap; border: 1px solid #E5E5E5; position: relative;">
+        <div style="flex: 1 1 100%; text-align: center; background-color: #FF8C00; display: flex; position: relative">
+            <h2 class="text" style="color: #fff; margin: auto;">Oven Ready Pizzas for the Kids</h2>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: -9px;
+          right: 0;
+          height: 10px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#FF8C00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill1"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <br>
+        <div style="flex: 1 1 100%; text-align: center; display: flex; position: relative;">
+            <p class="text" style="margin: auto;">
+            <b>Please specify if vegetarian is required</b>
+            </p>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: 0;
+          right: 0;
+          height: 20px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#333333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill2"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <div style="flex: 1 1 100%; text-align: center; background-color: #333333; display: flex">
+            <h4 class="text" style="color: #FF8C00; margin: auto;">4,95€ (12in/30cm)</h4>
+        </div>
+    </div>
+</div>
+</div>
+<div style="max-width: 100%">
+<center>
+<h4>Order bottles of wine of choice for direct delivery: 5€ each</h4>
+<h4>OR<h4>
+</center>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;" class="boozy-box">
+    <div class="img-float" style="flex: 1 1 50%; display: flex;">
+        <img src="https://res.cloudinary.com/ddipteh80/image/upload/v1609149925/Smartavillas/Welcome%20Packs/R18_-_000205_boozy_box.jpg">
+    </div>
+    <div class="floating" style=" flex: 1 1 50%; display: flex; flex-wrap: wrap; border: 1px solid #E5E5E5; position: relative;">
+        <div style="flex: 1 1 100%; text-align: center; background-color: #FF8C00; display: flex; position: relative">
+            <h3 class="text" style="color: #fff; margin: auto;">ORDER OUR BOOZY BOX!</h3>
+            <div style=" 
+          width: 100%;
+          position: absolute;
+          top: auto;
+          bottom: -9px;
+          right: 0;
+          height: 10px;
+          z-index: 1;
+          transform: translateZ(0)" data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#FF8C00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; left: 0; bottom: -1px; height: 100%; position: absolute;" class="svg-fill1"> 
+            <path></path> 
+            </svg>
+            </div>
+        </div>
+        <br>
+        <div style="flex: 1 1 100%; text-align: center; display: flex; position: relative;">
+            <p class="text" style="margin: auto;">
+            <b>Boozy Box</b> includes:
+            <br>
             1 bottle red wine, 1 bottle white wine, 6 bottles local beer, large bag of crisps, large packet of nuts, 1 jar olives
             </p>
             <div style=" 
@@ -363,7 +522,7 @@ hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
             </div>
         </div>
         <div style="flex: 1 1 100%; text-align: center; background-color: #333333; display: flex">
-            <h3 style="color: #FF8C00; margin: auto; padding: 10px;">Only 20€ each!</h3>
+            <h3 class="text" style="color: #FF8C00;">Only 20€ each!</h3>
         </div>
     </div>
 </div>
