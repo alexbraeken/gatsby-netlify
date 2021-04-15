@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import Features from '../components/Features'
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import TeamRoll from '../components/TeamRoll'
 import { Container } from 'react-bootstrap';
 
@@ -70,7 +68,7 @@ const MeetTheTeamPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
 
   return (
-    <Layout>
+    <Layout propTitle={frontmatter.title}>
       <MeetTheTeamPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}

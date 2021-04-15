@@ -1,9 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow, OverlayView} from '@react-google-maps/api';
+import React from 'react';
+import { GoogleMap, Marker, OverlayView} from '@react-google-maps/api';
 import icon from '../img/smartavillas marker 2.svg'
-import Loading from '../components/Loading'
 import BedBathPax from '../components/BedBathPax'
-import { map } from 'lodash';
 
 export default class renderMap extends React.Component{
 

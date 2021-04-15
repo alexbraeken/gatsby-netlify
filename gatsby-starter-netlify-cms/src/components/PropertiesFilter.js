@@ -1,10 +1,7 @@
-import React, { Component, useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import React, { Component } from 'react'
 import RangeSlider from '../components/RangeSlider';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
-import Dropdown from 'react-bootstrap/Dropdown'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 

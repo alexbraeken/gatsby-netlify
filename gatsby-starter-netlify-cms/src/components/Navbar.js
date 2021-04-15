@@ -4,7 +4,7 @@ import { Link, graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
 import logo from '../img/smartavillas logo.png'
 import Container from 'react-bootstrap/Container'
-import { FirestoreCollection, FirestoreDocument } from "@react-firebase/firestore";
+import { FirestoreDocument } from "@react-firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 

@@ -2,7 +2,6 @@ import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import Features from '../components/Features'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import Carousel from 'react-bootstrap/Carousel'
@@ -309,7 +308,7 @@ const LocationPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
 
   return (
-    <Layout>
+    <Layout propTitle={frontmatter.title}>
       <LocationPageTemplate
         image={frontmatter.image}
         location={frontmatter.location}

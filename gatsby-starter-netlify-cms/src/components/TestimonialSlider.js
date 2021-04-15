@@ -27,8 +27,8 @@ class TestimonialSlider extends Component {
       <div className="testimonial-slider">
         <div className="slick-slider slick-track slick-slide"></div>
         <Slider {...settings}>
-         {this.state.slides.edges?.map((testimonial) => (
-           <div>
+         {this.state.slides.edges?.map((testimonial, index) => (
+           <div key={index}>
             <div className="testimonial-container">
               <div className="testimonial-img"
               style={{backgroundImage:`url('${testimonial.node.frontmatter.img ? testimonial.node.frontmatter.img.childImageSharp.fluid.src : ''}')`, }}>

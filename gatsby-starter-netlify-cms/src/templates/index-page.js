@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
-
 import Layout from '../components/Layout'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { gsap } from "gsap";
@@ -12,7 +11,6 @@ import FeatureCarousel from '../components/FeatureCarousel'
 import SearchFilter from '../components/SearchFilter'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import SubmitButton from '../components/SubmitButton'
-import { Helmet } from 'react-helmet'
 import Newsletter from '../components/Newsletter'
 import Content, { HTMLContent } from '../components/Content'
 import InstagramFeed from '../components/InstagramFeed';

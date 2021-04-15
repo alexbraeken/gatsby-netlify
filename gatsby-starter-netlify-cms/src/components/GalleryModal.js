@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Loading from '../components/Loading';
-import { Modal, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { gsap } from "gsap";

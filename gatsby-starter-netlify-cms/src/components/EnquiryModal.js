@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import 'react-day-picker/lib/style.css'
 import { Modal } from 'react-bootstrap'
 import emailjs from 'emailjs-com';

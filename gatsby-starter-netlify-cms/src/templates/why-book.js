@@ -2,12 +2,10 @@ import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import Features from '../components/Features'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import Testimonials from '../components/Testimonials'
 import Carousel from 'react-bootstrap/Carousel'
-import SubmitButton from '../components/SubmitButton'
 import Newsletter from '../components/Newsletter'
 
 class CustomSlide extends React.Component {
@@ -263,7 +261,7 @@ const WhyBookPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
 
   return (
-    <Layout>
+    <Layout propTitle={frontmatter.title}>
       <WhyBookPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}

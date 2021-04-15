@@ -3,8 +3,6 @@ import { Col, Row } from 'react-bootstrap';
 import RangeSlider from '../components/RangeSlider';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
-import logo from '../img/smartavillas logo.png'
-import { Link } from 'gatsby'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 

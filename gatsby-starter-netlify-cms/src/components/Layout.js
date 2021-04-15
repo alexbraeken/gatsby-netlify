@@ -16,9 +16,13 @@ import NewsAlert from '../components/newsAlert'
 import CookieBannerCookieHub from '../components/CookieBannerCookieHub'
 
 
-const TemplateWrapper = ({ children, pathKey }) => {
+const TemplateWrapper = ({ children, pathKey, propTitle, propDescription }) => {
 
-  const { title, description } = useSiteMetadata()
+  let { title, description } = useSiteMetadata()
+
+  title = propTitle || title
+  description = propDescription || propDescription
+
   const [path, setPath] = useState('')
 
 useEffect(() => {

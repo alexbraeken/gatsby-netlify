@@ -404,7 +404,7 @@ export default class PropertiesPage extends Component {
     render() {
 
         return (
-            <Layout pathKey={this.state.path}>
+            <Layout pathKey={this.state.path} propTitle="Smartavillas - Algarve Property Listings" propDescription="Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With dozens of properties, from Villas to seaside Apartments, Smartavillas offers the best the Algarve has to offer.">
                 <Router>
                         <PropertyTemplate path="/properties/:id" 
                         handlePathChange= {this.handlePathChange}/>

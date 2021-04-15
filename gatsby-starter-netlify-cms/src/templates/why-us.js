@@ -217,7 +217,7 @@ const WhyUsPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
 
   return (
-    <Layout>
+    <Layout propTitle={frontmatter.title}>
       <WhyUsPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}

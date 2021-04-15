@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import Features from '../components/Features'
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import Carousel from 'react-bootstrap/Carousel'
 import Content, { HTMLContent } from '../components/Content'
@@ -215,7 +213,7 @@ AlgarvePageTemplate.propTypes = {
 const AlgarvePage = ({ data }) => {
   const { markdownRemark:post } = data
   return (
-    <Layout>
+    <Layout propTitle={post.frontmatter.title}>
       <AlgarvePageTemplate
         contentComponent={HTMLContent}
         content={post.html}

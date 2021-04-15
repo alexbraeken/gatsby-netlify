@@ -64,7 +64,7 @@ const ContentPage = ({ data }) => {
   const { markdownRemark: post } = data
 
   return (
-    <Layout>
+    <Layout propTitle={post.frontmatter.title}>
       <ContentPageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}

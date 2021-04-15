@@ -55,7 +55,7 @@ export default class Index extends React.Component {
       `}
   </script>
 </Helmet>
-      <Layout>
+      <Layout propTitle="Smartavillas - Contact Us" >
         <section className="section">
           <div className="container">
             <div className="content">

@@ -30,7 +30,7 @@ export default class TravelerTipsIndex extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout propTitle="Smartavillas - Traveler Tips" propDescription="Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. We love recommending some of the best sights and experiences to our guests and ensuring they experience the Algarve to the fullest.">
         <div
           className="full-width-image-container margin-top-0"
           style={{

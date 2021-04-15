@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
-import Content, { HTMLContent } from '../components/Content'
+import { graphql } from 'gatsby'
 
 export const NewsAlertTemplate = ({
   title,

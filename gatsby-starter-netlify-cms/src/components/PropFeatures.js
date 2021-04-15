@@ -1,7 +1,5 @@
 import React,{useState, useEffect, useRef} from 'react'
-import {Card} from 'react-bootstrap'
-import { Link } from "@reach/router";
-import {Col, Row, Container}from 'react-bootstrap'
+import {Row, Container}from 'react-bootstrap'
 import PropertyCard from '../components/PropertyCard';
 import { gsap } from "gsap";
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'

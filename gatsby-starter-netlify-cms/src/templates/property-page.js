@@ -16,14 +16,13 @@ import GalleryModal from '../components/GalleryModal';
 import Amenity from '../components/Amenities';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import logo from '../img/logo.svg';
-import { ButtonGroup } from '@material-ui/core';
 import BedBathPax from '../components/BedBathPax';
 import ActivitiesRoll from '../components/ActivitiesRoll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool, faFileContract } from '@fortawesome/free-solid-svg-icons';
 import queryString from 'query-string';
 import EnquiryModal from '../components/EnquiryModal';
-
+import { Helmet } from 'react-helmet'
 
 
 
@@ -529,7 +528,11 @@ export const PropertyPageTemplate = ( props ) =>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
                             <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.picture}/>
-                            </div>                 
+                            </div>
+                            <Helmet>
+                                <title>{propName}</title>
+                                <meta name="description" content={data.value.description} />
+                            </Helmet>                 
                         </div> : <></>
             }}
         </FirestoreDocument>
