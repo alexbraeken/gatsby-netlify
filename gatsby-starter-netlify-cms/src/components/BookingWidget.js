@@ -9,7 +9,6 @@ const BookingWidget = (props) => {
 
     //On props change, set default date used in widget url
     useEffect(() => {
-        console.log(props.dateRange)
         setCalendarCheckIn(props.dateRange.from ? formatDate(props.dateRange.from) : 'From')
         setCalendarCheckOut(props.dateRange.to ? formatDate(props.dateRange.to) : 'To')
 

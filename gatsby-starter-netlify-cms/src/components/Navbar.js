@@ -88,7 +88,7 @@ const Navbar = class extends React.Component {
 
   checkPathForNav = () => {
     const path = window.location.pathname
-    const propPage = path.match(/(?<=\/properties\/).*$/)
+    const propPage = path.match(/(?:\/properties\/)([^\?]+)(?=\?*)/)
     if(window && path === "/"){
       this.setState({style: {
         position: 'absolute',
@@ -98,7 +98,7 @@ const Navbar = class extends React.Component {
           paddingTop:`${this.nav.current.getBoundingClientRect().height}px`
         }
     })
-  }else if(propPage && propPage[0].length > 1){
+  }else if(propPage?.[1].length > 1){
         this.setState({
           style: {
             position: 'absolute',

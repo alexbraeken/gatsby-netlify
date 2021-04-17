@@ -92,10 +92,8 @@ const PropFeatureGrid = React.memo((data) => {
 
   useScrollPosition(({ prevPos, currPos }) => {
     if(loadMoreTop){
-      console.log(loadMore.current.getBoundingClientRect().top)
       if(1000 > loadMore.current.getBoundingClientRect().top){
         if(displayNumber !== propList?.length)setDisplayNumber((displayNumber + 20) > propList?.length ? propList.length : displayNumber +20)
-        console.log(displayNumber)
       }
     }
   })
