@@ -3,6 +3,8 @@ import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
 import { Helmet } from 'react-helmet'
 import Newsletter from '../../components/Newsletter'
+import emailjs from 'emailjs-com';
+
 
 function encode(data) {
   return Object.keys(data)
@@ -13,27 +15,42 @@ function encode(data) {
 export default class Index extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isValidated: false }
+    this.state = { sent: false }
+    this.handleChange = this.handleChange.bind(this)
+    this.sendEnquiry = this.sendEnquiry.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    const form = e.target
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': form.getAttribute('name'),
-        ...this.state,
-      }),
+  sendEnquiry = (formInfo) => {
+    if (this.state.sent) {
+      return false;
+    }
+  
+    emailjs.sendForm(process.env.GATSBY_EMAILJS_SERVICE_KEY, process.env.GATSBY_EMAILJS_GENERAL_TEMPLATE_KEY, formInfo, process.env.GATSBY_EMAILJS_USER)
+    .then((result)=> {
+      return true;
+    }, (error)=> {
+      return false;
     })
-      .then(() => navigate(form.getAttribute('action')))
-      .catch((error) => alert(error))
-  }
+        
+    
+    }
+
+  handleSubmit = (e) => {
+      e.preventDefault()
+      const form = e.target
+
+      let enquiryResult = this.sendEnquiry(form);
+      console.log(enquiryResult)
+
+      if(!enquiryResult){
+        this.setState({sent: !this.state.sent})
+      }
+    }
 
   render() {
     return (
@@ -60,6 +77,12 @@ export default class Index extends React.Component {
           <div className="container">
             <div className="content">
               <h1>Contact</h1>
+              {this.state.sent ? 
+              <div>
+                <h3>Thank you!</h3>
+                <p>We'll get back to you as soon as possible.</p>
+              </div>: 
+              <>
               <p>
                 Get in touch with our team here!
               </p>
@@ -69,14 +92,14 @@ export default class Index extends React.Component {
                 action="/contact/thanks/"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
-                onSubmit={this.handleSubmit}
+                onSubmit={(e)=>this.handleSubmit(e)}
               >
                 {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
                 <input type="hidden" name="form-name" value="contact" />
                 <div hidden>
                   <label>
                     Don’t fill this out:{' '}
-                    <input name="bot-field" onChange={this.handleChange} />
+                    <input name="bot-field" onChange={(e)=>this.handleChange(e)} />
                   </label>
                 </div>
                 <div className="field">
@@ -88,7 +111,7 @@ export default class Index extends React.Component {
                       className="input"
                       type={'text'}
                       name={'name'}
-                      onChange={this.handleChange}
+                      onChange={(e)=>this.handleChange(e)}
                       id={'name'}
                       required={true}
                     />
@@ -103,7 +126,7 @@ export default class Index extends React.Component {
                       className="input"
                       type={'email'}
                       name={'email'}
-                      onChange={this.handleChange}
+                      onChange={(e)=>this.handleChange(e)}
                       id={'email'}
                       required={true}
                     />
@@ -117,7 +140,7 @@ export default class Index extends React.Component {
                     <textarea
                       className="textarea"
                       name={'message'}
-                      onChange={this.handleChange}
+                      onChange={(e)=>this.handleChange(e)}
                       id={'message'}
                       required={true}
                     />
@@ -129,11 +152,10 @@ export default class Index extends React.Component {
                   </button>
                 </div>
               </form>
+              </>}
               <br />
               <Newsletter />
               <br />
-
-<p>
               <h3>Smartavillas.com Algarve Holiday Rentals</h3>
               <ul style={{listStyle:"none"}}>
                 <li>
@@ -146,7 +168,6 @@ export default class Index extends React.Component {
                 <b>Address:</b> Smartavillas Unipessoal Lda (513548211) Rua Maria Helena Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal
                 </li>
               </ul>
-</p>
             </div>
           </div>
         </section>

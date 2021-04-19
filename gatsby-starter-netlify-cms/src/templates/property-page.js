@@ -43,6 +43,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [waiverOpen, setWaiverOpen] = useState(false)
    const [travelDistances, setTravelDistances] = useState({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
    const [showInteractionReadMore, setShowInteractionReadMore] = useState(false)
+   const [showAccessReadMore, setShowAccessReadMore] = useState(false)
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
    const [dates, setDates] = useState(null)
@@ -389,13 +390,31 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 </div>
                                                         </Col>
                                                     </Row>}
+                                                    {data.value.en_US.access && 
+                                                    <Row>
+                                                        <Col xs={12} md={9}>
+                                                            <hr />
+                                                                <div id="access">
+                                                                    <div className={data.value.en_US.access.length>400 ? `prop-description-box ${showAccessReadMore ? 'show' : ''}` : undefined}>
+                                                                    <h2>Your Arrival</h2>
+                                                                    <br />
+                                                                    {data.value.en_US.access.substring(0,400)}
+                                                                    {showAccessReadMore && <span id="more">{data.value.en_US.access.substring(400)}</span>}
+                                                                    </div>
+                                                                    <br />
+                                                                    <br />
+                                                                    {data.value.en_US.access.length>400 && <button className="btn" type="" onClick={()=>setShowAccessReadMore(!showAccessReadMore)}>{showAccessReadMore?<>Less...</>:<p>Read More...</p>}</button>}
+                                                                    <br />
+                                                                </div>
+                                                        </Col>
+                                                    </Row>}
                                                     {data.value.en_US.interaction && 
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="interaction">
                                                                 <div className={data.value.en_US.interaction.length>400 ? `prop-description-box ${showInteractionReadMore ? 'show' : ''}` : undefined}>
-                                                                    <h2>Interaction</h2>
+                                                                    <h2>During Your Stay</h2>
                                                                     <br />
                                                                     {data.value.en_US.interaction.substring(0,400)}
                                                                     {showInteractionReadMore && <span id="more">{data.value.en_US.interaction.substring(400)}</span>}
@@ -491,7 +510,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </div>
                                                 <br />
                                                 <div>
-                                                <center><a href="/about/booking-terms-conditions"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>Terms & Conditions</span></a></center>
+                                                <center><a href="/about/booking-terms-conditions"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>Booking Terms & Conditions</span></a></center>
                                                 </div>
                                                 {damageWaiver &&
                                                 <div style={{paddingBottom:"20px"}}> 

@@ -21,7 +21,7 @@ part2:
         <li> A Positive 'Can Do Attitude' - We will solve it, and only if we can't, we will find the person who can!  
         </li>
 
-        <li> Knowledgeable - Our team of professional maintenance, house-keeping and office teams are full of local knowledge! If you've got a question, one of us can answer it
+        <li> Knowledgeable - Our professional maintenance, house-keeping and office teams are full of local knowledge! If you've got a question, one of us can answer it
         </li>
 
         <li> Our Friendly Service - Our long serving staff members and our dedication earn us a strong reputation in the East Algarve. We are proud to be part of the 'Smarta' Family and work together to bring your rental property to life.

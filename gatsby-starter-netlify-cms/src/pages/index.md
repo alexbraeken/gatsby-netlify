@@ -8,7 +8,7 @@ subheading: Holiday Rentals Villas and Apartments
 mainpitch:
   title: Why Smartavillas
   description: >
-    If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further!!
+    If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further!
 news: "
 <h3>CLEAN & SAFE SEAL</h3>
 <br />
