@@ -40,7 +40,7 @@ export default class TravelerTipsIndex extends React.Component {
           <h1
         className={`has-text-weight-bold is-size-1 content-header ${this.state.loaded? "loaded" : ""}`}
         style={{color: "white"}}>
-            Traveler Tips
+            Traveller Tips
           </h1>
         </div>
         <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Activities <span style={{color:"#f5821e"}}>Nearby</span></h2>
