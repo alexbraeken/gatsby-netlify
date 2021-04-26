@@ -297,13 +297,15 @@ const SearchFilter = (props) => {
     max-width: 550px;
     border-radius: 5px;
   }
+
   .InputFromTo-to .DayPickerInput-Overlay {
     right: 0;
     left: auto;
   }
 
   .DayPicker{
-    max-width: 100%;
+    width: 100%;
+    font-size: 0.8rem;
   }
   .DayPicker-wrapper{
     max-width: 100%;
@@ -312,12 +314,13 @@ const SearchFilter = (props) => {
     z-index: 100;
   }
   .DayPicker-Months {
-    width: max-content;
     max-width: 100%;
+    display: flex;
   }
   .DayPicker-Month {
-    flex: 1 1 100%;
-    min-width: 200px;
+    flex: 1 1 40%;
+    min-width: 150px;
+    width: calc(${datesWidth/2}px - 2em);
     max-width: 230px;
   }
 `}</style>

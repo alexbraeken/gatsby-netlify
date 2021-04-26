@@ -200,9 +200,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </Row>
                                                 <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
                                                 <Row>
-                                                    <div className="flag under">
+                                                    <div className="flag under" style={{marginRight:"10px"}}>
                                                         <span className="prc">From {data.value.baseDailyRate} €</span>
-                                                        <span className="mth"> / Day</span>
+                                                        <span className="mth"> / Night</span>
                                                     </div>
                                                 
                                                 <span className="titleTags">
