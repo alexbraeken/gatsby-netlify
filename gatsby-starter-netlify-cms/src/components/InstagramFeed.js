@@ -60,12 +60,12 @@ class SimpleSlider extends Component {
           <Slider {...settings}>
           {this.state.slides.allInstagramContent.edges.map((post, index)=> {
                 return index < 12 ?
-                <div> 
+                <div key={index}> 
                     <a href={post.node.permalink} target="_blank" className="insta-post">
                         <div className="insta-icon">
                             <FontAwesomeIcon icon={['fab', 'instagram']} />
                         </div>
-                        <Img fixed={post.node.localImage.childImageSharp.fixed} imgStyle={{borderRadius: "5px", margin: "10px", transition:"all 0.3s"}} key={index} draggable="false"/>
+                        <Img fixed={post.node.localImage.childImageSharp.fixed} imgStyle={{borderRadius: "5px", margin: "10px", transition:"all 0.3s"}}  draggable={false}/>
                     </a>
                 </div> 
                     : null
@@ -78,7 +78,7 @@ class SimpleSlider extends Component {
 const InstagramFeed = (props) => {
     const { data } = props
     return (
-        <div class="instagram-feed">
+        <div className="instagram-feed">
             <SimpleSlider data={data}/>
         </div>
       )

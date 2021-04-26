@@ -75,12 +75,21 @@ const customStyles = {
 const SearchFilter = (props) => {
 
     const [dates, setDates] = useState({from:undefined, to: undefined})
+    const [datesWidth, setDatesWidth] = useState("500px")
 
     const toRef = useRef(null)
     const searchBar = useRef(null)
     const bedrooms = useRef(null)
     const multiselect = useRef(null)
+    const fromToContainer = useRef(null)
   
+    useEffect(() => {
+      setDatesWidth(fromToContainer.current.clientWidth)
+      console.log(fromToContainer.current.clientWidth)
+      return () => {
+        setDatesWidth("500px")
+      }
+    }, [])
 
     useEffect(() => {
         gsap.fromTo(searchBar.current, 1, {opacity:0, y: -200}, {opacity: 1, y: 0, ease:"power4.out", delay: 4})
@@ -132,7 +141,7 @@ const SearchFilter = (props) => {
         setDates({ from: from, to: dates.to });
         else
         setDates({from:from, to:undefined})
-      }
+    }
     
     useEffect(() => {
         showFromMonth()
@@ -206,7 +215,8 @@ const SearchFilter = (props) => {
             position: "relative",
             margin: "5px auto",
             height:"50px",
-            minWidth: "200px"}}>
+            minWidth: "200px"}}
+            ref={fromToContainer}>
         <DayPickerInput
           value={from}
           placeholder="Arrival Date"
@@ -215,9 +225,10 @@ const SearchFilter = (props) => {
           parseDate={parseDate}
           dayPickerProps={{
             selectedDays: [from, { from, to }],
-            disabledDays: { after: to },
+            disabledDays: [{before: new Date()},{ after: to }],
             toMonth: to,
             numberOfMonths: 2,
+            onDayClick: () => toRef.current.getInput().focus(),
             modifiers,
             modifiersStyles
           }}
@@ -233,7 +244,7 @@ const SearchFilter = (props) => {
             parseDate={parseDate}
             dayPickerProps={{
               selectedDays: [from, { from, to }],
-              disabledDays: { before: from },
+              disabledDays: { before: from || new Date() },
               modifiers,
               modifiersStyles,
               month: from,
@@ -280,13 +291,34 @@ const SearchFilter = (props) => {
     border-bottom-right-radius: 50% !important;
   }
   .InputFromTo .DayPickerInput-Overlay {
-    width: 550px;
+    display: flex;
+    flex-wrap: nowrap;
+    width: ${datesWidth}px;
+    max-width: 550px;
+    border-radius: 5px;
   }
   .InputFromTo-to .DayPickerInput-Overlay {
-    margin-left: -198px;
+    right: 0;
+    left: auto;
+  }
+
+  .DayPicker{
+    max-width: 100%;
+  }
+  .DayPicker-wrapper{
+    max-width: 100%;
   }
   .DayPickerInput-OverlayWrapper{
     z-index: 100;
+  }
+  .DayPicker-Months {
+    width: max-content;
+    max-width: 100%;
+  }
+  .DayPicker-Month {
+    flex: 1 1 100%;
+    min-width: 200px;
+    max-width: 230px;
   }
 `}</style>
         </Helmet>

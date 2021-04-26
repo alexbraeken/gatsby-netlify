@@ -115,7 +115,7 @@ const CalendarModal = (props) => {
           parseDate={parseDate}
           dayPickerProps={{
             selectedDays: [from, { from, to }],
-            disabledDays: { after: to },
+            disabledDays: [{before: new Date()},{ after: to }],
             toMonth: to,
             numberOfMonths: 2,
             modifiers,
@@ -162,6 +162,7 @@ const CalendarModal = (props) => {
   }
   .InputFromTo .DayPickerInput-Overlay {
     width: 550px;
+    border-radius: 5px;
   }
   .InputFromTo-to .DayPickerInput-Overlay {
     margin-left: -198px;
