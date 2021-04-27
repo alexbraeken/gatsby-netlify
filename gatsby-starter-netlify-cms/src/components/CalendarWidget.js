@@ -4,6 +4,11 @@ import { Helmet } from 'react-helmet'
 import 'react-day-picker/lib/style.css';
 
 
+
+
+
+
+
 //Calendar Widget in Property page
 const CalendarWidget = (props) => {
 
@@ -89,6 +94,37 @@ const CalendarWidget = (props) => {
         }
     }
 
+    const renderDay = (day) => {
+        const dateDay = day.getDate()
+        const dateMonth = day.getMonth()
+        const date = `${day.getFullYear()}-${dateMonth+1 > 9 ? dateMonth+1 : `0`+(dateMonth+1)}-${dateDay}`
+        console.log(date)
+        const dateStyle = {
+          position: 'absolute',
+          color: 'lightgray',
+          top: 0,
+          right: 0,
+          fontSize: 10,
+        };
+        const birthdayStyle = { fontSize: '0.8em', textAlign: 'left' };
+        const cellStyle = {
+          height: 35,
+          width: 35,
+          position: 'relative',
+          margin: 'auto',
+        };
+        return (
+          <div style={cellStyle}>
+            <div style={dateStyle}>{day.getDate()}</div>
+            {props.pricingPeriods?.[date] &&
+                <div style={birthdayStyle}>
+                  {props.pricingPeriods[date].amount}
+                </div>
+                }
+          </div>
+        );
+    }
+
     return (
         <>
              <p>
@@ -96,24 +132,26 @@ const CalendarWidget = (props) => {
           {from && !to && 'Please select the last day.'}
           {from &&
             to &&
-            <p>{`Selected from ${from.toLocaleDateString()} to ${to.toLocaleDateString()}`}{' '}</p>}
+            <span>{`Selected from ${from.toLocaleDateString()} to ${to.toLocaleDateString()}`}{' '}</span>}
           {from && to && (
-            <p><button className="link" onClick={handleResetClick} style={{borderRadius:"5px",backgroundColor:"#fff0e5"}}>
+            <button className="link" onClick={handleResetClick} style={{borderRadius:"5px",backgroundColor:"#fff0e5"}}>
               Clear
-            </button></p>
+            </button>
           )}
         </p>
             <DayPicker
             className="Selectable"
             numberOfMonths= {2}
             initialMonth={new Date(startYear, startMonth)}
-            disabledDays={
-                disabledDays
-            }
+            disabledDays={[
+                disabledDays,
+                {before: new Date()}
+            ]}
             selectedDays={[from,{from , to }]}
             modifiers={modifiers}
             modifiersStyles={modifiersStyles}
             onDayClick={handleDayClick}
+            //renderDay={renderDay}
             />
 
       <Helmet>

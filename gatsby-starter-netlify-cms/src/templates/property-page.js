@@ -54,7 +54,6 @@ export const PropertyPageTemplate = ( props ) =>
         props.handlePathChange(path.href)
 
         const searchDates = path.search? queryString.parse(path.search) : null;
-        console.log(searchDates)
         setBookDates({from: searchDates?.from || null, to: searchDates?.to || null});
 
         setPropId(props.id)
@@ -97,18 +96,18 @@ export const PropertyPageTemplate = ( props ) =>
                 setSmartaOpinion(null)
                 setBookDates({from:new Date(),
                     to: null})
-                   setPropName(null)
-                   setShow(false);
-                   setShowAllAemnities(false)
-                   setShowNotesReadMore(false)
-                   setAmenitiesLength(0)
-                   setPoolDimensions(null)
-                   setDamageWaiver(null)
-                   setWaiverOpen(false)
-                   setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
-                   setShowInteractionReadMore(false)
-                   setShowNeighborhoodReadMore(false)
-                   setShowTransitReadMore(false)
+                setPropName(null)
+                setShow(false)
+                setShowAllAemnities(false)
+                setShowNotesReadMore(false)
+                setAmenitiesLength(0)
+                setPoolDimensions(null)
+                setDamageWaiver(null)
+                setWaiverOpen(false)
+                setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
+                setShowInteractionReadMore(false)
+                setShowNeighborhoodReadMore(false)
+                setShowTransitReadMore(false)
             }
         }
     }, [])
@@ -128,15 +127,16 @@ export const PropertyPageTemplate = ( props ) =>
         setAmenitiesLength(length)
     }
 
-   const onDateChange = (range) => {
-    setBookDates({
-        from:range.from,
-        to: range.to})
-   }
+    const onDateChange = (range) => {
+        setBookDates({
+            from:range.from,
+            to: range.to
+        })
+    }
 
-   const handleName = (name) =>{
-    setPropName(name)
-}
+    const handleName = (name) =>{
+        setPropName(name)
+    }
 
    const sortAmenities = (amenities) => {
 
@@ -268,18 +268,17 @@ export const PropertyPageTemplate = ( props ) =>
                                             </FirestoreDocument>
                                         </Col>
                                     </Row>
-                                    
-                                    
                                     <Row>
                                         <Col xs={12} md={9}>
                                             <hr />
                                             <div id="calendar">
                                                 <h2>Calendar</h2>
                                                 <br />
-                                                <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates}/>
+                                                <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} />
                                             </div>
                                         </Col>
                                     </Row>
+                                    
                                     <FirestoreDocument path={`/Descriptions/${props.id}`}>
                                             {data => {
                                                     return (!data.isLoading && data.value) ? 

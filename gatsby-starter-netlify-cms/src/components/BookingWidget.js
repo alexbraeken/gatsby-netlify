@@ -46,8 +46,20 @@ const BookingWidget = (props) => {
         transition: all 0.3s
     }
     .orbirental-capture-widget-quote-link:hover{
-      color: #fff;
-      background-color: rgb(245, 130, 30);
+        color: #fff;
+        background-color: rgb(245, 130, 30);
+    }
+    .orbirental-capture-widget-details-link{
+        text-align: center !important;
+        box-shadow: 7px 7px 20px #d9d9d9, -8px -9px 20px #ffffff;
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 5px;
+        transition: all 0.3s;
+    }
+    .orbirental-capture-widget-details-link:hover{
+        box-shadow: inset 5px 5px 10px #d9d9d9,
+            inset -5px -5px 10px #ffffff;
     }
     `}
 </style>
