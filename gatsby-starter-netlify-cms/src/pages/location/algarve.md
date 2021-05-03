@@ -5,6 +5,19 @@ templateKey: algarve-page
 title: Brief History
 image: ../../../static/img/Carta_Archeologica_do_Algarve_1878.svg
 description: ""
+gallery:
+    imgs:
+        img1: ../../../static/img/Praia da Gale 2.jpg
+        img2: ../../../static/img/Boardwalk Praia Grande .jpg
+        img3: ../../../static/img/Social Distancing - Praia Grande.jpg
+        img4: ../../../static/img/Boardwalk & Lagoa dos Salgados .jpg
+        img5: ../../../static/img/Praia da Gale .jpg
+        img6: ../../../static/img/Praia da Gale 3.jpg
+        img7: ../../../static/img/Cabanas at Dusk.jpg
+        img8: ../../../static/img/lagos.jpeg
+        img9: ../../../static/img/Fuzeta_beach3.jpg
+        img10: ../../../static/img/Moncarapacho2.jpg
+    text: "Lots of gallery text"
 sliderText: "In the 15th Century, Prince Henry the Navigator based himself near Lagos, directing various maritime expeditions which established Portugal as a major power during the era of the ‘Voyages of Discovery’. Lagos became the region’s capital and it was not until 1756, the year after the great Lisbon earthquake, that Lagos lost its seat of power. The earthquake and the accompanying tsunami damaged and destroyed much of the coastal region except for Faro which was protected by the sandy banks and islands of the Ria Formosa lagoon, now a natural park.
 \n
 \n

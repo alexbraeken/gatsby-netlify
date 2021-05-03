@@ -197,7 +197,7 @@ const Properties = React.memo((props) => {
                                     <Container fluid style={{
                                         display: "flex",
                                         justifyContent: "space-between"}}>
-                                            <div style={{display:"flex", flexWrap:"nowrap"}}>
+                                            <div style={{display:"flex", flexWrap:"nowrap", margin: "auto 10px auto 0"}}>
                                         <Form.Group style={{margin:"10px auto"}}>
                                             <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm">
                                                 <option value="">Sort By</option>
@@ -210,8 +210,8 @@ const Properties = React.memo((props) => {
                                             </Form.Control>
                                         </Form.Group>
                                         </div>
-                                        <div className="expandBtn" style={{float:"right", margin:"auto"}} onClick={handleSidebarModal}>  
-                                                <p>Show Filters</p>
+                                        <div className="expandBtn" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal}>  
+                                                <p style={{margin: "auto"}}>Show Filters</p>
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>

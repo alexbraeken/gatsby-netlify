@@ -783,7 +783,7 @@ $min-margin: 10px
   position: relative
   border-radius: 4px
   width: auto
-  height: 28px
+  min-height: 28px
   padding: 0 5px
   background: #fff
   display: flex
@@ -1701,6 +1701,7 @@ a.navbar-item, .navbar-item
   background-color: $light-orange
   z-index: 100
   transition: all 0.3s ease-in-out
+  padding: 5px
   &:hover
     background-color: $primary
     & .newsAlert-news
@@ -1878,8 +1879,15 @@ a.navbar-item, .navbar-item
   z-index: 2
   overflow: auto
   min-width: min-content
+  max-width: 25%
   &.active
     transform: translateX(0)
+
+@media (max-width: 1600px) 
+  .sidebar-modal
+    max-width: 400px
+  
+
 
 .sidebar-modal-container
   z-index: -1

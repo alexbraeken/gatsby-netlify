@@ -44,6 +44,17 @@ const amenitiesFilterList = [
 export default function SideBarModal(props) {
 
     const [show, setShow] = useState(false)
+    const [modalStyle, setModalStyle] = useState({})
+
+    useEffect(() => {
+        
+        const marginTop = document.getElementsByClassName('newsAlert')?.[0].getBoundingClientRect().height + document.getElementsByClassName('navbar')?.[0].getBoundingClientRect().height
+
+        if(marginTop)setModalStyle({marginTop: `${marginTop}px`})
+        return () => {
+            setModalStyle({})
+        }
+    }, [])
 
     useEffect(() => {
         setShow(props.show)
@@ -61,7 +72,7 @@ export default function SideBarModal(props) {
         <div className={`sidebar-modal-container ${show ? "active" : ""}`}>
         {show && <div className="sidebar-overlay" onClick={props.close}></div>}
             <Col className={`sidebar-modal ${show ? "active" : ""}`} xs={12} md={3}>
-            <Container className="justify-content-md-center filter-container">
+            <Container className="justify-content-md-center filter-container" style={modalStyle}>
                 <div className="close-modal">
                     <FontAwesomeIcon icon={faTimes} onClick={props.close}/> 
                 </div>

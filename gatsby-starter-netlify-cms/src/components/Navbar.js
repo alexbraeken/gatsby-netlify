@@ -12,7 +12,9 @@ const PropertiesDropDown = React.memo((props) => {
   return(
     <>
   <div style={{gridColumn: 1}}>
-    <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
+    <div className="navbar-item" style={{
+      backgroundColor:"#f5821e", 
+      boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
       <h4 className="dropdown-title" style={{color:"#fff"}}>All</h4>
     </div>
           <a href={`/properties`}>
@@ -80,6 +82,7 @@ const Navbar = class extends React.Component {
       },
       navClass: '',
       menuPadding:{},
+      burgerStyle: {},
       isTabletOrMobile: false
     }
     this.checkPathForNav = this.checkPathForNav.bind(this)
@@ -87,15 +90,21 @@ const Navbar = class extends React.Component {
   }
 
   checkPathForNav = () => {
+
+    const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches
+    const padding =  isTabletOrMobile ? "10px" : `${this.nav.current.getBoundingClientRect().height}px`
+    const top = document.getElementsByClassName("newsAlert")?.[0].getBoundingClientRect().height || 0
+    
     const path = window.location.pathname
     const propPage = path.match(/(?:\/properties\/)([^\?]+)(?=\?*)/)
+    
     if(window && path === "/"){
       this.setState({style: {
         position: 'absolute',
         width: '100%',
         background: 'transparent'},
         menuPadding: {
-          paddingTop:`${this.nav.current.getBoundingClientRect().height}px`
+          paddingTop: padding
         }
     })
   }else if(propPage?.[1].length > 1){
@@ -107,11 +116,22 @@ const Navbar = class extends React.Component {
           },
           navClass:'absolute',
           menuPadding: {
-            paddingTop:`${this.nav.current.getBoundingClientRect().height}px`
-          }
+            paddingTop: padding
+          },
+          burgerStyle: isTabletOrMobile ? {color: "#fff"} : {color : "#000"}
         })
   }
-  this.setState({isTabletOrMobile: window.matchMedia("(max-width: 900px)").matches})
+
+  if(isTabletOrMobile) this.setState((state, props)=>({
+    ...state,
+    menuPadding:{
+        ...state.menuPadding,
+        top: `${top}px`
+    }
+    }), ()=>{
+  }); 
+
+  this.setState({isTabletOrMobile: isTabletOrMobile})
   }
 
 
@@ -227,6 +247,7 @@ const Navbar = class extends React.Component {
               className={`navbar-burger burger ${this.state.navBarActiveClass}`}
               data-target="navMenu"
               onClick={() => this.toggleHamburger()}
+              style={this.state.burgerStyle}
             >
               <span />
               <span />
@@ -270,7 +291,8 @@ const Navbar = class extends React.Component {
           </div>
         </div>
       </nav>
-      <div className={`dropdown-submenu ${this.state.dropdownClass}`} style={this.state.menuPadding} onMouseLeave={!this.state.isTabletOrMobile ? ()=>this.toggleDropDown() : null}>
+      <div className={`dropdown-submenu ${this.state.dropdownClass}`} style={this.state.menuPadding} 
+      onMouseLeave={!this.state.isTabletOrMobile ? ()=>this.toggleDropDown() : null}>
         <Container style={{display:"grid"}}>
           {this.state.isTabletOrMobile && <FontAwesomeIcon icon={faArrowLeft} onClick={()=>this.toggleDropDown()} className="submenu-return-arrow"/>}
           {this.state.subNav && this.state.subNav[0].name !== "propertiesList" ? 

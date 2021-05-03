@@ -5,6 +5,8 @@ import Layout from '../components/Layout'
 import {Container, Col, Row} from 'react-bootstrap'
 import Carousel from 'react-bootstrap/Carousel'
 import Content, { HTMLContent } from '../components/Content'
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+import { gsap } from "gsap";
 
 class CustomSlide extends React.Component {
   render() {
@@ -41,6 +43,7 @@ export const AlgarvePageTemplate = ({
   title,
   heading,
   description,
+  gallery,
   sliderText,
   sliderImage1,
   sliderImageTitle1,
@@ -65,6 +68,7 @@ export const AlgarvePageTemplate = ({
       };
 
       useEffect(() => {
+        console.log(gallery)
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
@@ -105,7 +109,15 @@ export const AlgarvePageTemplate = ({
       <Container>
         <div className="section">
           <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
-          <p>{description}</p>
+          <Col md={12} lg={4}>
+          <PreviewCompatibleImage imageInfo={gallery.imgs.img1} imgStyle={{borderRadius: "5px", marginLeft: "-150px", zIndex: "-1"}}/>
+          </Col>
+          <Col md={12} lg={4}>
+            <p>{gallery.text}</p>
+          </Col>
+          <Col md={12} lg={4}>
+           <PreviewCompatibleImage imageInfo={gallery.imgs.img2} imgStyle={{borderRadius: "5px", marginLeft: "-150px", zIndex: "-1"}}/>
+          </Col>
         </div>
         <PageContent className="content" content={content} />
       </Container>
@@ -196,6 +208,7 @@ AlgarvePageTemplate.propTypes = {
   title: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
+  gallery: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderText: PropTypes.string,
   sliderImage1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderImage2: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -221,6 +234,7 @@ const AlgarvePage = ({ data }) => {
         title={post.frontmatter.title}
         heading={post.frontmatter.heading}
         description={post.frontmatter.description}
+        gallery={post.frontmatter.gallery}
         sliderText={post.frontmatter.sliderText}
         sliderImage1={post.frontmatter.sliderImage1}
         sliderImage2={post.frontmatter.sliderImage2}
@@ -258,6 +272,81 @@ export const algarvePageQuery = graphql`
         }
         heading
         description
+        gallery {
+          imgs {
+            img1 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img2 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img3 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img4 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img5 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img6 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img7 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img8 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img9 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img10 {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        text
+        }
         sliderText
         sliderImage1 {
           childImageSharp {
