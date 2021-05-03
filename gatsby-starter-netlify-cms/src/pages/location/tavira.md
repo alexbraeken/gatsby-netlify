@@ -19,7 +19,7 @@ part1:
             title: "Tavira Island Train"
         img3: 
             img: ../../../static/img/Tavira_beach_Island.jpg
-            title: "Tavira Beach Island"
+            title: "Tavira Island Beach "
         img4: 
             img: ../../../static/img/Tavira_-_R_Bridge_by_Night.jpg
             title: "Tavira Roman Bridge"
@@ -36,13 +36,13 @@ Nearby Barril beach, once the centre of a thriving tuna fishing community can be
         slider: true
         img1: 
             img: ../../../static/img/Tavira_Ferry.jpg
-            title: "Tavira Ferry"
+            title: "Tavira Island Ferry"
         img2: 
             img: ../../../static/img/Tavira_Beach.jpg
-            title: "Tavira Beach"
+            title: "Tavira Island Beach"
         img3: 
             img: ../../../static/img/Tavira_Beach_Restaurant.jpg
-            title: "Tavira Beach Restaurant"
+            title: "Tavira Island Beach Restaurant"
     img: ../../../static/img/Tavira_Beach_Restaurant.jpg
 part3:
     header: ""

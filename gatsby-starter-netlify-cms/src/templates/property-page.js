@@ -437,7 +437,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <Tabs defaultActiveKey="propSpecs" id="keyDetails">
                                                     <Tab eventKey="propSpecs" title="Property Specs." tabClassName="orangeText">
                                                     <ul>
-                                                        <li>License: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
+                                                        <li>Licence: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
                                                         <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
                                                         <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
                                                         <li>Location: <span style={{float: "right"}}>{data.value.city}</span></li>

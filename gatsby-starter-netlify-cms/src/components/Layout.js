@@ -6,7 +6,7 @@ import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import { FirestoreProvider, FirestoreCollection } from "@react-firebase/firestore";
+import { FirestoreProvider } from "@react-firebase/firestore";
 import { config } from "../firebase-config";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './all.sass';
@@ -21,7 +21,7 @@ const TemplateWrapper = ({ children, pathKey, propTitle, propDescription }) => {
   let { title, description } = useSiteMetadata()
 
   title = propTitle || title
-  description = propDescription || propDescription
+  description = propDescription || description
 
   const [path, setPath] = useState('')
 
@@ -86,7 +86,7 @@ useEffect(() => {
       <div>{children}</div>
       <BackToTop />
       <Footer />
-      <CookieBannerCookieHub googleTrackingId="UA-173992217-1" cookieHubId="31b140ff"/>
+      <CookieBannerCookieHub googleTrackingId={process.env.GATSBY_GOOGLE_TRACKING_ID} cookieHubId={process.env.GATSBY_COOKIEHUB_ID} />
       </FirestoreProvider>
     </div>
   )

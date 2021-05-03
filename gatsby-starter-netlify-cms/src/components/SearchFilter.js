@@ -85,7 +85,6 @@ const SearchFilter = (props) => {
   
     useEffect(() => {
       setDatesWidth(fromToContainer.current.clientWidth)
-      console.log(fromToContainer.current.clientWidth)
       return () => {
         setDatesWidth("500px")
       }

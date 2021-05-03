@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 
 const CookieBannerCookieHub = ({ googleTrackingId, cookieHubId }) => {
     const googleUrl = "https://www.googletagmanager.com/gtag/js?id=" + googleTrackingId
-    const cookieHubUrl = "https://cookiehub.net/cc/" + cookieHubId + ".js"
+    const cookieHubUrl = process.env.NODE_ENV === 'development' ? "https://cookiehub.net/dev/c2/" + cookieHubId + ".js": "https://cookiehub.net/c2/" + cookieHubId + ".js"
     return (
         <Helmet 
             script={[
