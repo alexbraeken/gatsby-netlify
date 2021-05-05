@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
@@ -7,6 +7,8 @@ import Carousel from 'react-bootstrap/Carousel'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { gsap } from "gsap";
+import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import StickyBox from "react-sticky-box";
 
 class CustomSlide extends React.Component {
   render() {
@@ -43,6 +45,7 @@ export const AlgarvePageTemplate = ({
   title,
   heading,
   description,
+  staticBg,
   gallery,
   sliderText,
   sliderImage1,
@@ -60,22 +63,51 @@ export const AlgarvePageTemplate = ({
 
   const PageContent = contentComponent || Content
 
-  const [index, setIndex] = useState(0);
-  const [loaded, setLoaded] = useState(false);
+  const [index, setIndex] = useState(0)
+  const [loaded, setLoaded] = useState(false)
+  const [galleryImgs, setGalleryImgs] = useState([])
+  const [galleryScrollRange, setGalleryScrollRange] = useState([]) 
+
+  const galleryContainer = useRef(null)
+  const hero = useRef(null)
+  const stickyContainer = useRef(null)
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
       };
 
       useEffect(() => {
-        console.log(gallery)
+        setGalleryImgs(document.getElementsByClassName('scroll-parallax-img'))
+        setGalleryScrollRange({ 
+          trigger: hero.current.getBoundingClientRect().height - Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0), 
+          viewHeight: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0),
+          height: stickyContainer.current.getBoundingClientRect().height
+        })
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
+
         return () => {
           setLoaded(false)
         }
       }, [])
+
+      
+
+      useScrollPosition(({ prevPos, currPos }) => {
+        if(currPos.y <= (galleryScrollRange.trigger)){
+          const currHeight = (currPos.y - galleryScrollRange.trigger)/galleryScrollRange.height
+          if(galleryImgs){
+            Object.keys(galleryImgs).forEach((img, index)=>{
+              const opacity = 0.8 - index/10 - currHeight
+              galleryImgs[img].style.opacity = opacity
+              /*const transformX = ((index-5)/10)*100*currHeight
+              const transformY = ((index-5)/10)*500*currHeight
+              galleryImgs[img].style.transform = `translate(${-50 + transformX}%, ${-50 + transformY}%)`*/
+            })
+          }
+        }
+      })
 
     const slides = [{slide: sliderImage1, title: sliderImageTitle1}, 
       {slide: sliderImage2, title: sliderImageTitle2}, 
@@ -89,6 +121,7 @@ export const AlgarvePageTemplate = ({
   <div className="content newLine">
     <div
       className="full-width-image-container margin-top-0 gradient-bg"
+      ref={hero}
       style={{
         backgroundImage: `url(${
           image.publicURL
@@ -104,23 +137,60 @@ export const AlgarvePageTemplate = ({
       </h2>
     </div>
     <section style={{
+        position: "relative",
+        backgroundImage: `url(${staticBg.childImageSharp.fluid.src})`,
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        }}>
+      <Container>
+        <div className="full-width" style={{height:"200vh"}} ref={stickyContainer}>
+          <div style={{display:"grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows:"400px", gridAutoFlow:"dense"}}>
+          {Object.keys(gallery.imgs)?.map((img, index) => {
+              return <PreviewCompatibleImage 
+                        imageInfo={gallery.imgs[img]} 
+                        key={index} 
+                        imgStyle={{
+                          width: "100%",
+                          borderRadius: "5px",
+                          position: "relative",
+                          gridColumn: `${5 % (index+1) === 5 ? '1 / 2' : '3 / 4'}`,
+                          opacity: "0"}}
+                          className="scroll-parallax-img"/>
+            })}
+            <div style={{gridColumn:"2 / 3", gridRow: "1 / 6"}}>
+            <StickyBox style={{
+            height: "80vh",
+            overflow:"hidden"}}>
+          <div className="gallery-container" ref={galleryContainer} style={{display: "flex", margin:"auto", flexDirection:"column"}}>
+            <h3 style={{
+              position:"absolute", 
+              left: "50%", 
+              top: "50%", 
+              transform: "translate(-50%, -50%)", 
+              textAlign:"center",
+              width: "100%",
+              maxWidth: "100%",
+              zIndex: "2",
+              backgroundColor: "rgba(256, 256 ,256, 0.7)",
+              borderRadius: "5px",
+              padding: "20px"}}>{gallery.text}</h3>
+            
+          </div>
+          </StickyBox>
+            </div>
+          </div>
+          
+        </div>
+        </Container>
+        </section>
+        <section style={{
         paddingBottom: "100px",
         position: "relative"}}>
-      <Container>
-        <div className="section">
+          <Container>
           <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
-          <Col md={12} lg={4}>
-          <PreviewCompatibleImage imageInfo={gallery.imgs.img1} imgStyle={{borderRadius: "5px", marginLeft: "-150px", zIndex: "-1"}}/>
-          </Col>
-          <Col md={12} lg={4}>
-            <p>{gallery.text}</p>
-          </Col>
-          <Col md={12} lg={4}>
-           <PreviewCompatibleImage imageInfo={gallery.imgs.img2} imgStyle={{borderRadius: "5px", marginLeft: "-150px", zIndex: "-1"}}/>
-          </Col>
-        </div>
-        <PageContent className="content" content={content} />
-      </Container>
+            <PageContent className="content" content={content} />
+          </Container>
       <div style={{ 
           width: "100vw",
           position: "absolute",
@@ -208,6 +278,7 @@ AlgarvePageTemplate.propTypes = {
   title: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
+  staticBg: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   gallery: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderText: PropTypes.string,
   sliderImage1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -234,6 +305,7 @@ const AlgarvePage = ({ data }) => {
         title={post.frontmatter.title}
         heading={post.frontmatter.heading}
         description={post.frontmatter.description}
+        staticBg={post.frontmatter.staticBg}
         gallery={post.frontmatter.gallery}
         sliderText={post.frontmatter.sliderText}
         sliderImage1={post.frontmatter.sliderImage1}
@@ -272,74 +344,81 @@ export const algarvePageQuery = graphql`
         }
         heading
         description
+        staticBg {
+          childImageSharp {
+            fluid(maxWidth: 1500, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         gallery {
           imgs {
             img1 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img2 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img3 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img4 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img5 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img6 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img7 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img8 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img9 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
             img10 {
               childImageSharp {
-                fluid(maxWidth: 800, quality: 100) {
+                fluid(maxWidth: 600, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }

@@ -5,6 +5,7 @@ templateKey: algarve-page
 title: Brief History
 image: ../../../static/img/Carta_Archeologica_do_Algarve_1878.svg
 description: ""
+staticBg: ../../../static/img/Praia da Gale 2.jpg
 gallery:
     imgs:
         img1: ../../../static/img/Praia da Gale 2.jpg
@@ -17,7 +18,7 @@ gallery:
         img8: ../../../static/img/lagos.jpeg
         img9: ../../../static/img/Fuzeta_beach3.jpg
         img10: ../../../static/img/Moncarapacho2.jpg
-    text: "Lots of gallery text"
+    text: "The Algarve is famous for its diverse and beautiful shoreline, ranging from long stretches of sandy beach in the east to small rocky coves and dramatic cliffs in the west. There are over 80 ‘Blue Flag’ beaches meeting strict standards on cleanliness, water quality and user facilities."
 sliderText: "In the 15th Century, Prince Henry the Navigator based himself near Lagos, directing various maritime expeditions which established Portugal as a major power during the era of the ‘Voyages of Discovery’. Lagos became the region’s capital and it was not until 1756, the year after the great Lisbon earthquake, that Lagos lost its seat of power. The earthquake and the accompanying tsunami damaged and destroyed much of the coastal region except for Faro which was protected by the sandy banks and islands of the Ria Formosa lagoon, now a natural park.
 \n
 \n
