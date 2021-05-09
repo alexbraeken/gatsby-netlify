@@ -2,12 +2,12 @@
 heading: A quick recap of time
 path: /algarve
 templateKey: algarve-page
-title: Brief History
+title: The Algarve
 image: ../../../static/img/Carta_Archeologica_do_Algarve_1878.svg
 description: ""
 staticBg: ../../../static/img/Praia da Gale 2.jpg
 gallery:
-    imgs:
+    imgs1:
         img1: ../../../static/img/Praia da Gale 2.jpg
         img2: ../../../static/img/Boardwalk Praia Grande .jpg
         img3: ../../../static/img/Social Distancing - Praia Grande.jpg
@@ -18,7 +18,20 @@ gallery:
         img8: ../../../static/img/lagos.jpeg
         img9: ../../../static/img/Fuzeta_beach3.jpg
         img10: ../../../static/img/Moncarapacho2.jpg
-    text: "The Algarve is famous for its diverse and beautiful shoreline, ranging from long stretches of sandy beach in the east to small rocky coves and dramatic cliffs in the west. There are over 80 ‘Blue Flag’ beaches meeting strict standards on cleanliness, water quality and user facilities."
+    text1: 
+        header: "Beaches and Coast"
+        text: "The Algarve is famous for its diverse and beautiful shoreline, ranging from long stretches of sandy beach in the east to small rocky coves and dramatic cliffs in the west. There are over 80 ‘Blue Flag’ beaches meeting strict standards on cleanliness, water quality and user facilities."
+    imgs2:
+        img1: ../../../static/img/ria_formosa_highlight.jpeg
+        img2: ../../../static/img/Ria_Formosa_Sunset.jpg
+    text2: 
+        header: "Ria Formosa"
+        text: "Stretching some 60km from Faro to Cacela Velha, this natural park was established in 1987 and is formed of an extensive lagoon area of marches, saltpans, islets and channels sheltered by barrier islands. The warm and highly nutritious waters are rich in shellfish and home to countless bird life, together to being home to several small fishing communities on the outer islands."
+    staticImg: 
+        text:
+            header: "Reserva Natural Do Sapal"
+            text: "Sited between Vila Real and the historic town of Castro Marim, this 2,000-hectare reserve is an area of wetlands and salt marches providing excellent conditions for over 150 species of resident and migratory bird life including flamingos, redshanks, storks and avocets. There are tracks and trails ideal for walking or cycling and it can be easily reached using the N125 costal road or the A22 motorway."
+        img: ../../../static/img/reserva_do_sapal.jpg
 sliderText: "In the 15th Century, Prince Henry the Navigator based himself near Lagos, directing various maritime expeditions which established Portugal as a major power during the era of the ‘Voyages of Discovery’. Lagos became the region’s capital and it was not until 1756, the year after the great Lisbon earthquake, that Lagos lost its seat of power. The earthquake and the accompanying tsunami damaged and destroyed much of the coastal region except for Faro which was protected by the sandy banks and islands of the Ria Formosa lagoon, now a natural park.
 \n
 \n
