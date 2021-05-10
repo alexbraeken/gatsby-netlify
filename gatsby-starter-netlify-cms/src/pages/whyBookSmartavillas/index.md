@@ -1,5 +1,6 @@
 ---
 path: /whyBookSmartavillas
+preferred_language: default
 templateKey: why-book
 title: Why book your holiday with SMARTAVILLAS?
 image: ../../../static/img/Hero_Family.jpg

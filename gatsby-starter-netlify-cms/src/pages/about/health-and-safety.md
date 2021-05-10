@@ -1,6 +1,7 @@
 ---
 templateKey: 'content-page'
 path: /about
+preferred_language: default
 title: Health & Safety
 ---
 <h1 style="text-align:center">HEALTH, SAFETY &amp; SECURITY GUIDE</h1>

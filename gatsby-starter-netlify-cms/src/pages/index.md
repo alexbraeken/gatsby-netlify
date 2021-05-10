@@ -1,5 +1,6 @@
 ---
 templateKey: index-page
+preferred_language: default
 title: Smartavillas
 image: ../../static/img/smartavillas_home_1.jpg
 pitchImage: ../../static/img/Ria_Formosa_Sunset.jpg

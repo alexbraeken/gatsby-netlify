@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Castro Marim
 templateKey: location-page
 title: Castro Marim

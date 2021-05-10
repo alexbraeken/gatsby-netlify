@@ -1,6 +1,7 @@
 ---
 templateKey: 'team-page'
 path: /team
+preferred_language: default
 title: "Who are we?"
 image: ../../../static/img/team.jpeg
 heading: "Meet the Team"

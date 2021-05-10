@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Vila Nova de Cacela
 templateKey: location-page
 title: Vila Nova de Cacela

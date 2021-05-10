@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Manta Rota
 templateKey: location-page
 title: Manta Rota

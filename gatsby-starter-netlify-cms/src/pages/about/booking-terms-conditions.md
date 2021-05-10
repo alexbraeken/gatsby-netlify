@@ -1,6 +1,7 @@
 ---
 templateKey: 'content-page'
 path: /about
+preferred_language: default
 title: Booking Terms & Conditions
 ---
 <style>

@@ -37,18 +37,20 @@ exports.createPages = ({ actions, graphql }) => {
       && edge.node.frontmatter.templateKey !== "team-member" 
       && edge.node.frontmatter.templateKey !== "algarve-slide"
       && edge.node.frontmatter.templateKey !== "activity-post"
-      && edge.node.frontmatter.templateKey !== "ownerTestimonial" ){
-      createPage({
-        path: edge.node.fields.slug,
-        tags: edge.node.frontmatter.tags,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-        ),
-        // additional data can be passed via context
-        context: {
-          id,
-        },
-      })}
+      && edge.node.frontmatter.templateKey !== "ownerTestimonial"
+      && edge.node.fields){
+          createPage({
+          path: edge.node.fields.slug,
+          tags: edge.node.frontmatter.tags,
+          component: path.resolve(
+            `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+          ),
+          // additional data can be passed via context
+          context: {
+            id,
+          },
+        })
+      }
     })
 
     // Tag pages:
@@ -81,14 +83,16 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
   fmImagesToRelative(node) // convert image paths for gatsby images
 
-  if (node.internal.type === `MarkdownRemark`) {
+  /*if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
+    console.log(node)
+    console.log("value: " + value)
     createNodeField({
       name: `slug`,
       node,
       value,
     })
-  }
+  }*/
 }
 
 exports.onCreateWebpackConfig = ({
@@ -112,11 +116,10 @@ exports.onCreateWebpackConfig = ({
 };
 
 exports.onCreatePage = async ({page, actions}) => {
-  const { createPage} = actions
-
-    if (page.path.match(/^\/properties/)) {
+  const { createPage } = actions
+    if (page.path.match(/^\/properties\//)) {
       createPage({
-        path: "/properties",
+        path: node.fields.slug,
         matchPath: "/properties/*",
         component: path.resolve(`src/pages/properties/index.js`),
       })

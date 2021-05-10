@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Corte Antonio Martins
 templateKey: location-page
 title: Corte Antonio Martins

@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Altura
 templateKey: location-page
 title: Altura

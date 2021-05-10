@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Tavira
 templateKey: location-page
 title: Tavira

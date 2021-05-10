@@ -1,6 +1,7 @@
 ---
 templateKey: 'content-page'
 path: /holidayExtras
+preferred_language: default
 title: Private Airport Transfers
 hero: ../../../static/img/airport-transfer.jpg
 ---

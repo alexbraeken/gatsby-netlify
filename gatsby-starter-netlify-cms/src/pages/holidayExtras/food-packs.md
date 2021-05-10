@@ -1,6 +1,7 @@
 ---
 templateKey: 'content-page'
 path: /foodPacks
+preferred_language: default
 title: Food Packs
 hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
 ---

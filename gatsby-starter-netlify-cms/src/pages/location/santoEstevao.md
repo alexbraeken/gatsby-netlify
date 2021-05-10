@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Santo Estevao
 templateKey: location-page
 title: Santo Estêvão

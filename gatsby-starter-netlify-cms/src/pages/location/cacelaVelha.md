@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Cacela
 templateKey: location-page
 title: Cacela Velha

@@ -1,6 +1,7 @@
 ---
 templateKey: 'content-page'
 path: /holidayExtras
+preferred_language: default
 title: Car Hires
 hero: ../../../static/img/car-hire.jpg
 ---

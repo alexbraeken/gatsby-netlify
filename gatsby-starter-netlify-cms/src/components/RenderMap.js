@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoogleMap, Marker, OverlayView} from '@react-google-maps/api';
 import icon from '../img/smartavillas marker 2.svg'
+import icon2 from '../img/map marker.png'
 import BedBathPax from '../components/BedBathPax'
 
 export default class renderMap extends React.Component{
@@ -103,7 +104,7 @@ render(){
                   : null
           )})}
           </>
-          : <>{(this.props.props.lat && this.props.props.lng)?<Marker position={{ lat: this.props.props.lat, lng: this.props.props.lng }} icon={icon} />: null}</>   
+          : <>{(this.props.props.lat && this.props.props.lng)?<Marker position={{ lat: this.props.props.lat, lng: this.props.props.lng }} icon={icon2} />: null}</>   
         }
       </GoogleMap>)}
 }

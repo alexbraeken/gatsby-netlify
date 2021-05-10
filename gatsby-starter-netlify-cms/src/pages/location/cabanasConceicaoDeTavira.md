@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Cabanas
 templateKey: location-page
 title: Cabanas & Conceicao de Tavira

@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Fuzeta
 templateKey: location-page
 title: Fuzeta

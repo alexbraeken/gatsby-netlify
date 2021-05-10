@@ -1,6 +1,7 @@
 ---
 heading: A quick recap of time
 path: /algarve
+preferred_language: default
 templateKey: algarve-page
 title: The Algarve
 image: ../../../static/img/Carta_Archeologica_do_Algarve_1878.svg

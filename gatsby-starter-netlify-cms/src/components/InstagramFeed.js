@@ -65,7 +65,7 @@ class SimpleSlider extends Component {
                         <div className="insta-icon">
                             <FontAwesomeIcon icon={['fab', 'instagram']} />
                         </div>
-                        <Img fixed={post.node.localImage.childImageSharp.fixed} imgStyle={{borderRadius: "5px", margin: "10px", transition:"all 0.3s"}}  draggable={false}/>
+                        <Img fixed={post.node.localImage?.childImageSharp.fixed} imgStyle={{borderRadius: "5px", margin: "10px", transition:"all 0.3s"}}  draggable={false}/>
                     </a>
                 </div> 
                     : null

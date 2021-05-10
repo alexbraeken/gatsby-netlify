@@ -1,5 +1,6 @@
 ---
 path: /location
+preferred_language: default
 location: Santa Catarina
 templateKey: location-page
 title: Santa Catarina
