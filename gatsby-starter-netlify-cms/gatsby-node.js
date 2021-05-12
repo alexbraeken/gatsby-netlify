@@ -4,6 +4,12 @@ const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 const admin = require('firebase-admin')
 
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+
+require("dotenv").config({
+  path: `.env.${activeEnv}`,
+})
+
 const serviceAccount = {
   "type": "service_account",
   "project_id": "gatsby-test-286520",
