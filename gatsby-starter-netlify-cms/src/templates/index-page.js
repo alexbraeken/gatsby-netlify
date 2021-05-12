@@ -366,7 +366,7 @@ const handleSectionLeave = () => {
         position: "relative",
         marginLeft: "-50vw",
         left: "50%",
-        backgroundColor:"#333333"}}>>
+        backgroundColor:"#333333"}}>
       <Container style={{marginTop: "40px"}}>
         <Row>
           <Col xs={12} md={8}>

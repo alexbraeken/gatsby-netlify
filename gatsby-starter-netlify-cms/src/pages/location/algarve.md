@@ -7,16 +7,27 @@ title: The Algarve
 image: ../../../static/img/Carta_Archeologica_do_Algarve_1878.svg
 description: ""
 staticBg: ../../../static/img/Praia da Gale 2.jpg
+featureSection:
+    imgs:
+        img1: ../../../static/img/Tavira_Beach.jpg
+        img2: ../../../static/img/Cabanas_Beach_Walkway.jpg
+        img3: ../../../static/img/Praia da Gale 2.jpg
+        img4: ../../../static/img/Tavira_Beach_Restaurant.jpg
+    text:
+        text1: "Sea"
+        text2: "Sun"
+        text3: "Sand"
+        text4: "Fun"
 gallery:
     imgs1:
-        img1: ../../../static/img/Praia da Gale 2.jpg
-        img2: ../../../static/img/Boardwalk Praia Grande .jpg
-        img3: ../../../static/img/Social Distancing - Praia Grande.jpg
-        img4: ../../../static/img/Boardwalk & Lagoa dos Salgados .jpg
-        img5: ../../../static/img/Praia da Gale .jpg
-        img6: ../../../static/img/Praia da Gale 3.jpg
+        img1: ../../../static/img/Cabanas_Beach.jpg
+        img2: ../../../static/img/Cabanas_Beach_Island.jpg
+        img3: ../../../static/img/Cacela_V2.jpg
+        img4: ../../../static/img/Fabrica 2.jpg
+        img5: ../../../static/img/Cabanas_River_Crossing.jpg
+        img6: ../../../static/img/Cacela_V.jpg
         img7: ../../../static/img/Cabanas at Dusk.jpg
-        img8: ../../../static/img/lagos.jpeg
+        img8: ../../../static/img/Praia_verde.jpg
         img9: ../../../static/img/Fuzeta_beach3.jpg
         img10: ../../../static/img/Moncarapacho2.jpg
     text1: 
@@ -51,19 +62,7 @@ sliderImageTitle4: "Lagos"
 conclusion: "The coast with its various towns and cities is where much of the 450,000 inhabitants live and work, either in traditional industries such as fishing and agriculture, or service industries - the main sector being tourism. The cosmopolitan towns of Faro, Lagos, and Portimão act as administration and shopping hubs and provide a distinct contrast to the slower rhythm of life in the hills. The resorts of Vale do Lobo, Quinta do Lago, Albufeira, Vilamoura and others have become established holiday destinations known on a national and international level. The sleepier towns of Tavira, Silves, and São Bras de Alportel provide a reminder of the past with their cobbled streets, historical architecture and relaxed atmosphere. To the east, the coast is flat and bordered in part by the large expanse of sandbanks, lagoons, and islands which form the beautiful Ria Formosa natural park, home to a myriad of waterfowl and marine life. To the west, the coast is more dramatic with cliffs, caves and little bays providing scenic backdrops and picturesque beaches and ending with the towering cliffs of Cape St. Vincent, a windswept land once thought to be the end of the World. Heading north along the ‘Costa Vicentina’, the Atlantic breakers create dramatic seascapes bringing Europe’s finest surfers to ply their skills over the waves.
 \n
 \n
-The Algarve has much to offer the visitor from sun-drenched beaches, excellent cuisine, friendly people, a slower pace of life and stunning landscapes. We hope that you enjoy your experience and wish to return again and again to sample the many delights of the Algarve.
-\n
-\n
-FURTHER AFIELD
-\n
-\n
-East: The graceful Guadiana river forms a natural border with Andalucía, discharging into the blue waters of the Atlantic Ocean at the handsome town of Vila Real de Santo Antonio. Fine townhouses, pretty streets and a bustling commercial centre make for an attractive place to visit. Why not catch the ferry across the river to the white washed Spanish town of Ayamonte? - ideal for a tapas lunch in the many vibrant squares dotted around the old centre. Upstream from Vila Real, fortified Castro Marim stands guard over vast salt flats and the river beyond. Heading west towards handsome Tavira, the coast is dotted with low-key resorts and charming fishing villages and beyond Tavira, waterfront Olhão, is gateway to explore the outer islands of the Ria Formosa. Reaching the regional capital of Faro, head to the old citadel, perfectly preserved – a microcosm of old-world charm. 
-\n
-\n
-Central: Stroll through the enchanting gardens of the resplendent Palácio de Estói; visit the colourful Arabesque market place of Loulé, then head north through the ‘barrocal’ to the white-washed villages of Alte, Salir and Querença. Explore deeper into the splendid Serra do Caldeirão for spectacular vistas across undulating hills of ancient cork, carob and olive. Heading back to the ‘litoral’, for a touch of the high life, visit cosmopolitan Quinta do Lago and Vale do Lobo, perhaps followed by a round of golf at renown Vilamoura? Finish your day at a beach side eatery while taking in a beautiful sunset over the Altantic.
-\n
-\n
-West: Walk along the cliff top trail taking in the emblematic beaches of Praia da Marinha and Benagil; enjoy delicious seafood in bohemian Ferragudo, roam the narrow-cobbled streets of medieval Silves up to its magnificent red sandstone castle. Head north to the high hills of Monchique, perhaps stopping en route for a tipple of the invigorating local firewater, Medronho! Travel across the mountain ridge through forests of sweet-smelling pine and eucalyptus down to the Costa Vicentina, a truly fabulous coastline of expansive beaches offering excellent surf and an amazing array of flora and fauna. Visit the impressive lighthouse at Cape St. Vincent – witness to many a sea battle, then reach historic Lagos, frequent home of Henry the Navigator.   "
+The Algarve has much to offer the visitor from sun-drenched beaches, excellent cuisine, friendly people, a slower pace of life and stunning landscapes. We hope that you enjoy your experience and wish to return again and again to sample the many delights of the Algarve."
 ---
 <style>
 .layered-gallery{  

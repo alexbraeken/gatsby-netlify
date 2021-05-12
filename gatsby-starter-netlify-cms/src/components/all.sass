@@ -2256,6 +2256,20 @@ a.navbar-item, .navbar-item
   & h3
       color: $primary
 
+
+.feature-circle-image
+  width: 100%
+  height: 100%
+  background-size: cover
+  background-position: center
+  position: absolute
+  top: 0
+  left: 0
+  clip-path: circle(0% at 50% 50%)
+  transition: all 1s
+  &.visible
+    clip-path: circle(100% at 50% 50%)
+
 //Grid
 
 .grid-container
@@ -2338,3 +2352,22 @@ a.navbar-item, .navbar-item
   &.visible
     transform: translateX(0)
     opacity: 1
+
+.feature-circle-image div .knockout-text
+  background-color: white
+  color: black
+  font-size: 10vw
+  font-weight: bold
+  margin: 0 auto
+  padding: 10px 50px
+  width: 100%
+  text-align: center
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  mix-blend-mode: screen
+  border-radius: 4px
+  transition: all 1s
+  &.visible
+    top: -100%

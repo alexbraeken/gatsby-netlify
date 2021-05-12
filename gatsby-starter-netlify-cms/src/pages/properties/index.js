@@ -418,7 +418,6 @@ export default class PropertiesPage extends Component {
                         handleDateChange= {this.handleDateChange}
                         handlePathChange= {this.handlePathChange}
                         handleClearDates= {this.handleClearDates}/>
-                        
                 </Router>       
             </Layout> 
           );

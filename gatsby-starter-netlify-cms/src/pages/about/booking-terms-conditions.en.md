@@ -128,11 +128,6 @@ ul
 
 <div style='border:none;border-bottom:solid windowtext 3.0pt;padding:0cm 0cm 1.0pt 0cm'>
 
-<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-border:none;padding:0cm'><b><span lang=EN-US style='font-size:18.0pt;
-line-height:115%;font-family:"Century Gothic",sans-serif'>BOOKING
-CONDITIONS &amp; GUEST INFORMATION</span></b></p>
-
 </div>
 
 <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center'><b><span
@@ -1407,77 +1402,6 @@ background:white;vertical-align:baseline'><b><span lang=EN-US style='font-size:
 background:white;vertical-align:baseline'><b><span lang=EN-US style='font-size:
 11.5pt;line-height:115%;font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
 
-<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-background:white;vertical-align:baseline'><b><span lang=EN-US style='font-size:
-11.5pt;line-height:115%;font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-background:white;vertical-align:baseline'><b><span lang=EN-US style='font-size:
-11.5pt;line-height:115%;font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-background:white;vertical-align:baseline'><b><span lang=EN-US style='font-size:
-11.5pt;line-height:115%;font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-background:white;vertical-align:baseline'><b><span lang=EN-US style='font-size:
-11.5pt;line-height:115%;font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-background:white;vertical-align:baseline'><b><span lang=EN-US style='font-size:
-11.5pt;line-height:115%;font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;background:white;vertical-align:
-baseline'><b><span lang=EN-US style='font-size:11.5pt;line-height:115%;
-font-family:"Century Gothic",sans-serif;color:black'>&nbsp;</span></b></p>
 
 <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
 lang=EN-US style='font-size:11.5pt;font-family:"Century Gothic",sans-serif;

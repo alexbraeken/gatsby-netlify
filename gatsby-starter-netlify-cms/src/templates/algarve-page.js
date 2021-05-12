@@ -9,6 +9,7 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { gsap } from "gsap";
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import StickyBox from "react-sticky-box";
+import { Helmet } from 'react-helmet'
 
 class CustomSlide extends React.Component {
   render() {
@@ -46,6 +47,7 @@ export const AlgarvePageTemplate = ({
   heading,
   description,
   staticBg,
+  featureSection,
   gallery,
   sliderText,
   sliderImage1,
@@ -66,11 +68,17 @@ export const AlgarvePageTemplate = ({
   const [index, setIndex] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [galleryImgs, setGalleryImgs] = useState([])
-  const [galleryScrollRange, setGalleryScrollRange] = useState([]) 
+  const [featureImgs, setFeatureImgs] = useState([])
+  const [galleryScrollRange, setGalleryScrollRange] = useState({}) 
+  const [stickyFeatureRange, setStickyFeatureRange] = useState({})
+  const [knockoutTexts, setKnockoutTexts] = useState([])
 
   const galleryContainer = useRef(null)
   const hero = useRef(null)
   const stickyContainer = useRef(null)
+  const stickyFeature = useRef(null)
+
+
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -78,10 +86,16 @@ export const AlgarvePageTemplate = ({
 
       useEffect(() => {
         setGalleryImgs(document.getElementsByClassName('scroll-parallax-img'))
+        setFeatureImgs(document.getElementsByClassName('feature-circle-image'))
+        setKnockoutTexts(document.getElementsByClassName('knockout-text'))
         setGalleryScrollRange({ 
-          trigger: hero.current.getBoundingClientRect().height - Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0), 
+          trigger: stickyFeature.current.getBoundingClientRect().height - Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0), 
           viewHeight: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0),
           height: stickyContainer.current.getBoundingClientRect().height
+        })
+        setStickyFeatureRange({
+          trigger: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.8, 
+          height: stickyFeature.current.getBoundingClientRect().height
         })
         setTimeout(()=>{
           setLoaded(true)}, 1000
@@ -94,6 +108,25 @@ export const AlgarvePageTemplate = ({
       
 
       useScrollPosition(({ prevPos, currPos }) => {
+        if(galleryScrollRange.trigger <= currPos.y <= stickyFeatureRange.trigger){
+          if(featureImgs){
+            Object.keys(featureImgs).forEach((img, index)=>{
+              if((currPos.y <= stickyFeatureRange.trigger - (index+1)*(stickyFeatureRange.height/4)) && !featureImgs[index].classList.contains("visible")){
+                featureImgs[index].classList.add("visible")
+              }
+              if((currPos.y <= stickyFeatureRange.trigger - (index+1)*(stickyFeatureRange.height/4) - (galleryScrollRange.viewHeight*3)/4) && !knockoutTexts[index].classList.contains("visible")){
+                knockoutTexts[index].classList.add("visible")
+              } 
+              if((currPos.y >= stickyFeatureRange.trigger - (index+1)*(stickyFeatureRange.height/4)) && featureImgs[index].classList.contains("visible")){
+                featureImgs[index].classList.remove("visible")
+              }
+              if((currPos.y >= stickyFeatureRange.trigger - (index+1)*(stickyFeatureRange.height/4) - (galleryScrollRange.viewHeight*3)/4) && knockoutTexts[index].classList.contains("visible")){
+                knockoutTexts[index].classList.remove("visible")
+              }
+               
+            })
+          }
+        }
         if(currPos.y <= (galleryScrollRange.trigger)){
           if(galleryImgs){
             Object.keys(galleryImgs).forEach((img, index)=>{
@@ -136,6 +169,30 @@ export const AlgarvePageTemplate = ({
         position: "relative"
         }}>
       <Container>
+        <div className="full-width" style={{height:"400vh", position:"relative"}} ref={stickyFeature}>
+          <StickyBox style={{height: "100vh"}}>
+            <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img1.childImageSharp.fluid.src})`}}>
+              <div style={{display: "flex", width: "100%", height: "100%"}}>
+                <h2 className="knockout-text" style={{margin:"auto", fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.text.text1}</h2></div>
+            </div>
+            <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img2.childImageSharp.fluid.src})`}}>
+            <div style={{display: "flex", width: "100%", height: "100%"}}>
+              <h2 className="knockout-text" style={{margin:"auto", fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.text.text2}</h2></div>
+            </div>
+            <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img3.childImageSharp.fluid.src})`}}>
+            <div style={{display: "flex", width: "100%", height: "100%"}}>
+              <h2 className="knockout-text" style={{margin:"auto", fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.text.text3}</h2></div>
+            </div>
+            <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img4.childImageSharp.fluid.src})`}}>
+            <div style={{display: "flex", width: "100%", height: "100%"}}>
+              <h2 className="knockout-text" style={{margin:"auto", fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.text.text4}</h2></div>
+            </div>
+          </StickyBox>
+        </div>
+        <Helmet>
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet"></link>
+        </Helmet>
         <div className="full-width" ref={stickyContainer}>
           <div className="grid-container" style={{}}>
           {Object.keys(gallery.imgs1)?.map((img, index) => {
@@ -297,6 +354,7 @@ AlgarvePageTemplate.propTypes = {
   heading: PropTypes.string,
   description: PropTypes.string,
   staticBg: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  featureSection: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   gallery: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderText: PropTypes.string,
   sliderImage1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -324,6 +382,7 @@ const AlgarvePage = ({ data }) => {
         heading={post.frontmatter.heading}
         description={post.frontmatter.description}
         staticBg={post.frontmatter.staticBg}
+        featureSection={post.frontmatter.featureSection}
         gallery={post.frontmatter.gallery}
         sliderText={post.frontmatter.sliderText}
         sliderImage1={post.frontmatter.sliderImage1}
@@ -367,6 +426,44 @@ export const algarvePageQuery = graphql`
             fluid(maxWidth: 1500, quality: 100) {
               ...GatsbyImageSharpFluid
             }
+          }
+        }
+        featureSection{
+          imgs{
+            img1 {
+              childImageSharp {
+                fluid(maxWidth: 1000, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img2 {
+              childImageSharp {
+                fluid(maxWidth: 1000, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img3 {
+              childImageSharp {
+                fluid(maxWidth: 1000, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            img4 {
+              childImageSharp {
+                fluid(maxWidth: 1000, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          text{
+            text1
+            text2
+            text3
+            text4
           }
         }
         gallery {
