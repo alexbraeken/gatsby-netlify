@@ -367,7 +367,7 @@ const handleSectionLeave = () => {
         marginLeft: "-50vw",
         left: "50%",
         backgroundColor:"#333333"}}>
-      <Container style={{marginTop: "40px"}}>
+      <Container>
         <Row>
           <Col xs={12} md={8}>
             <div style={{display: "flex", height: "100%"}}>

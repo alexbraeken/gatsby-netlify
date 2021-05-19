@@ -7,6 +7,8 @@ import Loading from '../components/Loading'
 import Amenity from '../components/Amenities';
 import CardCalendar from '../components/CardCalendar'
 import BedBathPax from '../components/BedBathPax'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 const PropertyCard = (props) => {
 
@@ -31,7 +33,7 @@ const PropertyCard = (props) => {
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{backgroundImage: `url(${props.item.picture})`}} id={props.item.uid}>
-          {props.winterLet && 
+          {props.item.customData?.Winter_Let_Price && 
           <div className="ribbon"><span>Winter Let</span></div>
           }
         {showAmenities && 
@@ -78,7 +80,9 @@ const PropertyCard = (props) => {
               <span style={{textAlign: "center", display:"block"}}>{props.item.shortDescription}</span>
               <br />
               <br />
-              <b>{props.item.city}</b>
+          <b>{props.item.city}</b>
+          {props.item.customData?.Winter_Let_Price && 
+          <b style={{float:"right"}}>Winter Let: {props.item.customData?.Winter_Let_Price}€/ Month <span className="icon-info" style={{position: "relative"}}><FontAwesomeIcon icon={faQuestionCircle} style={{margin:"auto"}} /> <span className="tooltiptext" style={{top:"25px"}}>Winter Lets pricing for Nov-Mar rentals. Min Duration: 3 months.</span></span></b>}
             </Card.Text>
             </Link>
             <Card.Footer className="prop-card-footer-container" style={{borderRadius: "0 0 5px 5px"}}>

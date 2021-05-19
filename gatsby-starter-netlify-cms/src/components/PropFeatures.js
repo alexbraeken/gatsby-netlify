@@ -111,12 +111,8 @@ const PropFeatureGrid = React.memo((data) => {
       {    
         if(index > displayNumber)return null
         if(item != null){
-          let winterLet = false
-        if(data.winterLets.indexOf(item.uid)!== -1){
-          winterLet = true
-        }
           return(
-            <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} winterLet={winterLet} dates={data.dates}/>
+            <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
             )}
         })
         }

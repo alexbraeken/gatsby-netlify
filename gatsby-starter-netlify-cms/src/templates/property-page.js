@@ -190,6 +190,9 @@ export const PropertyPageTemplate = ( props ) =>
                             <div style={{width:"100%"}}>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <div className="prdtitlesolo productNameTitle">
+                                {data.value.customData?.Winter_Let_Price && 
+          <div className="ribbon"><span>Winter Let</span></div>
+          }
                                 <Container>
                                     <Col>
                                         <Row>     
@@ -469,6 +472,14 @@ export const PropertyPageTemplate = ( props ) =>
                                                             </ul>
                                                         </div>
                                                     </Tab>
+                                                    {data.value.customData?.Winter_Let_Price && 
+                                                    <Tab eventKey="winterLets" title="Winter Let" tabClassName="orangeText">
+                                                        <p>This property is available for Winter Letting at {data.value.customData?.Winter_Let_Price}/€ Month.
+                                                        <br />
+                                                        Winter letting is available between November and March. Enquire about this property below to find out more.
+                                                        </p>
+                                                    </Tab>
+                                                    }
                                                 </Tabs>
                                                 </div>
                                                 <br />

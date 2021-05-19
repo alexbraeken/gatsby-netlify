@@ -147,6 +147,7 @@ const EnquiryModal = (props) => {
                 <option value="Facilities">Facilities</option>
                 <option value="Booking Related">Booking Related</option>
                 <option value="Accessibility">Accessibility</option>
+                <option value="Accessibility">Winter Let</option>
                 <option value="Other">Other</option>
               </select>
             </div>

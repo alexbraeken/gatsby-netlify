@@ -7,12 +7,17 @@ import Carousel from 'react-bootstrap/Carousel'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import StickyBox from "react-sticky-box";
 import { Helmet } from 'react-helmet'
 
 class CustomSlide extends React.Component {
+
+  
   render() {
+
+    gsap.registerPlugin(ScrollTrigger); 
     
     return (
       <div style={{backgroundImage: `url(${this.props.slide.slide? this.props.slide.slide.childImageSharp.fluid.src: null})`,
@@ -77,7 +82,7 @@ export const AlgarvePageTemplate = ({
   const hero = useRef(null)
   const stickyContainer = useRef(null)
   const stickyFeature = useRef(null)
-
+  const botSVG= useRef(null)
 
 
     const handleSelect = (selectedIndex, e) => {
@@ -93,50 +98,84 @@ export const AlgarvePageTemplate = ({
           viewHeight: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0),
           height: stickyContainer.current.getBoundingClientRect().height
         })
-        setStickyFeatureRange({
-          trigger: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.8, 
-          height: stickyFeature.current.getBoundingClientRect().height
-        })
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
-
+        
+        gsap.to(botSVG.current, {
+          ease: "Power2.easeIn",
+          attr: {d: 'M469.539032,263.986786H-0.000001L0,229.890961c310.649475,58.156982,255.61113-98.5,469.539032-65.062302V263.986786z' },
+          scrollTrigger: {
+            trigger: ".grid-container",  
+            start: "top 50%", // when the top of the trigger hits the top of the viewport
+            end: "25% 50%", 
+            scrub: 1, 
+          }
+        })
+        gsap.fromTo(botSVG.current, 
+          {
+            attr: {d: 'M469.539032,263.986786H-0.000001L0,229.890961c310.649475,58.156982,255.61113-98.5,469.539032-65.062302V263.986786z' }
+          },
+          {
+          ease: "Power2.easeOut",
+          attr: {d: 'M469.539032,263.986786H-0.000001L0,0c226.11113,0,182.887283-0.414484,469.539032,0V263.986786zz' },
+          scrollTrigger: {
+            trigger: ".grid-container",  
+            start: "50% 50%", // when the top of the trigger hits the top of the viewport
+            end: "75% bottom", 
+            scrub: 1, 
+          }
+        })
         return () => {
           setLoaded(false)
         }
       }, [])
+
+      useEffect(() => {
+        Object.keys(featureImgs).forEach((img, index)=>{
+          gsap.to(featureImgs[index], {
+            scrollTrigger: {
+              trigger: stickyFeature.current,
+              start: `${index*25}% 75%`,
+              end: "bottom top",
+              scrub: 1,
+              toggleClass: {targets: featureImgs[index],  className: "visible"}
+            }
+          })
+        })
+      }, [featureImgs])
+
+      useEffect(() => {
+        Object.keys(knockoutTexts).forEach((img, index)=>{
+          gsap.to(knockoutTexts[index], {
+            scrollTrigger: {
+              trigger: stickyFeature.current,
+              start: `${(index*25)+24}% 75%`,
+              end: "bottom top",
+              scrub: 1,
+              toggleClass: {targets: knockoutTexts[index],  className: "visible"}
+            }
+          })
+        })
+      }, [knockoutTexts])
+
+      useEffect(() => {
+        console.log(galleryImgs.length)
+        Object.keys(galleryImgs).forEach((img, index)=>{
+          gsap.to(galleryImgs[index], {
+            scrollTrigger: {
+              trigger: galleryImgs[index],
+              start: `top 80%`,
+              end: "bottom top",
+              scrub: 1,
+              toggleClass: {targets: galleryImgs[index],  className: "visible"}
+            }
+          })
+        })
+      }, [galleryImgs])
       
 
-      useScrollPosition(({ prevPos, currPos }) => {
-        if(galleryScrollRange.trigger <= currPos.y <= stickyFeatureRange.trigger){
-          if(featureImgs){
-            Object.keys(featureImgs).forEach((img, index)=>{
-              if((currPos.y <= stickyFeatureRange.trigger - (index+1)*(stickyFeatureRange.height/4)) && !featureImgs[index].classList.contains("visible")){
-                featureImgs[index].classList.add("visible")
-              }
-              if((currPos.y <= stickyFeatureRange.trigger - (index+1)*(stickyFeatureRange.height/4) - (galleryScrollRange.viewHeight*3)/4) && !knockoutTexts[index].classList.contains("visible")){
-                knockoutTexts[index].classList.add("visible")
-              } 
-              if((currPos.y >= stickyFeatureRange.trigger - (index+1)*(stickyFeatureRange.height/4)) && featureImgs[index].classList.contains("visible")){
-                featureImgs[index].classList.remove("visible")
-              }
-              if((currPos.y >= stickyFeatureRange.trigger - (index+1)*(stickyFeatureRange.height/4) - (galleryScrollRange.viewHeight*3)/4) && knockoutTexts[index].classList.contains("visible")){
-                knockoutTexts[index].classList.remove("visible")
-              }
-               
-            })
-          }
-        }
-        if(currPos.y <= (galleryScrollRange.trigger)){
-          if(galleryImgs){
-            Object.keys(galleryImgs).forEach((img, index)=>{
-              if(galleryImgs[img].getBoundingClientRect().top < galleryScrollRange.viewHeight){
-                if(!galleryImgs[img].classList.contains("visible"))galleryImgs[img].classList.add("visible")
-              }
-            })
-          }
-        }
-      })
+      
 
     const slides = [{slide: sliderImage1, title: sliderImageTitle1}, 
       {slide: sliderImage2, title: sliderImageTitle2}, 
@@ -169,7 +208,7 @@ export const AlgarvePageTemplate = ({
         position: "relative"
         }}>
       <Container>
-        <div className="full-width" style={{height:"400vh", position:"relative"}} ref={stickyFeature}>
+        <div className="full-width sticky-feature" style={{height:"400vh", position:"relative"}} ref={stickyFeature}>
           <StickyBox style={{height: "100vh"}}>
             <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img1.childImageSharp.fluid.src})`}}>
               <div style={{display: "flex", width: "100%", height: "100%"}}>
@@ -204,16 +243,30 @@ export const AlgarvePageTemplate = ({
                           position: "relative",
                           gridColumn: `${(index+1) % 2 === 0 ? '1 / 2' : '3 / 4'}`,
                           boxShadow: `${(index+1) % 2 === 0 ? '4px 0px 20px -4px' : '-4px 0px 20px -4px'}`}}
-                          className="scroll-parallax-img"/>
+                          className= {`scroll-parallax-img img-${index}`} 
+                          />
             })}
             <div style={{gridColumn:"2 / 3", gridRow: "1 / 6"}}>
             <StickyBox style={{
-            height: "80vh",
+            height: "100vh",
             overflow:"hidden"}}>
           <div className="gallery-container" ref={galleryContainer}>
             <div className="text-container">
               <h3>{gallery.text1.header}</h3>
               <p>{gallery.text1.text}</p>
+            </div>
+            <div style={{
+          width: "100%",
+          position: "absolute",
+          top: "auto",
+          bottom: "0",
+          right: "0",
+          height: "100%",
+          zIndex: "1",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg  fill="#FF8C00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 469.539032 263.986786" preserveAspectRatio="none" style={{width: "100%", left: "0", bottom: "-1px", height: "100%", position: "absolute"}}> 
+            <path ref={botSVG} d="M469.539032,263.986786H-0.000001L0,263.557617c66.11113,0.429169,351.088104,0.429169,469.539032,0.208344V263.986786z"></path> 
+            </svg>
             </div>
           </div>
           </StickyBox>
@@ -229,11 +282,11 @@ export const AlgarvePageTemplate = ({
                         imgStyle={{
                           width: "100%",
                           position: "relative"}}
-                          className="scroll-parallax-img feature-img"/>
+                          className={`scroll-parallax-img img-${index + Object.keys(gallery.imgs1).length} feature-img`}/>
             })}
              <div className="gallery-text" style={{gridRow: "1 / 3", backgroundColor:"rgb(51, 51, 51)"}}>
             <StickyBox style={{
-            height: "80vh",
+            height: "100vh",
             overflow:"hidden"}}>
           <div className="gallery-container">
             <div className="text-container feature-text">
@@ -241,6 +294,7 @@ export const AlgarvePageTemplate = ({
               <p>{gallery.text2.text}</p>
             </div>
           </div>
+          
           </StickyBox>
             </div>
           </div>
