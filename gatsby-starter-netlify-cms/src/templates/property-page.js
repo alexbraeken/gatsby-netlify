@@ -40,6 +40,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [smartaOpinion, setSmartaOpinion] = useState(null)
    const [poolDimensions, setPoolDimensions] = useState(null)
    const [damageWaiver, setDamageWaiver] = useState(null)
+   const [matterportURL, setMatterportURL] = useState(null)
    const [waiverOpen, setWaiverOpen] = useState(false)
    const [travelDistances, setTravelDistances] = useState({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
    const [showInteractionReadMore, setShowInteractionReadMore] = useState(false)
@@ -79,6 +80,9 @@ export const PropertyPageTemplate = ( props ) =>
                         if(JSON.parse(data)[8].text!== undefined){
                             setDamageWaiver(JSON.parse(data)[8].text)
                         }
+                        if(JSON.parse(data)[11]?.text!== undefined){
+                            setMatterportURL(JSON.parse(data)[11].text)
+                        }
                         if(JSON.parse(data)[2] ||JSON.parse(data)[3] || JSON.parse(data)[4] || JSON.parse(data)[5] || JSON.parse(data)[6] || JSON.parse(data)[9]){
                             setTravelDistances({
                                 display: true,
@@ -103,6 +107,7 @@ export const PropertyPageTemplate = ( props ) =>
                 setAmenitiesLength(0)
                 setPoolDimensions(null)
                 setDamageWaiver(null)
+                setMatterportURL(null)
                 setWaiverOpen(false)
                 setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
                 setShowInteractionReadMore(false)
@@ -190,7 +195,7 @@ export const PropertyPageTemplate = ( props ) =>
                             <div style={{width:"100%"}}>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <div className="prdtitlesolo productNameTitle">
-                                {data.value.customData?.Winter_Let_Price && 
+                                {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>Winter Let</span></div>
           }
                                 <Container>
@@ -296,6 +301,10 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     <br />
                                                                     {data.value.en_US.space}
                                                                     <br />
+                                                                    {matterportURL && 
+                                                                    <iframe width="100%" height="480" src={matterportURL} frameborder="0" allowfullscreen allow="xr-spatial-tracking">
+                                                                    </iframe>
+                                                                    }
                                                                 </div>
                                                         </Col>
                                                     </Row>
@@ -472,8 +481,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                             </ul>
                                                         </div>
                                                     </Tab>
-                                                    {data.value.customData?.Winter_Let_Price && 
-                                                    <Tab eventKey="winterLets" title="Winter Let" tabClassName="orangeText">
+                                                    {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                                                    <Tab eventKey="winterLets" title="Winter Let Details" tabClassName="orangeText">
                                                         <p>This property is available for Winter Letting at {data.value.customData?.Winter_Let_Price}/€ Month.
                                                         <br />
                                                         Winter letting is available between November and March. Enquire about this property below to find out more.

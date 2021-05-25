@@ -460,7 +460,7 @@ and are payable upon arrival. </span></p>
   <td width=260 valign=bottom style='width:195.2pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center'><span
-  lang=EN-US style='font-size:9.0pt;line-height:115%;font-family:"Century Gothic",sans-serif'>24.00h-
+  lang=EN-US style='font-size:9.0pt;line-height:115%;font-family:"Century Gothic",sans-serif'>24.00h -
   8am</span></p>
   </td>
   <td width=135 valign=bottom style='width:101.05pt;border-top:none;border-left:

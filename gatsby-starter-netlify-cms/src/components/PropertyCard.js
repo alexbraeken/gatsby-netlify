@@ -33,7 +33,7 @@ const PropertyCard = (props) => {
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{backgroundImage: `url(${props.item.picture})`}} id={props.item.uid}>
-          {props.item.customData?.Winter_Let_Price && 
+          {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>Winter Let</span></div>
           }
         {showAmenities && 
@@ -81,7 +81,7 @@ const PropertyCard = (props) => {
               <br />
               <br />
           <b>{props.item.city}</b>
-          {props.item.customData?.Winter_Let_Price && 
+          {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <b style={{float:"right"}}>Winter Let: {props.item.customData?.Winter_Let_Price}€/ Month <span className="icon-info" style={{position: "relative"}}><FontAwesomeIcon icon={faQuestionCircle} style={{margin:"auto"}} /> <span className="tooltiptext" style={{top:"25px"}}>Winter Lets pricing for Nov-Mar rentals. Min Duration: 3 months.</span></span></b>}
             </Card.Text>
             </Link>

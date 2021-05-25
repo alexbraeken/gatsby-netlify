@@ -8,22 +8,7 @@ import { gsap } from "gsap"
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import SubmitButton from './SubmitButton'
 import Select from 'react-select'
-
-const options = [
-  { value: 'Tavira Suburb', label: 'Tavira Suburb' },
-  { value: 'Tavira Centre', label: 'Tavira Centre' },
-  { value: 'Tavira Rural', label: 'Tavira Rural' },
-  { value: 'Cabanas de Tavira', label: 'Cabanas de Tavira' },
-  { value: 'Vila Nova de Cacela', label: 'Vila Nova de Cacela' },
-  { value: 'Castro Marim', label: 'Castro Marim' },
-  { value: 'Altura', label: 'Altura' },
-  { value: 'Vila Nova de Cacela', label: 'Vila Nova de Cacela' },
-  { value: 'Conceição', label: 'Conceição' },
-  { value: 'Fuseta', label: 'Fuseta' },
-  { value: 'Moncarapacho', label: 'Moncarapacho' },
-  { value: 'Santa Rita', label: 'Santa Rita' },
-  { value: 'Santa Catarina', label: 'Santa Catarina' },
-]
+import { FirestoreDocument } from '@react-firebase/firestore'
 
 const customStyles = {
   option: (provided, state) => ({
@@ -76,6 +61,8 @@ const SearchFilter = (props) => {
 
     const [dates, setDates] = useState({from:undefined, to: undefined})
     const [datesWidth, setDatesWidth] = useState("500px")
+    const [locationArray, setLocationArray] = useState([]);
+    const [locationData, setLocationData] = useState(null);
 
     const toRef = useRef(null)
     const searchBar = useRef(null)
@@ -89,6 +76,8 @@ const SearchFilter = (props) => {
         setDatesWidth("500px")
       }
     }, [])
+
+
 
     useEffect(() => {
         gsap.fromTo(searchBar.current, 1, {opacity:0, y: -200}, {opacity: 1, y: 0, ease:"power4.out", delay: 4})
@@ -123,6 +112,23 @@ const SearchFilter = (props) => {
       uri = encodeURI(uri)
       if(window) window.location.href= uri
     }
+
+    useEffect(() => {
+
+      let locations = []
+      if(locationData?.length > 0){
+        locationData.map((location, index) => {
+          locations.push({ value: location, label: location })
+        })
+        setLocationArray(locations)
+      }
+      
+      return () => {
+        setLocationArray([])
+      }
+
+    }, [locationData])
+
 
 
     const showFromMonth = () => {
@@ -202,57 +208,66 @@ const SearchFilter = (props) => {
 
     return (
         <div className="home-search-container" ref={searchBar}>
-        <Select 
-        options={options}
-        styles={customStyles}
-        isMulti
-        closeMenuOnSelect={false}
-        ref={multiselect}
-        placeholder="Select Locations"/>
-        <div className="InputFromTo" style={{display: "flex",
-            justifyContent: "center",
-            position: "relative",
-            margin: "5px auto",
-            height:"50px",
-            minWidth: "200px"}}
-            ref={fromToContainer}>
-        <DayPickerInput
-          value={from}
-          placeholder="Arrival Date"
-          format="LL"
-          formatDate={formatDate}
-          parseDate={parseDate}
-          dayPickerProps={{
-            selectedDays: [from, { from, to }],
-            disabledDays: [{before: new Date()},{ after: to }],
-            toMonth: to,
-            numberOfMonths: 2,
-            onDayClick: () => toRef.current.getInput().focus(),
-            modifiers,
-            modifiersStyles
-          }}
-          onDayChange={handleFromChange}
-        style={{height:"100%", zIndex:"10"}}/>
-        <span className="InputFromTo-to">
+          <FirestoreDocument path="/Navbar/Nav">
+            {d => {
+                    return (!d.isLoading && d.value) ?  
+                    <>{setLocationData(d.value.Locations)}</> 
+                    : 
+                    null
+                  }
+            }
+          </FirestoreDocument>
+          <Select 
+          options={locationArray}
+          styles={customStyles}
+          isMulti
+          closeMenuOnSelect={false}
+          ref={multiselect}
+          placeholder="Select Locations"/>
+          <div className="InputFromTo" style={{display: "flex",
+              justifyContent: "center",
+              position: "relative",
+              margin: "5px auto",
+              height:"50px",
+              minWidth: "200px"}}
+              ref={fromToContainer}>
           <DayPickerInput
-            ref={toRef}
-            value={to}
-            placeholder="Departure Date"
+            value={from}
+            placeholder="Arrival Date"
             format="LL"
             formatDate={formatDate}
             parseDate={parseDate}
             dayPickerProps={{
               selectedDays: [from, { from, to }],
-              disabledDays: { before: from || new Date() },
-              modifiers,
-              modifiersStyles,
-              month: from,
-              fromMonth: from,
+              disabledDays: [{before: new Date()},{ after: to }],
+              toMonth: to,
               numberOfMonths: 2,
+              onDayClick: () => toRef.current.getInput().focus(),
+              modifiers,
+              modifiersStyles
             }}
-            onDayChange={handleToChange}
-            style={{height:"100%", zIndex:"10"}}/>
-        </span>
+            onDayChange={handleFromChange}
+          style={{height:"100%", zIndex:"10"}}/>
+          <span className="InputFromTo-to">
+            <DayPickerInput
+              ref={toRef}
+              value={to}
+              placeholder="Departure Date"
+              format="LL"
+              formatDate={formatDate}
+              parseDate={parseDate}
+              dayPickerProps={{
+                selectedDays: [from, { from, to }],
+                disabledDays: { before: from || new Date() },
+                modifiers,
+                modifiersStyles,
+                month: from,
+                fromMonth: from,
+                numberOfMonths: 2,
+              }}
+              onDayChange={handleToChange}
+              style={{height:"100%", zIndex:"10"}}/>
+          </span>
         </div>
         <Form.Group className="input-guests">
             <Form.Control as="select" className="home-search-dropdown" style={{height:"100%"}} ref={bedrooms}>
