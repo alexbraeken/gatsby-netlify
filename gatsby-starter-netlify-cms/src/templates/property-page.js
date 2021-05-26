@@ -196,7 +196,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <div className="prdtitlesolo productNameTitle">
                                 {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-          <div className="ribbon"><span>Winter Let</span></div>
+          <div className="ribbon"><span>Also Winter Let</span></div>
           }
                                 <Container>
                                     <Col>

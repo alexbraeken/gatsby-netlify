@@ -35,16 +35,15 @@ hero: ../../../static/img/airport-transfer.jpg
 <center>
 <div class="base-table">
 
-| <p style="text-align: center;">Destination </p>          | <p style="text-align: center;">1 – 4 persons <br />(with luggage)   </p>     | <p style="text-align: center;">5 – 8 persons <br />(with luggage)</p>|
-|       :-:               |             :-:                     |           :-:               |
-| Tavira                  |             50€                     |           60€               |
-| Cabanas                 |             50€                     |           60€               |
-| Vila Nova de Cacela	  |             60€                     |           70€               |
-| Manta Rota	          |             60€                     |           70€               |
-| Altura	              |             60€                     |           70€               |
-| Monte Gordo	          |             70€                     |           80€               |
-| Castro Marim		      |             70€                     |           80€               |
-| Fuseta	              |             45€                     |           50€               |
+| <p style="text-align: center;">Destination </p>          | <p style="text-align: center;">1 – 4 persons <br />(with luggage)   </p>     | <p style="text-align: center;">5 – 6 persons <br />(with luggage)</p>| <p style="text-align: center;">7 – 8 persons <br />(with luggage)</p>| 
+|       :-:               |             :-:                     |           :-:               |             :-:               |
+| Tavira                  |             50€                     |           55€               |             95€               |
+| Cabanas                 |             50€                     |           55€               |             95€               |
+| Vila Nova de Cacela	  |             60€                     |           65€               |             110€               |
+| Manta Rota	          |             60€                     |           65€               |             110€               |
+| Altura	              |             60€                     |           65€               |             110€               |
+| Castro Marim		      |             70€                     |           75€               |             130€               |
+| Fuseta	              |             45€                     |           55€               |             90€               |
 
 </div>
 <br />

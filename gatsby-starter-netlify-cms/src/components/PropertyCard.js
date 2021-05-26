@@ -34,7 +34,7 @@ const PropertyCard = (props) => {
         
         <Card className="bg-dark text-white prop-card" style={{backgroundImage: `url(${props.item.picture})`}} id={props.item.uid}>
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
-          <div className="ribbon"><span>Winter Let</span></div>
+          <div className="ribbon"><span>Also Winter Let</span></div>
           }
         {showAmenities && 
               <div className="card-img-overlay card-amenities" >
