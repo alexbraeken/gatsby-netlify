@@ -1,14 +1,58 @@
-import React from 'react'
+import React, {useState, useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
 import logo from '../img/smartavillas logo.png'
 import Container from 'react-bootstrap/Container'
-import { FirestoreDocument } from "@react-firebase/firestore";
+import { FirestoreDocument, FirestoreCollection } from "@react-firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import Select from 'react-select'
+
 
 const PropertiesDropDown = React.memo((props) => {
+
+  const [data, setData] = useState(null)
+  const [options, setOptions] = useState([])
+
+  const customStyles = {
+    menu: () => ({
+      width: "100%",
+      overflowX: "hidden"
+    })
+  }
+  
+  useEffect(() => {
+    if(data){
+      let propArray= data.PropNames.map(prop => {
+        return {value: prop.uid, label: prop.name, city: prop.city }
+      })
+      console.log(propArray)
+      setOptions(propArray)
+    }
+  }, [data])
+  
+
+  const CustomOption = props => {
+    const { data, innerRef, innerProps } = props;
+    return (
+      <Link to={`/properties/${data.value}`}>
+      <div ref={innerRef} {...innerProps} className="nav-name-search">
+        <div  className="nav-prop-name">
+        <div>{data.label}</div>
+        </div>
+        <div className="nav-prop-location-container">
+          <div  className="nav-prop-location">
+            {data.city}
+          </div>
+        </div>
+        </div> 
+      </Link>
+    );
+  };
+
+
+
   return(
     <>
   <div style={{gridColumn: 1}}>
@@ -22,11 +66,18 @@ const PropertiesDropDown = React.memo((props) => {
               All Properties
             </div>
           </a>
+          <Select 
+          options={options}
+          closeMenuOnSelect={true}
+          components={{ Option: CustomOption}}
+          placeholder="Properties"
+          styles={customStyles}/>
           </div>
           <FirestoreDocument path="/Navbar/Nav">
                       {d => {
                                 return (!d.isLoading && d.value) ?  
                                 <>
+                                {setData(d.value)}
                                 <div style={{gridColumn:2}}>
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
                                     <h4 className="dropdown-title" style={{color:"#fff"}}>Location</h4>

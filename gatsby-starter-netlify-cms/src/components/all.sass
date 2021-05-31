@@ -647,8 +647,7 @@ $min-margin: 10px
       margin: auto
       width: 100%
 #filter-sidebar
-  background: #ffa600
-  //background: linear-gradient(180deg, #ffa600 0%, #ff8400 12%, #ff6200 33%, #ff4400 100%)
+  padding: 0
   background:#fff
   box-shadow: 1px 0px 10px -4px black
 
@@ -2384,3 +2383,25 @@ a.navbar-item, .navbar-item
 
 .sticky-bg-3
   background-color: #ddc599
+
+.nav-name-search
+  display: flex 
+  max-width: 95% 
+  margin: auto
+  & .nav-prop-name
+      flex: 1 1 30%
+  & .nav-prop-location-container
+      float: right 
+      margin: auto
+      & .nav-prop-location
+          margin-left: auto 
+          color: #ccc
+
+@media only screen and (max-width: 900px)
+  .nav-name-search
+    flex-wrap: wrap
+    & .nav-prop-name
+        min-width: 150px
+    & .nav-prop-location-container
+        float: none
+        margin: auto 10px

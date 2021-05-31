@@ -1,15 +1,19 @@
 import React,{useState, useEffect, useRef} from 'react'
-import {Row, Container}from 'react-bootstrap'
+import { Link } from 'gatsby'
+import {Row, Col, Container}from 'react-bootstrap'
 import PropertyCard from '../components/PropertyCard';
 import { gsap } from "gsap";
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import Loading from '../components/Loading'
+import Select, {components} from 'react-select'
+import BedBathPax from '../components/BedBathPax'
 
 gsap.registerPlugin(gsap);
 
 const PropFeatureGrid = React.memo((data) => {
 
   const [propList, setPropList] = useState([data.gridItems.value])
+  const [propOptionsArray, setPropOptionsArray] = useState([])
   const [advancedSearch, setAdvancedSearch] = useState(false)
   const [displayNumber, setDisplayNumber] = useState(20)
   const [loadMoreTop, setLoadMoreTop] = useState(null)
@@ -31,6 +35,51 @@ const PropFeatureGrid = React.memo((data) => {
     }
   }, [data.propertyIds])
 
+  useEffect(()=>{
+    let propArray = propList.map(prop => {
+      let details = {value: prop.uid, label: prop.name, picture: prop.picture, city: prop.city, guests: prop.baseGuests, bathrooms: prop.bathrooms, bedrooms: prop.bedrooms}
+      return details
+    })
+    propArray.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0))))
+    setPropOptionsArray(propArray)
+  }, [propList])
+
+
+  const customStyles = {
+    menu: () => ({
+      width: "100%",
+      overflowX: "hidden"
+  
+    })
+  }
+
+  const CustomOption = props => {
+    const { data, innerRef, innerProps } = props;
+    return (
+      <Link to={`/properties/${data.value}`}>
+      <div ref={innerRef} {...innerProps} style={{display: "flex", maxWidth:"95%", margin: "auto"}}>
+        <div style={{flex:"1 1 30%"}}>
+        <div style={{
+                height:"30px", 
+                width:"30px", 
+                borderRadius:"50%", 
+                backgroundImage:`url('${data.picture}')`, 
+                backgroundPosition:"center", 
+                backgroundSize:"cover",
+                margin: "auto 20px auto 10px"}}>
+        </div>
+        <div>{data.label}</div>
+        </div>
+        <div style={{float:"right", margin: "auto"}}>
+          <div style={{ marginLeft: "auto auto auto 10px", color: "#ccc" }}>
+            {data.city}
+          </div>
+          <BedBathPax bedrooms={data.bedrooms} bathrooms={data.bathrooms} baseGuests={data.guests} color="rgba(0,0,0)"/>
+        </div>
+        </div> 
+      </Link>   
+    );
+  };
   
 
   useEffect(() => {
@@ -103,7 +152,19 @@ const PropFeatureGrid = React.memo((data) => {
   return(
     <>
     <Container>
-      <Row>{propList?.length > 0 ? <h4>{propList.length} Properties:</h4>: <h4>No Properties Found</h4>}</Row>
+      <Row>
+      <Col xs={12} md={3}>
+        {propList?.length > 0 ? <h4>{propList.length} Properties:</h4>: <h4>No Properties Found</h4>}
+      </Col>
+      <Col xs={12} md={6}>
+          <Select 
+          options={propOptionsArray}
+          closeMenuOnSelect={true}
+          components={{ Option: CustomOption }}
+          placeholder="Properties"
+          styles={customStyles}/>
+      </Col>
+      </Row>
     </Container>
     <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
       <br />
