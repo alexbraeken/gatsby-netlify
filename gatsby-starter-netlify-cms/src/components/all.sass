@@ -2386,8 +2386,10 @@ a.navbar-item, .navbar-item
 
 .nav-name-search
   display: flex 
-  max-width: 95% 
+  max-width: 100% 
   margin: auto
+  padding: 0 10px
+  transition: all 0.3s
   & .nav-prop-name
       flex: 1 1 30%
   & .nav-prop-location-container
@@ -2396,6 +2398,8 @@ a.navbar-item, .navbar-item
       & .nav-prop-location
           margin-left: auto 
           color: #ccc
+  &:hover
+    background-color: $light-orange
 
 @media only screen and (max-width: 900px)
   .nav-name-search
@@ -2405,3 +2409,22 @@ a.navbar-item, .navbar-item
     & .nav-prop-location-container
         float: none
         margin: auto 10px
+
+.nav-column-1
+  grid-column: 1
+
+.nav-column-2
+  grid-column: 2
+
+.nav-column-3
+  grid-column: 3
+
+@media only screen and (max-width: 600px)
+  .nav-column-1
+    grid-column: 1
+
+  .nav-column-2
+    grid-column: 1
+
+  .nav-column-3
+    grid-column: 1

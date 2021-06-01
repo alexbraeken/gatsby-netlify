@@ -8,7 +8,6 @@ import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import StickyBox from "react-sticky-box";
 import { Helmet } from 'react-helmet'
 
@@ -74,8 +73,6 @@ export const AlgarvePageTemplate = ({
   const [loaded, setLoaded] = useState(false)
   const [galleryImgs, setGalleryImgs] = useState([])
   const [featureImgs, setFeatureImgs] = useState([])
-  const [galleryScrollRange, setGalleryScrollRange] = useState({}) 
-  const [stickyFeatureRange, setStickyFeatureRange] = useState({})
   const [knockoutTexts, setKnockoutTexts] = useState([])
 
   const galleryContainer = useRef(null)
@@ -93,11 +90,6 @@ export const AlgarvePageTemplate = ({
         setGalleryImgs(document.getElementsByClassName('scroll-parallax-img'))
         setFeatureImgs(document.getElementsByClassName('feature-circle-image'))
         setKnockoutTexts(document.getElementsByClassName('knockout-text'))
-        setGalleryScrollRange({ 
-          trigger: stickyFeature.current.getBoundingClientRect().height - Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0), 
-          viewHeight: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0),
-          height: stickyContainer.current.getBoundingClientRect().height
-        })
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
@@ -160,7 +152,6 @@ export const AlgarvePageTemplate = ({
       }, [knockoutTexts])
 
       useEffect(() => {
-        console.log(galleryImgs.length)
         Object.keys(galleryImgs).forEach((img, index)=>{
           gsap.to(galleryImgs[index], {
             scrollTrigger: {

@@ -48,8 +48,16 @@ const PropFeatureGrid = React.memo((data) => {
   const customStyles = {
     menu: () => ({
       width: "100%",
-      overflowX: "hidden"
-  
+      overflowX: "hidden",
+      position: "absolute",
+      top: "40px",
+      left: "0",
+      zIndex: "20",
+      backgroundColor: "white"
+    }),
+    menuList: () => ({
+      width: "100%",
+      maxHeight: "300px"
     })
   }
 
@@ -57,8 +65,9 @@ const PropFeatureGrid = React.memo((data) => {
     const { data, innerRef, innerProps } = props;
     return (
       <Link to={`/properties/${data.value}`}>
-      <div ref={innerRef} {...innerProps} style={{display: "flex", maxWidth:"95%", margin: "auto"}}>
+      <div ref={innerRef} {...innerProps} className="nav-name-search">
         <div style={{flex:"1 1 30%"}}>
+        <div>{data.label}</div>
         <div style={{
                 height:"30px", 
                 width:"30px", 
@@ -68,13 +77,12 @@ const PropFeatureGrid = React.memo((data) => {
                 backgroundSize:"cover",
                 margin: "auto 20px auto 10px"}}>
         </div>
-        <div>{data.label}</div>
         </div>
         <div style={{float:"right", margin: "auto"}}>
+        <BedBathPax bedrooms={data.bedrooms} bathrooms={data.bathrooms} baseGuests={data.guests} color="rgba(0,0,0)"/>
           <div style={{ marginLeft: "auto auto auto 10px", color: "#ccc" }}>
             {data.city}
           </div>
-          <BedBathPax bedrooms={data.bedrooms} bathrooms={data.bathrooms} baseGuests={data.guests} color="rgba(0,0,0)"/>
         </div>
         </div> 
       </Link>   

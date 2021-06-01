@@ -27,7 +27,6 @@ const PropertiesDropDown = React.memo((props) => {
       let propArray= data.PropNames.map(prop => {
         return {value: prop.uid, label: prop.name, city: prop.city }
       })
-      console.log(propArray)
       setOptions(propArray)
     }
   }, [data])
@@ -55,7 +54,7 @@ const PropertiesDropDown = React.memo((props) => {
 
   return(
     <>
-  <div style={{gridColumn: 1}}>
+  <div className="nav-column-1">
     <div className="navbar-item" style={{
       backgroundColor:"#f5821e", 
       boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
@@ -78,7 +77,7 @@ const PropertiesDropDown = React.memo((props) => {
                                 return (!d.isLoading && d.value) ?  
                                 <>
                                 {setData(d.value)}
-                                <div style={{gridColumn:2}}>
+                                <div className="nav-column-2">
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
                                     <h4 className="dropdown-title" style={{color:"#fff"}}>Location</h4>
                                   </div>
@@ -92,7 +91,7 @@ const PropertiesDropDown = React.memo((props) => {
                                     ))
                                   }
                                   </div>
-                                  <div style={{gridColumn:3}}>
+                                  <div className="nav-column-3">
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
                                     <h4 className="dropdown-title" style={{color:"#fff"}}>Property Type</h4>
                                   </div>
