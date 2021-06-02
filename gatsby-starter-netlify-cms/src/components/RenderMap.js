@@ -5,7 +5,27 @@ import icon2 from '../img/map marker.png'
 import BedBathPax from '../components/BedBathPax'
 
 const options = {
-  imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+  gridSize: 50,
+  styles: [
+    {
+      textColor: 'white',
+      url: '/img/clustermarker.png',
+      height: 40,
+      width: 40
+    },
+   {
+      textColor: 'white',
+      url: '/img/clustermarker.png',
+      height: 50,
+      width: 50
+    },
+   {
+      textColor: 'white',
+      url: '/img/clustermarker2.png',
+      height: 50,
+      width: 50
+    }
+  ]
 }
 
 
