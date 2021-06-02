@@ -11,14 +11,68 @@ export default class renderMap extends React.Component{
     this.state={
       overlay: null,
       map: null,
-      center: {}
+      center: {},
+      propList: [],
+      bounds: null
     }
     this.onLoad = this.onLoad.bind(this);
     this.scrollToCard = this.scrollToCard.bind(this);
     this.handleHover = this.handleHover.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.refreshPropList = this.refreshPropList.bind(this);
+    this.fetchPropList = this.fetchPropList.bind(this);
+    this.refreshBounds = this.refreshBounds.bind(this);
 }
 
+
+componentDidMount(){
+  this.refreshPropList()
+}
+
+componentDidUpdate(prevProps){
+  if(this.fetchPropList()?.length !== this.state.propList?.length)this.refreshPropList()
+}
+
+fetchPropList = () => {
+  let propArray = []
+  this.props.props.list.forEach((prop, index)=>{
+    if(this.props.props.state.city[prop.city]
+      && this.props.props.state.type[prop.type]
+      && this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
+&& this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
+      && this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
+      && parseInt(prop.bedrooms) <= this.props.props.state.bedrooms[1]
+      && this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
+&& this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
+      && this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
+      && parseInt(prop.bathrooms) <= this.props.props.state.bathrooms[1]
+      && prop.latitude && prop.longitude) propArray.push(prop)
+  })
+  return propArray
+}
+
+refreshPropList = () => {
+  this.setState({propList: this.fetchPropList()},()=>{
+    this.refreshBounds(this.state.map)
+  })
+}
+
+refreshBounds = (mapInstance) => {
+  if(mapInstance){
+    const bounds = new window.google.maps.LatLngBounds();
+    this.state.propList.forEach(prop => {
+      bounds.extend({ lat: prop.latitude, lng: prop.longitude });
+    });
+
+    this.setState({bounds: bounds})
+
+    let center = bounds.getCenter() ? { lat: parseFloat(bounds.getCenter().lat()), lng: parseFloat(bounds.getCenter().lng())} : this.props.center;
+    
+    this.setState({center: center})
+
+    mapInstance.fitBounds(bounds);
+  }
+}
   
     onLoad = 
        (mapInstance) => {
@@ -26,6 +80,7 @@ export default class renderMap extends React.Component{
         mapInstance.addListener("dragend", ()=>{
           this.setState({center:{lat:this.state.map.getCenter().lat(), lng:this.state.map.getCenter().lng()}})
         })
+        this.refreshBounds(mapInstance)
     }
 
 
@@ -64,14 +119,11 @@ export default class renderMap extends React.Component{
 render(){
     return (<GoogleMap
           mapContainerStyle={{height:this.props.props.height}}
-          center={{
-            lat: this.state.center.lat || this.props.props.lat || this.props.center.lat,
-            lng: this.state.center.lng || this.props.props.lng || this.props.center.lng
-          }}
           zoom={this.props.zoom}
           onLoad={this.onLoad}
           gestureHandling= "greedy"
           onMouseOut={()=>this.handleMouseOut()}
+          center={this.state.center}
         >
           {this.state.overlay &&
           <OverlayView
@@ -87,22 +139,9 @@ render(){
     </OverlayView>}
           {(this.props.props.isMarkerShown && this.props.props.list)?
           <>
-          {this.props.props.list.map((prop, index)=>{
-          return (
-            (this.props.props.state.city[prop.city]
-            && this.props.props.state.type[prop.type]
-            && this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
-      && this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
-            && this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
-            && parseInt(prop.bedrooms) <= this.props.props.state.bedrooms[1]
-            && this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
-      && this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
-            && this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
-            && parseInt(prop.bathrooms) <= this.props.props.state.bathrooms[1]
-            && prop.latitude && prop.longitude)?
-                  <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clickable={true} icon={icon} onClick={()=>this.scrollToCard(prop.uid)} title={prop.name} onMouseOver={()=>this.handleHover({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate)}/>
-                  : null
-          )})}
+          {this.state.propList.map((prop, index)=>{
+          return <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clickable={true} icon={icon} onClick={()=>this.scrollToCard(prop.uid)} title={prop.name} onMouseOver={()=>this.handleHover({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate)}/>
+          })}
           </>
           : <>{(this.props.props.lat && this.props.props.lng)?<Marker position={{ lat: this.props.props.lat, lng: this.props.props.lng }} icon={icon2} />: null}</>   
         }
