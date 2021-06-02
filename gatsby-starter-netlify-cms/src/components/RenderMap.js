@@ -26,11 +26,17 @@ export default class renderMap extends React.Component{
 
 
 componentDidMount(){
-  this.refreshPropList()
+  if(this.props.props.isMarkerShown && this.props.props.list)
+  {
+    this.refreshPropList()
+  }
+  else {
+    this.setState({center: { lat: this.props.props.lat, lng: this.props.props.lng }})
+  }
 }
 
 componentDidUpdate(prevProps){
-  if(this.fetchPropList()?.length !== this.state.propList?.length)this.refreshPropList()
+  if(this.props.props.isMarkerShown && this.props.props.list && this.fetchPropList()?.length !== this.state.propList?.length)this.refreshPropList()
 }
 
 fetchPropList = () => {
@@ -80,7 +86,7 @@ refreshBounds = (mapInstance) => {
         mapInstance.addListener("dragend", ()=>{
           this.setState({center:{lat:this.state.map.getCenter().lat(), lng:this.state.map.getCenter().lng()}})
         })
-        this.refreshBounds(mapInstance)
+        if(this.props.props.isMarkerShown && this.props.props.list)this.refreshBounds(mapInstance)
     }
 
 
