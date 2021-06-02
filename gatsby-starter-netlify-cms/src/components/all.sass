@@ -1099,22 +1099,19 @@ $min-margin: 10px
   max-width: 90%
   min-width: 300px
   z-index: 10
-  top: -45px
+  top: 0
 
 .top-date-picker-container
   position: relative
   width: 500px
   max-width: 100%
-  border-radius: 50%
   left: -50%
   display: flex
   height: 70px
-  background: #fff
   transition: all 0.2s ease-in-out
 
 .top-date-picker-text
   position: absolute
-  bottom: 0
   width: 100%
   left: 0
   display: flex
@@ -1124,9 +1121,9 @@ $min-margin: 10px
       padding: 5px 
 
 .top-date-picker-container:hover
-  box-shadow: 0 0 0 0.3rem rgba(245,130,30,.25)
-  background-color: #f1f1f1
   heigth: 85px
+  & svg
+      fill: #fcfcfc
 
 //Calendar Modal
 

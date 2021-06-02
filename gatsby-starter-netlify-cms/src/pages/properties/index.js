@@ -33,7 +33,7 @@ const Properties = React.memo((props) => {
     const [winterLets, setWinterLets] = useState([])
     const [searchOperator, setSearchOperator] = useState("not-in")
     const [propertyIds, setPropertyIds] = useState([])
-    const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
+
     const [dates, setDates] = useState(null)
     const [horizontalExpanded, setHorizontalExpanded] = useState(false)
     const [filterExpanded, setFilterExpanded] = useState(true)
@@ -49,8 +49,7 @@ const Properties = React.memo((props) => {
        hasInternetWifi: false,
     })
 
-    const container = useRef(null)
-    const datePicker = useRef(null)
+
 
     useEffect(() => {
         return () => {
@@ -79,7 +78,7 @@ const Properties = React.memo((props) => {
             setData(null);
             setWinterLets([])
             setSearchOperator("not-in")
-            setStickyStyle({position:"absolute"})
+            
             setDates(null)
             setHorizontalExpanded(false)
             setFilterExpanded(true)
@@ -168,18 +167,8 @@ const Properties = React.memo((props) => {
 
 
 
-    useScrollPosition(({ prevPos, currPos }) => {
-        if(container.current.getBoundingClientRect().top < 0 && stickyStyle.position === "absolute"){
-            setStickyStyle({position: "fixed"})
-        }
-        if(container.current.getBoundingClientRect().top > 0 && stickyStyle.position === "fixed"){
-            setStickyStyle({position: "absolute"})
-        }
-      })
-
-
         return(
-            <div ref={container}>
+            <div>
                 <FirestoreCollection path="/Properties/">
                     {data => {       
                         return (!data.isLoading && data.value) ?  
@@ -187,10 +176,6 @@ const Properties = React.memo((props) => {
                         {setData(data.value)}
 
                         <Container style={{width:"100vw", maxWidth:"none"}} >
-                            {props.state.searchArray.from && props.state.searchArray.to &&
-                            <DatePicker from={props.state.searchArray.from[0]} to={props.state.searchArray.to[0]} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleTotalDays={handleTotalDays} handleClearDates={props.handleClearDates}
-                            className="top-date-picker" style={stickyStyle}
-                            /> }
                             <Row>
                                 <Col xs={12} md={horizontalExpanded? 6 : 3} id="filter-sidebar" style={{transition:"all 1s"}}>
                                 <StickyBox>
@@ -231,7 +216,7 @@ const Properties = React.memo((props) => {
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
-                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} dates={dates} amenitiesList={amenitiesList}/>
+                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleTotalDays={handleTotalDays} handleClearDates={props.handleClearDates}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery

@@ -14,6 +14,7 @@ const PropertiesDropDown = React.memo((props) => {
 
   const [data, setData] = useState(null)
   const [options, setOptions] = useState([])
+  const [inputValue, setInputValue] = useState(null)
 
   const customStyles = {
     menu: () => ({
@@ -50,6 +51,9 @@ const PropertiesDropDown = React.memo((props) => {
     );
   };
 
+  const onInputChange = (inputValue) => {
+    if(window)window.location.href = `/properties/${inputValue}`
+  }
 
 
   return(
@@ -67,6 +71,7 @@ const PropertiesDropDown = React.memo((props) => {
           </a>
           <Select 
           options={options}
+          onChange={(e)=>onInputChange(e.value)}
           closeMenuOnSelect={true}
           components={{ Option: CustomOption}}
           placeholder="Properties"

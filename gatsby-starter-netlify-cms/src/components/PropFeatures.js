@@ -7,6 +7,8 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import Loading from '../components/Loading'
 import Select, {components} from 'react-select'
 import BedBathPax from '../components/BedBathPax'
+import DatePicker from '../components/DatePicker'
+import StickyBox from "react-sticky-box";
 
 gsap.registerPlugin(gsap);
 
@@ -17,16 +19,27 @@ const PropFeatureGrid = React.memo((data) => {
   const [advancedSearch, setAdvancedSearch] = useState(false)
   const [displayNumber, setDisplayNumber] = useState(20)
   const [loadMoreTop, setLoadMoreTop] = useState(null)
+  const [infoSelectTopStyle, setInfoSelectTopStyle] = useState({})
+  const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
 
   const loadMore = useRef(null)
+  const container = useRef(null)
+  const datePicker = useRef(null)
 
 
   useEffect(() => {
     setLoadMoreTop(loadMore.current.getBoundingClientRect().top)
+    setInfoSelectTopStyle(data.state.searchArray.from && data.state.searchArray.to ? {paddingTop: "40px"} : {})
     return () => {
       setLoadMoreTop(null)
+      setInfoSelectTopStyle({})
+      setStickyStyle({position:"absolute"})
     }
   }, [])
+
+  useEffect(() => {
+    setInfoSelectTopStyle(data.state.searchArray.from && data.state.searchArray.to ? {paddingTop: "40px"} : {})
+  }, [data.state.searchArray])
 
   useEffect(() => {
     if(data.propertyIds){(data.propertyIds.length>0) ? setAdvancedSearch(true) : setAdvancedSearch(false)}
@@ -89,6 +102,10 @@ const PropFeatureGrid = React.memo((data) => {
     );
   };
   
+  const onInputChange = (inputValue) => {
+    if(window)window.location.href = `/properties/${inputValue}`
+  }
+
 
   useEffect(() => {
 
@@ -154,19 +171,29 @@ const PropFeatureGrid = React.memo((data) => {
       }
     }
   })
+
   
 
-
   return(
-    <>
+    <div ref={container}>
+      {data.state.searchArray.from && data.state.searchArray.to &&
+    <div style={{position: "absolute", top: "0", height: "100%", left: "50%", transform:"translateX(-50%)", zIndex: "10"}}>
+      <StickyBox>
+      <DatePicker from={data.state.searchArray.from[0]} to={data.state.searchArray.to[0]} 
+        className="top-date-picker" style={stickyStyle} handleDateChange={data.handleDateChange} handleNewIds={data.handleNewIds} handleTotalDays={data.handleTotalDays} handleClearDates={data.handleClearDates}
+        />
+      </StickyBox>
+    </div>
+         }
     <Container>
-      <Row>
-      <Col xs={12} md={3}>
-        {propList?.length > 0 ? <h4>{propList.length} Properties:</h4>: <h4>No Properties Found</h4>}
+      <Row style={infoSelectTopStyle}>
+      <Col xs={12} md={3} style={{margin: "auto 20px", display:"flex", padding: "5px"}}>
+        {propList?.length > 0 ? <span className="text-muted">{propList.length} Properties:</span>: <span className="text-muted">No Properties Found</span>}
       </Col>
       <Col xs={12} md={6}>
           <Select 
           options={propOptionsArray}
+          onChange={(e)=>onInputChange(e.value)}
           closeMenuOnSelect={true}
           components={{ Option: CustomOption }}
           placeholder="Properties"
@@ -190,7 +217,7 @@ const PropFeatureGrid = React.memo((data) => {
           </div>
         </div>
     </div>
-  </>
+  </div>
 )})
 
 

@@ -17,6 +17,15 @@ const DatePicker = (props) => {
     return (
         <div className="top-date-picker" style={props.style}>
             <div className="top-date-picker-container">
+                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              top: "0",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path d="M0 0 a 1 1 180 1 0 100 0"></path> 
+            </svg>
                 <Container>
                     <Row>
                 <div className="top-date-picker-text" onClick={handleShowCalendar}>
