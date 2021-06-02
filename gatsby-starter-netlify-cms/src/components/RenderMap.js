@@ -1,8 +1,14 @@
 import React from 'react';
-import { GoogleMap, Marker, OverlayView} from '@react-google-maps/api';
+import { GoogleMap, Marker, OverlayView, MarkerClusterer} from '@react-google-maps/api';
 import icon from '../img/smartavillas marker 2.svg'
 import icon2 from '../img/map marker.png'
 import BedBathPax from '../components/BedBathPax'
+
+const options = {
+  imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+}
+
+
 
 export default class renderMap extends React.Component{
 
@@ -13,7 +19,8 @@ export default class renderMap extends React.Component{
       map: null,
       center: {},
       propList: [],
-      bounds: null
+      bounds: null,
+      isMobile: false
     }
     this.onLoad = this.onLoad.bind(this);
     this.scrollToCard = this.scrollToCard.bind(this);
@@ -22,8 +29,12 @@ export default class renderMap extends React.Component{
     this.refreshPropList = this.refreshPropList.bind(this);
     this.fetchPropList = this.fetchPropList.bind(this);
     this.refreshBounds = this.refreshBounds.bind(this);
+    this.checkMobile = this.checkMobile.bind(this);
 }
-
+checkMobile = () => {
+  const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches
+  this.setState({isMobile: isTabletOrMobile})
+}
 
 componentDidMount(){
   if(this.props.props.isMarkerShown && this.props.props.list)
@@ -127,7 +138,7 @@ render(){
           mapContainerStyle={{height:this.props.props.height}}
           zoom={this.props.zoom}
           onLoad={this.onLoad}
-          gestureHandling= "greedy"
+          gestureHandling= {this.state.isMobile ? "cooperative" : "greedy" }
           onMouseOut={()=>this.handleMouseOut()}
           center={this.state.center}
         >
@@ -144,11 +155,13 @@ render(){
       </div>
     </OverlayView>}
           {(this.props.props.isMarkerShown && this.props.props.list)?
-          <>
-          {this.state.propList.map((prop, index)=>{
-          return <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clickable={true} icon={icon} onClick={()=>this.scrollToCard(prop.uid)} title={prop.name} onMouseOver={()=>this.handleHover({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate)}/>
-          })}
-          </>
+          <MarkerClusterer options={options} maxZoom={14}>
+            {(clusterer)=> 
+            this.state.propList.map((prop, index)=>{
+              return <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} onClick={()=>this.scrollToCard(prop.uid)} title={prop.name} onMouseOver={()=>this.handleHover({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate)}/>
+            } 
+          )}
+          </MarkerClusterer>
           : <>{(this.props.props.lat && this.props.props.lng)?<Marker position={{ lat: this.props.props.lat, lng: this.props.props.lng }} icon={icon2} />: null}</>   
         }
       </GoogleMap>)}
