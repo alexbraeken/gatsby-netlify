@@ -1,14 +1,15 @@
 import React,{useState, useEffect, useRef} from 'react'
 import { Link } from 'gatsby'
 import {Row, Col, Container}from 'react-bootstrap'
-import PropertyCard from '../components/PropertyCard';
-import { gsap } from "gsap";
+import PropertyCard from '../components/PropertyCard'
+import PropCardTest from '../components/PropCardTest'
+import { gsap } from "gsap"
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import Loading from '../components/Loading'
 import Select, {components} from 'react-select'
 import BedBathPax from '../components/BedBathPax'
 import DatePicker from '../components/DatePicker'
-import StickyBox from "react-sticky-box";
+import StickyBox from "react-sticky-box"
 
 gsap.registerPlugin(gsap);
 
