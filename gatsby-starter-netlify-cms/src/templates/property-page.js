@@ -506,7 +506,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </div> 
                                                 }
                                                 <hr />
+                                                {propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
                                                 <BookingWidget id={props.id} dateRange={bookDates}/>
+                                                }
                                                 <br />
                                                 <div className="submit-search-btn" onClick={()=> handleEnquiryShow()}>
                                                     <a>
