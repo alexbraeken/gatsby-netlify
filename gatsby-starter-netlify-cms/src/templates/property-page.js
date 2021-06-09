@@ -483,9 +483,12 @@ export const PropertyPageTemplate = ( props ) =>
                                                     </Tab>
                                                     {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
                                                     <Tab eventKey="winterLets" title="Winter Let Details" tabClassName="orangeText">
-                                                        <p>This property is available for Winter Letting at {data.value.customData?.Winter_Let_Price}/€ Month.
-                                                        <br />
-                                                        Winter letting is available between November and March. Enquire about this property below to find out more.
+                                                        <p>This property is available for winter letting.
+                                                            <br />
+                                                            Discounted monthly rates are applicable between Nov-March (inclusive) at {data.value.customData?.Winter_Let_Price}€ / Month (internet included).
+                                                            <br />
+                                                            Consumed utilities (gas, water, electricity) will incur an extra charge, calculated by meter readings.
+                                                            For further info please enquire below
                                                         </p>
                                                     </Tab>
                                                     }
