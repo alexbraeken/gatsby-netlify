@@ -124,23 +124,24 @@ refreshBounds = (mapInstance) => {
   
     scrollToCard = (id) => {
         let card = document.getElementById(id)
-        if(card){const blink = () => {
-          card.style.opacity = (card.style.opacity === '1' || card.style.opacity === '' ? '0.2' : '1')
-        }
-        card.scrollIntoView({behavior: "smooth", block: "center"})
-        setTimeout(function() {
-          blink()
-         }, 500)
-         setTimeout(function() {
-          blink()
-        }, 1000)
-        setTimeout(function() {
-          blink()
-         }, 1500)
-         setTimeout(function() {
-          blink()
-        }, 2000)}
-        
+        if(card){
+          const blink = () => {
+            card.style.opacity = (card.style.opacity === '1' || card.style.opacity === '' ? '0.2' : '1')
+          }
+          card.scrollIntoView({behavior: "smooth", block: "center"})
+          setTimeout(function() {
+            blink()
+          }, 500)
+          setTimeout(function() {
+            blink()
+          }, 1000)
+          setTimeout(function() {
+            blink()
+          }, 1500)
+          setTimeout(function() {
+            blink()
+          }, 2000)
+        } 
       }
     
     

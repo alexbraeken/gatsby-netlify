@@ -483,12 +483,10 @@ export const PropertyPageTemplate = ( props ) =>
                                                     </Tab>
                                                     {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
                                                     <Tab eventKey="winterLets" title="Winter Let Details" tabClassName="orangeText">
-                                                        <p>This property is available for winter letting.
+                                                        <p>Discounted monthly rates are applicable between Nov-March (inclusive) at <b>{data.value.customData?.Winter_Let_Price}€ / Month* </b>(internet included).
                                                             <br />
-                                                            Discounted monthly rates are applicable between Nov-March (inclusive) at {data.value.customData?.Winter_Let_Price}€ / Month (internet included).
-                                                            <br />
-                                                            Consumed utilities (gas, water, electricity) will incur an extra charge, calculated by meter readings.
-                                                            For further info please enquire below
+                                                            <small>*Consumed utilities (gas, water, electricity) will incur an extra charge, calculated by meter readings.
+                                                            For further info please enquire below</small>
                                                         </p>
                                                     </Tab>
                                                     }
@@ -572,7 +570,7 @@ export const PropertyPageTemplate = ( props ) =>
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
                             <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.picture}/>
                             </div>
-                            <Helmet>
+                            <Helmet link={[{rel: "canonical", href: `https://www.smartavillas.com/properties/${propId}`}]}>
                                 <title>{propName}</title>
                                 <meta name="description" content={data.value.description} />
                             </Helmet>                 

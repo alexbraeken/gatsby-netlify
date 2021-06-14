@@ -56,7 +56,7 @@ const Properties = React.memo((props) => {
         }
     }, [props.state.searchArray.from, amenitiesList])
 
-//Call hostfully api here if date search 
+
     useEffect(() => {
         props.handlePathChange(window.location.href)
         return () => {
@@ -84,7 +84,8 @@ const Properties = React.memo((props) => {
             setFilterExpanded(true)
         }
     }, [])
-
+    
+//Call hostfully api here if date search 
     useEffect(() => {
         if(props.state.searchArray.from?.[0] && props.state.searchArray.to[0]){
             try{
