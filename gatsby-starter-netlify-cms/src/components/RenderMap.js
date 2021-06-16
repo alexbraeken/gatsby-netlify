@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from "@reach/router"
 import { GoogleMap, Marker, OverlayView, MarkerClusterer} from '@react-google-maps/api';
 import icon from '../img/smartavillas marker 2.svg'
 import icon2 from '../img/map marker.png'
 import BedBathPax from '../components/BedBathPax'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 const options = {
   gridSize: 50,
@@ -40,11 +43,12 @@ export default class renderMap extends React.Component{
       center: {},
       propList: [],
       bounds: null,
-      isMobile: false
+      isMobile: false,
+      eyeHover : false
     }
     this.onLoad = this.onLoad.bind(this);
     this.scrollToCard = this.scrollToCard.bind(this);
-    this.handleHover = this.handleHover.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
     this.refreshPropList = this.refreshPropList.bind(this);
     this.fetchPropList = this.fetchPropList.bind(this);
@@ -147,8 +151,8 @@ refreshBounds = (mapInstance) => {
     
     
   
-    handleHover = (position, name, bed, bath, guests, img, baseDailyRate) =>{
-        this.setState({overlay:{position:position, name:name, bed:bed, bath:bath, guests:guests, img:img, baseDailyRate: baseDailyRate}})
+    handleClick = (position, name, bed, bath, guests, img, baseDailyRate, uid) =>{
+        this.setState({overlay:{position:position, name:name, bed:bed, bath:bath, guests:guests, img:img, baseDailyRate: baseDailyRate, uid: uid}})
     }
   
     handleMouseOut = () =>{
@@ -168,9 +172,15 @@ render(){
       position={this.state.overlay.position}
       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
     >
-      <div style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
-        <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}}/>
-      <h4>{this.state.overlay.name}</h4>
+      <div className="map-overlay-view" style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
+      <Link to={`/properties/${this.state.overlay.uid}`}>
+        <div className="overlay-view-link">
+          <FontAwesomeIcon icon={faEye} className="overlay-view-icon"/>
+          <span className="link-text">View</span>
+        </div>
+      </Link>
+      <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}}/>
+      <Link to={`/properties/${this.state.overlay.uid}`}><div style={{height: "100%", display:"flex"}}><h4 className="overlay-name">{this.state.overlay.name}</h4></div></Link>
       <div className="map-price"><p className="feature-text-price" style={{float:"right"}}>From {this.state.overlay.baseDailyRate}€/ Day</p></div>
       <BedBathPax bedrooms={this.state.overlay.bed} bathrooms={this.state.overlay.bath} baseGuests={this.state.overlay.guests} color="rgba(0,0,0)"/>
       </div>
@@ -179,7 +189,7 @@ render(){
           <MarkerClusterer options={options} maxZoom={14}>
             {(clusterer)=> 
             this.state.propList.map((prop, index)=>{
-              return <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} onClick={()=>this.scrollToCard(prop.uid)} title={prop.name} onMouseOver={()=>this.handleHover({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate)}/>
+              return <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.uid)}/>
             } 
           )}
           </MarkerClusterer>

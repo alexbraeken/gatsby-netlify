@@ -94,22 +94,34 @@ const CalendarWidget = (props) => {
         }
     }
 
+    const today = new Date()
+    let nextYear = DateUtils.addMonths(today, 12)
+    let limitDate = DateUtils.addMonths(today, 24)
+
     const renderDay = (day) => {
         const dateDay = day.getDate()
         const dateMonth = day.getMonth()
-        const date = `${day.getFullYear()}-${dateMonth+1 > 9 ? dateMonth+1 : `0`+(dateMonth+1)}-${dateDay}`
-        console.log(date)
+        const dateYear = day.getFullYear()
+        let date;
+        if(day > nextYear){
+          date = `${dateYear-1}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
+        }
+        else{
+          date = `${dateYear}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
+        }
+        
+        //check if more than 1 year
         const dateStyle = {
           position: 'absolute',
-          color: 'lightgray',
+          color: '#ff6600',
           top: 0,
           right: 0,
           fontSize: 10,
         };
-        const birthdayStyle = { fontSize: '0.8em', textAlign: 'left' };
+        const priceStyle = { fontSize: '0.8em', textAlign: 'left', position: 'absolute', bottom: '0', left: '0' };
         const cellStyle = {
-          height: 35,
-          width: 35,
+          height: 30,
+          width: 30,
           position: 'relative',
           margin: 'auto',
         };
@@ -117,8 +129,8 @@ const CalendarWidget = (props) => {
           <div style={cellStyle}>
             <div style={dateStyle}>{day.getDate()}</div>
             {props.pricingPeriods?.[date] &&
-                <div style={birthdayStyle}>
-                  {props.pricingPeriods[date].amount}
+                <div style={priceStyle}>
+                  {props.pricingPeriods[date].amount}€
                 </div>
                 }
           </div>
@@ -145,13 +157,14 @@ const CalendarWidget = (props) => {
             initialMonth={new Date(startYear, startMonth)}
             disabledDays={[
                 disabledDays,
-                {before: new Date()}
+                {before: new Date(),
+                after: limitDate}
             ]}
             selectedDays={[from,{from , to }]}
             modifiers={modifiers}
             modifiersStyles={modifiersStyles}
             onDayClick={handleDayClick}
-            //renderDay={renderDay}
+            renderDay={renderDay}
             />
 
       <Helmet>

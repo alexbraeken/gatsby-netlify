@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import DayPicker from 'react-day-picker';
+import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { gsap } from "gsap";
 
@@ -50,6 +50,51 @@ const CardCalendar = (props) => {
           to: undefined,
         };
       }
+
+      const today = new Date()
+      let nextYear = DateUtils.addMonths(today, 12)
+      let limitDate = DateUtils.addMonths(today, 24)
+  
+      const renderDay = (day) => {
+          const dateDay = day.getDate()
+          const dateMonth = day.getMonth()
+          const dateYear = day.getFullYear()
+          let date;
+          //check if more than 1 year
+          if(day >= nextYear){
+            date = `${dateYear-1}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
+          }
+          else{
+            date = `${dateYear}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
+          }
+          
+          
+          const dateStyle = {
+            position: 'absolute',
+            color: '#fff',
+            top: 0,
+            right: 0,
+            fontSize: 10,
+          };
+          const priceStyle = { fontSize: '0.8em', textAlign: 'left', position: 'absolute', bottom: '0', left: '0' };
+          const cellStyle = {
+            height: 30,
+            width: 30,
+            position: 'relative',
+            margin: 'auto',
+          };
+          return (
+            <div style={cellStyle}>
+              <div style={dateStyle}>{day.getDate()}</div>
+              {props.pricingPeriods?.[date] &&
+                  <div style={priceStyle}>
+                    {props.pricingPeriods[date].amount}€
+                  </div>
+                  }
+            </div>
+          );
+      }
+
     const modifiers = {disabledDays: disabledDays};
     const modifiersStyles = {
         disabledDays : {
@@ -70,6 +115,7 @@ const CardCalendar = (props) => {
       }
       modifiers={modifiers}
       modifiersStyles={modifiersStyles}
+      renderDay={renderDay}
     />
   );
 }

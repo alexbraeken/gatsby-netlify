@@ -1161,7 +1161,7 @@ $min-margin: 10px
   .home-search-container .InputFromTo, .input-guests, .submit-search-btn
     flex: 1 1 100%
 
-.optionContainer li:hover
+.optionContainer li:hover, .overlayHover
   background: $light-orange
 
 //Form Focus
@@ -2000,11 +2000,14 @@ a.navbar-item, .navbar-item
 
 .map-price
   position: absolute
-  top: 7%
+  box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02)
+  transform: translateY(-50%)
+  top: 12%
   right: 7%
   background-color: #000
   border-radius: 5px
   padding: 5px
+  font-size: 1rem
 
 .close-modal
   position: absolute
@@ -2617,3 +2620,45 @@ $card-height-mobile: 12rem;
     &:hover &__image 
       transform: scale(1.2)
       z-index: -1
+
+.map-overlay-view
+  & .overlay-name
+      color: $primary
+      margin: auto
+      transition: all 0.3s
+      &:hover
+        color: $light-orange
+  & .overlay-view-link
+      border-radius: 5px
+      position: absolute
+      top: 12%
+      left: 7%
+      padding: 5px
+      margin: auto
+      min-width: 30px
+      max-width: 40px
+      display: flex
+      background-color: transparent
+      transform: translateY(-50%)
+      transition: all 0.3s
+      & .link-text
+          margin: auto
+          transform: translateX(-100%)
+          font-size: 1rem
+          opacity: 0
+      & .overlay-view-icon
+          color: $primary
+          height: 20px
+          width: 20px
+          margin: auto 5px auto auto
+          filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))
+      &:hover
+        max-width: 500px
+        background-color: $light-orange
+        box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)
+        & .link-text
+            transform: translateX(0)
+            opacity: 1
+            color: #fff
+        & .overlay-view-icon
+            color: #000

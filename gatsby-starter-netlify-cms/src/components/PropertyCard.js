@@ -84,7 +84,13 @@ const PropertyCard = (props) => {
             }
             {showCalendar && 
             <div ref={calendar} className="card-img-overlay calendar-container" style={{height: "fit-content"}}>
-              <CardCalendar id={props.item.uid}/>
+              <FirestoreDocument path={`PricingPeriods/${props.item.uid}`}>
+                {data => {
+                return (!data.isLoading && data.value) ? 
+                  <CardCalendar id={props.item.uid} pricingPeriods={data.value}/>
+                  :<Loading />
+                }}
+              </FirestoreDocument>
             </div>
 
             }

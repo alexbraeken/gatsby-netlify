@@ -22,8 +22,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool, faFileContract } from '@fortawesome/free-solid-svg-icons';
 import queryString from 'query-string';
 import EnquiryModal from '../components/EnquiryModal';
-import { Helmet } from 'react-helmet'
-
+import { Helmet } from 'react-helmet';
+import Loading from '../components/Loading';
 
 
 export const PropertyPageTemplate = ( props ) =>
@@ -282,7 +282,14 @@ export const PropertyPageTemplate = ( props ) =>
                                             <div id="calendar">
                                                 <h2>Calendar</h2>
                                                 <br />
-                                                <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} />
+                                                <FirestoreDocument path={`PricingPeriods/${props.id}`}>
+                                                    {data => {
+                                                    return (!data.isLoading && data.value) ? 
+                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={data.value}/>
+                                                        :
+                                                        <Loading />
+                                                    }}
+                                                </FirestoreDocument>
                                             </div>
                                         </Col>
                                     </Row>
