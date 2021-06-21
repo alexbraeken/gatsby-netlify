@@ -161,6 +161,14 @@ refreshBounds = (mapInstance) => {
 render(){
     return (<GoogleMap
           mapContainerStyle={{height:this.props.props.height}}
+          options={{
+            styles: [
+              {
+                featureType: "poi.business",
+                stylers: [{ visibility: "off" }],
+              }
+            ]
+          }}
           zoom={this.props.zoom}
           onLoad={this.onLoad}
           gestureHandling= {this.state.isMobile ? "cooperative" : "greedy" }
