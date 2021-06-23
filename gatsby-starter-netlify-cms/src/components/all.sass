@@ -292,6 +292,13 @@ a:hover
   left: 50%
   margin-left: -60px
   box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02)
+  &.amenity-tooltip
+    width: unset
+    bottom: 0
+    transform: translate(calc(-50% + 15px), 70%)
+    margin: unset
+    left: unset
+    padding: 0 7px 25px
 
 .tooltiptext::after
   content: " "
@@ -302,6 +309,9 @@ a:hover
   border-width: 5px
   border-style: solid
   border-color: transparent transparent black transparent
+
+.icon-info.amenity-icon
+  display: flex
 
 .icon-info:hover .tooltiptext
   opacity: 1

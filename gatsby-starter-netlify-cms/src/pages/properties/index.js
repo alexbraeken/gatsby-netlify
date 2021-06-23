@@ -32,11 +32,13 @@ const Properties = React.memo((props) => {
     const [data, setData] = useState(null);
     const [winterLets, setWinterLets] = useState([])
     const [searchOperator, setSearchOperator] = useState("not-in")
+    const [advancedSearch, setAdvancedSearch] = useState(false)
     const [propertyIds, setPropertyIds] = useState([])
-
+    const [propList, setPropList] = useState([])
     const [dates, setDates] = useState(null)
     const [horizontalExpanded, setHorizontalExpanded] = useState(false)
     const [filterExpanded, setFilterExpanded] = useState(true)
+    const [cardDisplayNum, setCardDisplayNum] = useState(null)
     
     const [amenitiesList, setAmenitiesList] = useState({
         hasPool: false,
@@ -82,6 +84,7 @@ const Properties = React.memo((props) => {
             setDates(null)
             setHorizontalExpanded(false)
             setFilterExpanded(true)
+            setPropList([])
         }
     }, [])
     
@@ -90,7 +93,7 @@ const Properties = React.memo((props) => {
         if(props.state.searchArray.from?.[0] && props.state.searchArray.to[0]){
             try{
             const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
-        
+                console.log(uri)
             fetch(uri, {
             headers:{
             "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
@@ -103,7 +106,8 @@ const Properties = React.memo((props) => {
                 .then(data => {
                 setPropertyIds(JSON.parse(data).propertiesUids)
                 })
-            setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})    
+            setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})
+            setAdvancedSearch(true)    
         }
         catch(err){
         }
@@ -111,6 +115,7 @@ const Properties = React.memo((props) => {
         if(!props.state.searchArray.from && !props.state.searchArray.to){
             setDates(null)
             setPropertyIds([])
+            setAdvancedSearch(false)
         }
         return () => {
             
@@ -122,6 +127,62 @@ const Properties = React.memo((props) => {
             props.filterList(data);
         }
     }, [data])
+
+    useEffect(() => {
+        const amenities = []
+        Object.keys(amenitiesList).forEach(amenity => {
+            return amenitiesList[amenity] ? amenities.push(amenity) : null
+        })
+
+
+        const list = []
+        if(data){
+            data.forEach((item, index) => {
+                let amenityBool = []
+                
+                if(amenities.length > 0 && item.amenities){
+                    amenities.forEach(amenity => {
+                        amenityBool.push(item.amenities[`${amenity}`])
+                    })
+                }else{
+                    amenityBool.push(true)
+                }
+                if((props.state.city[item.city])
+                    && (props.state.type[item.type])
+                    && (props.state.bedrooms[0] <= parseInt(item.bedrooms))
+                    && (parseInt(item.bedrooms) <= props.state.bedrooms[1])
+                    && (props.state.bathrooms[0] <= parseInt(item.bathrooms)) 
+                    && (parseInt(item.bathrooms) <= props.state.bathrooms[1])
+                    && (advancedSearch === (propertyIds.indexOf(item.uid) !== -1))
+                    && !amenityBool.includes(false)){  
+                    list.push(item)
+                } 
+            })
+            
+    
+            switch(sort){
+                case "price-min": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.baseDailyRate > b.baseDailyRate) ? 1 : ((b.baseDailyRate > a.baseDailyRate) ? -1 : 0))));
+                break;
+                case "price-max": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.baseDailyRate < b.baseDailyRate) ? 1 : ((b.baseDailyRate < a.baseDailyRate) ? -1 : 0))));
+                break;
+                case "bedrooms-min": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.bedrooms > b.bedrooms) ? 1 : ((b.bedrooms > a.bedrooms) ? -1 : 0))));
+                break;
+                case "bedrooms-max" : list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.bedrooms < b.bedrooms) ? 1 : ((b.bedrooms < a.bedrooms) ? -1 : 0))));
+                break;
+                case "a-z": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))));
+                break;
+                case "z-a": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0))));
+                break;
+                default: list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.rank > b.rank) ? -1 : ((b.rank > a.rank) ? 1 : 0))));
+            }
+    
+            setPropList(list)
+        }
+        
+        return () => {
+            setPropList([])
+        }
+    }, [data, advancedSearch, props.state, sort, propertyIds, amenitiesList])
 
 
     const handleGalleryClick = useCallback((photos) => {
@@ -166,6 +227,10 @@ const Properties = React.memo((props) => {
         setAmenitiesList({...list})
     })
 
+    const handleDisplayNumChange = useCallback((displayNum) => {
+        setCardDisplayNum(displayNum)
+    })
+
 
 
         return(
@@ -201,7 +266,7 @@ const Properties = React.memo((props) => {
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
-                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={data.value} state={props.state} propertyIds={propertyIds} amenitiesList={amenitiesList} height={"95vh"}/>
+                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"95vh"} cardDisplayNum={cardDisplayNum}/>
                                 <div className="expandBtn filterExpand" onClick={handleExpand}>
                                     {horizontalExpanded ? 
                                     <>
@@ -217,7 +282,7 @@ const Properties = React.memo((props) => {
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
-                                <PropFeatures gridItems={data} state={props.state} handleGalleryClick={handleGalleryClick} sort={sort} winterLets={winterLets} propertyIds={propertyIds} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleTotalDays={handleTotalDays} handleClearDates={props.handleClearDates}/>
+                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleTotalDays={handleTotalDays} handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
@@ -322,7 +387,7 @@ export default class PropertiesPage extends Component {
                 filter = [... new Set(filter)]
                 filter.sort()
                 filter.forEach((item, index)=>{
-                    let exists = ((!!this.state.searchArray[filterType] && this.state.searchArray[filterType].indexOf(item) !== -1) == this.state.filteredSearch[filterType] || !this.state.filteredSearch[filterType])
+                    let exists = ((!!this.state.searchArray[filterType] && this.state.searchArray[filterType].indexOf(item) !== -1) === this.state.filteredSearch[filterType] || !this.state.filteredSearch[filterType])
                     list[item] = exists;
                 })
                 this.setState({

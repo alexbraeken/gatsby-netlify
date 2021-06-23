@@ -53,10 +53,11 @@ const PropertyCard = (props) => {
       autoplay: false,
     };
 
+
     return (
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
-        <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}} id={props.item.uid}>
+        <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}} id={props.item.name}>
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>Also Winter Let</span></div>
           }

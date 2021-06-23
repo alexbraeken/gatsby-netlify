@@ -3,6 +3,7 @@ import { Link } from "@reach/router"
 import { GoogleMap, Marker, OverlayView, MarkerClusterer} from '@react-google-maps/api';
 import icon from '../img/smartavillas marker 2.svg'
 import icon2 from '../img/map marker.png'
+import icon3 from '../img/smartavillas marker 3.svg'
 import BedBathPax from '../components/BedBathPax'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
@@ -44,16 +45,18 @@ export default class renderMap extends React.Component{
       propList: [],
       bounds: null,
       isMobile: false,
-      eyeHover : false
+      eyeHover : false,
+      markers: []
     }
     this.onLoad = this.onLoad.bind(this);
-    this.scrollToCard = this.scrollToCard.bind(this);
+    this.markerOnLoad = this.markerOnLoad.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
     this.refreshPropList = this.refreshPropList.bind(this);
-    this.fetchPropList = this.fetchPropList.bind(this);
     this.refreshBounds = this.refreshBounds.bind(this);
     this.checkMobile = this.checkMobile.bind(this);
+    this.refreshMarkers = this.refreshMarkers.bind(this);
+    this.addMarkerListener = this.addMarkerListener.bind(this);
 }
 checkMobile = () => {
   const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches
@@ -71,29 +74,15 @@ componentDidMount(){
 }
 
 componentDidUpdate(prevProps){
-  if(this.props.props.isMarkerShown && this.props.props.list && this.fetchPropList()?.length !== this.state.propList?.length)this.refreshPropList()
+  if(this.props.props.isMarkerShown && this.props.props.list && this.props.props.list?.length !== this.state.propList?.length)this.refreshPropList()
+  if(this.props.props.cardDisplayNum !== prevProps.props.cardDisplayNum){
+    this.refreshMarkers(this.state.markers)
+  }
 }
 
-fetchPropList = () => {
-  let propArray = []
-  this.props.props.list.forEach((prop, index)=>{
-    if(this.props.props.state.city[prop.city]
-      && this.props.props.state.type[prop.type]
-      && this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
-&& this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
-      && this.props.props.state.bedrooms[0] <= parseInt(prop.bedrooms) 
-      && parseInt(prop.bedrooms) <= this.props.props.state.bedrooms[1]
-      && this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
-&& this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
-      && this.props.props.state.bathrooms[0] <= parseInt(prop.bathrooms) 
-      && parseInt(prop.bathrooms) <= this.props.props.state.bathrooms[1]
-      && prop.latitude && prop.longitude) propArray.push(prop)
-  })
-  return propArray
-}
 
 refreshPropList = () => {
-  this.setState({propList: this.fetchPropList()},()=>{
+  this.setState({propList: this.props.props.list},()=>{
     this.refreshBounds(this.state.map)
   })
 }
@@ -124,33 +113,32 @@ refreshBounds = (mapInstance) => {
         if(this.props.props.isMarkerShown && this.props.props.list)this.refreshBounds(mapInstance)
     }
 
+    markerOnLoad = (marker) => {
+      this.setState(prevState=> ({markers: [...prevState.markers, marker]}))
+      this.addMarkerListener(marker)
+    }
 
-  
-    scrollToCard = (id) => {
-        let card = document.getElementById(id)
-        if(card){
-          const blink = () => {
-            card.style.opacity = (card.style.opacity === '1' || card.style.opacity === '' ? '0.2' : '1')
-          }
-          card.scrollIntoView({behavior: "smooth", block: "center"})
-          setTimeout(function() {
-            blink()
-          }, 500)
-          setTimeout(function() {
-            blink()
-          }, 1000)
-          setTimeout(function() {
-            blink()
-          }, 1500)
-          setTimeout(function() {
-            blink()
-          }, 2000)
-        } 
+    refreshMarkers = (markers) => {
+      for(let i = 0; i < markers.length; i++ ){
+        this.addMarkerListener(markers[i])
       }
+    }
+
+    addMarkerListener = (marker) => {
+      let card = document.getElementById(marker.title)
+      if(card){
+        card.addEventListener("mouseenter", ()=> {
+          marker.setIcon(icon3)
+          marker.setAnimation(window.google.maps.Animation.BOUNCE)
+        })
+        card.addEventListener("mouseleave", ()=> {
+          marker.setIcon(icon)
+          marker.setAnimation(null)
+        })
+      }
+    }
+
     
-    
-    
-  
     handleClick = (position, name, bed, bath, guests, img, baseDailyRate, uid) =>{
         this.setState({overlay:{position:position, name:name, bed:bed, bath:bath, guests:guests, img:img, baseDailyRate: baseDailyRate, uid: uid}})
     }
@@ -158,6 +146,7 @@ refreshBounds = (mapInstance) => {
     handleMouseOut = () =>{
       this.setState({overlay:null})
     }
+
 render(){
     return (<GoogleMap
           mapContainerStyle={{height:this.props.props.height}}
@@ -197,7 +186,7 @@ render(){
           <MarkerClusterer options={options} maxZoom={14}>
             {(clusterer)=> 
             this.state.propList.map((prop, index)=>{
-              return <Marker position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.uid)}/>
+              return <Marker onLoad={this.markerOnLoad} position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} id={prop.uid} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.uid)}/>
             } 
           )}
           </MarkerClusterer>

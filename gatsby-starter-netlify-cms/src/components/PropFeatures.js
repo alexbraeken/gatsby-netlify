@@ -10,14 +10,17 @@ import Select, {components} from 'react-select'
 import BedBathPax from '../components/BedBathPax'
 import DatePicker from '../components/DatePicker'
 import StickyBox from "react-sticky-box"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFan, faDog, faWifi, faSwimmingPool, faTree} from '@fortawesome/free-solid-svg-icons';
+import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
+import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
+import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 
 gsap.registerPlugin(gsap);
 
 const PropFeatureGrid = React.memo((data) => {
 
-  const [propList, setPropList] = useState([data.gridItems.value])
   const [propOptionsArray, setPropOptionsArray] = useState([])
-  const [advancedSearch, setAdvancedSearch] = useState(false)
   const [displayNumber, setDisplayNumber] = useState(20)
   const [loadMoreTop, setLoadMoreTop] = useState(null)
   const [infoSelectTopStyle, setInfoSelectTopStyle] = useState({})
@@ -42,21 +45,15 @@ const PropFeatureGrid = React.memo((data) => {
     setInfoSelectTopStyle(data.state.searchArray.from && data.state.searchArray.to ? {paddingTop: "40px"} : {})
   }, [data.state.searchArray])
 
-  useEffect(() => {
-    if(data.propertyIds){(data.propertyIds.length>0) ? setAdvancedSearch(true) : setAdvancedSearch(false)}
-    return () => {
-      setAdvancedSearch(false)
-    }
-  }, [data.propertyIds])
 
   useEffect(()=>{
-    let propArray = propList.map(prop => {
+    let propArray = data.propList.map(prop => {
       let details = {value: prop.uid, label: prop.name, picture: prop.picture, city: prop.city, guests: prop.baseGuests, bathrooms: prop.bathrooms, bedrooms: prop.bedrooms}
       return details
     })
     propArray.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0))))
     setPropOptionsArray(propArray)
-  }, [propList])
+  }, [data.propList])
 
 
   const customStyles = {
@@ -108,67 +105,21 @@ const PropFeatureGrid = React.memo((data) => {
   }
 
 
-  useEffect(() => {
-
-    const amenities = []
-    Object.keys(data.amenitiesList).forEach(amenity => {
-      return data.amenitiesList[amenity] ? amenities.push(amenity) : null
-    })
-
-
-    const list = []
-    data.gridItems.value.forEach((item, index) => {
-      let amenityBool = []
-      
-      if(amenities.length > 0 && item.amenities){
-        amenities.forEach(amenity => {
-          amenityBool.push(item.amenities[`${amenity}`])
-        })
-      }else{
-        amenityBool.push(true)
-      }
-      if((data.state.city[item.city])
-      && (data.state.type[item.type])
-      && (data.state.bedrooms[0] <= parseInt(item.bedrooms))
-      && (parseInt(item.bedrooms) <= data.state.bedrooms[1])
-      && (data.state.bathrooms[0] <= parseInt(item.bathrooms)) 
-      && (parseInt(item.bathrooms) <= data.state.bathrooms[1])
-      && (advancedSearch === (data.propertyIds.indexOf(item.uid) !== -1))
-      && !amenityBool.includes(false)){  
-        list.push(item)
-    } 
-  })
   
-
-  switch(data.sort){
-    case "price-min": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.baseDailyRate > b.baseDailyRate) ? 1 : ((b.baseDailyRate > a.baseDailyRate) ? -1 : 0))));
-    break;
-    case "price-max": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.baseDailyRate < b.baseDailyRate) ? 1 : ((b.baseDailyRate < a.baseDailyRate) ? -1 : 0))));
-    break;
-    case "bedrooms-min": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.bedrooms > b.bedrooms) ? 1 : ((b.bedrooms > a.bedrooms) ? -1 : 0))));
-    break;
-    case "bedrooms-max" : list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.bedrooms < b.bedrooms) ? 1 : ((b.bedrooms < a.bedrooms) ? -1 : 0))));
-    break;
-    case "a-z": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))));
-    break;
-    case "z-a": list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0))));
-    break;
-    default: list.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.rank > b.rank) ? -1 : ((b.rank > a.rank) ? 1 : 0))));
-  }
-
-    setPropList(list)
-    return () => {
-      setPropList([])
-    }
-  }, [data, advancedSearch])
 
   useScrollPosition(({ prevPos, currPos }) => {
     if(loadMoreTop){
       if(1000 > loadMore.current.getBoundingClientRect().top){
-        if(displayNumber !== propList?.length)setDisplayNumber((displayNumber + 20) > propList?.length ? propList.length : displayNumber +20)
+        if(displayNumber !== data.propList?.length){
+          setDisplayNumber((displayNumber + 20) > data.propList?.length ? data.propList.length : displayNumber +20)
+        }
       }
     }
   })
+
+  useEffect(() => {
+    data.handleDisplayNumChange(displayNumber)
+  }, [displayNumber])
 
   
 
@@ -186,7 +137,39 @@ const PropFeatureGrid = React.memo((data) => {
     <Container>
       <Row style={infoSelectTopStyle}>
       <Col xs={12} md={3} style={{margin: "auto 20px", display:"flex", padding: "5px"}}>
-        {propList?.length > 0 ? <span className="text-muted">{propList.length} Properties:</span>: <span className="text-muted">No Properties Found</span>}
+        {data.propList?.length > 0 ? 
+        <div>
+          <span className="text-muted">{data.propList.length} Properties:</span>
+          {data.amenitiesList && 
+            <>
+              <br />
+              <div style={{display: "flex", flexWrap: "nowrap"}}>
+                {Object.keys(data.amenitiesList).map(amenity => {
+                  switch(amenity){
+                    case "hasPool":
+                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Pool</span></div> : null
+                    case "isWheelchairAccessible":
+                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FaWheelchair style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wheelchair Accessible</span></div> : null
+                    case "allowsPets":
+                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faDog} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Allows Pets</span></div> : null
+                    case "hasAirConditioning":
+                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faFan} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Air Conditioning</span></div> : null
+                    case "hasBarbecue":
+                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GiBarbecue style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Barbecue</span></div> : null
+                    case "hasElevator":
+                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GrElevator style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Elevator</span></div> : null
+                    case "hasGarden":
+                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faTree} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Garden</span></div> : null
+                    case "hasInternetWifi":
+                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wifi</span></div> : null
+                  }
+                })}
+              </div>
+            </>
+          }
+          
+        </div>
+        : <span className="text-muted">No Properties Found</span>}
       </Col>
       <Col xs={12} md={6}>
           <Select 
@@ -201,7 +184,7 @@ const PropFeatureGrid = React.memo((data) => {
     </Container>
     <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
       <br />
-      {propList && propList.map((item, index) => 
+      {data.propList && data.propList.map((item, index) => 
       {    
         if(index > displayNumber)return null
         if(item != null){
@@ -211,7 +194,7 @@ const PropFeatureGrid = React.memo((data) => {
         })
         }
         <div style={{flex: "1 1 100%", display: "flex", justifyContent:"center"}}>
-          <div ref={loadMore} id="loadMore">{displayNumber !== propList?.length ? <Loading />:null}
+          <div ref={loadMore} id="loadMore">{displayNumber !== data.propList?.length ? <Loading />:null}
           </div>
         </div>
     </div>

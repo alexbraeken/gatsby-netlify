@@ -118,7 +118,7 @@ const CalendarWidget = (props) => {
           right: 0,
           fontSize: 10,
         };
-        const priceStyle = { fontSize: '0.8em', textAlign: 'left', position: 'absolute', bottom: '0', left: '0' };
+        const priceStyle = { fontSize: '0.8em', fontWeight: 'bold', textAlign: 'left', position: 'absolute', bottom: '0', left: '0' };
         const cellStyle = {
           height: 30,
           width: 30,

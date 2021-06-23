@@ -69,7 +69,6 @@ const CalendarModal = (props) => {
       props.handleDateChange({to: dateTo, from: dateFrom})
 
         const uri = `https://api.hostfully.com/v2/properties?checkInDate=${dateFrom}&checkOutDate=${dateTo}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
-        
         fetch(uri, {
         headers:{
         "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
@@ -81,6 +80,7 @@ const CalendarModal = (props) => {
                 })
                 .then(data => {
                 props.handleNewIds(JSON.parse(data).propertiesUids)
+                console.log(JSON.parse(data).propertiesUids)
                 props.handleClose()
                 })
     }
