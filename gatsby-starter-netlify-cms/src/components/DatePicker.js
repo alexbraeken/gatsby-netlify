@@ -24,12 +24,16 @@ const DatePicker = (props) => {
               height: "100%",
               position: "absolute",
             }}> 
-            <path d="M0 0 a 1 1 180 1 0 100 0"></path> 
+            <path d="M0 0 a 1 2 180 1 0 100 0"></path> 
             </svg>
                 <Container>
                     <Row>
                 <div className="top-date-picker-text" onClick={handleShowCalendar}>
-        <small className="text-muted">From {props.from && new Date(props.from).toLocaleDateString()} - To {props.to && new Date(props.to).toLocaleDateString()}</small>
+        {props.from ?
+            <small className="text-muted">From {props.from && new Date(props.from).toLocaleDateString()} - To {props.to && new Date(props.to).toLocaleDateString()}</small>
+            :
+            <small>Search Dates</small>
+        }
         <FontAwesomeIcon icon={faSearch} style={{margin:"auto 5px"}} className="search-icon"/>
                 </div>
                 </Row>

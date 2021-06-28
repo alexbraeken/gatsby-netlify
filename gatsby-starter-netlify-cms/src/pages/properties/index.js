@@ -20,6 +20,7 @@ import DatePicker from '../../components/DatePicker'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from 'react-helmet'
 
 gsap.registerPlugin(gsap);
 
@@ -93,7 +94,6 @@ const Properties = React.memo((props) => {
         if(props.state.searchArray.from?.[0] && props.state.searchArray.to[0]){
             try{
             const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
-                console.log(uri)
             fetch(uri, {
             headers:{
             "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
@@ -262,7 +262,7 @@ const Properties = React.memo((props) => {
                                         </Form.Group>
                                         </div>
                                         <div className="expandBtn" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal}>  
-                                                <p style={{margin: "auto"}}>Show Filters</p>
+                                                <p style={{margin: "auto"}}>Filters</p>
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
@@ -289,7 +289,14 @@ const Properties = React.memo((props) => {
                                 show={show}
                                 photos={photos.map((photo,index)=>{return(photo.url)})}
                                 onClose={handleClose}
-                                /> 
+                                />
+                                <Helmet>
+                                    <style>
+                                        {`.gallery .gallery-control--next, .gallery .gallery-control--prev{
+                                            border: none;
+                                        }`}
+                                    </style>
+                                </Helmet> 
                         </Container>
                         <SideBarModal 
                             show={showSidebarModal} 

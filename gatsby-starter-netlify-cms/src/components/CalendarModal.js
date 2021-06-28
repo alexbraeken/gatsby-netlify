@@ -9,7 +9,6 @@ import { Modal} from 'react-bootstrap'
 const CalendarModal = (props) => {
 
     const [dates, setDates] = useState({from: null, to: null});
-    const [test, setTest] = useState(null)
 
 
 
@@ -17,7 +16,12 @@ const CalendarModal = (props) => {
 
     //Set default dates from props
     useEffect(() => {
-      setDates(props.dates)
+      if(props.dates.to & props.dates.from){
+        setDates(props.dates)
+      }
+      else{
+        setDates({from: new Date(), to: new Date()})
+      }
       return () => {
         setDates({from: null, to: null})
       }
@@ -43,7 +47,6 @@ const CalendarModal = (props) => {
     const handleFromChange = (fromDate) => {
 
         if(dates.to){
-          setTest('stuff')
           setDates({ from: new Date(fromDate), to: dates.to })
         }
         else{
@@ -80,7 +83,6 @@ const CalendarModal = (props) => {
                 })
                 .then(data => {
                 props.handleNewIds(JSON.parse(data).propertiesUids)
-                console.log(JSON.parse(data).propertiesUids)
                 props.handleClose()
                 })
     }
@@ -136,8 +138,8 @@ const CalendarModal = (props) => {
               disabledDays: { before: from },
               modifiers,
               modifiersStyles,
-              month: from,
-              fromMonth: from,
+              month: from || new Date(),
+              fromMonth: from || new Date(),
               numberOfMonths: 2,
             }}
             onDayChange={handleToChange}
@@ -191,7 +193,7 @@ const CalendarModal = (props) => {
             </defs>
             </svg>
         </div>
-        <div className="submit-search-btn" onClick={props.handleClearDates}>
+        <div className="submit-search-btn" onClick={()=>{props.handleClose(); props.handleClearDates()}}>
             <a style={{background:"#3F3F3F", color:"#f5821e", borderColor:"#f5821e"}}>
                 <svg className="icon-arrow before" style={{fill: "#f5821e"}}>
                     <use xlinkHref="#arrow" />
