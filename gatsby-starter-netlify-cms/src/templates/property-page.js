@@ -47,6 +47,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [showAccessReadMore, setShowAccessReadMore] = useState(false)
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
+   const [activitiesCoords, setActivitiesCoords] = useState(null)
    const [dates, setDates] = useState(null)
 
 
@@ -117,6 +118,12 @@ export const PropertyPageTemplate = ( props ) =>
         }
     }, [])
 
+    useEffect(() => {
+        return () => {
+            setActivitiesCoords(null)
+        }
+    }, [activitiesCoords])
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -141,6 +148,10 @@ export const PropertyPageTemplate = ( props ) =>
 
     const handleName = (name) =>{
         setPropName(name)
+    }
+
+    const handleActivitiesCoords = (coords) => {
+        setActivitiesCoords(coords)
     }
 
    const sortAmenities = (amenities) => {
@@ -566,11 +577,11 @@ export const PropertyPageTemplate = ( props ) =>
                                         <h2>Location</h2>
                                         <br />
                                         </Container>
-                                        <GoogleMapComponent isMarkerShown="true" lat={data.value.latitude} lng={data.value.longitude} height={"500px"}/>
+                                        <GoogleMapComponent isMarkerShown="true" lat={data.value.latitude} lng={data.value.longitude} height={"500px"} activities={true} activityCoords={activitiesCoords}/>
                                     </div>
                                     <hr />
                                     <Container style={{textAlign: "center"}}>
-                                        <ActivitiesRoll location={data.value.city}/>
+                                        <ActivitiesRoll location={data.value.city} property={true} handleActivitiesCoords={handleActivitiesCoords}/>
                                     </Container>
                                 </Container>
                             <br />

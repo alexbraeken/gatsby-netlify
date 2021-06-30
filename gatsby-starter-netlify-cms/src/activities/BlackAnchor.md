@@ -7,6 +7,9 @@ featuredimage: ../../static/img/black_anchor_logo.jpeg
 description: ""
 link: http://www.beirariotavira.com/?utm_source=tripadvisor&amp;utm_medium=referral
 visibleLink: www.beirariotavira.com
+gps:
+  lat: 37.12742611261314
+  lng: -7.651083658485607
 tags:
   - Restaurant
   - Tavira

@@ -7,6 +7,9 @@ featuredimage: ../../static/img/happy-tuk-tours.jpg
 description: ""
 link: https://www.facebook.com/happytuktourstavira
 visibleLink: Happy Tuk Tours Facebook
+gps:
+  lat: 37.12727614984453 
+  lng: -7.6495100746787825
 tags:
   - Excursion
   - Tavira

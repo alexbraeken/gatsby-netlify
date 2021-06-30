@@ -7,6 +7,9 @@ featuredimage: ../../static/img/o_castelo_logo.jpeg
 description: ""
 link: https://pt-pt.facebook.com/pages/category/Steakhouse/Castelo-caf%C3%A9-e-restaurante-193520480781383/
 visibleLink: O Castelo Facebook
+gps:
+  lat: 37.12447514926098
+  lng: -7.651206773137873
 tags:
   - Restaurant
   - Tavira

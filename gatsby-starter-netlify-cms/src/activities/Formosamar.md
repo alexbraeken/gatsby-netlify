@@ -7,6 +7,9 @@ featuredimage: ../../static/img/formosamar.jpg
 description: ""
 link: http://www.formosamar.com 
 visibleLink: www.formosamar.com
+gps:
+  lat: 37.01545129989825
+  lng: -7.937265714765458
 tags:
   - Boating
   - Kite Surfing

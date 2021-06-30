@@ -4,6 +4,8 @@ import { GoogleMap, Marker, OverlayView, MarkerClusterer} from '@react-google-ma
 import icon from '../img/smartavillas marker 2.svg'
 import icon2 from '../img/map marker.png'
 import icon3 from '../img/smartavillas marker 3.svg'
+import infoIcon from '../img/heart.svg'
+import restaurantIcon from '../img/restaurant.svg'
 import BedBathPax from '../components/BedBathPax'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
@@ -28,6 +30,30 @@ const options = {
       url: '/img/clustermarker2.png',
       height: 50,
       width: 50
+    }
+  ]
+}
+
+const infoOptions = {
+  gridSize: 50,
+  styles: [
+    {
+      textColor: 'white',
+      url: '/img/multi-info-marker.png',
+      height: 30,
+      width: 30
+    },
+   {
+      textColor: 'white',
+      url: '/img/multi-info-marker.png',
+      height: 30,
+      width: 30
+    },
+   {
+      textColor: 'white',
+      url: '/img/multi-info-marker.png',
+      height: 30,
+      width: 30
     }
   ]
 }
@@ -57,6 +83,7 @@ export default class renderMap extends React.Component{
     this.checkMobile = this.checkMobile.bind(this);
     this.refreshMarkers = this.refreshMarkers.bind(this);
     this.addMarkerListener = this.addMarkerListener.bind(this);
+    this.handleInfoClick = this.handleInfoClick.bind(this);
 }
 checkMobile = () => {
   const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches
@@ -147,6 +174,10 @@ refreshBounds = (mapInstance) => {
       this.setState({overlay:null})
     }
 
+    handleInfoClick = (position, name, type, img, link) => {
+      this.setState({overlay: {position: position, name: name, type: type, img: img, link: link}})
+    }
+
 render(){
     return (<GoogleMap
           mapContainerStyle={{height:this.props.props.height}}
@@ -164,33 +195,79 @@ render(){
           onMouseOut={()=>this.handleMouseOut()}
           center={this.state.center}
         >
-          {this.state.overlay &&
-          <OverlayView
-      position={this.state.overlay.position}
-      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-    >
-      <div className="map-overlay-view" style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
-      <Link to={`/properties/${this.state.overlay.uid}`}>
-        <div className="overlay-view-link">
-          <FontAwesomeIcon icon={faEye} className="overlay-view-icon"/>
-          <span className="link-text">View</span>
-        </div>
-      </Link>
-      <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}}/>
-      <Link to={`/properties/${this.state.overlay.uid}`}><div style={{height: "100%", display:"flex"}}><h4 className="overlay-name">{this.state.overlay.name}</h4></div></Link>
-      <div className="map-price"><p className="feature-text-price" style={{float:"right"}}>From {this.state.overlay.baseDailyRate}€/ Day</p></div>
-      <BedBathPax bedrooms={this.state.overlay.bed} bathrooms={this.state.overlay.bath} baseGuests={this.state.overlay.guests} color="rgba(0,0,0)"/>
-      </div>
-    </OverlayView>}
           {(this.props.props.isMarkerShown && this.props.props.list)?
-          <MarkerClusterer options={options} maxZoom={14}>
-            {(clusterer)=> 
-            this.state.propList.map((prop, index)=>{
-              return <Marker onLoad={this.markerOnLoad} position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} id={prop.uid} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.uid)}/>
-            } 
-          )}
-          </MarkerClusterer>
-          : <>{(this.props.props.lat && this.props.props.lng)?<Marker position={{ lat: this.props.props.lat, lng: this.props.props.lng }} icon={icon2} />: null}</>   
+            <>
+              {this.state.overlay &&
+                <OverlayView
+                  position={this.state.overlay.position}
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                >
+                  <div className="map-overlay-view" style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
+                  <Link to={`/properties/${this.state.overlay.uid}`}>
+                    <div className="overlay-view-link">
+                      <FontAwesomeIcon icon={faEye} className="overlay-view-icon"/>
+                      <span className="link-text">View</span>
+                    </div>
+                  </Link>
+                  <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}}/>
+                  <Link to={`/properties/${this.state.overlay.uid}`}><div style={{height: "100%", display:"flex"}}><h4 className="overlay-name">{this.state.overlay.name}</h4></div></Link>
+                  <div className="map-price"><p className="feature-text-price" style={{float:"right"}}>From {this.state.overlay.baseDailyRate}€/ Day</p></div>
+                  <BedBathPax bedrooms={this.state.overlay.bed} bathrooms={this.state.overlay.bath} baseGuests={this.state.overlay.guests} color="rgba(0,0,0)"/>
+                  </div>
+                </OverlayView>}
+              <MarkerClusterer options={options} maxZoom={14}>
+                {(clusterer)=> 
+                  this.state.propList.map((prop, index)=>{
+                    return <Marker onLoad={this.markerOnLoad} position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} id={prop.uid} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.uid)}/>
+                  })
+                }
+              </MarkerClusterer>
+            </>
+          : 
+          <>
+            {(this.props.props.lat && this.props.props.lng)?
+              <>
+                {this.state.overlay &&
+                <OverlayView
+                  position={this.state.overlay.position}
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                >
+                  <div className="map-overlay-view" style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
+                  <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}}/>
+                  <Link to={this.state.overlay.link}><div style={{height: "100%", display:"flex"}}><h4 className="overlay-name">{this.state.overlay.name}</h4></div></Link>
+                      <div className="map-price"><small className="orangeText">{this.state.overlay.type}</small></div>
+                  </div>
+                </OverlayView>
+                }
+                <Marker position={{ lat: this.props.props.lat, lng: this.props.props.lng }} icon={icon2} />
+                {this.props.props.activities && this.props.props.activityCoords?
+                  <>
+                  <MarkerClusterer options={infoOptions} maxZoom={14}>
+                    {(infoClusterer)=>
+                      this.props.props.activityCoords.map((activity, index) => {
+                        let markerIcon = infoIcon;
+                        switch(activity.type){
+                          case "Restaurant": markerIcon = restaurantIcon
+                          break;
+                        }
+                        return <Marker 
+                                  position={{ lat: activity.lat, lng: activity.lng }} 
+                                  icon={markerIcon}
+                                  key={index}
+                                  clusterer={infoClusterer}
+                                  clickable={true} 
+                                  title={activity.name}
+                                  onClick={()=>{this.handleInfoClick({lat: activity.lat, lng: activity.lng }, activity.name, activity.type, activity.img, activity.link)}}/>
+                      })
+                    }
+                  </MarkerClusterer>
+                  </>
+                :null
+                }
+              </>
+            :null
+            }
+          </>   
         }
       </GoogleMap>)}
 }

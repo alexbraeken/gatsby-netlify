@@ -98,10 +98,19 @@ class ActivitiesRoll extends React.PureComponent {
     const { data } = this.props
     const { edges: activities } = data.allMarkdownRemark
     //initialize empty array
-    const list = [];
+    const list = []
+    const coords = []
 
     //If !activities guard clause
     if(!activities) return null
+
+    if(this.props.handleActivitiesCoords){
+      activities.forEach(({ node: activity }) =>{ 
+        
+        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.title, link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp.fluid.src})
+      })
+      this.props.handleActivitiesCoords(coords)
+    }
 
     //if both location and type specified
     if(this.props.location && this.props.type){
@@ -216,7 +225,11 @@ return(
                 tags
                 category
                 link
-                visibleLink  
+                visibleLink
+                gps {
+                  lat
+                  lng
+                }
                 templateKey
                 featuredpost
                 featuredimage {
@@ -233,7 +246,7 @@ return(
         }
       }
     `}
-    render={(data, count) => <ActivitiesRoll data={data} count={count} location={location} filter={filter} type={type}/>}
+    render={(data, count) => <ActivitiesRoll data={data} count={count} location={location} filter={filter} type={type} handleActivitiesCoords={props.handleActivitiesCoords}/>}
   />
 )
 }
