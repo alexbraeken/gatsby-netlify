@@ -81,7 +81,7 @@ const PropCarousel = (props) => {
         </Helmet>
         <ReactBnbGallery
           show={isOpen}
-          photos={props.photos.map((photo,index)=>{return(photo.url)})}
+          photos={props.photos.map((photo,index)=>{return({photo: photo.url, caption: photo.description})})}
           onClose={() => setIsOpen(false)}
         />
         <Slider {...settings} style={{position:"relative"}}>

@@ -287,7 +287,7 @@ const Properties = React.memo((props) => {
                             </Row>
                             <ReactBnbGallery
                                 show={show}
-                                photos={photos.map((photo,index)=>{return(photo.url)})}
+                                photos={photos.map((photo,index)=>{return({photo: photo.url, caption: photo.description})})}
                                 onClose={handleClose}
                                 />
                                 <Helmet>

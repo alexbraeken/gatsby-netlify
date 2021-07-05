@@ -265,7 +265,7 @@ const Navbar = class extends React.Component {
         this.setState({dropdownClass: 'dropdown-active'})
         : this.setState({dropdownClass: ''});
       })
-      arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+     if(arrow)arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
     }
   }
 

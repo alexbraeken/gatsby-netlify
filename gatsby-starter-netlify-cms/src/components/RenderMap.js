@@ -6,6 +6,8 @@ import icon2 from '../img/map marker.png'
 import icon3 from '../img/smartavillas marker 3.svg'
 import infoIcon from '../img/heart.svg'
 import restaurantIcon from '../img/restaurant.svg'
+import golfIcon from '../img/golf-marker.svg'
+import horseIcon from '../img/horse-marker.svg' 
 import BedBathPax from '../components/BedBathPax'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
@@ -40,20 +42,20 @@ const infoOptions = {
     {
       textColor: 'white',
       url: '/img/multi-info-marker.png',
-      height: 30,
-      width: 30
+      height: 50,
+      width: 50
     },
    {
       textColor: 'white',
       url: '/img/multi-info-marker.png',
-      height: 30,
-      width: 30
+      height: 50,
+      width: 50
     },
    {
       textColor: 'white',
       url: '/img/multi-info-marker.png',
-      height: 30,
-      width: 30
+      height: 50,
+      width: 50
     }
   ]
 }
@@ -72,7 +74,8 @@ export default class renderMap extends React.Component{
       bounds: null,
       isMobile: false,
       eyeHover : false,
-      markers: []
+      markers: [],
+      activityCoords: []
     }
     this.onLoad = this.onLoad.bind(this);
     this.markerOnLoad = this.markerOnLoad.bind(this);
@@ -98,12 +101,20 @@ componentDidMount(){
   else {
     this.setState({center: { lat: this.props.props.lat, lng: this.props.props.lng }})
   }
+  if(this.props.props.activities && this.props.props.activityCoords)
+  {
+    this.setState({activityCoords: this.props.props.activityCoords})
+  }
 }
 
 componentDidUpdate(prevProps){
   if(this.props.props.isMarkerShown && this.props.props.list && this.props.props.list?.length !== this.state.propList?.length)this.refreshPropList()
   if(this.props.props.cardDisplayNum !== prevProps.props.cardDisplayNum){
     this.refreshMarkers(this.state.markers)
+  }
+  if(this.props.props.activities && this.props.props.activityCoords)
+  {
+    this.setState({activityCoords: this.props.props.activityCoords})
   }
 }
 
@@ -239,15 +250,18 @@ render(){
                   </div>
                 </OverlayView>
                 }
-                <Marker position={{ lat: this.props.props.lat, lng: this.props.props.lng }} icon={icon2} />
-                {this.props.props.activities && this.props.props.activityCoords?
-                  <>
+                <Marker position={{ lat: this.props.props.lat, lng: this.props.props.lng }} icon={icon3}/>
+                {this.state.activityCoords?
                   <MarkerClusterer options={infoOptions} maxZoom={14}>
                     {(infoClusterer)=>
-                      this.props.props.activityCoords.map((activity, index) => {
+                      this.state.activityCoords.map((activity, index) => {
                         let markerIcon = infoIcon;
                         switch(activity.type){
                           case "Restaurant": markerIcon = restaurantIcon
+                          break;
+                          case "Golf": markerIcon = golfIcon
+                          break;
+                          case "Horse Riding": markerIcon = horseIcon
                           break;
                         }
                         return <Marker 
@@ -261,7 +275,6 @@ render(){
                       })
                     }
                   </MarkerClusterer>
-                  </>
                 :null
                 }
               </>
