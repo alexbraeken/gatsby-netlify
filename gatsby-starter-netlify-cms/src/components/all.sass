@@ -1212,7 +1212,10 @@ $min-margin: 10px
   left: -50%
   display: flex
   height: 40px
-  transition: all 0.2s ease-in-out
+  transition: all 0.3s ease-in-out
+  & svg
+      transition: all 0.3s
+      filter: drop-shadow(2px 4px 6px grey)
 
 .top-date-picker-text
   position: absolute
@@ -1221,13 +1224,16 @@ $min-margin: 10px
   display: flex
   justify-content: center
   cursor: pointer
+  color: #fff
   & small
       padding: 5px 
+  
 
 .top-date-picker-container:hover
   heigth: 55px
   & svg
-      fill: #fcfcfc
+      fill: $light-orange
+      filter: drop-shadow(2px 4px 6px black)
   & small
       font-weight: bold
 
@@ -2013,7 +2019,7 @@ a.navbar-item, .navbar-item
   height: 100vh
 
 .search-icon
-  color: $primary
+  color: #000
 
 .map-price
   position: absolute
@@ -2706,3 +2712,156 @@ button.calendar-btn
     &:hover
       background-color: $primary
       color: #fff
+
+.sticky-feature
+  background-color: #fff
+  transition: all 0.5s
+  &.background-0
+    background-color: $primary
+  &.background-1
+    background-color: $light-orange
+  &.background-2
+    background-color: #333333
+  &.background-3
+    background-color: #f2d3a2
+
+.postcard-container
+  position: absolute
+  top: 50%
+  left: 50%
+  transition: all 0.5s
+  transform: translate(-50%, -500%)
+  max-width: 100%
+  min-width: 90%
+  max-height: 90%
+  & .content
+      & p
+          margin-top: 0
+          margin-bottom: 2rem
+          line-height: 1.5
+      & a
+          text-decoration: none
+          border: 1px solid hsl(0, 0, 70%)
+          border-radius: 1em
+          padding: 1em 2em
+          text-transform: uppercase
+          font-size: 11px
+          font-weight: 700
+          letter-spacing: .05em
+          color: #fff
+          display: inline-block
+          background-color: $primary
+  & h1
+      font-size: 4em
+      margin: 0 0 1rem
+      position: relative
+      color: $primary
+      &:after
+        content: ''
+        position: absolute
+        width: 6rem
+        background-color: hsl(0, 0, 80%)
+        height: 2px
+        top: 0
+        left: 0
+  & .img
+      position: relative
+      & h2
+          margin: auto
+          position: absolute
+          top: 10%
+          left: 10%
+          color: $primary
+          z-index: 1
+          transform: rotate(330deg)
+          font-size: 3rem
+  & img
+      border-radius: 5px
+      max-width: 100%
+      vertical-align: middle
+      filter: drop-shadow(0 0.2em 1em #3d3029)
+  &.visible
+      transform: translate(-50%, -50%)
+      
+
+@media (min-width: 900px)
+  .postcard-container
+    display: grid
+    grid-template-rows: repeat(3, auto)
+    grid-template-columns: 6fr 4fr 4fr
+    grid-template-areas: '. stamp title' 'img img content' 'img img .'
+    max-width: 1200px
+    &:after
+      content: ''
+      grid-column: 2 / -1
+      grid-row: 1 / 3
+      position: relative
+      z-index: -1
+      background: white
+      box-shadow: 0 .2em 1em hsla(20, 20, 20, 20%)
+      border-radius: 5px
+    &:before
+      content: ""
+      position: relative
+      grid-column: 3
+      grid-row: 1 / 3
+      display: block
+      width: 2px
+      height: 70%
+      margin: auto 0
+      background-color: $primary
+      z-index: 0
+    & h1
+        grid-area: title
+        padding-top: 4rem
+        padding-left: 2rem
+        &:after
+          top: 4rem
+          left: 2rem
+    & .content
+        grid-area: content
+        padding-bottom: 4rem
+        padding-left: 2rem
+        padding-right: 2rem
+        margin-bottom: 0
+    & .img
+        grid-area: img
+        & h2
+            font-size: 7rem
+            pointer-events: none
+            filter: drop-shadow(2px 4px 6px black)
+
+@media only screen and (max-width: 900px)
+  .postcard-container
+    margin-bottom: 2rem
+    max-height: unset
+    & h1
+        &:after
+          left: 0
+          top: 0
+    &:nth-child(3)
+      & h1
+          color: $primary
+      & .content
+          & p
+              color: #fff
+
+.postcard-container:nth-child(1)
+  &:after
+    background-color: $light-orange
+  & h1
+      color: #fff 
+
+.postcard-container:nth-child(2)
+  &:after
+    background-color: #fff
+
+.postcard-container:nth-child(3)
+  &:after
+    background-color: #ddc599
+
+.postcard-container:nth-child(4)
+  &:after
+    background-color: #F7F0EA
+
+

@@ -125,7 +125,7 @@ const PropFeatureGrid = React.memo((data) => {
       </StickyBox>
     </div>
     <Container>
-      <Row style={{paddingTop: "40px"}}>
+      <Row style={{paddingTop: "50px"}}>
       <Col xs={12} md={3} style={{margin: "auto 20px", display:"flex", padding: "5px"}}>
         {data.propList?.length > 0 ? 
         <div>

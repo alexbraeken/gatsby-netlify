@@ -73,7 +73,7 @@ export const AlgarvePageTemplate = ({
   const [loaded, setLoaded] = useState(false)
   const [galleryImgs, setGalleryImgs] = useState([])
   const [featureImgs, setFeatureImgs] = useState([])
-  const [knockoutTexts, setKnockoutTexts] = useState([])
+  const [postcards, setPostcards] = useState([])
 
   const galleryContainer = useRef(null)
   const hero = useRef(null)
@@ -89,7 +89,7 @@ export const AlgarvePageTemplate = ({
       useEffect(() => {
         setGalleryImgs(document.getElementsByClassName('scroll-parallax-img'))
         setFeatureImgs(document.getElementsByClassName('feature-circle-image'))
-        setKnockoutTexts(document.getElementsByClassName('knockout-text'))
+        setPostcards(document.getElementsByClassName('postcard-container'))
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
@@ -99,7 +99,7 @@ export const AlgarvePageTemplate = ({
           attr: {d: 'M469.539032,263.986786H-0.000001L0,229.890961c310.649475,58.156982,255.61113-98.5,469.539032-65.062302V263.986786z' },
           scrollTrigger: {
             trigger: ".grid-container",  
-            start: "top 50%", // when the top of the trigger hits the top of the viewport
+            start: "top 50%",
             end: "25% 50%", 
             scrub: 1, 
           }
@@ -113,12 +113,15 @@ export const AlgarvePageTemplate = ({
           attr: {d: 'M469.539032,263.986786H-0.000001L0,0c226.11113,0,182.887283-0.414484,469.539032,0V263.986786zz' },
           scrollTrigger: {
             trigger: ".grid-container",  
-            start: "50% 50%", // when the top of the trigger hits the top of the viewport
+            start: "50% 50%",
             end: "75% bottom", 
             scrub: 1, 
           }
         })
         return () => {
+          setGalleryImgs([])
+          setFeatureImgs([])
+          setPostcards([])
           setLoaded(false)
         }
       }, [])
@@ -138,18 +141,19 @@ export const AlgarvePageTemplate = ({
       }, [featureImgs])
 
       useEffect(() => {
-        Object.keys(knockoutTexts).forEach((img, index)=>{
-          gsap.to(knockoutTexts[index], {
+        Object.keys(postcards).forEach((img, index)=>{
+          gsap.to(postcards[index], {
             scrollTrigger: {
               trigger: stickyFeature.current,
-              start: `${(index*25)+24}% 75%`,
-              end: "bottom top",
+              start: `${index*25}% 100%`,
+              end: `${(index*25)+25}% 100%`,
               scrub: 1,
-              toggleClass: {targets: knockoutTexts[index],  className: "visible"}
+              toggleClass: {targets: postcards[index],  className: "visible"},
+              onToggle: ()=>{stickyFeature.current.classList.toggle(`background-${index}`)}
             }
           })
         })
-      }, [knockoutTexts])
+      }, [postcards])
 
       useEffect(() => {
         Object.keys(galleryImgs).forEach((img, index)=>{
@@ -186,7 +190,8 @@ export const AlgarvePageTemplate = ({
           image.publicURL
         })`,
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
+        marginBottom: "0"
       }}
     >
       <h2
@@ -199,24 +204,32 @@ export const AlgarvePageTemplate = ({
         position: "relative"
         }}>
       <Container>
+        <style>
+
+        </style>
         <div className="full-width sticky-feature" style={{height:"400vh", position:"relative"}} ref={stickyFeature}>
-          <StickyBox style={{height: "100vh"}}>
-            <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img1.childImageSharp.fluid.src})`}}>
-              <div style={{display: "flex", width: "100%", height: "100%"}}>
-                <h2 className="knockout-text" style={{margin:"auto", fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.text.text1}</h2></div>
-            </div>
-            <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img2.childImageSharp.fluid.src})`}}>
-            <div style={{display: "flex", width: "100%", height: "100%"}}>
-              <h2 className="knockout-text" style={{margin:"auto", fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.text.text2}</h2></div>
-            </div>
-            <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img3.childImageSharp.fluid.src})`}}>
-            <div style={{display: "flex", width: "100%", height: "100%"}}>
-              <h2 className="knockout-text" style={{margin:"auto", fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.text.text3}</h2></div>
-            </div>
-            <div className="feature-circle-image" style={{backgroundImage:`url(${featureSection.imgs.img4.childImageSharp.fluid.src})`}}>
-            <div style={{display: "flex", width: "100%", height: "100%"}}>
-              <h2 className="knockout-text" style={{margin:"auto", fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.text.text4}</h2></div>
-            </div>
+          <div style={{display: "none"}} className="background-0 background-1 background-2 background-3"></div>
+          <StickyBox style={{height: "100vh"}} className="feature-postcards">
+            {Object.keys(featureSection.text).map((feature, index) => 
+              
+              <section className={`postcard-container ${index > 0 ? "" : "visible"}`}>
+              <div style={{paddingTop: "2rem", paddingLeft: "2rem", gridArea: "stamp", position: "relative"}}>
+                <img src="/img/airmail.png" style={{position: "absolute", top: "20px", left:"10%", filter: "none"}} width="150px"/>
+                <img src="/img/mailwaves.png" style={{position: "absolute", top: "10%", left:"11%", filter: "none", transform: "rotate(210deg)"}} width="150px"/>
+              </div>
+              <h1>{featureSection.title[`title${index+1}`]}</h1>
+              <div className="content">
+                <p>
+                  {featureSection.text[feature]}
+                </p>
+              </div>
+              <div className="img">
+                <h2 style={{fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.title[`title${index+1}`]}</h2>
+                <img src={featureSection.imgs[`img${index+1}`].childImageSharp.fluid.src} />
+              </div>
+            </section>
+            )}
+            
           </StickyBox>
         </div>
         <Helmet>
@@ -503,6 +516,12 @@ export const algarvePageQuery = graphql`
                 }
               }
             }
+          }
+          title{
+            title1
+            title2
+            title3
+            title4
           }
           text{
             text1

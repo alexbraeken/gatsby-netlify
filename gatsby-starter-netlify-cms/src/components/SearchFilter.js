@@ -54,6 +54,12 @@ const customStyles = {
     const transition = 'opacity 300ms';
 
     return { ...provided, opacity, transition };
+  },
+  placeholder: (styles) => {
+    return{
+      ...styles,
+      color: "#495057;"
+    }
   }
 }
 

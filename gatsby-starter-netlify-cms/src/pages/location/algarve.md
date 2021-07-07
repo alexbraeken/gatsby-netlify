@@ -13,11 +13,16 @@ featureSection:
         img2: ../../../static/img/Cabanas_Beach_Walkway.jpg
         img3: ../../../static/img/Praia da Gale 2.jpg
         img4: ../../../static/img/Tavira_Beach_Restaurant.jpg
+    title:
+        title1: "Sea"
+        title2: "Sun"
+        title3: "Sand"
+        title4: "Fun"
     text:
-        text1: "Sea"
-        text2: "Sun"
-        text3: "Sand"
-        text4: "Fun"
+        text1: "The warm Atlantic waters makes for idylic bathing and fantastic waves allow for all sorts of water sports from surfing to sailing."
+        text2: "With more days of sun than almost anywhere in Europe, relax and enjoy a year round tan or effortless outside dining."
+        text3: "Beaches as far as the eye can see. From remote alcoves for private relaxation to tourist hotspots to enjoy good music and a vibrant holiday mood."
+        text4: "Everywhere you look there is something to do, see or enjoy with no pressure or rush. Fun is always on the menu."
 gallery:
     imgs1:
         img1: ../../../static/img/Cabanas_Beach.jpg
