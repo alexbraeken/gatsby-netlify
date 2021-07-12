@@ -9,10 +9,10 @@ description: ""
 staticBg: ../../../static/img/Praia da Gale 2.jpg
 featureSection:
     imgs:
-        img1: ../../../static/img/Tavira_Beach.jpg
-        img2: ../../../static/img/Cabanas_Beach_Walkway.jpg
-        img3: ../../../static/img/Praia da Gale 2.jpg
-        img4: ../../../static/img/Tavira_Beach_Restaurant.jpg
+        img1: ../../../static/img/M_Rota_Beach.jpg
+        img2: ../../../static/img/Beach Scene .jpg
+        img3: ../../../static/img/Tavira Beach Shells.jpg
+        img4: ../../../static/img/Hero_Family.jpg
     title:
         title1: "Sea"
         title2: "Sun"

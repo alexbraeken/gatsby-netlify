@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
 import { Helmet } from 'react-helmet'
+import { GiLockedDoor } from "@react-icons/all-files/gi/GiLockedDoor";
 import 'react-day-picker/lib/style.css';
 
 
@@ -13,6 +14,7 @@ import 'react-day-picker/lib/style.css';
 const CalendarWidget = (props) => {
 
     const [disabledDays, setDisabledDays] = useState([new Date(), new Date()]);
+    const [disabledCheckinDays, setDisabledCheckinDays] = useState([])
     const [range, setRange] = useState({
         from: undefined,
         to: undefined,
@@ -40,15 +42,24 @@ const CalendarWidget = (props) => {
             dates = dates[0].slice(1, -1)
             array = JSON.parse(dates);
             if(Array.isArray(array.checkIn)){
-            let disabledDates= array.checkIn.map(date =>{
-                return new Date (date.date)
+            let disabledDates = []
+            let disabledCheckins = []
+            array.checkIn.forEach(date =>{
+                if(date.reason === "rule"){
+                  disabledCheckins.push(new Date (date.date))
+                }
+                else {
+                  disabledDates.push(new Date (date.date))
+                }
             })
             setDisabledDays(disabledDates)
+            setDisabledCheckinDays(disabledCheckins)
         }
         })
         return function cleanup(){
             setRange(getInitialState)
-            setDisabledDays(getInitialState);
+            setDisabledDays([new Date(), new Date()])
+            setDisabledCheckinDays([])
         }
     }, [])
 
@@ -78,7 +89,7 @@ const CalendarWidget = (props) => {
     const handleDayClick = (day, modifiers = {}) => {
       const { from, to } = range;
 
-      if(modifiers.disabledDays){
+      if(modifiers.disabledDays || (modifiers.checkinDisallowed && isSelectingFirstDay(from, to, day))){
         return;
       }
 
@@ -168,27 +179,31 @@ const CalendarWidget = (props) => {
     const from = range.from;
     const to = range.to;
     const enteredTo = range.enteredTo
-    const modifiers = {start: from, end: enteredTo, disabledDays: disabledDays};
+    const modifiers = {start: from, end: enteredTo, disabledDays: disabledDays, checkinDisallowed: disabledCheckinDays};
     const modifiersStyles = {
         disabledDays : {
             backgroundColor: '#dedcdc',
             color: '#fff'
         },
         start : {
-            backgroundColor: '#ff6600',
-            color: '#fff'
+          backgroundColor: '#ff6600',
+          color: '#fff'
         },
         end : {
-            backgroundColor: '#ff6600',
-            color: '#fff'
-        }
+          backgroundColor: '#ff6600',
+          color: '#fff'
+        },
+        checkinDisallowed : {
+          backgroundColor: from ? '#fff' : '#ffbebe',
+          color: '#000'
+        },
     }
 
     const today = new Date()
     let nextYear = DateUtils.addMonths(today, 12)
     let limitDate = DateUtils.addMonths(today, 24)
 
-    const renderDay = (day) => {
+    const renderDay = (day, modifiers) => {
         const dateDay = day.getDate()
         const dateMonth = day.getMonth()
         const dateYear = day.getFullYear()
@@ -199,6 +214,7 @@ const CalendarWidget = (props) => {
         else{
           date = `${dateYear}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
         }
+
         
         //check if more than 1 year
         const dateStyle = {
@@ -207,7 +223,22 @@ const CalendarWidget = (props) => {
           right: 0,
           fontSize: 10,
         };
-        const priceStyle = { fontSize: '0.8em', fontWeight: 'bold', textAlign: 'left', position: 'absolute', bottom: '0', left: '0' };
+        const priceStyle = { 
+          fontSize: '0.8em', 
+          fontWeight: 'bold', 
+          textAlign: 'left', 
+          position: 'absolute', 
+          bottom: '0', 
+          left: '0' 
+        };
+        const checkinIcon = { 
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          fontSize: 10, 
+          color: "red",
+          display: from ? "none" : "block"
+        };
         const cellStyle = {
           height: 30,
           width: 30,
@@ -216,7 +247,13 @@ const CalendarWidget = (props) => {
         };
         return (
           <div style={cellStyle}>
-            <div className="cell-date" style={dateStyle}>{day.getDate()}</div>
+            <div className={`cell-date`} style={dateStyle}>{day.getDate()}</div>
+            {modifiers.checkinDisallowed &&
+              <div className="icon-info" style={checkinIcon}>
+               <GiLockedDoor />
+               <span className="tooltiptext">No Checkin Allowed</span>
+              </div>
+            }
             {props.pricingPeriods?.[date] &&
                 <div style={priceStyle}>
                   {props.pricingPeriods[date].amount}€
@@ -234,7 +271,7 @@ const CalendarWidget = (props) => {
           {from && !to && <span style={{margin:"auto 0"}}>Please select the last day.</span>}
           {from &&
             to &&
-            <span style={{margin:"auto 0"}}><span className="orangeText">{to.getDate() - from.getDate()} Nights</span> 
+            <span style={{margin:"auto 0"}}><span className="orangeText">{(to - from)/(1000*60*60*24)} Nights</span> 
             <br />
             <small>Selected from {from.toLocaleDateString()} to {to.toLocaleDateString()}</small></span>}
           </div>
