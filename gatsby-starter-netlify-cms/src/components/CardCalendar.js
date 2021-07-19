@@ -53,7 +53,6 @@ const CardCalendar = (props) => {
 
       const today = new Date()
       let nextYear = DateUtils.addMonths(today, 12)
-      let limitDate = DateUtils.addMonths(today, 24)
   
       const renderDay = (day) => {
           const dateDay = day.getDate()

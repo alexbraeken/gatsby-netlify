@@ -2,7 +2,6 @@ import React,{useState, useEffect, useRef} from 'react'
 import { Link } from 'gatsby'
 import {Row, Col, Container}from 'react-bootstrap'
 import PropertyCard from '../components/PropertyCard'
-import PropCardTest from '../components/PropCardTest'
 import { gsap } from "gsap"
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import Loading from '../components/Loading'
@@ -15,6 +14,7 @@ import { faFan, faDog, faWifi, faSwimmingPool, faTree} from '@fortawesome/free-s
 import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
+import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
 
 gsap.registerPlugin(gsap);
 
@@ -27,7 +27,6 @@ const PropFeatureGrid = React.memo((data) => {
 
   const loadMore = useRef(null)
   const container = useRef(null)
-  const datePicker = useRef(null)
 
 
   useEffect(() => {
@@ -120,7 +119,7 @@ const PropFeatureGrid = React.memo((data) => {
     <div style={{position: "absolute", top: "0", height: "100%", left: "50%", transform:"translateX(-50%)", zIndex: "10"}}>
       <StickyBox>
       <DatePicker from={data.state.searchArray.from ? data.state.searchArray.from[0] : null} to={data.state.searchArray.to ? data.state.searchArray.to[0] : null} 
-        className="top-date-picker" style={stickyStyle} handleDateChange={data.handleDateChange} handleNewIds={data.handleNewIds} handleTotalDays={data.handleTotalDays} handleClearDates={data.handleClearDates}
+        className="top-date-picker" style={stickyStyle} handleDateChange={data.handleDateChange} handleNewIds={data.handleNewIds} handleClearDates={data.handleClearDates}
         />
       </StickyBox>
     </div>
@@ -152,6 +151,8 @@ const PropFeatureGrid = React.memo((data) => {
                       return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faTree} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Garden</span></div> : null
                     case "hasInternetWifi":
                       return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wifi</span></div> : null
+                    default:
+                  return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><BsCheckCircle style={{margin: "auto 5px"}} /><span className="tooltiptext amenity-tooltip" >{amenity}</span></div> : null
                   }
                 })}
               </div>

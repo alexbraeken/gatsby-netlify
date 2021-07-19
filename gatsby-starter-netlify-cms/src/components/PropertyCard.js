@@ -97,8 +97,10 @@ const PropertyCard = (props) => {
             }
             <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
             <div className="card-slider-container" style={{backgroundImage:`url(${props.item.picture})`}}>
-    {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-prev card-arrow" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)}></button> }
-    {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-next card-arrow" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)}></button> }
+    {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-prev card-arrow"
+   aria-label="Show Slider" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
+    {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-next card-arrow"
+   aria-label="Show Slider" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowSlider(!showSlider)}}} ></button> }
             <div style={{position: "absolute", top: "0", left:"0", width:"100%", height:"100%"}}>
             {showSlider && <Slider {...settings}>
                 {props.item.photos.map((photo, index) => {
@@ -134,17 +136,17 @@ const PropertyCard = (props) => {
                 </Link>
                 <Card.Footer className="prop-card-footer-container">
                   <div className="footer-btn-container">
-                    <div className="footer-btn" onClick={() => setShowAmenities(!showAmenities)} style={showAmenities ? {backgroundColor: "#ffad77"}: {}}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Amenities" onClick={() => setShowAmenities(!showAmenities)} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowAmenities(!showAmenities)}}} style={showAmenities ? {backgroundColor: "#ffad77"}: {}}>
                       <FontAwesomeIcon icon={faList} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">Amenities</small>
                     </div>
                   </div>
                   <div className="footer-btn-container">
-                    <div className="footer-btn" onClick={()=> props.handleGalleryClick(props.item.photos)}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Gallery" onClick={()=> props.handleGalleryClick(props.item.photos)} onKeyDown={(e)=>{if(e.key === 'Enter'){ props.handleGalleryClick(props.item.photos)}}}>
                     <FontAwesomeIcon icon={faImages} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">Gallery</small>
                     </div>
                   </div>
                   <div className="footer-btn-container">
-                    <div className="footer-btn" onClick={()=>setShowCalendar(!showCalendar)} style={showCalendar ? {backgroundColor: "#ffad77"}: {}}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Calendar" onClick={()=>setShowCalendar(!showCalendar)} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowCalendar(!showCalendar)}}} style={showCalendar ? {backgroundColor: "#ffad77"}: {}}>
                     <FontAwesomeIcon icon={faCalendarAlt} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">Calendar</small>
                     </div>
                   </div>

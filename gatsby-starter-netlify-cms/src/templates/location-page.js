@@ -32,8 +32,6 @@ class CustomSlide extends React.Component {
               <h2 className="slide__text-heading">{this.props.slide.title}</h2>
               </div>
               </div>
-        <h3></h3>
-    <p></p>
       </div>
     );
   }
@@ -81,10 +79,6 @@ export const LocationPageTemplate = ({
       {slide: part2.slider.img2.img, title: part2.slider.img2.title}, 
       {slide: part2.slider.img3.img, title: part2.slider.img3.title}] : null
 
-
-    const nextIcon = <span aria-hidden="true" className="carousel-control-next-icon feature-next-icon" />
-    const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
-
   return(
   <div className="content newLine">
     <div
@@ -113,9 +107,7 @@ export const LocationPageTemplate = ({
               <FontAwesomeIcon icon={faQuoteLeft} 
                     style={{position: "relative", 
                     marginTop: "1.5rem",
-                    marginRight: "0.5rem", 
-                    height: "50px", 
-                    width:"50px", 
+                    marginRight: "0.5rem",  
                     height: "10%",
                     width: "10%",
                     minHeight: "20px",

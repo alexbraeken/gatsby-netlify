@@ -1,16 +1,8 @@
 import React from 'react'
-import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
 import { Helmet } from 'react-helmet'
 import Newsletter from '../../components/Newsletter'
 import emailjs from 'emailjs-com';
-
-
-function encode(data) {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
-}
 
 export default class Index extends React.Component {
   constructor(props) {

@@ -9,6 +9,7 @@ import { Modal} from 'react-bootstrap'
 const CalendarModal = (props) => {
 
     const [dates, setDates] = useState({from: null, to: null});
+    const [message, setMessage ] = useState(null)
 
 
 
@@ -19,18 +20,23 @@ const CalendarModal = (props) => {
       if(props.dates.to & props.dates.from){
         setDates(props.dates)
       }
-      else{
-        setDates({from: new Date(), to: new Date()})
-      }
       return () => {
         setDates({from: null, to: null})
       }
     }, [])
 
-//Show from month if 'to' date changes
+  //Show from month if 'to' date changes
     useEffect(() => {
-      showFromMonth()
+      if(dates.to)showFromMonth()
   }, [dates.to])
+
+  //Message
+    useEffect(() => {
+      const timeout = setTimeout(()=>setMessage(null), 4000)
+
+      return () => clearTimeout(timeout);
+    }, [message])
+
 
     const showFromMonth = () => {
         const from = new Date(dates.from)
@@ -62,33 +68,42 @@ const CalendarModal = (props) => {
         else
         setDates({from:undefined, to:new Date(toDate)})
       }
+    
+    const handleClear = () => {
+      setDates({from: null, to: null})
+    }
 
 
     const submitSearch = () => {
 
-      const dateTo = typeof dates.to !== 'string' ?  dates.to.toISOString() : dates.to
-      const dateFrom = typeof dates.from !== 'string' ?  dates.from.toISOString() : dates.from
-
-      props.handleDateChange({to: dateTo, from: dateFrom})
-
-        const uri = `https://api.hostfully.com/v2/properties?checkInDate=${dateFrom}&checkOutDate=${dateTo}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
-        fetch(uri, {
-        headers:{
-        "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
-            }
-        })
-                .then(response => {
-                    
-                    return response.text()
-                })
-                .then(data => {
-                props.handleNewIds(JSON.parse(data).propertiesUids)
-                props.handleClose()
-                })
+      if(dates.to && dates.from){
+        const dateTo = typeof dates.to !== 'string' ?  dates.to.toISOString() : dates.to
+        const dateFrom = typeof dates.from !== 'string' ?  dates.from.toISOString() : dates.from
+  
+        props.handleDateChange({to: dateTo, from: dateFrom})
+  
+          const uri = `https://api.hostfully.com/v2/properties?checkInDate=${dateFrom}&checkOutDate=${dateTo}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
+          fetch(uri, {
+          headers:{
+          "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
+              }
+          })
+                  .then(response => {
+                      
+                      return response.text()
+                  })
+                  .then(data => {
+                  props.handleNewIds(JSON.parse(data).propertiesUids)
+                  props.handleClose()
+                  })
+      }
+      else{
+        setMessage("Select Dates")
+      } 
     }
 
-    const from = new Date(dates.from)
-    const to = new Date(dates.to)
+    const from = dates.from
+    const to = dates.to
     const modifiers = { start: from, end: to };
 
       const modifiersStyles = {
@@ -173,8 +188,14 @@ const CalendarModal = (props) => {
         </Helmet>
         </div>
         <br />
+        {message && 
+        <>
+          <span className="min-warning visible" style={{minWidth: "100%"}}>Select Dates</span>
+          <br /> 
+        </>
+        }
         <div className="new-date-btn-container">
-        <div className="submit-search-btn" onClick={submitSearch}>
+        <div role="button" tabindex="0" aria-label="Submit Search" className="submit-search-btn" onClick={submitSearch} onKeyDown={(e)=>{if(e.key === 'Enter'){submitSearch()}}}>
             <a>
                 <svg className="icon-arrow before">
                     <use xlinkHref="#arrow" />
@@ -193,7 +214,7 @@ const CalendarModal = (props) => {
             </defs>
             </svg>
         </div>
-        <div className="submit-search-btn" onClick={()=>{props.handleClose(); props.handleClearDates()}}>
+        <div role="button" tabindex="0" aria-label="Clear Search" className="submit-search-btn" onClick={()=>{handleClear(); props.handleClose(); props.handleClearDates();}} onKeyDown={(e)=>{if(e.key === 'Enter'){handleClear(); props.handleClose(); props.handleClearDates()}}}>
             <a style={{background:"#3F3F3F", color:"#f5821e", borderColor:"#f5821e"}}>
                 <svg className="icon-arrow before" style={{fill: "#f5821e"}}>
                     <use xlinkHref="#arrow" />

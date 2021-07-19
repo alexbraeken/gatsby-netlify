@@ -70,7 +70,7 @@ export default function SideBarModal(props) {
 
     return (
         <div className={`sidebar-modal-container ${show ? "active" : ""}`}>
-        {show && <div className="sidebar-overlay" onClick={props.close}></div>}
+        {show && <div className="sidebar-overlay" role="button" tabindex="0" onClick={props.close} onKeyDown={(e)=>{if(e.key === 'Enter'){props.close()}}} aria-label="close"></div>}
             <Col className={`sidebar-modal ${show ? "active" : ""}`} xs={12} md={3}>
             <Container className="justify-content-md-center filter-container" style={modalStyle}>
                 <div className="close-modal">
@@ -94,10 +94,14 @@ export default function SideBarModal(props) {
                                 <Row style={{flexWrap:"nowrap"}}>
                                     <div
                                     className="button" 
-                                    onClick={()=>props.handleSelectDeselectAll("city", false)}>Deselect All</div>
+                                    role="button" tabindex="0"
+                                    onClick={()=>props.handleSelectDeselectAll("city", false)}
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("city", false)}}}>Deselect All</div>
                                     <div
-                                    className="button"  
-                                    onClick={()=>props.handleSelectDeselectAll("city", true)}>Select All</div>
+                                    className="button" 
+                                    role="button" tabindex="0" 
+                                    onClick={()=>props.handleSelectDeselectAll("city", true)}
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("city", true)}}}>Select All</div>
                                 </Row>
                             </Col>
                         </Row>
@@ -134,11 +138,15 @@ export default function SideBarModal(props) {
                             <Col xs={12} lg={8}>
                                 <Row style={{flexWrap:"nowrap"}}>
                                     <div
-                                className="button"  
-                                    onClick={()=>props.handleSelectDeselectAll("type", false)}>Deselect All</div>
+                                className="button"
+                                role="button" tabindex="0"   
+                                    onClick={()=>props.handleSelectDeselectAll("type", false)}
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("type", false)}}}>Deselect All</div>
                                     <div
                                 className="button"
-                                    onClick={()=>props.handleSelectDeselectAll("type", true)}>Select All</div>
+                                role="button" tabindex="0" 
+                                    onClick={()=>props.handleSelectDeselectAll("type", true)}
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("type", true)}}}>Select All</div>
                                 </Row>
                             </Col>
                         </Row>

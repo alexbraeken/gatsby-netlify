@@ -13,15 +13,14 @@ const GalleryModal = (props) => {
   const [focusImg, setFocusImg] = useState(null);
   const [coords, setCoords ] = useState({width:0, height:0, x:0, y:0});
 
-  let tween;
 
   useEffect(() => {
     if(focusImg){
-      tween = gsap.fromTo(img.current, {x:coords.x, y:coords.y, width:coords.width, height:coords.height, opacity:0.1}, { width:"100%", height:"unset", opacity:1, duration: 0.7, ease:"ease-in"})
+      gsap.fromTo(img.current, {x:coords.x, y:coords.y, width:coords.width, height:coords.height, opacity:0.1}, { width:"100%", height:"unset", opacity:1, duration: 0.7, ease:"ease-in"})
     }
     return () => {
     }
-  }, [img, coords])
+  }, [img, coords, focusImg])
 
   const handleClick = (src) => {
     setCoords(calculatePosition(srcImg))
@@ -54,13 +53,15 @@ const GalleryModal = (props) => {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
     <Modal.Body>{props.photos ? 
-      <Row>{!!focusImg ? (<img src={focusImg}  ref={img} onClick={()=>setFocusImg(null)}/>) :
+      <Row>{!!focusImg ? 
+      <img src={focusImg} tabindex="0" alt="Featured" ref={img} onClick={()=>setFocusImg(null)} onKeyDown={(e)=>{if(e.key="Enter"){setFocusImg(null)}}} /> 
+      :
         <>
           {props.photos.map((photo, index)=> (
             <Col lg={3} md={4} key={index} >
               <a href="#" className="d-block mb-4 h-100">
                 <div ref={srcImg}>
-                  <img className="img-fluid img-thumbnail" src={photo.url} alt="" onClick={()=>handleClick(photo.url)} />
+                  <img className="img-fluid img-thumbnail" tabindex="0" src={photo.url} alt="" onClick={()=>handleClick(photo.url)} onKeyDown={(e)=>{if(e.key="Enter"){handleClick(photo.url)}}} />
                 </div>
               </a>
             </Col>

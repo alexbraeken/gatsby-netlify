@@ -43,8 +43,6 @@ class TestimonialSlider extends Component {
                   <FontAwesomeIcon icon={faQuoteRight} 
                   style={{position: "relative", 
                   margin:"auto", 
-                  height: "50px", 
-                  width:"50px", 
                   height: "10%",
                   width: "10%",
                   minHeight: "20px",

@@ -37,8 +37,6 @@ class CustomSlide extends React.Component {
               <h2 className="slide__text-heading">{this.props.slide.title}</h2>
               </div>
               </div>
-        <h3></h3>
-    <p></p>
       </div>
     );
   }
@@ -177,8 +175,6 @@ export const AlgarvePageTemplate = ({
       {slide: sliderImage3, title: sliderImageTitle3}, 
       {slide: sliderImage4, title: sliderImageTitle4}]
 
-    const nextIcon = <span aria-hidden="true" className="carousel-control-next-icon feature-next-icon" />
-    const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
 
   return(
   <div className="content newLine">
@@ -214,8 +210,8 @@ export const AlgarvePageTemplate = ({
               
               <section className={`postcard-container ${index > 0 ? "" : "visible"}`}>
               <div style={{paddingTop: "2rem", paddingLeft: "2rem", gridArea: "stamp", position: "relative"}}>
-                <img src="/img/airmail.png" style={{position: "absolute", top: "20px", left:"10%", filter: "none"}} width="150px"/>
-                <img src="/img/mailwaves.png" style={{position: "absolute", top: "10%", left:"11%", filter: "none", transform: "rotate(210deg)"}} width="150px"/>
+                <img src="/img/airmail.png" alt="Airmail" style={{position: "absolute", top: "20px", left:"10%", filter: "none"}} width="150px"/>
+                <img src="/img/mailwaves.png" alt="Mail waves" style={{position: "absolute", top: "10%", left:"11%", filter: "none", transform: "rotate(210deg)"}} width="150px"/>
               </div>
               <h1>{featureSection.title[`title${index+1}`]}</h1>
               <div className="content">
@@ -225,7 +221,7 @@ export const AlgarvePageTemplate = ({
               </div>
               <div className="img">
                 <h2 style={{fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.title[`title${index+1}`]}</h2>
-                <img src={featureSection.imgs[`img${index+1}`].childImageSharp.fluid.src} />
+                <img src={featureSection.imgs[`img${index+1}`].childImageSharp.fluid.src} alt={featureSection.imgs[`img${index+1}`].alt || "Feature Image"}/>
               </div>
             </section>
             )}

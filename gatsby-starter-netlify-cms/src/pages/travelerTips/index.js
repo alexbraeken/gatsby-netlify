@@ -48,24 +48,24 @@ export default class TravelerTipsIndex extends React.Component {
           <Col xs={12} md={2}>
             <StickyBox>
               <div className="activities-filter">
-              <div className={`filter-button ${!this.state.activityFilter? "selected":""}`} onClick={()=>this.handleClick(null)}>
-                      <span>All</span><FontAwesomeIcon icon={faInfinity}/> 
-                  </div>
-                  <div className={`filter-button ${this.state.activityFilter === "Family Activity" ? "selected":""}`} onClick={()=>this.handleClick("Family Activity")}>
-                      <span>Family Activity</span><FontAwesomeIcon icon={faChild} /> 
-                  </div>
-                  <div className={`filter-button ${this.state.activityFilter === "Excursion" ? "selected":""}`} onClick={()=>this.handleClick("Excursion")}>
-                      <span>Excursion</span><FontAwesomeIcon icon={faHiking} /> 
-                  </div>
-                  <div className={`filter-button ${this.state.activityFilter === "Horse Riding" ? "selected":""}`} onClick={()=>this.handleClick("Horse Riding")}>
-                      <span>Horse Riding</span><FontAwesomeIcon icon={faHorse}/> 
-                  </div>
-                  <div className={`filter-button ${this.state.activityFilter === "Golf" ? "selected":""}`} onClick={()=>this.handleClick("Golf")}>
-                      <span>Golf</span><FontAwesomeIcon icon={faGolfBall} /> 
-                  </div>
-                  <div className={`filter-button ${this.state.activityFilter === "Restaurant" ? "selected":""}`} onClick={()=>this.handleClick("Restaurant")}>
-                      <span>Restaurants</span><FontAwesomeIcon icon={faUtensils} /> 
-                  </div>
+                <div role="button" tabindex="0" className={`filter-button ${!this.state.activityFilter? "selected":""}`} onClick={()=>this.handleClick(null)} onKeyDown={()=>this.handleClick(null)}>
+                    <span>All</span><FontAwesomeIcon icon={faInfinity}/> 
+                </div>
+                <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Family Activity" ? "selected":""}`} onClick={()=>this.handleClick("Family Activity")} onKeyDown={()=>this.handleClick("Family Activity")}>
+                    <span>Family Activity</span><FontAwesomeIcon icon={faChild} /> 
+                </div>
+                <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Excursion" ? "selected":""}`} onClick={()=>this.handleClick("Excursion")} onKeyDown={()=>this.handleClick("Excursion")}>
+                    <span>Excursion</span><FontAwesomeIcon icon={faHiking} /> 
+                </div>
+                <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Horse Riding" ? "selected":""}`} onClick={()=>this.handleClick("Horse Riding")} onKeyDown={()=>this.handleClick("Horse Riding")}>
+                    <span>Horse Riding</span><FontAwesomeIcon icon={faHorse}/> 
+                </div>
+                <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Golf" ? "selected":""}`} onClick={()=>this.handleClick("Golf")} onKeyDown={()=>this.handleClick("Golf")}>
+                    <span>Golf</span><FontAwesomeIcon icon={faGolfBall} /> 
+                </div>
+                <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Restaurant" ? "selected":""}`} onClick={()=>this.handleClick("Restaurant")} onKeyDown={()=>this.handleClick("Restaurant")}>
+                    <span>Restaurants</span><FontAwesomeIcon icon={faUtensils} /> 
+                </div>
               </div>
             </StickyBox>
           </Col>

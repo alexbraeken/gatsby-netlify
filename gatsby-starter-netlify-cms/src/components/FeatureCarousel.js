@@ -20,7 +20,6 @@ class CustomSlide extends React.Component {
         position: "relative",
         backgroundSize:"cover",
         backgroundPosition:"center"}}>
-          <h3></h3>
         </div>
       );
     }
@@ -34,8 +33,6 @@ const FeatureCarousel = (props) => {
         setIndex(selectedIndex);
       };
 
-    const nextIcon = <span aria-hidden="true" className="carousel-control-next-icon feature-next-icon" />
-    const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
 
     return (
       <>

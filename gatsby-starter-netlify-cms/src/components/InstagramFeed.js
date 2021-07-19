@@ -61,7 +61,7 @@ class SimpleSlider extends Component {
           {this.state.slides.allInstagramContent.edges.map((post, index)=> {
                 return index < 12 ?
                 <div key={index}> 
-                    <a href={post.node.permalink} target="_blank" className="insta-post">
+                    <a href={post.node.permalink} target="_blank" rel="noreferrer" className="insta-post">
                         <div className="insta-icon">
                             <FontAwesomeIcon icon={['fab', 'instagram']} />
                         </div>

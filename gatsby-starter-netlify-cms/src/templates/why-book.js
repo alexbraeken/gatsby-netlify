@@ -32,8 +32,6 @@ class CustomSlide extends React.Component {
               <h4><a href={`/properties/${this.props.slide.id}`}><span className="orangeText hover-highlight">View This Property</span></a></h4>
               </div>
               </div>
-        <h3></h3>
-    <p></p>
       </div>
     );
   }
@@ -83,9 +81,6 @@ export const WhyBookPageTemplate = ({
   const slides = [{slide: sliderImg1, title: sliderImageTitle1, id: sliderImgPropId1}, 
     {slide: sliderImg2, title: sliderImageTitle2, id: sliderImgPropId2}, 
     {slide: sliderImg3, title: sliderImageTitle3, id: sliderImgPropId3}]
-
-    const nextIcon = <span aria-hidden="true" className="carousel-control-next-icon feature-next-icon" />
-    const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
 
 
   return(

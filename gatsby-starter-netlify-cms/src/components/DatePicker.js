@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import CalendarModal from '../components/CalendarModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 //Date picker to open calendar modal component to change/clear dates on properties page
 const DatePicker = (props) => {
@@ -28,9 +28,9 @@ const DatePicker = (props) => {
             </svg>
                 <Container>
                     <Row>
-                <div className="top-date-picker-text" onClick={handleShowCalendar}>
+                <div role="button" tabindex="0" aira-label="Pick Dates" className="top-date-picker-text" onClick={handleShowCalendar} onKeyDown={(e)=>{if(e.key === 'Enter'){handleShowCalendar()}}}>
         {props.from ?
-            <small className="text-muted">From {props.from && new Date(props.from).toLocaleDateString()} - To {props.to && new Date(props.to).toLocaleDateString()}</small>
+            <small>{props.from && new Date(props.from).toLocaleDateString()}<FontAwesomeIcon icon={faArrowRight} style={{margin:"auto 5px", padding: "2px 0"}} className="search-icon"/>  {props.to && new Date(props.to).toLocaleDateString()}</small>
             :
             <small>Search Dates</small>
         }

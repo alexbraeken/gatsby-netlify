@@ -26,8 +26,6 @@ class CustomSlide extends React.Component {
                 <p className="slide__text-desc">{this.props.slide.frontmatter.description}</p>
                 <a className="slide__text-link" href={this.props.slide.frontmatter.link}>{this.props.slide.frontmatter.visibleLink}</a></div>
                 </div>
-          <h3></h3>
-      <p></p>
         </div>
       );
     }
@@ -44,8 +42,6 @@ const AlgarveCarousel = (props) => {
         setIndex(selectedIndex);
       };
 
-    const nextIcon = <span aria-hidden="true" className="carousel-control-next-icon feature-next-icon" />
-    const prevIcon = <span aria-hidden="true" className="carousel-control-prev-icon feature-prev-icon" />
 
     return (
         <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>

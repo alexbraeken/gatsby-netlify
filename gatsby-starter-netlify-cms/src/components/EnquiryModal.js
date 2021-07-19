@@ -4,21 +4,6 @@ import { Modal } from 'react-bootstrap'
 import emailjs from 'emailjs-com';
 
 
-function encode(data) {
-    return Object.keys(data)
-      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-      .join('&')
-  }
-
-const addArgumentToURL = (url, field, data) => {
-
-  if (typeof data !== "undefined" && data != "") {
-      url += "&" + field + "=" + encodeURIComponent(data);
-  }
-
-  return url;
-};
-
 //Enquiry modal on property page
 const EnquiryModal = (props) => {
 

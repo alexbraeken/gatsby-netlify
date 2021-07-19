@@ -91,14 +91,6 @@ const SearchFilter = (props) => {
         }
     }, [searchBar])
 
-    const searchOnSelect = () =>{
-      
-    }
-    
-    const searchOnRemove = () => {
-      
-    }
-
 
     const submitSearch = () => {
       
@@ -123,7 +115,7 @@ const SearchFilter = (props) => {
 
       let locations = []
       if(locationData?.length > 0){
-        locationData.map((location, index) => {
+        locationData.forEach((location, index) => {
           locations.push({ value: location, label: location })
         })
         setLocationArray(locations)
@@ -168,38 +160,6 @@ const SearchFilter = (props) => {
     const { from, to } = dates;
     const modifiers = { start: from, end: to };
 
-
-    const styles = {
-        multiselectContainer: {
-        flex: "1 1 25%",
-        margin: "auto",
-        height:"50px",
-        minWidth: "200px"
-        },
-        searchBox: { 
-          border: "none",
-          fontSize: "10px",
-          minHeight: "50px",
-          background: "#fff",
-          display: "flex",
-          cursor: "pointer"
-        },
-        inputField: { 
-            margin: "5px",
-            fontSize: "1rem"
-        },
-        chips: { 
-          background: "#f5821e",
-          margin: "auto 5px"
-        },
-        optionContainer: { 
-          border: "1px solid",
-          background: "#fff"
-        },
-        option: { 
-          color: "#000"
-        }
-      }
 
       const modifiersStyles = {
         start : {
@@ -290,7 +250,7 @@ const SearchFilter = (props) => {
                 <option value="10">10</option>
             </Form.Control>
         </Form.Group>
-        <div onClick={submitSearch}>
+        <div role="button" tabindex="0" onClick={submitSearch} onKeyDown={(e)=>{if(e.key==="Enter"){submitSearch()}}}>
         <SubmitButton text="See What We Have!" />
         </div>
         <Helmet>

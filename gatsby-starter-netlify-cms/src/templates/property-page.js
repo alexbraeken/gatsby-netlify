@@ -48,7 +48,6 @@ export const PropertyPageTemplate = ( props ) =>
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
    const [activitiesCoords, setActivitiesCoords] = useState(null)
-   const [dates, setDates] = useState(null)
 
 
     useEffect(() => {
@@ -320,7 +319,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     {descriptions.value.en_US.space}
                                                                     <br />
                                                                     {matterportURL && 
-                                                                    <iframe width="100%" height="480" src={matterportURL} frameborder="0" allowfullscreen allow="xr-spatial-tracking">
+                                                                    <iframe width="100%" title="Matterport" height="480" src={matterportURL} frameborder="0" allowfullscreen allow="xr-spatial-tracking">
                                                                     </iframe>
                                                                     }
                                                                 </div>
@@ -529,7 +528,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <BookingWidget id={props.id} dateRange={bookDates}/>
                                                 }
                                                 <br />
-                                                <div className="submit-search-btn" onClick={()=> handleEnquiryShow()}>
+                                                <div role="button" className="submit-search-btn" onClick={()=> handleEnquiryShow()} onKeyDown={()=> handleEnquiryShow()} tabindex="0">
                                                     <a>
                                                         <svg className="icon-arrow before">
                                                             <use xlinkHref="#arrow" />
@@ -555,7 +554,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 {damageWaiver &&
                                                 <div style={{paddingBottom:"20px"}}> 
                                                     <br />
-                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)}>Security Deposit/Damage Waivers</span></center>
+                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span role="button" tabindex="0" aria-label="Damage Waiver" style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)} onKeyDown={(e)=>{if(e.key==="Enter"){setWaiverOpen(!waiverOpen)}}}>Security Deposit/Damage Waivers</span></center>
                                                     <Collapse in ={waiverOpen}>
                                                         <div>
                                                             <p>
@@ -604,7 +603,7 @@ export const PropertyNav = (props) => {
     return(
         <div className="prop-nav" style={{...props.navStyles}}>
             <Container>
-                <Link to="/"><img src={logo} style={{height:"30px", width:"30px", marginRight:"10px"}}/></Link><Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#gettingAround">Getting Around</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
+                <Link to="/"><img src={logo} alt="Smartavillas logo" style={{height:"30px", width:"30px", marginRight:"10px"}}/></Link><Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#gettingAround">Getting Around</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
                                     
             </Container>
         </div>

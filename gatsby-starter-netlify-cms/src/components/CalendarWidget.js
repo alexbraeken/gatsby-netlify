@@ -20,14 +20,17 @@ const CalendarWidget = (props) => {
         to: undefined,
       });
     const [minStayAlert, setMinStayAlert] = useState(false)
-
-    const startYear = new Date().getFullYear();
-    const startMonth = new Date().getMonth();
+    const [startMonthYear, setStartMonthYear] = useState({startYear: null, startMonth: null})
 
     const uri = `https://platform.hostfully.com/api/notavailabledates_get_api.jsp?jsoncallback=jsonpCallbackGetNotAvailableDates&propertyUID=${props.id}&handleCheckInCheckOut=false`
     
     useEffect(() => {
-        if(props.dates.from && props.dates.to)setRange({from:new Date(props.dates.from), to:new Date(props.dates.to), enteredTo: new Date(props.dates.to)})
+        if(props.dates.from && props.dates.to){
+          setRange({from:new Date(props.dates.from), to:new Date(props.dates.to), enteredTo: new Date(props.dates.to)})
+          setStartMonthYear({startYear: new Date(props.dates.from).getFullYear(), startMonth: new Date(props.dates.from).getMonth()})
+        }else{
+          setStartMonthYear({startYear: new Date().getFullYear(), startMonth: new Date().getMonth()})
+        }
 
         fetch(uri)
         .then(response => {
@@ -292,7 +295,8 @@ const CalendarWidget = (props) => {
             <DayPicker
             className="Range"
             numberOfMonths= {2}
-            initialMonth={new Date(startYear, startMonth)}
+            initialMonth={new Date(today.getFullYear(), today.getMonth())}
+            month={new Date(startMonthYear.startYear, startMonthYear.startMonth)}
             disabledDays={[
                 disabledDays,
                 {before: new Date(),

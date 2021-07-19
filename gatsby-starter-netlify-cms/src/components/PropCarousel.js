@@ -19,7 +19,6 @@ class CustomSlide extends React.Component {
         backgroundSize:"cover",
         backgroundPosition:"center"}} 
         key={this.props.key? this.props.key : 0}>
-          <h3></h3>
         </div>
       );
     }
@@ -30,9 +29,13 @@ const PrevArrow = (props) => {
   const { className, style, onClick } = props;
   return (
     <div
+      role="button"
+      tabindex="0"
+      aria-label="previous"
       className={className}
       style={{ ...style, left: "2%", zIndex:"5"}}
       onClick={onClick}
+      onKeydown={onClick}
     />
   );
 }
@@ -41,9 +44,13 @@ const NextArrow = (props) => {
   const { className, style, onClick } = props;
   return (
     <div
+      role="button"
+      tabindex="0"
+      aria-label="next"
       className={className}
       style={{ ...style, right: "2%", zIndex:"5"}}
       onClick={onClick}
+      onKeydown={onClick}
     />
   );
 }

@@ -1,10 +1,10 @@
-import React, {useState, useEffect, Fragment } from 'react'
+import React, {useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
 import logo from '../img/smartavillas logo.png'
 import Container from 'react-bootstrap/Container'
-import { FirestoreDocument, FirestoreCollection } from "@react-firebase/firestore";
+import { FirestoreDocument } from "@react-firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select'
@@ -14,7 +14,6 @@ const PropertiesDropDown = React.memo((props) => {
 
   const [data, setData] = useState(null)
   const [options, setOptions] = useState([])
-  const [inputValue, setInputValue] = useState(null)
 
   const customStyles = {
     menu: () => ({
@@ -244,13 +243,13 @@ const Navbar = class extends React.Component {
   toggleDropDown = (subNavLinks, index) => {
     if(index && this.state.activeSubnav && this.state.activeSubnav !== index){
       let arrow = document.getElementById(`arrow-${this.state.activeSubnav}`)
-      arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+      arrow.style.transform = (arrow.style.transform === 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
       this.setState({
         subNav: subNavLinks,
         activeSubnav: index},
         () => {
           arrow = document.getElementById(`arrow-${this.state.activeSubnav}`)
-          arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+          arrow.style.transform = (arrow.style.transform === 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
         })
     }
     else{
@@ -265,17 +264,17 @@ const Navbar = class extends React.Component {
         this.setState({dropdownClass: 'dropdown-active'})
         : this.setState({dropdownClass: ''});
       })
-     if(arrow)arrow.style.transform = (arrow.style.transform == 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
+     if(arrow)arrow.style.transform = (arrow.style.transform === 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
     }
   }
 
   filterList = (props, type) => {
-    let filter = []
-    props.map(prop => {
-        filter.push(prop[`${type}`])
+    let filter = new Set()
+    props.forEach(prop => {
+        filter.add(prop[`${type}`])
     })
     
-    return [... new Set(filter)].sort()
+    return [...filter].sort()
 }
 
   render() {
@@ -299,9 +298,13 @@ const Navbar = class extends React.Component {
             </Link>
             {/* Hamburger menu */}
             <div
+              role="button"
+              tabindex="0"
+              aria-label="Menu"
               className={`navbar-burger burger ${this.state.navBarActiveClass}`}
               data-target="navMenu"
               onClick={() => this.toggleHamburger()}
+              onKeyDown={() => this.toggleHamburger()}
               style={this.state.burgerStyle}
             >
               <span />
@@ -317,7 +320,7 @@ const Navbar = class extends React.Component {
               {Links && Links.length > 0 &&
           Links.map((Link, index) => {
             return Link.subNav  ? 
-            <div className="navbar-item" onClick={()=>this.toggleDropDown(Link.subNav, index)} style={{cursor:"pointer"}} key={index}>
+            <div className="navbar-item" role="button" tabindex="0" onClick={()=>this.toggleDropDown(Link.subNav, index)} onKeyDown={(e)=>{if(e.key === 'Enter'){this.toggleDropDown(Link.subNav, index)}}} style={{cursor:"pointer"}} key={index}>
                 {Link.name} <div className="dropdown-arrow" id={`arrow-${index}`}><FontAwesomeIcon icon={faChevronDown}/></div>
             </div>
             :
@@ -364,7 +367,7 @@ const Navbar = class extends React.Component {
           </>
           :
           <>
-            {this.state.subNav && this.state.subNav[0].name == "propertiesList" ?
+            {this.state.subNav && this.state.subNav[0].name === "propertiesList" ?
             <> 
               <PropertiesDropDown filterList={this.filterList}/>
             </>

@@ -11,11 +11,15 @@ class NewsAlert extends React.PureComponent {
 
     return (
         <>
-        { news[0] ? 
+        { news[0] && 
       <div className="newsAlert">
-          <a href={`${news[0].node.frontmatter.link}`} style={{position:"absolute", width:"100%", height:"100%"}}></a>
-          <div><small style={{fontWeight:"bold"}}>{news[0].node.frontmatter.title}:</small> <small className="newsAlert-news">{news[0].node.frontmatter.news}</small></div>  
-      </div>: null}
+          <a href={`${news[0].node.frontmatter.link}`} style={{position:"absolute", width:"100%", height:"100%"}} role="button"
+   aria-label="News Alert"></a>
+          <div>
+            <small style={{fontWeight:"bold"}}>{news[0].node.frontmatter.title}: </small> 
+            <small className="newsAlert-news">{news[0].node.frontmatter.news}</small>
+          </div>  
+      </div>}
       </>
     )
   }

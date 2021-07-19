@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component, useRef, useCallback} from 'react'
+import React, {useState, useEffect, Component, useCallback} from 'react'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
 import { Router } from "@reach/router"
@@ -16,8 +16,6 @@ import { Col } from 'react-bootstrap';
 import GoogleMapComponent from '../../components/GoogleMapComponent';
 import ReactBnbGallery from 'react-bnb-gallery';
 import { gsap } from "gsap";
-import DatePicker from '../../components/DatePicker'
-import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from 'react-helmet'
@@ -32,7 +30,6 @@ const Properties = React.memo((props) => {
     const [sort, setSort] = useState("")
     const [data, setData] = useState(null);
     const [winterLets, setWinterLets] = useState([])
-    const [searchOperator, setSearchOperator] = useState("not-in")
     const [advancedSearch, setAdvancedSearch] = useState(false)
     const [propertyIds, setPropertyIds] = useState([])
     const [propList, setPropList] = useState([])
@@ -80,7 +77,6 @@ const Properties = React.memo((props) => {
             setSort("")
             setData(null);
             setWinterLets([])
-            setSearchOperator("not-in")
             
             setDates(null)
             setHorizontalExpanded(false)
@@ -188,48 +184,41 @@ const Properties = React.memo((props) => {
     const handleGalleryClick = useCallback((photos) => {
         setShow(true);
         setPhotos(photos);
-    }, [photos])
+    }, [])
 
-    const handleClose = useCallback(() => {
+    const handleClose = () => {
         setShow(false)
-    });
+    };
 
 
     const handleSort = useCallback((sort) => {
         setSort(sort)
-    }, [sort])
+    }, [])
 
-    const handleNewIds = useCallback((ids) =>{
+    const handleNewIds = (ids) =>{
         setPropertyIds(ids)
-    })
+    }
 
-    const handleTotalDays = useCallback((total) => {
-        
-    })
 
-    const handleExpand = useCallback(() => {
+    const handleExpand = () => {
         setHorizontalExpanded(!horizontalExpanded);
         setFilterExpanded(!horizontalExpanded && filterExpanded? false: filterExpanded)
-    })
-
-    const handleFilterExpand = useCallback(() =>{
-        setFilterExpanded(!filterExpanded)
-    })
+    }
 
 
-    const handleSidebarModal = useCallback(()=>{
+    const handleSidebarModal = ()=>{
         setShowSidebarModal(!showSidebarModal)
-    })
+    }
 
     const handleAmenityChange = useCallback((amenity) => {
         let list = amenitiesList;
         list[amenity] = !amenitiesList[`${amenity}`]
         setAmenitiesList({...list})
-    })
+    }, [amenitiesList])
 
-    const handleDisplayNumChange = useCallback((displayNum) => {
+    const handleDisplayNumChange = (displayNum) => {
         setCardDisplayNum(displayNum)
-    })
+    }
 
 
 
@@ -261,13 +250,13 @@ const Properties = React.memo((props) => {
                                             </Form.Control>
                                         </Form.Group>
                                         </div>
-                                        <div className="expandBtn" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal}>  
+                                        <div className="expandBtn" role="button" tabindex="0" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>  
                                                 <p style={{margin: "auto"}}>Filters</p>
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
                                 <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"95vh"} cardDisplayNum={cardDisplayNum}/>
-                                <div className="expandBtn filterExpand" onClick={handleExpand}>
+                                <div className="expandBtn filterExpand" role="button" tabindex="0" onClick={handleExpand} onKeyDown={(e)=>{if(e.key === 'Enter'){handleExpand()}}} >
                                     {horizontalExpanded ? 
                                     <>
                                         <p>Shrink</p>
@@ -282,7 +271,7 @@ const Properties = React.memo((props) => {
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
-                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleTotalDays={handleTotalDays} handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange}/>
+                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
@@ -348,7 +337,7 @@ export default class PropertiesPage extends Component {
        const filterValues = queryString.parse(this.props.location.search);
        const keys = Object.keys(filterValues)
        keys.forEach(key =>{
-           if(key == "bedrooms"){
+           if(key === "bedrooms"){
                 this.setState((state, props)=>({
                     ...state,
                     bedrooms: [parseInt(filterValues[key]), filterValues[key]+1 <11 ? filterValues[key] + 1: 10]
@@ -387,11 +376,11 @@ export default class PropertiesPage extends Component {
             let filterTypes = ["city", "type"]
             filterTypes.forEach(filterType => {
                 let list = {}
-                let filter = []
-                props.map(prop=>{
-                    filter.push(prop[filterType])
+                let filter = new Set()
+                props.forEach(prop=>{
+                    filter.add(prop[filterType])
                 })
-                filter = [... new Set(filter)]
+                filter = [...filter]
                 filter.sort()
                 filter.forEach((item, index)=>{
                     let exists = ((!!this.state.searchArray[filterType] && this.state.searchArray[filterType].indexOf(item) !== -1) === this.state.filteredSearch[filterType] || !this.state.filteredSearch[filterType])

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from "@reach/router"
 import { GoogleMap, Marker, OverlayView, MarkerClusterer} from '@react-google-maps/api';
 import icon from '../img/smartavillas marker 2.svg'
-import icon2 from '../img/map marker.png'
 import icon3 from '../img/smartavillas marker 3.svg'
 import infoIcon from '../img/heart.svg'
 import restaurantIcon from '../img/restaurant.svg'
@@ -169,7 +168,15 @@ refreshBounds = (mapInstance) => {
           marker.setIcon(icon3)
           marker.setAnimation(window.google.maps.Animation.BOUNCE)
         })
+        card.addEventListener("focusin", ()=> {
+          marker.setIcon(icon3)
+          marker.setAnimation(window.google.maps.Animation.BOUNCE)
+        })
         card.addEventListener("mouseleave", ()=> {
+          marker.setIcon(icon)
+          marker.setAnimation(null)
+        })
+        card.addEventListener("focusout", ()=> {
           marker.setIcon(icon)
           marker.setAnimation(null)
         })
@@ -220,7 +227,7 @@ render(){
                       <span className="link-text">View</span>
                     </div>
                   </Link>
-                  <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}}/>
+                  <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}} alt={this.state.overlay.name} />
                   <Link to={`/properties/${this.state.overlay.uid}`}><div style={{height: "100%", display:"flex"}}><h4 className="overlay-name">{this.state.overlay.name}</h4></div></Link>
                   <div className="map-price"><p className="feature-text-price" style={{float:"right"}}>From {this.state.overlay.baseDailyRate}€/ Day</p></div>
                   <BedBathPax bedrooms={this.state.overlay.bed} bathrooms={this.state.overlay.bath} baseGuests={this.state.overlay.guests} color="rgba(0,0,0)"/>
@@ -244,7 +251,7 @@ render(){
                   mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                 >
                   <div className="map-overlay-view" style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
-                  <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}}/>
+                  <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}} alt={this.state.overlay.name}/>
                   <Link to={this.state.overlay.link}><div style={{height: "100%", display:"flex"}}><h4 className="overlay-name">{this.state.overlay.name}</h4></div></Link>
                       <div className="map-price"><small className="orangeText">{this.state.overlay.type}</small></div>
                   </div>
