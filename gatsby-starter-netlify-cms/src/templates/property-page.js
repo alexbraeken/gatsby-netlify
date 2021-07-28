@@ -19,7 +19,7 @@ import logo from '../img/logo.svg';
 import BedBathPax from '../components/BedBathPax';
 import ActivitiesRoll from '../components/ActivitiesRoll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool, faFileContract } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool, faFileContract, faExternalLinkAlt, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import queryString from 'query-string';
 import EnquiryModal from '../components/EnquiryModal';
 import { Helmet } from 'react-helmet';
@@ -549,12 +549,12 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </div>
                                                 <br />
                                                 <div>
-                                                <center><a href="/about/booking-terms-conditions"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>Booking Terms & Conditions</span></a></center>
+                                                <center><a href="/about/booking-terms-conditions" target="_blank"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>Booking Terms & Conditions</span> <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto"}} /></a></center>
                                                 </div>
                                                 {damageWaiver &&
                                                 <div style={{paddingBottom:"20px"}}> 
                                                     <br />
-                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span role="button" tabindex="0" aria-label="Damage Waiver" style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)} onKeyDown={(e)=>{if(e.key==="Enter"){setWaiverOpen(!waiverOpen)}}}>Security Deposit/Damage Waivers</span></center>
+                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span role="button" tabindex="0" aria-label="Damage Waiver" style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)} onKeyDown={(e)=>{if(e.key==="Enter"){setWaiverOpen(!waiverOpen)}}}>Security Deposit/Damage Waivers</span> <FontAwesomeIcon className={`expand-chevron ${waiverOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto"}} /></center>
                                                     <Collapse in ={waiverOpen}>
                                                         <div>
                                                             <p>
