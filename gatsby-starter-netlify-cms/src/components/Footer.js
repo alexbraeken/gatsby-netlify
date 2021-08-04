@@ -83,7 +83,7 @@ const Footer = class extends React.Component {
                 </section>
               </div>
               <div className="column is-4 social">
-                <a title="facebook" href="https://facebook.com/smartavillas">
+                <a className="social-hover fb-icon" title="facebook" href="https://facebook.com/smartavillas">
                   <img
                     className="fas fa-lg"
                     src={facebook}
@@ -91,7 +91,7 @@ const Footer = class extends React.Component {
                     style={{ width: '1em', height: '1em' }}
                   />
                 </a>
-                <a title="twitter" href="https://twitter.com/smartavillas">
+                <a className="social-hover twitter-icon" title="twitter" href="https://twitter.com/smartavillas">
                   <img
                     className="fas fa-lg"
                     src={twitter}
@@ -99,7 +99,7 @@ const Footer = class extends React.Component {
                     style={{ width: '1em', height: '1em' }}
                   />
                 </a>
-                <a title="instagram" href="https://instagram.com/smartavillas">
+                <a className="social-hover insta-icon" title="instagram" href="https://instagram.com/smartavillas">
                   <img
                     className="fas fa-lg"
                     src={instagram}

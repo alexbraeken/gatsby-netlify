@@ -14,6 +14,9 @@ $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
 $btn-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02)
+$fb-blue: #4267B2
+$twitter-blue: #1DA1F2
+$insta-purple: #833AB4
 
 
 .navbar .navbar-menu
@@ -2867,3 +2870,12 @@ button.calendar-btn
   transition: all 0.3s
   &.visible
     transform: rotateZ(180deg)
+
+.social-hover
+  transition: all 0.3s
+  &.fb-icon:hover
+    background-color: $fb-blue
+  &.twitter-icon:hover
+    background-color: $twitter-blue
+  &.insta-icon:hover
+    background-color: $insta-purple

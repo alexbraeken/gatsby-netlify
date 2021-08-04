@@ -35,7 +35,7 @@ const PrevArrow = (props) => {
       className={className}
       style={{ ...style, left: "2%", zIndex:"5"}}
       onClick={onClick}
-      onKeydown={onClick}
+      onKeyDown={onClick}
     />
   );
 }
@@ -50,7 +50,7 @@ const NextArrow = (props) => {
       className={className}
       style={{ ...style, right: "2%", zIndex:"5"}}
       onClick={onClick}
-      onKeydown={onClick}
+      onKeyDown={onClick}
     />
   );
 }
