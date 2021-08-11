@@ -2879,3 +2879,59 @@ button.calendar-btn
     background-color: $twitter-blue
   &.insta-icon:hover
     background-color: $insta-purple
+
+.reviews-container
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row
+  z-index: 0
+  position: relative
+
+
+.review-card
+  max-width: 500px
+  min-width: 300px
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25)
+  border-radius: 5px
+  padding: 10px
+  margin: 15px
+  flex: 1 1 45%
+  position: relative
+  background-color: #fff
+  &:after,&:before
+    content: ""
+    position: absolute
+    width: 30px
+    background-color: $primary
+    height: 30px
+    z-index: -1
+  &:after
+    top: 100%
+    right: 0
+    transform: translate(50%, -50%)
+  &:before
+    top: 0%
+    left: 0
+    transform: translate(-50%, -50%)
+
+
+.star-rating
+  float: right
+  & .review-star
+      color: $primary
+
+
+.review-header
+  display: flex
+  flex-wrap: wrap
+  & h3, & small, & p
+      margin: auto 20px 0px 0px
+  & p
+      flex: 1 1 100%
+      width: 100%
+      font-weight: bold
+
+.review-card hr 
+  width: 30px
+  background-color: $primary
+  margin: 0.5rem 0

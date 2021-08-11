@@ -24,6 +24,7 @@ import queryString from 'query-string';
 import EnquiryModal from '../components/EnquiryModal';
 import { Helmet } from 'react-helmet';
 import Loading from '../components/Loading';
+import Reviews from '../components/Reviews';
 
 
 export const PropertyPageTemplate = ( props ) =>
@@ -48,6 +49,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [showNeighborhoodReadMore, setShowNeighborhoodReadMore] = useState(false)
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
    const [activitiesCoords, setActivitiesCoords] = useState(null)
+   const [reviews, setReviews] = useState(null)
 
 
     useEffect(() => {
@@ -59,8 +61,10 @@ export const PropertyPageTemplate = ( props ) =>
 
         setPropId(props.id)
         if(props.id){
-            const uri = `https://api.hostfully.com/v2/customdata?propertyUid=${props.id}`
-            fetch(uri, {
+            const customDataUri = `https://api.hostfully.com/v2/customdata?propertyUid=${props.id}`
+            const reviewsUri = `https://api.hostfully.com/v2/reviews?propertyUid=${props.id}`
+
+            fetch(customDataUri, {
             headers:{
             "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
                 }
@@ -96,6 +100,19 @@ export const PropertyPageTemplate = ( props ) =>
                         }
                     }  
                     })
+
+                    fetch(reviewsUri, {
+                        headers:{
+                        "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
+                            }
+                        })
+                        .then(response => {
+                            return response.text()
+                        })
+                        .then(data => {
+                            setReviews(JSON.parse(data))
+                        })
+
             return () => {
                 setSmartaOpinion(null)
                 setBookDates({from:new Date(),
@@ -398,6 +415,18 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </Col>
                                                         }
                                                         
+                                                    </Row>
+                                                    }
+                                                    {reviews && reviews.length>0 && 
+                                                    <Row>
+                                                        <Col xs={12} md={9}>
+                                                            <hr />
+                                                            <div id="reviews">
+                                                                <h2>Reviews</h2>
+                                                                <br />
+                                                                <Reviews reviews={reviews}/>
+                                                            </div>
+                                                        </Col>
                                                     </Row>
                                                     }
                                                     {descriptions.value.en_US.notes && 
