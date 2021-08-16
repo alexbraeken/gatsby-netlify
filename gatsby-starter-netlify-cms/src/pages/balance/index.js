@@ -4,25 +4,25 @@ import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
 
 export default function Balance() {
     const [leadInfo, setLeadInfo] = useState(null)
     const [balance, setBalance] = useState(null)
     const [fetching, setFetching] = useState(true)
     const [paymentInfo, setPaymentInfo] = useState(null)
+    const [propInfo, setPropInfo] = useState(null)
 
     useEffect(() => {
         const path = window.location
         const leadDetails = path.search ? queryString.parse(path.search) : null;
-        console.log(leadDetails.uid, leadDetails.propId, leadDetails.orderId, leadDetails.fullName, decodeURI(leadDetails.email))
         if(leadDetails){
             console.log(leadDetails)
             setLeadInfo({
                 leadId: leadDetails.uid,
                 propId: leadDetails.propId,
                 orderId: leadDetails.orderId,
-                name: leadDetails.fullName,
-                email: decodeURI(leadDetails.email)
             })
         }
 
@@ -35,16 +35,14 @@ export default function Balance() {
     }, [])
 
     useEffect(() => {
-        if(leadInfo && leadInfo.leadId && leadInfo.propId && leadInfo.orderId && leadInfo.name && leadInfo.email){
+        if(leadInfo && leadInfo.leadId && leadInfo.propId && leadInfo.orderId){
          
-            const uri = `https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets`
+            const uri = `https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/balancecheck`
             const reqBody = JSON.stringify({
                 "type": "balance_check",
                 "leadId": leadInfo.leadId,
                 "propId": leadInfo.propId,
                 "orderId": leadInfo.orderId,
-                "name": leadInfo.name,
-                "email": leadInfo.email
               })
 
             fetch(uri, {
@@ -57,73 +55,85 @@ export default function Balance() {
                 .then(response => {
                     if(!response.ok){
                         setFetching(false)
+                        console.log("error")
                         return null
                     }
                     return  response.text()
                 })
                 .then(data => {
                     if(data){
+
                         let details = JSON.parse(data)
                         if(details.balance >= 0){
                             setBalance(details.balance)
                             if(details.balance !== 0){
                                 setPaymentInfo({redirectUrl: details.redirectUrl, reference: details.reference, entity: details.entity})
+                                setPropInfo({img: details.propImg, link: details.propLink, name: details.propName}) 
                             }
-                        }
-                        if(details.balance < 0){
+                        }else if(details.balance < 0 || details.status === "cancelled"){
                             setBalance(false)
                         }
-                        setFetching(false)
                     } 
                 })
-            
         }else{
             setFetching(false)
         }
     }, [leadInfo])
+
+    useEffect(() => {
+        setFetching(false)
+    }, [paymentInfo, propInfo, balance])
 
     return (
         <Layout  propTitle="Balance & Payments" propDescription="Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With dozens of properties, from Villas to seaside Apartments, Smartavillas offers the best the Algarve has to offer.">
             <div>
                 <Container>
                     <Row style={{display:"flex"}}>
-                        <div className="Balance-card" style={{display: "flex", flexWrap:"wrap", margin: "50px auto",borderRadius:"5px", boxShadow:  "20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff", minHeight:"400px"}}>
-                            <div style={{height:"20%", flex:"1 1 100%", width:"100%", backgroundSize:"cover", backgroundPosition:"center", backgroundImage:"url(https://orbirental-images.s3.amazonaws.com/48d3598a-066b-4ecb-8aaa-6d46cbf1231f)"}}>
+                        <div className="Balance-card" >
+                            <div className="balance-card-img" style={{backgroundImage:`${propInfo && propInfo.img ? `url(${propInfo.img})` : 'url(https://res.cloudinary.com/smartavillas-com/image/upload/v1615366925/Ambience_Mood/Hero_Family_efmsd3.jpg)'}`}}>
                             </div>
-                            <div style={{margin: "auto"}}>
+                            <div className="balance-card-content">
                                 {fetching ? 
                                 <div style={{textAlign:"center"}}>
-                                    <h3>
+                                    <p>
                                         Retreiving Balance Information
-                                    </h3>
+                                    </p>
                                     <p>
                                         Please wait while we retreive your balance information...
                                     </p>
                                     <Loading />
                                 </div>
                                 :
-                                <div>
+                                <>
                                     {balance && balance >= 0 ? 
-                                    <div>
-                                        
-                                            <h3>
-                                                Balance remaining: {balance}
-                                            </h3>
-                                            {paymentInfo && 
-                                            <ul>
-                                                <li>Multibanco Information</li>
-                                                <li>Reference: {paymentInfo.reference}</li>
-                                                <li>entity: {paymentInfo.entity}</li>
-                                                <li><a href={paymentInfo.redirectUrl}>Payment Link</a></li>
+                                        <div style={{flex: "1 1 100%"}} className="balance-text">
+                                            <ul >
+                                                <li className="outer-list-item">
+                                                    <b>Balance remaining: {balance}€</b>
+                                                </li>
+                                                {paymentInfo &&
+                                                    <li className="outer-list-item">
+                                                        <b>Multibanco Information</b>
+                                                        <ul className="inner-list">
+                                                            <li>Reference: {paymentInfo.reference}</li>
+                                                            <li>entity: {paymentInfo.entity}</li>
+                                                            <li><a href={paymentInfo.redirectUrl} target="_blank" className="orangeText">Payment Link <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto 5px", height: "0.8rem"}} /></a></li>
+                                                        </ul>
+                                                    </li> 
+                                                }
+                                                {propInfo &&
+                                                    <li className="outer-list-item">
+                                                        <a href={propInfo.link} target="_blank" style={{display: "flex"}} className="orangeText"><b>{propInfo.name}</b><FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto 5px", height: "0.8rem"}} /></a>
+                                                    </li>
+                                                }
                                             </ul>
-                                            }
-                                    </div>
+                                        </div>
                                     :
-                                    <h3>
+                                    <p>
                                         No Balance Information Found
-                                    </h3>
+                                    </p>
                                     }
-                                </div>
+                                </>
                                 }
                             </div>
                         </div>
