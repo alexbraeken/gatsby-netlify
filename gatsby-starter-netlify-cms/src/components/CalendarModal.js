@@ -10,18 +10,24 @@ const CalendarModal = (props) => {
 
     const [dates, setDates] = useState({from: null, to: null});
     const [message, setMessage ] = useState(null)
+    const [datesWidth, setDatesWidth] = useState("500px")
 
 
 
     const toRef = useRef(null)
+    const fromToContainer = useRef(null)
 
     //Set default dates from props
     useEffect(() => {
       if(props.dates.to & props.dates.from){
         setDates(props.dates)
       }
+
+      if(fromToContainer.current)setDatesWidth(fromToContainer.current.clientWidth)
+
       return () => {
         setDates({from: null, to: null})
+        setDatesWidth("500px")
       }
     }, [])
 
@@ -123,7 +129,13 @@ const CalendarModal = (props) => {
           <Modal.Title>Choose New Dates</Modal.Title>
         </Modal.Header>
     <Modal.Body className="calendar-modal">
-        <div className="InputFromTo">
+        <div className="InputFromTo" style={{display: "flex",
+              justifyContent: "center",
+              position: "relative",
+              margin: "5px auto",
+              height:"50px",
+              minWidth: "200px"}}
+              ref={fromToContainer}>
         <DayPickerInput
           value={from}
           placeholder="From"
@@ -178,11 +190,36 @@ const CalendarModal = (props) => {
     border-bottom-right-radius: 50% !important;
   }
   .InputFromTo .DayPickerInput-Overlay {
-    width: 550px;
+    display: flex;
+    flex-wrap: nowrap;
+    width: ${datesWidth}px;
+    max-width: 550px;
     border-radius: 5px;
   }
   .InputFromTo-to .DayPickerInput-Overlay {
-    margin-left: -198px;
+    right: 0;
+    left: auto;
+  }
+
+  .DayPicker{
+    width: 100%;
+    font-size: 0.8rem;
+  }
+  .DayPicker-wrapper{
+    max-width: 100%;
+  }
+  .DayPickerInput-OverlayWrapper{
+    z-index: 100;
+  }
+  .DayPicker-Months {
+    max-width: 100%;
+    display: flex;
+  }
+  .DayPicker-Month {
+    flex: 1 1 40%;
+    min-width: 150px;
+    width: calc(${datesWidth/2}px - 2em);
+    max-width: 230px;
   }
 `}</style>
         </Helmet>

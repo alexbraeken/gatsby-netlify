@@ -299,7 +299,7 @@ const Navbar = class extends React.Component {
             {/* Hamburger menu */}
             <div
               role="button"
-              tabindex="0"
+              tabIndex="0"
               aria-label="Menu"
               className={`navbar-burger burger ${this.state.navBarActiveClass}`}
               data-target="navMenu"
@@ -320,7 +320,7 @@ const Navbar = class extends React.Component {
               {Links && Links.length > 0 &&
           Links.map((Link, index) => {
             return Link.subNav  ? 
-            <div className="navbar-item" role="button" tabindex="0" onClick={()=>this.toggleDropDown(Link.subNav, index)} onKeyDown={(e)=>{if(e.key === 'Enter'){this.toggleDropDown(Link.subNav, index)}}} style={{cursor:"pointer"}} key={index}>
+            <div className="navbar-item" role="button" tabIndex="0" onClick={()=>this.toggleDropDown(Link.subNav, index)} onKeyDown={(e)=>{if(e.key === 'Enter'){this.toggleDropDown(Link.subNav, index)}}} style={{cursor:"pointer"}} key={index}>
                 {Link.name} <div className="dropdown-arrow" id={`arrow-${index}`}><FontAwesomeIcon icon={faChevronDown}/></div>
             </div>
             :

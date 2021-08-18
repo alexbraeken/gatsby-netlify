@@ -25,7 +25,7 @@ class TestimonialSlider extends Component {
     };
     return (
       <div className="testimonial-slider">
-        <div className="slick-slider slick-track slick-slide"></div>
+        <div className="slick-slider slick-track slick-slide slick-list"></div>
         <Slider {...settings}>
          {this.state.slides.edges?.map((testimonial, index) => (
            <div key={index}>

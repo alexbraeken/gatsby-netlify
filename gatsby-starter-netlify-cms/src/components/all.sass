@@ -2001,7 +2001,7 @@ a.navbar-item, .navbar-item
 .sidebar-modal-container
   z-index: -1
   &.active
-    z-index: 1
+    z-index: 10
     & .sidebar-overlay
         background-color: rgba(0, 0, 0, 0.7)
 
@@ -2281,13 +2281,38 @@ a.navbar-item, .navbar-item
       & .insta-icon
           opacity: 1
 
-.testimonial-slider
-  & .slick-slider 
+.testimonial-slider, .reviews-container
+  & .slick-slider
+      & .slick-list
+          overflow: initial
+          position: relative
       & .slick-track
           margin-bottom: 50px
           display: flex
+          height: 100%
           & .slick-slide
+              position: relative
               margin: auto
+      & .slick-prev, .slick-next
+          &:before
+            filter: drop-shadow(2px 4px 6px #585858)
+
+.reviews-container
+  overflow: hidden
+  & .slick-slider
+      & .slick-track
+          position: absolute
+          & .slick-slide
+              display: flex
+              flex-direction: column
+              justify-content: center
+      & .slick-prev
+          left: 10px
+          z-index: 2
+      & .slick-next
+          right: 10px
+          z-index: 2
+        
 
 .testimonial-container
   max-width: 1000px
@@ -2880,21 +2905,15 @@ button.calendar-btn
   &.insta-icon:hover
     background-color: $insta-purple
 
-.reviews-container
-  display: flex
-  flex-wrap: wrap
-  flex-direction: row
-  z-index: 0
-  position: relative
-
 
 .review-card
+  width: 90%
   max-width: 500px
   min-width: 300px
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25)
   border-radius: 5px
   padding: 10px
-  margin: 15px
+  margin: 15px auto
   flex: 1 1 45%
   position: relative
   background-color: #fff

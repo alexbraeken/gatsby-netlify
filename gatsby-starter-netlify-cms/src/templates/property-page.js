@@ -25,6 +25,7 @@ import EnquiryModal from '../components/EnquiryModal';
 import { Helmet } from 'react-helmet';
 import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
+import { BsStarFill } from "@react-icons/all-files/bs/BsStarFill";
 
 
 export const PropertyPageTemplate = ( props ) =>
@@ -50,7 +51,27 @@ export const PropertyPageTemplate = ( props ) =>
    const [showTransitReadMore, setShowTransitReadMore] = useState(false)
    const [activitiesCoords, setActivitiesCoords] = useState(null)
    const [reviews, setReviews] = useState(null)
+   const [avgRating, setAvgRating] = useState(null)
+   const [sections, setSections] = useState(null)
+   const [loading, setLoading] = useState(true)
+   const [descriptionsLoading, setDescriptionsLoading] = useState(true)
 
+   useEffect(() => {
+    setSections(Array.from(document.getElementsByClassName("prop-page-section")))
+       return () => {
+           setSections(null)
+       }
+   }, [loading, descriptionsLoading, reviews])
+
+   useEffect(() => {
+       if(reviews && reviews.length > 0){
+            let sum = 0;
+            reviews.forEach(review=> {
+                sum+=review.rating
+            })
+            setAvgRating((sum/reviews.length).toFixed(2))
+        }
+   }, [reviews])
 
     useEffect(() => {
         const path = window.location
@@ -130,9 +151,13 @@ export const PropertyPageTemplate = ( props ) =>
                 setShowInteractionReadMore(false)
                 setShowNeighborhoodReadMore(false)
                 setShowTransitReadMore(false)
+                setSections(null)
+                setLoading(true)
+                setDescriptionsLoading(true)
             }
         }
     }, [])
+
 
     useEffect(() => {
         return () => {
@@ -219,6 +244,7 @@ export const PropertyPageTemplate = ( props ) =>
             {data => {
                 return (!data.isLoading && data.value) ? 
                         <div style={{display:"flex", flexWrap:"wrap"}}>
+                            {setLoading(false)}
                             <div style={{width:"100%"}}>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <div className="prdtitlesolo productNameTitle">
@@ -257,12 +283,21 @@ export const PropertyPageTemplate = ( props ) =>
                                 <Container style={{paddingTop:"30px"}}>
                                     <section id="prop-summary">
                                     <div id="prop-nav">
-                                        <Link to="#about">About</Link> | <Link to="#amenities">Amenities</Link> | <Link to="#calendar">Calendar</Link> | <Link to="#space">Space</Link> | <Link to="#neighborhood">Neighborhood</Link> | <Link to="#gettingAround">Getting Around</Link> | <Link to="#notes">Notes</Link> | <Link to="#location">Location</Link>
+                                        {sections && sections.length > 0 && sections.map((section, index) => {
+                                            return(
+                                            <>
+                                                <Link to={`#${section.id}`}><b>{section.dataset.title}</b></Link>
+                                                {index !== sections.length-1 ? <> | </> : null }
+                                            </>
+                                            )
+                                            
+                                        })
+                                        }
                                     </div>
                                     <br />
                                     <Row>
                                     <Col>
-                                        <Row id="about">
+                                        <Row id="about" data-title="About" className="prop-page-section">
                                             <Col xs={12} md={9}>
                                                 <h2>About</h2>
                                                 <br />
@@ -278,7 +313,7 @@ export const PropertyPageTemplate = ( props ) =>
                                             <FirestoreDocument path={`/amenities/${props.id}`}>
                                                 {amens => {
                                                     return (!amens.isLoading && amens.value) ? 
-                                                    <div id="amenities">
+                                                    <div id="amenities" data-title="Amenities" className="prop-page-section">
                                                         <h2>Amenities</h2>
                                                         <br />
                                                         <div className="amenities-list">
@@ -306,7 +341,7 @@ export const PropertyPageTemplate = ( props ) =>
                                     <Row>
                                         <Col xs={12} md={9}>
                                             <hr />
-                                            <div id="calendar">
+                                            <div id="calendar" data-title="Calendar" className="prop-page-section">
                                                 <h2>Calendar</h2>
                                                 <br />
                                                 <FirestoreDocument path={`PricingPeriods/${props.id}`}>
@@ -325,12 +360,13 @@ export const PropertyPageTemplate = ( props ) =>
                                             {descriptions => {
                                                     return (!descriptions.isLoading && descriptions.value) ? 
                                                     <>
+                                                    {setDescriptionsLoading(false)}
                                                     {handleName(descriptions.value.en_US.name)}
                                                     {descriptions.value.en_US.space &&
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="space">
+                                                                <div id="space" data-title="Space" className="prop-page-section">
                                                                     <h2>Space</h2>
                                                                     <br />
                                                                     {descriptions.value.en_US.space}
@@ -347,7 +383,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="neighborhood">
+                                                                <div id="neighborhood" data-title="Neighborhood" className="prop-page-section">
                                                                 <div className={descriptions.value.en_US.neighborhood.length>400 ? `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`: undefined}>
                                                                     <h2>Neighborhood</h2>
                                                                     <br />
@@ -372,7 +408,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <hr />
                                                         <Col xs={12} md={travelDistances.display? 5 : 9}>
-                                                                <div id="gettingAround">
+                                                                <div id="gettingAround" data-title="Getting Around" className="prop-page-section">
                                                                 <div className={descriptions.value.en_US.transit.length>400 ? `prop-description-box ${showTransitReadMore ? 'show' : ''}`: undefined}>
                                                                     <h2>Getting Around</h2>
                                                                     <br />
@@ -421,8 +457,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                            <div id="reviews">
-                                                                <h2>Reviews</h2>
+                                                            <div id="reviews" data-title="Reviews" className="prop-page-section">
+                                                                <div style={{display: "flex", flexWrap: "nowrap", justifyContent: "space-between"}}><h2>Reviews</h2> <div style={{display: "flex"}}><small style={{margin:"auto", display: "flex"}}>Average Rating: {avgRating} <BsStarFill className="review-star" style={{margin: "auto"}}/></small></div></div>
                                                                 <br />
                                                                 <Reviews reviews={reviews}/>
                                                             </div>
@@ -433,7 +469,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="notes">
+                                                                <div id="notes" data-title="Notes" className="prop-page-section">
                                                                     <div className={descriptions.value.en_US.notes.length>400 ? `prop-description-box ${showNotesReadMore ? 'show' : ''}` : undefined}>
                                                                     <h2>Notes</h2>
                                                                     <br />
@@ -451,7 +487,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="access">
+                                                                <div id="access" data-title="Your Arrival" className="prop-page-section">
                                                                     <div className={descriptions.value.en_US.access.length>400 ? `prop-description-box ${showAccessReadMore ? 'show' : ''}` : undefined}>
                                                                     <h2>Your Arrival</h2>
                                                                     <br />
@@ -489,7 +525,7 @@ export const PropertyPageTemplate = ( props ) =>
                                     </FirestoreDocument>
 
                                     </Col>
-                                        <Col xs={12} md={3} style={{display: "flex", alignItems: "flex-start"}}>
+                                        <Col xs={12} md={3} style={{display: "flex", alignItems: "flex-start", minWidth: "320px"}}>
                                             <StickyBox offsetTop={50}>
                                                 <div className="tabs-container">
                                                 <Tabs defaultActiveKey="propSpecs" id="keyDetails">
@@ -600,7 +636,7 @@ export const PropertyPageTemplate = ( props ) =>
                                     </Container>
                                     <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
                                     <hr />
-                                    <div id="location">
+                                    <div id="location" data-title="Location" className="prop-page-section">
                                         <Container>
                                         <h2>Location</h2>
                                         <br />
