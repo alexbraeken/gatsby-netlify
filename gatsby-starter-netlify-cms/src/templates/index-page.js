@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react'
 import PropTypes from 'prop-types'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Layout from '../components/Layout'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { gsap } from "gsap";
@@ -33,6 +34,9 @@ export const IndexPageTemplate = ({
 }) =>{
 
   const PageContent = contentComponent || Content
+
+  const {t} = useTranslation();
+  const {language} = useI18next();
 
   const [animationPlaying, setAnimationPlaying] = useState(false)
   const [delta, setDelta] = useState({prev: 0, curr: 0})
@@ -176,9 +180,9 @@ const handleSectionLeave = () => {
         <Row>
           <Col xs={12} md={8} style={{display:"flex", flexWrap:"wrap", padding: "50px 0"}}>
             <div className="intro-para">
-              <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com Property Rentals & Management</h1>
+              <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com <Trans>Property Rentals & Management</Trans></h1>
               <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-              <h2>{mainpitch.description}</h2>
+              <h2>{t('description')}</h2>
             </div>
           </Col>
           <Col xs={12} md={4}>
@@ -214,7 +218,7 @@ const handleSectionLeave = () => {
         left: "50%",
         backgroundColor:"#f5821e"}}>
           <div className="feature-container">
-          <h2 style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}>What We <span style={{color:"#fff"}}>Offer!</span></h2>
+          <h2 style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}><Trans>What We</Trans> <span style={{color:"#fff"}}><Trans>Offer!</Trans></span></h2>
           <br />
     <Row>
       
@@ -233,14 +237,14 @@ const handleSectionLeave = () => {
           }}>
         </div>
         <div className="content-text">
-          <h3 style={{color: "#fff", fontWeight:"bold"}}>Plan the trip of your dreams with us!</h3>
+          <h3 style={{color: "#fff", fontWeight:"bold"}}><Trans>Plan the trip of your dreams with us!</Trans></h3>
             <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
             <p>
-              Book your trip with us and enjoy the best the Algarve has to offer with our spectacular selection of properties and best in class customer service.
-              We have dedicated classic customer care with modern technology to provide a worry free vacation. <a href="/whyBookSmartavillas" style={{color: "#f5821e", fontWeight:"bold", textDecoration:"underline"}}>Read more...</a>
+            <Trans>Book your trip with us and enjoy the best the Algarve has to offer with our spectacular selection of properties and best in class customer service.</Trans>
+            <Trans>We have dedicated classic customer care with modern technology to provide a worry free vacation.</Trans> <Link to="/whyBookSmartavillas" style={{color: "#f5821e", fontWeight:"bold", textDecoration:"underline"}}><Trans>Read more</Trans>...</Link>
             </p>
             <br />
-            <SubmitButton text="See Our Properties" link="/properties"/>
+            <SubmitButton text={t('See Our Properties')} link="/properties"/>
             </div>
       </Col>
       <Col id="right-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("right")} onMouseLeave={()=>handleSectionLeave()}>
@@ -254,19 +258,19 @@ const handleSectionLeave = () => {
          }}>
         </div>
         <div className="content-text">
-          <h3 style={{color: "#fff", fontWeight:"bold"}}>Property Management like no other in the Algarve</h3>
+          <h3 style={{color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
             <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
             <p>
-              We pride ourselves on tailoring our services to meet your needs. Join hundreds of property owners and enjoy the benefits our best in the region service provide.
+              <Trans>We pride ourselves on tailoring our services to meet your needs. Join hundreds of property owners and enjoy the benefits our best in the region service provide.</Trans>
             </p>
             <br />
-          <SubmitButton text="Read More" link="/ListWithUs"/>
+          <SubmitButton text={t('Read more')} link="/ListWithUs"/>
             </div>
       </Col>
     </Row>
   </div>
       <Container style={{zIndex:"2", paddingTop: "30px"}}>
-      <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>At Home in the <span style={{color:"#fff"}}>Algarve</span></h2>
+      <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><Trans>At Home in the</Trans> <span style={{color:"#fff"}}>Algarve</span></h2>
       <br />
         <Row style={{justifyContent:"center"}}>
           
@@ -282,14 +286,14 @@ const handleSectionLeave = () => {
                   
               <Card.Body className="home-card-body">
               <div className="home-card-title">
-                  <h2>Trusted since 2009</h2>
-                  <a href="/team" className="home-card-button-link"><button className="btn">Read More...</button></a>
+                  <h2><Trans>Trusted since 2009</Trans></h2>
+                  <a href="/team" className="home-card-button-link"><button className="btn"><Trans>Read more</Trans>...</button></a>
                 </div>         
               </Card.Body>
               
             </Card>
             <div className="home-card-para">
-                  <p>We are a small and friendly company that really puts you - the customer - first.</p>
+                  <p><Trans>We are a small and friendly company that really puts you - the customer - first.</Trans></p>
             </div>
           </Col>
           <Col className="home-card-container" xs={12} md={4} >
@@ -304,14 +308,14 @@ const handleSectionLeave = () => {
         }}></div>  
               <Card.Body className="home-card-body">
               <div className="home-card-title">
-                <h2>Amazing Location</h2>
-                <a href="/location/algarve" className="home-card-button-link"><button className="btn">Read More...</button></a>
+                <h2><Trans>Amazing Location</Trans></h2>
+                <a href="/location/algarve" className="home-card-button-link"><button className="btn"><Trans>Read more</Trans>...</button></a>
               </div>
               
               </Card.Body>
             </Card>
             <div className="home-card-para">
-                <p style={{textAlign:"center"}}>Spectacular scenery, sandy beaches, good food, friendly people and great golf.</p>
+                <p style={{textAlign:"center"}}><Trans>Spectacular scenery, sandy beaches, good food, friendly people and great golf.</Trans></p>
                 </div>
           </Col>
           <Col className="home-card-container" xs={12} md={4} >
@@ -326,15 +330,15 @@ const handleSectionLeave = () => {
         }}></div>  
               <Card.Body className="home-card-body">
               <div className="home-card-title">
-                <h2>100 + Quality Accommodations</h2>
-                <a href="/properties" className="home-card-button-link"><button className="btn">Book Now...</button></a>
+                <h2><Trans>100 + Quality Accommodations</Trans></h2>
+                <a href="/properties" className="home-card-button-link"><button className="btn"><Trans>Book Now</Trans>...</button></a>
               </div>
               
               </Card.Body>
               
             </Card>
             <div className="home-card-para">
-                <p style={{textAlign:"center"}}>At affordable prices - in the Eastern Algarve, with Tavira being the focal point.</p>
+                <p style={{textAlign:"center"}}><Trans>At affordable prices - in the Eastern Algarve, with Tavira being the focal point.</Trans></p>
                 </div>
           </Col>
         </Row>
@@ -371,14 +375,10 @@ const handleSectionLeave = () => {
           <Col xs={12} md={8}>
             <div style={{display: "flex", height: "100%"}}>
               <div style={{margin: "auto", textAlign:"center"}}>
-              <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold", color: "#f5821e"}}>CLEAN & <span style={{color:"#fff"}}>SAFE SEAL</span></h2>
+              <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold", color: "#f5821e"}}><span dangerouslySetInnerHTML={{__html: t('clean & safe')}} /></h2>
           <br />
           <p style={{color:"#fff"}}>
-            
-Smartavillas.com is committed to providing both the best and safest experience to all our guests and employees. As such we have acquired the Clean & Safe seal guaranteeing our efforts to do so.
-<br />
-<br />
-We are also driven to ensure all our guests have as much clear and valuable information as possible which you can find in our <Link to="/about/Covid-faq" style={{color:"#f5821e", textDecoration:"underline"}}>COVID-19 F.A.Q.</Link>
+          <span dangerouslySetInnerHTML={{__html: t('clean & safe description')}} />
           </p>
               </div>
             </div>
@@ -410,7 +410,7 @@ We are also driven to ensure all our guests have as much clear and valuable info
             </svg>
             </div>
       </section>
-      <Newsletter />
+      <Newsletter lang={language}/>
       <Container style={{paddingLeft:"0", paddingRight:"0"}}>
                   <FirestoreCollection path="/Properties/">
                     {data => {
@@ -418,7 +418,7 @@ We are also driven to ensure all our guests have as much clear and valuable info
                         <>
                         {featuredIds.length > 0 && 
                           <div>
-                            <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Featured <span style={{color:"#f5821e"}}>Properties</span></h2>
+                            <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('featured')}} /></h2>
                             <FeatureCarousel ids={featuredIds} properties={data.value}/>
                           </div>
                         }
@@ -430,14 +430,14 @@ We are also driven to ensure all our guests have as much clear and valuable info
       </Container>
       <section style={{paddingTop:"40px"}}>
         <Container>
-        <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>News & <span style={{color:"#f5821e"}}>Notes</span></h2>
+        <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('news & notes')}} /></h2>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <div dangerouslySetInnerHTML={{ __html: `<div> ${news} </div>` }} />
         </Container>
       </section>
       <section style={{paddingTop:"40px"}}>
       <Container>
-      <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>Our <span style={{color:"#f5821e"}}>Feed</span></h2>
+      <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('our feed')}} /></h2>
       <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
       <InstagramFeed />
       </Container>
@@ -469,7 +469,8 @@ IndexPageTemplate.propTypes = {
 }
 
 const IndexPage = ({ data }) => {
-  const { markdownRemark:post } = data
+
+  const post = data.pageData
 
   return (
     <Layout>
@@ -500,8 +501,8 @@ IndexPage.propTypes = {
 export default IndexPage
 
 export const pageQuery = graphql`
-query IndexPageTemplate {
-  markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+query IndexPageTemplate ($language: String!) {
+  pageData: markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
     html
     frontmatter {
       title
@@ -561,6 +562,15 @@ query IndexPageTemplate {
         }
       }
       news
+    }
+  }
+  locales: allLocale(filter: {ns: {in: ["translation", "index"]},language: {eq: $language}}) {
+    edges {
+      node {
+        ns
+        data
+        language
+      }
     }
   }
 }

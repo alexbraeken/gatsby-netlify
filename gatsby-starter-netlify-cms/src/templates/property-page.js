@@ -8,7 +8,7 @@ import  Tabs  from 'react-bootstrap/Tabs';
 import  Tab  from 'react-bootstrap/Tab';
 import PropCarousel from '../components/PropCarousel';
 import GoogleMapComponent from '../components/GoogleMapComponent';
-import { Link } from 'gatsby';
+import {Link, useI18next} from 'gatsby-plugin-react-i18next';
 import BookingWidget from '../components/BookingWidget';
 import CalendarWidget from '../components/CalendarWidget';
 import StickyBox from "react-sticky-box";
@@ -55,6 +55,8 @@ export const PropertyPageTemplate = ( props ) =>
    const [sections, setSections] = useState(null)
    const [loading, setLoading] = useState(true)
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
+
+   const {originalPath} = useI18next();
 
    useEffect(() => {
     setSections(Array.from(document.getElementsByClassName("prop-page-section")))

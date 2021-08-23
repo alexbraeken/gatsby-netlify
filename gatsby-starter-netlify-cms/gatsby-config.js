@@ -12,111 +12,195 @@ module.exports = {
       'Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With its spectacular scenery, sandy beaches, good food, friendly people and great golf, we can think of no other reason why you would choose to holiday anywhere else! If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further. We pride ourselves on tailoring our services to meet your needs. We are a small and friendly company that really puts you - the customer - first.',
     menuLinks: [
       {
-        "name": "Home",
+        "name": {
+          "en":"Home",
+          "pt": "Início"
+        },
         "link": "/",
         "subNav": null
       },
       {
-        "name": "Our Properties",
+        "name": {
+          "en":"Our Properties",
+          "pt": "As nossas Propriedades"
+        },
         "link": "",
-        "subNav": [{"name":"propertiesList"}]
+        "subNav": [{
+          "name":{
+            "en":"propertiesList",
+            "pt":"propertiesList"
+          }
+        }]
       },
       {
-        "name": "Our Business",
+        "name": {
+          "en":"Our Business",
+          "pt": "A nossa empresa"
+        },
         "link": "/team/",
         "subNav": [{
-          "name": "Why Book With Us?",
+          "name": {
+            "en":"Why Book With Us?",
+            "pt": "Porquê reservar conosco?"
+          },
           "link": "/whyBookSmartavillas",
         },
         {
-          "name": "List Your Property",
+          "name": {
+            "en":"List Your Property",
+            "pt": "Liste Sua Propriedade"
+          },
           "link": "/ListWithUs",
         },
         {
-          "name": "Meet the Team",
+          "name": {
+            "en":"Meet the Team",
+            "pt": "A nossa equipa"
+          },
           "link": "/team",
         },
         ]
       },
       {
-        "name": "Traveller Tips",
+        "name": {
+          "en":"Traveller Tips",
+          "pt": "Dicas de viagem"
+        },
         "link": "/travelerTips/",
         "subNav": null
       },
       {
-        "name": "Holiday Extras",
+        "name": {
+          "en":"Holiday Extras",
+          "pt": "Extras de férias"
+        },
         "link": "",
         "subNav": [{
-          "name": "Airport Transfers",
+          "name": {
+            "en":"Airport Transfers",
+            "pt": "Transferes de Aeroporto"
+          },
           "link": "/holidayExtras/airport-transfers",
         },{
-          "name": "Car Hire",
+          "name": {
+            "en":"Car Hire",
+            "pt": "Aluguer de viaturas"
+          },
           "link": "/holidayExtras/car-hire",
         },{
-          "name": "Food Packs",
+          "name": {
+            "en":"Food Packs",
+            "pt": "Pacotes de Alimentos"
+          },
           "link": "/holidayExtras/food-packs",
         },
       ]
       },
       {
-        "name": "The Algarve",
+        "name": {
+          "en":"The Algarve",
+          "pt": "O  Algarve"
+        },
         "link": "",
-        "subNav": [{
-          "name": "The Algarve",
+        "subNav": [
+          {
+          "name": {
+            "en":"The Algarve",
+            "pt": "O  Algarve"
+          },
           "link": "/location/algarve",
-        },
-        {
-          "name": "Tavira",
-          "link": "/location/tavira",
-        },
-        {
-          "name": "Altura",
-          "link": "/location/altura",
-        },
-        {
-          "name": "Cabanas & Conceicao De Tavira",
-          "link": "/location/cabanasConceicaoDeTavira",
-        },
-        {
-          "name": "Cacela Velha",
-          "link": "/location/cacelaVelha",
-        },
-        {
-          "name": "Castro Marim",
-          "link": "/location/castroMarim",
-        },
-        {
-          "name": "Corte Antonio Martins",
-          "link": "/location/corteAntonioMartins",
-        },
-        {
-          "name": "Fuzeta",
-          "link": "/location/fuzeta",
-        },
-        {
-          "name": "Manta Rota",
-          "link": "/location/mantaRota",
-        },
-        {
-          "name": "Moncarapacho",
-          "link": "/location/moncarapacho",
-        },
-        {
-          "name": "Santa Catarina",
-          "link": "/location/santaCatarina",
-        },
-        {
-          "name": "Santo Estevao",
-          "link": "/location/santoEstevao",
-        },
-        {
-          "name": "Vila Nova De Cacela",
-          "link": "/location/vilaNovaDeCacela",
-        },
-      ]
+          },
+          {
+            "name": {
+              "en":"Tavira",
+              "pt": "Tavira"
+            },
+            "link": "/location/tavira",
+          },
+          {
+            "name": {
+              "en":"Altura",
+              "pt": "Altura"
+            },
+            "link": "/location/altura",
+          },
+          {
+            "name": {
+              "en":"Cabanas & Conceicao De Tavira",
+              "pt": "Cabanas e Conceição De Tavira"
+            },
+            "link": "/location/cabanasConceicaoDeTavira",
+          },
+          {
+            "name": {
+              "en":"Cacela Velha",
+              "pt": "Cacela Velha"
+            },
+            "link": "/location/cacelaVelha",
+          },
+          {
+            "name": {
+              "en":"Castro Marim",
+              "pt": "Castro Marim"
+            },
+            "link": "/location/castroMarim",
+          },
+          {
+            "name": {
+              "en":"Corte Antonio Martins",
+              "pt": "Corte Antonio Martins"
+            },
+            "link": "/location/corteAntonioMartins",
+          },
+          {
+            "name": {
+              "en":"Fuzeta",
+              "pt": "Fuzeta"
+            },
+            "link": "/location/fuzeta",
+          },
+          {
+            "name": {
+              "en":"Manta Rota",
+              "pt": "Manta Rota"
+            },
+            "link": "/location/mantaRota",
+          },
+          {
+            "name": {
+              "en":"Moncarapacho",
+              "pt": "Moncarapacho"
+            },
+            "link": "/location/moncarapacho",
+          },
+          {
+            "name": {
+              "en":"Santa Catarina",
+              "pt": "Santa Catarina"
+            },
+            "link": "/location/santaCatarina",
+          },
+          {
+            "name": {
+              "en":"Santo Estevao",
+              "pt": "Santo Estevao"
+            },
+            "link": "/location/santoEstevao",
+          },
+          {
+            "name": {
+              "en":"Vila Nova De Cacela",
+              "pt": "Vila Nova De Cacela"
+            },
+            "link": "/location/vilaNovaDeCacela",
+          },
+        ]
       },
       {
-        "name": "Contact Us",
+        "name": {
+          "en":"Contact Us",
+          "pt": "Contate-Nos"
+        },
         "link": "/contact",
         "subNav": null
       },
@@ -195,6 +279,32 @@ module.exports = {
         path: `${__dirname}/static/img`,
         name: 'images',
       },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/locales`,
+        name: `locale`
+      }
+    },
+    {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
+        languages: [`en`, `pt`],
+        defaultLanguage: `en`,
+        // if you are using Helmet, you must include siteUrl, and make sure you add http:https
+        siteUrl: `https://www.smartavillas.com`,
+        // you can pass any i18next options
+        // pass following options to allow message content as a key
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false // not needed for react as it escapes by default
+          },
+          keySeparator: false,
+          nsSeparator: false
+        }
+      }
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',

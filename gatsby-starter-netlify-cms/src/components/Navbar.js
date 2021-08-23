@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from 'react'
+import {Link, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
-import { Link, graphql, StaticQuery } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
 import logo from '../img/smartavillas logo.png'
 import Container from 'react-bootstrap/Container'
@@ -118,6 +119,30 @@ const PropertiesDropDown = React.memo((props) => {
           )
 })
 
+const LanguageChange = (props) => {
+
+  const {languages, changeLanguage} = useI18next();
+  
+
+  return (
+    <ul className="languages">
+      {languages.map((lng) => (
+        <li key={lng}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              changeLanguage(lng);
+            }}>
+            {lng}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+
 
 const Navbar = class extends React.Component {
   constructor(props) {
@@ -137,7 +162,7 @@ const Navbar = class extends React.Component {
       navClass: '',
       menuPadding:{},
       burgerStyle: {},
-      isTabletOrMobile: false
+      lang: 'en'
     }
     this.checkPathForNav = this.checkPathForNav.bind(this)
     this.componentGracefulUnmount = this.componentGracefulUnmount.bind(this)
@@ -149,10 +174,10 @@ const Navbar = class extends React.Component {
     const padding =  isTabletOrMobile ? "10px" : `${this.nav.current.getBoundingClientRect().height}px`
     const top = document.getElementsByClassName("newsAlert")?.[0].getBoundingClientRect().height || 0
     
-    const path = window.location.pathname
-    const propPage = path.match(/(?:\/properties\/)([^\?]+)(?=\?*)/)
+    const {originalPath} = this.props.useI18next;
+    const propPage = originalPath.match(/(?:\/properties\/)([^\?]+)(?=\?*)/)
     
-    if(window && path === "/"){
+    if(window && originalPath === "/"){
       this.setState({style: {
         position: 'absolute',
         width: '100%',
@@ -210,8 +235,11 @@ const Navbar = class extends React.Component {
 
 
   componentDidMount(){
-    this.checkPathForNav()
+    this.checkPathForNav();
+    const { language } = this.props.useI18next;
+    this.setState({lang: language})
     window.addEventListener('beforeunload', this.componentGracefulUnmount);
+    
   }
 
   componentDidUpdate(prevProps){
@@ -277,10 +305,15 @@ const Navbar = class extends React.Component {
     return [...filter].sort()
 }
 
+
+
+
   render() {
 
     const { data } = this.props
     const Links = data.site.siteMetadata.menuLinks
+
+    
 
 
     return (
@@ -321,13 +354,13 @@ const Navbar = class extends React.Component {
           Links.map((Link, index) => {
             return Link.subNav  ? 
             <div className="navbar-item" role="button" tabIndex="0" onClick={()=>this.toggleDropDown(Link.subNav, index)} onKeyDown={(e)=>{if(e.key === 'Enter'){this.toggleDropDown(Link.subNav, index)}}} style={{cursor:"pointer"}} key={index}>
-                {Link.name} <div className="dropdown-arrow" id={`arrow-${index}`}><FontAwesomeIcon icon={faChevronDown}/></div>
+                {Link.name[this.state.lang]} <div className="dropdown-arrow" id={`arrow-${index}`}><FontAwesomeIcon icon={faChevronDown}/></div>
             </div>
             :
             <>
             <a href={`${Link.link}`} key={index}>
                                       <div  className="navbar-item">
-                                      {Link.name}
+                                      {Link.name[this.state.lang]}
                                       </div>
                                     </a> 
             </>
@@ -345,6 +378,9 @@ const Navbar = class extends React.Component {
                 </span>
                 Login
               </a>
+              <div className="navbar-item">
+                <LanguageChange getPath={this.getOriginalPath}/>
+              </div>
             </div>
           </div>
         </div>
@@ -353,13 +389,13 @@ const Navbar = class extends React.Component {
       onMouseLeave={!this.state.isTabletOrMobile ? ()=>this.toggleDropDown() : null}>
         <Container style={{display:"grid"}}>
           {this.state.isTabletOrMobile && <FontAwesomeIcon icon={faArrowLeft} onClick={()=>this.toggleDropDown()} className="submenu-return-arrow"/>}
-          {this.state.subNav && this.state.subNav[0].name !== "propertiesList" ? 
+          {this.state.subNav && this.state.subNav[0].name.en !== "propertiesList" ? 
           <>
           {this.state.subNav.map((link, index)=>{
             return link ? 
             <a href={`${link.link}`} key={index}>
               <div  className="navbar-item drop-item">
-                {link.name}
+                {link.name[this.state.lang]}
               </div>
             </a>
             : null }
@@ -367,7 +403,7 @@ const Navbar = class extends React.Component {
           </>
           :
           <>
-            {this.state.subNav && this.state.subNav[0].name === "propertiesList" ?
+            {this.state.subNav && this.state.subNav[0].name.en === "propertiesList" ?
             <> 
               <PropertiesDropDown filterList={this.filterList}/>
             </>
@@ -398,16 +434,22 @@ export default (props) => (
           siteMetadata {
             menuLinks {
               link
-              name
+              name{
+                en
+                pt
+              }
               subNav {
                 link
-                name
+                name {
+                  en
+                  pt
+                }
               }
             }
           }
         }
       }
     `}
-    render={(data, count) => <Navbar data={data} count={count}/>}
+    render={(data, count) => <Navbar data={data} count={count} useI18next={useI18next()}/>}
   />
 )

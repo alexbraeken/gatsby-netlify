@@ -1,4 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
+import { graphql } from 'gatsby'
+import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
@@ -75,6 +77,8 @@ const SearchFilter = (props) => {
     const bedrooms = useRef(null)
     const multiselect = useRef(null)
     const fromToContainer = useRef(null)
+
+    const {t} = useTranslation();
   
     useEffect(() => {
       setDatesWidth(fromToContainer.current.clientWidth)
@@ -189,7 +193,7 @@ const SearchFilter = (props) => {
           isMulti
           closeMenuOnSelect={false}
           ref={multiselect}
-          placeholder="Select Locations"/>
+          placeholder={t('Select Locations')}/>
           <div className="InputFromTo" style={{display: "flex",
               justifyContent: "center",
               position: "relative",
@@ -199,7 +203,7 @@ const SearchFilter = (props) => {
               ref={fromToContainer}>
           <DayPickerInput
             value={from}
-            placeholder="Arrival Date"
+            placeholder={t('Arrival Date')}
             format="LL"
             formatDate={formatDate}
             parseDate={parseDate}
@@ -218,7 +222,7 @@ const SearchFilter = (props) => {
             <DayPickerInput
               ref={toRef}
               value={to}
-              placeholder="Departure Date"
+              placeholder={t("Departure Date")}
               format="LL"
               formatDate={formatDate}
               parseDate={parseDate}
@@ -237,7 +241,7 @@ const SearchFilter = (props) => {
         </div>
         <Form.Group className="input-guests">
             <Form.Control as="select" className="home-search-dropdown" style={{height:"100%"}} ref={bedrooms}>
-                <option value="">Bedrooms</option>
+                <option value="">{t("Bedrooms")}</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -251,7 +255,7 @@ const SearchFilter = (props) => {
             </Form.Control>
         </Form.Group>
         <div role="button" tabindex="0" onClick={submitSearch} onKeyDown={(e)=>{if(e.key==="Enter"){submitSearch()}}}>
-        <SubmitButton text="See What We Have!" />
+        <SubmitButton text={t("See What We Have!")}/>
         </div>
         <Helmet>
           <style>{`
@@ -310,3 +314,17 @@ const SearchFilter = (props) => {
 }
 
 export default SearchFilter
+
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: {language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

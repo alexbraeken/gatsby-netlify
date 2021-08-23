@@ -2,6 +2,7 @@ import React, {useState, useEffect, Component, useCallback} from 'react'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
 import { Router } from "@reach/router"
+import {Link, useI18next} from 'gatsby-plugin-react-i18next';
 import PropertyTemplate from "../../templates/property-page"
 import Layout from '../../components/Layout'
 import PropFeatures from '../../components/PropFeatures'
@@ -306,7 +307,7 @@ const Properties = React.memo((props) => {
 
 
 
-export default class PropertiesPage extends Component {
+const PropertiesClass = class extends React.Component {
     constructor(props){
         super(props);
         this.state={
@@ -333,35 +334,36 @@ export default class PropertiesPage extends Component {
 
 
     handlePathChange(path){
-        this.setState({path: path})
-       const filterValues = queryString.parse(this.props.location.search);
-       const keys = Object.keys(filterValues)
-       keys.forEach(key =>{
-           if(key === "bedrooms"){
-                this.setState((state, props)=>({
-                    ...state,
-                    bedrooms: [parseInt(filterValues[key]), filterValues[key]+1 <11 ? filterValues[key] + 1: 10]
-                }), ()=>{
-                })
-           }
-           else{
-        let searchArray = filterValues[key];
-        searchArray = (Array.isArray(searchArray)?searchArray:[searchArray]);
-           this.setState((state, props)=>({
-               ...state,
-               searchArray:{
-                   ...state.searchArray,
-                   [`${key}`]:searchArray
-               },
-               filteredSearch: {
-                   ...state.filteredSearch,
-                   [`${key}`]: true
-               }
-           }), ()=>{
-           })
+        if(path){
+            this.setState({path: path})
+            const filterValues = queryString.parse(this.props.props.location.search);
+            const keys = Object.keys(filterValues)
+            keys.forEach(key =>{
+                if(key === "bedrooms"){
+                     this.setState((state, props)=>({
+                         ...state,
+                         bedrooms: [parseInt(filterValues[key]), filterValues[key]+1 <11 ? filterValues[key] + 1: 10]
+                     }), ()=>{
+                     })
+                }
+                else{
+                    let searchArray = filterValues[key];
+                    searchArray = (Array.isArray(searchArray)?searchArray:[searchArray]);
+                    this.setState((state, props)=>({
+                        ...state,
+                        searchArray:{
+                            ...state.searchArray,
+                            [`${key}`]:searchArray
+                        },
+                        filteredSearch: {
+                            ...state.filteredSearch,
+                            [`${key}`]: true
+                        }
+                    }), ()=>{
+                    })
+                } 
+            })
         }
-           
-       })
     }
 
     
@@ -453,9 +455,9 @@ export default class PropertiesPage extends Component {
         return (
             <Layout pathKey={this.state.path} propTitle="Smartavillas - Algarve Property Listings" propDescription="Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With dozens of properties, from Villas to seaside Apartments, Smartavillas offers the best the Algarve has to offer.">
                 <Router>
-                        <PropertyTemplate path="/properties/:id" 
+                        <PropertyTemplate path={`${this.props.useI18next.routed ? "/:locale/properties/:id" : "/properties/:id"}`}
                         handlePathChange= {this.handlePathChange}/>
-                        <Properties path ="/properties" 
+                        <Properties path ={`${this.props.useI18next.routed ? "/:locale/properties" : "/properties" }`}
                         state={this.state} 
                         handleChange={this.handleChange} 
                         filterList={this.filterList} 
@@ -470,3 +472,11 @@ export default class PropertiesPage extends Component {
           );
     }
 }
+
+const PropertiesPage = (props) => {
+    return (
+        <PropertiesClass props={props} useI18next={useI18next()}/>
+    )
+}
+
+export default PropertiesPage

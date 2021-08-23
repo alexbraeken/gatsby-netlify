@@ -2,7 +2,7 @@ import React from 'react'
 import Container from 'react-bootstrap/Container'
 import { Helmet } from 'react-helmet'
 
-const Newsletter = () => (
+const Newsletter = (props) => (
         <Container style={{margin:"50px auto"}}>
             <Helmet>
             <script>{`(function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
@@ -15,11 +15,11 @@ var ml_account = ml('accounts', '2710252', 's7t2o9x9p0', 'load');`}
 </script>
             <style>
                 {`
-                #subscribe-form #mlb2-3228322.ml-form-embedContainer .ml-form-embedWrapper.embedForm{
+                #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper.embedForm{
                 max-width:80%
                 }
                 @media only screen and (max-width: 900px){
-                #subscribe-form #mlb2-3228322.ml-form-embedContainer .ml-form-embedWrapper.embedForm{
+                #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper.embedForm{
                     max-width:400px
                 }
                 }`}
@@ -28,7 +28,7 @@ var ml_account = ml('accounts', '2710252', 's7t2o9x9p0', 'load');`}
             </Helmet>
             <div className="ml-form-embed"
                 data-account="2710252:s7t2o9x9p0"
-                data-form="3228322:d1b6m6"
+                data-form={props.lang === "pt" ? "4594648:g2t5i3" : "3228322:d1b6m6"}
                 id="subscribe-form">
             </div>
         </Container>
