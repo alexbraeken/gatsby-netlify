@@ -1,9 +1,71 @@
 import React, {useState, useEffect} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { Helmet } from 'react-helmet'
 import { GiLockedDoor } from "@react-icons/all-files/gi/GiLockedDoor";
 import 'react-day-picker/lib/style.css';
 
+const LANGUAGES = ['en', 'pt']
+
+const WEEKDAYS_LONG = {
+  en: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  pt: [
+    'Domigo',
+     'Segunda-feira',
+     'Terça',
+     'Quarta-feira',
+     'Quinta-feira',
+     'Sexta-feira',
+     'Sábado',
+  ],
+};
+const WEEKDAYS_SHORT = {
+  en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+  pt: ['D', '1', '2', '3', '4', '5', 'S'],
+};
+const MONTHS = {
+  en: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  pt: [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ],
+};
+
+const FIRST_DAY = {
+  en: 0,
+  pt: 0,
+};
 
 
 
@@ -21,6 +83,9 @@ const CalendarWidget = (props) => {
       });
     const [minStayAlert, setMinStayAlert] = useState(false)
     const [startMonthYear, setStartMonthYear] = useState({startYear: null, startMonth: null})
+
+    const {t} = useTranslation(['calendar', 'translation']);
+    const { language } = useI18next()
 
     const uri = `https://platform.hostfully.com/api/notavailabledates_get_api.jsp?jsoncallback=jsonpCallbackGetNotAvailableDates&propertyUID=${props.id}&handleCheckInCheckOut=false`
     
@@ -202,6 +267,42 @@ const CalendarWidget = (props) => {
         },
     }
 
+    function formatDay(d, locale = 'en') {
+
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return `${WEEKDAYS_LONG[loc][d.getDay()]}, ${d.getDate()} ${
+        MONTHS[loc][d.getMonth()]
+      } ${d.getFullYear()}`;
+    }
+    
+    function formatMonthTitle(d, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return `${MONTHS[loc][d.getMonth()]} ${d.getFullYear()}`;
+    }
+    
+    function formatWeekdayShort(i, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return WEEKDAYS_SHORT[loc][i];
+    }
+    
+    function formatWeekdayLong(i, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return WEEKDAYS_SHORT[loc][i];
+    }
+    
+    function getFirstDayOfWeek(locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return FIRST_DAY[loc];
+    }
+    
+    const localeUtils = {
+      formatDay,
+      formatMonthTitle,
+      formatWeekdayShort,
+      formatWeekdayLong,
+      getFirstDayOfWeek,
+    };
+
     const today = new Date()
     let nextYear = DateUtils.addMonths(today, 12)
     let limitDate = DateUtils.addMonths(today, 24)
@@ -254,7 +355,7 @@ const CalendarWidget = (props) => {
             {modifiers.checkinDisallowed &&
               <div className="icon-info" style={checkinIcon}>
                <GiLockedDoor />
-               <span className="tooltiptext">No Checkin Allowed</span>
+               <span className="tooltiptext">{t("No Checkin Allowed")}</span>
               </div>
             }
             {props.pricingPeriods?.[date] &&
@@ -270,26 +371,26 @@ const CalendarWidget = (props) => {
         <>
         <div style={{display: "flex", flexWrap:"wrap"}}>
           <div style={{display: "flex", margin: "auto auto auto 0", minWidth:"300px"}}>
-          {!from && !to && <span style={{margin:"auto 0"}}>Please select the first day.</span>}
-          {from && !to && <span style={{margin:"auto 0"}}>Please select the last day.</span>}
+          {!from && !to && <span style={{margin:"auto 0"}}>{t("Please select the first day")}.</span>}
+          {from && !to && <span style={{margin:"auto 0"}}>{t("Please select the last day")}.</span>}
           {from &&
             to &&
-            <span style={{margin:"auto 0"}}><span className="orangeText">{(to - from)/(1000*60*60*24)} Nights</span> 
+            <span style={{margin:"auto 0"}}><span className="orangeText">{(to - from)/(1000*60*60*24)} {t("Nights")}</span> 
             <br />
             <small>Selected from {from.toLocaleDateString()} to {to.toLocaleDateString()}</small></span>}
           </div>
           {from && to && (
             <div style={{display: "flex", flexWrap:"nowrap", minWidth:"200px"}}>
               <button className="calendar-btn main" onClick={handleQuoteClick}>
-                Get a quote
+              {t("Get a quote")}
               </button>
               
               <button className="calendar-btn clear" onClick={handleResetClick}>
-                Clear
+              {t("Clear")}
               </button>
             </div>
           )}
-          <span className={`min-warning ${minStayAlert? 'visible': ''}`} style={{minWidth:"100%"}}>Min stay: {props.minDays} nights</span>
+          <span className={`min-warning ${minStayAlert? 'visible': ''}`} style={{minWidth:"100%"}}>{t("Min stay")}: {props.minDays} {t("Nights")}</span>
 
         </div>
             <DayPicker
@@ -308,6 +409,8 @@ const CalendarWidget = (props) => {
             onDayClick={handleDayClick}
             onDayMouseEnter={handleDayMouseEnter}
             renderDay={renderDay}
+            locale={language} 
+            localeUtils={localeUtils}
             />
 
       <Helmet>

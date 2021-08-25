@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { FirestoreDocument } from "@react-firebase/firestore";
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +9,6 @@ import  Tabs  from 'react-bootstrap/Tabs';
 import  Tab  from 'react-bootstrap/Tab';
 import PropCarousel from '../components/PropCarousel';
 import GoogleMapComponent from '../components/GoogleMapComponent';
-import {Link, useI18next} from 'gatsby-plugin-react-i18next';
 import BookingWidget from '../components/BookingWidget';
 import CalendarWidget from '../components/CalendarWidget';
 import StickyBox from "react-sticky-box";
@@ -56,7 +56,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [loading, setLoading] = useState(true)
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
 
-   const {originalPath} = useI18next();
+   const {t} = useTranslation(['property', 'translation']);
 
    useEffect(() => {
     setSections(Array.from(document.getElementsByClassName("prop-page-section")))
@@ -251,8 +251,8 @@ export const PropertyPageTemplate = ( props ) =>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <div className="prdtitlesolo productNameTitle">
                                 {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-          <div className="ribbon"><span>Also Winter Let</span></div>
-          }
+                                    <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
+                                }
                                 <Container>
                                     <Col>
                                         <Row>     
@@ -264,8 +264,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
                                                 <Row>
                                                     <div className="flag under" style={{marginRight:"10px"}}>
-                                                        <span className="prc">From {data.value.baseDailyRate} €</span>
-                                                        <span className="mth"> / Night</span>
+                                                        <span className="prc">{t("From")} {data.value.baseDailyRate} €</span>
+                                                        <span className="mth"> / {t("Night")}</span>
                                                     </div>
                                                 
                                                 <span className="titleTags">
@@ -299,9 +299,9 @@ export const PropertyPageTemplate = ( props ) =>
                                     <br />
                                     <Row>
                                     <Col>
-                                        <Row id="about" data-title="About" className="prop-page-section">
+                                        <Row id="about" data-title={t("About Prop")} className="prop-page-section">
                                             <Col xs={12} md={9}>
-                                                <h2>About</h2>
+                                                <h2>{t("About Prop")}</h2>
                                                 <br />
                                                 <p>
                                                 {data.value.description}
@@ -315,8 +315,8 @@ export const PropertyPageTemplate = ( props ) =>
                                             <FirestoreDocument path={`/amenities/${props.id}`}>
                                                 {amens => {
                                                     return (!amens.isLoading && amens.value) ? 
-                                                    <div id="amenities" data-title="Amenities" className="prop-page-section">
-                                                        <h2>Amenities</h2>
+                                                    <div id="amenities" data-title={t("Amenities")} className="prop-page-section">
+                                                        <h2>{t("Amenities")}</h2>
                                                         <br />
                                                         <div className="amenities-list">
                                                         {sortAmenities(Object.entries(amens.value)).map((amen, index) => {
@@ -334,7 +334,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <br />
                                                         </div>
                                                         <br />
-                                                        <button className="btn" type="" onClick={()=>handleShowAmenities()}>{showAllAmenities?<>Less...</>:<p>Show all {amenitiesLength-1}...</p>}</button>
+                                                        <button className="btn" type="" onClick={()=>handleShowAmenities()}>{showAllAmenities?<>{t("Less")}...</>:<p>{t("Show all")} {amenitiesLength-1}...</p>}</button>
                                                     </div> : "Loading" 
                                                 }}
                                             </FirestoreDocument>
@@ -343,8 +343,8 @@ export const PropertyPageTemplate = ( props ) =>
                                     <Row>
                                         <Col xs={12} md={9}>
                                             <hr />
-                                            <div id="calendar" data-title="Calendar" className="prop-page-section">
-                                                <h2>Calendar</h2>
+                                            <div id="calendar" data-title={t("Calendar")} className="prop-page-section">
+                                                <h2>{t("Calendar")}</h2>
                                                 <br />
                                                 <FirestoreDocument path={`PricingPeriods/${props.id}`}>
                                                     {pricePeriods => {
@@ -368,8 +368,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="space" data-title="Space" className="prop-page-section">
-                                                                    <h2>Space</h2>
+                                                                <div id="space" data-title={t("Space")} className="prop-page-section">
+                                                                    <h2>{t("Space")}</h2>
                                                                     <br />
                                                                     {descriptions.value.en_US.space}
                                                                     <br />
@@ -385,21 +385,21 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="neighborhood" data-title="Neighborhood" className="prop-page-section">
+                                                                <div id="neighborhood" data-title={t("Neighborhood")} className="prop-page-section">
                                                                 <div className={descriptions.value.en_US.neighborhood.length>400 ? `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`: undefined}>
-                                                                    <h2>Neighborhood</h2>
+                                                                    <h2>{t("Neighborhood")}</h2>
                                                                     <br />
                                                                     {descriptions.value.en_US.neighborhood.substring(0,400)}
                                                                     {showNeighborhoodReadMore && <span id="more">
                                                                         {descriptions.value.en_US.neighborhood.substring(400)}
                                                                         <br />
                                                                         <br />
-                                                                        <p>Find out more about the Algarve <Link to="/location/algarve"><span className="orangeText hover-highlight">here...</span></Link></p>
+                                                                        <p>{t("Find out more about the Algarve")} <Link to="/location/algarve"><span className="orangeText hover-highlight">{t("here")}...</span></Link></p>
                                                                         </span>}
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.neighborhood.length>400 && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>Read More...</p>}</button>}
+                                                                    {descriptions.value.en_US.neighborhood.length>400 && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -410,9 +410,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <hr />
                                                         <Col xs={12} md={travelDistances.display? 5 : 9}>
-                                                                <div id="gettingAround" data-title="Getting Around" className="prop-page-section">
+                                                                <div id="gettingAround" data-title={t("Getting Around")} className="prop-page-section">
                                                                 <div className={descriptions.value.en_US.transit.length>400 ? `prop-description-box ${showTransitReadMore ? 'show' : ''}`: undefined}>
-                                                                    <h2>Getting Around</h2>
+                                                                    <h2>{t("Getting Around")}</h2>
                                                                     <br />
                                                                     {descriptions.value.en_US.transit.substring(0,400)}
                                                                     {showTransitReadMore && <span id="more">
@@ -421,31 +421,31 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.transit.length>400 && <button className="btn" type="" onClick={()=>setShowTransitReadMore(!showTransitReadMore)}>{showTransitReadMore?<>Less...</>:<p>Read More...</p>}</button>}
+                                                                    {descriptions.value.en_US.transit.length>400 && <button className="btn" type="" onClick={()=>setShowTransitReadMore(!showTransitReadMore)}>{showTransitReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
                                                         {travelDistances.display && 
                                                         <Col xs={12} md={4}>
                                                                 <div className="keyDistances">
-                                                                    <h3>Key Distances</h3>
+                                                                    <h3>{t("Key Distances")}</h3>
                                                                     <hr />
                                                                     <div>
                                                                         <ul>
                                                                             {travelDistances.Town && <li>
-                                                                            <FontAwesomeIcon icon={faBuilding} style={{margin:"auto"}}/> Town:  {travelDistances.Town}
+                                                                            <FontAwesomeIcon icon={faBuilding} style={{margin:"auto"}}/> {t("Town")}:  {travelDistances.Town}
                                                                             </li>}
                                                                             {travelDistances.Beach && <li>
-                                                                            <FontAwesomeIcon icon={faUmbrellaBeach} style={{margin:"auto"}}/> Beach:  {travelDistances.Beach}
+                                                                            <FontAwesomeIcon icon={faUmbrellaBeach} style={{margin:"auto"}}/> {t("Beach")}:  {travelDistances.Beach}
                                                                             </li>}
                                                                             {travelDistances.Golf && <li>
-                                                                            <FontAwesomeIcon icon={faGolfBall} style={{margin:"auto"}}/> Golf:  {travelDistances.Golf}
+                                                                            <FontAwesomeIcon icon={faGolfBall} style={{margin:"auto"}}/> {t("Golf")}:  {travelDistances.Golf}
                                                                             </li>}
                                                                             {travelDistances.Airport && <li>
-                                                                            <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> Airport:  {travelDistances.Airport}
+                                                                            <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> {t("Airport")}:  {travelDistances.Airport}
                                                                             </li>}
                                                                             {travelDistances.Market && <li>
-                                                                <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> Supermarket:  {travelDistances.Market}
+                                                                <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> {t("Supermarket")}:  {travelDistances.Market}
                                                                 </li>}
                                                                         </ul>
                                                                     </div>
@@ -459,8 +459,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                            <div id="reviews" data-title="Reviews" className="prop-page-section">
-                                                                <div style={{display: "flex", flexWrap: "nowrap", justifyContent: "space-between"}}><h2>Reviews</h2> <div style={{display: "flex"}}><small style={{margin:"auto", display: "flex"}}>Average Rating: {avgRating} <BsStarFill className="review-star" style={{margin: "auto"}}/></small></div></div>
+                                                            <div id="reviews" data-title={t("Reviews")} className="prop-page-section">
+                                                                <div style={{display: "flex", flexWrap: "nowrap", justifyContent: "space-between"}}><h2>{t("Reviews")}</h2> <div style={{display: "flex"}}><small style={{margin:"auto", display: "flex"}}>{t("Average Rating")}: {avgRating} <BsStarFill className="review-star" style={{margin: "auto"}}/></small></div></div>
                                                                 <br />
                                                                 <Reviews reviews={reviews}/>
                                                             </div>
@@ -471,16 +471,16 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="notes" data-title="Notes" className="prop-page-section">
+                                                                <div id="notes" data-title={t("Notes")} className="prop-page-section">
                                                                     <div className={descriptions.value.en_US.notes.length>400 ? `prop-description-box ${showNotesReadMore ? 'show' : ''}` : undefined}>
-                                                                    <h2>Notes</h2>
+                                                                    <h2>{t("Notes")}</h2>
                                                                     <br />
                                                                     {descriptions.value.en_US.notes.substring(0,400)}
                                                                     {showNotesReadMore && <span id="more">{descriptions.value.en_US.notes.substring(400)}</span>}
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.notes.length>400 && <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>Read More...</p>}</button>}
+                                                                    {descriptions.value.en_US.notes.length>400 && <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -489,16 +489,16 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
-                                                                <div id="access" data-title="Your Arrival" className="prop-page-section">
+                                                                <div id="access" data-title={t("Your Arrival")} className="prop-page-section">
                                                                     <div className={descriptions.value.en_US.access.length>400 ? `prop-description-box ${showAccessReadMore ? 'show' : ''}` : undefined}>
-                                                                    <h2>Your Arrival</h2>
+                                                                    <h2>{t("Your Arrival")}</h2>
                                                                     <br />
                                                                     {descriptions.value.en_US.access.substring(0,400)}
                                                                     {showAccessReadMore && <span id="more">{descriptions.value.en_US.access.substring(400)}</span>}
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.access.length>400 && <button className="btn" type="" onClick={()=>setShowAccessReadMore(!showAccessReadMore)}>{showAccessReadMore?<>Less...</>:<p>Read More...</p>}</button>}
+                                                                    {descriptions.value.en_US.access.length>400 && <button className="btn" type="" onClick={()=>setShowAccessReadMore(!showAccessReadMore)}>{showAccessReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -509,14 +509,14 @@ export const PropertyPageTemplate = ( props ) =>
                                                             <hr />
                                                                 <div id="interaction">
                                                                 <div className={descriptions.value.en_US.interaction.length>400 ? `prop-description-box ${showInteractionReadMore ? 'show' : ''}` : undefined}>
-                                                                    <h2>During Your Stay</h2>
+                                                                    <h2>{t("During Your Stay")}</h2>
                                                                     <br />
                                                                     {descriptions.value.en_US.interaction.substring(0,400)}
                                                                     {showInteractionReadMore && <span id="more">{descriptions.value.en_US.interaction.substring(400)}</span>}
                                                                 </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.interaction.length>400 && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>Read More...</p>}</button>}
+                                                                    {descriptions.value.en_US.interaction.length>400 && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -531,33 +531,33 @@ export const PropertyPageTemplate = ( props ) =>
                                             <StickyBox offsetTop={50}>
                                                 <div className="tabs-container">
                                                 <Tabs defaultActiveKey="propSpecs" id="keyDetails">
-                                                    <Tab eventKey="propSpecs" title="Property Specs." tabClassName="orangeText">
+                                                    <Tab eventKey="propSpecs" title={t("Property Specs.")} tabClassName="orangeText">
                                                     <ul>
-                                                        <li>Licence: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
-                                                        <li>Type: <span style={{float: "right"}}>{data.value.type}</span></li>
-                                                        <li>Size: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
-                                                        <li>Location: <span style={{float: "right"}}>{data.value.city}</span></li>
+                                                        <li>{t("Licence")}: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
+                                                        <li>{t("Type")}: <span style={{float: "right"}}>{data.value.type}</span></li>
+                                                        <li>{t("Size")}: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
+                                                        <li>{t("Location")}: <span style={{float: "right"}}>{data.value.city}</span></li>
                                                         {poolDimensions && 
-                                                        <li><FontAwesomeIcon icon={faSwimmingPool} style={{margin:"auto"}}/> Pool Size: <span style={{float: "right"}}>{poolDimensions}</span></li>}
+                                                        <li><FontAwesomeIcon icon={faSwimmingPool} style={{margin:"auto"}}/> {t("Pool Size")}: <span style={{float: "right"}}>{poolDimensions}</span></li>}
                                                     </ul>
                                                     </Tab>
-                                                    <Tab eventKey="keyDistances" title="Key Distances" className="keyDistances" tabClassName="orangeText keyDistances">
+                                                    <Tab eventKey="keyDistances" title={t("Key Distances")} className="keyDistances" tabClassName="orangeText keyDistances">
                                                         <div>
                                                             <ul>
                                                                 {travelDistances.Town && <li >
-                                                                <FontAwesomeIcon icon={faBuilding} style={{margin:"auto"}}/> Town:  {travelDistances.Town}
+                                                                <FontAwesomeIcon icon={faBuilding} style={{margin:"auto"}}/> {t("Town")}:  {travelDistances.Town}
                                                                 </li>}
                                                                 {travelDistances.Beach && <li >
-                                                                <FontAwesomeIcon icon={faUmbrellaBeach} style={{margin:"auto"}}/> Beach:  {travelDistances.Beach}
+                                                                <FontAwesomeIcon icon={faUmbrellaBeach} style={{margin:"auto"}}/> {t("Beach")}:  {travelDistances.Beach}
                                                                 </li>}
                                                                 {travelDistances.Golf && <li >
-                                                                <FontAwesomeIcon icon={faGolfBall} style={{margin:"auto"}}/> Golf:  {travelDistances.Golf}
+                                                                <FontAwesomeIcon icon={faGolfBall} style={{margin:"auto"}}/> {t("Golf")}:  {travelDistances.Golf}
                                                                 </li>}
                                                                 {travelDistances.Airport && <li >
-                                                                <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> Airport:  {travelDistances.Airport}
+                                                                <FontAwesomeIcon icon={faPlaneDeparture} style={{margin:"auto"}}/> {t("Airport")}:  {travelDistances.Airport}
                                                                 </li>}
                                                                 {travelDistances.Market && <li >
-                                                                <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> Supermarket:  {travelDistances.Market}
+                                                                <FontAwesomeIcon icon={faShoppingCart} style={{margin:"auto"}}/> {t("Supermarket")}:  {travelDistances.Market}
                                                                 </li>}
                                                                 {travelDistances.Car && <li className="car-essential-list">
                                                                 <FontAwesomeIcon icon={faCar} style={{margin:"auto"}}/>   {travelDistances.Car}
@@ -567,10 +567,10 @@ export const PropertyPageTemplate = ( props ) =>
                                                     </Tab>
                                                     {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
                                                     <Tab eventKey="winterLets" title="Winter Let Details" tabClassName="orangeText">
-                                                        <p>Discounted monthly rates are applicable between Nov-March (inclusive) at <b>{data.value.customData?.Winter_Let_Price}€ / Month* </b>(internet included).
+                                                        <p>{t("Winter Let Discount Paragraph pre price")}<b>{data.value.customData?.Winter_Let_Price}</b>{t("Winter Let Discount Paragraph post price")}
                                                             <br />
-                                                            <small>*Consumed utilities (gas, water, electricity) will incur an extra charge, calculated by meter readings.
-                                                            For further info please enquire below</small>
+                                                            <small>
+                                                            {t("Winter Let Discount Paragraph asterisk")}</small>
                                                         </p>
                                                     </Tab>
                                                     }
@@ -582,7 +582,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 {smartaOpinion &&
                                                 <div>
                                                     <div className="thought bubble">
-                                                        <h4>Smartavillas' Opinion:</h4>
+                                                        <h4>{t("Smartavillas' Opinion")}:</h4>
                                                         <br />
                                                         <p>
                                                            {smartaOpinion} 
@@ -600,7 +600,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <svg className="icon-arrow before">
                                                             <use xlinkHref="#arrow" />
                                                         </svg>
-                                                        <span className="label">Enquire about this property</span>
+                                                        <span className="label">{t("Enquire about this property")}</span>
                                                         <svg className="icon-arrow after">
                                                             <use xlinkHref="#arrow"/>
                                                         </svg>
@@ -616,12 +616,12 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </div>
                                                 <br />
                                                 <div>
-                                                <center><a href="/about/booking-terms-conditions" target="_blank"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>Booking Terms & Conditions</span> <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto"}} /></a></center>
+                                                <center><a href="/about/booking-terms-conditions" target="_blank"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>{t("Booking Terms & Conditions")}</span> <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto"}} /></a></center>
                                                 </div>
                                                 {damageWaiver &&
                                                 <div style={{paddingBottom:"20px"}}> 
                                                     <br />
-                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span role="button" tabindex="0" aria-label="Damage Waiver" style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)} onKeyDown={(e)=>{if(e.key==="Enter"){setWaiverOpen(!waiverOpen)}}}>Security Deposit/Damage Waivers</span> <FontAwesomeIcon className={`expand-chevron ${waiverOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto"}} /></center>
+                                                    <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span role="button" tabindex="0" aria-label="Damage Waiver" style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)} onKeyDown={(e)=>{if(e.key==="Enter"){setWaiverOpen(!waiverOpen)}}}>{t("Security Deposit/Damage Waivers")}</span> <FontAwesomeIcon className={`expand-chevron ${waiverOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto"}} /></center>
                                                     <Collapse in ={waiverOpen}>
                                                         <div>
                                                             <p>
@@ -638,9 +638,9 @@ export const PropertyPageTemplate = ( props ) =>
                                     </Container>
                                     <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
                                     <hr />
-                                    <div id="location" data-title="Location" className="prop-page-section">
+                                    <div id="location" data-title={t("Location")} className="prop-page-section">
                                         <Container>
-                                        <h2>Location</h2>
+                                        <h2>{t("Location")}</h2>
                                         <br />
                                         </Container>
                                         <GoogleMapComponent isMarkerShown="true" lat={data.value.latitude} lng={data.value.longitude} height={"500px"} activities={true} activityCoords={activitiesCoords}/>
@@ -727,4 +727,3 @@ const PropertyPage = (data) => {
 }
 
 export default PropertyPage
-

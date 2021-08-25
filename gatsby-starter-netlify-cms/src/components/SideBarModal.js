@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Col, Row } from 'react-bootstrap';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import RangeSlider from '../components/RangeSlider';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
@@ -46,8 +47,9 @@ export default function SideBarModal(props) {
     const [show, setShow] = useState(false)
     const [modalStyle, setModalStyle] = useState({})
 
+    const {t} = useTranslation(['sidebar']);
+
     useEffect(() => {
-        
         const marginTop = document.getElementsByClassName('newsAlert')?.[0].getBoundingClientRect().height + document.getElementsByClassName('navbar')?.[0].getBoundingClientRect().height
 
         if(marginTop)setModalStyle({marginTop: `${marginTop}px`})
@@ -79,7 +81,7 @@ export default function SideBarModal(props) {
                 <Form>
                     <Container>
                         <h3 style={{textAlign: "center"}}>
-                            Filter Search
+                            {t("Filter Search")}
                         </h3>
                         <br />
                     <Row>
@@ -87,7 +89,7 @@ export default function SideBarModal(props) {
                         <Row>
                             <Col xs={12} lg={4} style={{display:"flex"}}>
                                 <div className="label">
-                                    <span>Location: </span>
+                                    <span style={{whiteSpace: "nowrap"}}>{t("Location")}: </span>
                                 </div>
                             </Col>
                             <Col xs={12} lg={8}>
@@ -96,12 +98,12 @@ export default function SideBarModal(props) {
                                     className="button" 
                                     role="button" tabindex="0"
                                     onClick={()=>props.handleSelectDeselectAll("city", false)}
-                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("city", false)}}}>Deselect All</div>
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("city", false)}}}>{t("Deselect All")}</div>
                                     <div
                                     className="button" 
                                     role="button" tabindex="0" 
                                     onClick={()=>props.handleSelectDeselectAll("city", true)}
-                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("city", true)}}}>Select All</div>
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("city", true)}}}>{t("Select All")}</div>
                                 </Row>
                             </Col>
                         </Row>
@@ -132,7 +134,7 @@ export default function SideBarModal(props) {
                         <Row>
                             <Col xs={12} lg={4} style={{display:"flex"}}>
                                 <div className="label">
-                                    <span>Property Type:</span>
+                                    <span>{t("Property Type")}:</span>
                                 </div>
                             </Col>
                             <Col xs={12} lg={8}>
@@ -141,12 +143,12 @@ export default function SideBarModal(props) {
                                 className="button"
                                 role="button" tabindex="0"   
                                     onClick={()=>props.handleSelectDeselectAll("type", false)}
-                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("type", false)}}}>Deselect All</div>
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("type", false)}}}>{t("Deselect All")}</div>
                                     <div
                                 className="button"
                                 role="button" tabindex="0" 
                                     onClick={()=>props.handleSelectDeselectAll("type", true)}
-                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("type", true)}}}>Select All</div>
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("type", true)}}}>{t("Select All")}</div>
                                 </Row>
                             </Col>
                         </Row>
@@ -172,13 +174,13 @@ export default function SideBarModal(props) {
                     )}
                     )}
                     </Row>
-                    <RangeSlider name="Bedrooms" type="bedrooms" step={1} min={1} max={10} low={props.state.bedrooms[0]} high={props.state.bedrooms[1]} handleSliderChange={props.handleSliderChange}/>  
-                    <RangeSlider name="Bathrooms" type="bathrooms" step={1} min={1} max={10} low={1} high={10} handleSliderChange={props.handleSliderChange}/>       
+                    <RangeSlider name={t("Bedrooms")} type="bedrooms" step={1} min={1} max={10} low={props.state.bedrooms[0]} high={props.state.bedrooms[1]} handleSliderChange={props.handleSliderChange}/>  
+                    <RangeSlider name={t("Bathrooms")} type="bathrooms" step={1} min={1} max={10} low={1} high={10} handleSliderChange={props.handleSliderChange}/>       
                     <Container fluid className="filter-header">
                         <Row>
                             <Col xs={12} lg={4} style={{display:"flex"}}>
                                 <div className="label">
-                                    <span>Must Haves: </span>
+                                    <span>{t("Must Haves")}: </span>
                                 </div>
                             </Col>
                         </Row>

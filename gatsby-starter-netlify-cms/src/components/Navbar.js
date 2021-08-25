@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react'
-import {Link, useI18next} from 'gatsby-plugin-react-i18next';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
@@ -15,6 +15,8 @@ const PropertiesDropDown = React.memo((props) => {
 
   const [data, setData] = useState(null)
   const [options, setOptions] = useState([])
+
+  const {t} = useTranslation();
 
   const customStyles = {
     menu: () => ({
@@ -62,11 +64,11 @@ const PropertiesDropDown = React.memo((props) => {
     <div className="navbar-item" style={{
       backgroundColor:"#f5821e", 
       boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
-      <h4 className="dropdown-title" style={{color:"#fff"}}>All</h4>
+      <h4 className="dropdown-title" style={{color:"#fff"}}>{t("All")}</h4>
     </div>
           <a href={`/properties`}>
             <div  className="navbar-item drop-item">
-              All Properties
+            {t("All Properties")}
             </div>
           </a>
           <Select 
@@ -84,7 +86,7 @@ const PropertiesDropDown = React.memo((props) => {
                                 {setData(d.value)}
                                 <div className="nav-column-2">
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
-                                    <h4 className="dropdown-title" style={{color:"#fff"}}>Location</h4>
+                                    <h4 className="dropdown-title" style={{color:"#fff"}}>{t("Location")}</h4>
                                   </div>
                                   
                                   {d.value.Locations.map((city, index)=>(
@@ -98,7 +100,7 @@ const PropertiesDropDown = React.memo((props) => {
                                   </div>
                                   <div className="nav-column-3">
                                   <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
-                                    <h4 className="dropdown-title" style={{color:"#fff"}}>Property Type</h4>
+                                    <h4 className="dropdown-title" style={{color:"#fff"}}>{t("Property Type")}</h4>
                                   </div>
                                   {d.value.Types.map((type, index)=>(
                                     <a href={`/properties?type=${type}`} key={index}>
@@ -312,7 +314,6 @@ const Navbar = class extends React.Component {
 
     const { data } = this.props
     const Links = data.site.siteMetadata.menuLinks
-
     
 
 
@@ -450,6 +451,6 @@ export default (props) => (
         }
       }
     `}
-    render={(data, count) => <Navbar data={data} count={count} useI18next={useI18next()}/>}
+    render={(data, count) => <Navbar data={data} count={count} useI18next={useI18next()} useTranslation={useTranslation()}/>}
   />
 )

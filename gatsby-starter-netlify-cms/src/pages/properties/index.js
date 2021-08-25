@@ -2,7 +2,7 @@ import React, {useState, useEffect, Component, useCallback} from 'react'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
 import { Router } from "@reach/router"
-import {Link, useI18next} from 'gatsby-plugin-react-i18next';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropertyTemplate from "../../templates/property-page"
 import Layout from '../../components/Layout'
 import PropFeatures from '../../components/PropFeatures'
@@ -49,6 +49,9 @@ const Properties = React.memo((props) => {
        hasGarden: false,
        hasInternetWifi: false,
     })
+
+    const {t} = useTranslation(['properties', 'translation']);
+    const {language} = useI18next();
 
 
 
@@ -241,18 +244,18 @@ const Properties = React.memo((props) => {
                                             <div style={{display:"flex", flexWrap:"nowrap", margin: "auto 10px auto 0"}}>
                                         <Form.Group style={{margin:"10px auto"}}>
                                             <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm">
-                                                <option value="">Sort By</option>
-                                                <option value="price-min">Daily Rate € &#8594; €€€</option>
-                                                <option value="price-max">Daily Rate €€€ &#8594; €</option>
-                                                <option value="bedrooms-min">Bedrooms Increasing</option>
-                                                <option value="bedrooms-max">Bedrooms Decreasing</option>
+                                                <option value="">{t("Sort By")}</option>
+                                                <option value="price-min">{t("Daily Rate")}€ &#8594; €€€</option>
+                                                <option value="price-max">{t("Daily Rate")}€€€ &#8594; €</option>
+                                                <option value="bedrooms-min">{t("Bedrooms")} {t("Increasing")}</option>
+                                                <option value="bedrooms-max">{t("Bedrooms")} {t("Decreasing")}</option>
                                                 <option value="a-z">A &#8594; Z</option>
                                                 <option value="z-a">Z &#8594; A</option>
                                             </Form.Control>
                                         </Form.Group>
                                         </div>
                                         <div className="expandBtn" role="button" tabindex="0" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>  
-                                                <p style={{margin: "auto"}}>Filters</p>
+                                                <p style={{margin: "auto"}}>{t("Filters")}</p>
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
@@ -260,12 +263,12 @@ const Properties = React.memo((props) => {
                                 <div className="expandBtn filterExpand" role="button" tabindex="0" onClick={handleExpand} onKeyDown={(e)=>{if(e.key === 'Enter'){handleExpand()}}} >
                                     {horizontalExpanded ? 
                                     <>
-                                        <p>Shrink</p>
+                                        <p>{t("Shrink")}</p>
                                         <FontAwesomeIcon icon={faChevronLeft} style={{margin:"auto 5px"}}/>
                                     </> 
                                     :
                                     <>
-                                        <p>Expand</p> 
+                                        <p>{t("Expand")}</p> 
                                     <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                     </>}
                                 </div>
@@ -321,7 +324,8 @@ const PropertiesClass = class extends React.Component {
             filteredSearch: {},
             searchArray: [],
             dataLength: 0,
-            path: ''
+            path: '',
+            t: null
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSliderChange = this.handleSliderChange.bind(this);
@@ -452,12 +456,14 @@ const PropertiesClass = class extends React.Component {
 
     render() {
 
+        const t = this.props.useTranslation.t
+
         return (
-            <Layout pathKey={this.state.path} propTitle="Smartavillas - Algarve Property Listings" propDescription="Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With dozens of properties, from Villas to seaside Apartments, Smartavillas offers the best the Algarve has to offer.">
+            <Layout pathKey={this.state.path} propTitle={t("title")} propDescription={t("description")}>
                 <Router>
                         <PropertyTemplate path={`${this.props.useI18next.routed ? "/:locale/properties/:id" : "/properties/:id"}`}
                         handlePathChange= {this.handlePathChange}/>
-                        <Properties path ={`${this.props.useI18next.routed ? "/:locale/properties" : "/properties" }`}
+                        <Properties  path ={`${this.props.useI18next.routed ? "/:locale/properties" : "/properties" }`}
                         state={this.state} 
                         handleChange={this.handleChange} 
                         filterList={this.filterList} 
@@ -475,8 +481,21 @@ const PropertiesClass = class extends React.Component {
 
 const PropertiesPage = (props) => {
     return (
-        <PropertiesClass props={props} useI18next={useI18next()}/>
+        <PropertiesClass props={props} useI18next={useI18next()} useTranslation={useTranslation()}/>
     )
 }
 
 export default PropertiesPage
+
+export const pageQuery = graphql`
+query PropertiesPage ($language: String!) {
+    locales : allLocale(filter: {ns: {in: ["translation", "properties", "property" "sidebar", "calendar"]},language: {eq: $language}}) {
+        edges {
+          node {
+            ns
+            data
+            language
+          }
+        }
+    }
+}`
