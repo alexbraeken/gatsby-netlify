@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {useTranslation} from 'gatsby-plugin-react-i18next';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -60,6 +61,8 @@ const PropCarousel = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [nextImgIndex, setNextImgIndex] = useState(0)
 
+  const {t} = useTranslation(['translation']);
+
   const settings = {
     afterChange: function(i) {
       setNextImgIndex(i)
@@ -115,7 +118,7 @@ const PropCarousel = (props) => {
                 maxHeight: "200px",
                 minWidth:"100px",
                 minHeight: "50px",
-                fontSize: "1.5em"}}>Gallery</Button>
+              fontSize: "1.5em"}}>{t("Gallery")}</Button>
             </Container>
           </div> : null }
         </>

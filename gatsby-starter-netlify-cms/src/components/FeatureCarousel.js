@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import BedBathPax from './BedBathPax'
-import { Link } from 'gatsby'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import SubmitButton from'./SubmitButton'
 import { Helmet } from 'react-helmet'
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 class CustomSlide extends React.Component {
     render() {
@@ -28,6 +28,8 @@ class CustomSlide extends React.Component {
 const FeatureCarousel = (props) => {
 
     const [index, setIndex] = useState(0);
+
+    const {t} = useTranslation(['translation']);
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -52,7 +54,7 @@ const FeatureCarousel = (props) => {
                   <div className="home-feature-text">
                     <Row>
                       <Container>
-                      <h3 className="text-muted">From <span className="feature-text-price">{prop.baseDailyRate}€ / Day</span></h3>
+                      <h3 className="text-muted">{t('From')} <span className="feature-text-price">{prop.baseDailyRate}€ / {t('Night')}</span></h3>
                       <p>
                       {prop.description}
                       </p>
@@ -60,7 +62,7 @@ const FeatureCarousel = (props) => {
                     </Row>
                     <Row style={{marginTop:"10px"}}>
                       <Container style={{zIndex:1, width:"auto", display:"flex", justifyContent:"center"}}>
-                        <SubmitButton text="View Property" link={`/properties/${prop.uid}`}/>
+                        <SubmitButton text={t('View Property')} link={`/properties/${prop.uid}`}/>
                       </Container>
                     </Row>
                   </div>

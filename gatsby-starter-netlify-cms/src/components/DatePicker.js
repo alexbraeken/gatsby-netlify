@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {useTranslation} from 'gatsby-plugin-react-i18next';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import CalendarModal from '../components/CalendarModal'
@@ -13,6 +14,7 @@ const DatePicker = (props) => {
     const handleClose = () => setShowCalendar(false);
     const handleShowCalendar = () => setShowCalendar(true);
       
+    const {t} = useTranslation(['properties', 'translation', 'calendar']);
 
     return (
         <div className="top-date-picker" style={props.style}>
@@ -32,7 +34,7 @@ const DatePicker = (props) => {
         {props.from ?
             <small>{props.from && new Date(props.from).toLocaleDateString()}<FontAwesomeIcon icon={faArrowRight} style={{margin:"auto 5px", padding: "2px 0"}} className="search-icon"/>  {props.to && new Date(props.to).toLocaleDateString()}</small>
             :
-            <small>Search Dates</small>
+            <small>{t("Search Dates")}</small>
         }
         <FontAwesomeIcon icon={faSearch} style={{margin:"auto 5px"}} className="search-icon"/>
                 </div>

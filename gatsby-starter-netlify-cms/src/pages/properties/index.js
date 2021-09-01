@@ -1,4 +1,5 @@
 import React, {useState, useEffect, Component, useCallback} from 'react'
+import { graphql } from 'gatsby'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
 import { Router } from "@reach/router"
@@ -50,7 +51,7 @@ const Properties = React.memo((props) => {
        hasInternetWifi: false,
     })
 
-    const {t} = useTranslation(['properties', 'translation']);
+    const {t} = useTranslation(['properties', 'translation', 'amenities', 'calendar']);
     const {language} = useI18next();
 
 
@@ -301,7 +302,20 @@ const Properties = React.memo((props) => {
                             state={props.state}
                             handleSliderChange={props.handleSliderChange}
                             handleSelectDeselectAll={props.handleSelectDeselectAll}/>
-                        </> : <Loading /> 
+                        </> 
+                        : 
+                        <>
+                            <Container style={{width:"100vw", maxWidth:"none"}} >
+                            <Row>
+                                <Col xs={12} md={3} id="filter-sidebar">
+                                <div className="placeholder-box blink" style={{height:"100%", minHeight:"90vh"}}></div>
+                                </Col>
+                                <Col>
+                                    <Loading />
+                                </Col> 
+                                </Row>
+                            </Container>
+                        </>
                     }}
                 </FirestoreCollection>
             </div>

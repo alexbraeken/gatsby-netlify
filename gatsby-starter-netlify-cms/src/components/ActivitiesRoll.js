@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import Slider from "react-slick"
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 //Individual Activity Cards
 const ActivityCard = React.memo((props) =>{
@@ -96,6 +97,7 @@ class ActivitiesRoll extends React.PureComponent {
 
   render() {
     const { data } = this.props
+    const t = this.props.useTranslation.t
     const { edges: activities } = data.allMarkdownRemark
     //initialize empty array
     const list = []
@@ -157,13 +159,13 @@ class ActivitiesRoll extends React.PureComponent {
       <>
       {this.props.type && list.length > 0 &&
         <>
-          <h2>Restaurants Nearby</h2>
+          <h2>{t("Restaurants Nearby")}</h2>
           <br />
         </>
       }
       {this.props.location && list.length > 0 && Object.keys(this.props.location).length>0 && !this.props.type &&
         <>
-          <h2>Activities Nearby</h2>
+          <h2>{t("Activities Nearby")}</h2>
           <br />
         </>
         }
@@ -246,7 +248,7 @@ return(
         }
       }
     `}
-    render={(data, count) => <ActivitiesRoll data={data} count={count} location={location} filter={filter} type={type} handleActivitiesCoords={props.handleActivitiesCoords}/>}
+    render={(data, count) => <ActivitiesRoll useTranslation={useTranslation()} data={data} count={count} location={location} filter={filter} type={type} handleActivitiesCoords={props.handleActivitiesCoords}/>}
   />
 )
 }

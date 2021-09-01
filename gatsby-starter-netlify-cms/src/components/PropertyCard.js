@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {Card} from 'react-bootstrap'
-import { Link } from "@reach/router"
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Col from 'react-bootstrap/Col'
 import { FirestoreDocument } from "@react-firebase/firestore"
 import Loading from '../components/Loading'
@@ -20,6 +20,9 @@ const PropertyCard = (props) => {
     const [displayPrice, setDisplayPrice] = useState(null)
     const [dateURI, setDateURI] = useState('')
     const [showSlider, setShowSlider] = useState(false)
+
+    const {t} = useTranslation(['properties', 'translation', 'amenities']);
+    const {language} = useI18next();
 
 
     const calendar = useRef()
@@ -59,29 +62,30 @@ const PropertyCard = (props) => {
         
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}} id={props.item.name}>
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
-          <div className="ribbon"><span>Also Winter Let</span></div>
+          <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
           }
         {showAmenities && 
               <div className="card-img-overlay card-amenities" >
                 <FirestoreDocument path={`/amenities/${props.item.uid}`}>
-                                        {data => {
-                                            return (!data.isLoading && data.value) ? 
-                                            <div id="amenities">
-                                                <h3 style={{textAlign:"center"}}>Amenities</h3>
-                                                <br />
-                                                <div className="amenities-list">
-                                                {Object.entries(data.value).map((amen, index) => {
-                                                    
-                                                        return (amen[1] && amen[0] !== "__id") ? 
-                                                        <div key={index} className="amenity">
-                                                          <Amenity amenity = {amen[0]} /></div> : null
-                                                })}
-                                                <br />
-                                                </div>
-                                            </div> : <Loading />
-                                        }}
-                                    </FirestoreDocument>
-              </div>
+                  {data => {
+                      return (!data.isLoading && data.value) ? 
+                      <div id="amenities">
+                          <h3 style={{textAlign:"center"}}>{t("Amenities")}</h3>
+                          <br />
+                          <div className="amenities-list">
+                          {Object.entries(data.value).map((amen, index) => {
+                              
+                                  return (amen[1] && amen[0] !== "__id") ? 
+                                  <div key={index} className="amenity">
+                                    <Amenity amenity = {amen[0]} />
+                                  </div> : null
+                          })}
+                          <br />
+                          </div>
+                      </div> : <Loading />
+                  }}
+              </FirestoreDocument>
+            </div>
             }
             {showCalendar && 
             <div ref={calendar} className="card-img-overlay calendar-container" style={{height: "fit-content"}}>
@@ -127,27 +131,27 @@ const PropertyCard = (props) => {
                 <BedBathPax bedrooms={props.item.bedrooms} bathrooms={props.item.bathrooms} baseGuests={props.item.baseGuests} color="rgba(0,0,0)"/>
                 <hr style={{margin:"0.5rem 0"}}/>
                 <Card.Text style={{fontSize: "0.8rem"}}>
-                  <span style={{textAlign: "center", display:"block"}}>{props.item.shortDescription}</span>
+                  <span style={{textAlign: "center", display:"block"}}>{props.item.shortDescription[language] || props.item.shortDescription}</span>
                 </Card.Text>
                 <div className="prop-card-description-ps">
                   <small style={{float:"left"}}>{props.item.city}</small>
-                  <small style={{float:"right"}}>From <span className="feature-text-price">{displayPrice}€ </span>/ Night</small>
+                  <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{displayPrice}€ </span>/ {t("Night")}</small>
                 </div>
                 </Link>
                 <Card.Footer className="prop-card-footer-container">
                   <div className="footer-btn-container">
                     <div className="footer-btn" role="button" tabIndex="0" aria-label="Amenities" onClick={() => setShowAmenities(!showAmenities)} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowAmenities(!showAmenities)}}} style={showAmenities ? {backgroundColor: "#ffad77"}: {}}>
-                      <FontAwesomeIcon icon={faList} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">Amenities</small>
+                      <FontAwesomeIcon icon={faList} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Amenities")}</small>
                     </div>
                   </div>
                   <div className="footer-btn-container">
                     <div className="footer-btn" role="button" tabIndex="0" aria-label="Gallery" onClick={()=> props.handleGalleryClick(props.item.photos)} onKeyDown={(e)=>{if(e.key === 'Enter'){ props.handleGalleryClick(props.item.photos)}}}>
-                    <FontAwesomeIcon icon={faImages} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">Gallery</small>
+                    <FontAwesomeIcon icon={faImages} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Gallery")}</small>
                     </div>
                   </div>
                   <div className="footer-btn-container">
                     <div className="footer-btn" role="button" tabIndex="0" aria-label="Calendar" onClick={()=>setShowCalendar(!showCalendar)} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowCalendar(!showCalendar)}}} style={showCalendar ? {backgroundColor: "#ffad77"}: {}}>
-                    <FontAwesomeIcon icon={faCalendarAlt} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">Calendar</small>
+                    <FontAwesomeIcon icon={faCalendarAlt} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Calendar")}</small>
                     </div>
                   </div>
                 </Card.Footer>     

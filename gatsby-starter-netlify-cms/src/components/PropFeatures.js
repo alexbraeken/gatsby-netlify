@@ -1,5 +1,5 @@
 import React,{useState, useEffect, useRef} from 'react'
-import { Link } from 'gatsby'
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import {Row, Col, Container}from 'react-bootstrap'
 import PropertyCard from '../components/PropertyCard'
 import { gsap } from "gsap"
@@ -27,6 +27,8 @@ const PropFeatureGrid = React.memo((data) => {
 
   const loadMore = useRef(null)
   const container = useRef(null)
+
+  const {t} = useTranslation(['properties', 'translation', 'amenities', 'calendar']);
 
 
   useEffect(() => {
@@ -128,7 +130,7 @@ const PropFeatureGrid = React.memo((data) => {
       <Col xs={12} md={3} style={{margin: "auto 20px", display:"flex", padding: "5px"}}>
         {data.propList?.length > 0 ? 
         <div>
-          <span className="text-muted">{data.propList.length} Properties:</span>
+          <span className="text-muted">{data.propList.length} {t("Properties")}:</span>
           {data.amenitiesList && 
             <>
               <br />
@@ -160,7 +162,7 @@ const PropFeatureGrid = React.memo((data) => {
           }
           
         </div>
-        : <span className="text-muted">No Properties Found</span>}
+        : <span className="text-muted">{t("No Properties Found")}</span>}
       </Col>
       <Col xs={12} md={6}>
           <Select 
@@ -168,7 +170,7 @@ const PropFeatureGrid = React.memo((data) => {
           onChange={(e)=>onInputChange(e.value)}
           closeMenuOnSelect={true}
           components={{ Option: CustomOption }}
-          placeholder="Properties"
+          placeholder={t("Properties")}
           styles={customStyles}/>
       </Col>
       </Row>

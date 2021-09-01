@@ -1,9 +1,72 @@
 import React, {useEffect, useState, useRef} from 'react'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import { Modal} from 'react-bootstrap'
+
+const LANGUAGES = ['en', 'pt']
+
+const WEEKDAYS_LONG = {
+  en: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  pt: [
+    'Domigo',
+     'Segunda-feira',
+     'Terça',
+     'Quarta-feira',
+     'Quinta-feira',
+     'Sexta-feira',
+     'Sábado',
+  ],
+};
+const WEEKDAYS_SHORT = {
+  en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+  pt: ['D', '1', '2', '3', '4', '5', 'S'],
+};
+const MONTHS = {
+  en: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  pt: [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ],
+};
+
+const FIRST_DAY = {
+  en: 0,
+  pt: 0,
+};
 
 //Calendar Modal on properties page to change/clear dates and update results
 const CalendarModal = (props) => {
@@ -16,6 +79,9 @@ const CalendarModal = (props) => {
 
     const toRef = useRef(null)
     const fromToContainer = useRef(null)
+
+    const {t} = useTranslation(['properties', 'translation', 'calendar']);
+    const { language } = useI18next()
 
     //Set default dates from props
     useEffect(() => {
@@ -79,6 +145,42 @@ const CalendarModal = (props) => {
       setDates({from: null, to: null})
     }
 
+    function formatDay(d, locale = 'en') {
+
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return `${WEEKDAYS_LONG[loc][d.getDay()]}, ${d.getDate()} ${
+        MONTHS[loc][d.getMonth()]
+      } ${d.getFullYear()}`;
+    }
+    
+    function formatMonthTitle(d, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return `${MONTHS[loc][d.getMonth()]} ${d.getFullYear()}`;
+    }
+    
+    function formatWeekdayShort(i, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return WEEKDAYS_SHORT[loc][i];
+    }
+    
+    function formatWeekdayLong(i, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return WEEKDAYS_SHORT[loc][i];
+    }
+    
+    function getFirstDayOfWeek(locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return FIRST_DAY[loc];
+    }
+    
+    const localeUtils = {
+      formatDay,
+      formatMonthTitle,
+      formatWeekdayShort,
+      formatWeekdayLong,
+      getFirstDayOfWeek,
+    };
+
 
     const submitSearch = () => {
 
@@ -126,7 +228,7 @@ const CalendarModal = (props) => {
     return (
         <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-container always-top">
         <Modal.Header closeButton>
-          <Modal.Title>Choose New Dates</Modal.Title>
+          <Modal.Title>{t("Choose New Dates")}</Modal.Title>
         </Modal.Header>
     <Modal.Body className="calendar-modal">
         <div className="InputFromTo" style={{display: "flex",
@@ -138,7 +240,7 @@ const CalendarModal = (props) => {
               ref={fromToContainer}>
         <DayPickerInput
           value={from}
-          placeholder="From"
+          placeholder={t("From")}
           format="LL"
           formatDate={formatDate}
           parseDate={parseDate}
@@ -148,7 +250,9 @@ const CalendarModal = (props) => {
             toMonth: to,
             numberOfMonths: 2,
             modifiers,
-            modifiersStyles
+            modifiersStyles,
+            locale:language,
+            localeUtils:localeUtils
           }}
           onDayChange={handleFromChange}
         />
@@ -156,7 +260,7 @@ const CalendarModal = (props) => {
           <DayPickerInput
             ref={toRef}
             value={to}
-            placeholder="To"
+            placeholder={t("To")}
             format="LL"
             formatDate={formatDate}
             parseDate={parseDate}
@@ -168,6 +272,8 @@ const CalendarModal = (props) => {
               month: from || new Date(),
               fromMonth: from || new Date(),
               numberOfMonths: 2,
+              locale:language,
+              localeUtils:localeUtils
             }}
             onDayChange={handleToChange}
             />
@@ -227,7 +333,7 @@ const CalendarModal = (props) => {
         <br />
         {message && 
         <>
-          <span className="min-warning visible" style={{minWidth: "100%"}}>Select Dates</span>
+          <span className="min-warning visible" style={{minWidth: "100%"}}>{t("Select Dates")}</span>
           <br /> 
         </>
         }
@@ -237,7 +343,7 @@ const CalendarModal = (props) => {
                 <svg className="icon-arrow before">
                     <use xlinkHref="#arrow" />
                 </svg>
-                <span className="label">See What We Have!</span>
+                <span className="label">{t("See What We Have!")}</span>
                 <svg className="icon-arrow after">
                     <use xlinkHref="#arrow"/>
                 </svg>
@@ -256,7 +362,7 @@ const CalendarModal = (props) => {
                 <svg className="icon-arrow before" style={{fill: "#f5821e"}}>
                     <use xlinkHref="#arrow" />
                 </svg>
-                <span className="label" style={{ color:"#f5821e"}}>Clear Dates</span>
+                <span className="label" style={{ color:"#f5821e"}}>{t("Clear Dates")}</span>
                 <svg className="icon-arrow after" style={{fill: "#f5821e"}}>
                     <use xlinkHref="#arrow"/>
                 </svg>

@@ -33,6 +33,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [bookDates, setBookDates] = useState({from:new Date(),
     to: null})
    const [propName, setPropName] = useState(null)
+   const [propSummary, setPropSummary] = useState(null)
    const [propId, setPropId] = useState(null)
    const [show, setShow] = useState(false);
    const [enquiryShow, setEnquiryShow] = useState(false);
@@ -57,6 +58,8 @@ export const PropertyPageTemplate = ( props ) =>
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
 
    const {t} = useTranslation(['property', 'translation']);
+   const {language} = useI18next();
+   const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
 
    useEffect(() => {
     setSections(Array.from(document.getElementsByClassName("prop-page-section")))
@@ -141,6 +144,7 @@ export const PropertyPageTemplate = ( props ) =>
                 setBookDates({from:new Date(),
                     to: null})
                 setPropName(null)
+                setPropSummary(null)
                 setShow(false)
                 setShowAllAemnities(false)
                 setShowNotesReadMore(false)
@@ -191,6 +195,10 @@ export const PropertyPageTemplate = ( props ) =>
 
     const handleName = (name) =>{
         setPropName(name)
+    }
+
+    const handleSummary = (summary) => {
+        setPropSummary(summary)
     }
 
     const handleActivitiesCoords = (coords) => {
@@ -259,7 +267,13 @@ export const PropertyPageTemplate = ( props ) =>
                                         <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit", width:"100%"}}>
                                             <Col>
                                                 <Row>
+                                                    {propName?
                                                     <span className="prdname">{propName}</span>
+                                                    :
+                                                    <Col xs={12} md={9}>
+                                                        <div className="placeholder-box blink" style={{height:"40px"}}></div>
+                                                    </Col> 
+                                                    }
                                                 </Row>
                                                 <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
                                                 <Row>
@@ -288,7 +302,7 @@ export const PropertyPageTemplate = ( props ) =>
                                         {sections && sections.length > 0 && sections.map((section, index) => {
                                             return(
                                             <>
-                                                <Link to={`#${section.id}`}><b>{section.dataset.title}</b></Link>
+                                                <a href={`#${section.id}`}><b>{section.dataset.title}</b></a>
                                                 {index !== sections.length-1 ? <> | </> : null }
                                             </>
                                             )
@@ -303,9 +317,14 @@ export const PropertyPageTemplate = ( props ) =>
                                             <Col xs={12} md={9}>
                                                 <h2>{t("About Prop")}</h2>
                                                 <br />
+                                                {propSummary ?
                                                 <p>
-                                                {data.value.description}
+                                                    {propSummary}
                                                 </p>
+                                                :
+                                                <div className="placeholder-box blink" style={{height:"200px"}}>
+                                                </div>
+                                                }
                                             </Col>
                                         </Row>
                                     <Row>
@@ -363,15 +382,16 @@ export const PropertyPageTemplate = ( props ) =>
                                                     return (!descriptions.isLoading && descriptions.value) ? 
                                                     <>
                                                     {setDescriptionsLoading(false)}
-                                                    {handleName(descriptions.value.en_US.name)}
-                                                    {descriptions.value.en_US.space &&
+                                                    {handleName(descriptions.value[lang]?.name || descriptions.value.en_US.name)}
+                                                    {handleSummary(descriptions.value[lang]?.summary || descriptions.value.en_US.summary)}
+                                                    {(descriptions.value[lang]?.space || descriptions.value.en_US.space) ?
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="space" data-title={t("Space")} className="prop-page-section">
                                                                     <h2>{t("Space")}</h2>
                                                                     <br />
-                                                                    {descriptions.value.en_US.space}
+                                                                    {descriptions.value[lang]?.space || descriptions.value.en_US.space}
                                                                     <br />
                                                                     {matterportURL && 
                                                                     <iframe width="100%" title="Matterport" height="480" src={matterportURL} frameborder="0" allowfullscreen allow="xr-spatial-tracking">
@@ -380,18 +400,25 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 </div>
                                                         </Col>
                                                     </Row>
+                                                    :
+                                                    <Row>
+                                                        <Col>       
+                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
                                                     }
-                                                    { descriptions.value.en_US.neighborhood && 
+                                                    { (descriptions.value[lang]?.neighborhood || descriptions.value.en_US.neighborhood) ? 
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="neighborhood" data-title={t("Neighborhood")} className="prop-page-section">
-                                                                <div className={descriptions.value.en_US.neighborhood.length>400 ? `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`: undefined}>
+                                                                <div className={(descriptions.value[lang]?.neighborhood.length>400 || descriptions.value.en_US.neighborhood.length>400) ? `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`: undefined}>
                                                                     <h2>{t("Neighborhood")}</h2>
                                                                     <br />
-                                                                    {descriptions.value.en_US.neighborhood.substring(0,400)}
+                                                                    {descriptions.value[lang]?.neighborhood.substring(0,400) || descriptions.value.en_US.neighborhood.substring(0,400)}
                                                                     {showNeighborhoodReadMore && <span id="more">
-                                                                        {descriptions.value.en_US.neighborhood.substring(400)}
+                                                                        {descriptions.value[lang]?.neighborhood.substring(400) || descriptions.value.en_US.neighborhood.substring(400)}
                                                                         <br />
                                                                         <br />
                                                                         <p>{t("Find out more about the Algarve")} <Link to="/location/algarve"><span className="orangeText hover-highlight">{t("here")}...</span></Link></p>
@@ -399,29 +426,36 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.neighborhood.length>400 && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.neighborhood.length>400 || descriptions.value.en_US.neighborhood.length>400) && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
                                                     </Row>
+                                                    :
+                                                    <Row>
+                                                        <Col>       
+                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
                                                     }
                                                     <br />
-                                                    { descriptions.value.en_US.transit && 
+                                                    { (descriptions.value[lang]?.transit || descriptions.value.en_US.transit) ? 
                                                     <Row>
                                                         <hr />
                                                         <Col xs={12} md={travelDistances.display? 5 : 9}>
                                                                 <div id="gettingAround" data-title={t("Getting Around")} className="prop-page-section">
-                                                                <div className={descriptions.value.en_US.transit.length>400 ? `prop-description-box ${showTransitReadMore ? 'show' : ''}`: undefined}>
+                                                                <div className={(descriptions.value[lang]?.transit.length>400 || descriptions.value.en_US.transit.length>400) ? `prop-description-box ${showTransitReadMore ? 'show' : ''}`: undefined}>
                                                                     <h2>{t("Getting Around")}</h2>
                                                                     <br />
-                                                                    {descriptions.value.en_US.transit.substring(0,400)}
+                                                                    {descriptions.value[lang]?.transit.substring(0,400) || descriptions.value.en_US.transit.substring(0,400)}
                                                                     {showTransitReadMore && <span id="more">
-                                                                        {descriptions.value.en_US.transit.substring(400)}
+                                                                        {descriptions.value[lang]?.transit.substring(400) || descriptions.value.en_US.transit.substring(400)}
                                                                         </span>}
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.transit.length>400 && <button className="btn" type="" onClick={()=>setShowTransitReadMore(!showTransitReadMore)}>{showTransitReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.transit.length>400 || descriptions.value.en_US.transit.length>400) && <button className="btn" type="" onClick={()=>setShowTransitReadMore(!showTransitReadMore)}>{showTransitReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -454,6 +488,13 @@ export const PropertyPageTemplate = ( props ) =>
                                                         }
                                                         
                                                     </Row>
+                                                    :
+                                                    <Row>
+                                                        <Col>       
+                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
                                                     }
                                                     {reviews && reviews.length>0 && 
                                                     <Row>
@@ -467,62 +508,91 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </Col>
                                                     </Row>
                                                     }
-                                                    {descriptions.value.en_US.notes && 
+                                                    {(descriptions.value[lang]?.notes || descriptions.value.en_US.notes) ? 
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="notes" data-title={t("Notes")} className="prop-page-section">
-                                                                    <div className={descriptions.value.en_US.notes.length>400 ? `prop-description-box ${showNotesReadMore ? 'show' : ''}` : undefined}>
+                                                                    <div className={(descriptions.value[lang]?.notes.length>400 || descriptions.value.en_US.notes.length>400) ? `prop-description-box ${showNotesReadMore ? 'show' : ''}` : undefined}>
                                                                     <h2>{t("Notes")}</h2>
                                                                     <br />
-                                                                    {descriptions.value.en_US.notes.substring(0,400)}
-                                                                    {showNotesReadMore && <span id="more">{descriptions.value.en_US.notes.substring(400)}</span>}
+                                                                    {(descriptions.value[lang]?.notes.substring(0,400) || descriptions.value.en_US.notes.substring(0,400))}
+                                                                    {showNotesReadMore && <span id="more">{descriptions.value[lang]?.notes.substring(400) || descriptions.value.en_US.notes.substring(400)}</span>}
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.notes.length>400 && <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.notes.length>400 || descriptions.value.en_US.notes.length>400 ) && <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
-                                                    </Row>}
-                                                    {descriptions.value.en_US.access && 
+                                                    </Row>
+                                                    :
+                                                    <Row>
+                                                        <Col>       
+                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                    }
+                                                    {(descriptions.value[lang]?.access || descriptions.value.en_US.access) ? 
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="access" data-title={t("Your Arrival")} className="prop-page-section">
-                                                                    <div className={descriptions.value.en_US.access.length>400 ? `prop-description-box ${showAccessReadMore ? 'show' : ''}` : undefined}>
+                                                                    <div className={(descriptions.value[lang]?.access.length>400 || descriptions.value.en_US.access.length>400) ? `prop-description-box ${showAccessReadMore ? 'show' : ''}` : undefined}>
                                                                     <h2>{t("Your Arrival")}</h2>
                                                                     <br />
-                                                                    {descriptions.value.en_US.access.substring(0,400)}
-                                                                    {showAccessReadMore && <span id="more">{descriptions.value.en_US.access.substring(400)}</span>}
+                                                                    {descriptions.value[lang]?.access.substring(0,400) || descriptions.value.en_US.access.substring(0,400)}
+                                                                    {showAccessReadMore && <span id="more">{descriptions.value[lang]?.access.substring(400) || descriptions.value.en_US.access.substring(400)}</span>}
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.access.length>400 && <button className="btn" type="" onClick={()=>setShowAccessReadMore(!showAccessReadMore)}>{showAccessReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.access.length>400 || descriptions.value.en_US.access.length>400 )&& <button className="btn" type="" onClick={()=>setShowAccessReadMore(!showAccessReadMore)}>{showAccessReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
-                                                    </Row>}
-                                                    {descriptions.value.en_US.interaction && 
+                                                    </Row>
+                                                    :
+                                                    <Row>
+                                                        <Col>       
+                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                    }
+                                                    {(descriptions.value[lang]?.interaction || descriptions.value.en_US.interaction ) ? 
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="interaction">
-                                                                <div className={descriptions.value.en_US.interaction.length>400 ? `prop-description-box ${showInteractionReadMore ? 'show' : ''}` : undefined}>
+                                                                <div className={(descriptions.value[lang]?.interaction.length>400 || descriptions.value.en_US.interaction.length>400) ? `prop-description-box ${showInteractionReadMore ? 'show' : ''}` : undefined}>
                                                                     <h2>{t("During Your Stay")}</h2>
                                                                     <br />
-                                                                    {descriptions.value.en_US.interaction.substring(0,400)}
-                                                                    {showInteractionReadMore && <span id="more">{descriptions.value.en_US.interaction.substring(400)}</span>}
+                                                                    {descriptions.value[lang]?.interaction.substring(0,400) || descriptions.value.en_US.interaction.substring(0,400)}
+                                                                    {showInteractionReadMore && <span id="more">{descriptions.value[lang]?.interaction.substring(400) || descriptions.value.en_US.interaction.substring(400)}</span>}
                                                                 </div>
                                                                     <br />
                                                                     <br />
-                                                                    {descriptions.value.en_US.interaction.length>400 && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.interaction.length>400 || descriptions.value.en_US.interaction.length>400 ) && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
-                                                    </Row>}
+                                                    </Row>
+                                                    :
+                                                    <Row>
+                                                        <Col>       
+                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                    }
                                                     </> 
-                                                : <></> 
+                                                : <Row>
+                                                        <Col>       
+                                                            <div className="placeholder-box blink" style={{height:"800px"}}>
+                                                            </div>
+                                                        </Col>
+                                                    </Row> 
                                                 }}
                                     </FirestoreDocument>
 
@@ -596,7 +666,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 }
                                                 <br />
                                                 <div role="button" className="submit-search-btn" onClick={()=> handleEnquiryShow()} onKeyDown={()=> handleEnquiryShow()} tabindex="0">
-                                                    <a>
+                                                    <a href="">
                                                         <svg className="icon-arrow before">
                                                             <use xlinkHref="#arrow" />
                                                         </svg>
