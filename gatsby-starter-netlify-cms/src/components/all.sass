@@ -1562,6 +1562,7 @@ a.navbar-item, .navbar-item
     color: #fff
     background-color: $primary
 
+
 @media only screen and (max-width: 900px) 
   .navbar-item
     display: flex
@@ -2296,6 +2297,7 @@ a.navbar-item, .navbar-item
               position: relative
               margin: auto
       & .slick-prev, .slick-next
+          z-index: 20
           &:before
             filter: drop-shadow(2px 4px 6px #585858)
 
@@ -3022,3 +3024,158 @@ button.calendar-btn
     opacity: 1
   100% 
     opacity: 0
+
+
+/*---------Dropdown--------*/
+$black: #2A363B
+$red: #F67280
+$red-dark: #C06C84
+$orange: #F8B195
+$yellow: #FECEAB
+$white: #FFF
+
+@mixin mobile
+  @media screen and (max-width: 600px)
+    @content
+
+.languages
+  ul
+    list-style-type: none
+    margin: 0 auto
+    padding: 0
+    
+  > ul
+    max-width: 1000px
+    padding: 0 2rem
+    display: flex
+    
+    > .languages-item
+      flex: 1
+      padding: 0.75rem 0
+      
+      &:after
+        content: ''
+        position: absolute
+        width: 4px
+        height: 4px
+        border-radius: 50%
+        bottom: 5px
+        left: calc(50% - 2px)
+        background: $light-orange
+        will-change: transform
+        transform: scale(0)
+        transition: transform 0.2s ease
+      
+      &:hover:after
+        transform: scale(1)
+  
+  &-item
+    position: relative
+    line-height: 2.5rem
+    text-align: center
+    
+    a
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+      display: block
+    
+    @at-root .sub-menu &
+      padding: 0.75rem 0
+      background: $primary
+      opacity: 0
+      transform-origin: bottom
+      animation: enter 0.2s ease forwards
+      
+      @for $n from 1 through 3
+        &:nth-child(#{$n})
+          animation-duration: 0.2s + 0.1s * ($n - 1)
+          animation-delay: 0.1s * ($n - 1)
+      
+      &:hover
+        background: $orange
+      
+      a
+        padding: 0 0.75rem
+        
+      @include mobile
+        background: $light-orange
+
+  @include mobile
+    position: relative
+    
+    &:after
+      content: ''
+      position: absolute
+      top: calc(50% - 2px)
+      right: 1rem
+      width: 30px
+      height: 4px
+      background: $white
+      box-shadow: 0 10px $white, 0 -10px $white
+      
+    > ul
+      display: nonee
+      background: $orange
+      flex-direction: column
+      justify-content: center
+      height: 100vh
+      animation: fade 0.2s ease-out
+      
+      > .languages-item
+        flex: 0
+        opacity: 0
+        animation: enter 0.3s ease-out forwards
+        
+        @for $n from 1 through 5
+          &:nth-child(#{$n})
+            animation-delay: 0.1s * ($n - 1)
+        
+        & + .languages-item
+          margin-top: 0.75rem
+          
+        &:after
+          left: auto
+          right: 1rem
+          bottom: calc(50% - 2px)
+        
+        &:hover
+          z-index: 1
+      
+    &:hover
+      > ul
+        display: flex
+      
+      &:after
+        box-shadow: none
+      
+.sub-menu
+  position: absolute
+  width: 100%
+  top: 100%
+  left: 0
+  display: none
+  z-index: 1
+  
+  @at-root .languages-item:hover > &
+    display: block
+    
+  @include mobile
+    width: 100vw
+    left: -2rem
+    top: 50%
+    transform: translateY(-50%)
+  
+@keyframes enter
+  from
+    opacity: 0
+    transform: scaleY(0.98) translateY(10px)
+  to
+    opacity: 1
+    transform: none
+    
+@keyframes fade
+  from
+    opacity: 0
+  to
+    opacity: 1

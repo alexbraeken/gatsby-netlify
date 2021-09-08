@@ -30,6 +30,8 @@ const FeatureCarousel = (props) => {
     const [index, setIndex] = useState(0);
 
     const {t} = useTranslation(['translation']);
+    const {language} = useI18next();
+    const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -56,7 +58,7 @@ const FeatureCarousel = (props) => {
                       <Container>
                       <h3 className="text-muted">{t('From')} <span className="feature-text-price">{prop.baseDailyRate}€ / {t('Night')}</span></h3>
                       <p>
-                      {prop.description}
+                      {prop.descriptions ? prop.descriptions[lang] : prop.description}
                       </p>
                       </Container>
                     </Row>

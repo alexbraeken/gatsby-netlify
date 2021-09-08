@@ -23,6 +23,7 @@ const PropertyCard = (props) => {
 
     const {t} = useTranslation(['properties', 'translation', 'amenities']);
     const {language} = useI18next();
+    const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
 
 
     const calendar = useRef()
@@ -131,7 +132,7 @@ const PropertyCard = (props) => {
                 <BedBathPax bedrooms={props.item.bedrooms} bathrooms={props.item.bathrooms} baseGuests={props.item.baseGuests} color="rgba(0,0,0)"/>
                 <hr style={{margin:"0.5rem 0"}}/>
                 <Card.Text style={{fontSize: "0.8rem"}}>
-                  <span style={{textAlign: "center", display:"block"}}>{props.item.shortDescription[language] || props.item.shortDescription}</span>
+                  <span style={{textAlign: "center", display:"block"}}>{props.item.shortDescriptions ? props.item.shortDescriptions[lang] : props.item.shortDescription}</span>
                 </Card.Text>
                 <div className="prop-card-description-ps">
                   <small style={{float:"left"}}>{props.item.city}</small>

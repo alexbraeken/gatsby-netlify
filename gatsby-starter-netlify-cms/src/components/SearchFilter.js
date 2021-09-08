@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { graphql } from 'gatsby'
-import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
@@ -65,6 +65,68 @@ const customStyles = {
   }
 }
 
+const LANGUAGES = ['en', 'pt']
+
+const WEEKDAYS_LONG = {
+  en: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  pt: [
+    'Domigo',
+     'Segunda-feira',
+     'Terça',
+     'Quarta-feira',
+     'Quinta-feira',
+     'Sexta-feira',
+     'Sábado',
+  ],
+};
+const WEEKDAYS_SHORT = {
+  en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+  pt: ['D', '1', '2', '3', '4', '5', 'S'],
+};
+const MONTHS = {
+  en: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  pt: [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ],
+};
+
+const FIRST_DAY = {
+  en: 0,
+  pt: 0,
+};
+
 const SearchFilter = (props) => {
 
     const [dates, setDates] = useState({from:undefined, to: undefined})
@@ -79,6 +141,7 @@ const SearchFilter = (props) => {
     const fromToContainer = useRef(null)
 
     const {t} = useTranslation();
+    const { language } = useI18next()
   
     useEffect(() => {
       setDatesWidth(fromToContainer.current.clientWidth)
@@ -176,6 +239,42 @@ const SearchFilter = (props) => {
         }
     }
 
+    function formatDay(d, locale = 'en') {
+
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return `${WEEKDAYS_LONG[loc][d.getDay()]}, ${d.getDate()} ${
+        MONTHS[loc][d.getMonth()]
+      } ${d.getFullYear()}`;
+    }
+    
+    function formatMonthTitle(d, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return `${MONTHS[loc][d.getMonth()]} ${d.getFullYear()}`;
+    }
+    
+    function formatWeekdayShort(i, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return WEEKDAYS_SHORT[loc][i];
+    }
+    
+    function formatWeekdayLong(i, locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return WEEKDAYS_SHORT[loc][i];
+    }
+    
+    function getFirstDayOfWeek(locale = 'en') {
+      let loc = LANGUAGES.includes(locale) ? locale : 'en'
+      return FIRST_DAY[loc];
+    }
+    
+    const localeUtils = {
+      formatDay,
+      formatMonthTitle,
+      formatWeekdayShort,
+      formatWeekdayLong,
+      getFirstDayOfWeek,
+    };
+
     return (
         <div className="home-search-container" ref={searchBar}>
           <FirestoreDocument path="/Navbar/Nav">
@@ -214,7 +313,9 @@ const SearchFilter = (props) => {
               numberOfMonths: 2,
               onDayClick: () => toRef.current.getInput().focus(),
               modifiers,
-              modifiersStyles
+              modifiersStyles,
+              locale:language,
+              localeUtils:localeUtils
             }}
             onDayChange={handleFromChange}
           style={{height:"100%", zIndex:"10"}}/>
@@ -234,6 +335,8 @@ const SearchFilter = (props) => {
                 month: from,
                 fromMonth: from,
                 numberOfMonths: 2,
+                locale:language,
+                localeUtils:localeUtils
               }}
               onDayChange={handleToChange}
               style={{height:"100%", zIndex:"10"}}/>

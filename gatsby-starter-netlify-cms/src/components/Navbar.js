@@ -127,9 +127,9 @@ const LanguageChange = (props) => {
   
 
   return (
-    <ul className="languages">
+    <ul className="sub-menu">
       {languages.map((lng) => (
-        <li key={lng}>
+        <li key={lng} className="languages-item">
           <a
             href="#"
             onClick={(e) => {
@@ -313,6 +313,7 @@ const Navbar = class extends React.Component {
   render() {
 
     const { data } = this.props
+    const {language} = this.props.useI18next;
     const Links = data.site.siteMetadata.menuLinks
     
 
@@ -367,21 +368,26 @@ const Navbar = class extends React.Component {
             </>
             })}
             </div>
-            <div className="navbar-end has-text-centered">
-              <a
-                className="navbar-item"
-                href="https://platform.hostfully.com/login.jsp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <img src={hostfully} alt="Hostfully" /> 
-                </span>
-                Login
-              </a>
-              <div className="navbar-item">
-                <LanguageChange getPath={this.getOriginalPath}/>
-              </div>
+            <div className="languages navbar-end has-text-centered">
+              <ul>
+                <li>
+                  <a
+                    className="navbar-item"
+                    href="https://platform.hostfully.com/login.jsp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                  <span className="icon">
+                    <img src={hostfully} alt="Hostfully" /> 
+                  </span>
+                  Login
+                </a>
+                </li>
+                <li className="languages-item">
+                    <a href="#">{language}</a>
+                    <LanguageChange getPath={this.getOriginalPath}/>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
