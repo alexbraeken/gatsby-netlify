@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
-
+import {Link} from 'gatsby-plugin-react-i18next';
 import logo from '../img/logo.svg'
 import facebook from '../img/social/facebook.svg'
 import instagram from '../img/social/instagram.svg'
@@ -8,6 +7,10 @@ import twitter from '../img/social/twitter.svg'
 
 const Footer = class extends React.Component {
   render() {
+
+    const t = this.props.useTranslation.t
+    const language = this.props.useI18next.language
+
     return (
       <footer className="footer has-background-black has-text-white-ter">
         <div className="content has-text-centered">
@@ -25,27 +28,27 @@ const Footer = class extends React.Component {
                   <ul className="menu-list">
                     <li>
                       <Link to="/" className="navbar-item">
-                        Home
+                        {t("Home")}
                       </Link>
                     </li>
                     <li>
                       <Link className="navbar-item" to="/team">
-                        About
+                      {t("About")}
                       </Link>
                     </li>
                     <li>
                       <Link className="navbar-item" to="/about/booking-terms-conditions">
-                        Booking Terms & Conditions
+                      {t("Booking Terms & Conditions")}
                       </Link>
                     </li>
                     <li>
                       <Link className="navbar-item" to="/about/privacy-policy">
-                        Privacy Policy
+                      {t("Privacy Policy")}
                       </Link>
                     </li>
                     <li>
                     <Link className="navbar-item" to="/about/health-and-safety">
-                        Health & Safety
+                    {t("Health & Safety")}
                       </Link>
                     </li>
                   </ul>
@@ -56,17 +59,17 @@ const Footer = class extends React.Component {
                   <ul className="menu-list">
                     <li>
                       <Link className="navbar-item" to="/properties">
-                        Properties
+                      {t("Properties")}
                       </Link>
                     </li>
                     <li>
                     <Link className="navbar-item" to="/about/Covid-faq">
-                       COVID-19 FAQ
+                    {t("COVID-19 FAQ")}
                       </Link>
                     </li>
                     <li>
                       <Link className="navbar-item" to="/contact">
-                        Contact
+                      {t("Contact")}
                       </Link>
                     </li>
                     <li>
@@ -76,7 +79,7 @@ const Footer = class extends React.Component {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Admin
+                        {t("Admin")}
                       </a>
                     </li>
                   </ul>
@@ -111,7 +114,7 @@ const Footer = class extends React.Component {
             </div>
             <div style={{ maxWidth: '100vw' }}>
               <center>
-              &#169; Smartavillas.com - All Rights Reserved
+              &#169; Smartavillas.com - {t("All Rights Reserved")}
               </center>
             </div>
           </div>

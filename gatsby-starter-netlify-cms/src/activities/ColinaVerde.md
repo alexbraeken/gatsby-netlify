@@ -1,10 +1,15 @@
 ---
 templateKey: activity-post
 title: Colina Verde
+langTitles:
+  en: Colina Verde
+  pt: "Colina Verde"
 category: Golf 
 featuredpost: false
 featuredimage: ../../static/img/colina_verde.jpg
-description: ""
+description: 
+  en: ""
+  pt: ""
 link: http://www.golfcolinaverde.com/
 visibleLink: www.golfcolinaverde.com
 gps:

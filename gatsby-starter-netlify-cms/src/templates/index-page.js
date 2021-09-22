@@ -25,6 +25,7 @@ export const IndexPageTemplate = ({
   locationImage,
   accommodationsImage,
   title,
+  langTitles,
   heading,
   subheading,
   mainpitch,
@@ -432,7 +433,7 @@ const handleSectionLeave = () => {
         <Container>
         <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('news & notes')}} /></h2>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-          <div dangerouslySetInnerHTML={{ __html: `<div> ${news} </div>` }} />
+          <div dangerouslySetInnerHTML={{ __html: `<div> ${news[language]} </div>` }} />
         </Container>
       </section>
       <section style={{paddingTop:"40px"}}>
@@ -454,6 +455,7 @@ const handleSectionLeave = () => {
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
+  langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   heading: PropTypes.string,
   subheading: PropTypes.string,
   mainpitch: PropTypes.object,
@@ -477,6 +479,7 @@ const IndexPage = ({ data }) => {
       <IndexPageTemplate
         image={post.frontmatter.image}
         title={post.frontmatter.title}
+        langTitles={post.frontmatter.langTitles}
         heading={post.frontmatter.heading}
         subheading={post.frontmatter.subheading}
         mainpitch={post.frontmatter.mainpitch}
@@ -505,7 +508,11 @@ query IndexPageTemplate ($language: String!) {
   pageData: markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
     html
     frontmatter {
-      title
+      title 
+      langTitles{
+        en
+        pt
+      }
       image {
         childImageSharp {
           fluid(maxWidth: 2000, quality: 100) {
@@ -513,11 +520,23 @@ query IndexPageTemplate ($language: String!) {
           }
         }
       }
-      heading
-      subheading
+      heading {
+          en
+          pt
+        }
+      subheading {
+          en
+          pt
+        }
       mainpitch {
-        title
-        description
+        title {
+          en
+          pt
+        }
+        description {
+          en
+          pt
+        }
       }
       pitchImage {
         childImageSharp {
@@ -561,7 +580,10 @@ query IndexPageTemplate ($language: String!) {
           }
         }
       }
-      news
+      news {
+          en
+          pt
+        }
     }
   }
   locales: allLocale(filter: {ns: {in: ["translation", "index"]},language: {eq: $language}}) {

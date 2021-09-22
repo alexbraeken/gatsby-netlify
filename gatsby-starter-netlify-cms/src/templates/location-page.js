@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
@@ -40,6 +41,7 @@ class CustomSlide extends React.Component {
 export const LocationPageTemplate = ({
   image,
   title,
+  langTitles,
   location,
   part1,
   part2,
@@ -48,6 +50,9 @@ export const LocationPageTemplate = ({
 
   const [index, setIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
+
+  const {t} = useTranslation();
+  const {language } = useI18next();
      
   const slideContainer = useRef(null)
 
@@ -69,11 +74,11 @@ export const LocationPageTemplate = ({
       }, [])
 
 
-      const collage = part1.collage.collage ? [{img: part1.collage.img1.img, title: part1.collage.img1.title}, 
-        {img: part1.collage.img2.img, title: part1.collage.img2.title}, 
-        {img: part1.collage.img3.img, title: part1.collage.img3.title},
-        {img: part1.collage.img4.img, title: part1.collage.img4.title},
-        {img: part1.collage.img5.img, title: part1.collage.img5.title},] : null
+      const collage = part1.collage.collage ? [{img: part1.collage.img1.img, title: part1.collage.img1.title[language]}, 
+        {img: part1.collage.img2.img, title: part1.collage.img2.title[language]}, 
+        {img: part1.collage.img3.img, title: part1.collage.img3.title[language]},
+        {img: part1.collage.img4.img, title: part1.collage.img4.title[language]},
+        {img: part1.collage.img5.img, title: part1.collage.img5.title[language]},] : null
 
     const slides = part2.slider.slider ? [{slide: part2.slider.img1.img, title: part2.slider.img1.title}, 
       {slide: part2.slider.img2.img, title: part2.slider.img2.title}, 
@@ -94,7 +99,7 @@ export const LocationPageTemplate = ({
       <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
-        {title}
+        {langTitles[language]}
       </h2>
     </div> 
     <section style={{position: "relative"}}>
@@ -114,10 +119,10 @@ export const LocationPageTemplate = ({
                     minWidth: "20px",
                     maxHeight: "40px",
                     maxWidth: "40px"}}/>
-                    <h3 className="has-text-weight-semibold is-size-2">{part1.header}
+                    <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}
                     </h3>
               </div>
-              <p>{part1.text}</p>
+              <p>{part1.text[language]}</p>
               </div>
             </Col>
             {collage && 
@@ -219,9 +224,9 @@ export const LocationPageTemplate = ({
           }
           <Col style={{display:"flex"}}>
           <div style={{margin:"auto"}} >
-            <h3 className="has-text-weight-semibold is-size-2" style={{textAlign: "center"}}>{part2.header}</h3>
+            <h3 className="has-text-weight-semibold is-size-2" style={{textAlign: "center"}}>{part2.header[language]}</h3>
             <p style={{color: "#fff"}}>
-              {part2.text}
+              {part2.text[language]}
             </p>
           </div>
           </Col>
@@ -253,9 +258,9 @@ export const LocationPageTemplate = ({
         position: "relative"}}>
       <Container>
         <Row>
-        <h3 className="has-text-weight-semibold is-size-2">{part3.header}</h3>
+        <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
           <p>
-            {part3.text}
+            {part3.text[language]}
           </p>
         </Row>
       </Container>
@@ -267,7 +272,7 @@ export const LocationPageTemplate = ({
         <br />
         <ActivitiesRoll location={location}  key="all"/>
         <br />
-        <h4>For a full list of activities nearby, checkout our activities list <a href="/travelerTips"><span style={{color:"#f5821e"}}>here!</span></a></h4>
+  <h4>{t("Full list of activities")} <a href="/travelerTips"><span style={{color:"#f5821e"}}>{t("here")}!</span></a></h4>
       </Container>
     </section>
   </div>
@@ -276,38 +281,40 @@ export const LocationPageTemplate = ({
 LocationPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
+  langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   location: PropTypes.string,
   part1:  PropTypes.shape({
-    header: PropTypes.string,
-    text: PropTypes.string,
+    header: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    text: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     collage: PropTypes.object,
     img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   }),
   part2: PropTypes.shape({
-    header: PropTypes.string,
-    text: PropTypes.string,
+    header: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    text: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     slider: PropTypes.object,
     img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   }),
   part3: PropTypes.shape({
-    header: PropTypes.string,
-    text: PropTypes.string,
+    header: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    text: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   })
 }
 
 const LocationPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
-
+  const post = data.pageData
+  const {language } = useI18next();
   return (
-    <Layout propTitle={frontmatter.title}>
+    <Layout propTitle={post.frontmatter.langTitles[language]}>
       <LocationPageTemplate
-        image={frontmatter.image}
-        location={frontmatter.location}
-        title={frontmatter.title}
-        part1={frontmatter.part1}
-        part2={frontmatter.part2}
-        part3={frontmatter.part3}
+        image={post.frontmatter.image}
+        location={post.frontmatter.location}
+        title={post.frontmatter.title}
+        langTitles={post.frontmatter.langTitles}
+        part1={post.frontmatter.part1}
+        part2={post.frontmatter.part2}
+        part3={post.frontmatter.part3}
       />
     </Layout>
   )
@@ -324,10 +331,14 @@ LocationPage.propTypes = {
 export default LocationPage
 
 export const LocationPageQuery = graphql`
-  query LocationPage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+  query LocationPage($id: String!, $language: String!) {
+    pageData: markdownRemark(id: { eq: $id }) {
       frontmatter {
-        title
+        title 
+        langTitles{
+          en
+          pt
+        }
         location
         image {
           childImageSharp {
@@ -338,12 +349,21 @@ export const LocationPageQuery = graphql`
           publicURL
         }
         part1 {
-          header
-          text
+          header {
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
           collage {
             collage
             img1 {
-              title
+              title{
+                en
+                pt
+              }
               img {
                 childImageSharp {
                   fluid(maxWidth: 700, quality: 90) {
@@ -354,7 +374,10 @@ export const LocationPageQuery = graphql`
               }
             }
             img2 {
-              title
+              title{
+                en
+                pt
+              }
               img {
                 childImageSharp {
                   fluid(maxWidth: 700, quality: 90) {
@@ -365,7 +388,10 @@ export const LocationPageQuery = graphql`
               }
             }
             img3 {
-              title
+              title{
+                en
+                pt
+              }
               img {
                 childImageSharp {
                   fluid(maxWidth: 700, quality: 90) {
@@ -376,7 +402,10 @@ export const LocationPageQuery = graphql`
               }
             }
             img4 {
-              title
+              title{
+                en
+                pt
+              }
               img {
                 childImageSharp {
                   fluid(maxWidth: 700, quality: 90) {
@@ -387,7 +416,10 @@ export const LocationPageQuery = graphql`
               }
             }
             img5 {
-              title
+              title{
+                en
+                pt
+              }
               img {
                 childImageSharp {
                   fluid(maxWidth: 700, quality: 90) {
@@ -408,8 +440,14 @@ export const LocationPageQuery = graphql`
           }
         }
         part2 {
-          header
-          text
+          header {
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
           slider {
             slider
             img1 {
@@ -456,8 +494,14 @@ export const LocationPageQuery = graphql`
           }
         }
         part3 {
-          header
-          text
+          header {
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
           img {
             childImageSharp {
               fluid(maxWidth: 1000, quality: 100) {
@@ -466,6 +510,15 @@ export const LocationPageQuery = graphql`
             }
             publicURL
           }
+        }
+      }
+    }
+    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
         }
       }
     }

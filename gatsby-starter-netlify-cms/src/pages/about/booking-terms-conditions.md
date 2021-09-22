@@ -3,6 +3,13 @@ templateKey: 'content-page'
 path: /about
 preferred_language: default
 title: Booking Terms & Conditions
+langTitles:
+    en: Booking Terms & Conditions
+    pt: "Termos e Condições de Reserva"
+html:
+    en: ""
+    pt: ""
+
 ---
 <style>
 <!--

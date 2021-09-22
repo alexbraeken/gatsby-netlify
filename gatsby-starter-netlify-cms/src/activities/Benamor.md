@@ -1,10 +1,15 @@
 ---
 templateKey: activity-post
 title: Benamor
+langTitles:
+  en: Benamor
+  pt: "Benamor"
 category: Golf 
 featuredpost: false
 featuredimage: ../../static/img/benamor.jpg
-description: ""
+description: 
+  en: ""
+  pt: ""
 link: http://www.benamorgolf.com/
 visibleLink: www.benamorgolf.com
 gps:

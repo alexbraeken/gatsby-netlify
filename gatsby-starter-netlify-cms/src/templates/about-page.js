@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
+export const AboutPageTemplate = ({ title, langTitles, content, contentComponent }) => {
   const PageContent = contentComponent || Content
+
+  const {language} = useI18next();
 
   return (
     <section className="section section--gradient">
@@ -14,7 +17,7 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
           <div className="column is-10 is-offset-1">
             <div className="section">
               <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
+                {langTitles[language]}
               </h2>
               <PageContent className="content" content={content} />
             </div>
@@ -27,6 +30,7 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
 
 AboutPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
+  langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   content: PropTypes.string,
   contentComponent: PropTypes.func,
 }
@@ -39,6 +43,7 @@ const AboutPage = ({ data }) => {
       <AboutPageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        langTitles={post.frontmatter.langTitles}
         content={post.html}
       />
     </Layout>
@@ -56,7 +61,11 @@ export const aboutPageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       html
       frontmatter {
-        title
+        title 
+        langTitles{
+          en
+          pt
+        }
       }
     }
   }

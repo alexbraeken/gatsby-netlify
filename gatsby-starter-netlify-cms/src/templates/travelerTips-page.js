@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout'
-
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 export const TravelerTipsPageTemplate = () => (
   <div className="content">
@@ -13,7 +13,7 @@ const TravelerTipsPage = () => {
 
   return (
     <Layout>
-      <TravelerTipsPageTemplate />
+      <TravelerTipsPageTemplate useTranslation={useTranslation()} useI18next={useI18next()}/>
     </Layout>
   )
 }

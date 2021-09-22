@@ -1,8 +1,13 @@
 import React from 'react'
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 
 const TeamCard = React.memo((props) =>{
+
+  const {language} = useI18next();
+
+
   return(
     <div className="flex-img-col">
     <div className="col-img-bg">
@@ -15,7 +20,7 @@ const TeamCard = React.memo((props) =>{
     
         <div className="col-img-overlay overlay"/>
     
-        <div className="team-description">{props.member.node.frontmatter.description}</div>
+        <div className="team-description">{props.member.node.frontmatter.description[language]}</div>
     </div>
     <div className="team-txt">
         <div style={{flex: "1 1 100%"}}>
@@ -68,7 +73,10 @@ export default (props) => (
                 slug
               }
               frontmatter {
-                description
+                description{
+                  en
+                  pt
+                }
                 templateKey
                 featuredimage {
                   childImageSharp{

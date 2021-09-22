@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
@@ -46,6 +47,7 @@ class CustomSlide extends React.Component {
 export const AlgarvePageTemplate = ({
   image,
   title,
+  langTitles,
   heading,
   description,
   staticBg,
@@ -78,6 +80,8 @@ export const AlgarvePageTemplate = ({
   const stickyContainer = useRef(null)
   const stickyFeature = useRef(null)
   const botSVG= useRef(null)
+
+  const {language} = useI18next();
 
 
     const handleSelect = (selectedIndex, e) => {
@@ -193,7 +197,7 @@ export const AlgarvePageTemplate = ({
       <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
-        {title}
+        {langTitles[language]}
       </h2>
     </div>
     <section style={{
@@ -213,14 +217,14 @@ export const AlgarvePageTemplate = ({
                 <img src="/img/airmail.png" alt="Airmail" style={{position: "absolute", top: "20px", left:"10%", filter: "none"}} width="150px"/>
                 <img src="/img/mailwaves.png" alt="Mail waves" style={{position: "absolute", top: "10%", left:"11%", filter: "none", transform: "rotate(210deg)"}} width="150px"/>
               </div>
-              <h1>{featureSection.title[`title${index+1}`]}</h1>
+              <h1>{featureSection.title[`title${index+1}`][language]}</h1>
               <div className="content">
                 <p>
-                  {featureSection.text[feature]}
+                  {featureSection.text[feature][language]}
                 </p>
               </div>
               <div className="img">
-                <h2 style={{fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.title[`title${index+1}`]}</h2>
+                <h2 style={{fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.title[`title${index+1}`][language]}</h2>
                 <img src={featureSection.imgs[`img${index+1}`].childImageSharp.fluid.src} alt={featureSection.imgs[`img${index+1}`].alt || "Feature Image"}/>
               </div>
             </section>
@@ -252,8 +256,8 @@ export const AlgarvePageTemplate = ({
             overflow:"hidden"}}>
           <div className="gallery-container" ref={galleryContainer}>
             <div className="text-container">
-              <h3>{gallery.text1.header}</h3>
-              <p>{gallery.text1.text}</p>
+              <h3>{gallery.text1.header[language]}</h3>
+              <p>{gallery.text1.text[language]}</p>
             </div>
             <div style={{
           width: "100%",
@@ -290,8 +294,8 @@ export const AlgarvePageTemplate = ({
             overflow:"hidden"}}>
           <div className="gallery-container">
             <div className="text-container feature-text">
-              <h3>{gallery.text2.header}</h3>
-              <p>{gallery.text2.text}</p>
+              <h3>{gallery.text2.header[language]}</h3>
+              <p>{gallery.text2.text[language]}</p>
             </div>
           </div>
           
@@ -303,10 +307,10 @@ export const AlgarvePageTemplate = ({
           <div className="gallery-container">
             <div className="text-container static-text">
             <h3>
-              {gallery.staticImg.text.header}
+              {gallery.staticImg.text.header[language]}
             </h3>
             <p>
-            {gallery.staticImg.text.text}
+            {gallery.staticImg.text.text[language]}
             </p>
             </div>
           </div>              
@@ -317,7 +321,7 @@ export const AlgarvePageTemplate = ({
         paddingBottom: "100px",
         position: "relative"}}>
           <Container>
-          <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
+          <h3 className="has-text-weight-semibold is-size-2">{heading[language]}</h3>
             <PageContent className="content" content={content} />
           </Container>
       <div style={{ 
@@ -352,7 +356,7 @@ export const AlgarvePageTemplate = ({
         <Row>
           <Col md={12} lg={6} style={{display:"flex"}}>
             <p style={{margin: "auto"}}>
-            {sliderText}
+            {sliderText[language]}
             </p>
             
           </Col>
@@ -395,7 +399,7 @@ export const AlgarvePageTemplate = ({
         position: "relative"}}>
       <Container>
         <p>
-          {conclusion}
+          {conclusion[language]}
         </p>
       </Container>
     </section>
@@ -405,27 +409,28 @@ export const AlgarvePageTemplate = ({
 AlgarvePageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
-  heading: PropTypes.string,
-  description: PropTypes.string,
+  langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  heading: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  description: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   staticBg: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   featureSection: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   gallery: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  sliderText: PropTypes.string,
+  sliderText: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderImage1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderImage2: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderImage3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   sliderImage4: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  sliderImageTitle1 : PropTypes.string,
-  sliderImageTitle2 : PropTypes.string,
-  sliderImageTitle3 : PropTypes.string,
-  sliderImageTitle4 : PropTypes.string,
-  conclusion: PropTypes.string,
+  sliderImageTitle1 : PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  sliderImageTitle2 : PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  sliderImageTitle3 : PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  sliderImageTitle4 : PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  conclusion: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   contentComponent: PropTypes.func,
-  content: PropTypes.string,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }
 
 const AlgarvePage = ({ data }) => {
-  const { markdownRemark:post } = data
+  const post = data.pageData
   return (
     <Layout propTitle={post.frontmatter.title}>
       <AlgarvePageTemplate
@@ -433,6 +438,7 @@ const AlgarvePage = ({ data }) => {
         content={post.html}
         image={post.frontmatter.image}
         title={post.frontmatter.title}
+        langTitles={post.frontmatter.langTitles}
         heading={post.frontmatter.heading}
         description={post.frontmatter.description}
         staticBg={post.frontmatter.staticBg}
@@ -460,11 +466,15 @@ AlgarvePage.propTypes = {
 export default AlgarvePage
 
 export const algarvePageQuery = graphql`
-  query AlgarvePage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+  query AlgarvePage($id: String!, $language: String!) {
+    pageData: markdownRemark(id: { eq: $id }) {
       html
       frontmatter {
-        title
+        title 
+        langTitles{
+          en
+          pt
+        }
         image {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 100) {
@@ -473,8 +483,14 @@ export const algarvePageQuery = graphql`
           }
           publicURL
         }
-        heading
-        description
+        heading {
+          en
+          pt
+        }
+        description {
+          en
+          pt
+        }
         staticBg {
           childImageSharp {
             fluid(maxWidth: 1500, quality: 100) {
@@ -514,16 +530,40 @@ export const algarvePageQuery = graphql`
             }
           }
           title{
-            title1
-            title2
-            title3
-            title4
+            title1{
+              en
+              pt
+            }
+            title2{
+              en
+              pt
+            }
+            title3{
+              en
+              pt
+            }
+            title4{
+              en
+              pt
+            }
           }
           text{
-            text1
-            text2
-            text3
-            text4
+            text1 {
+              en
+              pt
+            }
+            text2 {
+              en
+              pt
+            }
+            text3 {
+              en
+              pt
+            }
+            text4 {
+              en
+              pt
+            }
           }
         }
         gallery {
@@ -600,8 +640,14 @@ export const algarvePageQuery = graphql`
             }
           }
           text1 {
-            header
-            text
+            header {
+              en
+              pt
+            }
+            text {
+              en
+              pt
+            }
           }
           imgs2 {
             img1 {
@@ -620,13 +666,25 @@ export const algarvePageQuery = graphql`
             }
           }
           text2 {
-            header
-            text
+            header {
+              en
+              pt
+            }
+            text {
+              en
+              pt
+            }
           }
           staticImg {
             text {
-              header
-              text
+              header {
+                en
+                pt
+              }
+              text {
+                en
+                pt
+              }
             }
             img {
               childImageSharp {
@@ -637,7 +695,10 @@ export const algarvePageQuery = graphql`
             }
           }
         }
-        sliderText
+        sliderText {
+          en
+          pt
+        }
         sliderImage1 {
           childImageSharp {
             fluid(maxWidth: 800, quality: 100) {
@@ -670,7 +731,19 @@ export const algarvePageQuery = graphql`
           }
         }
         sliderImageTitle4
-        conclusion
+        conclusion {
+          en
+          pt
+        }
+      }
+    }
+    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
       }
     }
   }

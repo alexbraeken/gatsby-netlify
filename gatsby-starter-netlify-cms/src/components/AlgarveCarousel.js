@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Carousel from 'react-bootstrap/Carousel'
 import { graphql, StaticQuery } from 'gatsby'
 import Row from 'react-bootstrap/Row'
@@ -22,8 +23,8 @@ class CustomSlide extends React.Component {
                 <path className="slide__overlay-path" d="M0,0 150,0 500,405 0,405"></path> 
                 </svg>
                 <div className="slide__text">
-                <h2 className="slide__text-heading">{this.props.slide.frontmatter.title}</h2>
-                <p className="slide__text-desc">{this.props.slide.frontmatter.description}</p>
+                <h2 className="slide__text-heading">{this.props.slide.frontmatter.langTitles[this.props.lang]}</h2>
+                <p className="slide__text-desc">{this.props.slide.frontmatter.description[this.props.lang]}</p>
                 <a className="slide__text-link" href={this.props.slide.frontmatter.link}>{this.props.slide.frontmatter.visibleLink}</a></div>
                 </div>
         </div>
@@ -35,6 +36,8 @@ const AlgarveCarousel = (props) => {
 
     const { data } = props
     const { edges: algarveSlides } = data.allMarkdownRemark
+    
+    const {language} = useI18next();
 
     const [index, setIndex] = useState(0);
 
@@ -49,7 +52,7 @@ const AlgarveCarousel = (props) => {
           algarveSlides.map(({ node: slide }, index) => {
                 return<Carousel.Item key={index}>
                     <Row>
-                        <CustomSlide slide={slide} key={index}/>
+                        <CustomSlide slide={slide} key={index} lang={language}/>
                     </Row>
         </Carousel.Item>
             })}
@@ -72,8 +75,15 @@ export default () => (
                   slug
                 }
                 frontmatter {
-                  title
-                  description
+                  title 
+                  langTitles{
+                    en
+                    pt
+                  }
+                  description{
+                    en
+                    pt
+                  }
                   link
                   visibleLink  
                   templateKey

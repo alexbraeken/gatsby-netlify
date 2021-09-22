@@ -3,7 +3,14 @@ templateKey: 'content-page'
 path: /about
 preferred_language: default
 title: COVID-19 FAQ
+langTitles:
+	en: COVID-19 FAQ
+	pt: "COVID-19 FAQ"
+html:
+    en: ""
+    pt: ""
 ---
+
 <p style="text-align:center"><strong>COVID-19 Frequently Asked Questions</strong></p>
 
 <ol>

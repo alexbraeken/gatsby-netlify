@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
@@ -9,6 +10,7 @@ import OwnerTestimonials from '../components/OwnerTestimonials'
 export const WhyUsPageTemplate = ({
   image,
   title,
+  langTitles,
   part1,
   part1Img,
   part2,
@@ -20,6 +22,9 @@ export const WhyUsPageTemplate = ({
 }) => {
 
   const [loaded, setLoaded] = useState(false);
+
+  const {t} = useTranslation();
+  const {language } = useI18next();
 
   useEffect(() => {
     setTimeout(()=>{
@@ -45,7 +50,7 @@ export const WhyUsPageTemplate = ({
       <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
-        {title}
+        {langTitles[language]}
       </h2>
     </div>
     <section className="newLine" style={{
@@ -55,8 +60,8 @@ export const WhyUsPageTemplate = ({
         <Row>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
         <div className="section intro-para" style={{margin: "auto"}}>
-          <h3 className="has-text-weight-semibold is-size-2">{part1.header}</h3>
-          <div dangerouslySetInnerHTML={{ __html: `<div> ${part1.text} </div>` }} />
+          <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}</h3>
+          <div dangerouslySetInnerHTML={{ __html: `<div> ${part1.text[language]} </div>` }} />
         </div>
         </Col>
         <Col xs={12} md={6}>
@@ -99,8 +104,8 @@ export const WhyUsPageTemplate = ({
           </Col>
           <Col style={{display:"flex"}} xs={12} md={6}>
           <div style={{margin: "auto"}}>
-            <h3 className="has-text-weight-semibold is-size-2">{part2.header}</h3>
-              <div dangerouslySetInnerHTML={{ __html: `<div> ${part2.text} </div>` }} />
+            <h3 className="has-text-weight-semibold is-size-2">{part2.header[language]}</h3>
+              <div dangerouslySetInnerHTML={{ __html: `<div> ${part2.text[language]} </div>` }} />
             </div>
           </Col>
         </Row>
@@ -129,17 +134,17 @@ export const WhyUsPageTemplate = ({
         paddingBottom: "100px",
         position: "relative"}}>
       <Container>
-        <h3 className="has-text-weight-semibold is-size-2">{part3.header}</h3>
+        <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
         <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <Row>
             <Col xs={12} md={4}>
               <PreviewCompatibleImage imageInfo={part3.col1img} />
               <br />
               <Container style={{textAlign:"center", paddingBottom: "20px"}}>
-                <h4>{part3.col1Header}</h4>
+                <h4>{part3.col1Header[language]}</h4>
                 <hr />
                 <p>
-                  {part3.col1}
+                  {part3.col1[language]}
                 </p>
               </Container>
             </Col>
@@ -147,10 +152,10 @@ export const WhyUsPageTemplate = ({
               <PreviewCompatibleImage imageInfo={part3.col2img} />
               <br />
               <Container style={{textAlign:"center", paddingBottom: "20px"}}>
-              <h4>{part3.col2Header}</h4>
+              <h4>{part3.col2Header[language]}</h4>
               <hr />
               <p>
-                {part3.col2}
+                {part3.col2[language]}
               </p>
               </Container>
             </Col>
@@ -158,10 +163,10 @@ export const WhyUsPageTemplate = ({
               <PreviewCompatibleImage imageInfo={part3.col3img} />
               <br />
               <Container style={{textAlign:"center", paddingBottom: "20px"}}>
-              <h4>{part3.col3Header}</h4>
+              <h4>{part3.col3Header[language]}</h4>
               <hr />
               <p>
-                {part3.col3}
+                {part3.col3[language]}
               </p>
               </Container>
             </Col>
@@ -173,8 +178,8 @@ export const WhyUsPageTemplate = ({
         <Row>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
         <div className="section intro-para" style={{margin: "auto"}}>
-          <h3 className="has-text-weight-semibold is-size-2">{part4.header}</h3>
-          <div dangerouslySetInnerHTML={{ __html: `<div> ${part4.text} </div>` }} />
+          <h3 className="has-text-weight-semibold is-size-2">{part4.header[language]}</h3>
+          <div dangerouslySetInnerHTML={{ __html: `<div> ${part4.text[language]} </div>` }} />
         </div>
         </Col>
         <Col xs={12} md={6}>
@@ -188,7 +193,7 @@ export const WhyUsPageTemplate = ({
       <Container>
         <Row>
           <Col>
-          <h3 className="has-text-weight-semibold is-size-2">{testimonialHeader}</h3>
+          <h3 className="has-text-weight-semibold is-size-2">{testimonialHeader[language]}</h3>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <OwnerTestimonials />
           </Col>
@@ -200,8 +205,9 @@ export const WhyUsPageTemplate = ({
 
 WhyUsPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
-  heading: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  heading: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   part1: PropTypes.object,
   part1Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   part2: PropTypes.object,
@@ -209,25 +215,27 @@ WhyUsPageTemplate.propTypes = {
   part3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   part4: PropTypes.object,
   part4Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  testimonialHeader: PropTypes.string,
+  testimonialHeader: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }
 
 const WhyUsPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+  const post = data.pageData
+  const {language } = useI18next();
 
   return (
-    <Layout propTitle={frontmatter.title}>
+    <Layout propTitle={post.frontmatter.langTitles[language]}>
       <WhyUsPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        part1={frontmatter.part1}
-        part1Img={frontmatter.part1Img}
-        part2={frontmatter.part2}
-        part2Img={frontmatter.part2Img}
-        part3={frontmatter.part3}
-        part4={frontmatter.part4}
-        part4Img={frontmatter.part4Img}
-        testimonialHeader = {frontmatter.testimonialHeader}
+        image={post.frontmatter.image}
+        title={post.frontmatter.title}
+        langTitles={post.frontmatter.langTitles}
+        part1={post.frontmatter.part1}
+        part1Img={post.frontmatter.part1Img}
+        part2={post.frontmatter.part2}
+        part2Img={post.frontmatter.part2Img}
+        part3={post.frontmatter.part3}
+        part4={post.frontmatter.part4}
+        part4Img={post.frontmatter.part4Img}
+        testimonialHeader = {post.frontmatter.testimonialHeader}
       />
     </Layout>
   )
@@ -244,10 +252,14 @@ WhyUsPage.propTypes = {
 export default WhyUsPage
 
 export const WhyUsPageQuery = graphql`
-  query WhyUsPage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+  query WhyUsPage($id: String!, $language: String!) {
+    pageData: markdownRemark(id: { eq: $id }) {
       frontmatter {
-        title
+        title 
+        langTitles{
+          en
+          pt
+        }
         image {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 100) {
@@ -257,8 +269,14 @@ export const WhyUsPageQuery = graphql`
           publicURL
         }
         part1 {
-          header
-          text
+          header{
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
         }
         part1Img {
           childImageSharp {
@@ -269,8 +287,14 @@ export const WhyUsPageQuery = graphql`
           publicURL
         }
         part2 {
-          header
-          text
+          header {
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
         }
         part2Img {
           childImageSharp {
@@ -281,9 +305,18 @@ export const WhyUsPageQuery = graphql`
           publicURL
         }
         part3 {
-          header
-          col1Header
-          col1
+          header {
+            en
+            pt
+          }
+          col1Header {
+            en
+            pt
+          }
+          col1 {
+            en
+            pt
+          }
           col1img {
             childImageSharp {
               fluid(maxWidth: 500, quality: 100) {
@@ -292,8 +325,14 @@ export const WhyUsPageQuery = graphql`
             }
             publicURL
           }
-          col2Header
-          col2
+          col2Header {
+            en
+            pt
+          }
+          col2 {
+            en
+            pt
+          }
           col2img {
             childImageSharp {
               fluid(maxWidth: 500, quality: 100) {
@@ -302,8 +341,14 @@ export const WhyUsPageQuery = graphql`
             }
             publicURL
           }
-          col3Header
-          col3
+          col3Header {
+            en
+            pt
+          }
+          col3{
+            en
+            pt
+          }
           col3img {
             childImageSharp {
               fluid(maxWidth: 500, quality: 100) {
@@ -314,8 +359,14 @@ export const WhyUsPageQuery = graphql`
           }
         }
         part4 {
-          header
-          text
+          header{
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
         }
         part4Img {
           childImageSharp {
@@ -325,7 +376,19 @@ export const WhyUsPageQuery = graphql`
           }
           publicURL
         }
-        testimonialHeader
+        testimonialHeader {
+          en
+          pt
+        }
+      }
+    }
+    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
       }
     }
   }

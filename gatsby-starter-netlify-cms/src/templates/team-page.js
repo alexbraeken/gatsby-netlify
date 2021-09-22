@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import TeamRoll from '../components/TeamRoll'
@@ -8,11 +9,15 @@ import { Container } from 'react-bootstrap';
 export const MeetTheTeamPageTemplate = ({
   image,
   title,
+  langTitles,
   heading,
   description,
   intro,
 }) => {
   const [loaded, setLoaded] = useState(false);
+
+  const {t} = useTranslation();
+  const {language } = useI18next();
     
       useEffect(() => {
         setTimeout(()=>{
@@ -33,17 +38,17 @@ export const MeetTheTeamPageTemplate = ({
           <h1
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
-            {title}
+            {langTitles[language]}
           </h1>
         </div>
         <section className="section">
           <Container>
             <div className="content">
                 <section style={{marginBottom:"50px"}}>
-                    {intro.description}
+                    {intro.description[language]}
                     <br />
-                    <h3>{heading}</h3>
-                    <p>{description}</p>
+                    <h3>{heading[language]}</h3>
+                    <p>{description[language]}</p>
                 </section>
                 <section>
                     <TeamRoll />
@@ -57,24 +62,29 @@ export const MeetTheTeamPageTemplate = ({
 MeetTheTeamPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
-  heading: PropTypes.string,
-  description: PropTypes.string,
+  langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  heading: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  description: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   intro: PropTypes.shape({
-    description: PropTypes.string,
+    description: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   }),
 }
 
 const MeetTheTeamPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+
+  const  post = data.pageData
+  const {language } = useI18next();
+
 
   return (
-    <Layout propTitle={frontmatter.title}>
+    <Layout propTitle={post.frontmatter.langTitles[language]}>
       <MeetTheTeamPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
+        image={post.frontmatter.image}
+        title={post.frontmatter.title}
+        langTitles={post.frontmatter.langTitles}
+        heading={post.frontmatter.heading}
+        description={post.frontmatter.description}
+        intro={post.frontmatter.intro}
       />
     </Layout>
   )
@@ -91,10 +101,14 @@ MeetTheTeamPage.propTypes = {
 export default MeetTheTeamPage
 
 export const MeetTheTeamPageQuery = graphql`
-  query MeetTheTeamPage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+  query MeetTheTeamPage($id: String!, $language: String!) {
+    pageData: markdownRemark(id: { eq: $id }) {
       frontmatter {
-        title
+        title 
+        langTitles{
+          en
+          pt
+        }
         image {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 100) {
@@ -102,11 +116,32 @@ export const MeetTheTeamPageQuery = graphql`
             }
           }
         }
-        heading
-        description
+        heading {
+          en
+          pt
+        }
+        description {
+          en
+          pt
+        }
         intro {
-          heading
-          description
+          heading {
+            en
+            pt
+          }
+          description {
+            en
+            pt
+          }
+        }
+      }
+    }
+    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
         }
       }
     }

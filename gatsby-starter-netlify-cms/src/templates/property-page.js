@@ -101,9 +101,6 @@ export const PropertyPageTemplate = ( props ) =>
                     })
                     .then(data => {
                     if(JSON.parse(data).length>0){
-                        if(JSON.parse(data)[0].text!== undefined){
-                            setSmartaOpinion(JSON.parse(data)[0].text)
-                        }
                         if(JSON.parse(data)[1].text!== undefined){
                             setPoolDimensions(JSON.parse(data)[1].text)
                         }
@@ -123,6 +120,21 @@ export const PropertyPageTemplate = ( props ) =>
                                 Market: (JSON.parse(data)[6] && JSON.parse(data)[6].text!== undefined) ? JSON.parse(data)[6].text : null,
                                 Car: (JSON.parse(data)[9] && JSON.parse(data)[9].text!== undefined) ? JSON.parse(data)[9].text : null,
                             })
+                        }
+
+                        switch(language){
+                            case "pt":
+                                if(JSON.parse(data)[12] && JSON.parse(data)[12].text!== undefined){
+                                    setSmartaOpinion(JSON.parse(data)[12].text)
+                                }
+                                else if(JSON.parse(data)[0].text!== undefined){
+                                    setSmartaOpinion(JSON.parse(data)[0].text)
+                                }
+                                break;
+                            default:
+                                if(JSON.parse(data)[0].text!== undefined){
+                                    setSmartaOpinion(JSON.parse(data)[0].text)
+                                }
                         }
                     }  
                     })

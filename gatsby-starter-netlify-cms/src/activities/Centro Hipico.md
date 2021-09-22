@@ -1,10 +1,15 @@
 ---
 templateKey: activity-post
 title: Centro Hipico Tavira
+langTitles:
+  en: Centro Hipico Tavira
+  pt: "Centro Hipico Tavira"
 category: Horse Riding
 featuredpost: false
 featuredimage: ../../static/img/centro-hipico-tavira.jpg
-description: "Tel: 963 126 597"
+description: 
+  en: "Tel: 963 126 597"
+  pt: ""
 link: "https://www.centrohipicotavira.com/" 
 visibleLink: "www.centrohipicotavira.com"
 gps:

@@ -6,6 +6,10 @@ import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 //Individual Activity Cards
 const ActivityCard = React.memo((props) =>{
+
+  const {t} = useTranslation();
+  const {language } = useI18next();
+
   return(
     <article className="activity-card">
                 { props.activity.frontmatter.featuredimage ? 
@@ -24,8 +28,8 @@ const ActivityCard = React.memo((props) =>{
             
             <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
             
-              <h3 className="card__title">{props.activity.frontmatter.title}</h3>
-            <span className="card__details">{props.activity.frontmatter.description}<br />
+              <h3 className="card__title">{props.activity.frontmatter.langTitles[language]}</h3>
+            <span className="card__details">{props.activity.frontmatter.description[language]}<br />
               <a className="card__link" href={props.activity.frontmatter.link}>{props.activity.frontmatter.visibleLink}</a></span></div>
             </article>
   )
@@ -98,6 +102,7 @@ class ActivitiesRoll extends React.PureComponent {
   render() {
     const { data } = this.props
     const t = this.props.useTranslation.t
+    const language = this.props.useI18next.language
     const { edges: activities } = data.allMarkdownRemark
     //initialize empty array
     const list = []
@@ -109,7 +114,7 @@ class ActivitiesRoll extends React.PureComponent {
     if(this.props.handleActivitiesCoords){
       activities.forEach(({ node: activity }) =>{ 
         
-        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.title, link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp.fluid.src})
+        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp.fluid.src})
       })
       this.props.handleActivitiesCoords(coords)
     }
@@ -222,8 +227,15 @@ return(
                 slug
               }
               frontmatter {
-                title
-                description
+                title 
+                langTitles{
+                  en
+                  pt
+                }
+                description{
+                  en
+                  pt
+                }
                 tags
                 category
                 link
@@ -248,7 +260,7 @@ return(
         }
       }
     `}
-    render={(data, count) => <ActivitiesRoll useTranslation={useTranslation()} data={data} count={count} location={location} filter={filter} type={type} handleActivitiesCoords={props.handleActivitiesCoords}/>}
+    render={(data, count) => <ActivitiesRoll useTranslation={useTranslation()} useI18next={useI18next()} data={data} count={count} location={location} filter={filter} type={type} handleActivitiesCoords={props.handleActivitiesCoords}/>}
   />
 )
 }

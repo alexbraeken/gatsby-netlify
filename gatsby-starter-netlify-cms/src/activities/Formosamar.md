@@ -1,10 +1,15 @@
 ---
 templateKey: activity-post
 title: Formosamar Faro / Tavira
+langTitles:
+  en: Formosamar Faro / Tavira
+  pt: "Formosamar Faro / Tavira"
 category: Boating Trips / Kite Surfing / Diving
 featuredpost: false
 featuredimage: ../../static/img/formosamar.jpg
-description: ""
+description: 
+  en: ""
+  pt: ""
 link: http://www.formosamar.com 
 visibleLink: www.formosamar.com
 gps:

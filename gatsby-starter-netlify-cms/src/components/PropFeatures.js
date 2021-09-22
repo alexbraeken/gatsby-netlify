@@ -165,13 +165,16 @@ const PropFeatureGrid = React.memo((data) => {
         : <span className="text-muted">{t("No Properties Found")}</span>}
       </Col>
       <Col xs={12} md={6}>
+        <div className="react-select__menu" style={{display:"none"}}></div>
           <Select 
           options={propOptionsArray}
           onChange={(e)=>onInputChange(e.value)}
           closeMenuOnSelect={true}
           components={{ Option: CustomOption }}
           placeholder={t("Properties")}
-          styles={customStyles}/>
+          styles={customStyles}
+          className="react-select-container"
+          classNamePrefix="react-select"/>
       </Col>
       </Row>
     </Container>

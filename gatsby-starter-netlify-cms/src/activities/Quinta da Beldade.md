@@ -1,10 +1,15 @@
 ---
 templateKey: activity-post
 title: Quinta da Beldade Tavira
+langTitles:
+  en: Quinta da Beldade Tavira
+  pt: "Quinta da Beldade Tavira"
 category: Horse Riding
 featuredpost: false
 featuredimage: ../../static/img/horse.jpeg
-description: "Tel: 965 461 577"
+description: 
+  en: "Tel: 965 461 577"
+  pt: ""
 link: "https://www.facebook.com/quintabeldade/" 
 visibleLink: "Quinta Beldade Facebook"
 gps:

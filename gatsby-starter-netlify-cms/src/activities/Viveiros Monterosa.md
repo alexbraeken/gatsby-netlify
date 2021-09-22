@@ -1,10 +1,15 @@
 ---
 templateKey: activity-post
 title: Viveiros Monterosa Olive Oil farm
+langTitles:
+  en: Viveiros Monterosa Olive Oil farm
+  pt: "Viveiros Monterosa Olive Oil"
 category: Olive Oil Farm Tours & Tastings 
 featuredpost: false
 featuredimage: ../../static/img/monterosa.jpg
-description: ""
+description: 
+  en: ""
+  pt: ""
 link: http://www.monterosa-oliveoil.com 
 visibleLink: www.monterosa-oliveoil.com
 gps:

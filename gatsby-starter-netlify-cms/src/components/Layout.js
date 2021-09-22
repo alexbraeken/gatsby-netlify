@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
+import {useTranslation, useI18next, Link} from 'gatsby-plugin-react-i18next';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { FirestoreProvider } from "@react-firebase/firestore";
@@ -24,6 +25,7 @@ const TemplateWrapper = ({ children, pathKey, propTitle, propDescription }) => {
   description = propDescription || description
 
   const [path, setPath] = useState('')
+  const {t} = useTranslation();
 
 useEffect(() => {
   setPath(pathKey)
@@ -85,7 +87,7 @@ useEffect(() => {
       <Navbar key={path}/>
       <div>{children}</div>
       <BackToTop />
-      <Footer />
+      <Footer useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>
       <CookieBannerCookieHub googleTrackingId={process.env.GATSBY_GOOGLE_TRACKING_ID} cookieHubId={process.env.GATSBY_COOKIEHUB_ID} />
       </FirestoreProvider>
     </div>

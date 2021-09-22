@@ -3,8 +3,9 @@ import Layout from '../../components/Layout'
 import { Helmet } from 'react-helmet'
 import Newsletter from '../../components/Newsletter'
 import emailjs from 'emailjs-com';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
-export default class Index extends React.Component {
+const Contact = class extends React.Component {
   constructor(props) {
     super(props)
     this.state = { sent: false }
@@ -45,6 +46,10 @@ export default class Index extends React.Component {
     }
 
   render() {
+
+    const t = this.props.useTranslation.t
+    const language = this.props.useI18next.language
+
     return (
       <>
       <Helmet>
@@ -58,7 +63,7 @@ export default class Index extends React.Component {
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+351 281 027 089",
-            "contactType": "Reservations & Customer Support"
+            "contactType": ${t("Reservations & Customer Support")}
           }
         }
       `}
@@ -68,15 +73,15 @@ export default class Index extends React.Component {
         <section className="section">
           <div className="container">
             <div className="content">
-              <h1>Contact</h1>
+              <h1>{t("Contact")}</h1>
               {this.state.sent ? 
               <div>
-                <h3>Thank you!</h3>
-                <p>We'll get back to you as soon as possible.</p>
+                <h3>{t("thanks")}!</h3>
+                <p>{t("We'll get back to you as soon as possible")}.</p>
               </div>: 
               <>
               <p>
-                Get in touch with our team here!
+                {t("Get in touch with our team here")}!
               </p>
               <form
                 name="contact"
@@ -96,7 +101,7 @@ export default class Index extends React.Component {
                 </div>
                 <div className="field">
                   <label className="label" htmlFor={'name'}>
-                    Your name
+                    {t("Your name")}
                   </label>
                   <div className="control">
                     <input
@@ -111,7 +116,7 @@ export default class Index extends React.Component {
                 </div>
                 <div className="field">
                   <label className="label" htmlFor={'email'}>
-                    Email
+                    {t("email")}
                   </label>
                   <div className="control">
                     <input
@@ -126,7 +131,7 @@ export default class Index extends React.Component {
                 </div>
                 <div className="field">
                   <label className="label" htmlFor={'message'}>
-                    Message
+                    {t("Message")}
                   </label>
                   <div className="control">
                     <textarea
@@ -140,24 +145,24 @@ export default class Index extends React.Component {
                 </div>
                 <div className="field">
                   <button className="button is-link" type="submit">
-                    Send
+                    {t("Send")}
                   </button>
                 </div>
               </form>
               </>}
               <br />
-              <Newsletter />
+              <Newsletter lang={language}/>
               <br />
-              <h3>Smartavillas.com Algarve Holiday Rentals</h3>
+              <h3>Smartavillas.com {t("Algarve Holiday Rentals")}</h3>
               <ul style={{listStyle:"none"}}>
                 <li>
-                <b>Phone:</b> +351 281027089 / +351 913692170
+                <b>{t("Phone")}:</b> +351 281027089 / +351 913692170
                 </li>
                 <li>
-                <b>E-mail:</b> <a href="mailto:reservas@smartavillas.com">reservas@smartavillas.com</a>
+                <b>{t("email")}:</b> <a href="mailto:reservas@smartavillas.com">reservas@smartavillas.com</a>
                 </li>
                 <li>
-                <b>Address:</b> Smartavillas Unipessoal Lda (513548211) Rua Maria Helena Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal
+                <b>{t("Address")}:</b> Smartavillas Unipessoal Lda (513548211) Rua Maria Helena Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal
                 </li>
               </ul>
             </div>
@@ -168,3 +173,25 @@ export default class Index extends React.Component {
     )
   }
 }
+
+
+const Index = (props) => {
+  return (
+      <Contact props={props} useI18next={useI18next()} useTranslation={useTranslation()}/>
+  )
+}
+
+export default Index
+
+export const pageQuery = graphql`
+query ContactPage ($language: String!) {
+  locales : allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+  }
+}`

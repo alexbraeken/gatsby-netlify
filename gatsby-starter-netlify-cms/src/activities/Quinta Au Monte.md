@@ -1,10 +1,15 @@
 ---
 templateKey: activity-post
 title: Quinta Au Monte
+langTitles:
+  en: Quinta Au Monte
+  pt: "Quinta Au Monte"
 category: Olive Oil Farm Tours & Tastings
 featuredpost: false
 featuredimage: ../../static/img/monterosa.jpg
-description: ""
+description: 
+  en: ""
+  pt: ""
 link: http://www.quintaaumonte.com/
 visibleLink: www.quintaaumonte.com
 gps:

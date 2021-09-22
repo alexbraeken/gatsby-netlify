@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
@@ -40,6 +41,7 @@ class CustomSlide extends React.Component {
 export const WhyBookPageTemplate = ({
   image,
   title,
+  langTitles,
   part1,
   part1Img,
   part2,
@@ -61,6 +63,9 @@ export const WhyBookPageTemplate = ({
   const [loaded, setLoaded] = useState(false);
 
   const slideContainer = useRef(null)
+
+  const {t} = useTranslation();
+  const {language } = useI18next();
 
   const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -98,7 +103,7 @@ export const WhyBookPageTemplate = ({
       <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
-        {title}
+        {langTitles[language]}
       </h2>
     </div>
     <section className="newLine"
@@ -109,8 +114,8 @@ export const WhyBookPageTemplate = ({
         <Row>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
             <div className="section intro-para" style={{margin: "auto"}}>
-              <h3 className="has-text-weight-semibold is-size-2">{part1.header}</h3>
-              <p>{part1.text}</p>
+              <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}</h3>
+              <p>{part1.text[language]}</p>
             </div>
         </Col>
         <Col xs={12} md={6}>
@@ -175,9 +180,9 @@ export const WhyBookPageTemplate = ({
           }
           <Col style={{display:"flex"}}>
           <div style={{margin:"auto"}} >
-            <h3 className="has-text-weight-semibold is-size-2" style={{textAlign: "center"}}>{part2.header}</h3>
+            <h3 className="has-text-weight-semibold is-size-2" style={{textAlign: "center"}}>{part2.header[language]}</h3>
             <p style={{color: "#fff"}}>
-              {part2.text}
+              {part2.text[language]}
             </p>
           </div>
           </Col>
@@ -209,9 +214,9 @@ export const WhyBookPageTemplate = ({
         position: "relative"}}>
       <Container>
         <Row>
-        <h3 className="has-text-weight-semibold is-size-2">{part3.header}</h3>
+        <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
           <p>
-            {part3.text}
+            {part3.text[language]}
           </p>
         </Row>
       </Container>
@@ -221,20 +226,21 @@ export const WhyBookPageTemplate = ({
       <Container>
         <Row>
           <Col>
-          <h3 className="has-text-weight-semibold is-size-2">{testimonialHeader}</h3>
+          <h3 className="has-text-weight-semibold is-size-2">{testimonialHeader[language]}</h3>
           <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
           <Testimonials />
           </Col>
         </Row>
       </Container>
     </section>
-    <Newsletter />
+    <Newsletter lang={language}/>
   </div>
 )}
 
 WhyBookPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   part1: PropTypes.object,
   part1Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   part2: PropTypes.object,
@@ -249,32 +255,34 @@ WhyBookPageTemplate.propTypes = {
   sliderImgPropId3: PropTypes.string,
   part3Img:PropTypes.object,
   part3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  testimonialHeader: PropTypes.string,
+  testimonialHeader: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }
 
 const WhyBookPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+  const post = data.pageData
+  const {language } = useI18next();
 
   return (
-    <Layout propTitle={frontmatter.title}>
+    <Layout propTitle={post.frontmatter.langTitles[language]}>
       <WhyBookPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        part1={frontmatter.part1}
-        part1Img={frontmatter.part1Img}
-        part2={frontmatter.part2}
-        sliderImg1={frontmatter.sliderImg1}
-        sliderImageTitle1={frontmatter.sliderImageTitle1}
-        sliderImgPropId1={frontmatter.sliderImgPropId1}
-        sliderImg2={frontmatter.sliderImg2}
-        sliderImageTitle2={frontmatter.sliderImageTitle2}
-        sliderImgPropId2={frontmatter.sliderImgPropId2}
-        sliderImg3={frontmatter.sliderImg3}
-        sliderImageTitle3={frontmatter.sliderImageTitle3}
-        sliderImgPropId3={frontmatter.sliderImgPropId3}
-        part3Img={frontmatter.part3Img}
-        part3={frontmatter.part3}
-        testimonialHeader={frontmatter.testimonialHeader}
+        image={post.frontmatter.image}
+        title={post.frontmatter.title}
+        langTitles={post.frontmatter.langTitles}
+        part1={post.frontmatter.part1}
+        part1Img={post.frontmatter.part1Img}
+        part2={post.frontmatter.part2}
+        sliderImg1={post.frontmatter.sliderImg1}
+        sliderImageTitle1={post.frontmatter.sliderImageTitle1}
+        sliderImgPropId1={post.frontmatter.sliderImgPropId1}
+        sliderImg2={post.frontmatter.sliderImg2}
+        sliderImageTitle2={post.frontmatter.sliderImageTitle2}
+        sliderImgPropId2={post.frontmatter.sliderImgPropId2}
+        sliderImg3={post.frontmatter.sliderImg3}
+        sliderImageTitle3={post.frontmatter.sliderImageTitle3}
+        sliderImgPropId3={post.frontmatter.sliderImgPropId3}
+        part3Img={post.frontmatter.part3Img}
+        part3={post.frontmatter.part3}
+        testimonialHeader={post.frontmatter.testimonialHeader}
       />
     </Layout>
   )
@@ -291,10 +299,14 @@ WhyBookPage.propTypes = {
 export default WhyBookPage
 
 export const WhyBookPageQuery = graphql`
-  query WhyBookPage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+  query WhyBookPage($id: String!, $language: String!) {
+    pageData: markdownRemark(id: { eq: $id }) {
       frontmatter {
-        title
+        title 
+        langTitles{
+          en
+          pt
+        }
         image {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 100) {
@@ -303,10 +315,19 @@ export const WhyBookPageQuery = graphql`
           }
           publicURL
         }
-        heading
+        heading {
+            en
+            pt
+          }
         part1 {
-          header
-          text
+          header {
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
         }
         part1Img{
           childImageSharp {
@@ -317,8 +338,14 @@ export const WhyBookPageQuery = graphql`
           publicURL
         }
         part2 {
-          header
-          text
+          header {
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
         }
         sliderImg1{
           childImageSharp {
@@ -358,11 +385,29 @@ export const WhyBookPageQuery = graphql`
           }
           publicURL
         }
-        part3{
-          header
-          text
+        part3 {
+          header {
+            en
+            pt
+          }
+          text {
+            en
+            pt
+          }
         }
-        testimonialHeader
+        testimonialHeader {
+          en
+          pt
+        }
+      }
+    }
+    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
       }
     }
   }

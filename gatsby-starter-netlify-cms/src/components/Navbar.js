@@ -132,11 +132,12 @@ const LanguageChange = (props) => {
         <li key={lng} className="languages-item">
           <a
             href="#"
+            className="languages-sub-item"
             onClick={(e) => {
               e.preventDefault();
               changeLanguage(lng);
             }}>
-            {lng}
+            {lng.toUpperCase()}
           </a>
         </li>
       ))}
@@ -370,7 +371,7 @@ const Navbar = class extends React.Component {
             </div>
             <div className="languages navbar-end has-text-centered">
               <ul>
-                <li>
+                <li style={{display: "flex"}}>
                   <a
                     className="navbar-item"
                     href="https://platform.hostfully.com/login.jsp"
@@ -384,7 +385,7 @@ const Navbar = class extends React.Component {
                 </a>
                 </li>
                 <li className="languages-item">
-                    <a href="#">{language}</a>
+                    <a role="button" tabindex="0" className="navbar-item language-anchor" >{language.toUpperCase()}</a>
                     <LanguageChange getPath={this.getOriginalPath}/>
                 </li>
               </ul>

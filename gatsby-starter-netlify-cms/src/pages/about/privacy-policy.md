@@ -3,7 +3,13 @@ templateKey: 'content-page'
 path: /about
 preferred_language: default
 title: Privacy Policy
+langTitles:
+    en: Privacy Policy
+    pt: "Política de Privacidade"
 hero: null
+html:
+    en: ""
+    pt: ""
 ---
 ### Who we are
 Smartavillas.com is a property management and rental business operating on the Eastern Algarve.
