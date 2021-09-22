@@ -5,7 +5,7 @@ preferred_language: default
 title: Privacy Policy
 langTitles:
     en: Privacy Policy
-    pt: "Política de Privacidade"
+    pt: Política de Privacidade
 hero: null
 html:
     en: ""

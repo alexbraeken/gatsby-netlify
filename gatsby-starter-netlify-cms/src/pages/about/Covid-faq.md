@@ -5,7 +5,7 @@ preferred_language: default
 title: COVID-19 FAQ
 langTitles:
 	en: COVID-19 FAQ
-	pt: "COVID-19 FAQ"
+	pt: COVID-19 FAQ
 html:
     en: ""
     pt: ""
