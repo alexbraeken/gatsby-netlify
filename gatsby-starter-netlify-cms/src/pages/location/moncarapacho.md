@@ -7,7 +7,6 @@ title: Moncarapacho
 langTitles:
     en: Moncarapacho
     pt: ""
-    pt: ""
 image: ../../../static/img/Moncarapacho1.jpg
 part1: 
     header: 
