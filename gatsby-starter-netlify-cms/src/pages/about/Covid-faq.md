@@ -4,8 +4,9 @@ path: /about
 preferred_language: default
 title: COVID-19 FAQ
 langTitles:
-	en: COVID-19 FAQ
-	pt: COVID-19 FAQ
+    en: COVID-19 FAQ
+    pt: COVID-19 FAQ
+hero: null
 html:
     en: ""
     pt: ""

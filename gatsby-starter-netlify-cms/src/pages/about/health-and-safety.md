@@ -4,8 +4,9 @@ path: /about
 preferred_language: default
 title: "Health & Safety"
 langTitles:
-	en: "Health & Safety"
-	pt: "Saúde e Segurança"
+    en: "Health & Safety"
+    pt: "Saúde e Segurança"
+hero: null
 html:
     en: ""
     pt: ""

@@ -4,22 +4,22 @@ preferred_language: default
 title: Smartavillas
 langTitles:
   en: Smartavillas
-  pt: ""
+  pt: "Smartavillas"
 image: ../../static/img/smartavillas_home_1.jpg
 pitchImage: ../../static/img/Ria_Formosa_Sunset.jpg
 heading: 
   en: Smartavillas
-  pt: ""
+  pt: "Smartavillas"
 subheading: 
   en: Holiday Rentals Villas and Apartments 
-  pt: ""
+  pt: "Villas e Apartamentos para alugar para férias"
 mainpitch:
   title:
     en: Why Smartavillas
-    pt: ""
+    pt: "Por que Smartavillas"
   description: 
     en: If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further!
-    pt: ""
+    pt: "Se está à procura do aluguer de férias perfeito ou se são proprietários de imóveis que desejam disponibilizar a sua casa de férias para aluguer, então não procure mais!"
 news: 
   en: " <h3>CLEAN & SAFE SEAL</h3>
   <br />
