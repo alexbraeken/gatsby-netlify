@@ -417,7 +417,7 @@ const handleSectionLeave = () => {
                     {data => {
                         return (!data.isLoading && data.value) ?
                         <>
-                        {featuredIds.length > 0 && 
+                        {featuredIds && featuredIds.length > 0 && 
                           <div>
                             <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('featured')}} /></h2>
                             <FeatureCarousel ids={featuredIds} properties={data.value}/>

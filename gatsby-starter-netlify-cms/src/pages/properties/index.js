@@ -39,6 +39,7 @@ const Properties = React.memo((props) => {
     const [horizontalExpanded, setHorizontalExpanded] = useState(false)
     const [filterExpanded, setFilterExpanded] = useState(true)
     const [cardDisplayNum, setCardDisplayNum] = useState(null)
+    const [fetchError, setFetchError] = useState(false)
     
     const [amenitiesList, setAmenitiesList] = useState({
         hasPool: false,
@@ -107,6 +108,9 @@ const Properties = React.memo((props) => {
                 .then(data => {
                 setPropertyIds(JSON.parse(data).propertiesUids)
                 })
+                .catch((error) => {
+                    setFetchError(true)
+                });
             setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})
             setAdvancedSearch(true)    
         }
@@ -276,7 +280,7 @@ const Properties = React.memo((props) => {
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
-                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange}/>
+                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery

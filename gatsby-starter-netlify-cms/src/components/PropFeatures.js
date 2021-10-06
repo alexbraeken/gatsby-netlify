@@ -1,6 +1,6 @@
 import React,{useState, useEffect, useRef} from 'react'
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
-import {Row, Col, Container}from 'react-bootstrap'
+import {Row, Col, Container, Alert}from 'react-bootstrap'
 import PropertyCard from '../components/PropertyCard'
 import { gsap } from "gsap"
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
@@ -129,39 +129,38 @@ const PropFeatureGrid = React.memo((data) => {
       <Row style={{paddingTop: "50px"}}>
       <Col xs={12} md={3} style={{margin: "auto 20px", display:"flex", padding: "5px"}}>
         {data.propList?.length > 0 ? 
-        <div>
-          <span className="text-muted">{data.propList.length} {t("Properties")}:</span>
-          {data.amenitiesList && 
-            <>
-              <br />
-              <div style={{display: "flex", flexWrap: "nowrap"}}>
-                {Object.keys(data.amenitiesList).map(amenity => {
-                  switch(amenity){
-                    case "hasPool":
-                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Pool</span></div> : null
-                    case "isWheelchairAccessible":
-                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FaWheelchair style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wheelchair Accessible</span></div> : null
-                    case "allowsPets":
-                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faDog} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Allows Pets</span></div> : null
-                    case "hasAirConditioning":
-                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faFan} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Air Conditioning</span></div> : null
-                    case "hasBarbecue":
-                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GiBarbecue style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Barbecue</span></div> : null
-                    case "hasElevator":
-                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GrElevator style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Elevator</span></div> : null
-                    case "hasGarden":
-                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faTree} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Garden</span></div> : null
-                    case "hasInternetWifi":
-                      return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wifi</span></div> : null
-                    default:
-                  return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><BsCheckCircle style={{margin: "auto 5px"}} /><span className="tooltiptext amenity-tooltip" >{amenity}</span></div> : null
-                  }
-                })}
-              </div>
-            </>
-          }
-          
-        </div>
+          <div>
+            <span className="text-muted">{data.propList.length} {t("Properties")}:</span>
+            {data.amenitiesList && 
+              <>
+                <br />
+                <div style={{display: "flex", flexWrap: "nowrap"}}>
+                  {Object.keys(data.amenitiesList).map(amenity => {
+                    switch(amenity){
+                      case "hasPool":
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Pool</span></div> : null
+                      case "isWheelchairAccessible":
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FaWheelchair style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wheelchair Accessible</span></div> : null
+                      case "allowsPets":
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faDog} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Allows Pets</span></div> : null
+                      case "hasAirConditioning":
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faFan} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Air Conditioning</span></div> : null
+                      case "hasBarbecue":
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GiBarbecue style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Barbecue</span></div> : null
+                      case "hasElevator":
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GrElevator style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Elevator</span></div> : null
+                      case "hasGarden":
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faTree} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Garden</span></div> : null
+                      case "hasInternetWifi":
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wifi</span></div> : null
+                      default:
+                    return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><BsCheckCircle style={{margin: "auto 5px"}} /><span className="tooltiptext amenity-tooltip" >{amenity}</span></div> : null
+                    }
+                  })}
+                </div>
+              </>
+            }
+          </div>
         : <span className="text-muted">{t("No Properties Found")}</span>}
       </Col>
       <Col xs={12} md={6}>
@@ -177,6 +176,17 @@ const PropFeatureGrid = React.memo((data) => {
           classNamePrefix="react-select"/>
       </Col>
       </Row>
+      {data.fetchError && 
+      <Row>
+        <Col>
+          <div>
+            <Alert variant={"warning"}>
+              {t("Fetch Error")}
+            </Alert>
+          </div>
+        </Col>
+      </Row>
+      }
     </Container>
     <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
       <br />

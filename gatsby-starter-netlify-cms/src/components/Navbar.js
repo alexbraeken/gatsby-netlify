@@ -137,7 +137,7 @@ const LanguageChange = (props) => {
               e.preventDefault();
               changeLanguage(lng);
             }}>
-            {lng.toUpperCase()}
+            {lng.toUpperCase()} 
           </a>
         </li>
       ))}
@@ -309,6 +309,11 @@ const Navbar = class extends React.Component {
 }
 
 
+hoverArrow = () => {
+  let arrow = document.getElementById(`arrow-language`)
+  arrow.style.transform = (arrow.style.transform === 'rotateZ(0deg)') ? 'rotateZ(180deg)' : 'rotateZ(0deg)'
+}
+
 
 
   render() {
@@ -385,7 +390,7 @@ const Navbar = class extends React.Component {
                 </a>
                 </li>
                 <li className="languages-item">
-                    <a role="button" tabindex="0" className="navbar-item language-anchor" >{language.toUpperCase()}</a>
+                    <a role="button" tabindex="0" className="navbar-item language-anchor" onMouseEnter={()=> {this.hoverArrow()}} onMouseLeave={()=>this.hoverArrow()}>{language.toUpperCase()}<div className="dropdown-arrow" id={`arrow-language`} ><FontAwesomeIcon icon={faChevronDown}/></div></a>
                     <LanguageChange getPath={this.getOriginalPath}/>
                 </li>
               </ul>

@@ -239,5 +239,6 @@
 "Send":"Send",
 "Algarve Holiday Rentals":"Algarve Holiday Rentals",
 "Address":"Address",
-"All Rights Reserved":"All Rights Reserved"
+"All Rights Reserved":"All Rights Reserved",
+"Fetch Error":"Connection Error: Property availability may not be accurate."
 }

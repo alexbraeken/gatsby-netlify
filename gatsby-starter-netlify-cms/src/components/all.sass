@@ -156,7 +156,7 @@ $menu-label-color: $white-ter
   margin-right: 0.75rem
 
 .navbar-item img
-  max-height: 1.5rem
+  max-height: 3rem
 
 // responsiveness
 +tablet-only
@@ -1526,6 +1526,11 @@ $min-margin: 10px
   & a
       display: flex
 
+.navbar .container
+  max-width: 1300px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
 .dropdown-submenu
   position: absolute
   opacity: 0
@@ -1552,9 +1557,14 @@ $min-margin: 10px
 .absolute a.navbar-item, .absolute .navbar-item
   color: #fff
 
+@media only screen and (max-width: 1300px) and (min-width: 900px)
+  .navbar-item
+    padding: .3rem .4vw
+
 @media only screen and (max-width: 900px)  
   .absolute a.navbar-item, .absolute .navbar-item
     color: unset
+
 
 a.navbar-item, .navbar-item
   font-weight: unset
@@ -1563,7 +1573,7 @@ a.navbar-item, .navbar-item
     background-color: $primary
 
 
-@media only screen and (max-width: 900px) 
+@media only screen and (max-width: 1000px) 
   .navbar-item
     display: flex
   .dropdown-submenu
@@ -3035,7 +3045,7 @@ $yellow: #FECEAB
 $white: #FFF
 
 @mixin mobile
-  @media screen and (max-width: 600px)
+  @media screen and (max-width: 1000px)
     @content
 
 .languages
@@ -3053,6 +3063,7 @@ $white: #FFF
       flex: 1
       padding: 0.75rem 0
       min-width: 50px
+      display: flex
       
       &:after
         content: ''
@@ -3079,7 +3090,7 @@ $white: #FFF
       overflow: hidden
       white-space: nowrap
       text-overflow: ellipsis
-      display: block
+      margin: auto
     
     @at-root .sub-menu &
       padding: 0.75rem 0
@@ -3115,6 +3126,7 @@ $white: #FFF
         flex: 0
         opacity: 0
         animation: enter 0.3s ease-out forwards
+        display: block
         
         @for $n from 1 through 5
           &:nth-child(#{$n})
@@ -3148,6 +3160,10 @@ $white: #FFF
     &:hover
       > ul
         display: flex
+
+@include mobile
+  #arrow-language
+    display: none
       
 .sub-menu
   position: absolute
