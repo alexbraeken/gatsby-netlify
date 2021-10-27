@@ -11,9 +11,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList, faImages, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { gsap } from "gsap"
 import Slider from "react-slick"
+import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
+import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
+import { connect } from "react-redux"
 
+const mapStateToProps = (state) => {
+  return  state 
+}
 
-const PropertyCard = (props) => {
+const mapDispatchToProps = dispatch => {
+return { increment: (name) => dispatch({ type: `ADD_PROPERTY`, propName: name }) }
+}
+
+const PropertyCardComp = (props) => {
 
     const [showAmenities, setShowAmenities] = useState()
     const [showCalendar, setShowCalendar] = useState()
@@ -58,10 +68,12 @@ const PropertyCard = (props) => {
     };
 
 
+
     return (
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}} id={props.item.name}>
+        <AiOutlineHeart class="add-favs-heart" onClick={()=>{props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests })}}/>
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
           }
@@ -162,5 +174,7 @@ const PropertyCard = (props) => {
       
       </Col>
       )}
+
+      const PropertyCard = connect()(PropertyCardComp)
 
       export default PropertyCard

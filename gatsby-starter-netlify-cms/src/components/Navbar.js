@@ -66,11 +66,11 @@ const PropertiesDropDown = React.memo((props) => {
       boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
       <h4 className="dropdown-title" style={{color:"#fff"}}>{t("All")}</h4>
     </div>
-          <a href={`/properties`}>
+          <Link to={`/properties`}>
             <div  className="navbar-item drop-item">
             {t("All Properties")}
             </div>
-          </a>
+          </Link>
           <Select 
           options={options}
           onChange={(e)=>onInputChange(e.value)}
@@ -90,11 +90,11 @@ const PropertiesDropDown = React.memo((props) => {
                                   </div>
                                   
                                   {d.value.Locations.map((city, index)=>(
-                                    <a href={`/properties?city=${city}`} key={index}>
+                                    <Link to={`/properties?city=${city}`} key={index}>
                                       <div  className="navbar-item drop-item">
                                         {city}
                                       </div>
-                                    </a>
+                                    </Link>
                                     ))
                                   }
                                   </div>
@@ -103,11 +103,11 @@ const PropertiesDropDown = React.memo((props) => {
                                     <h4 className="dropdown-title" style={{color:"#fff"}}>{t("Property Type")}</h4>
                                   </div>
                                   {d.value.Types.map((type, index)=>(
-                                    <a href={`/properties?type=${type}`} key={index}>
+                                    <Link to={`/properties?type=${type}`} key={index}>
                                       <div  className="navbar-item drop-item">
                                         {type[0].toUpperCase() + type.slice(1).toLowerCase()}
                                       </div>
-                                    </a>
+                                    </Link>
                                     ))
                                   }
                                   </div>
@@ -130,15 +130,15 @@ const LanguageChange = (props) => {
     <ul className="sub-menu">
       {languages.map((lng) => (
         <li key={lng} className="languages-item">
-          <a
-            href="#"
+          <Link
+            to="#"
             className="languages-sub-item"
             onClick={(e) => {
               e.preventDefault();
               changeLanguage(lng);
             }}>
             {lng.toUpperCase()} 
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
@@ -320,7 +320,7 @@ hoverArrow = () => {
 
     const { data } = this.props
     const {language} = this.props.useI18next;
-    const Links = data.site.siteMetadata.menuLinks
+    const links = data.site.siteMetadata.menuLinks
     
 
 
@@ -358,19 +358,19 @@ hoverArrow = () => {
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
             <div className="navbar-start has-text-centered">
-              {Links && Links.length > 0 &&
-          Links.map((Link, index) => {
-            return Link.subNav  ? 
-            <div className="navbar-item" role="button" tabIndex="0" onClick={()=>this.toggleDropDown(Link.subNav, index)} onKeyDown={(e)=>{if(e.key === 'Enter'){this.toggleDropDown(Link.subNav, index)}}} style={{cursor:"pointer"}} key={index}>
-                {Link.name[this.state.lang]} <div className="dropdown-arrow" id={`arrow-${index}`}><FontAwesomeIcon icon={faChevronDown}/></div>
+              {links && links.length > 0 &&
+          links.map((link, index) => {
+            return link.subNav  ? 
+            <div className="navbar-item" role="button" tabIndex="0" onClick={()=>this.toggleDropDown(link.subNav, index)} onKeyDown={(e)=>{if(e.key === 'Enter'){this.toggleDropDown(link.subNav, index)}}} style={{cursor:"pointer"}} key={index}>
+                {link.name[this.state.lang]} <div className="dropdown-arrow" id={`arrow-${index}`}><FontAwesomeIcon icon={faChevronDown}/></div>
             </div>
             :
             <>
-            <a href={`${Link.link}`} key={index}>
+            <Link to={`${link.link}`} key={index}>
                                       <div  className="navbar-item">
-                                      {Link.name[this.state.lang]}
+                                      {link.name[this.state.lang]}
                                       </div>
-                                    </a> 
+                                    </Link> 
             </>
             })}
             </div>
@@ -390,7 +390,7 @@ hoverArrow = () => {
                 </a>
                 </li>
                 <li className="languages-item">
-                    <a role="button" tabindex="0" className="navbar-item language-anchor" onMouseEnter={()=> {this.hoverArrow()}} onMouseLeave={()=>this.hoverArrow()}>{language.toUpperCase()}<div className="dropdown-arrow" id={`arrow-language`} ><FontAwesomeIcon icon={faChevronDown}/></div></a>
+                    <a role="button" tabIndex="0" className="navbar-item language-anchor" onMouseEnter={()=> {this.hoverArrow()}} onMouseLeave={()=>this.hoverArrow()}>{language.toUpperCase()}<div className="dropdown-arrow" id={`arrow-language`} ><FontAwesomeIcon icon={faChevronDown}/></div></a>
                     <LanguageChange getPath={this.getOriginalPath}/>
                 </li>
               </ul>
@@ -406,11 +406,11 @@ hoverArrow = () => {
           <>
           {this.state.subNav.map((link, index)=>{
             return link ? 
-            <a href={`${link.link}`} key={index}>
+            <Link to={`${link.link}`} key={index}>
               <div  className="navbar-item drop-item">
                 {link.name[this.state.lang]}
               </div>
-            </a>
+            </Link>
             : null }
           )}
           </>

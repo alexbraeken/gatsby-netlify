@@ -15,6 +15,8 @@ import BackToTop from '../components/BackToTop';
 import 'react-bnb-gallery/dist/style.css'
 import NewsAlert from '../components/newsAlert'
 import CookieBannerCookieHub from '../components/CookieBannerCookieHub'
+import ConnectedFavourites from '../components/Favourites';
+
 
 
 const TemplateWrapper = ({ children, pathKey, propTitle, propDescription }) => {
@@ -88,6 +90,7 @@ useEffect(() => {
       <div>{children}</div>
       <BackToTop />
       <Footer useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>
+      <ConnectedFavourites />
       <CookieBannerCookieHub googleTrackingId={process.env.GATSBY_GOOGLE_TRACKING_ID} cookieHubId={process.env.GATSBY_COOKIEHUB_ID} />
       </FirestoreProvider>
     </div>

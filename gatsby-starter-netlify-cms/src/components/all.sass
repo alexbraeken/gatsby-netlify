@@ -3211,3 +3211,76 @@ $white: #FFF
   &::-webkit-scrollbar-thumb 
     background-color: darkgrey
     outline: 1px solid slategrey
+
+.add-favs-heart
+  position: absolute
+  top: 10px
+  right: 10px
+  width: 20px
+  height: auto
+  z-index: 99
+  cursor: pointer
+  &:hover
+    color: $primary
+
+.favs-container
+  position: fixed 
+  bottom: 0
+  left: 0 
+  width: 100% 
+  z-index: 999
+  & .show-favs
+      justify-content: center
+      display: flex
+      & .fav-toggle
+          margin: auto
+          display: flex
+          position: relative
+          transition: all 0.3s
+          cursor: pointer
+          & .favs-heart
+              margin: auto
+              height: 40px
+              width: auto
+              color: $primary
+          & .chevron
+              position: absolute
+              left: 50%
+              top: 50%
+              height: 20px
+              width: auto
+              transform: translate(-50%, -50%)
+          &:hover
+            transform: scale(1.08)
+            & .favs-heart
+                color: $light-orange
+          &.active
+            transform: translateY(-50%)
+            & .chevron
+                transform: translate(-50%, -50%) rotate(180deg)
+  & .favs-list
+      transition: all 0.3s
+      display: flex
+      opacity: 0
+      max-height: 0
+      justify-content: center
+      &.active
+        opacity: 1
+        max-height: 100vh
+        background-color: #fff
+        transition: all 0.3s
+      & .favs-card
+          margin: auto 10px
+          border-radius: 5px
+          & .favs-img
+              width: 50px
+              height: 50px
+              position: absolute
+              left: 50%
+              top: 0
+              transform: translate(-50%, -50%)
+              border-radius: 50%
+              background-size: cover
+              background-repeat: no-repeat
+              background-position: center
+              
