@@ -26,6 +26,18 @@ import { Helmet } from 'react-helmet';
 import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
 import { BsStarFill } from "@react-icons/all-files/bs/BsStarFill";
+import { connect } from "react-redux"
+import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
+import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
+
+const mapStateToProps = (state) => {
+    let newObj = {}
+    Object.keys(state.properties).forEach(prop=>{
+      newObj[prop] = state.properties[prop]
+    })
+    
+      return  {properties: newObj}
+    }
 
 
 export const PropertyPageTemplate = ( props ) =>
@@ -274,7 +286,8 @@ export const PropertyPageTemplate = ( props ) =>
                                     <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
                                 }
                                 <Container>
-                                    <Col>
+                                    <Row>
+                                    <Col xs={11} md={11}>
                                         <Row>     
                                         <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit", width:"100%"}}>
                                             <Col>
@@ -306,6 +319,17 @@ export const PropertyPageTemplate = ( props ) =>
                                         </div>
                                         </Row>
                                     </Col>
+                                    <Col xs={1} md={1} style={{display: "flex"}}>
+                                    <div className="add-favs">
+                                        {props.inFavs ? <AiFillHeart onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.id})} /> 
+                                        :
+                                        <AiOutlineHeart onClick={()=>{
+                                            props.dispatch({ type: 'ADD_PROPERTY', propName: data.value.name, propId: props.id, propImg: data.value.picture, bedrooms: data.value.bedrooms, bathrooms: data.value.bathrooms, baseGuests: data.value.baseGuests, city: data.value.city, rate: data.value.baseDailyRate })
+                                            }}/>
+                                        }
+                                        </div>
+                                    </Col>
+                                    </Row>
                                 </Container>
                             </div>
                                 <Container style={{paddingTop:"30px"}}>
@@ -759,13 +783,14 @@ export const PropertyNav = (props) => {
     )
 } 
 
-const PropertyPage = (data) => {
+const ConnectedPropertyPage = (data) => {
 
     const [propNav, setPropNav] = useState(false);
     const [headerStyle, setHeaderStyle] = useState({
         transition: 'all 300ms ease-in',
         transform: 'translate(0, -200%)'
       })
+      const [inFavs, setInFavs] = useState(false)
 
     useEffect(() => {
         return () => {
@@ -776,6 +801,15 @@ const PropertyPage = (data) => {
               })
         }
     }, [])
+
+    useEffect(() => {
+        let exists = false;
+        if(Object.keys(data.properties).indexOf(data.id) !== -1)exists = true;
+        setInFavs(exists)
+        return () => {
+          setInFavs(false)
+        }
+    }, [data.properties])
 
     useScrollPosition(({ prevPos, currPos }) => {
         const propSum = document.getElementById("prop-summary")
@@ -804,8 +838,10 @@ const PropertyPage = (data) => {
       }, [propNav])
 
     return(
-            <PropertyPageTemplate id={data.id} handlePathChange={() => data.handlePathChange()}/>
+            <PropertyPageTemplate id={data.id} dispatch={data.dispatch} inFavs={inFavs} handlePathChange={() => data.handlePathChange()}/>
     )
 }
+
+const PropertyPage = connect(mapStateToProps)(ConnectedPropertyPage)
 
 export default PropertyPage

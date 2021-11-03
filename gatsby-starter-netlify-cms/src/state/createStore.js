@@ -1,17 +1,28 @@
 import { createStore } from 'redux';
 
 function reducer(state, action) {
-    if (action.type === `ADD_PROPERTY`) {
-        console.log(action)
-        return Object.assign({}, state, {
-          properties: [...state.properties, {name: action.propName, id: action.propId, img: action.propImg, bedrooms: action.bedrooms, bathrooms: action.bathrooms, baseGuests: action.baseGuests}]
-        })
+  let newObj = state.properties
+    if(action.type === `ADD_PROPERTY`) {
+      if(!newObj[action.propId]){
+        newObj[action.propId] = {name: action.propName, id: action.propId, img: action.propImg, bedrooms: action.bedrooms, bathrooms: action.bathrooms, baseGuests: action.baseGuests, city: action.city, rate: action.rate}
+        return {
+          properties: newObj
+        }
       }
+    }
+    if(action.type === 'REMOVE_PROPERTY'){
+      if(newObj[action.propId]){
+        delete newObj[action.propId]
+        return {
+          properties: newObj
+        }
+      }
+    }
       return state
 }
 
 const initialState = { 
-    properties: []
+    properties: {}
  }
 
 // preloadedState will be passed in by the plugin

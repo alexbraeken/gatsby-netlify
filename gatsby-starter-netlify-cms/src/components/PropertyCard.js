@@ -16,8 +16,13 @@ import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
 import { connect } from "react-redux"
 
 const mapStateToProps = (state) => {
-  return  state 
-}
+  let newObj = {}
+  Object.keys(state.properties).forEach(prop=>{
+    newObj[prop] = state.properties[prop]
+  })
+  
+    return  {properties: newObj}
+  }
 
 const mapDispatchToProps = dispatch => {
 return { increment: (name) => dispatch({ type: `ADD_PROPERTY`, propName: name }) }
@@ -30,6 +35,7 @@ const PropertyCardComp = (props) => {
     const [displayPrice, setDisplayPrice] = useState(null)
     const [dateURI, setDateURI] = useState('')
     const [showSlider, setShowSlider] = useState(false)
+    const [inFavs, setInFavs] = useState(false)
 
     const {t} = useTranslation(['properties', 'translation', 'amenities']);
     const {language} = useI18next();
@@ -44,10 +50,20 @@ const PropertyCardComp = (props) => {
         setDateURI(`?from=${props.dates.from}&to=${props.dates.to}`)
       }
       setDisplayPrice(props.item.baseDailyRate)
+
       return () => {
         setDisplayPrice(null)
       }
     }, [props])
+
+    useEffect(() => {
+      let exists = false;
+      if(Object.keys(props.properties).indexOf(props.item.uid) !== -1)exists = true;
+      setInFavs(exists)
+      return () => {
+        setInFavs(false)
+      }
+  }, [props.properties])
 
     useEffect(() => {
       if(showCalendar)gsap.fromTo(calendar.current, {yPercent: -50}, {yPercent: 0, ease: "Elastic.easeOut",  duration: 0.5});
@@ -73,7 +89,12 @@ const PropertyCardComp = (props) => {
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}} id={props.item.name}>
-        <AiOutlineHeart class="add-favs-heart" onClick={()=>{props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests })}}/>
+        {!inFavs ? <AiOutlineHeart class="add-favs-heart" onClick={()=>{
+          props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests, city: props.item.city, rate: displayPrice })
+          }}/>
+          :
+          <AiFillHeart class="add-favs-heart" onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.item.uid})}/>
+          }
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
           }
@@ -175,6 +196,6 @@ const PropertyCardComp = (props) => {
       </Col>
       )}
 
-      const PropertyCard = connect()(PropertyCardComp)
+      const PropertyCard = connect(mapStateToProps)(PropertyCardComp)
 
       export default PropertyCard
