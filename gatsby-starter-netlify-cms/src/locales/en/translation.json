@@ -240,5 +240,7 @@
 "Algarve Holiday Rentals":"Algarve Holiday Rentals",
 "Address":"Address",
 "All Rights Reserved":"All Rights Reserved",
-"Fetch Error":"Connection Error: Property availability may not be accurate."
+"Fetch Error":"Connection Error: Property availability may not be accurate.",
+"add favs":"Add to Favourites",
+"remove favs":"Remove from Favourites"
 }

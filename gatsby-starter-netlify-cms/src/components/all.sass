@@ -20,7 +20,7 @@ $insta-purple: #833AB4
 
 
 .navbar .navbar-menu
-  box-shadow:none !important
+  box-shadow: none !important
 
 .content .taglist
   list-style: none
@@ -335,7 +335,6 @@ a:hover
 .icon-info:hover .tooltiptext
   opacity: 1
   visibility: visible
-
 
 //Property Cards
 
@@ -1082,7 +1081,7 @@ $min-margin: 10px
   color: $primary
 
 .feature-text-type
-  filter: drop-shadow(2px 4px 6px black);
+  filter: drop-shadow(2px 4px 6px black)
 
 //Home page search
 .InputFromTo, .InputFromTo-to
@@ -1107,6 +1106,8 @@ $min-margin: 10px
   .InputFromTo-to .DayPickerInput
     padding: 5px 0
 
+.InputFromTo-to
+  padding-right: 5px
 
 .InputFromTo .DayPickerInput, .InputFromTo-to
   flex: 1 1 48%
@@ -1402,58 +1403,58 @@ $min-margin: 10px
   height: 70vh
 
 .slide__overlay-path 
-	fill: #EFC88B
+  fill: #EFC88B
 
 .slide__content 
-	position: absolute
-	top: 0
-	left: 0
-	width: 100%
-	height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
 
 .slide__overlay 
-	position: absolute
-	bottom: 0
-	left: 0
-	height: 100%
-	min-height: 810px
-	-webkit-transition: opacity 0.2s 0.5s, -webkit-transform 0.5s 0.5s
-	transition: opacity 0.2s 0.5s, -webkit-transform 0.5s 0.5s
-	-o-transition: transform 0.5s 0.5s, opacity 0.2s 0.5s
-	transition: transform 0.5s 0.5s, opacity 0.2s 0.5s
-	transition: transform 0.5s 0.5s, opacity 0.2s 0.5s, -webkit-transform 0.5s 0.5s
-	will-change: transform, opacity
-	-webkit-transform: translate3d(-20%, 0, 0)
-	transform: translate3d(-20%, 0, 0)
-	opacity: 0
+  position: absolute
+  bottom: 0
+  left: 0
+  height: 100%
+  min-height: 810px
+  -webkit-transition: opacity 0.2s 0.5s, -webkit-transform 0.5s 0.5s
+  transition: opacity 0.2s 0.5s, -webkit-transform 0.5s 0.5s
+  -o-transition: transform 0.5s 0.5s, opacity 0.2s 0.5s
+  transition: transform 0.5s 0.5s, opacity 0.2s 0.5s
+  transition: transform 0.5s 0.5s, opacity 0.2s 0.5s, -webkit-transform 0.5s 0.5s
+  will-change: transform, opacity
+  -webkit-transform: translate3d(-20%, 0, 0)
+  transform: translate3d(-20%, 0, 0)
+  opacity: 0
 
 .small-overlay
   min-height: 80px
 
 @media (max-width: 991px) 
-	 .slide__overlay 
-		 display: none
+  .slide__overlay 
+    display: none
 	
 
 .slide__overlay path 
-	 opacity: 0.8
+  opacity: 0.8
 
 .slide__text 
-	position: absolute
-	width: 25%
-	bottom: 15%
-	left: 12%
-	color: #000
-	-webkit-transition: opacity 0.5s 0.8s, -webkit-transform 0.5s 0.8s
-	transition: opacity 0.5s 0.8s, -webkit-transform 0.5s 0.8s
-	-o-transition: transform 0.5s 0.8s, opacity 0.5s 0.8s
-	transition: transform 0.5s 0.8s, opacity 0.5s 0.8s
-	transition: transform 0.5s 0.8s, opacity 0.5s 0.8s, -webkit-transform 0.5s 0.8s
-	will-change: transform, opacity
-	-webkit-transform: translateY(-50%)
-	-ms-transform: translateY(-50%)
-	transform: translateY(-50%)
-	opacity: 0
+  position: absolute
+  width: 25%
+  bottom: 15%
+  left: 12%
+  color: #000
+  -webkit-transition: opacity 0.5s 0.8s, -webkit-transform 0.5s 0.8s
+  transition: opacity 0.5s 0.8s, -webkit-transform 0.5s 0.8s
+  -o-transition: transform 0.5s 0.8s, opacity 0.5s 0.8s
+  transition: transform 0.5s 0.8s, opacity 0.5s 0.8s
+  transition: transform 0.5s 0.8s, opacity 0.5s 0.8s, -webkit-transform 0.5s 0.8s
+  will-change: transform, opacity
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+  opacity: 0
 
 @media (max-width: 991px) 
 	.slide__text 
@@ -3229,9 +3230,8 @@ $white: #FFF
     outline: 1px solid slategrey
 
 .add-favs-heart
-  position: absolute
-  top: 10px
-  right: 10px
+  position: relative
+  margin: auto
   width: 20px
   height: auto
   z-index: 99
@@ -3240,6 +3240,22 @@ $white: #FFF
   &:hover
     color: $primary
     transform: scale(1.05)
+
+.favs-heart-container
+  position: absolute
+  top: 10px
+  right: 10px
+  display: flex
+  &:hover
+    & .favs.tooltiptext
+        opacity: 1
+        visibility: visible
+
+
+.favs.tooltiptext
+  top: 20px  
+  right: 10px
+
 
 .favs-container
   position: fixed 
@@ -3261,12 +3277,14 @@ $white: #FFF
               height: 40px
               width: auto
               color: $primary
+              filter: drop-shadow(0px 0px 5px black)
           & .chevron
               position: absolute
               left: 50%
               top: 50%
               height: 20px
               width: auto
+              transition: all 0.3s
               transform: translate(-50%, -50%)
           &:hover
             transform: scale(1.08)
@@ -3315,6 +3333,9 @@ $white: #FFF
               width: 100%
               height: 30px
               padding: 5px
+          &:hover
+            & .prop-card-title
+                color: $primary
       & .fav-slider
           text-align: center
               

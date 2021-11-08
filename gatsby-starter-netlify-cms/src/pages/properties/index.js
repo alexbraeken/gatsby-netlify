@@ -2,7 +2,7 @@ import React, {useState, useEffect, Component, useCallback} from 'react'
 import { graphql } from 'gatsby'
 import 'firebase/firestore';
 import { FirestoreCollection } from "@react-firebase/firestore";
-import { Router } from "@reach/router"
+import { Router, useLocation } from "@reach/router"
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropertyTemplate from "../../templates/property-page"
 import Layout from '../../components/Layout'
@@ -358,7 +358,7 @@ const PropertiesClass = class extends React.Component {
     handlePathChange(path){
         if(path){
             this.setState({path: path})
-            const filterValues = queryString.parse(this.props.props.location.search);
+            const filterValues = queryString.parse(this.props.path.search);
             const keys = Object.keys(filterValues)
             keys.forEach(key =>{
                 if(key === "bedrooms"){
@@ -477,7 +477,7 @@ const PropertiesClass = class extends React.Component {
         const t = this.props.useTranslation.t
 
         return (
-            <Layout pathKey={this.state.path} propTitle={t("title")} propDescription={t("description")}>
+            <Layout pathKey={this.props.path} propTitle={t("title")} propDescription={t("description")}>
                 <Router>
                         <PropertyTemplate path={`${this.props.useI18next.routed ? "/:locale/properties/:id" : "/properties/:id"}`}
                         handlePathChange= {this.handlePathChange}/>
@@ -498,8 +498,10 @@ const PropertiesClass = class extends React.Component {
 }
 
 const PropertiesPage = (props) => {
+
+
     return (
-        <PropertiesClass props={props} useI18next={useI18next()} useTranslation={useTranslation()}/>
+        <PropertiesClass useI18next={useI18next()} useTranslation={useTranslation()} useLocation={useLocation()} path={props.location}/>
     )
 }
 

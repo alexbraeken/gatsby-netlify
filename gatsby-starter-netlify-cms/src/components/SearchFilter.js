@@ -65,6 +65,43 @@ const customStyles = {
   }
 }
 
+const bedroomSelectStyle = {
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#f5821e" : "#fff",
+    color: state.isSelected ? '#fff' : '#000',
+  }),
+  container: () => ({
+    margin: "5px auto",
+    height: "50px",
+    flex: "1 1 10%",
+    display: "flex",
+    position: "relative",
+    minWidth: "200px"
+  }),
+  
+  control: () => ({
+    width: "100%",
+    height: "50px",
+    backgroundColor: "#fff",
+    margin: "auto",
+    display: "flex",
+    borderRadius: "4px"
+  }),
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = 'opacity 300ms';
+
+    return { ...provided, opacity, transition };
+  },
+  placeholder: (styles) => {
+    return{
+      ...styles,
+      color: "#495057;"
+    }
+  }
+}
+
 const LANGUAGES = ['en', 'pt']
 
 const WEEKDAYS_LONG = {
@@ -160,12 +197,12 @@ const SearchFilter = (props) => {
 
 
     const submitSearch = () => {
-      
+
       let uri = "/properties"
       if(multiselect.current.state.value 
         || dates.from
         || dates.to
-        || bedrooms.current.value) uri+= "?"
+        || bedrooms.current.state.value) uri+= "?"
       if(multiselect.current.state.value){
         multiselect.current.state.value.forEach((location)=>{
           uri+="city="+location.value+"&"
@@ -173,7 +210,7 @@ const SearchFilter = (props) => {
       }
       if(dates.from)uri+="from="+dates.from.toISOString()+"&"
       if(dates.to)uri+="to="+dates.to.toISOString()+"&"
-      if(bedrooms.current.value)uri+="bedrooms="+bedrooms.current.value+"&"
+      if(bedrooms.current.state.value)uri+="bedrooms="+bedrooms.current.state.value.value+"&"
       uri = encodeURI(uri)
       if(window) window.location.href= uri
     }
@@ -342,21 +379,22 @@ const SearchFilter = (props) => {
               style={{height:"100%", zIndex:"10"}}/>
           </span>
         </div>
-        <Form.Group className="input-guests">
-            <Form.Control as="select" className="home-search-dropdown" style={{height:"100%"}} ref={bedrooms}>
-                <option value="">{t("Bedrooms")}</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </Form.Control>
-        </Form.Group>
+        <Select options={[
+          {value: 1, label: 1}, 
+          {value: 2, label: 2},
+          {value: 3, label: 3},
+          {value: 4, label: 4},
+          {value: 5, label: 5},
+          {value: 6, label: 6},
+          {value: 7, label: 7},
+          {value: 8, label: 8},
+          {value: 9, label: 9},
+          {value: 10, label: 10},]}
+          styles={bedroomSelectStyle}
+          closeMenuOnSelect={true}
+          ref={bedrooms}
+          placeholder={t("Bedrooms")}/>
+        
         <div role="button" tabindex="0" onClick={submitSearch} onKeyDown={(e)=>{if(e.key==="Enter"){submitSearch()}}}>
         <SubmitButton text={t("See What We Have!")}/>
         </div>

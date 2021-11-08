@@ -238,5 +238,7 @@
 "Algarve Holiday Rentals":"Aluguer de férias no Algarve",
 "Address":"Endereço",
 "All Rights Reserved":"Todos os Direitos Reservados",
-"Fetch Error":"Erro de conexão: A disponibilidade da propriedade pode não ser precisa."
+"Fetch Error":"Erro de conexão: A disponibilidade da propriedade pode não ser precisa.",
+"add favs":"Adicionar aos Favoritos",
+"remove favs":"Remover dos Favoritos"
 }

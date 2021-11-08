@@ -19,7 +19,7 @@ import ConnectedFavourites from '../components/Favourites';
 
 
 
-const TemplateWrapper = ({ children, pathKey, propTitle, propDescription }) => {
+const TemplateWrapper = ({ children, pathKey, propTitle, propDescription, navFill }) => {
 
   let { title, description } = useSiteMetadata()
 
@@ -86,7 +86,7 @@ useEffect(() => {
       </Helmet>
       <FirestoreProvider {...config} firebase={firebase}>
       <NewsAlert/>
-      <Navbar key={path}/>
+      <Navbar key={path} />
       <div>{children}</div>
       <BackToTop />
       <Footer useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>

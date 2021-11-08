@@ -415,7 +415,7 @@ export const PropertyPageTemplate = ( props ) =>
                                     
                                     <FirestoreDocument path={`/Descriptions/${props.id}`}>
                                             {descriptions => {
-                                                    return (!descriptions.isLoading && descriptions.value && descriptions.value.length > 0) ? 
+                                                    return (!descriptions.isLoading && descriptions.value) ? 
                                                     <>
                                                     {setDescriptionsLoading(false)}
                                                     {handleName(descriptions.value[lang]?.name || descriptions.value.en_US.name)}

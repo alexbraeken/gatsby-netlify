@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { connect } from "react-redux"
 import {Container, Col, Row, Card} from 'react-bootstrap'
@@ -26,13 +26,27 @@ const Favourites = (props) => {
 
     const {t} = useTranslation(['properties', 'translation', 'amenities']);
 
+
     useEffect(() => {
 
       setFavProps(props.properties)
+      
       return () => {
         setFavProps([])
       }
     }, [props])
+
+    useEffect(() => {
+
+        try {
+          const serializedState = JSON.stringify(favProps);
+          localStorage.setItem('state', serializedState);
+        } catch {
+          
+        }
+      
+    }, [favProps])
+
 
     const settings = {
       infinite: true,
@@ -42,6 +56,8 @@ const Favourites = (props) => {
       slidesToShow: Object.keys(favProps).length > 4 ? 4 : Object.keys(favProps).length,
       slidesToScroll: 1,
       swipeToSlide: true,
+      variableWidth: true,
+      centerMode: true,
       responsive: [
         {
           breakpoint: 1024,
@@ -77,28 +93,34 @@ const Favourites = (props) => {
       <Col>
         <Row className="show-favs" >
           {Object.keys(favProps).length > 0 && 
-            <div className={`fav-toggle ${show ? "active": null}`} onClick = {()=>setShow(!show)}>
+            <div className={`fav-toggle ${show ? "active": ""}`} onClick = {()=>setShow(!show)}>
                 <AiFillHeart className="favs-heart" />
                 <FontAwesomeIcon className="chevron" icon={faChevronUp} />
             </div>
           }
         </Row>
-        <Row className={`favs-list ${show ? "active": null}`}>
+        <Row className={`favs-list ${show ? "active": ""}`}>
           <div style={{height: "auto", width: "100%"}}>
             <Slider {...settings}>
               {Object.keys(favProps).map(property=>{
-                return  <Card className="favs-card" key={favProps[property].id}>
-                            <Card.ImgOverlay style={{position:"relative", padding:"0"}}>
-                              <div className="favs-img" style={{backgroundImage: `url(${favProps[property].img || 'https://res.cloudinary.com/smartavillas-com/image/upload/v1615366925/Ambience_Mood/Hero_Family_efmsd3.jpg'})`}}></div>
-                              <Card.Title style={{textAlign:"center"}}><Link to={`/properties/${favProps[property].id}`}><span className="prop-card-title">{favProps[property].name}</span></Link></Card.Title>
-                              <MdClose className="fav-close" onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: favProps[property].id})}/>
-                              <BedBathPax bedrooms={favProps[property].bedrooms} bathrooms={favProps[property].bathrooms} baseGuests={favProps[property].baseGuests} color="rgba(0,0,0)"/>
-                              <div className="favs-ps">
-                                <small style={{float:"left"}}>{favProps[property].city}</small>
-                                <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{favProps[property].rate}€ </span>/ {t("Night")}</small>
-                              </div>
-                            </Card.ImgOverlay>
-                        </Card>
+                return(
+                  <div>
+                    <Card className="favs-card" key={favProps[property].id}>
+                      <Card.ImgOverlay style={{position:"relative", padding:"0"}}>
+                        <div className="favs-img" style={{backgroundImage: `url(${favProps[property].img || 'https://res.cloudinary.com/smartavillas-com/image/upload/v1615366925/Ambience_Mood/Hero_Family_efmsd3.jpg'})`}}></div>
+                        <MdClose className="fav-close" onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: favProps[property].id})}/>
+                        <Link to={`/properties/${favProps[property].id}`}>
+                          <Card.Title style={{textAlign:"center", marginBottom: 0, paddingBottom: "0.75rem"}}><span className="prop-card-title">{favProps[property].name}</span></Card.Title>
+                          <BedBathPax bedrooms={favProps[property].bedrooms} bathrooms={favProps[property].bathrooms} baseGuests={favProps[property].baseGuests} color="rgba(0,0,0)"/>
+                          <div className="favs-ps">
+                            <small style={{float:"left"}}>{favProps[property].city}</small>
+                            <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{favProps[property].rate}€ </span>/ {t("Night")}</small>
+                          </div>
+                        </Link>
+                      </Card.ImgOverlay>
+                    </Card>
+                  </div>
+                )
               })
               }
             </Slider>

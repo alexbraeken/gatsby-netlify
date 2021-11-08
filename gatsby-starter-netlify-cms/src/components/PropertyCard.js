@@ -89,11 +89,17 @@ const PropertyCardComp = (props) => {
     <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}} id={props.item.name}>
-        {!inFavs ? <AiOutlineHeart class="add-favs-heart" onClick={()=>{
-          props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests, city: props.item.city, rate: displayPrice })
-          }}/>
+        {!inFavs ? 
+          <div className="favs-heart-container">
+            <AiOutlineHeart class="add-favs-heart" onClick={()=>{
+            props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests, city: props.item.city, rate: displayPrice })
+            }}/><span className="favs tooltiptext">{t("add favs")}</span>
+          </div>
           :
-          <AiFillHeart class="add-favs-heart" onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.item.uid})}/>
+          <div className="favs-heart-container">
+            <AiFillHeart class="add-favs-heart" onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.item.uid})}/>
+            <span className="favs tooltiptext">{t("remove favs")}</span>
+          </div>
           }
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
