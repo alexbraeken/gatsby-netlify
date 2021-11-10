@@ -22,8 +22,7 @@ function reducer(state, action) {
 }
 
 const initialState = { 
-  
-    properties: JSON.parse(localStorage.getItem('state')) || {}
+    properties: (typeof window !== 'undefined') ? JSON.parse(localStorage.getItem('state')) || {} : {} 
  }
 
 // preloadedState will be passed in by the plugin

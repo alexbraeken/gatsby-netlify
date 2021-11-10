@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { BsStarFill } from "@react-icons/all-files/bs/BsStarFill";
 import { BsStar } from "@react-icons/all-files/bs/BsStar";
-import Slider from "react-slick"
+import Masonry from 'react-masonry-component';
 
 export default function Reviews(props) {
 
@@ -14,19 +14,6 @@ export default function Reviews(props) {
         }
     }, [])
 
-    useEffect(() => {
-        const heights = Array.from(document.getElementsByClassName('review-card')).map(elem => {
-            return elem.offsetHeight
-        })
-
-        const maxHeight = Math.max(...heights)
-
-        let reviewContainer = document.getElementById('reviews-container')
-        let slickList = reviewContainer.querySelectorAll('.slick-list');
-
-        slickList[0].style.height = `${maxHeight+50}px`
-        
-    }, [slides])
 
     const settings = {
         infinite: true,
@@ -44,10 +31,16 @@ export default function Reviews(props) {
     return (
         <div className="reviews-container" id="reviews-container">
             <div className="slick-slider slick-track slick-slide"></div>
-            <Slider {...settings}>
+            <Masonry
+                className={''} // default ''
+                elementType={'div'} // default 'div'
+                
+                disableImagesLoaded={false} // default false
+                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                
+            >
             {slides?.map((review, index) => (
-                <div key={index}>
-                    <div className="review-card">
+                    <div className="review-card" key={index}>
                         <div className="star-rating">
                             {[...Array(5)].map((x, i) =>
                                 i+1 > review.rating ? <BsStar key={i} className="review-star"/> : <BsStarFill key={i} className="review-star"/>
@@ -61,10 +54,9 @@ export default function Reviews(props) {
                         <hr />
                         <p>{review.content}</p>  
                     </div>
-                </div>
             ))
             }
-            </Slider>
+            </Masonry>
         </div>
     )
 }

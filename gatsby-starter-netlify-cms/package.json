@@ -72,6 +72,7 @@
     "react-i18next": "^11.11.4",
     "react-instagram-authless-feed": "github:jamesmoriarty/react-instagram-authless-feed",
     "react-instagram-embed": "^2.0.0",
+    "react-masonry-component": "^6.3.0",
     "react-redux": "^7.2.6",
     "react-responsive": "^8.2.0",
     "react-select": "^3.1.1",

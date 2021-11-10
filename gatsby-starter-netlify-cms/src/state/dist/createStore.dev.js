@@ -41,7 +41,7 @@ function reducer(state, action) {
 }
 
 var initialState = {
-  properties: JSON.parse(localStorage.getItem('state')) || {}
+  properties: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('state')) || {} : {}
 }; // preloadedState will be passed in by the plugin
 
 var _default = function _default(preloadedState) {
