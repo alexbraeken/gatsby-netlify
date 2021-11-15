@@ -179,7 +179,7 @@ const Navbar = class extends React.Component {
     
     const {originalPath} = this.props.useI18next;
     const propPage = originalPath.match(/(?:\/properties\/)([^\?]+)(?=\?*)/)
-    
+
     if(window && originalPath === "/"){
       this.setState({style: {
         position: 'absolute',
@@ -202,6 +202,16 @@ const Navbar = class extends React.Component {
           },
           burgerStyle: isTabletOrMobile ? {color: "#fff"} : {color : "#000"}
         })
+  }else{
+    this.setState({
+      style: {
+       
+      },
+      navClass:'',
+      menuPadding: {
+      },
+      burgerStyle: {}
+    })
   }
 
   if(isTabletOrMobile) this.setState((state, props)=>({
@@ -439,7 +449,9 @@ Navbar.propTypes = {
   }),
 }
 
-export default (props) => (
+export default (props) => {
+
+  return(
   <StaticQuery
     query={graphql`
       query NavbarQuery {
@@ -465,4 +477,4 @@ export default (props) => (
     `}
     render={(data, count) => <Navbar data={data} count={count} useI18next={useI18next()} useTranslation={useTranslation()}/>}
   />
-)
+)}
