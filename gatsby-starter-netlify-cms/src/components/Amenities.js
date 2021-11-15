@@ -48,85 +48,79 @@ const Amenities = (props) => {
     const determineAmenity = (amenity) =>{
         switch(amenity){
             case "hasTV":
-        return <div className="amenity-text"><FontAwesomeIcon icon={faTv}/><b> {t("TV")}</b></div>
+        return <div className="amenity-text"><FontAwesomeIcon icon={faTv}/><b> {t("hasTV")}</b></div>
             case "hasAirConditioning":
-                return <div className="amenity-text"><FontAwesomeIcon icon={faFan}/><b> {t("Air Conditioning")}</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faFan}/><b> {t(amenity)}</b></div>
             case "allowsPets":
-                return <div className="amenity-text"><FontAwesomeIcon icon={faDog}/><b> {t("Pets Allowed")}</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faDog}/><b> {t(amenity)}</b></div>
             case "hasHotTub":
-                return <div className="amenity-text"><FontAwesomeIcon icon={faHotTub}/><b> {t("Hot Tub")}</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faHotTub}/><b> {t(amenity)}</b></div>
             case "hasInternetWifi":
-                return <div className="amenity-text"><FontAwesomeIcon icon={faWifi}/><b> {t("Wifi")}</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faWifi}/><b> {t(amenity)}</b></div>
             case "hasPool":
-                return <div className="amenity-text"><FontAwesomeIcon icon={faSwimmingPool}/><b> {t("Pool")}</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faSwimmingPool}/><b> {t(amenity)}</b></div>
             case "hasGarden":
-                return <div className="amenity-text"><FontAwesomeIcon icon={faTree}/><b> {t("Garden")}</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faTree}/><b> {t(amenity)}</b></div>
             case "hasCDDVDPlayer":
-                return <div className="amenity-text"><FontAwesomeIcon icon={faCompactDisc}/><b> {t("CD/DVD Player")}</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faCompactDisc}/><b> {t(amenity)}</b></div>
             case "hasFireExtinguisher":
-                return <div className="amenity-text"><FontAwesomeIcon icon={faFireExtinguisher}/><b> {t("Fire Extinguisher")}</b></div>
+                return <div className="amenity-text"><FontAwesomeIcon icon={faFireExtinguisher}/><b> {t(amenity)}</b></div>
             case "hasWasher":
-                return <div className="amenity-text"><CgSmartHomeWashMachine /><b> {t("Washer")}</b></div>
+                return <div className="amenity-text"><CgSmartHomeWashMachine /><b> {t(amenity)}</b></div>
             case "hasPotsPans":
-                return <div className="amenity-text"><GiCookingPot /><b> {t("Pots & Pans")}</b></div>
+                return <div className="amenity-text"><GiCookingPot /><b> {t(amenity)}</b></div>
             case "hasIndoorFireplace":
-                return <div className="amenity-text"><GiFireplace /><b> {t("Indoor Fireplace")}</b></div>
+                return <div className="amenity-text"><GiFireplace /><b> {t(amenity)}</b></div>
             case "hasOven":
-                return <div className="amenity-text"><GiChickenOven /><b> {t("Oven")}</b></div>
+                return <div className="amenity-text"><GiChickenOven /><b> {t(amenity)}</b></div>
             case "hasCrockeryCutlery":
-                return <div className="amenity-text"><GiForkKnifeSpoon /><b> {t("Crockery Cutlery")}</b></div>
+                return <div className="amenity-text"><GiForkKnifeSpoon /><b> {t(amenity)}</b></div>
             case "hasCoffeeMaker":
-                return <div className="amenity-text"><GiCoffeePot /><b> {t("Coffee Maker")}</b></div>
+                return <div className="amenity-text"><GiCoffeePot /><b> {t(amenity)}</b></div>
             case "hasHeating":
-                return <div className="amenity-text"><GiHeatHaze /><b> {t("Heating")}</b></div>
+                return <div className="amenity-text"><GiHeatHaze /><b> {t(amenity)}</b></div>
             case "hasFreeParking":
-                return <div className="amenity-text"><FaParking /><b> {t("Free Parking")}</b></div>
+                return <div className="amenity-text"><FaParking /><b> {t(amenity)}</b></div>
             case "hasKitchen":
-                return <div className="amenity-text"><MdKitchen /><b> {t("Kitchen")}</b></div>
+                return <div className="amenity-text"><MdKitchen /><b> {t(amenity)}</b></div>
             case "hasHotWater":
-                return <div className="amenity-text"><CgSmartHomeBoiler /><b> {t("Hot Water")}</b></div>
+                return <div className="amenity-text"><CgSmartHomeBoiler /><b> {t(amenity)}</b></div>
             case "hasHangers":
-                return <div className="amenity-text"><BiCloset /><b> {t("Hangers")}</b></div>
+                return <div className="amenity-text"><BiCloset /><b> {t(amenity)}</b></div>
             case "hasBabyTravelBed":
-                return <div className="amenity-text"><FaBaby /><b> {t("Baby Travel Bed")}</b></div>
+                return <div className="amenity-text"><FaBaby /><b> {t(amenity)}</b></div>
             case "hasStove":
-                return <div className="amenity-text"><CgSmartHomeCooker /><b> {t("Stove")}</b></div>
+                return <div className="amenity-text"><CgSmartHomeCooker /><b> {t(amenity)}</b></div>
             case "hasWardrobe":
-                return <div className="amenity-text"><GiHanger /><b> {t("Wardrobe")}</b></div>
+                return <div className="amenity-text"><GiHanger /><b> {t(amenity)}</b></div>
             case "hasRoomDarkeningShades":
-                return <div className="amenity-text"><CgDarkMode /><b> {t("Room Darkening Shades")}</b></div>
+                return <div className="amenity-text"><CgDarkMode /><b> {t(amenity)}</b></div>
             case "hasFirstAidKit":
-                return <div className="amenity-text"><RiFirstAidKitFill /><b> {t("First Aid Kit")}</b></div>
+                return <div className="amenity-text"><RiFirstAidKitFill /><b> {t(amenity)}</b></div>
             case "hasCookingBasics":
-                return <div className="amenity-text"><GiCook /><b> {t("Cooking Basics")}</b></div>  
+                return <div className="amenity-text"><GiCook /><b> {t(amenity)}</b></div>  
             case "hasBabyHighChair":
-                return <div className="amenity-text"><FaChair /><b> {t("Baby High Chair")}</b></div> 
+                return <div className="amenity-text"><FaChair /><b> {t(amenity)}</b></div> 
             case "hasGatedProperty":
-                return <div className="amenity-text"><GiGate /><b> {t("Gated Property")}</b></div> 
+                return <div className="amenity-text"><GiGate /><b> {t(amenity)}</b></div> 
             case "hasMicrowaveOven":
-                return <div className="amenity-text"><GiWaves /><b> {t("Microwave Oven")}</b></div>
+                return <div className="amenity-text"><GiWaves /><b> {t(amenity)}</b></div>
             case "hasSeaView":
-                return <div className="amenity-text"><GiBigWave /><b> {t("Sea View")}</b></div>
+                return <div className="amenity-text"><GiBigWave /><b> {t(amenity)}</b></div>
             case "isWheelchairAccessible":
-                return <div className="amenity-text"><FaWheelchair /><b> {t("Wheelchair Accessible")}</b></div>
+                return <div className="amenity-text"><FaWheelchair /><b> {t(amenity)}</b></div>
             case "hasFridge":
-                return <div className="amenity-text"><RiFridgeFill /><b> {t("Fridge")}</b></div>
+                return <div className="amenity-text"><RiFridgeFill /><b> {t(amenity)}</b></div>
             case "hasBabysitterRecommendations":
-                return <div className="amenity-text"><GiBabyBottle /><b> {t("Babysitter Recommendations")}</b></div>
+                return <div className="amenity-text"><GiBabyBottle /><b> {t(amenity)}</b></div>
             case "hasToaster":
-                return <div className="amenity-text"><GiToaster /><b> {t("Toaster")}</b></div>
+                return <div className="amenity-text"><GiToaster /><b> {t(amenity)}</b></div>
             case "hasBarbecue":
-                return <div className="amenity-text"><GiBarbecue /><b> {t("Barbecue")}</b></div>
+                return <div className="amenity-text"><GiBarbecue /><b> {t(amenity)}</b></div>
             case "hasWaterKettle":
-                return <div className="amenity-text"><GiTeapotLeaves /><b> {t("Water Kettle")}</b></div>
+                return <div className="amenity-text"><GiTeapotLeaves /><b> {t(amenity)}</b></div>
             default:
-                let text;
-                let temp = amenity.replace( /([A-Z])/g, " $1" ); //Split text at capitals
-                text = temp.charAt(0).toUpperCase() + temp.slice(1); //Capitalize first char
-                if(text.includes('Has ')){
-                    text = text.slice(4) //remove has
-                }
-                return <div className="amenity-text"><BsCheckCircle /><b> {text}</b></div>
+                return <div className="amenity-text"><BsCheckCircle /><b> {t(amenity)}</b></div>
         }
     }
 

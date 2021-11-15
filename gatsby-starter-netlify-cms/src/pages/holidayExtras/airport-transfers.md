@@ -42,52 +42,75 @@ html:
 <tr>
 <th align='center'><p style='text-align: center;'>Destination </p></th>
 <th align='center'><p style='text-align: center;'>1 – 4 persons <br>(with luggage)   </p></th>
-<th align='center'><p style='text-align: center;'>5 – 6 persons <br>(with luggage)</p></th>
-<th align='center'><p style='text-align: center;'>7 – 8 persons <br>(with luggage)</p></th>
+<th align='center'><p style='text-align: center;'>5 – 8 persons <br>(with luggage)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
 <td align='center'>50€</td>
-<td align='center'>55€</td>
-<td align='center'>95€</td>
+<td align='center'>60€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
 <td align='center'>50€</td>
-<td align='center'>55€</td>
-<td align='center'>95€</td>
+<td align='center'>60€</td>
 </tr>
 <tr>
 <td align='center'>Vila Nova de Cacela</td>
 <td align='center'>60€</td>
-<td align='center'>65€</td>
-<td align='center'>110€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
 <td align='center'>60€</td>
-<td align='center'>65€</td>
-<td align='center'>110€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Altura</td>
 <td align='center'>60€</td>
-<td align='center'>65€</td>
-<td align='center'>110€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Castro Marim</td>
 <td align='center'>70€</td>
 <td align='center'>75€</td>
-<td align='center'>130€</td>
 </tr>
 <tr>
 <td align='center'>Fuseta</td>
 <td align='center'>45€</td>
+<td align='center'>50€</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br />
+<center>
+<h3>AQUA SHOW</h3>
+<div class='base-table'>
+<table>
+<thead>
+<tr>
+<th align='center'><p style='text-align: center;'>Pick Up Point </p></th>
+<th align='center'><p style='text-align: center;'>1 – 4 persons</p></th>
+<th align='center'><p style='text-align: center;'>5 – 8 persons</p></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align='center'>Tavira</td>
 <td align='center'>55€</td>
-<td align='center'>90€</td>
+<td align='center'>60€</td>
+</tr>
+<tr>
+<td align='center'>Cabanas</td>
+<td align='center'>50€</td>
+<td align='center'>60€</td>
+</tr>
+<tr>
+<td align='center'>Manta Rota</td>
+<td align='center'>65€</td>
+<td align='center'>70€</td>
 </tr>
 </tbody>
 </table>
@@ -129,52 +152,75 @@ html:
 <tr>
 <th align='center'><p style='text-align: center;'>Destino </p></th>
 <th align='center'><p style='text-align: center;'>1 – 4 pessoas <br>(com bagagem)   </p></th>
-<th align='center'><p style='text-align: center;'>5 – 6 pessoas <br>(com bagagem)</p></th>
-<th align='center'><p style='text-align: center;'>7 – 8 pessoas <br>(com bagagem)</p></th>
+<th align='center'><p style='text-align: center;'>5 – 8 pessoas <br>(com bagagem)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
 <td align='center'>50€</td>
-<td align='center'>55€</td>
-<td align='center'>95€</td>
+<td align='center'>60€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
 <td align='center'>50€</td>
-<td align='center'>55€</td>
-<td align='center'>95€</td>
+<td align='center'>60€</td>
 </tr>
 <tr>
 <td align='center'>Vila Nova de Cacela</td>
 <td align='center'>60€</td>
-<td align='center'>65€</td>
-<td align='center'>110€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
 <td align='center'>60€</td>
-<td align='center'>65€</td>
-<td align='center'>110€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Altura</td>
 <td align='center'>60€</td>
-<td align='center'>65€</td>
-<td align='center'>110€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Castro Marim</td>
 <td align='center'>70€</td>
 <td align='center'>75€</td>
-<td align='center'>130€</td>
 </tr>
 <tr>
 <td align='center'>Fuseta</td>
 <td align='center'>45€</td>
+<td align='center'>50€</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br />
+<center>
+<h3>AQUA SHOW</h3>
+<div class='base-table'>
+<table>
+<thead>
+<tr>
+<th align='center'><p style='text-align: center;'>Ponto de Coleta </p></th>
+<th align='center'><p style='text-align: center;'>1 – 4 pessoas</p></th>
+<th align='center'><p style='text-align: center;'>5 – 8 pessoas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align='center'>Tavira</td>
 <td align='center'>55€</td>
-<td align='center'>90€</td>
+<td align='center'>60€</td>
+</tr>
+<tr>
+<td align='center'>Cabanas</td>
+<td align='center'>50€</td>
+<td align='center'>60€</td>
+</tr>
+<tr>
+<td align='center'>Manta Rota</td>
+<td align='center'>65€</td>
+<td align='center'>70€</td>
 </tr>
 </tbody>
 </table>

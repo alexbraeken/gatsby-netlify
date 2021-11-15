@@ -6,7 +6,7 @@ templateKey: location-page
 title: Moncarapacho
 langTitles:
     en: Moncarapacho
-    pt: ""
+    pt: "Moncarapacho"
 image: ../../../static/img/Moncarapacho1.jpg
 part1: 
     header: 

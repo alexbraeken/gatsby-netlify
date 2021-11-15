@@ -90,7 +90,7 @@ useEffect(() => {
       <div>{children}</div>
       <BackToTop />
       <Footer useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>
-      <ConnectedFavourites />
+      <ConnectedFavourites useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>
       <CookieBannerCookieHub googleTrackingId={process.env.GATSBY_GOOGLE_TRACKING_ID} cookieHubId={process.env.GATSBY_COOKIEHUB_ID} />
       </FirestoreProvider>
     </div>

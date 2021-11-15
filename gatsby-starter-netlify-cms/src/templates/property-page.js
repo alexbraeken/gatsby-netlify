@@ -390,7 +390,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </div>
                                                         <br />
                                                         <button className="btn" type="" onClick={()=>handleShowAmenities()}>{showAllAmenities?<>{t("Less")}...</>:<p>{t("Show all")} {amenitiesLength-1}...</p>}</button>
-                                                    </div> : "Loading" 
+                                                    </div> : <Loading />
                                                 }}
                                             </FirestoreDocument>
                                         </Col>

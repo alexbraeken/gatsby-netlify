@@ -10,6 +10,7 @@ export const ContentPageTemplate = ({ title, langTitles, content, contentCompone
   const [loaded, setLoaded] = useState(false);
 
   const {language} = useI18next();
+  
 
   const PageContent = contentComponent || Content
 
@@ -68,6 +69,7 @@ ContentPageTemplate.propTypes = {
 
 const ContentPage = ({ data }) => {
   const post = data.pageData
+  const {t} = useTranslation(['translation']);
 
   return (
     <Layout propTitle={post.frontmatter.title}>

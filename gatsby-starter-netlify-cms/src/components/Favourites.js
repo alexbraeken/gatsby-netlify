@@ -24,7 +24,7 @@ const Favourites = (props) => {
     const [show, setShow] = useState(false)
     const [favProps, setFavProps] = useState({})
 
-    const {t} = useTranslation(['properties', 'translation', 'amenities']);
+    const t = props.useTranslation.t
 
 
     useEffect(() => {
@@ -100,6 +100,7 @@ const Favourites = (props) => {
           }
         </Row>
         <Row className={`favs-list ${show ? "active": ""}`}>
+        <h4 style={{paddingBottom:"10px", fontWeight:"bold"}}>{t("Favourites")}</h4>
           <div style={{height: "auto", width: "100%"}}>
             <Slider {...settings}>
               {Object.keys(favProps).map(property=>{
