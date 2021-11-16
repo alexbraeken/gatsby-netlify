@@ -1593,8 +1593,10 @@ $min-margin: 10px
 
 .navbar-burger
   color: #000
-  &.mobile
-    color: #fff
+
+.transparent, .gradient
+  & .navbar-burger.mobile
+      color: #fff
 
 @media only screen and (max-width: 1300px) and (min-width: 900px)
   .navbar-item
