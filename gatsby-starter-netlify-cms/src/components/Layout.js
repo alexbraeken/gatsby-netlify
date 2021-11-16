@@ -36,9 +36,6 @@ useEffect(() => {
   }
 }, [pathKey])
 
-useEffect(() => {
-  console.log(navClass)
-}, [navClass])
 
   return (
     <div>

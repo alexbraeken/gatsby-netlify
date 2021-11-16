@@ -228,14 +228,14 @@ const Navbar = class extends React.Component {
     const { language } = this.props.useI18next;
     const padding =  isTabletOrMobile ? "10px" : `90px`
     const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches 
+    const top = document.getElementsByClassName("newsAlert")?.[0].getBoundingClientRect().height || 0
 
-    console.log(this.props.navClass)
-    console.log(this.props.navClass === 'transparent' || this.props.navClass === 'gradient')
 
     this.setState({
       lang: language,
       menuPadding: {
-        paddingTop: this.props.navClass === 'transparent' || this.props.navClass === 'gradient' ? padding : null
+        paddingTop: this.props.navClass === 'transparent' || this.props.navClass === 'gradient' ? padding : null,
+        top: isTabletOrMobile ? top : null
       },
       burgerClass: isTabletOrMobile  ? 'mobile' : '',
       isTabletOrMobile: isTabletOrMobile//{color : "#000"}
@@ -316,6 +316,7 @@ hoverArrow = () => {
   let arrow = document.getElementById(`arrow-language`)
   arrow.style.transform = (arrow.style.transform === 'rotateZ(0deg)') ? 'rotateZ(180deg)' : 'rotateZ(0deg)'
 }
+
 
 
 

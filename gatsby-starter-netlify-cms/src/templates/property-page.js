@@ -160,6 +160,7 @@ export const PropertyPageTemplate = ( props ) =>
                             return response.text()
                         })
                         .then(data => {
+                            console.log(data)
                             setReviews(JSON.parse(data))
                         })
 
@@ -186,7 +187,7 @@ export const PropertyPageTemplate = ( props ) =>
                 setDescriptionsLoading(true)
             }
         }
-    }, [])
+    }, [props.id, props.path])
 
 
     useEffect(() => {
@@ -785,22 +786,7 @@ export const PropertyNav = (props) => {
 
 const ConnectedPropertyPage = (data) => {
 
-    const [propNav, setPropNav] = useState(false);
-    const [headerStyle, setHeaderStyle] = useState({
-        transition: 'all 300ms ease-in',
-        transform: 'translate(0, -200%)'
-      })
       const [inFavs, setInFavs] = useState(false)
-
-    useEffect(() => {
-        return () => {
-            setPropNav(false)
-            setHeaderStyle({
-                transition: 'all 300ms ease-in',
-                transform: 'translate(0, -200%)'
-              })
-        }
-    }, [])
 
     useEffect(() => {
         let exists = false;
@@ -811,34 +797,9 @@ const ConnectedPropertyPage = (data) => {
         }
     }, [data.properties])
 
-    useScrollPosition(({ prevPos, currPos }) => {
-        const propSum = document.getElementById("prop-summary")
-        let propSumOffset;
-        if(propSum)propSumOffset = propSum.getBoundingClientRect().top;
-        const isShow = -100 > propSumOffset;
-        if (isShow !== propNav) setPropNav(isShow)
-
-        const shouldBeStyle = {
-            visibility: isShow ? 'visible' : 'hidden',
-            transition: `all 300ms ${isShow ? 'ease-in' : 'ease-out'}`,
-            transform: isShow ? 'none' : 'translate(0, -200%)',
-            zIndex: 2
-          }
-      
-        if (JSON.stringify(shouldBeStyle) !== JSON.stringify(headerStyle)) 
-            return setHeaderStyle(shouldBeStyle)
-      }, [propNav, headerStyle])
-
-      useEffect(() => {
-        setHeaderStyle({
-            transition: 'all 300ms ease-in',
-            transform: 'translate(0, -200%)'
-          })
-          
-      }, [propNav])
 
     return(
-            <PropertyPageTemplate id={data.id} dispatch={data.dispatch} inFavs={inFavs} handlePathChange={() => data.handlePathChange()}/>
+            <PropertyPageTemplate id={data.id} dispatch={data.dispatch} path={data.path} inFavs={inFavs} handlePathChange={() => data.handlePathChange()}/>
     )
 }
 
