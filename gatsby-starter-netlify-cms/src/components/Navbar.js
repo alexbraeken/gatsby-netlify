@@ -165,7 +165,8 @@ const Navbar = class extends React.Component {
       navClass: '',
       menuPadding:{},
       burgerClass: '',
-      lang: 'en'
+      lang: 'en',
+      isTabletOrMobile: false
     }
     //this.checkPathForNav = this.checkPathForNav.bind(this)
     //this.componentGracefulUnmount = this.componentGracefulUnmount.bind(this)
@@ -236,7 +237,8 @@ const Navbar = class extends React.Component {
       menuPadding: {
         paddingTop: this.props.navClass === 'transparent' || this.props.navClass === 'gradient' ? padding : null
       },
-      burgerClass: isTabletOrMobile  ? 'mobile' : '' //{color : "#000"}
+      burgerClass: isTabletOrMobile  ? 'mobile' : '',
+      isTabletOrMobile: isTabletOrMobile//{color : "#000"}
     })
   }
 
