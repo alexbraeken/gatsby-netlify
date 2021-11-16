@@ -1574,6 +1574,28 @@ $min-margin: 10px
 .absolute a.navbar-item, .absolute .navbar-item
   color: #fff
 
+.navbar
+  &.gradient
+    position: absolute
+    width: 100%
+    background: linear-gradient(180deg, #00000073, transparent)
+  &.transparent
+      position: absolute
+      width: 100%
+      background: transparent
+
+@media only screen and (min-width: 900px)
+  .navbar
+    height: 90px
+    &.gradient,.transparent
+      & a.navbar-item, .navbar-item
+          color: #fff
+
+.navbar-burger
+  color: #000
+  &.mobile
+    color: #fff
+
 @media only screen and (max-width: 1300px) and (min-width: 900px)
   .navbar-item
     padding: .3rem .4vw

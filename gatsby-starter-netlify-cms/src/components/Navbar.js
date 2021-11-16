@@ -164,14 +164,15 @@ const Navbar = class extends React.Component {
       },
       navClass: '',
       menuPadding:{},
-      burgerStyle: {},
+      burgerClass: '',
       lang: 'en'
     }
-    this.checkPathForNav = this.checkPathForNav.bind(this)
-    this.componentGracefulUnmount = this.componentGracefulUnmount.bind(this)
+    //this.checkPathForNav = this.checkPathForNav.bind(this)
+    //this.componentGracefulUnmount = this.componentGracefulUnmount.bind(this)
+    this.handleNavbarStyle = this.handleNavbarStyle.bind(this)
   }
 
-  checkPathForNav = () => {
+  /*checkPathForNav = () => {
 
     const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches
     const padding =  isTabletOrMobile ? "10px" : `${this.nav.current.getBoundingClientRect().height}px`
@@ -191,12 +192,6 @@ const Navbar = class extends React.Component {
     })
   }else if(propPage?.[1].length > 1){
         this.setState({
-          style: {
-            position: 'absolute',
-            width: '100%',
-            background: 'linear-gradient(180deg, #00000073, transparent)'
-          },
-          navClass:'absolute',
           menuPadding: {
             paddingTop: padding
           },
@@ -224,42 +219,38 @@ const Navbar = class extends React.Component {
   }); 
 
   this.setState({isTabletOrMobile: isTabletOrMobile})
-  }
+  }*/
 
 
-  componentGracefulUnmount(){
+
+  handleNavbarStyle = () => {
+    const { language } = this.props.useI18next;
+    const padding =  isTabletOrMobile ? "10px" : `90px`
+    const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches 
+
+    console.log(this.props.navClass)
+    console.log(this.props.navClass === 'transparent' || this.props.navClass === 'gradient')
+
     this.setState({
-      active: false,
-      navBarActiveClass: '',
-      dropdown: false,
-      dropdownClass: '',
-      subNav: null,
-      activeSubnav: null,  
-      style: {
-      
+      lang: language,
+      menuPadding: {
+        paddingTop: this.props.navClass === 'transparent' || this.props.navClass === 'gradient' ? padding : null
       },
-      navClass: '',
-      menuPadding:{},
-      isTabletOrMobile: false
-    });
-
-    window.removeEventListener('beforeunload', this.componentGracefulUnmount);
-}
+      burgerClass: isTabletOrMobile  ? 'mobile' : '' //{color : "#000"}
+    })
+  }
 
 
   componentDidMount(){
-    this.checkPathForNav();
-    const { language } = this.props.useI18next;
-    this.setState({lang: language})
-    window.addEventListener('beforeunload', this.componentGracefulUnmount);
-    
+    this.handleNavbarStyle()
   }
 
   componentDidUpdate(prevProps){
-    if(this.props !== prevProps){
-      this.checkPathForNav()
+    if(this.props.navClass !== prevProps.navClass){
+      this.handleNavbarStyle()
     }
   }
+
 
   toggleHamburger = () => {
     // toggle the active boolean in the state
@@ -337,7 +328,7 @@ hoverArrow = () => {
     return (
       <>
       <nav
-        className={`navbar ${this.state.navClass}`}
+        className={`navbar ${this.state.navClass} ${this.props.navClass}`}
         role="navigation"
         aria-label="main-navigation"
         style={this.state.style}     
@@ -352,11 +343,10 @@ hoverArrow = () => {
               role="button"
               tabIndex="0"
               aria-label="Menu"
-              className={`navbar-burger burger ${this.state.navBarActiveClass}`}
+              className={`navbar-burger burger ${this.state.navBarActiveClass} ${this.state.burgerClass}`}
               data-target="navMenu"
               onClick={() => this.toggleHamburger()}
               onKeyDown={() => this.toggleHamburger()}
-              style={this.state.burgerStyle}
             >
               <span />
               <span />
@@ -475,6 +465,6 @@ export default (props) => {
         }
       }
     `}
-    render={(data, count) => <Navbar data={data} count={count} useI18next={useI18next()} useTranslation={useTranslation()}/>}
+    render={(data, count) => <Navbar data={data} count={count} useI18next={useI18next()} useTranslation={useTranslation()} navClass={props.navClass}/>}
   />
 )}

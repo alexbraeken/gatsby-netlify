@@ -475,7 +475,7 @@ const IndexPage = ({ data }) => {
   const post = data.pageData
 
   return (
-    <Layout>
+    <Layout navClass="transparent">
       <IndexPageTemplate
         image={post.frontmatter.image}
         title={post.frontmatter.title}

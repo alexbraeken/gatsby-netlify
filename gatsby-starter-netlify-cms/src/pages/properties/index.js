@@ -343,7 +343,8 @@ const PropertiesClass = class extends React.Component {
             searchArray: [],
             dataLength: 0,
             path: '',
-            t: null
+            t: null,
+            navClass: null
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSliderChange = this.handleSliderChange.bind(this);
@@ -394,6 +395,19 @@ const PropertiesClass = class extends React.Component {
         const path = window.location.href
         this.handlePathChange(path)
     } 
+
+    componentDidUpdate(prevProps){
+        
+        if(this.props !== prevProps){
+            const path = window.location.href
+            const propPage = path.match(/(?:\/properties\/)([^\?]+)(?=\?*)/)
+            if(propPage?.[1].length > 1){
+                this.setState({navClass: 'gradient'})
+            }else{
+                this.setState({navClass: ''})
+            }
+        }
+    }
 
     filterList(props){
 
@@ -477,7 +491,7 @@ const PropertiesClass = class extends React.Component {
         const t = this.props.useTranslation.t
 
         return (
-            <Layout pathKey={this.props.path} propTitle={t("title")} propDescription={t("description")}>
+            <Layout pathKey={this.props.path} propTitle={t("title")} propDescription={t("description")} navClass={this.state.navClass}>
                 <Router>
                         <PropertyTemplate path={`${this.props.useI18next.routed ? "/:locale/properties/:id" : "/properties/:id"}`}
                         handlePathChange= {this.handlePathChange}/>
