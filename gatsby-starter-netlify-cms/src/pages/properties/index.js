@@ -239,13 +239,15 @@ const Properties = React.memo((props) => {
                         <>
                         {setData(data.value)}
 
-                        <Container style={{width:"100vw", maxWidth:"none"}} >
+                        <Container style={{width:"100vw", maxWidth:"none", minHeight: "100vh"}} >
                             <Row>
                                 <Col xs={12} md={horizontalExpanded? 6 : 3} id="filter-sidebar" style={{transition:"all 1s"}}>
                                 <StickyBox>
                                     <Container fluid style={{
                                         display: "flex",
-                                        justifyContent: "space-between"}}>
+                                        justifyContent: "space-between",
+                                        height: "6vh",
+                                        minHeight: "55px"}}>
                                             <div style={{display:"flex", flexWrap:"nowrap", margin: "auto 10px auto 0"}}>
                                         <Form.Group style={{margin:"10px auto"}}>
                                             <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm">
@@ -264,7 +266,7 @@ const Properties = React.memo((props) => {
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
-                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"95vh"} cardDisplayNum={cardDisplayNum}/>
+                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"94vh"} cardDisplayNum={cardDisplayNum}/>
                                 <div className="expandBtn filterExpand" role="button" tabindex="0" onClick={handleExpand} onKeyDown={(e)=>{if(e.key === 'Enter'){handleExpand()}}} >
                                     {horizontalExpanded ? 
                                     <>

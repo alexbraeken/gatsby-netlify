@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import queryString from 'query-string';
 import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
@@ -7,16 +8,19 @@ import Row from 'react-bootstrap/Row'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
 
-export default function Balance() {
+export default function Balance(props) {
     const [leadInfo, setLeadInfo] = useState(null)
     const [balance, setBalance] = useState(null)
     const [fetching, setFetching] = useState(true)
     const [paymentInfo, setPaymentInfo] = useState(null)
     const [propInfo, setPropInfo] = useState(null)
 
+    const {t} = useTranslation();
+
     useEffect(() => {
-        const path = window.location
+        const path = props.location
         const leadDetails = path.search ? queryString.parse(path.search) : null;
+        console.log(path)
         if(leadDetails){
             console.log(leadDetails)
             setLeadInfo({
@@ -32,7 +36,7 @@ export default function Balance() {
             setFetching(true)
             setPaymentInfo(null)
         }
-    }, [])
+    }, [props.location])
 
     useEffect(() => {
         if(leadInfo && leadInfo.leadId && leadInfo.propId && leadInfo.orderId){
@@ -44,6 +48,8 @@ export default function Balance() {
                 "propId": leadInfo.propId,
                 "orderId": leadInfo.orderId,
               })
+
+            console.log(reqBody)
 
             fetch(uri, {
             method: 'post',
@@ -67,7 +73,7 @@ export default function Balance() {
                         if(details.balance >= 0){
                             setBalance(details.balance)
                             if(details.balance !== 0){
-                                setPaymentInfo({redirectUrl: details.redirectUrl, reference: details.reference, entity: details.entity})
+                                setPaymentInfo({redirectUrl: details.redirectUrl, reference: details.reference, entity: details.entity, expire: details.expire})
                                 setPropInfo({img: details.propImg, link: details.propLink, name: details.propName}) 
                             }
                         }else if(details.balance < 0 || details.status === "cancelled"){
@@ -96,10 +102,10 @@ export default function Balance() {
                                 {fetching ? 
                                 <div style={{textAlign:"center"}}>
                                     <p>
-                                        Retreiving Balance Information
+                                        {t("Retrieving Balance Information")}
                                     </p>
                                     <p>
-                                        Please wait while we retreive your balance information...
+                                        {t("Please wait while we retreive your balance information...")}
                                     </p>
                                     <Loading />
                                 </div>
@@ -109,16 +115,17 @@ export default function Balance() {
                                         <div style={{flex: "1 1 100%"}} className="balance-text">
                                             <ul >
                                                 <li className="outer-list-item">
-                                                    <b>Balance remaining: {balance}€</b>
+                                                    <b>{t("Balance remaining")}: {balance}€</b>
                                                 </li>
                                                 {paymentInfo &&
                                                     <li className="outer-list-item">
-                                                        <b>Multibanco Information</b>
+                                                        <b>{t("Multibanco Information")}</b>
                                                         <ul className="inner-list">
-                                                            <li>Reference: {paymentInfo.reference}</li>
-                                                            <li>entity: {paymentInfo.entity}</li>
-                                                            <li><a href={paymentInfo.redirectUrl} target="_blank" className="orangeText">Payment Link <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto 5px", height: "0.8rem"}} /></a></li>
+                                                            <li>{t("Reference")}: {paymentInfo.reference}</li>
+                                                            <li>{t("entity")}: {paymentInfo.entity}</li>
+                                                            <li><a href={paymentInfo.redirectUrl} target="_blank" className="orangeText">{t("Payment Link")} <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto 5px", height: "0.8rem"}} /></a></li>
                                                         </ul>
+                                                <b>{t("Valid until: ")}{paymentInfo.expire}</b>
                                                     </li> 
                                                 }
                                                 {propInfo &&
@@ -130,7 +137,7 @@ export default function Balance() {
                                         </div>
                                     :
                                     <p>
-                                        No Balance Information Found
+                                        {t("No Balance Information Found")}
                                     </p>
                                     }
                                 </>
@@ -143,3 +150,17 @@ export default function Balance() {
         </Layout>
     )
 }
+
+
+export const pageQuery = graphql`
+query BalancePage ($language: String!) {
+    locales : allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
+        edges {
+          node {
+            ns
+            data
+            language
+          }
+        }
+    }
+}`

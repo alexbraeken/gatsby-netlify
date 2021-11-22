@@ -82,6 +82,14 @@ const Footer = class extends React.Component {
                         {t("Admin")}
                       </a>
                     </li>
+                    <li>
+                      <a className="navbar-item"
+                      href="www.smartamoves.pt"
+                      target="_blank"
+                      >
+                        Smartamoves
+                      </a>
+                    </li>
                   </ul>
                 </section>
               </div>

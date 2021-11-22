@@ -90,14 +90,14 @@ const Favourites = (props) => {
 
     return(
     <div className="favs-container">
+      {Object.keys(favProps).length > 0 && 
       <Col>
         <Row className="show-favs" >
-          {Object.keys(favProps).length > 0 && 
+          
             <div className={`fav-toggle ${show ? "active": ""}`} onClick = {()=>setShow(!show)}>
                 <AiFillHeart className="favs-heart" />
                 <FontAwesomeIcon className="chevron" icon={faChevronUp} />
             </div>
-          }
         </Row>
         <Row className={`favs-list ${show ? "active": ""}`}>
         <h4 style={{paddingBottom:"10px", fontWeight:"bold"}}>{t("Favourites")}</h4>
@@ -128,6 +128,7 @@ const Favourites = (props) => {
           </div>
         </Row>
       </Col>
+      }
     </div>
   )}
   

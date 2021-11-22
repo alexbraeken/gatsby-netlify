@@ -372,5 +372,13 @@
 "infantNotAllowed":"Infant not allowed",
 "isEventFriendly":"Event friendly",
 "allowsSmoking":"Allow smoking",
-"hasJacuzzi":"Jacuzzi"
+"hasJacuzzi":"Jacuzzi",
+"Retrieving Balance Information":"Retrieving Balance Information",
+"Please wait while we retreive your balance information...":"Please wait while we retreive your balance information...",
+"Balance remaining":"Balance remaining",
+"Multibanco Information":"Multibanco Information",
+"Reference":"Reference",
+"entity":"entity",
+"Payment Link":"Payment Link",
+"No Balance Information Found":"No Balance Information Found"
 }

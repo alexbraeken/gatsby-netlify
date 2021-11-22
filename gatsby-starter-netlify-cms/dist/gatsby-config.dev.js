@@ -166,6 +166,12 @@ module.exports = {
         "link": "/location/santoEstevao"
       }, {
         "name": {
+          "en": "Santa Luzia",
+          "pt": "Santa Luzia"
+        },
+        "link": "/location/santaLuzia"
+      }, {
+        "name": {
           "en": "Vila Nova De Cacela",
           "pt": "Vila Nova De Cacela"
         },

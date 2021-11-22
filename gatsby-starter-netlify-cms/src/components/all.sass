@@ -342,6 +342,7 @@ a:hover
   margin: 10px 5px
   min-width: 333px
   max-width: 400px
+  flex: 1 1
 
 .prop-card
   max-width: 1000px
@@ -642,6 +643,7 @@ a:hover
   padding: 0 0 50px 0
   background-repeat: no-repeat
   background-size: cover
+  background-color: #cae6fe
   
 
 
@@ -3240,7 +3242,7 @@ $white: #FFF
     background-color: darkgrey
     outline: 1px solid slategrey
 
-.add-favs-heart
+.add-favs-heart, .share-btn
   position: relative
   margin: auto
   width: 20px
@@ -3252,14 +3254,14 @@ $white: #FFF
     color: $primary
     transform: scale(1.05)
 
-.favs-heart-container
+.favs-heart-container, .share-btn-container
   position: absolute
   top: 10px
   right: 10px
   display: flex
   z-index: 2
   &:hover
-    & .favs.tooltiptext
+    & .favs.tooltiptext, .share.tooltiptext
         opacity: 1
         visibility: visible
 
@@ -3267,6 +3269,11 @@ $white: #FFF
 .favs.tooltiptext
   top: 20px  
   right: 10px
+
+.share-btn-container
+  top: 40px
+
+
 
 
 .favs-container

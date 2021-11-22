@@ -370,5 +370,13 @@
 "infantNotAllowed":"Criança não permitida",
 "isEventFriendly":"Amigável para eventos",
 "allowsSmoking":"Permitir fumar",
-"hasJacuzzi":"Jacuzzi"
+"hasJacuzzi":"Jacuzzi",
+"Retrieving Balance Information":"Recuperando Informações de Saldo",
+"Please wait while we retreive your balance information...":"Aguarde enquanto recuperamos as informações do seu saldo ...",
+"Balance remaining":"Saldo restante",
+"Multibanco Information":"Informação Multibanco",
+"Reference":"Referência",
+"entity":"entidade",
+"Payment Link":"Link de pagamento",
+"No Balance Information Found":"Nenhuma informação de saldo encontrada"
 }

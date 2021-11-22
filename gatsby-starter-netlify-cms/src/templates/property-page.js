@@ -160,7 +160,6 @@ export const PropertyPageTemplate = ( props ) =>
                             return response.text()
                         })
                         .then(data => {
-                            console.log(data)
                             setReviews(JSON.parse(data))
                         })
 

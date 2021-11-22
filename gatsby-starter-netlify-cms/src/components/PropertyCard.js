@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import { FirestoreDocument } from "@react-firebase/firestore"
 import Loading from '../components/Loading'
 import Amenity from '../components/Amenities'
+import Share from '../components/Share'
 import CardCalendar from '../components/CardCalendar'
 import BedBathPax from '../components/BedBathPax'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,6 +15,7 @@ import Slider from "react-slick"
 import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
 import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
 import { connect } from "react-redux"
+
 
 const mapStateToProps = (state) => {
   let newObj = {}
@@ -86,7 +88,7 @@ const PropertyCardComp = (props) => {
 
 
     return (
-    <Col xs={12} md={6} lg={4} className="prop-card-container" key={props.index}>
+    <Col className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}} id={props.item.name}>
         {!inFavs ? 
@@ -101,6 +103,9 @@ const PropertyCardComp = (props) => {
             <span className="favs tooltiptext">{t("remove favs")}</span>
           </div>
           }
+          {false && <div className="share-btn-container">
+            <Share />
+          </div>}
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
           }
@@ -164,7 +169,7 @@ const PropertyCardComp = (props) => {
                 <small className="feature-text-type">{props.item.type}</small>
               </Card.Text>
             </div>
-            <Card.ImgOverlay style={{position:"relative", padding:"1rem"}}>
+            <Card.ImgOverlay style={{position:"relative", padding:"1rem", width: "100%"}}>
               <section className="section prop-card-text">
               <Link to={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}}>
                 <Card.Title style={{textAlign:"center"}}><span className="prop-card-title">{props.item.name}</span></Card.Title>

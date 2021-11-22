@@ -68,99 +68,21 @@ html:
 <br />
 <div class='base-table'>
 <table>
-<thead>
-<tr>
-<th align='center'></th>
-<th align='center'><p style='text-align: center;'>Group  </p></th>
-<th align='center'><p style='text-align: center;'>JANUARY - MARCH</p></th>
-<th align='center'><p style='text-align: center;'>APRIL - JUNE</p></th>
-<th align='center'><p style='text-align: center;'>JULY &amp; AUGUST	</p></th>
-<th align='center'><p style='text-align: center;'>SEPTEMBER</p></th>
-<th align='center'><p style='text-align: center;'>OCTOBER</p></th>
-<th align='center'><p style='text-align: center;'>NOVEMBER - DECEMBER</p></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align='center'>ECONOMIC <br> Fiat Panda or similar 5 door</td>
-<td align='center'>A</td>
-<td align='center'>56</td>
-<td align='center'>98</td>
-<td align='center'>168</td>
-<td align='center'>147</td>
-<td align='center'>98</td>
-<td align='center'>56</td>
-</tr>
-<tr>
-<td align='center'>SMALL 5 DOOR <br>  Clio,Ibiza with GPS</td>
-<td align='center'>B</td>
-<td align='center'>63</td>
-<td align='center'>105</td>
-<td align='center'>175</td>
-<td align='center'>161</td>
-<td align='center'>105</td>
-<td align='center'>63</td>
-</tr>
-<tr>
-<td align='center'>MEDIUM ESTATE	<br>  Clio Break</td>
-<td align='center'>G</td>
-<td align='center'>84</td>
-<td align='center'>147</td>
-<td align='center'>210</td>
-<td align='center'>182</td>
-<td align='center'>140</td>
-<td align='center'>98</td>
-</tr>
-<tr>
-<td align='center'>MEDIUM 5 DOOR CAR	  <br>    Renault Captur Small SUV</td>
-<td align='center'>C</td>
-<td align='center'>105</td>
-<td align='center'>161</td>
-<td align='center'>252</td>
-<td align='center'>200</td>
-<td align='center'>154</td>
-<td align='center'>105</td>
-</tr>
-<tr>
-<td align='center'>LARGE ESTATE <br> Megane SW</td>
-<td align='center'>J</td>
-<td align='center'>112</td>
-<td align='center'>196</td>
-<td align='center'>301</td>
-<td align='center'>217</td>
-<td align='center'>182</td>
-<td align='center'>112</td>
-</tr>
-<tr>
-<td align='center'>9 SEATER <br> Renault Traveller, Citroen space tourer XL 9 Seater</td>
-<td align='center'>K</td>
-<td align='center'>245</td>
-<td align='center'>350</td>
-<td align='center'>560</td>
-<td align='center'>530</td>
-<td align='center'>350</td>
-<td align='center'>245</td>
-</tr>
-<tr>
-<td align='center'>Small 7 seater <br>Citroen C4</td>
-<td align='center'>E</td>
-<td align='center'>250</td>
-<td align='center'>357</td>
-<td align='center'>532</td>
-<td align='center'>511</td>
-<td align='center'>357</td>
-<td align='center'>250</td>
-</tr>
-<tr>
-<td align='center'>7 SEATER <br> Seat Alhambra</td>
-<td align='center'>I</td>
-<td align='center'>270</td>
-<td align='center'>390</td>
-<td align='center'>600</td>
-<td align='center'>580</td>
-<td align='center'>371</td>
-<td align='center'>270</td>
-</tr>
+<thead><tr><th>Group</th><th>A</th><th>B</th><th>C</th><th>E</th><th>F</th><th>G</th><th>I</th><th>J</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>Fiat Panda or similar 5 door</td><td>Clio,Ibiza with GPS</td><td>Renault Captur Small SUV</td><td>Citroen C4 (small 7 seater)</td><td>Seat Arona Automatic</td><td>Clio Break </td><td>Seat Alhambra 7 seater</td><td>Megane SW</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dec</td><td>80</td><td>95</td><td>115</td><td>195</td><td>145</td><td>100</td><td>285</td><td>125</td></tr>
+ <tr><td>21 Dec- 2 Jan</td><td>85</td><td>105</td><td>125</td><td>215</td><td>160</td><td>115</td><td>315</td><td>135</td></tr>
+ <tr><td>3 Jan-31 Mar</td><td>80</td><td>95</td><td>115</td><td>185</td><td>145</td><td>100</td><td>285</td><td>125</td></tr>
+ <tr><td>1 April - 5 April</td><td>110</td><td>135</td><td>165</td><td>215</td><td>185</td><td>155</td><td>415</td><td>190</td></tr>
+ <tr><td>6 April -19 April</td><td>120</td><td>145</td><td>175</td><td>365</td><td>195</td><td>165</td><td>465</td><td>200</td></tr>
+ <tr><td>20 April - 31 May</td><td>110</td><td>135</td><td>165</td><td>215</td><td>185</td><td>155</td><td>415</td><td>190</td></tr>
+ <tr><td>1 June-30 June</td><td>120</td><td>145</td><td>175</td><td>365</td><td>195</td><td>165</td><td>465</td><td>200</td></tr>
+ <tr><td>1 July - 15 July</td><td>170</td><td>195</td><td>215</td><td>340</td><td>260</td><td>205</td><td>515</td><td>295</td></tr>
+ <tr><td>16 July - 31 July</td><td>195</td><td>230</td><td>255</td><td>405</td><td>305</td><td>245</td><td>615</td><td>345</td></tr>
+ <tr><td>1 Aug - 19 Aug</td><td>220</td><td>255</td><td>285</td><td>455</td><td>345</td><td>275</td><td>705</td><td>385</td></tr>
+ <tr><td>20 Aug-31 Aug</td><td>170</td><td>195</td><td>215</td><td>340</td><td>260</td><td>205</td><td>515</td><td>295</td></tr>
+ <tr><td>1 Sept -30 Sept</td><td>120</td><td>155</td><td>165</td><td>295</td><td>200</td><td>145</td><td>415</td><td>205</td></tr>
+ <tr><td>1 Oct-31 Oct 2022</td><td>110</td><td>135</td><td>155</td><td>265</td><td>175</td><td>145</td><td>365</td><td>180</td></tr>
 </tbody>
 </table>
 </div>
@@ -170,69 +92,21 @@ html:
 <br />
 <div class='base-table'>
 <table>
-<thead>
-<tr>
-<th align='center'></th>
-<th align='center'><p style='text-align: center;'>Group  </p></th>
-<th align='center'><p style='text-align: center;'>JANUARY - MARCH</p></th>
-<th align='center'><p style='text-align: center;'>APRIL - JUNE</p></th>
-<th align='center'><p style='text-align: center;'>JULY &amp; AUGUST	</p></th>
-<th align='center'><p style='text-align: center;'>SEPTEMBER</p></th>
-<th align='center'><p style='text-align: center;'>OCTOBER</p></th>
-<th align='center'><p style='text-align: center;'>NOVEMBER - DECEMBER</p></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align='center'>SMALL 5 DOOR AUTOMATIC<br>Opel Corsa Automatic</td>
-<td align='center'>L</td>
-<td align='center'>91</td>
-<td align='center'>126</td>
-<td align='center'>189</td>
-<td align='center'>175</td>
-<td align='center'>126</td>
-<td align='center'>91</td>
-</tr>
-<tr>
-<td align='center'>Citroen C3 Automatic</td>
-<td align='center'>M</td>
-<td align='center'>98</td>
-<td align='center'>147</td>
-<td align='center'>210</td>
-<td align='center'>185</td>
-<td align='center'>140</td>
-<td align='center'>98</td>
-</tr>
-<tr>
-<td align='center'>Seat Arona Automatic</td>
-<td align='center'>F</td>
-<td align='center'>98</td>
-<td align='center'>168</td>
-<td align='center'>252</td>
-<td align='center'>217</td>
-<td align='center'>161</td>
-<td align='center'>98</td>
-</tr>
-<tr>
-<td align='center'>Fiat Tipo SW Automatic</td>
-<td align='center'>T1</td>
-<td align='center'>105</td>
-<td align='center'>245</td>
-<td align='center'>308</td>
-<td align='center'>270</td>
-<td align='center'>224</td>
-<td align='center'>105</td>
-</tr>
-<tr>
-<td align='center'>Renault Megabe SW automatic</td>
-<td align='center'>J1</td>
-<td align='center'>100</td>
-<td align='center'>250</td>
-<td align='center'>301</td>
-<td align='center'>280</td>
-<td align='center'>231</td>
-<td align='center'>100</td>
-</tr>
+<thead><tr><th>Group</th><th>J1</th><th>K</th><th>L</th><th>M</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>Renault Megabe SW automatic</td><td>Renault Traveller, Citroen space tourer XL 9 Seater</td><td>Opel Corsa Automatic</td><td>Citroen C3 Automatic</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dec</td><td>135</td><td>220</td><td>100</td><td>115</td></tr>
+ <tr><td>21 Dec- 2 Jan</td><td>145</td><td>245</td><td>110</td><td>120</td></tr>
+ <tr><td>3 Jan-31 Mar</td><td>135</td><td>220</td><td>100</td><td>115</td></tr>
+ <tr><td>1 April - 5 April</td><td>195</td><td>390</td><td>140</td><td>150</td></tr>
+ <tr><td>6 April -19 April</td><td>205</td><td>440</td><td>150</td><td>160</td></tr>
+ <tr><td>20 April - 31 May</td><td>195</td><td>390</td><td>140</td><td>150</td></tr>
+ <tr><td>1 June-30 June</td><td>205</td><td>440</td><td>150</td><td>160</td></tr>
+ <tr><td>1 July - 15 July</td><td>310</td><td>495</td><td>190</td><td>205</td></tr>
+ <tr><td>16 July - 31 July</td><td>365</td><td>565</td><td>225</td><td>235</td></tr>
+ <tr><td>1 Aug - 19 Aug</td><td>415</td><td>645</td><td>260</td><td>270</td></tr>
+ <tr><td>20 Aug-31 Aug</td><td>310</td><td>495</td><td>190</td><td>205</td></tr>
+ <tr><td>1 Sept -30 Sept</td><td>210</td><td>390</td><td>140</td><td>160</td></tr>
+ <tr><td>1 Oct-31 Oct 2022</td><td>185</td><td>340</td><td>130</td><td>140</td></tr>
 </tbody>
 </table>
 </div>
@@ -240,11 +114,8 @@ html:
 </center>
 <h3><u>Additional Charges:</u></h3>
 <br />
-<p>
-Extras: Child seat, baby or booster seat 15 Euros per week. These are to be paid in cash on arrival
-
+<p>Extras: Child seat, baby or booster seat 15 Euros per week. These are to be paid in cash on arrival
 After Hours Collection: Cars collected after midnight will be subject to a 15,00 Euros surcharge
-
 Airport Taxes: 15 Euros per car (this charge is imposed by the airport, not the car hire company)
 </p>
 <br />
