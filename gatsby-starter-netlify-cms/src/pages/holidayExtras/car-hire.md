@@ -1,5 +1,5 @@
 ---
-templateKey: "content-page"
+templateKey: "car-hire"
 path: /holidayExtras
 preferred_language: default
 title: Car Hires
@@ -7,14 +7,813 @@ langTitles:
     en: Car Hires
     pt: "Aluguer de Automóveis"
 hero: ../../../static/img/car-hire.jpg
+carPricing:
+    A:
+        class: A
+        name:
+            en: Fiat Panda or similar 5 door
+            pt: Fiat Panda ou similar 5 portas
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "105"
+                }'   
+            ,'{
+                "date": "2021-01-03",
+                "price": "100"
+            }'  
+            ,'{
+                "date": "2021-04-01",
+                "price": "140"
+            }'  
+            ,'{
+                "date": "2021-04-06",
+                "price": "140"
+            }'  
+            ,'{
+                "date": "2021-04-20",
+                "price": "130"
+            }'
+            ,'{
+                "date": "2021-06-01",
+                "price": "140"
+            }'    
+            ,'{
+                "date": "2021-07-01",
+                "price": "190"
+            }'   
+            ,'{
+                "date": "2021-07-16",
+                "price": "215"
+            }'  
+            ,'{
+                "date": "2021-08-01",
+                "price": "240"
+            }'
+            ,'{
+                "date": "2021-08-20",
+                "price": "190"
+            }'  
+            ,'{
+                "date": "2021-09-01",
+                "price": "140"
+            }'  
+            ,'{
+                "date": "2021-10-01",
+                "price": "130"
+            }' 
+            ,'{
+                "date": "2021-11-01",
+                "price": "100"
+            }'  
+            ,'{
+                "date": "2021-12-21",
+                "price": "105"
+            }'
+            ,'{
+                "date": "2021-12-31",
+                "price": "105"
+            }']
+                
+    B:
+        class: B
+        name:
+            en: Clio,Ibiza with GPS
+            pt: Clio,Ibiza com GPS
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "125"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "115"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "155"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "165"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "155"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "165"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "215"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "350"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "275"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "215"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "175"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "145"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "115"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "125"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "125"
+                }'
+            ]
+    C:
+        class: C
+        name:
+            en: Renault Captur Small SUV
+            pt: Renault Captur SUV pequeno
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "145"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "135"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "185"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "195"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "185"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "195"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "235"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "275"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "305"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "235"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "185"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "175"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "135"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "145"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "145"
+                }'
+            ]
+    E:
+        class: E
+        name:
+            en: Citroen C4 (small 7 seater)
+            pt: Citroen C4 (pequeno de 7 lugares)
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "235"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "205"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "235"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "385"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "235"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "385"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "360"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "415"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "475"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "360"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "315"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "285"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "215"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "235"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "205"
+                }'
+            ]
+    F:
+        class: F
+        name:
+            en: Seat Arona Automatic
+            pt: Seat Arona Automatico
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "180"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "165"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "205"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "215"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "205"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "215"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "280"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "325"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "365"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "280"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "220"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "195"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "165"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "180"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "180"
+                }'
+            ]
+    G:
+        class: G
+        name:
+            en: Clio Break
+            pt: Clio Break
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "135"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "120"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "175"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "185"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "175"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "185"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "225"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "265"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "295"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "225"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "165"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "165"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "120"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "135"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "135"
+                }'
+            ]
+    I:
+        class: I
+        name:
+            en: Seat Alhambra 7 seater
+            pt: Seat Alhambra 7 lugares
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "335"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "305"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "435"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "485"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "435"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "485"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "535"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "635"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "725"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "535"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "435"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "385"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "305"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "335"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "335"
+                }'
+            ]
+    J:
+        class: J
+        name:
+            en: Megane SW
+            pt: Megane SW
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "155"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "145"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "210"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "220"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "210"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "220"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "315"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "365"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "405"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "315"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "225"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "200"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "145"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "155"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "155"
+                }'
+            ]
+    K:
+        class: K
+        name:
+            en: Renault Traveller, Citroen space tourer XL 9 Seater
+            pt: Renault Traveller, Citroen space tourer XL 9 lugares
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "265"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "240"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "410"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "460"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "410"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "460"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "515"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "585"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "665"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "515"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "410"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "360"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "240"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "265"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "265"
+                }'
+            ]
+    J1:
+        class: J1
+        name:
+            en: Renault Megane SW automatic
+            pt: Renault Megane SW automático
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "165"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "155"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "215"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "225"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "215"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "225"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "330"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "385"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "435"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "330"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "230"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "195"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "155"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "165"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "165"
+                }'
+            ]
+    L:
+        class: L
+        name:
+            en: Opel Corsa Automatic
+            pt: Opel Corsa automático
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "130"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "120"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "160"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "170"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "160"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "170"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "210"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "245"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "280"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "210"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "160"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "150"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "120"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "130"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "130"
+                }'
+            ]
+    M:
+        class: M
+        name:
+            en: Citroen C3 Automatic
+            pt: Citroen C3 automático
+        pricing: ['{
+                "date": "2021-01-01",
+                "price": "140"
+                }',
+            '{
+                "date": "2021-01-03",
+                "price": "136"
+                }',
+            '{
+                "date": "2021-04-01",
+                "price": "170"
+                }',
+            '{
+                "date": "2021-04-06",
+                "price": "180"
+                }',
+            '{
+                "date": "2021-04-20",
+                "price": "170"
+                }',
+            '{
+                "date": "2021-06-01",
+                "price": "180"
+                }',
+            '{
+                "date": "2021-07-01",
+                "price": "225"
+                }',
+            '{
+                "date": "2021-07-16",
+                "price": "285"
+                }',
+            '{
+                "date": "2021-08-01",
+                "price": "290"
+                }',
+            '{
+                "date": "2021-08-20",
+                "price": "225"
+                }',
+            '{
+                "date": "2021-09-01",
+                "price": "180"
+                }',
+            '{
+                "date": "2021-10-01",
+                "price": "160"
+                }',
+            '{
+                "date": "2021-11-01",
+                "price": "135"
+                }',
+            '{
+                "date": "2021-12-21",
+                "price": "140"
+                }',
+            '{
+                "date": "2021-12-31",
+                "price": "140"
+                }'
+            ]
 html:
     en: "<style>
+.base-table{
+    overflow-x: overlay;
+}
 .base-table table{
     min-width: 600px;
+    max-width: 99%;
+
 }
 .base-table th {
     background-color: #f5821e;
     color: #fff;
+    text-align: center;
 }
 .base-table tbody tr:first-child{
     font-weight: bold ;
@@ -68,21 +867,21 @@ html:
 <br />
 <div class='base-table'>
 <table>
-<thead><tr><th>Group</th><th>A</th><th>B</th><th>C</th><th>E</th><th>F</th><th>G</th><th>I</th><th>J</th></tr></thead><tbody>
- <tr><td>&nbsp;</td><td>Fiat Panda or similar 5 door</td><td>Clio,Ibiza with GPS</td><td>Renault Captur Small SUV</td><td>Citroen C4 (small 7 seater)</td><td>Seat Arona Automatic</td><td>Clio Break </td><td>Seat Alhambra 7 seater</td><td>Megane SW</td></tr>
- <tr><td>1 Nov 2021 - 20 Dec</td><td>80</td><td>95</td><td>115</td><td>195</td><td>145</td><td>100</td><td>285</td><td>125</td></tr>
- <tr><td>21 Dec- 2 Jan</td><td>85</td><td>105</td><td>125</td><td>215</td><td>160</td><td>115</td><td>315</td><td>135</td></tr>
- <tr><td>3 Jan-31 Mar</td><td>80</td><td>95</td><td>115</td><td>185</td><td>145</td><td>100</td><td>285</td><td>125</td></tr>
- <tr><td>1 April - 5 April</td><td>110</td><td>135</td><td>165</td><td>215</td><td>185</td><td>155</td><td>415</td><td>190</td></tr>
- <tr><td>6 April -19 April</td><td>120</td><td>145</td><td>175</td><td>365</td><td>195</td><td>165</td><td>465</td><td>200</td></tr>
- <tr><td>20 April - 31 May</td><td>110</td><td>135</td><td>165</td><td>215</td><td>185</td><td>155</td><td>415</td><td>190</td></tr>
- <tr><td>1 June-30 June</td><td>120</td><td>145</td><td>175</td><td>365</td><td>195</td><td>165</td><td>465</td><td>200</td></tr>
- <tr><td>1 July - 15 July</td><td>170</td><td>195</td><td>215</td><td>340</td><td>260</td><td>205</td><td>515</td><td>295</td></tr>
- <tr><td>16 July - 31 July</td><td>195</td><td>230</td><td>255</td><td>405</td><td>305</td><td>245</td><td>615</td><td>345</td></tr>
- <tr><td>1 Aug - 19 Aug</td><td>220</td><td>255</td><td>285</td><td>455</td><td>345</td><td>275</td><td>705</td><td>385</td></tr>
- <tr><td>20 Aug-31 Aug</td><td>170</td><td>195</td><td>215</td><td>340</td><td>260</td><td>205</td><td>515</td><td>295</td></tr>
- <tr><td>1 Sept -30 Sept</td><td>120</td><td>155</td><td>165</td><td>295</td><td>200</td><td>145</td><td>415</td><td>205</td></tr>
- <tr><td>1 Oct-31 Oct 2022</td><td>110</td><td>135</td><td>155</td><td>265</td><td>175</td><td>145</td><td>365</td><td>180</td></tr>
+<thead><tr><th>MONTH</th><th>PERIOD</th><th>A</th><th>B</th><th>C</th><th>E</th><th>G</th><th>I</th><th>J</th><th>K</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>&nbsp;</td><td>Fiat Panda or similar 5 door</td><td>Clio,Ibiza with GPS</td><td>Renault Captur Small SUV</td><td>Citroen C4 (small 7 seater)</td><td>Clio Break </td><td>Seat Alhambra 7 seater</td><td>Megane SW</td><td>Renault Traveller, Citroen space tourer XL 9 Seater</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dec</td><td>week</td><td>100</td><td>115</td><td>135</td><td>215</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>21 Dec- 2 Jan</td><td>week</td><td>105</td><td>125</td><td>145</td><td>235</td><td>135</td><td>335</td><td>155</td><td>265</td></tr>
+ <tr><td>3 Jan-31 Mar</td><td>week</td><td>100</td><td>115</td><td>135</td><td>205</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>1 April - 5 April</td><td>week</td><td>140</td><td>155</td><td>185</td><td>235</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
+ <tr><td>6 April -19 April</td><td>week</td><td>140</td><td>165</td><td>195</td><td>385</td><td>185</td><td>485</td><td>220</td><td>460</td></tr>
+ <tr><td>20 April - 31 May</td><td>week</td><td>130</td><td>155</td><td>185</td><td>235</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
+ <tr><td>1 June-30 June</td><td>week</td><td>140</td><td>165</td><td>195</td><td>385</td><td>185</td><td>485</td><td>220</td><td>460</td></tr>
+ <tr><td>1 July - 15 July</td><td>week</td><td>190</td><td>215</td><td>235</td><td>360</td><td>225</td><td>535</td><td>315</td><td>515</td></tr>
+ <tr><td>16 July - 31 July</td><td>week</td><td>215</td><td>350</td><td>275</td><td>415</td><td>265</td><td>635</td><td>365</td><td>585</td></tr>
+ <tr><td>1 Aug - 19 Aug</td><td>week</td><td>240</td><td>275</td><td>305</td><td>475</td><td>295</td><td>725</td><td>405</td><td>665</td></tr>
+ <tr><td>20 Aug-31 Aug</td><td>week</td><td>190</td><td>215</td><td>235</td><td>360</td><td>225</td><td>535</td><td>315</td><td>515</td></tr>
+ <tr><td>1 Sept -30 Sept</td><td>week</td><td>140</td><td>175</td><td>185</td><td>315</td><td>165</td><td>435</td><td>225</td><td>410</td></tr>
+ <tr><td>1 Oct-31 Oct 2022</td><td>week</td><td>130</td><td>145</td><td>175</td><td>285</td><td>165</td><td>385</td><td>200</td><td>360</td></tr>
 </tbody>
 </table>
 </div>
@@ -92,21 +891,21 @@ html:
 <br />
 <div class='base-table'>
 <table>
-<thead><tr><th>Group</th><th>J1</th><th>K</th><th>L</th><th>M</th></tr></thead><tbody>
- <tr><td>&nbsp;</td><td>Renault Megabe SW automatic</td><td>Renault Traveller, Citroen space tourer XL 9 Seater</td><td>Opel Corsa Automatic</td><td>Citroen C3 Automatic</td></tr>
- <tr><td>1 Nov 2021 - 20 Dec</td><td>135</td><td>220</td><td>100</td><td>115</td></tr>
- <tr><td>21 Dec- 2 Jan</td><td>145</td><td>245</td><td>110</td><td>120</td></tr>
- <tr><td>3 Jan-31 Mar</td><td>135</td><td>220</td><td>100</td><td>115</td></tr>
- <tr><td>1 April - 5 April</td><td>195</td><td>390</td><td>140</td><td>150</td></tr>
- <tr><td>6 April -19 April</td><td>205</td><td>440</td><td>150</td><td>160</td></tr>
- <tr><td>20 April - 31 May</td><td>195</td><td>390</td><td>140</td><td>150</td></tr>
- <tr><td>1 June-30 June</td><td>205</td><td>440</td><td>150</td><td>160</td></tr>
- <tr><td>1 July - 15 July</td><td>310</td><td>495</td><td>190</td><td>205</td></tr>
- <tr><td>16 July - 31 July</td><td>365</td><td>565</td><td>225</td><td>235</td></tr>
- <tr><td>1 Aug - 19 Aug</td><td>415</td><td>645</td><td>260</td><td>270</td></tr>
- <tr><td>20 Aug-31 Aug</td><td>310</td><td>495</td><td>190</td><td>205</td></tr>
- <tr><td>1 Sept -30 Sept</td><td>210</td><td>390</td><td>140</td><td>160</td></tr>
- <tr><td>1 Oct-31 Oct 2022</td><td>185</td><td>340</td><td>130</td><td>140</td></tr>
+<thead><tr><th>MONTH</th><th>PERIOD</th><th>F</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>&nbsp;</td><td>Seat Arona Automatic</td><td>Renault Megane SW automatic</td><td>Opel Corsa Automatic</td><td>Citroen C3 Automatic</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dec</td><td>week</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>21 Dec- 2 Jan</td><td>week</td><td>180</td><td>165</td><td>130</td><td>140</td></tr>
+ <tr><td>3 Jan-31 Mar</td><td>week</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>1 April - 5 April</td><td>week</td><td>205</td><td>215</td><td>160</td><td>170</td></tr>
+ <tr><td>6 April -19 April</td><td>week</td><td>215</td><td>225</td><td>170</td><td>180</td></tr>
+ <tr><td>20 April - 31 May</td><td>week</td><td>205</td><td>215</td><td>160</td><td>170</td></tr>
+ <tr><td>1 June-30 June</td><td>week</td><td>215</td><td>225</td><td>170</td><td>180</td></tr>
+ <tr><td>1 July - 15 July</td><td>week</td><td>280</td><td>330</td><td>210</td><td>225</td></tr>
+ <tr><td>16 July - 31 July</td><td>week</td><td>325</td><td>385</td><td>245</td><td>255</td></tr>
+ <tr><td>1 Aug - 19 Aug</td><td>week</td><td>365</td><td>435</td><td>280</td><td>290</td></tr>
+ <tr><td>20 Aug-31 Aug</td><td>week</td><td>280</td><td>330</td><td>210</td><td>225</td></tr>
+ <tr><td>1 Sept -30 Sept</td><td>week</td><td>220</td><td>230</td><td>160</td><td>180</td></tr>
+ <tr><td>1 Oct-31 Oct 2022</td><td>week</td><td>195</td><td>195</td><td>150</td><td>160</td></tr>
 </tbody>
 </table>
 </div>
@@ -139,12 +938,19 @@ Airport Taxes: 15 Euros per car (this charge is imposed by the airport, not the 
 <a href='/contact'><button class='btn'>Get in Touch!</button></a>
 </center>"
     pt: "<style>
+.base-table{
+    overflow-x: overlay;
+}
+
 .base-table table{
-    min-width: 600px;
+    min-width: 600px;  
+    max-width: 99%;
+ 
 }
 .base-table th {
     background-color: #f5821e;
     color: #fff;
+    text-align: center;
 }
 .base-table tbody tr:first-child{
     font-weight: bold ;
@@ -198,99 +1004,21 @@ Airport Taxes: 15 Euros per car (this charge is imposed by the airport, not the 
 <br />
 <div class='base-table'>
 <table>
-<thead>
-<tr>
-<th align='center'></th>
-<th align='center'><p style='text-align: center;'>Grupo  </p></th>
-<th align='center'><p style='text-align: center;'>JANEIRO MARÇO</p></th>
-<th align='center'><p style='text-align: center;'>ABRIL - JUNHO</p></th>
-<th align='center'><p style='text-align: center;'>JULHO &amp; AGOSTO</p></th>
-<th align='center'><p style='text-align: center;'>SETEMBRO</p></th>
-<th align='center'><p style='text-align: center;'>OUTUBRO</p></th>
-<th align='center'><p style='text-align: center;'>NOVEMBRO DEZEMBRO</p></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align='center'>ECONÔMICA <br> Fiat Panda ou similar 5 portas</td>
-<td align='center'>A</td>
-<td align='center'>56</td>
-<td align='center'>98</td>
-<td align='center'>168</td>
-<td align='center'>147</td>
-<td align='center'>98</td>
-<td align='center'>56</td>
-</tr>
-<tr>
-<td align='center'>PEQUENA 5 PORTA <br>  Clio, Ibiza com GPS</td>
-<td align='center'>B</td>
-<td align='center'>63</td>
-<td align='center'>105</td>
-<td align='center'>175</td>
-<td align='center'>161</td>
-<td align='center'>105</td>
-<td align='center'>63</td>
-</tr>
-<tr>
-<td align='center'>CARRINHA	<br>  Clio Break</td>
-<td align='center'>G</td>
-<td align='center'>84</td>
-<td align='center'>147</td>
-<td align='center'>210</td>
-<td align='center'>182</td>
-<td align='center'>140</td>
-<td align='center'>98</td>
-</tr>
-<tr>
-<td align='center'>CARRO MÉDIO DE 5 PORTAS	  <br>    Renault Captur SUV pequeno</td>
-<td align='center'>C</td>
-<td align='center'>105</td>
-<td align='center'>161</td>
-<td align='center'>252</td>
-<td align='center'>200</td>
-<td align='center'>154</td>
-<td align='center'>105</td>
-</tr>
-<tr>
-<td align='center'>GRANDE CARRINHA<br> Megane SW</td>
-<td align='center'>J</td>
-<td align='center'>112</td>
-<td align='center'>196</td>
-<td align='center'>301</td>
-<td align='center'>217</td>
-<td align='center'>182</td>
-<td align='center'>112</td>
-</tr>
-<tr>
-<td align='center'>9 ASSENTOS<br> Renault Traveller, Citroen space tourer XL 9 assentos</td>
-<td align='center'>K</td>
-<td align='center'>245</td>
-<td align='center'>350</td>
-<td align='center'>560</td>
-<td align='center'>530</td>
-<td align='center'>350</td>
-<td align='center'>245</td>
-</tr>
-<tr>
-<td align='center'>Pequeno 7 lugares<br>Citroen C4</td>
-<td align='center'>E</td>
-<td align='center'>250</td>
-<td align='center'>357</td>
-<td align='center'>532</td>
-<td align='center'>511</td>
-<td align='center'>357</td>
-<td align='center'>250</td>
-</tr>
-<tr>
-<td align='center'>7 LUGARES <br> Seat Alhambra</td>
-<td align='center'>I</td>
-<td align='center'>270</td>
-<td align='center'>390</td>
-<td align='center'>600</td>
-<td align='center'>580</td>
-<td align='center'>371</td>
-<td align='center'>270</td>
-</tr>
+<thead><tr><th>MÊS</th><th>PERÍODO</th><th>A</th><th>B</th><th>C</th><th>E</th><th>F</th><th>G</th><th>I</th><th>J</th><th>K</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>&nbsp;</td><td>Fiat Panda ou similar 5 portas</td><td>Clio,Ibiza com GPS</td><td>Renault Captur SUV pequeno</td><td>Citroen C4 (pequeno de 7 lugares)</td><td>Seat Arona Automatico</td><td>Clio Break </td><td>Seat Alhambra 7 lugares</td><td>Megane SW</td><td>Renault Traveller, Citroen space tourer XL 9 lugares</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>215</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>105</td><td>125</td><td>145</td><td>235</td><td>180</td><td>135</td><td>335</td><td>155</td><td>265</td></tr>
+ <tr><td>3 Jan-31 Mar</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>205</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>1 Abril - 5 Abril</td><td>Semana</td><td>140</td><td>155</td><td>185</td><td>235</td><td>205</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
+ <tr><td>6 Abril -19 Abril</td><td>Semana</td><td>140</td><td>165</td><td>195</td><td>385</td><td>215</td><td>185</td><td>485</td><td>220</td><td>460</td></tr>
+ <tr><td>20 Abril - 31 Maio</td><td>Semana</td><td>130</td><td>155</td><td>185</td><td>235</td><td>205</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
+ <tr><td>1 Junho-30 Junho</td><td>Semana</td><td>140</td><td>165</td><td>195</td><td>385</td><td>215</td><td>185</td><td>485</td><td>220</td><td>460</td></tr>
+ <tr><td>1 Julho - 15 Julho</td><td>Semana</td><td>190</td><td>215</td><td>235</td><td>360</td><td>280</td><td>225</td><td>535</td><td>315</td><td>515</td></tr>
+ <tr><td>16 Julho - 31 Julho</td><td>Semana</td><td>215</td><td>350</td><td>275</td><td>415</td><td>325</td><td>265</td><td>635</td><td>365</td><td>585</td></tr>
+ <tr><td>1 Ago - 19 Ago</td><td>Semana</td><td>240</td><td>275</td><td>305</td><td>475</td><td>365</td><td>295</td><td>725</td><td>405</td><td>665</td></tr>
+ <tr><td>20 Ago-31 Ago</td><td>Semana</td><td>190</td><td>215</td><td>235</td><td>360</td><td>280</td><td>225</td><td>535</td><td>315</td><td>515</td></tr>
+ <tr><td>1 Set -30 Set</td><td>Semana</td><td>140</td><td>175</td><td>185</td><td>315</td><td>220</td><td>165</td><td>435</td><td>225</td><td>410</td></tr>
+ <tr><td>1 Oct-31 Oct 2022</td><td>Semana</td><td>130</td><td>145</td><td>175</td><td>285</td><td>195</td><td>165</td><td>385</td><td>200</td><td>360</td></tr>
 </tbody>
 </table>
 </div>
@@ -300,69 +1028,21 @@ Airport Taxes: 15 Euros per car (this charge is imposed by the airport, not the 
 <br />
 <div class='base-table'>
 <table>
-<thead>
-<tr>
-<th align='center'></th>
-<th align='center'><p style='text-align: center;'>Grupo  </p></th>
-<th align='center'><p style='text-align: center;'>JANEIRO MARÇO</p></th>
-<th align='center'><p style='text-align: center;'>ABRIL - JUNHO</p></th>
-<th align='center'><p style='text-align: center;'>JULHO &amp; AGOSTO</p></th>
-<th align='center'><p style='text-align: center;'>SETEMBRO</p></th>
-<th align='center'><p style='text-align: center;'>OUTUBRO</p></th>
-<th align='center'><p style='text-align: center;'>NOVEMBRO DEZEMBRO</p></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align='center'>AUTOMÁTICO PEQUENO DE 5 PORTAS<br>Opel Corsa Automático</td>
-<td align='center'>L</td>
-<td align='center'>91</td>
-<td align='center'>126</td>
-<td align='center'>189</td>
-<td align='center'>175</td>
-<td align='center'>126</td>
-<td align='center'>91</td>
-</tr>
-<tr>
-<td align='center'>Citroen C3 Automático</td>
-<td align='center'>M</td>
-<td align='center'>98</td>
-<td align='center'>147</td>
-<td align='center'>210</td>
-<td align='center'>185</td>
-<td align='center'>140</td>
-<td align='center'>98</td>
-</tr>
-<tr>
-<td align='center'>Seat Arona Automático</td>
-<td align='center'>F</td>
-<td align='center'>98</td>
-<td align='center'>168</td>
-<td align='center'>252</td>
-<td align='center'>217</td>
-<td align='center'>161</td>
-<td align='center'>98</td>
-</tr>
-<tr>
-<td align='center'>Fiat Tipo SW Automático</td>
-<td align='center'>T1</td>
-<td align='center'>105</td>
-<td align='center'>245</td>
-<td align='center'>308</td>
-<td align='center'>270</td>
-<td align='center'>224</td>
-<td align='center'>105</td>
-</tr>
-<tr>
-<td align='center'>Renault Megabe SW Automático</td>
-<td align='center'>J1</td>
-<td align='center'>100</td>
-<td align='center'>250</td>
-<td align='center'>301</td>
-<td align='center'>280</td>
-<td align='center'>231</td>
-<td align='center'>100</td>
-</tr>
+<thead><tr><th>MONTH</th><th>PERIOD</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>&nbsp;</td><td>Renault Megane SW automático</td><td>Opel Corsa automático</td><td>Citroen C3 automático</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>165</td><td>130</td><td>140</td></tr>
+ <tr><td>3 Jan-31 Mar</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>1 Abril - 5 Abril</td><td>Semana</td><td>215</td><td>160</td><td>170</td></tr>
+ <tr><td>6 Abril -19 Abril</td><td>Semana</td><td>225</td><td>170</td><td>180</td></tr>
+ <tr><td>20 Abril - 31 Maio</td><td>Semana</td><td>215</td><td>160</td><td>170</td></tr>
+ <tr><td>1 Junho-30 Junho</td><td>Semana</td><td>225</td><td>170</td><td>180</td></tr>
+ <tr><td>1 Julho - 15 Julho</td><td>Semana</td><td>330</td><td>210</td><td>225</td></tr>
+ <tr><td>16 Julho - 31 Julho</td><td>Semana</td><td>385</td><td>245</td><td>255</td></tr>
+ <tr><td>1 Ago - 19 Ago</td><td>Semana</td><td>435</td><td>280</td><td>290</td></tr>
+ <tr><td>20 Ago-31 Ago</td><td>Semana</td><td>330</td><td>210</td><td>225</td></tr>
+ <tr><td>1 Set -30 Set</td><td>Semana</td><td>230</td><td>160</td><td>180</td></tr>
+ <tr><td>1 Oct-31 Oct 2022</td><td>Semana</td><td>195</td><td>150</td><td>160</td></tr>
 </tbody>
 </table>
 </div>
