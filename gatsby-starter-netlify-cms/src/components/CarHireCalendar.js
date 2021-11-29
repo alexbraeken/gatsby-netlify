@@ -355,7 +355,7 @@ const CarHireCalendar = (props) => {
             locale={language} 
             localeUtils={localeUtils}
             />
-            <CarEnquiryModal show={showModal} handleClose={handleClose} />
+            <CarEnquiryModal show={showModal} handleClose={handleClose} carClass={props.carClass} price={total} from={from?.toLocaleDateString()} to={to?.toLocaleDateString()}/>
 
       <Helmet>
       <style>{`

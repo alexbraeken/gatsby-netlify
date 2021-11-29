@@ -48,24 +48,14 @@ const CarEnquiryModal = (props) => {
         <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-container enquiry-modal">
         <Modal.Header closeButton style={{background: "#3f3f3f"}}>
           <Modal.Title style={{display: "flex", flexWrap:"nowrap"}}>
-              <div style={{
-                height:"50px", 
-                width:"50px", 
-                borderRadius:"50%", 
-                backgroundImage:`url('${props.img}')`, 
-                backgroundPosition:"center", 
-                backgroundSize:"cover",
-                margin: "auto 20px auto auto"}}>
-              </div>
               <div className="orangeText" style={{margin: "auto"}}>
-                {t("Book a")}: {props.carClass}
+                {t("Book")} {props.carClass} {t("vehicle")}
               </div>
               <div className="modal close modal-content modal-header enquiry-modal" style={{display: "none"}}>
               </div>
           </Modal.Title>
         </Modal.Header>
     <Modal.Body className="calendar-modal">
-        <br />
         {sent ? 
           <div style={{display:"flex"}}>
             <h4 style={{margin:"auto", textAlign:"center"}}>Thank you for getting in touch! We'll get back to you as soon as possible.</h4>
@@ -140,7 +130,8 @@ const CarEnquiryModal = (props) => {
               </p>
           </div>
           <div className="field">
-            <button className="submit-search-btn"  type="submit" style={{border:"none", backgroundColor:"transparent"}}>
+            <button className="submit-search-btn"  type="submit" style={{border:"none", backgroundColor:"transparent", marginLeft: "0",
+    paddingLeft: "0"}}>
               <a>
                   <svg className="icon-arrow before">
                       <use xlinkHref="#arrow" />

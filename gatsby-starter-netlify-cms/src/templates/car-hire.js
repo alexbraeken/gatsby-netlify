@@ -120,7 +120,7 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                   {langTitles[language]}
                 </h2>}
                 <PageContent className="content" content={html[language] && html[language].length > 0 ? html[language] : content} />
-                <Row>
+                {false && <Row>
                     <Col style={{maxWidth: "800px", margin: "auto"}}>
                     <Select options={[
                     {value: "A", label: "Class A"}, 
@@ -143,7 +143,7 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                     <h4>{t("Includes")}: {selected && carPricing[selected]?.name[language]}</h4>
                 {selectedPricing && <CarHireCalendar pricingPeriods={selectedPricing} carClass={selected ? `Class ${selected}`: null}/>}
                     </Col>
-                </Row>
+                </Row>}
                
               </div>
             </div>
