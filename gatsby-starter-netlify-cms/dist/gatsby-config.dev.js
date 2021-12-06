@@ -190,7 +190,40 @@ module.exports = {
   plugins: ['gatsby-plugin-react-helmet', 'gatsby-plugin-sass', {
     resolve: "gatsby-plugin-sitemap",
     options: {
-      excludes: ['/tags/']
+      excludes: ['/tags/'],
+      query: "\n          {\n            site {\n              siteMetadata {\n                siteUrl\n              }\n            }\n            allSitePage(filter: {context: {i18n: {routed: {eq: false}}}}) {\n              edges {\n                node {\n                  context {\n                    i18n {\n                      defaultLanguage\n                      languages\n                      originalPath\n                    }\n                  }\n                  path\n                }\n              }\n            }\n          }\n        ",
+      serialize: function serialize(_ref) {
+        var site = _ref.site,
+            allSitePage = _ref.allSitePage;
+        return allSitePage.edges.map(function (edge) {
+          var _edge$node$context$i = edge.node.context.i18n,
+              languages = _edge$node$context$i.languages,
+              originalPath = _edge$node$context$i.originalPath,
+              defaultLanguage = _edge$node$context$i.defaultLanguage;
+          var siteUrl = site.siteMetadata.siteUrl;
+          var url = siteUrl + originalPath;
+          var links = [{
+            lang: defaultLanguage,
+            url: url
+          }, {
+            lang: 'x-default',
+            url: url
+          }];
+          languages.forEach(function (lang) {
+            if (lang === defaultLanguage) return;
+            links.push({
+              lang: lang,
+              url: "".concat(siteUrl, "/").concat(lang).concat(originalPath)
+            });
+          });
+          return {
+            url: url,
+            changefreq: 'daily',
+            priority: originalPath === '/' ? 1.0 : 0.7,
+            links: links
+          };
+        });
+      }
     }
   }, {
     // keep as first gatsby-source-filesystem plugin for gatsby image support

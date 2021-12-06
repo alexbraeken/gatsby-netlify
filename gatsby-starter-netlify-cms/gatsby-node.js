@@ -157,6 +157,7 @@ exports.onCreateWebpackConfig = ({
 
 exports.onCreatePage = async ({page, actions}) => {
   const { createPage } = actions
+  
     if (page.path.match(/^\/properties\//)) {
       page.matchPath= "/properties/*",
       createPage(page)

@@ -294,7 +294,7 @@ const handleSectionLeave = () => {
               
             </Card>
             <div className="home-card-para">
-                  <p><Trans>We are a small and friendly company that really puts you - the customer - first.</Trans></p>
+                  <p><Trans>We are a dynamic and friendly company that really puts you - the customer - first.</Trans></p>
             </div>
           </Col>
           <Col className="home-card-container" xs={12} md={4} >

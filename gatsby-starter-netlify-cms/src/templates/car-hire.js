@@ -121,7 +121,9 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                 </h2>}
                 <PageContent className="content" content={html[language] && html[language].length > 0 ? html[language] : content} />
                 {false && <Row>
-                    <Col style={{maxWidth: "800px", margin: "auto"}}>
+                    <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
+    borderRadius: "4px"}}>
+                    <h4 style={{marginTop: "0.8em"}}>{t("Book a Car Now")}</h4>
                     <Select options={[
                     {value: "A", label: "Class A"}, 
                     {value: "B", label: "Class B"},
@@ -138,10 +140,10 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                     styles={carSelectStyle}
                     closeMenuOnSelect={true}
                     ref={car}
-                    placeholder={t("Car")}
+                    placeholder={t("Select Car")}
                     onChange={(e)=>setSelected(e.value)}/>
-                    <h4>{t("Includes")}: {selected && carPricing[selected]?.name[language]}</h4>
-                {selectedPricing && <CarHireCalendar pricingPeriods={selectedPricing} carClass={selected ? `Class ${selected}`: null}/>}
+                    {selectedPricing && <p>{t("Includes")}: {selected && carPricing[selected]?.name[language]}</p>}
+                    {selectedPricing && <CarHireCalendar pricingPeriods={selectedPricing} carClass={selected ? `Class ${selected}`: null}/>}
                     </Col>
                 </Row>}
                

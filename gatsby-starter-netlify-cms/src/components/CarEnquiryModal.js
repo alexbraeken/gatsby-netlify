@@ -12,13 +12,14 @@ const CarEnquiryModal = (props) => {
     const [sent, setSent] = useState(false)
 
     const {t} = useTranslation(['translation']);
+    const { language } = useI18next()
 
     const sendEnquiry = (formInfo) => {
       if (sent) {
         return false;
       }
     
-      emailjs.sendForm(process.env.GATSBY_EMAILJS_SERVICE_KEY, process.env.GATSBY_EMAILJS_TEMPLATE_KEY, formInfo, process.env.GATSBY_EMAILJS_USER)
+      emailjs.sendForm(process.env.GATSBY_EMAILJS_SERVICE_KEY, process.env.GATSBY_EMAILJS_TEMPLATE_KEY_CAR_HIRE, formInfo, process.env.GATSBY_EMAILJS_USER)
       .then((result)=> {
         return true;
       }, (error)=> {
@@ -49,7 +50,7 @@ const CarEnquiryModal = (props) => {
         <Modal.Header closeButton style={{background: "#3f3f3f"}}>
           <Modal.Title style={{display: "flex", flexWrap:"nowrap"}}>
               <div className="orangeText" style={{margin: "auto"}}>
-                {t("Book")} {props.carClass} {t("vehicle")}
+                <span>{t("Book")} {props.carClass} {t("vehicle")}</span>
               </div>
               <div className="modal close modal-content modal-header enquiry-modal" style={{display: "none"}}>
               </div>
@@ -58,7 +59,7 @@ const CarEnquiryModal = (props) => {
     <Modal.Body className="calendar-modal">
         {sent ? 
           <div style={{display:"flex"}}>
-            <h4 style={{margin:"auto", textAlign:"center"}}>Thank you for getting in touch! We'll get back to you as soon as possible.</h4>
+            <h4 style={{margin:"auto", textAlign:"center"}}>{t("Thank you for getting in touch! We'll get back to you as soon as possible.")}</h4>
           </div> :
           <form
           name="CarInquiry"
@@ -76,9 +77,15 @@ const CarEnquiryModal = (props) => {
               <input name="bot-field" onChange={(e) => handleChange(e)} />
             </label>
           </div>
+          <div>
+          <small>{props.from} - {props.to}</small>
+          <br />
+          <small>{t("Price")}: {props.price}€</small>
+          </div>
           <input type="hidden" name={'price'} id={'price'} value={props.price}/>
-          <input type="hidden" name={'date_from'} id={'date_from'} value={props.from}/>
-          <input type="hidden" name={'date_to'} id={'date_to'} value={props.to}/>
+          <input type="hidden" name={'from'} id={'from'} value={props.from}/>
+          <input type="hidden" name={'to'} id={'to'} value={props.to}/>
+          <imput type="hidden" name={'lang'} id={'lang'} value={language} />
           <div className="field">
             <label className="label" htmlFor={'from_name'}>
               {t("Your name")}
@@ -120,13 +127,13 @@ const CarEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'message'}
                 required={true}
-                placeholder="Let us know here!"
+                placeholder={t("Let us know here!")}
               />
             </div>
           </div>
           <div>
               <p>
-                  We'll get back to you with availability and a confirmed quote as soon as possible! 
+                  {t("We'll get back to you with availability and a confirmed quote as soon as possible!")}
               </p>
           </div>
           <div className="field">

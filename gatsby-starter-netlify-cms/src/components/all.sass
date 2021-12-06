@@ -358,7 +358,11 @@ a:hover
   backface-visibility: hidden
   -webkit-font-smoothing: subpixel-antialiased
   box-shadow: none
-
+  &:hover
+    & .card-buttons-right
+        right: 0
+        opacity: 1
+        visibility: visible
 
 .prop-card-container:hover 
   & .prop-card
@@ -367,6 +371,8 @@ a:hover
       text-decoration: none
   & .prop-card-title
       color: $primary
+
+.prop-card
 
 .prop-card-text
   position: relative
@@ -3242,22 +3248,41 @@ $white: #FFF
     background-color: darkgrey
     outline: 1px solid slategrey
 
+.card-buttons-right
+  position: absolute
+  display: flex
+  flex-wrap: wrap
+  right: -50px
+  top: 15px
+  opacity: 0
+  visibility: hidden
+  transition: all 0.3s
+  border-radius: 4px;
+  background-color: $primary;
+  min-height: 80px;
+  z-index: 2
+
+
 .add-favs-heart, .share-btn
   position: relative
   margin: auto
-  width: 20px
+  width: 25px
   height: auto
   z-index: 99
   cursor: pointer
   transition: all 0.3s
+  display: flex
+  & svg
+      width: 25px
+      height: 25px
+      margin: auto
   &:hover
     color: $primary
     transform: scale(1.05)
 
 .favs-heart-container, .share-btn-container
-  position: absolute
-  top: 10px
-  right: 10px
+  position: relative
+  flex: 1 1 100%
   display: flex
   z-index: 2
   &:hover
@@ -3270,8 +3295,24 @@ $white: #FFF
   top: 20px  
   right: 10px
 
-.share-btn-container
-  top: 40px
+.share-btn
+  position: relative
+  & .expand-btn
+      position: absolute
+      right: 0
+      top: 0
+      max-width: 0
+      transition: all 0.3s
+      display: flex
+      overflow: hidden
+      background: $primary
+      border-radius: 4px
+      & button
+          padding: 2px !important
+          display: flex
+  &:hover
+    & .expand-btn
+        max-width: 1000px
 
 
 
@@ -3341,6 +3382,8 @@ $white: #FFF
               position: absolute
               right: 10px
               top: 10px
+              height: 16px
+              width: 16px
               cursor: pointer
               background: white
               border-radius: 50px

@@ -14,19 +14,25 @@ import {
     WhatsappIcon} from "react-share";
 
 const Share = (props) => (
-    <div className="share-btn">
+    <div className={`share-btn`} >
         <AiOutlineShareAlt />
-        <span className="share tooltiptext">
-            <EmailShareButton url={props.location}>
+        <div className="share expand-btn" >
+            <EmailShareButton url={String(props.target)}>
                 <EmailIcon size={32} round={true}/>
             </EmailShareButton>
-            <FacebookShareButton url={props.location}>
+            <FacebookShareButton url={String(props.target)} title={"Share Smartavillas.com"} quote={`Check out ${props.propName}`} hashtag={"#Smartavillas"}>
                 <FacebookIcon size={32} round={true}/>
             </FacebookShareButton>
-            <PinterestShareButton url={props.location}>
+            <PinterestShareButton url={String(props.target)} media={String(props.propImg)} description={`Loving ${props.propName} from Smartavillas`}>
                 <PinterestIcon size={32} round={true}/>
             </PinterestShareButton>
-        </span>
+            <TwitterShareButton url={String(props.target)} title={String(props.propName)} hashtags={["Smartavillas", String(props.propName), "Algarve", "Portugal"]} related={["https://twitter.com/smartavillas"]}>
+                <TwitterIcon size={32} round={true}/>
+            </TwitterShareButton>
+            <WhatsappShareButton url={String(props.target)} title={String(props.propName)}>
+                <WhatsappIcon size={32} round={true}/>
+            </WhatsappShareButton>
+        </div>
     </div>
 )
 

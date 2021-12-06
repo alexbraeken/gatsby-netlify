@@ -91,7 +91,8 @@ const PropertyCardComp = (props) => {
     <Col className="prop-card-container" key={props.index}>
         
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}} id={props.item.name}>
-        {!inFavs ? 
+          <div className="card-buttons-right">
+          {!inFavs ? 
           <div className="favs-heart-container">
             <AiOutlineHeart class="add-favs-heart" onClick={()=>{
             props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests, city: props.item.city, rate: displayPrice })
@@ -103,9 +104,11 @@ const PropertyCardComp = (props) => {
             <span className="favs tooltiptext">{t("remove favs")}</span>
           </div>
           }
-          {false && <div className="share-btn-container">
-            <Share />
-          </div>}
+          <div className="share-btn-container">
+            <Share propImg={props.item.picture} propName={props.item.name} target={`${window.location.href}/${props.item.uid}`}/>
+          </div>
+          </div>
+        
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
           }

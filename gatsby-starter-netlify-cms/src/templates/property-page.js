@@ -29,6 +29,7 @@ import { BsStarFill } from "@react-icons/all-files/bs/BsStarFill";
 import { connect } from "react-redux"
 import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
 import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
+import Share from '../components/Share'
 
 const mapStateToProps = (state) => {
     let newObj = {}
@@ -320,14 +321,15 @@ export const PropertyPageTemplate = ( props ) =>
                                         </Row>
                                     </Col>
                                     <Col xs={1} md={1} style={{display: "flex"}}>
-                                    <div className="add-favs">
-                                        {props.inFavs ? <AiFillHeart onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.id})} /> 
-                                        :
-                                        <AiOutlineHeart onClick={()=>{
-                                            props.dispatch({ type: 'ADD_PROPERTY', propName: data.value.name, propId: props.id, propImg: data.value.picture, bedrooms: data.value.bedrooms, bathrooms: data.value.bathrooms, baseGuests: data.value.baseGuests, city: data.value.city, rate: data.value.baseDailyRate })
-                                            }}/>
-                                        }
+                                        <div className="add-favs">
+                                            {props.inFavs ? <AiFillHeart onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.id})} /> 
+                                            :
+                                            <AiOutlineHeart onClick={()=>{
+                                                props.dispatch({ type: 'ADD_PROPERTY', propName: data.value.name, propId: props.id, propImg: data.value.picture, bedrooms: data.value.bedrooms, bathrooms: data.value.bathrooms, baseGuests: data.value.baseGuests, city: data.value.city, rate: data.value.baseDailyRate })
+                                                }}/>
+                                            }
                                         </div>
+                                        <Share propImg={data.value.picture} propName={data.value.name} target={props.location}/>
                                     </Col>
                                     </Row>
                                 </Container>

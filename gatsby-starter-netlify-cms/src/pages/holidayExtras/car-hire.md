@@ -15,63 +15,63 @@ carPricing:
             pt: Fiat Panda ou similar 5 portas
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "105"
+                "price": "15"
                 }'   
             ,'{
                 "date": "2021-01-03",
-                "price": "100"
+                "price": "15"
             }'  
             ,'{
                 "date": "2021-04-01",
-                "price": "140"
+                "price": "20"
             }'  
             ,'{
                 "date": "2021-04-06",
-                "price": "140"
+                "price": "20"
             }'  
             ,'{
                 "date": "2021-04-20",
-                "price": "130"
+                "price": "19"
             }'
             ,'{
                 "date": "2021-06-01",
-                "price": "140"
+                "price": "20"
             }'    
             ,'{
                 "date": "2021-07-01",
-                "price": "190"
+                "price": "28"
             }'   
             ,'{
                 "date": "2021-07-16",
-                "price": "215"
+                "price": "31"
             }'  
             ,'{
                 "date": "2021-08-01",
-                "price": "240"
+                "price": "35"
             }'
             ,'{
                 "date": "2021-08-20",
-                "price": "190"
+                "price": "28"
             }'  
             ,'{
                 "date": "2021-09-01",
-                "price": "140"
+                "price": "20"
             }'  
             ,'{
                 "date": "2021-10-01",
-                "price": "130"
+                "price": "19"
             }' 
             ,'{
                 "date": "2021-11-01",
-                "price": "100"
+                "price": "15"
             }'  
             ,'{
                 "date": "2021-12-21",
-                "price": "105"
+                "price": "15"
             }'
             ,'{
                 "date": "2021-12-31",
-                "price": "105"
+                "price": "15"
             }']
                 
     B:
@@ -81,63 +81,63 @@ carPricing:
             pt: Clio,Ibiza com GPS
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "125"
+                "price": "18"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "115"
+                "price": "17"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "155"
+                "price": "23"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "165"
+                "price": "24"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "155"
+                "price": "23"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "165"
+                "price": "24"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "215"
+                "price": "31"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "350"
+                "price": "50"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "275"
+                "price": "40"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "215"
+                "price": "31"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "175"
+                "price": "25"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "145"
+                "price": "21"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "115"
+                "price": "17"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "125"
+                "price": "18"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "125"
+                "price": "18"
                 }'
             ]
     C:
@@ -147,63 +147,63 @@ carPricing:
             pt: Renault Captur SUV pequeno
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "145"
+                "price": "21"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "135"
+                "price": "20"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "185"
+                "price": "27"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "195"
+                "price": "28"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "185"
+                "price": "27"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "195"
+                "price": "28"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "235"
+                "price": "34"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "275"
+                "price": "40"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "305"
+                "price": "44"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "235"
+                "price": "34"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "185"
+                "price": "27"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "175"
+                "price": "25"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "135"
+                "price": "20"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "145"
+                "price": "21"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "145"
+                "price": "21"
                 }'
             ]
     E:
@@ -213,63 +213,63 @@ carPricing:
             pt: Citroen C4 (pequeno de 7 lugares)
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "235"
+                "price": "34"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "205"
+                "price": "30"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "235"
+                "price": "34"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "385"
+                "price": "55"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "235"
+                "price": "34"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "385"
+                "price": "55"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "360"
+                "price": "52"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "415"
+                "price": "60"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "475"
+                "price": "68"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "360"
+                "price": "52"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "315"
+                "price": "45"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "285"
+                "price": "41"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "215"
+                "price": "31"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "235"
+                "price": "34"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "205"
+                "price": "30"
                 }'
             ]
     F:
@@ -279,63 +279,63 @@ carPricing:
             pt: Seat Arona Automatico
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "180"
+                "price": "26"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "165"
+                "price": "24"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "205"
+                "price": "30"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "215"
+                "price": "31"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "205"
+                "price": "30"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "215"
+                "price": "31"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "280"
+                "price": "40"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "325"
+                "price": "47"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "365"
+                "price": "53"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "280"
+                "price": "40"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "220"
+                "price": "32"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "195"
+                "price": "28"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "165"
+                "price": "24"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "180"
+                "price": "26"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "180"
+                "price": "26"
                 }'
             ]
     G:
@@ -345,63 +345,63 @@ carPricing:
             pt: Clio Break
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "135"
+                "price": "20"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "120"
+                "price": "18"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "175"
+                "price": "25"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "185"
+                "price": "27"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "175"
+                "price": "25"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "185"
+                "price": "27"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "225"
+                "price": "33"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "265"
+                "price": "38"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "295"
+                "price": "43"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "225"
+                "price": "33"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "165"
+                "price": "24"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "165"
+                "price": "24"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "120"
+                "price": "18"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "135"
+                "price": "20"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "135"
+                "price": "20"
                 }'
             ]
     I:
@@ -411,63 +411,63 @@ carPricing:
             pt: Seat Alhambra 7 lugares
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "335"
+                "price": "48"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "305"
+                "price": "44"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "435"
+                "price": "63"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "485"
+                "price": "70"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "435"
+                "price": "63"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "485"
+                "price": "70"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "535"
+                "price": "77"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "635"
+                "price": "91"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "725"
+                "price": "104"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "535"
+                "price": "77"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "435"
+                "price": "63"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "385"
+                "price": "55"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "305"
+                "price": "44"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "335"
+                "price": "48"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "335"
+                "price": "48"
                 }'
             ]
     J:
@@ -477,63 +477,63 @@ carPricing:
             pt: Megane SW
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "155"
+                "price": "23"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "145"
+                "price": "21"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "210"
+                "price": "30"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "220"
+                "price": "32"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "210"
+                "price": "30"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "220"
+                "price": "32"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "315"
+                "price": "45"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "365"
+                "price": "53"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "405"
+                "price": "58"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "315"
+                "price": "45"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "225"
+                "price": "33"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "200"
+                "price": "29"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "145"
+                "price": "21"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "155"
+                "price": "23"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "155"
+                "price": "23"
                 }'
             ]
     K:
@@ -543,63 +543,63 @@ carPricing:
             pt: Renault Traveller, Citroen space tourer XL 9 lugares
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "265"
+                "price": "38"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "240"
+                "price": "35"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "410"
+                "price": "59"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "460"
+                "price": "66"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "410"
+                "price": "59"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "460"
+                "price": "66"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "515"
+                "price": "74"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "585"
+                "price": "84"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "665"
+                "price": "95"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "515"
+                "price": "74"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "410"
+                "price": "59"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "360"
+                "price": "52"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "240"
+                "price": "35"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "265"
+                "price": "38"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "265"
+                "price": "38"
                 }'
             ]
     J1:
@@ -609,63 +609,63 @@ carPricing:
             pt: Renault Megane SW automático
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "165"
+                "price": "24"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "155"
+                "price": "23"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "215"
+                "price": "31"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "225"
+                "price": "33"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "215"
+                "price": "31"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "225"
+                "price": "33"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "330"
+                "price": "48"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "385"
+                "price": "55"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "435"
+                "price": "63"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "330"
+                "price": "48"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "230"
+                "price": "33"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "195"
+                "price": "28"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "155"
+                "price": "23"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "165"
+                "price": "24"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "165"
+                "price": "24"
                 }'
             ]
     L:
@@ -675,63 +675,63 @@ carPricing:
             pt: Opel Corsa automático
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "130"
+                "price": "19"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "120"
+                "price": "18"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "160"
+                "price": "23"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "170"
+                "price": "25"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "160"
+                "price": "23"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "170"
+                "price": "25"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "210"
+                "price": "30"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "245"
+                "price": "35"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "280"
+                "price": "40"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "210"
+                "price": "30"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "160"
+                "price": "23"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "150"
+                "price": "22"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "120"
+                "price": "18"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "130"
+                "price": "19"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "130"
+                "price": "19"
                 }'
             ]
     M:
@@ -741,63 +741,63 @@ carPricing:
             pt: Citroen C3 automático
         pricing: ['{
                 "date": "2021-01-01",
-                "price": "140"
+                "price": "20"
                 }',
             '{
                 "date": "2021-01-03",
-                "price": "136"
+                "price": "20"
                 }',
             '{
                 "date": "2021-04-01",
-                "price": "170"
+                "price": "25"
                 }',
             '{
                 "date": "2021-04-06",
-                "price": "180"
+                "price": "26"
                 }',
             '{
                 "date": "2021-04-20",
-                "price": "170"
+                "price": "25"
                 }',
             '{
                 "date": "2021-06-01",
-                "price": "180"
+                "price": "26"
                 }',
             '{
                 "date": "2021-07-01",
-                "price": "225"
+                "price": "33"
                 }',
             '{
                 "date": "2021-07-16",
-                "price": "285"
+                "price": "41"
                 }',
             '{
                 "date": "2021-08-01",
-                "price": "290"
+                "price": "42"
                 }',
             '{
                 "date": "2021-08-20",
-                "price": "225"
+                "price": "33"
                 }',
             '{
                 "date": "2021-09-01",
-                "price": "180"
+                "price": "26"
                 }',
             '{
                 "date": "2021-10-01",
-                "price": "160"
+                "price": "23"
                 }',
             '{
                 "date": "2021-11-01",
-                "price": "135"
+                "price": "20"
                 }',
             '{
                 "date": "2021-12-21",
-                "price": "140"
+                "price": "20"
                 }',
             '{
                 "date": "2021-12-31",
-                "price": "140"
+                "price": "20"
                 }'
             ]
 html:
@@ -1028,7 +1028,7 @@ Airport Taxes: 15 Euros per car (this charge is imposed by the airport, not the 
 <br />
 <div class='base-table'>
 <table>
-<thead><tr><th>MONTH</th><th>PERIOD</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
+<thead><tr><th>MÊS</th><th>PERÍODO</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Renault Megane SW automático</td><td>Opel Corsa automático</td><td>Citroen C3 automático</td></tr>
  <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>165</td><td>130</td><td>140</td></tr>

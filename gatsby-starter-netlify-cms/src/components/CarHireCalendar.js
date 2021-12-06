@@ -84,7 +84,7 @@ const CarHireCalendar = (props) => {
     const [total, setTotal] = useState(0)
     const [showModal, setShowModal] = useState(false)
 
-    const {t} = useTranslation(['calendar', 'translation']);
+    const {t} = useTranslation(['translation']);
     const { language } = useI18next()
     
     useEffect(() => {
@@ -322,7 +322,7 @@ const CarHireCalendar = (props) => {
             to &&
           <span style={{margin:"auto 0"}}><span className="orangeText">{total}€ - {(to - from)/(1000*60*60*24)} {t("Days")}</span> 
             <br />
-            <small>Selected from {from.toLocaleDateString()} to {to.toLocaleDateString()}</small></span>}
+            <small>{t("Selected from")} {from.toLocaleDateString()} to {to.toLocaleDateString()}</small></span>}
           </div>
           {from && to && (
             <div style={{display: "flex", flexWrap:"nowrap", minWidth:"200px"}}>
