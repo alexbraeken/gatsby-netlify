@@ -15,6 +15,7 @@ import SubmitButton from '../components/SubmitButton'
 import Newsletter from '../components/Newsletter'
 import Content, { HTMLContent } from '../components/Content'
 import InstagramFeed from '../components/InstagramFeed';
+import BackgroundImage from 'gatsby-background-image'
 
 export const IndexPageTemplate = ({
   image,
@@ -142,13 +143,12 @@ const handleSectionLeave = () => {
 
   return(
   <div>
-    <div className="main-hero" id = "main-hero" style={{
-                  backgroundImage: `url(${
-                    image.childImageSharp
-                      ? image.childImageSharp.fluid.src
-                      : image
-                  })`,
-                }}>
+     <BackgroundImage
+      Tag="div"
+      className={"main-hero"}
+      fluid={image.childImageSharp?.fluid || image}
+      backgroundColor={`#040e18`}
+    >
       <div id="hero-overlay" ref={heroOverlay}></div>
   <div className="logo-container">
   <div className="hero-left">
@@ -167,8 +167,8 @@ const handleSectionLeave = () => {
     </div>
   </div>
     </div>
-    <SearchFilter className="search-filter" />  
-</div>
+    <SearchFilter className="search-filter" />
+</BackgroundImage>
     
     <section className="section section--gradient">
       <section style={{
@@ -229,14 +229,12 @@ const handleSectionLeave = () => {
      </div>
       
       <Col id="left-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("left")} onMouseLeave={()=>handleSectionLeave()}>
-        <div className="featured-content " style={{
-          backgroundImage: `url(${
-            tripImage.childImageSharp
-              ? tripImage.childImageSharp.fluid.src
-              : tripImage
-          })`
-          }}>
-        </div>
+      <BackgroundImage
+      Tag="div"
+      className={"featured-content"}
+      fluid={tripImage.childImageSharp?.fluid || tripImage}
+      backgroundColor={`#040e18`}
+    ></BackgroundImage>
         <div className="content-text">
           <h3 style={{color: "#fff", fontWeight:"bold"}}><Trans>Plan the trip of your dreams with us!</Trans></h3>
             <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
@@ -249,15 +247,12 @@ const handleSectionLeave = () => {
             </div>
       </Col>
       <Col id="right-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("right")} onMouseLeave={()=>handleSectionLeave()}>
-        <div className="featured-content" 
-        style={{
-          backgroundImage: `url(${
-            listImage.childImageSharp
-              ? listImage.childImageSharp.fluid.src
-              : listImage
-          })`
-         }}>
-        </div>
+      <BackgroundImage
+      Tag="div"
+      className={"featured-content"}
+      fluid={listImage.childImageSharp?.fluid || listImage}
+      backgroundColor={`#040e18`}
+    ></BackgroundImage>
         <div className="content-text">
           <h3 style={{color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
             <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
@@ -277,14 +272,14 @@ const handleSectionLeave = () => {
           
           <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
-      <a href="/team" aria-label="team"></a><div className="home-card-bg" style={{
-         backgroundImage: `url(${
-          !!trustedImage.childImageSharp
-            ? trustedImage.childImageSharp.fluid.src
-            : trustedImage
-        })`
-                  }}></div>  
-                  
+      <a href="/team" aria-label="team"></a>
+      <BackgroundImage
+      Tag="div"
+      className={"home-card-bg"}
+      fluid={trustedImage.childImageSharp?.fluid || trustedImage}
+      backgroundColor={`#040e18`}
+      style={{position: "absolute"}}
+    ></BackgroundImage>              
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                   <h2><Trans>Trusted since 2009</Trans></h2>
@@ -299,14 +294,15 @@ const handleSectionLeave = () => {
           </Col>
           <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
-      <a href="/location/algarve" aria-label="locations"></a><div className="home-card-bg"
-      style={{
-        backgroundImage: `url(${
-          !!locationImage.childImageSharp
-            ? locationImage.childImageSharp.fluid.src
-            : locationImage
-        })`
-        }}></div>  
+      <a href="/location/algarve" aria-label="locations"></a>
+      <BackgroundImage
+      Tag="div"
+      className={"home-card-bg"}
+      fluid={locationImage.childImageSharp?.fluid || locationImage}
+      backgroundColor={`#040e18`}
+      style={{position: "absolute"}}
+    ></BackgroundImage>
+
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                 <h2><Trans>Amazing Location</Trans></h2>
@@ -321,14 +317,15 @@ const handleSectionLeave = () => {
           </Col>
           <Col className="home-card-container" xs={12} md={4} >
             <Card className="home-card">
-      <a href="/properties" aria-label="properties"></a><div className="home-card-bg"
-      style={{
-        backgroundImage: `url(${
-          !!accommodationsImage.childImageSharp
-            ? accommodationsImage.childImageSharp.fluid.src
-            : accommodationsImage
-        })`
-        }}></div>  
+      <a href="/properties" aria-label="properties"></a>
+      <BackgroundImage
+      Tag="div"
+      className={"home-card-bg"}
+      fluid={accommodationsImage.childImageSharp?.fluid || accommodationsImage}
+      backgroundColor={`#040e18`}
+      style={{position: "absolute"}}
+    ></BackgroundImage>
+  
               <Card.Body className="home-card-body">
               <div className="home-card-title">
                 <h2><Trans>100 + Quality Accommodations</Trans></h2>

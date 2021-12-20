@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
 import Slider from "react-slick"
+import BackgroundImage from 'gatsby-background-image'
 
 class TestimonialSlider extends Component {
   constructor(props) {
@@ -30,10 +31,14 @@ class TestimonialSlider extends Component {
          {this.state.slides.edges?.map((testimonial, index) => (
            <div key={index}>
             <div className="testimonial-container">
-              <div className="testimonial-img"
-              style={{backgroundImage:`url('${testimonial.node.frontmatter.img ? testimonial.node.frontmatter.img.childImageSharp.fluid.src : ''}')`, }}>
-                <div className="testimonial-img-overlay"></div>
-              </div>
+            <BackgroundImage
+              Tag="div"
+              className={"testimonial-img"}
+              fluid={testimonial.node.frontmatter.img ? testimonial.node.frontmatter.img.childImageSharp.fluid : ''}
+              backgroundColor={`#040e18`}
+            >
+              <div className="testimonial-img-overlay"></div>
+            </BackgroundImage>
               <div className="testimonial-text-container">
                 <svg fill="#fff" viewBox="0 0 100 100" preserveAspectRatio="none">
                   <polygon points="50,0 100,0 50,100 0,100"></polygon>

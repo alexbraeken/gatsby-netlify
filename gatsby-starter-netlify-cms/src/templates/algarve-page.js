@@ -11,6 +11,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import StickyBox from "react-sticky-box";
 import { Helmet } from 'react-helmet'
+import BackgroundImage from 'gatsby-background-image'
 
 class CustomSlide extends React.Component {
 
@@ -20,8 +21,12 @@ class CustomSlide extends React.Component {
     gsap.registerPlugin(ScrollTrigger); 
     
     return (
-      <div style={{backgroundImage: `url(${this.props.slide.slide? this.props.slide.slide.childImageSharp.fluid.src: null})`,
-      minHeight: "400px",
+      <BackgroundImage
+      Tag="div"
+      className={""}
+      fluid={this.props.slide.slide? this.props.slide.slide.childImageSharp.fluid: null}
+      backgroundColor={`#040e18`}
+      style={{minHeight: "400px",
       height: "50vh",
       width:"100vw",
       margin: "0px auto",
@@ -29,16 +34,18 @@ class CustomSlide extends React.Component {
       position: "relative",
       backgroundSize:"cover",
       backgroundPosition:"center",
-      padding: "40px"}}>
-          <div className="slide__content">
-              <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
-              <path className="slide__overlay-path" d="M0,0 150,0 300,405 0,405"></path> 
-              </svg>
-              <div className="slide__text">
-              <h2 className="slide__text-heading">{this.props.slide.title}</h2>
-              </div>
-              </div>
+      backgroundAttachment: "initial",
+      padding: "40px"}}
+    >
+      <div className="slide__content">
+        <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
+        <path className="slide__overlay-path" d="M0,0 150,0 300,405 0,405"></path> 
+        </svg>
+        <div className="slide__text">
+          <h2 className="slide__text-heading">{this.props.slide.title}</h2>
+        </div>
       </div>
+    </BackgroundImage>
     );
   }
 }
@@ -225,7 +232,7 @@ export const AlgarvePageTemplate = ({
               </div>
               <div className="img">
                 <h2 style={{fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.title[`title${index+1}`][language]}</h2>
-                <img src={featureSection.imgs[`img${index+1}`].childImageSharp.fluid.src} alt={featureSection.imgs[`img${index+1}`].alt || "Feature Image"}/>
+                <PreviewCompatibleImage imageInfo={featureSection.imgs[`img${index+1}`]} alt={featureSection.imgs[`img${index+1}`].alt || "Feature Image"}/>
               </div>
             </section>
             )}
@@ -303,7 +310,12 @@ export const AlgarvePageTemplate = ({
             </div>
           </div>
         </div>
-        <div className="full-width full-img" style={{backgroundImage:`url(${gallery.staticImg.img.childImageSharp.fluid.src})`}}>
+        <BackgroundImage
+      Tag="div"
+      className={"full-width full-img"}
+      fluid={gallery.staticImg.img.childImageSharp.fluid || image}
+      backgroundColor={`#040e18`}
+    >
           <div className="gallery-container">
             <div className="text-container static-text">
             <h3>
@@ -314,7 +326,8 @@ export const AlgarvePageTemplate = ({
             </p>
             </div>
           </div>              
-        </div>
+
+        </BackgroundImage>
         </Container>
         </section>
         <section style={{

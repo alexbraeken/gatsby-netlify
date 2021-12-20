@@ -2,6 +2,8 @@ import React from 'react'
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
+import BackgroundImage from 'gatsby-background-image'
+
 
 const TeamCard = React.memo((props) =>{
 
@@ -11,13 +13,13 @@ const TeamCard = React.memo((props) =>{
   return(
     <div className="flex-img-col">
     <div className="col-img-bg">
-        <div style={{
-            backgroundImage:`url(${props.member.node.frontmatter.featuredimage.childImageSharp.fluid.src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "50%",
-            height:"-webkit-fill-available",
-        }} />
-    
+    <BackgroundImage
+              Tag="div"
+              className={""}
+              fluid={props.member.node.frontmatter.featuredimage.childImageSharp.fluid}
+              backgroundColor={`#040e18`}
+              style={{height:"-webkit-fill-available"}}
+              />
         <div className="col-img-overlay overlay"/>
     
         <div className="team-description">{props.member.node.frontmatter.description[language]}</div>

@@ -38,6 +38,7 @@ const PropertyCardComp = (props) => {
     const [dateURI, setDateURI] = useState('')
     const [showSlider, setShowSlider] = useState(false)
     const [inFavs, setInFavs] = useState(false)
+    const [bgImg, setBgImg] = useState('')
 
     const {t} = useTranslation(['properties', 'translation', 'amenities']);
     const {language} = useI18next();
@@ -70,6 +71,20 @@ const PropertyCardComp = (props) => {
     useEffect(() => {
       if(showCalendar)gsap.fromTo(calendar.current, {yPercent: -50}, {yPercent: 0, ease: "Elastic.easeOut",  duration: 0.5});
     }, [showCalendar])
+
+    useEffect(() => {
+      const imgLoader = new Image()
+      
+      imgLoader.src = props.item.picture
+
+      imgLoader.onload = () => {
+        setBgImg(props.item.picture)
+      }
+
+      return () => {
+        setBgImg('')
+      }
+    }, [])
 
     const settings = {
       infinite: true,
@@ -148,7 +163,7 @@ const PropertyCardComp = (props) => {
 
             }
             <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
-            <div className="card-slider-container" style={{backgroundImage:`url(${props.item.picture})`}}>
+            <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
     {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-prev card-arrow"
    aria-label="Show Slider" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
     {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-next card-arrow"

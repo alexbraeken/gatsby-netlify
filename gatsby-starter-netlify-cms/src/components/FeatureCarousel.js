@@ -9,10 +9,29 @@ import { Helmet } from 'react-helmet'
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 class CustomSlide extends React.Component {
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      src: null,
+    };
+  }
+
+  componentDidMount () {
+    const src  = this.props.backgroundImage;
+
+    const imageLoader = new Image();
+    imageLoader.src = src;
+
+    imageLoader.onload = () => {
+      this.setState({ src });
+    };
+  }
+
     render() {
       
       return (
-        <div style={{backgroundImage: `url(${this.props.backgroundImage})`,
+        <div style={{backgroundColor: "grey", backgroundImage: `url(${this.state.src})`,
         minHeight: "70vmin",
         height: "100%",
         margin: "0px auto",

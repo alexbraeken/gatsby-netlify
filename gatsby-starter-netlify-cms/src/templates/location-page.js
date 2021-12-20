@@ -9,13 +9,18 @@ import Carousel from 'react-bootstrap/Carousel'
 import ActivitiesRoll from '../components/ActivitiesRoll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
+import BackgroundImage from 'gatsby-background-image'
 
 class CustomSlide extends React.Component {
   render() {
     
     return (
-      <div style={{backgroundImage: `url(${this.props.slide.slide? this.props.slide.slide.childImageSharp.fluid.src: null})`,
-      minHeight: "400px",
+      <BackgroundImage
+      Tag="div"
+      className={"slide-image-container"}
+      fluid={this.props.slide.slide? this.props.slide.slide.childImageSharp.fluid: null}
+      backgroundColor={`#040e18`}
+      style={{minHeight: "400px",
       height: "50vh",
       width:"100vw",
       margin: "0px auto",
@@ -23,8 +28,9 @@ class CustomSlide extends React.Component {
       position: "relative",
       backgroundSize:"cover",
       backgroundPosition:"center",
+      backgroundAttachment: "initial",
       padding: "40px"}}
-      className="slide-image-container">
+    >
           <div className="slide__content">
               <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
               <path className="slide__overlay-path" d="M0,0 150,0 300,405 0,405"></path> 
@@ -33,7 +39,7 @@ class CustomSlide extends React.Component {
               <h2 className="slide__text-heading">{this.props.slide.title}</h2>
               </div>
               </div>
-      </div>
+      </BackgroundImage>
     );
   }
 }
@@ -50,27 +56,28 @@ export const LocationPageTemplate = ({
 
   const [index, setIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const [fluidSrc, setFluidSrc] = useState()
 
   const {t} = useTranslation();
   const {language } = useI18next();
      
-  const slideContainer = useRef(null)
-
   const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
-        const slides = document.getElementsByClassName("slide-image-container")
-        const bgImg = slides[selectedIndex].style.backgroundImage
-        slideContainer.current.style.backgroundImage = bgImg
+        setFluidSrc(slides? slides[selectedIndex].slide.childImageSharp.fluid : part2.img.childImageSharp.fluid)
       };
 
   
       useEffect(() => {
+
+        setFluidSrc(slides? slides[0].slide.childImageSharp.fluid : part2.img.childImageSharp.fluid)
+
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
         return () => {
           setLoaded(false)
         }
+
       }, [])
 
 
@@ -86,22 +93,18 @@ export const LocationPageTemplate = ({
 
   return(
   <div className="content newLine">
-    <div
-      className="full-width-image-container margin-top-0 gradient-bg"
-      style={{
-        backgroundImage: `url('${
-          image.publicURL
-        }')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}
+     <BackgroundImage
+      Tag="div"
+      className={"full-width-image-container margin-top-0 gradient-bg"}
+      fluid={["linear-gradient(to bottom right,rgba(0, 47, 75, 0.5),rgba(255,140,0,0.5))", image.childImageSharp.fluid ]}
+      backgroundColor={`#040e18`}
     >
       <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
         {langTitles[language]}
       </h2>
-    </div> 
+    </BackgroundImage>
     <section style={{position: "relative"}}>
       <Container>
         <div className="section">
@@ -196,7 +199,24 @@ export const LocationPageTemplate = ({
             <path d="M0 0 L 100 0 100 100 C 100 100 50 0 0 100  Z"></path> 
             </svg>
             </div>
-      <div className="slide-container" ref={slideContainer} style={{backgroundImage:`url("${slides? slides[0].slide.childImageSharp.fluid.src : part2.img.childImageSharp.fluid.src }")`}}></div>
+            <BackgroundImage
+      Tag="div"
+      className={""}
+      fluid={fluidSrc}
+      backgroundColor={`#040e18`}
+      style={{
+        filter: "opacity(0.1)",
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        height: "100%",
+        backgroundPosition: "50%",
+        top: "0",
+        left: "0",
+        transition: "all .3s"
+      }}
+    >
+      </BackgroundImage>
       <Container>
         <Row>
           {slides ?
