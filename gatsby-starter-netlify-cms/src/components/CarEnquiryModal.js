@@ -116,6 +116,295 @@ const CarEnquiryModal = (props) => {
               />
             </div>
           </div>
+          <h4>Travel Details</h4>
+          <div className="field">
+            <label className="label" htmlFor={'flight_number'}>
+              In Flight Number
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'flight_number'}
+                onChange={(e) => handleChange(e)}
+                id={'flight_number'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'arrival_date'}>
+              Arrival Date
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'arrival_date'}
+                onChange={(e) => handleChange(e)}
+                id={'arrival_date'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'departing_from'}>
+              Departing From
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'departing_from'}
+                onChange={(e) => handleChange(e)}
+                id={'departing_from'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'time_of_arrival'}>
+              Time of Arrival
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'time_of_arrival'}
+                onChange={(e) => handleChange(e)}
+                id={'time_of_arrival'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'out_flight_number'}>
+              Out Flight Number
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'out_flight_number'}
+                onChange={(e) => handleChange(e)}
+                id={'out_flight_number'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'departure_date'}>
+              Departure Date
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'departure_date'}
+                onChange={(e) => handleChange(e)}
+                id={'departure_date'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'going_to'}>
+              Going To
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'going_to'}
+                onChange={(e) => handleChange(e)}
+                id={'going_to'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'time_of_departure'}>
+              Time of Departure
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'time_of_departure'}
+                onChange={(e) => handleChange(e)}
+                id={'time_of_departure'}
+                required={true}
+              />
+            </div>
+          </div>
+          <h4>
+            Driving Licence & Passport Details
+          </h4>
+          <div className="field">
+            <label className="label" htmlFor={'full_name'}>
+              Lead Drive Full Name
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'full_name'}
+                onChange={(e) => handleChange(e)}
+                id={'full_name'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'home_address'}>
+              Home Address
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'home_address'}
+                onChange={(e) => handleChange(e)}
+                id={'home_address'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'dob'}>
+              Date of Birth
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'date'}
+                name={'dob'}
+                onChange={(e) => handleChange(e)}
+                id={'dob'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'portugal_address'}>
+              Local Address in Portugal
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'portugal_address'}
+                onChange={(e) => handleChange(e)}
+                id={'portugal_address'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'contact_number'}>
+              Contact Number
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'tel'}
+                name={'contact_number'}
+                onChange={(e) => handleChange(e)}
+                id={'contact_number'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'license_number'}>
+              Driving License Number
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'license_number'}
+                onChange={(e) => handleChange(e)}
+                id={'license_number'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'issue_date'}>
+              Issue Date
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'issue_date'}
+                onChange={(e) => handleChange(e)}
+                id={'issue_date'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'expiry_date'}>
+              Expiry Date
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'expiry_date'}
+                onChange={(e) => handleChange(e)}
+                id={'expiry_date'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'passport_number'}>
+              Passport Number
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'passport_number'}
+                onChange={(e) => handleChange(e)}
+                id={'passport_number'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'passport_issue_date'}>
+              Passport Issue Date
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'passport_issue_date'}
+                onChange={(e) => handleChange(e)}
+                id={'passport_issue_date'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label" htmlFor={'passport_expiry_date'}>
+              Passport Expiry Date
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'passport_expiry_date'}
+                onChange={(e) => handleChange(e)}
+                id={'passport_expiry_date'}
+                required={true}
+              />
+            </div>
+          </div>
           <div className="field">
             <label className="label" htmlFor={'message'}>
               {t("Questions or extra information")}
