@@ -20,14 +20,14 @@ export default function Balance(props) {
     useEffect(() => {
         const path = props.location
         const leadDetails = path.search ? queryString.parse(path.search) : null;
-        console.log(path)
-        if(leadDetails){
-            console.log(leadDetails)
+        if(leadDetails.uid && leadDetails.propId && leadDetails.orderId){
             setLeadInfo({
                 leadId: leadDetails.uid,
                 propId: leadDetails.propId,
                 orderId: leadDetails.orderId,
             })
+        }else{
+            setFetching(false)
         }
 
         return () => {
@@ -49,7 +49,6 @@ export default function Balance(props) {
                 "orderId": leadInfo.orderId,
               })
 
-            console.log(reqBody)
 
             fetch(uri, {
             method: 'post',
@@ -61,7 +60,6 @@ export default function Balance(props) {
                 .then(response => {
                     if(!response.ok){
                         setFetching(false)
-                        console.log("error")
                         return null
                     }
                     return  response.text()
@@ -73,6 +71,7 @@ export default function Balance(props) {
                         if(details.balance >= 0){
                             setBalance(details.balance)
                             if(details.balance !== 0){
+                                console.log(details.expire)
                                 setPaymentInfo({redirectUrl: details.redirectUrl, reference: details.reference, entity: details.entity, expire: details.expire})
                                 setPropInfo({img: details.propImg, link: details.propLink, name: details.propName}) 
                             }
@@ -81,14 +80,15 @@ export default function Balance(props) {
                         }
                     } 
                 })
-        }else{
-            setFetching(false)
         }
     }, [leadInfo])
 
     useEffect(() => {
-        setFetching(false)
-    }, [paymentInfo, propInfo, balance])
+        if(paymentInfo != null || balance != null){
+            setFetching(false)
+        }
+        
+    }, [paymentInfo, balance])
 
     return (
         <Layout  propTitle="Balance & Payments" propDescription="Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With dozens of properties, from Villas to seaside Apartments, Smartavillas offers the best the Algarve has to offer.">
