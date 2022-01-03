@@ -78,6 +78,8 @@ export default (props) => (
                 description{
                   en
                   pt
+                  fr
+                  es
                 }
                 templateKey
                 featuredimage {

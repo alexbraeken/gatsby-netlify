@@ -4,12 +4,16 @@ title: Pizzaria Luzzo
 langTitles:
   en: Pizzaria Luzzo
   pt: "Pizzaria Luzzo"
+  fr: Pizzaria Luzzo
+  es: Pizzaria Luzzo
 category: Restaurant 
 featuredpost: false
 featuredimage: ../../static/img/luzzo_logo.png
 description: 
   en: ""
   pt: ""
+  fr: ""
+  es: ""
 link: https://www.facebook.com/LuzzoTavira/
 visibleLink: Pizzaria Luzzo Facebook
 gps:

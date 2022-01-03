@@ -65,6 +65,8 @@ export const aboutPageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
       }
     }

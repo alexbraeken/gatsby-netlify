@@ -108,6 +108,8 @@ export const MeetTheTeamPageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
         image {
           childImageSharp {
@@ -119,19 +121,27 @@ export const MeetTheTeamPageQuery = graphql`
         heading {
           en
           pt
+          fr
+          es
         }
         description {
           en
           pt
+          fr
+          es
         }
         intro {
           heading {
             en
             pt
+            fr
+            es
           }
           description {
             en
             pt
+            fr
+            es
           }
         }
       }

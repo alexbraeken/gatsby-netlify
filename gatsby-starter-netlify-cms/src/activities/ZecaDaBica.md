@@ -4,12 +4,16 @@ title: Zeca da Bica
 langTitles:
   en: Zeca da Bica
   pt: "Zeca da Bica"
+  fr: Zeca da Bica
+  es: Zeca da Bica
 category: Restaurant 
 featuredpost: false
 featuredimage: ../../static/img/zeca_da_bica_logo.png
 description: 
   en: ""
   pt: ""
+  fr: ""
+  es: ""
 link: https://www.tripadvisor.pt/Restaurant_Review-g285715-d7659452-Reviews-Zeca_da_Bica-Tavira_Faro_District_Algarve.html 
 visibleLink: www.tripadvisor.pt - Zeca Da Bica
 gps:

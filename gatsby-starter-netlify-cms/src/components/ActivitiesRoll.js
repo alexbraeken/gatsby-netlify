@@ -231,10 +231,14 @@ return(
                 langTitles{
                   en
                   pt
+                  fr
+                  es
                 }
                 description{
                   en
                   pt
+                  fr
+                  es
                 }
                 tags
                 category

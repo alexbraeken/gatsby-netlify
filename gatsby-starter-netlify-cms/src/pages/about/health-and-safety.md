@@ -6,6 +6,8 @@ title: "Health & Safety"
 langTitles:
     en: "Health & Safety"
     pt: "Saúde e Segurança"
+	fr: "Santé et sécurité"
+	es: "Salud y Seguridad"
 hero: null
 html:
     en: '<h1 style="text-align:center">HEALTH, SAFETY &amp; SECURITY GUIDE</h1>
@@ -240,6 +242,8 @@ html:
 <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chaves</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - cada uma de nossas propriedades tem no mínimo 2 conjuntos de chaves. </font><font style="vertical-align: inherit;">Deve-se ter cuidado extra para não esquecer as chaves ao sair ou deixá-las na parte de trás da fechadura. </font><font style="vertical-align: inherit;">Os serralheiros são muito caros aqui no Algarve!</font></font></p>
 <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Janelas e persianas</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - recomendamos que você verifique se tudo está bloqueado ao sair. </font><font style="vertical-align: inherit;">Além de garantir a segurança, mantém a propriedade fresca no auge do verão.</font></font></p>
 							</div>'
+	fr: <div></div>
+	es: <div></div>
 ---
 
 							

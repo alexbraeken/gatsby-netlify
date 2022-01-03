@@ -13,174 +13,230 @@ module.exports = {
     menuLinks: [{
       "name": {
         "en": "Home",
-        "pt": "Início"
+        "pt": "Início",
+        "fr": "Accueil",
+        "es": "Inicio"
       },
       "link": "/",
       "subNav": null
     }, {
       "name": {
         "en": "Our Properties",
-        "pt": "As nossas Propriedades"
+        "pt": "As nossas Propriedades",
+        "fr": "Nos propriétés",
+        "es": "Nuestras propiedades"
       },
       "link": "",
       "subNav": [{
         "name": {
           "en": "propertiesList",
-          "pt": "propertiesList"
+          "pt": "propertiesList",
+          "fr": "propertiesList",
+          "es": "propertiesList"
         }
       }]
     }, {
       "name": {
         "en": "Our Business",
-        "pt": "A nossa empresa"
+        "pt": "A nossa empresa",
+        "fr": "Nos activités",
+        "es": "Nuestro negocio"
       },
       "link": "/team/",
       "subNav": [{
         "name": {
           "en": "Why Book With Us?",
-          "pt": "Porquê reservar conosco?"
+          "pt": "Porquê reservar conosco?",
+          "fr": "Pourquoi réserver avec nous?",
+          "es": "¿Por qué reservar con nosotros?"
         },
         "link": "/whyBookSmartavillas"
       }, {
         "name": {
           "en": "List Your Property",
-          "pt": "Liste Sua Propriedade"
+          "pt": "Liste Sua Propriedade",
+          "fr": "Inscrivez votre propriété",
+          "es": "Registre su propiedad"
         },
         "link": "/ListWithUs"
       }, {
         "name": {
           "en": "Meet the Team",
-          "pt": "A nossa equipa"
+          "pt": "A nossa equipa",
+          "fr": "Rencontrez l'équipe",
+          "es": "Nuestro equipo"
         },
         "link": "/team"
       }]
     }, {
       "name": {
         "en": "Traveller Tips",
-        "pt": "Dicas de viagem"
+        "pt": "Dicas de viagem",
+        "fr": "Conseils aux voyageurs",
+        "es": "Consejos de viaje"
       },
       "link": "/travelerTips/",
       "subNav": null
     }, {
       "name": {
         "en": "Holiday Extras",
-        "pt": "Extras de férias"
+        "pt": "Extras de férias",
+        "fr": "Suppléments de vacances",
+        "es": "Primas de vacaciones"
       },
       "link": "",
       "subNav": [{
         "name": {
           "en": "Airport Transfers",
-          "pt": "Transferes de Aeroporto"
+          "pt": "Transferes de Aeroporto",
+          "fr": "Transferts aéroport",
+          "es": "Translados al Aeropuerto"
         },
         "link": "/holidayExtras/airport-transfers"
       }, {
         "name": {
           "en": "Car Hire",
-          "pt": "Aluguer de viaturas"
+          "pt": "Aluguer de viaturas",
+          "fr": "Location de voiture",
+          "es": "Alquiler de vehiculos"
         },
         "link": "/holidayExtras/car-hire"
       }, {
         "name": {
           "en": "Food Packs",
-          "pt": "Pacotes de Alimentos"
+          "pt": "Pacotes de Alimentos",
+          "fr": "Paquets de Repas",
+          "es": "Paquetes de Comida"
         },
         "link": "/holidayExtras/food-packs"
       }]
     }, {
       "name": {
         "en": "The Algarve",
-        "pt": "O  Algarve"
+        "pt": "O  Algarve",
+        "fr": "L'Algarve",
+        "es": "El algarve"
       },
       "link": "",
       "subNav": [{
         "name": {
           "en": "The Algarve",
-          "pt": "O  Algarve"
+          "pt": "O  Algarve",
+          "fr": "L'Algarve",
+          "es": "El algarve"
         },
         "link": "/location/algarve"
       }, {
         "name": {
           "en": "Tavira",
-          "pt": "Tavira"
+          "pt": "Tavira",
+          "fr": "Tavira",
+          "es": "Tavira"
         },
         "link": "/location/tavira"
       }, {
         "name": {
           "en": "Altura",
-          "pt": "Altura"
+          "pt": "Altura",
+          "fr": "Altura",
+          "es": "Altura"
         },
         "link": "/location/altura"
       }, {
         "name": {
           "en": "Cabanas & Conceicao De Tavira",
-          "pt": "Cabanas e Conceição De Tavira"
+          "pt": "Cabanas e Conceição De Tavira",
+          "fr": "Cabanas e Conceição De Tavira",
+          "es": "Cabanas e Conceição De Tavira"
         },
         "link": "/location/cabanasConceicaoDeTavira"
       }, {
         "name": {
           "en": "Cacela Velha",
-          "pt": "Cacela Velha"
+          "pt": "Cacela Velha",
+          "fr": "Cacela Velha",
+          "es": "Cacela Velha"
         },
         "link": "/location/cacelaVelha"
       }, {
         "name": {
           "en": "Castro Marim",
-          "pt": "Castro Marim"
+          "pt": "Castro Marim",
+          "fr": "Castro Marim",
+          "es": "Castro Marim"
         },
         "link": "/location/castroMarim"
       }, {
         "name": {
           "en": "Corte Antonio Martins",
-          "pt": "Corte Antonio Martins"
+          "pt": "Corte Antonio Martins",
+          "fr": "Corte Antonio Martins",
+          "es": "Corte Antonio Martins"
         },
         "link": "/location/corteAntonioMartins"
       }, {
         "name": {
           "en": "Fuzeta",
-          "pt": "Fuzeta"
+          "pt": "Fuzeta",
+          "fr": "Fuzeta",
+          "es": "Fuzeta"
         },
         "link": "/location/fuzeta"
       }, {
         "name": {
           "en": "Manta Rota",
-          "pt": "Manta Rota"
+          "pt": "Manta Rota",
+          "fr": "Manta Rota",
+          "es": "Manta Rota"
         },
         "link": "/location/mantaRota"
       }, {
         "name": {
           "en": "Moncarapacho",
-          "pt": "Moncarapacho"
+          "pt": "Moncarapacho",
+          "fr": "Moncarapacho",
+          "es": "Moncarapacho"
         },
         "link": "/location/moncarapacho"
       }, {
         "name": {
           "en": "Santa Catarina",
-          "pt": "Santa Catarina"
+          "pt": "Santa Catarina",
+          "fr": "Santa Catarina",
+          "es": "Santa Catarina"
         },
         "link": "/location/santaCatarina"
       }, {
         "name": {
           "en": "Santo Estevao",
-          "pt": "Santo Estevao"
+          "pt": "Santo Estevao",
+          "fr": "Santo Estevao",
+          "es": "Santo Estevao"
         },
         "link": "/location/santoEstevao"
       }, {
         "name": {
           "en": "Santa Luzia",
-          "pt": "Santa Luzia"
+          "pt": "Santa Luzia",
+          "fr": "Santa Luzia",
+          "es": "Santa Luzia"
         },
         "link": "/location/santaLuzia"
       }, {
         "name": {
           "en": "Vila Nova De Cacela",
-          "pt": "Vila Nova De Cacela"
+          "pt": "Vila Nova De Cacela",
+          "fr": "Vila Nova De Cacela",
+          "es": "Vila Nova De Cacela"
         },
         "link": "/location/vilaNovaDeCacela"
       }]
     }, {
       "name": {
         "en": "Contact Us",
-        "pt": "Contate-Nos"
+        "pt": "Contate-Nos",
+        "fr": "Nous contacter",
+        "es": "Contáctenos"
       },
       "link": "/contact",
       "subNav": null
@@ -291,7 +347,7 @@ module.exports = {
     options: {
       localeJsonSourceName: "locale",
       // name given to `gatsby-source-filesystem` plugin.
-      languages: ["en", "pt"],
+      languages: ["en", "pt", "fr", "es"],
       defaultLanguage: "en",
       // if you are using Helmet, you must include siteUrl, and make sure you add http:https
       siteUrl: "https://www.smartavillas.com",

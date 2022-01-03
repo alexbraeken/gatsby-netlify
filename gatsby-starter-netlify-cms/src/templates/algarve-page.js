@@ -487,6 +487,8 @@ export const algarvePageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
         image {
           childImageSharp {
@@ -499,10 +501,14 @@ export const algarvePageQuery = graphql`
         heading {
           en
           pt
+          fr
+          es
         }
         description {
           en
           pt
+          fr
+          es
         }
         staticBg {
           childImageSharp {
@@ -546,36 +552,52 @@ export const algarvePageQuery = graphql`
             title1{
               en
               pt
+              fr
+              es
             }
             title2{
               en
               pt
+              fr
+              es
             }
             title3{
               en
               pt
+              fr
+              es
             }
             title4{
               en
               pt
+              fr
+              es
             }
           }
           text{
             text1 {
               en
               pt
+              fr
+              es
             }
             text2 {
               en
               pt
+              fr
+              es
             }
             text3 {
               en
               pt
+              fr
+              es
             }
             text4 {
               en
               pt
+              fr
+              es
             }
           }
         }
@@ -656,10 +678,14 @@ export const algarvePageQuery = graphql`
             header {
               en
               pt
+              fr
+              es
             }
             text {
               en
               pt
+              fr
+              es
             }
           }
           imgs2 {
@@ -682,10 +708,14 @@ export const algarvePageQuery = graphql`
             header {
               en
               pt
+              fr
+              es
             }
             text {
               en
               pt
+              fr
+              es
             }
           }
           staticImg {
@@ -693,10 +723,14 @@ export const algarvePageQuery = graphql`
               header {
                 en
                 pt
+                fr
+                es
               }
               text {
                 en
                 pt
+                fr
+                es
               }
             }
             img {
@@ -711,6 +745,8 @@ export const algarvePageQuery = graphql`
         sliderText {
           en
           pt
+          fr
+          es
         }
         sliderImage1 {
           childImageSharp {
@@ -747,6 +783,8 @@ export const algarvePageQuery = graphql`
         conclusion {
           en
           pt
+          fr
+          es
         }
       }
     }

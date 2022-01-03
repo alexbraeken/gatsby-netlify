@@ -6,6 +6,8 @@ title: Food Packs
 langTitles:
     en: Food Packs
     pt: "Pacotes de Alimentos"
+    fr: Paquets de nourriture
+    es: Paquetes de comida
 hero: ../../../static/img/pexels-eric-christian-capilador-6008367.jpg
 html:
     en: "<style>
@@ -1066,4 +1068,6 @@ html:
 <h3 style='text-align: center;'><a href='/contact'><span style='color:#FF8C00;'>Entre em contato se quiser saber mais!</span></a></h3>
 
 <p>&nbsp;</p>"
+    fr: <div></div>
+    es: <div></div>
 ---

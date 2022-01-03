@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet'
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import { Modal} from 'react-bootstrap'
 
-const LANGUAGES = ['en', 'pt']
+const LANGUAGES = ['en', 'pt', 'fr', 'es']
 
 const WEEKDAYS_LONG = {
   en: [
@@ -27,10 +27,30 @@ const WEEKDAYS_LONG = {
      'Sexta-feira',
      'Sábado',
   ],
+  fr: [
+    'Dimanche',
+     'Lundi',
+     'Mardi',
+     'Mercredi',
+     'Jeudi',
+     'Vendredi',
+     'Samedi',
+  ],
+  es: [
+    'Domingo',
+     'Lunes',
+     'Martes',
+     'Miércoles',
+     'Jueves',
+     'Viernes',
+     'Sábado',
+  ]
 };
 const WEEKDAYS_SHORT = {
   en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   pt: ['D', '1', '2', '3', '4', '5', 'S'],
+  fr: ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'],
+  es: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab']
 };
 const MONTHS = {
   en: [
@@ -61,11 +81,41 @@ const MONTHS = {
     'Novembro',
     'Dezembro',
   ],
+  fr: [
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Peut',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre',
+  ],
+  es: [
+    'Enero',
+     'Febrero',
+     'Marcha',
+     'Abril',
+     'Mayo',
+     'Junio',
+     'Julio',
+     'Agosto',
+     'Septiembre',
+     'Octubre',
+     'Noviembre',
+     'Diciembre',
+  ]
 };
 
 const FIRST_DAY = {
   en: 0,
   pt: 0,
+  fr: 0,
+  es: 0
 };
 
 //Calendar Modal on properties page to change/clear dates and update results

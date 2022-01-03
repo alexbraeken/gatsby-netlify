@@ -259,6 +259,8 @@ export const WhyUsPageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
         image {
           childImageSharp {
@@ -272,10 +274,14 @@ export const WhyUsPageQuery = graphql`
           header{
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
         }
         part1Img {
@@ -290,10 +296,14 @@ export const WhyUsPageQuery = graphql`
           header {
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
         }
         part2Img {
@@ -308,14 +318,20 @@ export const WhyUsPageQuery = graphql`
           header {
             en
             pt
+            fr
+            es
           }
           col1Header {
             en
             pt
+            fr
+            es
           }
           col1 {
             en
             pt
+            fr
+            es
           }
           col1img {
             childImageSharp {
@@ -328,10 +344,14 @@ export const WhyUsPageQuery = graphql`
           col2Header {
             en
             pt
+            fr
+            es
           }
           col2 {
             en
             pt
+            fr
+            es
           }
           col2img {
             childImageSharp {
@@ -344,10 +364,14 @@ export const WhyUsPageQuery = graphql`
           col3Header {
             en
             pt
+            fr
+            es
           }
           col3{
             en
             pt
+            fr
+            es
           }
           col3img {
             childImageSharp {
@@ -362,10 +386,14 @@ export const WhyUsPageQuery = graphql`
           header{
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
         }
         part4Img {
@@ -379,6 +407,8 @@ export const WhyUsPageQuery = graphql`
         testimonialHeader {
           en
           pt
+          fr
+          es
         }
       }
     }

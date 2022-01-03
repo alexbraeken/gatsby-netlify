@@ -509,6 +509,8 @@ query IndexPageTemplate ($language: String!) {
       langTitles{
         en
         pt
+        fr
+        es
       }
       image {
         childImageSharp {
@@ -520,19 +522,27 @@ query IndexPageTemplate ($language: String!) {
       heading {
           en
           pt
+          fr
+          es
         }
       subheading {
           en
           pt
+          fr
+          es
         }
       mainpitch {
         title {
           en
           pt
+          fr
+          es
         }
         description {
           en
           pt
+          fr
+          es
         }
       }
       pitchImage {
@@ -580,6 +590,8 @@ query IndexPageTemplate ($language: String!) {
       news {
           en
           pt
+          fr
+          es
         }
     }
   }

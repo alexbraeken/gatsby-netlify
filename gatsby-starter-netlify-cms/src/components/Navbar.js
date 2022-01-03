@@ -455,12 +455,16 @@ export default (props) => {
               name{
                 en
                 pt
+                fr
+                es
               }
               subNav {
                 link
                 name {
                   en
                   pt
+                  fr
+                  es
                 }
               }
             }

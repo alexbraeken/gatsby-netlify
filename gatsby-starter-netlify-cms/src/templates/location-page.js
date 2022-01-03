@@ -358,6 +358,8 @@ export const LocationPageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
         location
         image {
@@ -372,10 +374,14 @@ export const LocationPageQuery = graphql`
           header {
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
           collage {
             collage
@@ -383,6 +389,8 @@ export const LocationPageQuery = graphql`
               title{
                 en
                 pt
+                fr
+                es
               }
               img {
                 childImageSharp {
@@ -397,6 +405,8 @@ export const LocationPageQuery = graphql`
               title{
                 en
                 pt
+                fr
+                es
               }
               img {
                 childImageSharp {
@@ -411,6 +421,8 @@ export const LocationPageQuery = graphql`
               title{
                 en
                 pt
+                fr
+                es
               }
               img {
                 childImageSharp {
@@ -425,6 +437,8 @@ export const LocationPageQuery = graphql`
               title{
                 en
                 pt
+                fr
+                es
               }
               img {
                 childImageSharp {
@@ -439,6 +453,8 @@ export const LocationPageQuery = graphql`
               title{
                 en
                 pt
+                fr
+                es
               }
               img {
                 childImageSharp {
@@ -463,10 +479,14 @@ export const LocationPageQuery = graphql`
           header {
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
           slider {
             slider
@@ -517,10 +537,14 @@ export const LocationPageQuery = graphql`
           header {
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
           img {
             childImageSharp {

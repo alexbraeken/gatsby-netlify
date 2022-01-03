@@ -6,6 +6,8 @@ title: Car Hires
 langTitles:
     en: Car Hires
     pt: "Aluguer de Automóveis"
+    fr: Location de voitures
+    es: Alquiler de coches
 hero: ../../../static/img/car-hire.jpg
 carPricing:
     A:
@@ -13,6 +15,8 @@ carPricing:
         name:
             en: Fiat Panda or similar 5 door
             pt: Fiat Panda ou similar 5 portas
+            fr: Fiat Panda ou similaire 5 portes
+            es: Fiat Panda ou similares 5 portas
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "15"
@@ -79,6 +83,8 @@ carPricing:
         name:
             en: Clio,Ibiza with GPS
             pt: Clio,Ibiza com GPS
+            fr: Clio,Ibiza avec GPS
+            es: Clio, Ibiza con GPS
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "18"
@@ -145,6 +151,8 @@ carPricing:
         name:
             en: Renault Captur Small SUV
             pt: Renault Captur SUV pequeno
+            fr: Renault Captur Petit SUV
+            es: Renault Captur SUV pequeño
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "21"
@@ -211,6 +219,8 @@ carPricing:
         name:
             en: Citroen C4 (small 7 seater)
             pt: Citroen C4 (pequeno de 7 lugares)
+            fr: Citroën C4 (petite 7 places)
+            es: Citroen C4 (pequeño 7 plazas)
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "34"
@@ -277,6 +287,8 @@ carPricing:
         name:
             en: Seat Arona Automatic
             pt: Seat Arona Automatico
+            fr: Seat Arona Automatique
+            es: Seat Arona Automático
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "26"
@@ -343,6 +355,8 @@ carPricing:
         name:
             en: Clio Break
             pt: Clio Break
+            fr: Clio Break
+            es: Clio Break
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "20"
@@ -409,6 +423,8 @@ carPricing:
         name:
             en: Seat Alhambra 7 seater
             pt: Seat Alhambra 7 lugares
+            fr: Seat Alhambra 7 places
+            es: Seat Alhambra 7 plazas
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "48"
@@ -475,6 +491,8 @@ carPricing:
         name:
             en: Megane SW
             pt: Megane SW
+            fr: Megane SW
+            es: Megane SW
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "23"
@@ -541,6 +559,8 @@ carPricing:
         name:
             en: Renault Traveller, Citroen space tourer XL 9 Seater
             pt: Renault Traveller, Citroen space tourer XL 9 lugares
+            fr: Renault Traveller, Citroën space tourer XL 9 places
+            es: Renault Traveller, Citroën space tourer XL 9 plazas
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "38"
@@ -607,6 +627,8 @@ carPricing:
         name:
             en: Renault Megane SW automatic
             pt: Renault Megane SW automático
+            fr: Renault Mégane SW automatique
+            es: Renault Megane SW automático
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "24"
@@ -673,6 +695,8 @@ carPricing:
         name:
             en: Opel Corsa Automatic
             pt: Opel Corsa automático
+            fr: Opel Corsa Automatique
+            es: Opel Corsa Automático
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "19"
@@ -739,6 +763,8 @@ carPricing:
         name:
             en: Citroen C3 Automatic
             pt: Citroen C3 automático
+            fr: Citroën C3 Automatique
+            es: Citroen C3 Automático
         pricing: ['{
                 "date": "2021-01-01",
                 "price": "20"
@@ -1077,4 +1103,6 @@ Taxas de aeroporto: 15 euros por carro (esta taxa é cobrada pelo aeroporto, nã
 <br />
 <a href='/contact'><button class='btn'>Entrar em contato!</button></a>
 </center>"
+    fr: <div></div>
+    es: <div></div>
 ---

@@ -4,12 +4,16 @@ title: Viveiros Monterosa Olive Oil farm
 langTitles:
   en: Viveiros Monterosa Olive Oil farm
   pt: "Viveiros Monterosa Olive Oil"
+  fr: Viveiros Monterosa Olive Oil
+  es: Viveiros Monterosa Olive Oil
 category: Olive Oil Farm Tours & Tastings 
 featuredpost: false
 featuredimage: ../../static/img/monterosa.jpg
 description: 
   en: ""
   pt: ""
+  fr: ""
+  es: ""
 link: http://www.monterosa-oliveoil.com 
 visibleLink: www.monterosa-oliveoil.com
 gps:

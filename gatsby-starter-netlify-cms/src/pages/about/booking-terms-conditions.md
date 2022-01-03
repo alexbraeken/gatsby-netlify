@@ -6,6 +6,8 @@ title: Booking Terms & Conditions
 langTitles:
     en: Booking Terms & Conditions
     pt: Termos e Condições de Reserva
+    fr: Conditions de réservation
+    es: Términos y condiciones de reserva
 html:
     en: '<style>
 <!--
@@ -2822,5 +2824,6 @@ color:#222222"><font style="vertical-align: inherit;"><font style="vertical-alig
 margin-left:18.0pt;text-align:justify"><span style="font-size:10.0pt;
 line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;color:#222222">&nbsp;</span></p>
 </div>'
-
+    fr: <div></div>
+    es: <div></div
 ---

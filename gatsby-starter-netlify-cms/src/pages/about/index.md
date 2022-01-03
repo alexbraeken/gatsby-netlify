@@ -6,7 +6,11 @@ title: About our values
 langTitles:
     en: About our values
     pt: ""
+    fr:
+    es:
 html:
     en: ""
     pt: ""
+    fr:
+    es:
 --- 

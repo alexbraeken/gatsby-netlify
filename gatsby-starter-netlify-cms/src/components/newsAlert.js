@@ -48,10 +48,14 @@ export default (props) => (
                 langTitles{
                   en
                   pt
+                  fr
+                  es
                 }
                 news{
                   en
                   pt
+                  fr
+                  es
                 }
                 link
               }

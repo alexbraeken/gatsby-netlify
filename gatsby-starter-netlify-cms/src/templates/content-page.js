@@ -100,6 +100,8 @@ export const ContentPageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
         hero {
           childImageSharp {
@@ -112,6 +114,8 @@ export const ContentPageQuery = graphql`
         html {
           en
           pt
+          fr
+          es
         }
       }
     }

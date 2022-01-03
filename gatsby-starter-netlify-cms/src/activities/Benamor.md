@@ -4,12 +4,16 @@ title: Benamor
 langTitles:
   en: Benamor
   pt: "Benamor"
+  fr: Benamor
+  es: Benamor
 category: Golf 
 featuredpost: false
 featuredimage: ../../static/img/benamor.jpg
 description: 
   en: ""
   pt: ""
+  fr: ""
+  es: ""
 link: http://www.benamorgolf.com/
 visibleLink: www.benamorgolf.com
 gps:

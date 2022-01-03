@@ -199,6 +199,8 @@ export const CareHirePageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
         hero {
           childImageSharp {
@@ -214,6 +216,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             }
@@ -222,6 +226,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             }
@@ -230,6 +236,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             }
@@ -238,6 +246,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             }
@@ -246,6 +256,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             }  
@@ -254,6 +266,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             } 
@@ -262,6 +276,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             } 
@@ -270,6 +286,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             } 
@@ -278,6 +296,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             } 
@@ -286,6 +306,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             } 
@@ -294,6 +316,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             }  
@@ -302,6 +326,8 @@ export const CareHirePageQuery = graphql`
                 name{
                     en
                     pt
+                    fr
+                    es
                 }  
                 pricing 
             }         
@@ -309,6 +335,8 @@ export const CareHirePageQuery = graphql`
         html {
           en
           pt
+          fr
+          es
         }
       }
     }

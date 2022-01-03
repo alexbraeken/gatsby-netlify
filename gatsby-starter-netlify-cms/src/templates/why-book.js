@@ -306,6 +306,8 @@ export const WhyBookPageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
         image {
           childImageSharp {
@@ -318,15 +320,21 @@ export const WhyBookPageQuery = graphql`
         heading {
             en
             pt
+            fr
+            es
           }
         part1 {
           header {
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
         }
         part1Img{
@@ -341,10 +349,14 @@ export const WhyBookPageQuery = graphql`
           header {
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
         }
         sliderImg1{
@@ -389,15 +401,21 @@ export const WhyBookPageQuery = graphql`
           header {
             en
             pt
+            fr
+            es
           }
           text {
             en
             pt
+            fr
+            es
           }
         }
         testimonialHeader {
           en
           pt
+          fr
+          es
         }
       }
     }

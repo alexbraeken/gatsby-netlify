@@ -4,12 +4,16 @@ title: Artefact
 langTitles:
   en: Artefact
   pt: "Artefact"
+  fr: Artefact
+  es: Artefact
 category: Restaurant 
 featuredpost: false
 featuredimage: ../../static/img/artefact-logo.jpg
 description: 
   en: ""
   pt: ""
+  fr: ""
+  es: ""
 link: https://www.facebook.com/Artefactavira
 visibleLink: Artefact Facebook
 gps:

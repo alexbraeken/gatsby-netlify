@@ -6,6 +6,8 @@ title: COVID-19 FAQ
 langTitles:
     en: COVID-19 FAQ
     pt: COVID-19 FAQ
+	fr: COVID-19 FAQ
+	es: COVID-19 FAQ
 hero: null
 html:
     en: '<p style="text-align:center"><strong>COVID-19 Frequently Asked Questions</strong></p>
@@ -64,6 +66,8 @@ html:
 	R. Embora de acordo com o DGS, a água da piscina não tenha transmitido infecções, Smartavillas adotou um protocolo de limpeza rigoroso para piscinas que envolve limpeza regular e verificações para garantir níveis e qualidade ideais. </font><font style="vertical-align: inherit;">Se a piscina for comum, as regras de gestão do condomínio também estarão claramente expostas na propriedade.</font></font></li>
 </ol>
 							</div>'
+	fr: <div></div>
+	es: <div></div>
 ---
 
 

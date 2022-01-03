@@ -6,6 +6,8 @@ title: Private Airport Transfers
 langTitles:
     en: Private Airport Transfers
     pt: "Transporte do Aeroporto Privado"
+    fr: Transferts aéroport privés
+    es: Traslados privados al aeropuerto
 hero: ../../../static/img/airport-transfer.jpg
 html:
     en: "<h2 style='text-align: center; font-size: 3rem; font-weight: bold'>Airport transfers to and from <span style='color: #f5821e'>Faro Airport</span></h2>
@@ -228,4 +230,6 @@ html:
 <br />
 <a href='/contact'><button class='btn'>Entrar em contato!</button></a>
 </center>"
+    fr: <div></div>
+    es: <div></div>
 ---

@@ -58,10 +58,14 @@ export const pageQuery = graphql`
         langTitles{
           en
           pt
+          fr
+          es
         }
         news {
           en
           pt
+          fr
+          es
         }
         link
       }
