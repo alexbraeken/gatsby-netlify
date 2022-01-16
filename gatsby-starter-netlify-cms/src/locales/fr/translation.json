@@ -59,7 +59,7 @@
     "Amenities":"Agréments",
     "Gallery":"Galerie",
     "Calendar":"Calendrier",
-    "Sleeps":"Dort",
+    "Sleeps":"Loges",
     "About":"À propos",
     "Space":"Espacer",
     "Neighborhood":"Quartier",
@@ -69,7 +69,7 @@
     "Please select the first day.":"Veuillez sélectionner le premier jour.",
     "Key Features":"Principales caractéristiques",
     "License:":"Licence:",
-    "Type":"Taper",
+    "Type":"Type",
     "Size":"Taille",
     "Smartavillas' Opinion":"Avis de Smartavillas",
     "Activities Nearby":"Activités à proximité",
@@ -431,5 +431,8 @@
     "Questions or extra information":"Questions ou informations supplémentaires",
     "Let us know here!":"Faites-nous savoir ici!",
     "We'll get back to you with availability and a confirmed quote as soon as possible!":"Nous reviendrons vers vous avec une disponibilité et un devis confirmé dans les plus brefs délais !",
-    "Thank you for getting in touch! We'll get back to you as soon as possible.":"Merci de rester en contact! Nous vous répondrons dans les plus brefs délais"
+    "Thank you for getting in touch! We'll get back to you as soon as possible.":"Merci de rester en contact! Nous vous répondrons dans les plus brefs délais",
+    "Min stay":"Séjour minimum",
+    "Clear Dates":"Effacer les dates",
+    "Select Dates":"Sélectionnez des dates"
 }

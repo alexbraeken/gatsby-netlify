@@ -74,8 +74,8 @@
 "Size":"Talla",
 "Smartavillas' Opinion":"Opinión de Smartavillas",
 "Activities Nearby":"Actividades cercanas",
-"Activities":"Ocupaciones",
-"Nearby":"Cercano",
+"Activities":"Actividades",
+"Nearby":"Cercanas",
 "Family Activity":"Actividad familiar",
 "Excursion":"Excursión",
 "Horse Riding":"Equitación",
@@ -432,5 +432,7 @@
 "Questions or extra information":"Preguntas o información adicional",
 "Let us know here!":"¡Háznoslo saber aquí!",
 "We'll get back to you with availability and a confirmed quote as soon as possible!":"¡Nos comunicaremos con usted con disponibilidad y una cotización confirmada lo antes posible!",
-"Thank you for getting in touch! We'll get back to you as soon as possible.":"¡Gracias por contactarnos! Nos pondremos en contacto contigo lo antes posible."
+"Thank you for getting in touch! We'll get back to you as soon as possible.":"¡Gracias por contactarnos! Nos pondremos en contacto contigo lo antes posible.",
+"Clear Dates":"Borrar Fechas",
+"Select Dates":"Seleccionar Fechas"
 }

@@ -24,11 +24,11 @@ part1:
          \n
          \n
          Culinária: Vários restaurantes tradicionais podem ser encontrados dentro da própria Vila Nova, enquanto uma outra seleção pode ser encontrada ao longo da estrada para a Manta Rota e também na praia."
-         fr: "Juste à l'intérieur des terres de la côte de Manta Rota, Vila Nova de Cacela est une petite ville de l'Algarve offrant toutes les commodités et installations. Avec un marché matinal coloré et une offre abondante de cafés locaux et de restaurants simples, il s'agit d'une base de vacances authentique pour profiter et profiter en plus d'être à proximité des belles plages de sable de Manta Rota.!
+        fr: "Juste à l'intérieur des terres de la côte de Manta Rota, Vila Nova de Cacela est une petite ville de l'Algarve offrant toutes les commodités et installations. Avec un marché matinal coloré et une offre abondante de cafés locaux et de restaurants simples, il s'agit d'une base de vacances authentique pour profiter et profiter en plus d'être à proximité des belles plages de sable de Manta Rota.!
          \n
          \n
          Cuisine: plusieurs restaurants traditionnels se trouvent à l'intérieur même de Vila Nova, tandis qu'une autre sélection se trouve le long de la route menant à Manta Rota et à la plage également."
-         es: "En el interior de la costa de Manta Rota, Vila Nova de Cacela es una ciudad compacta del Algarve que ofrece todas las comodidades e instalaciones. Con un colorido mercado matutino y una gran cantidad de cafés locales y restaurantes sencillos, esta es una auténtica base de vacaciones para disfrutar y se beneficia además de estar a poca distancia de las hermosas playas de arena de Manta Rota.!
+        es: "En el interior de la costa de Manta Rota, Vila Nova de Cacela es una ciudad compacta del Algarve que ofrece todas las comodidades e instalaciones. Con un colorido mercado matutino y una gran cantidad de cafés locales y restaurantes sencillos, esta es una auténtica base de vacaciones para disfrutar y se beneficia además de estar a poca distancia de las hermosas playas de arena de Manta Rota.!
          \n
          \n
          Cocina: varios restaurantes tradicionales se pueden encontrar dentro de la propia Vila Nova, mientras que una selección más se puede encontrar a lo largo de la carretera hacia Manta Rota y también en la playa."

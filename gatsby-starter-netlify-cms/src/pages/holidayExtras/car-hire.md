@@ -1103,6 +1103,280 @@ Taxas de aeroporto: 15 euros por carro (esta taxa é cobrada pelo aeroporto, nã
 <br />
 <a href='/contact'><button class='btn'>Entrar em contato!</button></a>
 </center>"
-    fr: <div></div>
-    es: <div></div>
+    fr: "<style>
+.base-table{
+    overflow-x: overlay;
+}
+.base-table table{
+    min-width: 600px;
+    max-width: 99%;
+
+}
+.base-table th {
+    background-color: #f5821e;
+    color: #fff;
+    text-align: center;
+}
+.base-table tbody tr:first-child{
+    font-weight: bold ;
+}
+.base-table table tr:nth-of-type(odd) td{
+    background-color: #f5f5f5;
+}
+.base-table table td{
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+}
+.icon-table table{
+    min-width: 80%;
+}
+</style>
+
+<h2 style='text-align: center; font-size: 3rem; font-weight: bold'>Location de voiture dans<span style='color: #f5821e'>L'Algarve</span></h2>
+<hr style='width: 50%; height: 4px; background-color: #f5821e; margin: 1.5rem auto'/>
+
+<h3 style='text-align: center;'>Ce qui est inclus?</h3>
+<br />
+<center>
+<div class='icon-table'>
+<table>
+<thead>
+<tr>
+<th align='center'><div style='text-align: center'><img alt='Smartavillas.com - icon driver' src='https://res.cloudinary.com/ddipteh80/image/upload/v1610302027/Smartavillas/Icons/MILE.png' style='max-width: 100%; width: 65px;'></div></th>
+<th align='center'><div style='text-align: center'><img alt='Smartavillas.com - icon driver' src='https://res.cloudinary.com/ddipteh80/image/upload/v1610302027/Smartavillas/Icons/TAX.png' style='max-width: 100%; width: 65px;'></div></th>
+<th align='center'><div style='text-align: center'><img alt='Smartavillas.com - icon driver' src='https://res.cloudinary.com/ddipteh80/image/upload/v1610302027/Smartavillas/Icons/DRIVER.png' style='max-width: 100%; width: 65px;'></div></th>
+<th align='center'><div style='text-align: center'><img alt='Smartavillas.com - icon driver' src='https://res.cloudinary.com/ddipteh80/image/upload/v1610302027/Smartavillas/Icons/INSURANCE.png' style='max-width: 100%; width: 65px;'></div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align='center'><b>Kilométrage gratuit et illimité</b></td>
+<td align='center'><b>Toutes les taxes locales</b></td>
+<td align='center'><b>Pilotes supplémentaires</b></td>
+<td align='center'><b>Assurance en Espagne</b></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br />
+<h3>Les principales marques et modèles sont listés ci-dessous:</h3>
+<p>Les modèles ci-dessous sont représentatifs du Groupe et seront similaires ou sous réserve de disponibilité</p>
+<p>Toutes sont climatisées</P>
+<p>Prix en € </P>
+
+<br />
+<h4>Transmission manuelle</h4>
+<br />
+<div class='base-table'>
+<table>
+<thead><tr><th>MOIS</th><th>PÉRIODE</th><th>A</th><th>B</th><th>C</th><th>E</th><th>G</th><th>I</th><th>J</th><th>K</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>&nbsp;</td><td>Fiat Panda ou similaire 5 portes</td><td>Clio,Ibiza avec GPS</td><td>Renault Captur Petit SUV</td><td>Citroen C4 (petit 7 places)</td><td>Clio Break </td><td>Seat Alhambra 7 places</td><td>Megane SW</td><td>Renault Traveller, Citroen space tourer XL 9 places</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dec</td><td>semaine</td><td>100</td><td>115</td><td>135</td><td>215</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>21 Dec - 2 Jan</td><td>semaine</td><td>105</td><td>125</td><td>145</td><td>235</td><td>135</td><td>335</td><td>155</td><td>265</td></tr>
+ <tr><td>3 Jan - 31 Mar</td><td>semaine</td><td>100</td><td>115</td><td>135</td><td>205</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>1 Avr - 5 Avr</td><td>semaine</td><td>140</td><td>155</td><td>185</td><td>235</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
+ <tr><td>6 Avr -19 Avr</td><td>semaine</td><td>140</td><td>165</td><td>195</td><td>385</td><td>185</td><td>485</td><td>220</td><td>460</td></tr>
+ <tr><td>20 Avr - 31 Mai</td><td>semaine</td><td>130</td><td>155</td><td>185</td><td>235</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
+ <tr><td>1 Juin - 30 Juin</td><td>semaine</td><td>140</td><td>165</td><td>195</td><td>385</td><td>185</td><td>485</td><td>220</td><td>460</td></tr>
+ <tr><td>1 Juillet - 15 Juillet</td><td>semaine</td><td>190</td><td>215</td><td>235</td><td>360</td><td>225</td><td>535</td><td>315</td><td>515</td></tr>
+ <tr><td>16 Juillet - 31 Juillet</td><td>semaine</td><td>215</td><td>350</td><td>275</td><td>415</td><td>265</td><td>635</td><td>365</td><td>585</td></tr>
+ <tr><td>1 Août - 19 Août</td><td>semaine</td><td>240</td><td>275</td><td>305</td><td>475</td><td>295</td><td>725</td><td>405</td><td>665</td></tr>
+ <tr><td>20 Août - 31 Août</td><td>semaine</td><td>190</td><td>215</td><td>235</td><td>360</td><td>225</td><td>535</td><td>315</td><td>515</td></tr>
+ <tr><td>1 Sept - 30 Sept</td><td>semaine</td><td>140</td><td>175</td><td>185</td><td>315</td><td>165</td><td>435</td><td>225</td><td>410</td></tr>
+ <tr><td>1 Oct - 31 Oct 2022</td><td>semaine</td><td>130</td><td>145</td><td>175</td><td>285</td><td>165</td><td>385</td><td>200</td><td>360</td></tr>
+</tbody>
+</table>
+</div>
+
+<br />
+<h4>Automatic Transmission</h4>
+<br />
+<div class='base-table'>
+<table>
+<thead><tr><th>MOIS</th><th>PÉRIODE</th><th>F</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>&nbsp;</td><td>Seat Arona Automatique</td><td>Renault Megane SW Automatique</td><td>Opel Corsa Automatique</td><td>Citroen C3 Automatique</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dec</td><td>semaine</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>21 Dec - 2 Jan</td><td>semaine</td><td>180</td><td>165</td><td>130</td><td>140</td></tr>
+ <tr><td>3 Jan - 31 Mar</td><td>semaine</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>1 Avr - 5 Avr</td><td>semaine</td><td>205</td><td>215</td><td>160</td><td>170</td></tr>
+ <tr><td>6 Avr -19 Avr</td><td>semaine</td><td>215</td><td>225</td><td>170</td><td>180</td></tr>
+ <tr><td>20 Avr - 31 Mai</td><td>semaine</td><td>205</td><td>215</td><td>160</td><td>170</td></tr>
+ <tr><td>1 Juin - 30 Juin</td><td>semaine</td><td>215</td><td>225</td><td>170</td><td>180</td></tr>
+ <tr><td>1 Juillet - 15 Juillet</td><td>semaine</td><td>280</td><td>330</td><td>210</td><td>225</td></tr>
+ <tr><td>16 Juillet - 31 Juillet</td><td>semaine</td><td>325</td><td>385</td><td>245</td><td>255</td></tr>
+ <tr><td>1 Août - 19 Août</td><td>semaine</td><td>365</td><td>435</td><td>280</td><td>290</td></tr>
+ <tr><td>20 Août - 31 Août</td><td>semaine</td><td>280</td><td>330</td><td>210</td><td>225</td></tr>
+ <tr><td>1 Sept - 30 Sept</td><td>semaine</td><td>220</td><td>230</td><td>160</td><td>180</td></tr>
+ <tr><td>1 Oct - 31 Oct 2022</td><td>semaine</td><td>195</td><td>195</td><td>150</td><td>160</td></tr>
+</tbody>
+</table>
+</div>
+<br />
+</center>
+<h3><u>Frais supplémentaires:</u></h3>
+<br />
+<p>Extras : Siège enfant, bébé ou rehausseur 15 Euros par semaine. Ceux-ci doivent être payés en espèces à l'arrivée
+Collecte après les heures d'ouverture : les voitures récupérées après minuit seront soumises à un supplément de 15,00 euros
+Taxes d'aéroport : 15 euros par voiture (cette taxe est imposée par l'aéroport, pas par la société de location de voitures)
+</p>
+<br />
+<h3><u>Notes IMPORTANTES:</u></h3>
+<br />
+<ul>
+<li>Les prix indiqués sont par semaine en <b>Euros</b></li>
+<li><u>Âge du conducteur</u> : au moins <b>21 ans</b> avec <b>un an d'expérience de conduite</b>.</li>
+<li>Vous devrez fournir votre <b>carte d'identité DVLC et/ou la copie papier</b></li>
+<li>Toutes les voitures sont <b>sous réserve de disponibilité</b></li>
+<li>Le paiement s'effectue <b>au moment de l'encaissement</b> soit par carte bancaire, soit en espèces en Euros</li>
+<li>Une empreinte d'une <b>carte de crédit en cours de validité</b> sera demandée comme caution pour l'essence</li>
+<li> Frais de péage non inclus, transpondeur disponible à la location</li>
+<li>L'assurance ne couvre pas les dommages suivants : dommages résultant d'une mauvaise utilisation, de négligences et d'actes de vandalisme, roues, pneus, serrures forcées, vitres, rétroviseurs et perte de documents et/ou de clés de voiture.</li>
+</ul>
+<br />
+<br />
+<center>
+<h3>Veuillez noter que les voitures louées via Smartavillas ne sont disponibles que pour la collecte et le retour à<span style='color:#f5821e'> AÉROPORT DE FARO</span></h3>
+<br />
+<a href='/contact'><button class='btn'>Entrer en contact!</button></a>
+</center>"
+    es: "<style>
+.base-table{
+    overflow-x: overlay;
+}
+
+.base-table table{
+    min-width: 600px;  
+    max-width: 99%;
+ 
+}
+.base-table th {
+    background-color: #f5821e;
+    color: #fff;
+    text-align: center;
+}
+.base-table tbody tr:first-child{
+    font-weight: bold ;
+}
+.base-table table tr:nth-of-type(odd) td{
+    background-color: #f5f5f5;
+}
+.base-table table td{
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+}
+.icon-table table{
+    min-width: 80%;
+}
+</style>
+
+<h2 style='text-align: center; font-size: 3rem; font-weight: bold'>Alquiler de coches en <span style='color: #f5821e'>el algarve</span></h2>
+<hr style='width: 50%; height: 4px; background-color: #f5821e; margin: 1.5rem auto'/>
+
+<h3 style='text-align: center;'>¿Que esta incluido?</h3>
+<br />
+<center>
+<div class='icon-table'>
+<table>
+<thead>
+<tr>
+<th align='center'><div style='text-align: center'><img alt='Smartavillas.com - icon driver' src='https://res.cloudinary.com/ddipteh80/image/upload/v1610302027/Smartavillas/Icons/MILE.png' style='max-width: 100%; width: 65px;'></div></th>
+<th align='center'><div style='text-align: center'><img alt='Smartavillas.com - icon driver' src='https://res.cloudinary.com/ddipteh80/image/upload/v1610302027/Smartavillas/Icons/TAX.png' style='max-width: 100%; width: 65px;'></div></th>
+<th align='center'><div style='text-align: center'><img alt='Smartavillas.com - icon driver' src='https://res.cloudinary.com/ddipteh80/image/upload/v1610302027/Smartavillas/Icons/DRIVER.png' style='max-width: 100%; width: 65px;'></div></th>
+<th align='center'><div style='text-align: center'><img alt='Smartavillas.com - icon driver' src='https://res.cloudinary.com/ddipteh80/image/upload/v1610302027/Smartavillas/Icons/INSURANCE.png' style='max-width: 100%; width: 65px;'></div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align='center'><b>Kilometraje gratuito e ilimitado</b></td>
+<td align='center'><b>Todos los impuestos locales</b></td>
+<td align='center'><b>Conductores adicionales</b></td>
+<td align='center'><b>Seguro para España</b></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br />
+<h3>Las principales marcas y modelos se enumeran a continuación:</h3>
+<p>Los modelos a continuación son representativos del Grupo y serán similares o estarán sujetos a disponibilidad</p>
+<p>Todos son con Aire Acondicionado</p>
+<p>Precios en €</p>
+
+<br />
+<h4>Transmisión manual</h4>
+<br />
+<div class='base-table'>
+<table>
+<thead><tr><th>MES</th><th>PERÍODO</th><th>A</th><th>B</th><th>C</th><th>E</th><th>F</th><th>G</th><th>I</th><th>J</th><th>K</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>&nbsp;</td><td>Fiat Panda o similar 5 puertas</td><td>Clio,Ibiza con GPS</td><td>Renault Captur SUV pequeño</td><td>Citroen C4 (pequeño de 7 lugares)</td><td>Seat Arona Automatico</td><td>Clio Break </td><td>Seat Alhambra 7 lugares</td><td>Megane SW</td><td>Renault Traveller, Citroen space tourer XL 9 lugares</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>215</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>105</td><td>125</td><td>145</td><td>235</td><td>180</td><td>135</td><td>335</td><td>155</td><td>265</td></tr>
+ <tr><td>3 Jan-31 Mar</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>205</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>1 Abril - 5 Abril</td><td>Semana</td><td>140</td><td>155</td><td>185</td><td>235</td><td>205</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
+ <tr><td>6 Abril -19 Abril</td><td>Semana</td><td>140</td><td>165</td><td>195</td><td>385</td><td>215</td><td>185</td><td>485</td><td>220</td><td>460</td></tr>
+ <tr><td>20 Abril - 31 Maio</td><td>Semana</td><td>130</td><td>155</td><td>185</td><td>235</td><td>205</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
+ <tr><td>1 Junho-30 Junho</td><td>Semana</td><td>140</td><td>165</td><td>195</td><td>385</td><td>215</td><td>185</td><td>485</td><td>220</td><td>460</td></tr>
+ <tr><td>1 Julho - 15 Julho</td><td>Semana</td><td>190</td><td>215</td><td>235</td><td>360</td><td>280</td><td>225</td><td>535</td><td>315</td><td>515</td></tr>
+ <tr><td>16 Julho - 31 Julho</td><td>Semana</td><td>215</td><td>350</td><td>275</td><td>415</td><td>325</td><td>265</td><td>635</td><td>365</td><td>585</td></tr>
+ <tr><td>1 Ago - 19 Ago</td><td>Semana</td><td>240</td><td>275</td><td>305</td><td>475</td><td>365</td><td>295</td><td>725</td><td>405</td><td>665</td></tr>
+ <tr><td>20 Ago-31 Ago</td><td>Semana</td><td>190</td><td>215</td><td>235</td><td>360</td><td>280</td><td>225</td><td>535</td><td>315</td><td>515</td></tr>
+ <tr><td>1 Set -30 Set</td><td>Semana</td><td>140</td><td>175</td><td>185</td><td>315</td><td>220</td><td>165</td><td>435</td><td>225</td><td>410</td></tr>
+ <tr><td>1 Oct-31 Oct 2022</td><td>Semana</td><td>130</td><td>145</td><td>175</td><td>285</td><td>195</td><td>165</td><td>385</td><td>200</td><td>360</td></tr>
+</tbody>
+</table>
+</div>
+
+<br />
+<h4>Transmisión automática</h4>
+<br />
+<div class='base-table'>
+<table>
+<thead><tr><th>MES</th><th>PERÍODO</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
+ <tr><td>&nbsp;</td><td>&nbsp;</td><td>Renault Megane SW automático</td><td>Opel Corsa automático</td><td>Citroen C3 automático</td></tr>
+ <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>165</td><td>130</td><td>140</td></tr>
+ <tr><td>3 Jan-31 Mar</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>1 Abril - 5 Abril</td><td>Semana</td><td>215</td><td>160</td><td>170</td></tr>
+ <tr><td>6 Abril -19 Abril</td><td>Semana</td><td>225</td><td>170</td><td>180</td></tr>
+ <tr><td>20 Abril - 31 Maio</td><td>Semana</td><td>215</td><td>160</td><td>170</td></tr>
+ <tr><td>1 Junho-30 Junho</td><td>Semana</td><td>225</td><td>170</td><td>180</td></tr>
+ <tr><td>1 Julho - 15 Julho</td><td>Semana</td><td>330</td><td>210</td><td>225</td></tr>
+ <tr><td>16 Julho - 31 Julho</td><td>Semana</td><td>385</td><td>245</td><td>255</td></tr>
+ <tr><td>1 Ago - 19 Ago</td><td>Semana</td><td>435</td><td>280</td><td>290</td></tr>
+ <tr><td>20 Ago-31 Ago</td><td>Semana</td><td>330</td><td>210</td><td>225</td></tr>
+ <tr><td>1 Set -30 Set</td><td>Semana</td><td>230</td><td>160</td><td>180</td></tr>
+ <tr><td>1 Oct-31 Oct 2022</td><td>Semana</td><td>195</td><td>150</td><td>160</td></tr>
+</tbody>
+</table>
+</div>
+<br />
+</center>
+<h3><u>Gastos adicionales:</u></h3>
+<br />
+<p>
+Extras: Asiento para niños, silla de bebé o elevador 15 euros por semana. Estos deben pagarse en efectivo a la llegada.
+
+Recogida fuera de horario: los coches recogidos después de la medianoche estarán sujetos a un recargo de 15,00 euros
+
+Tasas de aeropuerto: 15 euros por coche (esta tasa la cobra el aeropuerto, no la empresa de alquiler de coches)
+</p>
+<br />
+<h3><u>Notas importantes:</u></h3>
+<br />
+<ul>
+<li>Los precios cotizados son por semana el <b> Euros</b></li>
+<li><u>edad del conductor </u>: mínimo de <b> 21 años </b> con <b> un año de experiencia conduciendo </b>. </li>
+<li> Deberá proporcionar su <b> Cédula de identidad DVLC y / o copia impresa </b> </li>
+<li> todos los coches son <b> sujeto a disponibilidad </b> </li>
+<li> el pago está hecho <b> en el momento de la recolección </b> con tarjeta de crédito o en euros en efectivo </li>
+<li> una impresión de un <b> tarjeta de crédito válida </b> se solicitará como depósito de combustible </li>
+<li> Tarifas de peaje no incluidas, transpondedor disponible para alquiler </li>
+<li> El seguro no cubre: daños derivados de mal uso, negligencia y actos vandálicos, ruedas, neumáticos, cerraduras forzadas, cristales, espejos retrovisores y pérdida de documentos y / o llaves del coche.</li>
+</ul>
+<br />
+<br />
+<center>
+<h3>Tenga en cuenta que los coches alquilados a través de Smartavillas solo están disponibles para su recogida y devolución en<span style='color:#f5821e'>AEROPUERTO DE FARO</span></h3>
+<br />
+<a href='/contact'><button class='btn'>Entrar en contacto!</button></a>
+</center>"
 ---
