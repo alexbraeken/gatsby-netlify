@@ -70,6 +70,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [loading, setLoading] = useState(true)
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
 
+
    const {t} = useTranslation(['property', 'translation']);
    const {language} = useI18next();
    const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
@@ -288,7 +289,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 }
                                 <Container>
                                     <Row>
-                                    <Col xs={11} md={11}>
+                                    <Col xs={12} md={11}>
                                         <Row>     
                                         <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit", width:"100%"}}>
                                             <Col>
@@ -320,7 +321,7 @@ export const PropertyPageTemplate = ( props ) =>
                                         </div>
                                         </Row>
                                     </Col>
-                                    <Col xs={1} md={1} style={{display: "flex"}}>
+                                    <Col xs={12} md={1} style={{display: "flex", maxWidth: "90px", margin: "auto 0 auto auto"}}>
                                         <div className="add-favs">
                                             {props.inFavs ? <AiFillHeart onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.id})} /> 
                                             :
@@ -329,7 +330,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 }}/>
                                             }
                                         </div>
-                                        <Share propImg={data.value.picture} propName={data.value.name} target={props.location}/>
+                                        <Share propImg={data.value.picture} propName={data.value.name}/>
                                     </Col>
                                     </Row>
                                 </Container>

@@ -98,23 +98,29 @@ class SimpleSlider extends Component {
 
 //Activities Component
 class ActivitiesRoll extends React.PureComponent {
+  constructor(props){
+    super(props);
+        this.state={
+          t : this.props.useTranslation.t,
+          language : this.props.useI18next.language,
+          activities : this.props.data.allMarkdownRemark.edges,
+          actList : []
+        }
+    
+  }
 
-  render() {
-    const { data } = this.props
-    const t = this.props.useTranslation.t
-    const language = this.props.useI18next.language
-    const { edges: activities } = data.allMarkdownRemark
-    //initialize empty array
-    const list = []
-    const coords = []
+  componentDidMount(){
+
+    let coords = []
+    let list = []
 
     //If !activities guard clause
-    if(!activities) return null
+    if(!this.state.activities) return null
 
     if(this.props.handleActivitiesCoords){
-      activities.forEach(({ node: activity }) =>{ 
+      this.state.activities.forEach(({ node: activity }) =>{ 
         
-        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp.fluid.src})
+        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[this.state.language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp.fluid.src})
       })
       this.props.handleActivitiesCoords(coords)
     }
@@ -123,12 +129,13 @@ class ActivitiesRoll extends React.PureComponent {
     if(this.props.location && this.props.type){
       let BreakException;
       try{
-        activities.forEach(({ node: activity }) =>{
+        this.propsactivities.forEach(({ node: activity }) =>{
           if(activity.frontmatter.tags.indexOf(this.props.location) !== -1 && activity.frontmatter.tags.indexOf(this.props.type) !== -1){ 
             list.push(activity)
             if (list.length > 10) throw BreakException 
           } else return null
         })
+        this.setState({actList:list})
       } catch (e) {
         if (e !== BreakException) throw e;
       }
@@ -136,51 +143,58 @@ class ActivitiesRoll extends React.PureComponent {
     else if(this.props.location){
       let BreakException;
       try{
-        activities.forEach(({ node: activity }) =>{
+        this.state.activities.forEach(({ node: activity }) =>{
           if(activity.frontmatter.tags.indexOf(this.props.location) !== -1){ 
             list.push(activity)
             if (list.length > 10) throw BreakException 
           } else return null
         })
+        this.setState({actList:list})
       } catch (e) {
         if (e !== BreakException) throw e;
       }
       
     } //only filter applied
     else if (this.props.filter){
-      activities.forEach(({ node: activity }) =>{
+      this.state.activities.forEach(({ node: activity }) =>{
         if(activity.frontmatter.tags.indexOf(this.props.filter) !== -1){ 
           list.push(activity) 
         } else return null
       })
+      this.setState({actList:list})
     } //all activities
     else{
-      activities.forEach(({ node: activity }) =>{ 
+      this.state.activities.forEach(({ node: activity }) =>{ 
         list.push(activity)
       })
+      this.setState({actList:list})
     }
+    
+  }
+
+  render() {
 
     return (
       <>
-      {this.props.type && list.length > 0 &&
+      {this.props.type && this.state.actList.length > 0 &&
         <>
-          <h2>{t("Restaurants Nearby")}</h2>
+          <h2>{this.state.t("Restaurants Nearby")}</h2>
           <br />
         </>
       }
-      {this.props.location && list.length > 0 && Object.keys(this.props.location).length>0 && !this.props.type &&
+      {this.props.location && this.state.actList.length > 0 && Object.keys(this.props.location).length>0 && !this.props.type &&
         <>
-          <h2>{t("Activities Nearby")}</h2>
+          <h2>{this.state.t("Activities Nearby")}</h2>
           <br />
         </>
         }
-      {(this.props.type || this.props.location) && list.length > 0 ? 
+      {(this.props.type || this.props.location) && this.state.actList.length > 0 ? 
       <>
-        {list.length > 4 ?
-          <SimpleSlider slides={list} /> 
+        {this.state.actList.length > 4 ?
+          <SimpleSlider slides={this.state.actList} /> 
           :
           <div className="columns is-multiline" style={{justifyContent:"center"}}>
-          {list.map((activity, index) => {
+          {this.state.actList.map((activity, index) => {
             return activity? <ActivityCard activity={activity}  key={index}/> : null
           })}
         </div>
@@ -189,8 +203,8 @@ class ActivitiesRoll extends React.PureComponent {
       }
       {!(this.props.type || this.props.location) ? 
       <div className="columns is-multiline" style={{justifyContent:"center"}}>
-        {list && list.length > 0 &&
-          list.map((activity, index) => {
+        {this.state.actList && this.state.actList.length > 0 &&
+          this.state.actList.map((activity, index) => {
             return activity? <ActivityCard activity={activity}  key={index}/> : null
             })}
       </div> : null

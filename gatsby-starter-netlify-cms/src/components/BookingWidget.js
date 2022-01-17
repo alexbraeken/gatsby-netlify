@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Helmet } from 'react-helmet'
-import {useTranslation} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 
 
@@ -12,8 +12,9 @@ const BookingWidget = (props) => {
     const [widgetLoading, setWidgetLoading] = useState(1)
 
     const {t} = useTranslation(['property', 'translation']);
+    const { language } = useI18next()
 
-const lang = `{
+const lang = language === 'en' || language === 'fr' || language === 'es' ? `"${language.toUpperCase()}"` : `{
     "placeholder" : {
         "checkIn" : "${t("checkIn")}",
         "checkOut" : "${t("Checkout")}",

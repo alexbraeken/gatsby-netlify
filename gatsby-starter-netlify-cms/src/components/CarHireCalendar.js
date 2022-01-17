@@ -97,7 +97,7 @@ const MONTHS = {
   es: [
     'Enero',
      'Febrero',
-     'Marcha',
+     'Marzo',
      'Abril',
      'Mayo',
      'Junio',
@@ -376,7 +376,7 @@ const CarHireCalendar = (props) => {
           {from && to && (
             <div style={{display: "flex", flexWrap:"nowrap", minWidth:"200px"}}>
               <button className="calendar-btn main" onClick={handleBook}>
-              {t("Book Now")}
+              {t("Get a Quote")}
               </button>
               
               <button className="calendar-btn clear" onClick={handleResetClick}>
@@ -404,7 +404,7 @@ const CarHireCalendar = (props) => {
             locale={language} 
             localeUtils={localeUtils}
             />
-            <CarEnquiryModal show={showModal} handleClose={handleClose} carClass={props.carClass} price={total} from={from?.toLocaleDateString()} to={to?.toLocaleDateString()}/>
+            <CarEnquiryModal show={showModal} handleClose={handleClose} carClass={props.carClass} price={total} from={from?.toLocaleDateString()} to={to?.toLocaleDateString()} includes={props.includes}/>
 
       <Helmet>
       <style>{`

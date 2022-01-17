@@ -50,16 +50,18 @@ const CarEnquiryModal = (props) => {
         <Modal.Header closeButton style={{background: "#3f3f3f"}}>
           <Modal.Title style={{display: "flex", flexWrap:"nowrap"}}>
               <div className="orangeText" style={{margin: "auto"}}>
-                <span>{t("Book")} {props.carClass} {t("vehicle")}</span>
+                <span>{t("Get a Quote")}</span>
+                <br />
+                <small>{t("Vehicle")}: {props.carClass} </small>
               </div>
               <div className="modal close modal-content modal-header enquiry-modal" style={{display: "none"}}>
               </div>
           </Modal.Title>
         </Modal.Header>
-    <Modal.Body className="calendar-modal">
+    <Modal.Body className="calendar-modal scroll-modal">
         {sent ? 
           <div style={{display:"flex"}}>
-            <h4 style={{margin:"auto", textAlign:"center"}}>{t("Thank you for getting in touch! We'll get back to you as soon as possible.")}</h4>
+            <h3 style={{margin:"auto", textAlign:"center"}}>{t("Thank you for getting in touch! We'll get back to you as soon as possible.")}</h3>
           </div> :
           <form
           name="CarInquiry"
@@ -78,14 +80,14 @@ const CarEnquiryModal = (props) => {
             </label>
           </div>
           <div>
-          <small>{props.from} - {props.to}</small>
+          <small className="orangeText">{props.from} - {props.to}</small>
           <br />
-          <small>{t("Price")}: {props.price}€</small>
+          <small><span className="orangeText">{t("Price")}:</span> {props.price}€</small>
           </div>
           <input type="hidden" name={'price'} id={'price'} value={props.price}/>
           <input type="hidden" name={'from'} id={'from'} value={props.from}/>
           <input type="hidden" name={'to'} id={'to'} value={props.to}/>
-          <imput type="hidden" name={'lang'} id={'lang'} value={language} />
+          <input type="hidden" name={'lang'} id={'lang'} value={language} />
           <div className="field">
             <label className="label" htmlFor={'from_name'}>
               {t("Your name")}
@@ -103,7 +105,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'email'}>
-              Email
+              {t("Email")}
             </label>
             <div className="control">
               <input
@@ -116,10 +118,25 @@ const CarEnquiryModal = (props) => {
               />
             </div>
           </div>
-          <h4>Travel Details</h4>
+          <div className="field">
+            <label className="label" htmlFor={'phone'}>
+              {t("phone")}
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'tel'}
+                name={'phone'}
+                onChange={(e) => handleChange(e)}
+                id={'phone'}
+                required={true}
+              />
+            </div>
+          </div>
+          <h3 className="orangeText">{t("Travel Details")}</h3>
           <div className="field">
             <label className="label" htmlFor={'flight_number'}>
-              In Flight Number
+              {t("In Flight Number")}
             </label>
             <div className="control">
               <input
@@ -134,12 +151,12 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'arrival_date'}>
-              Arrival Date
+              {t("Arrival Date")}
             </label>
             <div className="control">
               <input
                 className="input"
-                type={'text'}
+                type={'date'}
                 name={'arrival_date'}
                 onChange={(e) => handleChange(e)}
                 id={'arrival_date'}
@@ -149,7 +166,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'departing_from'}>
-              Departing From
+              {t("Departing From")}
             </label>
             <div className="control">
               <input
@@ -164,7 +181,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'time_of_arrival'}>
-              Time of Arrival
+              {t("Time of Arrival")}
             </label>
             <div className="control">
               <input
@@ -179,7 +196,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'out_flight_number'}>
-              Out Flight Number
+              {t("Out Flight Number")}
             </label>
             <div className="control">
               <input
@@ -194,12 +211,12 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'departure_date'}>
-              Departure Date
+              {t("Departure Date")}
             </label>
             <div className="control">
               <input
                 className="input"
-                type={'text'}
+                type={'date'}
                 name={'departure_date'}
                 onChange={(e) => handleChange(e)}
                 id={'departure_date'}
@@ -209,7 +226,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'going_to'}>
-              Going To
+              {t("Going To")}
             </label>
             <div className="control">
               <input
@@ -224,7 +241,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'time_of_departure'}>
-              Time of Departure
+              {t("Time of Departure")}
             </label>
             <div className="control">
               <input
@@ -237,12 +254,12 @@ const CarEnquiryModal = (props) => {
               />
             </div>
           </div>
-          <h4>
-            Driving Licence & Passport Details
-          </h4>
+          <h3 className="orangeText">
+            {t("Driving Licence & Passport Details")}
+          </h3>
           <div className="field">
             <label className="label" htmlFor={'full_name'}>
-              Lead Drive Full Name
+              {t("Lead Drive Full Name")}
             </label>
             <div className="control">
               <input
@@ -256,8 +273,25 @@ const CarEnquiryModal = (props) => {
             </div>
           </div>
           <div className="field">
+            <label className="label" htmlFor={'make'}>
+              {t("Prefered Make and Model of Car")}
+              <br />
+              <small>{t("Includes")}:{props.includes}</small>
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type={'text'}
+                name={'make'}
+                onChange={(e) => handleChange(e)}
+                id={'make'}
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="field">
             <label className="label" htmlFor={'home_address'}>
-              Home Address
+              {t("Home Address")}
             </label>
             <div className="control">
               <input
@@ -272,7 +306,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'dob'}>
-              Date of Birth
+              {t("Date of Birth")}
             </label>
             <div className="control">
               <input
@@ -287,7 +321,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'portugal_address'}>
-              Local Address in Portugal
+              {t("Local Address in Portugal")}
             </label>
             <div className="control">
               <input
@@ -302,7 +336,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'contact_number'}>
-              Contact Number
+              {t("Contact Number")}
             </label>
             <div className="control">
               <input
@@ -317,7 +351,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'license_number'}>
-              Driving License Number
+              {t("Driving License Number")}
             </label>
             <div className="control">
               <input
@@ -332,12 +366,12 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'issue_date'}>
-              Issue Date
+              {t("Issue Date")}
             </label>
             <div className="control">
               <input
                 className="input"
-                type={'text'}
+                type={'date'}
                 name={'issue_date'}
                 onChange={(e) => handleChange(e)}
                 id={'issue_date'}
@@ -347,12 +381,12 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'expiry_date'}>
-              Expiry Date
+              {t("Expiry Date")}
             </label>
             <div className="control">
               <input
                 className="input"
-                type={'text'}
+                type={'date'}
                 name={'expiry_date'}
                 onChange={(e) => handleChange(e)}
                 id={'expiry_date'}
@@ -362,7 +396,7 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'passport_number'}>
-              Passport Number
+              {t("Passport Number")}
             </label>
             <div className="control">
               <input
@@ -377,12 +411,12 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'passport_issue_date'}>
-              Passport Issue Date
+              {t("Passport Issue Date")}
             </label>
             <div className="control">
               <input
                 className="input"
-                type={'text'}
+                type={'date'}
                 name={'passport_issue_date'}
                 onChange={(e) => handleChange(e)}
                 id={'passport_issue_date'}
@@ -392,12 +426,12 @@ const CarEnquiryModal = (props) => {
           </div>
           <div className="field">
             <label className="label" htmlFor={'passport_expiry_date'}>
-              Passport Expiry Date
+              {t("Passport Expiry Date")}
             </label>
             <div className="control">
               <input
                 className="input"
-                type={'text'}
+                type={'date'}
                 name={'passport_expiry_date'}
                 onChange={(e) => handleChange(e)}
                 id={'passport_expiry_date'}
@@ -432,7 +466,7 @@ const CarEnquiryModal = (props) => {
                   <svg className="icon-arrow before">
                       <use xlinkHref="#arrow" />
                   </svg>
-                  <span className="label">{t("Book")}</span>
+                  <span className="label">{t("Get a Quote")}</span>
                   <svg className="icon-arrow after">
                       <use xlinkHref="#arrow"/>
                   </svg>
