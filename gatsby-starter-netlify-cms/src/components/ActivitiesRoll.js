@@ -129,7 +129,7 @@ class ActivitiesRoll extends React.PureComponent {
     if(this.props.location && this.props.type){
       let BreakException;
       try{
-        this.propsactivities.forEach(({ node: activity }) =>{
+        this.state.activities.forEach(({ node: activity }) =>{
           if(activity.frontmatter.tags.indexOf(this.props.location) !== -1 && activity.frontmatter.tags.indexOf(this.props.type) !== -1){ 
             list.push(activity)
             if (list.length > 10) throw BreakException 
@@ -170,6 +170,28 @@ class ActivitiesRoll extends React.PureComponent {
       this.setState({actList:list})
     }
     
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.filter !== prevProps.filter) {
+      let list = []
+      if(!this.state.activities) return null
+
+      if (this.props.filter){
+        this.state.activities.forEach(({ node: activity }) =>{
+          if(activity.frontmatter.tags.indexOf(this.props.filter) !== -1){ 
+            list.push(activity) 
+          } else return null
+        })
+        this.setState({actList:list})
+      } //all activities
+      else{
+        this.state.activities.forEach(({ node: activity }) =>{ 
+          list.push(activity)
+        })
+        this.setState({actList:list})
+      }
+    }
   }
 
   render() {

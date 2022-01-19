@@ -84,7 +84,7 @@ const PropertyCardComp = (props) => {
       return () => {
         setBgImg('')
       }
-    }, [])
+    }, [props.item])
 
     const settings = {
       infinite: true,

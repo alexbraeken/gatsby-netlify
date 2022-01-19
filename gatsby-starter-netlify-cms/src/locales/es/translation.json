@@ -57,12 +57,12 @@
 "City":"Ciudad",
 "Lodging Type":"Tipo de alojamiento",
 "Bathrooms":"Baños / servicios",
-"Amenities":"Amenities / amenidades",
+"Amenities":"Amenidades",
 "Gallery":"Galería",
 "Calendar":"Calendario",
 "Sleeps":"Duerme",
 "About":"Acerca de",
-"Space":"Lugar  ",
+"Space":"El Alojamiento",
 "Neighborhood":"Barrio",
 "Notes":"Observaciones",
 "Location":"Localización",
@@ -71,7 +71,7 @@
 "Key Features":"Elementos clave",
 "License:":"Licensia",
 "Type":"Tipo ",
-"Size":"Talla",
+"Size":"Tamaño",
 "Smartavillas' Opinion":"Opinión de Smartavillas",
 "Activities Nearby":"Actividades cercanas",
 "Activities":"Actividades",
@@ -457,5 +457,7 @@
 "Travel Details":"Detalles del viaje",
 "Vehicle":"Vehículo",
 "Lead Driver Full Name":"Nombre completo del conductor(a) principal",
-"Preferred Make and Model of Car":"Marca y modelo de automóvil preferido"
+"Preferred Make and Model of Car":"Marca y modelo de automóvil preferido",
+"Estimated Price":"Precio Estimado",
+"Check out Smartavillas property":"Echa un vistazo a la propiedad de Smartavillas"
 }

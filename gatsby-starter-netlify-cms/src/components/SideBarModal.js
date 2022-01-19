@@ -7,47 +7,50 @@ import Container from 'react-bootstrap/Container'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const amenitiesFilterList = [
-    {
-        amenity: 'Pool',
-        value: 'hasPool'
-    },
-    {
-        amenity: 'Wheelchair Accessible',
-        value: 'isWheelchairAccessible'
-    },
-    {
-        amenity: 'Allows Pets',
-        value: 'allowsPets'
-    },
-    {
-        amenity: 'Air Conditioning',
-        value: 'hasAirConditioning'
-    },
-    {
-        amenity: 'Barbecue',
-        value: 'hasBarbecue'
-    },
-    {
-        amenity: 'Elevator',
-        value: 'hasElevator'
-    },
-    {
-        amenity: 'Garden',
-        value: 'hasGarden'
-    },
-    {
-        amenity: 'Wi-Fi',
-        value: 'hasInternetWifi'
-    },
-]
+
 
 export default function SideBarModal(props) {
+    
 
     const [show, setShow] = useState(false)
     const [modalStyle, setModalStyle] = useState({})
 
     const {t} = useTranslation(['sidebar']);
+
+    const amenitiesFilterList = [
+        {
+            amenity: `${t('Pool')}`,
+            value: 'hasPool'
+        },
+        {
+            amenity: `${t('Wheelchair Accessible')}`,
+            value: 'isWheelchairAccessible'
+        },
+        {
+            amenity: `${t('Allows Pets')}`,
+            value: 'allowsPets'
+        },
+        {
+            amenity: `${t('Air Conditioning')}`,
+            value: 'hasAirConditioning'
+        },
+        {
+            amenity: `${t('Barbecue')}`,
+            value: 'hasBarbecue'
+        },
+        {
+            amenity: `${t('Elevator')}`,
+            value: 'hasElevator'
+        },
+        {
+            amenity: `${t('Garden')}`,
+            value: 'hasGarden'
+        },
+        {
+            amenity: `${t('Wi-Fi')}`,
+            value: 'hasInternetWifi'
+        },
+    ]
 
     useEffect(() => {
         const marginTop = document.getElementsByClassName('newsAlert')?.[0].getBoundingClientRect().height + document.getElementsByClassName('navbar')?.[0].getBoundingClientRect().height

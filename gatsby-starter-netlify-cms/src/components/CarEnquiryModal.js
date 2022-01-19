@@ -82,7 +82,7 @@ const CarEnquiryModal = (props) => {
           <div>
           <small className="orangeText">{props.from} - {props.to}</small>
           <br />
-          <small><span className="orangeText">{t("Price")}:</span> {props.price}€</small>
+          <small><span className="orangeText">{t("Estimated Price")}:</span> {props.price}€</small>
           </div>
           <input type="hidden" name={'price'} id={'price'} value={props.price}/>
           <input type="hidden" name={'from'} id={'from'} value={props.from}/>

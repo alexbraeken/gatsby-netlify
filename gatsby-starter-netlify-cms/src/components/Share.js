@@ -12,28 +12,34 @@ import {
     PinterestIcon,
     TwitterIcon,
     WhatsappIcon} from "react-share";
+import {useTranslation} from 'gatsby-plugin-react-i18next';
 
-const Share = (props) => (
+const Share = (props) => {
+    const {t} = useTranslation();
+
+    return(
+
+    
     <div className={`share-btn`} >
         <AiOutlineShareAlt />
         <div className="share expand-btn" >
-            <EmailShareButton url={null}>
+            <EmailShareButton url={encodeURI(props.target)}>
                 <EmailIcon size={32} round={true}/>
             </EmailShareButton>
-            <FacebookShareButton url={null} title={"Share Smartavillas.com"} quote={`Check out ${props.propName}`} hashtag={"#Smartavillas"}>
+            <FacebookShareButton url={encodeURI(props.target)} title={String(props.propName)} quote={`Check out ${props.propName}`} hashtag={"#Smartavillas"}>
                 <FacebookIcon size={32} round={true}/>
             </FacebookShareButton>
-            <PinterestShareButton url={null} media={String(props.propImg)} description={`Loving ${props.propName} from Smartavillas`}>
+            <PinterestShareButton url={encodeURI(props.target)} media={String(props.propImg)} description={`Loving ${props.propName} from Smartavillas`}>
                 <PinterestIcon size={32} round={true}/>
             </PinterestShareButton>
-            <TwitterShareButton url={null} title={String(props.propName)} hashtags={["Smartavillas", String(props.propName), "Algarve", "Portugal"]} related={["https://twitter.com/smartavillas"]}>
+            <TwitterShareButton url={encodeURI(props.target)} title={`${t("Check out Smartavillas property")} ${String(props.propName)}`} hashtags={["Smartavillas", "Algarve", "Portugal"]} related={["https://twitter.com/smartavillas"]}>
                 <TwitterIcon size={32} round={true}/>
             </TwitterShareButton>
-            <WhatsappShareButton url={null} title={String(props.propName)}>
+            <WhatsappShareButton url={encodeURI(props.target)} title={`${t("Check out Smartavillas property")} ${String(props.propName)}`}>
                 <WhatsappIcon size={32} round={true}/>
             </WhatsappShareButton>
         </div>
     </div>
-)
+)}
 
 export default Share
