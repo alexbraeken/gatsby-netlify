@@ -705,7 +705,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 }
                                                 <br />
                                                 <div role="button" className="submit-search-btn" onClick={()=> handleEnquiryShow()} onKeyDown={()=> handleEnquiryShow()} tabindex="0">
-                                                    <a href="">
+                                                    <a id="enquiry-button">
                                                         <svg className="icon-arrow before">
                                                             <use xlinkHref="#arrow" />
                                                         </svg>
