@@ -18,7 +18,8 @@ class CustomSlide extends React.Component {
         overflow: "hidden",
         position: "relative",
         backgroundSize:"cover",
-        backgroundPosition:"center"}} 
+        backgroundPosition:"center",
+        backgroundRepeat: "no-repeat"}} 
         key={this.props.key? this.props.key : 0}>
         </div>
       );
@@ -77,7 +78,7 @@ const PropCarousel = (props) => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     fade: true,
-    lazyLoad: "progressive"
+    lazyLoad: "progressive",
   };
 
       return (
@@ -95,8 +96,8 @@ const PropCarousel = (props) => {
           onClose={() => setIsOpen(false)}
         />
         <Slider {...settings} style={{position:"relative"}}>
-            {props.photos ? props.photos.map((photo, index)=> (
-                <CustomSlide backgroundImage={photo.url} key={index} />
+            {props.photos ? props.photos.map((photo, index)=>(
+                <CustomSlide backgroundImage={photo.url} key={index}/>
             )): <CustomSlide backgroundImage={props.firstSlide} />}
         </Slider>
         {props.photos ? 
