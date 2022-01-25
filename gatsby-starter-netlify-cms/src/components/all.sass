@@ -90,8 +90,6 @@ $insta-purple: #833AB4
 .margin-top-0
   margin-top: 0 !important
 
-.navbar-item
-  font-weight: bold
 
 .navbar-item .icon
   color: $primary
@@ -1148,8 +1146,8 @@ $min-margin: 10px
 
 .submit-search-btn
   flex: 1 1 10%
-  margin: 5px
-  min-width: fit-content
+  margin: 5px auto
+  width: fit-content
   height: 50px
   & a 
     border: 4px solid #3F3F3F
@@ -1166,7 +1164,7 @@ $min-margin: 10px
     position: relative
     text-decoration: none
     background: $primary
-    border-radius: 4px
+    border-radius: 40px
     & .label, .icon-arrow 
         backface-visibility: hidden
         transform: translateZ(0)
@@ -1568,9 +1566,9 @@ $min-margin: 10px
       display: flex
 
 .navbar .container
-  max-width: 1300px;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  max-width: 1300px
+  flex-direction: row
+  flex-wrap: nowrap
 
 .dropdown-submenu
   position: absolute
@@ -1591,9 +1589,7 @@ $min-margin: 10px
   transition: all 0.3s
 
 .dropdown-title
-  font-weight: bold
-  color: $primary
-  text-decoration: underline
+  color: #fff
 
 .submenu-return-arrow
   margin: 10px 0
@@ -1636,9 +1632,16 @@ $min-margin: 10px
 
 a.navbar-item, .navbar-item
   font-weight: unset
+  cursor: pointer
+  border-bottom: solid 1px #4a4a4a
+  transition: all 0.5s
+  & svg
+      color: #fff
   &:hover
-    color: #fff
-    background-color: $primary
+    border-color: $primary
+    color: $primary
+    & svg
+        color: $primary
 
 
 @media only screen and (max-width: 1000px) 
@@ -1649,7 +1652,9 @@ a.navbar-item, .navbar-item
 
 .drop-item
   transition: all 0.3s
+  color: #fff
   &:hover
+    color: $primary
     padding-left: 10px
 
 //Meet the team
@@ -2005,9 +2010,8 @@ a.navbar-item, .navbar-item
       opacity: 0.5
 
 .intro-para
-  background-color: rgba(256,256,256, 0.9)
-  border-radius: 4px
   padding: 10px
+  margin: auto
 
 .slick-slider
   cursor: grab
@@ -2631,9 +2635,11 @@ a.navbar-item, .navbar-item
   transition: all 0.3s
   & .nav-prop-name
       flex: 1 1 30%
+      margin: 0 auto 0 0
   & .nav-prop-location-container
       float: right 
       margin: auto
+      font-size: 0.7rem
       & .nav-prop-location
           margin-left: auto 
           color: #ccc
@@ -2643,33 +2649,22 @@ a.navbar-item, .navbar-item
 @media only screen and (max-width: 900px)
   .nav-name-search
     flex-wrap: wrap
+    text-align: left
     & .nav-prop-name
+        flex: 1 1 100%
         min-width: 150px
     & .nav-prop-location-container
+        flex: 1 1 100%
         float: none
-        margin: auto 10px
+        margin: auto auto auto 0
+        
 
-.nav-column-1
-  grid-column: 1
+.nav-column
+  margin: 50px 0
 
-.nav-column-2
-  grid-column: 2
 
-.nav-column-3
-  grid-column: 3
-
-@media only screen and (max-width: 600px)
-  .nav-column-1
-    grid-column: 1
-
-  .nav-column-2
-    grid-column: 1
-
-  .nav-column-3
-    grid-column: 1
-
-$card-height-large-screen: 20rem;
-$card-height-mobile: 12rem;
+$card-height-large-screen: 20rem
+$card-height-mobile: 12rem
 
 .news-card 
   border: 0px solid aqua
@@ -3293,9 +3288,9 @@ $white: #FFF
   opacity: 0
   visibility: hidden
   transition: all 0.3s
-  border-radius: 4px;
-  background-color: $primary;
-  min-height: 80px;
+  border-radius: 4px
+  background-color: $primary
+  min-height: 80px
   z-index: 2
 
 
@@ -3436,4 +3431,509 @@ $white: #FFF
                 color: $primary
       & .fav-slider
           text-align: center
-              
+
+
+header
+  position: fixed
+  width: 100%
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: calc(15px + 2%) calc(15px + 2%) calc(15px + 2%) calc(25px + 2%)
+  z-index: 9997
+  & > *:not(.nav-menu)
+    z-index: 10
+  & > .right 
+    margin-left: auto
+    display: flex
+    align-items: center
+  & .hl
+      & .header-logo
+          width: 200px 
+          overflow-x: hidden
+          cursor: pointer
+          & img
+              width: 200px !important
+              max-width: none
+
+
+.menu-btn
+  transition: opacity .2s
+  cursor: pointer
+  width: calc(55px + 7 * (100vw - 320px) / 1080)
+  height: calc(55px + 7 * (100vw - 320px) / 1080)
+  border-radius: 50%
+  display: flex
+  align-items: center
+  justify-content: center
+  position: relative
+  & svg
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      & circle 
+          stroke-dashoffset: 0
+          transition: all 0.3s
+  & div
+      width: calc(22px + 4 * (100vw - 320px) / 1080)
+      height: 10px
+      position: relative
+      & span
+          transition: background .4s
+          position: absolute
+          width: 100%
+          height: 2px
+          background-color: #000
+          &:nth-child(1) 
+            top: 0
+            transition: background .4s, top .2s .2s, transform .2s
+          &:nth-child(2) 
+            top: 50%
+            left: 50%
+            transform: translateY( -50%)
+            transition: background .4s, width .2s, left .2s
+            width: 0
+          &:nth-child(3) 
+            bottom: 0
+            transition: background .4s, top .2s .2s, transform .2s
+  &:hover 
+    & svg circle
+      animation: btn-circle-anim 1s forwards
+      animation-timing-function: ease-in-out
+      -webkit-animation-timing-function: ease-in-out
+    & div span
+      &:nth-child(1)
+        transform : translateY(-5px)
+      &:nth-child(2)
+        width : 100%
+        left: 0
+      &:nth-child(3)
+        transform : translateY(5px)
+  &.active 
+    & div span
+        background-color: #fff
+        &:nth-child(1)
+          transform : translateY(4px) rotate(45deg)
+        &:nth-child(2)
+          width : 0
+          left: 0
+        &:nth-child(3)
+          transform : translateY(-4px) rotate(-45deg)
+    &:hover
+      & div span
+          &:nth-child(1)
+            transform : translateY(4px) rotate(30deg)
+          &:nth-child(2)
+            width : 0
+            left: 0
+          &:nth-child(3)
+            transform : translateY(-4px) rotate(-30deg)
+
+.nav-menu
+  position: fixed
+  width: 0
+  height: 100vh
+  top: 0
+  left: 0
+  z-index: 5
+  & .lm, .rm
+      opacity: 0
+      height: 0
+      width: 50%
+      transition: 0.5s
+      transition-timing-function: cubic-bezier(1, 0.29, 0.38, 0.88)
+  & .lm
+      background: rgb(255,166,0)
+      background: linear-gradient(90deg, rgba(255,166,0,1) 0%, rgba(255,132,0,1) 17%, rgba(255,124,0,1) 48%, rgba(255,98,0,1) 88%, rgba(233,46,0,1) 100%)
+      position: absolute
+      bottom: 0
+      left: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      & .nav-container
+          width: 100%
+          font-weight: 800
+          font-size: calc(15px + 23 * (100vw - 320px) / 1080)
+          padding-left: calc(25px + 15%)
+          line-height: 1.2
+          display: none
+          & nav ul li
+              transform: translateY(100%)
+              opacity: 0
+              transition: 0.5s
+              cursor: pointer
+  & .rm
+      background: rgb(23,11,1)
+      background: linear-gradient(270deg, rgba(23,11,1,1) 0%, rgba(0,0,0,1) 17%, rgba(14,14,14,1) 48%, rgba(1,1,0,1) 88%, rgba(0,0,0,1) 100%)
+      position: absolute
+      top: 0
+      right: 0
+      display: flex
+      align-items: center
+      & .r-content
+          padding: 0 calc(25px + 15%)
+          color: #fff
+          width: 100%
+          & >*
+              opacity : 0
+              transform: translateX(100%)
+          & .r-featured
+              display: flex
+              flex-direction: column
+              &.hide
+                display: none
+              & .link-content
+                  display: none
+                  max-width: 0
+                  &.active
+                    display: block
+                    flex: 1 1 50%
+                    min-width: 300px
+                    &>*
+                      opacity: 0
+                      transform: translateY(100%)
+                    @for $i from 1 through 30
+                      &:nth-child(#{$i})
+                        animation: subContent-in calc(#{$i} * 0.5s) 0.5s forwards
+              & .rm-static-content
+                  transition: 0.5s
+                  width: 100%
+                  max-height: 80vh
+                  overflow-y: scroll
+                  &::-webkit-scrollbar
+                    width: 10px
+                  &::-webkit-scrollbar-track
+                    background-color: transparent
+                  &::-webkit-scrollbar-thumb
+                    background: $primary
+                    border-radius: 40px
+                    background: linear-gradient(90deg, rgba(255,166,0,1) 0%, rgba(255,132,0,1) 17%, rgba(255,124,0,1) 48%, rgba(255,98,0,1) 88%, rgba(233,46,0,1) 100%)
+                  & .featured-card 
+                      margin: 10px
+                      list-style-type: none
+                      & a 
+                          color: #000
+                          text-decoration: none
+                          display: flex
+                          width: 100%
+                          & .featured-description
+                              color: #fff
+                              display: flex
+                              flex: 1 1 50%
+                              flex-direction: column
+                              justify-content: center
+                              & h4 
+                                  color: #fff
+                                  z-index: 4
+                                  transition: all 0.3s
+                                  line-height: 1.7
+                                  &:nth-child(1) 
+                                      font-size: 20px
+                          & .featured-wrap 
+                              display: flex
+                              flex-direction: column
+                              align-items: center
+                              position: relative
+                              -webkit-column-break-inside: avoid
+                              page-break-inside: avoid
+                              break-inside: avoid
+                              transition: .6s ease-out
+                              flex: 1 1 50%
+                              & .featured-image-wrap
+                                  overflow: hidden
+                                  border-radius: 5px
+                                  & img 
+                                      width: 250px
+                                      border-radius: 5px
+                                      transition: all 0.5s
+                              & .featured-text-wrap 
+                                  position: absolute
+                                  bottom: 0
+                                  width: 250px
+                                  height: fit-content
+                                  display: flex
+                                  flex-direction: column
+                                  align-content: center
+                                  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)
+                              & .featured-overlay 
+                                  position: absolute
+                                  width: 250px
+                                  height: 100%
+                                  background: rgba(0, 0, 0, 0.14)
+                                  cursor: pointer
+                          &:hover
+                                & .featured-image-wrap
+                                  & img
+                                      transform: scale(1.05)
+                                & .featured-description h4
+                                    color: $primary
+              & .sub-menu-links-container
+                  flex-grow: 1
+                  overflow-y: auto
+                  max-height: 70vh
+                  overflow-x: hidden
+                  padding-right: 5px
+                  &::-webkit-scrollbar
+                    width: 10px
+                  &::-webkit-scrollbar-track
+                    background-color: transparent
+                  &::-webkit-scrollbar-thumb
+                    background: $primary
+                    border-radius: 40px
+                    background: linear-gradient(90deg, rgba(255,166,0,1) 0%, rgba(255,132,0,1) 17%, rgba(255,124,0,1) 48%, rgba(255,98,0,1) 88%, rgba(233,46,0,1) 100%)
+          & h2
+              color: orange
+          & .sub-menu-links
+              display: none
+  &.active
+    & > .rm, > .lm
+        height: 100%
+        opacity: 1
+    & .lm .nav-container
+        display: initial
+        & nav ul 
+          @for $i from 1 through 30
+            & li:nth-child(#{$i})
+                animation: menu-link-in calc(#{$i} * 0.5s) 0.5s forwards
+          & li
+            & a
+                position: relative
+                transition: 0.3s
+                display: block
+                &:after
+                  content: ''
+                  position: absolute
+                  top: 0
+                  left: 0
+                  width: 0
+                  height: 100%
+                  border-bottom: 1px solid black
+                  transition: all 0.3s
+            &:hover a
+              color: white
+              transform: translateX(10px)
+              &:after
+                width: 100%
+    & .rm .r-content
+        & #sublinks-ul
+            width: 100%
+            line-height: normal
+            & >*
+                font-size: calc(8px + 21 * (100vw - 320px) / 1080)
+                opacity : 0
+                line-height: normal
+                transform: translateX(100%)
+            & li a
+                transition: all 0.3s
+                display: block
+                &:after
+                  content: ''
+                  position: absolute
+                  top: 0
+                  left: 0
+                  width: 0
+                  height: 100%
+                  border-bottom: 1px solid black
+                  transition: all 0.3s
+                &:hover
+                  color: $primary
+                  transform: translateX(10px)
+        & >*, #sublinks-ul>*
+          @for $i from 1 through 30
+            &:nth-child(#{$i})
+              animation: left-menu-in calc(#{$i} * 0.3s) 0.3s forwards
+
+.back-btn-container
+  display: none
+  font-size: 0.8em
+
+@keyframes menu-link-in 
+  from  
+    opacity : 0
+    transform: translateY(100%)
+  to 
+    opacity: 1
+    transform: translateY(0)
+
+
+@keyframes subContent-in 
+  0%
+    opacity : 0
+    transform: translateY(100%)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+
+@keyframes left-menu-in 
+  0% 
+    opacity : 0
+    transform: translateX(100%)
+  100% 
+    opacity: 1
+    transform: translateY(0)
+
+
+@keyframes btn-circle-anim 
+  0% 
+    stroke-dasharray: 200
+    stroke-dashoffset: 0
+  50% 
+    stroke-dasharray: 90
+    stroke-dashoffset: 300
+  100% 
+    stroke-dasharray: 200
+    stroke-dashoffset: 400
+
+@media screen and (max-width: 900px)
+  .nav-menu
+    & .lm
+        top: 0
+        bottom: initial
+        width: 100%
+        & .nav-container
+            padding: 0 calc(20px + 3%)
+            font-size: calc(25px + 30 * (100vw - 320px) / 1080)
+    &.active
+      & .lm
+          text-align: center
+      & .rm
+          width: 100%
+          transform: translateX(100%)
+          text-align: center
+          display: none
+          position: absolute
+          transition: all 0.5s
+          left: 0
+          top: 0
+          &.active
+            display: flex
+            transform: translateX(0)
+          & .r-content 
+              padding: 0 calc(20px + 3%)
+              & #sublinks-ul > *
+                  font-size: calc(20px + 30 * (100vw - 320px) / 1080)
+  .back-btn-container
+    color: #fff
+    display: flex
+    flex-wrap: nowrap
+    cursor: pointer
+    position: relative
+    &:hover
+      color: orange
+      & span:nth-child(1)
+          width: 130%
+  .back-btn
+    height: 10px
+    width: calc(22px + 4 * (100vw - 320px) / 1080)
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    & span
+        transition: .4s
+        position: absolute
+        width: 100%
+        height: 3px
+        background-color: #000
+        border-radius: 40px
+        &:nth-child(1)
+          top: 52%
+          transform: translateY(50%)
+          left: 1px
+        &:nth-child(2)
+          top: 129%
+          left: 0
+          transform: rotate(45deg)
+          width: 65%
+        &:nth-child(3)
+          top: 13%
+          left: 0
+          transform: rotate(-45deg)
+          width: 65%
+
+.section-wire
+  overflow: hidden
+  vertical-align: middle
+  position: absolute
+  top: 0
+  left: 50.1%
+  height: 100%
+  width: auto
+  transform: translateX(-50%)
+  z-index: 2;
+
+.main-section
+  padding-bottom: 100px
+  width: 100vw
+  height: 100vh
+  position: relative
+  margin-left: -50vw
+  left: 50%
+  display: flex
+  flex-direction: column
+  justify-content: center
+  & .submit-search-btn a
+      background: #fff
+      & p
+        font-size: 1.2rem
+  & .main-col
+      display: flex
+      flex-wrap: wrap
+      &.left
+          padding: 50px 90px 50px 0
+      &.right
+          padding: 50px 0 50px 90px
+
+.section-background
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+
+.half-image, .half-image-left
+  position: absolute !important
+  width: 50%
+  height: calc(100% - 8.5em)
+  height: -webkit-calc(100% - 8.5em)
+
+.half-image
+  right: 0
+
+.half-image-left
+    left: 0
+    right: unset
+
+@media screen and (max-width: 900px)
+  .main-section
+    height: initial
+    & .main-col
+      & .left, .right
+          padding: 0 15px
+  .section-background
+    height: 50vh
+    position: relative
+  .half-image, .half-image-left
+    height: 100%
+  .mobile-reverse
+    flex-direction: column-reverse
+
+.section-top-border
+  &::before
+    width: 0
+    position: absolute
+    top: 0
+    left: 50%
+    transform: translateX(-50%)
+    content: ''
+    border-top: solid 3px black
+    transition: all 0.5s
+  &.trigger::before 
+    width: 50%
+
+.orange-gradient
+  background: #ffa600
+  background: linear-gradient(90deg, #ffa600 0%, #ff8400 17%, #ff7c00 48%, #ff6200 88%, #e92e00 100%)

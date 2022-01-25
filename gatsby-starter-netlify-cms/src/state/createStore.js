@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 
 function reducer(state, action) {
   let newObj = state.properties
+  let featuredProps = state.featuredProps
     if(action.type === `ADD_PROPERTY`) {
       if(!newObj[action.propId]){
         newObj[action.propId] = {name: action.propName, id: action.propId, img: action.propImg, bedrooms: action.bedrooms, bathrooms: action.bathrooms, baseGuests: action.baseGuests, city: action.city, rate: action.rate}
@@ -17,6 +18,13 @@ function reducer(state, action) {
           properties: newObj
         }
       }
+    }
+    if(action.type === 'ADD_FEATURED'){
+        featuredProps = action.propIds
+        return{
+          featuredProps: featuredProps,
+          properties: newObj
+        }
     }
       return state
 }

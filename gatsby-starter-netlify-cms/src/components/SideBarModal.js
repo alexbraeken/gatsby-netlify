@@ -53,7 +53,7 @@ export default function SideBarModal(props) {
     ]
 
     useEffect(() => {
-        const marginTop = document.getElementsByClassName('newsAlert')?.[0].getBoundingClientRect().height + document.getElementsByClassName('navbar')?.[0].getBoundingClientRect().height
+        const marginTop = document.getElementsByClassName('newsAlert')?.[0].getBoundingClientRect().height
 
         if(marginTop)setModalStyle({marginTop: `${marginTop}px`})
         return () => {

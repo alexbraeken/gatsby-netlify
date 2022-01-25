@@ -1,0 +1,31 @@
+#s-c60d3e62-1212-4e96-a953-04b41fb79e7d > #backgroundBox {
+  position: absolute;
+}
+
+#s-c60d3e62-1212-4e96-a953-04b41fb79e7d > #alignmentBox {
+  position: relative;
+}
+
+#s-c60d3e62-1212-4e96-a953-04b41fb79e7d #s-Path_1 {
+  position: absolute;
+  width: 157.81314086914062px;
+  height: 803.4590454101562px;
+}
+
+.devMobile #jim-container .ui-page {
+  overflow-x: hidden;
+}
+
+.non_jim_mobile #simulation {
+  overflow-x: hidden;
+}
+
+.web #simulation {
+  overflow-x: hidden;
+}
+
+#s-c60d3e62-1212-4e96-a953-04b41fb79e7d > #loadMark {
+  width: 1px;
+  visibility: hidden;
+  display: none;
+}

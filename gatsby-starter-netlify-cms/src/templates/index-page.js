@@ -1,4 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react'
+import { connect } from "react-redux"
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
@@ -16,6 +17,47 @@ import Newsletter from '../components/Newsletter'
 import Content, { HTMLContent } from '../components/Content'
 import InstagramFeed from '../components/InstagramFeed';
 import BackgroundImage from 'gatsby-background-image'
+import PortugalWireSVG from '../components/PortugalWireSVG'
+import AlgarveWireSVG from '../components/AlgarveWireSVG'
+import VacationWireSVG from '../components/VacationWireSVG'
+
+
+const mapStateToProps = (state) => {
+  return  {featuredProps: state.featuredProps}
+}
+
+const ConnectedFeatured = (props) => {
+  const [featuredIds, setFeaturedIds] = useState([])
+
+  const {t} = useTranslation();
+
+  useEffect(() => {
+    setFeaturedIds(props.featuredProps)
+    return () => {
+      setFeaturedIds([])
+    }
+  }, [props.featuredProps])
+
+  return (
+    <FirestoreCollection path="/Properties/">
+      {data => {
+          return (!data.isLoading && data.value) ?
+          <>
+          {featuredIds && featuredIds.length > 0 && 
+            <div>
+              <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('featured')}} /></h2>
+              <FeatureCarousel ids={featuredIds} properties={data.value}/>
+            </div>
+          }
+            </>
+          : <Loading />
+        }
+      }
+    </FirestoreCollection>
+  )
+}
+
+const FeaturedProperties = connect(mapStateToProps)(ConnectedFeatured)
 
 export const IndexPageTemplate = ({
   image,
@@ -42,8 +84,6 @@ export const IndexPageTemplate = ({
 
   const [animationPlaying, setAnimationPlaying] = useState(false)
   const [delta, setDelta] = useState({prev: 0, curr: 0})
-  const [featuredIds, setFeaturedIds] = useState([])
-
 
   const logo = useRef(null);
   const shadow =useRef(null)
@@ -54,6 +94,58 @@ export const IndexPageTemplate = ({
   const heroOverlay = useRef(null)
   const diamond = useRef(null)
   const bgImage = useRef(null)
+  const borderSection = useRef(null)
+
+
+  useEffect(() => {
+    let sectionsLeft = gsap.utils.toArray('.grey-in-left');
+    let sectionsRight = gsap.utils.toArray('.grey-in');
+
+    sectionsLeft.forEach((section) => {
+      gsap.from(section, { 
+        filter: "grayscale(0.1)",
+        xPercent: -100,
+        z: 0.1,
+        rotationZ: 0.01,
+        autoAlpha: 0,
+        force3D:true,
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 90%',
+            once: true,
+            duration:0.3,
+            ease:"Power2.easeOut",
+        }
+    });
+    });
+
+    sectionsRight.forEach((section, index) => {
+      gsap.from(section, { 
+        filter: "grayscale(0.1)",
+        xPercent: 100,
+        autoAlpha: 0,
+        z: 0.1,
+        rotationZ: 0.01,
+        force3D:true,
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 90%',
+            once: true,
+            duration:0.5,
+            ease:"Power2.easeOut",
+            onLeave: index === sectionsRight.length - 1 ? ()=>{
+              console.log("trigger")
+              borderSection.current.classList.add('trigger')
+            } : null,
+            onEnterBack: index === sectionsRight.length - 1 ? ()=>{
+              console.log("trigger")
+              borderSection.current.classList.remove('trigger')
+            } : null,
+        }
+    });
+    });
+  }, []);
+  
 
 
 useEffect(() => {
@@ -90,26 +182,6 @@ useEffect(() => {
   }
 }, [delta, logo, shadow])
 
-const uri = "https://api.hostfully.com/v2/properties?tags=featured&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
-
-useEffect(() => {
-  fetch(uri, {
-    headers:{
-      "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
-    }
-  })
-        .then(response => {
-            
-            return response.text()
-        })
-        .then(data => {
-          setFeaturedIds(JSON.parse(data).propertiesUids)
-        })
-  return () => {
-    setFeaturedIds([])
-  }
-}, [])
-
 
 const handleLogoHover = () => {
   let width = logo.current.scrollWidth;
@@ -129,20 +201,6 @@ useScrollPosition(({ prevPos, currPos }) => {
    
   }
 })
-
-const handleSectionHover = (side) => {
-  diamond.current.style.borderRadius = side === "left" ? "0 50% 0 0" : "0 0 0 50%"
-  diamond.current.style.width = "50px"
-  diamond.current.style.height = "50px"
-}
-
-const handleSectionLeave = () => {
-  diamond.current.style.borderRadius = "50%"
-  diamond.current.style.width = "25px"
-  diamond.current.style.height = "25px"
-}
-
-
 
   return(
   <div>
@@ -178,27 +236,30 @@ const handleSectionLeave = () => {
     </div>
      
     
-    <section className="section section--gradient">
-      <section style={{
-        paddingBottom: "100px",
-        width: "100vw",
-        position: "relative",
-        marginLeft: "-50vw",
-        left: "50%"}}>
-      <Container style={{zIndex:"1"}}>
-        <Row>
-          <Col xs={12} md={8} style={{display:"flex", flexWrap:"wrap", padding: "50px 0"}}>
+    <section>
+      <section className='main-section'>   
+      <Container style={{zIndex:"1", margin:"auto"}}>
+        <Row style={{height: "100%"}}>
+          <Col xs={12} md={6} className='main-col left'>
             <div className="intro-para">
               <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com <Trans>Property Rentals & Management</Trans></h1>
               <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
               <h2>{t('description')}</h2>
             </div>
           </Col>
-          <Col xs={12} md={4}>
-            <PreviewCompatibleImage imageInfo={pitchImage} imgStyle={{borderRadius: "5px", marginLeft: "-150px", zIndex: "-1"}}/>
+          <Col xs={12} md={6}>
           </Col>
         </Row>
       </Container>
+      <div className="section-background">
+          <BackgroundImage
+            Tag="div"
+            className={"half-image grey-in"}
+            fluid={pitchImage.childImageSharp?.fluid || pitchImage}
+            backgroundColor={`#040e18`}
+          ></BackgroundImage>
+          <PortugalWireSVG />
+        </div>
       <div style={{ 
           width: "100vw",
           position: "absolute",
@@ -208,166 +269,172 @@ const handleSectionLeave = () => {
           height: "100px",
           zIndex: "1",
           transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-            <svg fill="#f5821e" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+            <svg fill="url(#Gradient)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
               width: "100%",
               left: "0",
               bottom: "-1px",
               height: "100%",
               position: "absolute",
             }}> 
+            <defs>
+              <linearGradient id="Gradient">
+                <stop offset="0%" stop-color="#ffa600"/>
+                <stop offset="17%" stop-color="#ff8400"/>
+                <stop offset="48%" stop-color="#ff7c00"/>
+                <stop offset="88%" stop-color="#ff6200"/>
+                <stop offset="100%" stop-color="#e92e00"/>
+              </linearGradient>
+            </defs>
             <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
             </svg>
             </div>
       </section>
-      <section style={{
-        paddingBottom: "100px",
-        width: "100vw",
-        position: "relative",
-        marginLeft: "-50vw",
-        left: "50%",
-        backgroundColor:"#f5821e"}}>
-          <div className="feature-container">
-          <h2 style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}><Trans>What We</Trans> <span style={{color:"#fff"}}><Trans>Offer!</Trans></span></h2>
+      <section className='main-section mobile-reverse orange-gradient'>
+          <div className="section-background">
+            <BackgroundImage
+                Tag="div"
+                className={"half-image-left grey-in-left"}
+                fluid={tripImage.childImageSharp?.fluid || tripImage}
+                backgroundColor={`#040e18`}
+              ></BackgroundImage>
+              <VacationWireSVG />
+          </div>
+          <Container style={{zIndex:"1", margin:"auto"}}>
+            <Row style={{height: "100%"}}>
+              <Col xs={12} md={6}></Col>
+              <Col xs={12} md={6} className='main-col right'>
+              <center style={{margin: "auto"}}><h2 style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}><Trans>What We</Trans> <span style={{color:"#fff"}}><Trans>Offer!</Trans></span></h2></center>
+                <div className="intro-para">
+                  <h3 style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Plan the trip of your dreams with us!</Trans></h3>
+                  <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
+                  <p>
+                    <Trans>Book your trip with us and enjoy the best the Algarve has to offer with our spectacular selection of properties and best in class customer service.</Trans>
+                    <Trans>We have dedicated classic customer care with modern technology to provide a worry free vacation.</Trans> <Link to="/whyBookSmartavillas" style={{fontWeight:"bold", textDecoration:"underline"}}><Trans>Read more</Trans>...</Link>
+                  </p>
+                  <br />
+                  <SubmitButton text={t('See Our Properties')} link="/properties"/>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+      </section>
+      <section className='main-section orange-gradient'>
+          <Container style={{zIndex:"1", margin:"auto"}}>
+            <Row style={{height: "100%"}}>    
+              <Col xs={12} md={6} className='main-col left'>
+                <div className="" style={{margin: "auto"}}>
+                  <h3 style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
+                  <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
+                  <p>
+                    <Trans>We pride ourselves on tailoring our services to meet your needs. Join hundreds of property owners and enjoy the benefits our best in the region service provide.</Trans>
+                  </p>
+                  <br />
+                  <SubmitButton text={t('Read more')} link="/ListWithUs"/>
+                </div>
+              </Col>
+              <Col xs={12} md={6}>
+              </Col>
+            </Row>
+          </Container>
+          <div className="section-background">
+            <BackgroundImage
+                Tag="div"
+                className={"half-image grey-in"}
+                fluid={listImage.childImageSharp?.fluid || listImage}
+                backgroundColor={`#040e18`}
+              ></BackgroundImage>
+              <AlgarveWireSVG />
+          </div>
+      </section>
+      <section className='main-section section-top-border orange-gradient' ref={borderSection} >
+          <Container style={{zIndex:"2", paddingTop: "30px"}}>
+          <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><Trans>At Home in the</Trans> <span style={{color:"#fff"}}>Algarve</span></h2>
           <br />
-    <Row>
-      
-      <div className="row-container">
-        <div id="diamond-split" ref={diamond}>        
-      </div>
-     </div>
-      
-      <Col id="left-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("left")} onMouseLeave={()=>handleSectionLeave()}>
-      <BackgroundImage
-      Tag="div"
-      className={"featured-content"}
-      fluid={tripImage.childImageSharp?.fluid || tripImage}
-      backgroundColor={`#040e18`}
-    ></BackgroundImage>
-        <div className="content-text">
-          <h3 style={{color: "#fff", fontWeight:"bold"}}><Trans>Plan the trip of your dreams with us!</Trans></h3>
-            <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
-            <p>
-            <Trans>Book your trip with us and enjoy the best the Algarve has to offer with our spectacular selection of properties and best in class customer service.</Trans>
-            <Trans>We have dedicated classic customer care with modern technology to provide a worry free vacation.</Trans> <Link to="/whyBookSmartavillas" style={{color: "#f5821e", fontWeight:"bold", textDecoration:"underline"}}><Trans>Read more</Trans>...</Link>
-            </p>
-            <br />
-            <SubmitButton text={t('See Our Properties')} link="/properties"/>
-            </div>
-      </Col>
-      <Col id="right-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("right")} onMouseLeave={()=>handleSectionLeave()}>
-      <BackgroundImage
-      Tag="div"
-      className={"featured-content"}
-      fluid={listImage.childImageSharp?.fluid || listImage}
-      backgroundColor={`#040e18`}
-    ></BackgroundImage>
-        <div className="content-text">
-          <h3 style={{color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
-            <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
-            <p>
-              <Trans>We pride ourselves on tailoring our services to meet your needs. Join hundreds of property owners and enjoy the benefits our best in the region service provide.</Trans>
-            </p>
-            <br />
-          <SubmitButton text={t('Read more')} link="/ListWithUs"/>
-            </div>
-      </Col>
-    </Row>
-  </div>
-      <Container style={{zIndex:"2", paddingTop: "30px"}}>
-      <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><Trans>At Home in the</Trans> <span style={{color:"#fff"}}>Algarve</span></h2>
-      <br />
-        <Row style={{justifyContent:"center"}}>
-          
-          <Col className="home-card-container" xs={12} md={4} >
-            <Card className="home-card">
-      <a href="/team" aria-label="team"></a>
-      <BackgroundImage
-      Tag="div"
-      className={"home-card-bg"}
-      fluid={trustedImage.childImageSharp?.fluid || trustedImage}
-      backgroundColor={`#040e18`}
-      style={{position: "absolute"}}
-    ></BackgroundImage>              
-              <Card.Body className="home-card-body">
-              <div className="home-card-title">
-                  <h2><Trans>Trusted since 2009</Trans></h2>
-                  <a href="/team" className="home-card-button-link"><button className="btn"><Trans>Read more</Trans>...</button></a>
-                </div>         
-              </Card.Body>
-              
-            </Card>
-            <div className="home-card-para">
-                  <p><Trans>We are a dynamic and friendly company that really puts you - the customer - first.</Trans></p>
-            </div>
-          </Col>
-          <Col className="home-card-container" xs={12} md={4} >
-            <Card className="home-card">
-      <a href="/location/algarve" aria-label="locations"></a>
-      <BackgroundImage
-      Tag="div"
-      className={"home-card-bg"}
-      fluid={locationImage.childImageSharp?.fluid || locationImage}
-      backgroundColor={`#040e18`}
-      style={{position: "absolute"}}
-    ></BackgroundImage>
-
-              <Card.Body className="home-card-body">
-              <div className="home-card-title">
-                <h2><Trans>Amazing Location</Trans></h2>
-                <a href="/location/algarve" className="home-card-button-link"><button className="btn"><Trans>Read more</Trans>...</button></a>
+          <Row style={{justifyContent:"center"}}>
+            <Col className="home-card-container" xs={12} md={4} >
+              <Card className="home-card">
+                <a href="/team" aria-label="team"></a>
+                <BackgroundImage
+                Tag="div"
+                className={"home-card-bg"}
+                fluid={trustedImage.childImageSharp?.fluid || trustedImage}
+                backgroundColor={`#040e18`}
+                style={{position: "absolute"}}
+                ></BackgroundImage>              
+                <Card.Body className="home-card-body">
+                  <div className="home-card-title">
+                    <h2><Trans>Trusted since 2009</Trans></h2>
+                    <a href="/team" className="home-card-button-link"><button className="btn"><Trans>Read more</Trans>...</button></a>
+                  </div>         
+                </Card.Body>
+              </Card>
+              <div className="home-card-para">
+                <p><Trans>We are a dynamic and friendly company that really puts you - the customer - first.</Trans></p>
               </div>
-              
-              </Card.Body>
-            </Card>
-            <div className="home-card-para">
+            </Col>
+            <Col className="home-card-container" xs={12} md={4} >
+              <Card className="home-card">
+                <a href="/location/algarve" aria-label="locations"></a>
+                <BackgroundImage
+                Tag="div"
+                className={"home-card-bg"}
+                fluid={locationImage.childImageSharp?.fluid || locationImage}
+                backgroundColor={`#040e18`}
+                style={{position: "absolute"}}
+              ></BackgroundImage>
+                <Card.Body className="home-card-body">
+                  <div className="home-card-title">
+                    <h2><Trans>Amazing Location</Trans></h2>
+                    <a href="/location/algarve" className="home-card-button-link"><button className="btn"><Trans>Read more</Trans>...</button></a>
+                  </div>
+                </Card.Body>
+              </Card>
+              <div className="home-card-para">
                 <p style={{textAlign:"center"}}><Trans>Spectacular scenery, sandy beaches, good food, friendly people and great golf.</Trans></p>
-                </div>
-          </Col>
-          <Col className="home-card-container" xs={12} md={4} >
-            <Card className="home-card">
-      <a href="/properties" aria-label="properties"></a>
-      <BackgroundImage
-      Tag="div"
-      className={"home-card-bg"}
-      fluid={accommodationsImage.childImageSharp?.fluid || accommodationsImage}
-      backgroundColor={`#040e18`}
-      style={{position: "absolute"}}
-    ></BackgroundImage>
-  
-              <Card.Body className="home-card-body">
-              <div className="home-card-title">
-                <h2><Trans>100 + Quality Accommodations</Trans></h2>
-                <a href="/properties" className="home-card-button-link"><button className="btn"><Trans>Book Now</Trans>...</button></a>
               </div>
-              
-              </Card.Body>
-              
-            </Card>
-            <div className="home-card-para">
+            </Col>
+            <Col className="home-card-container" xs={12} md={4} >
+              <Card className="home-card">
+                <a href="/properties" aria-label="properties"></a>
+                <BackgroundImage
+                Tag="div"
+                className={"home-card-bg"}
+                fluid={accommodationsImage.childImageSharp?.fluid || accommodationsImage}
+                backgroundColor={`#040e18`}
+                style={{position: "absolute"}}
+                ></BackgroundImage>
+                <Card.Body className="home-card-body">
+                  <div className="home-card-title">
+                    <h2><Trans>100 + Quality Accommodations</Trans></h2>
+                    <a href="/properties" className="home-card-button-link"><button className="btn"><Trans>Book Now</Trans>...</button></a>
+                  </div>
+                </Card.Body>
+              </Card>
+              <div className="home-card-para">
                 <p style={{textAlign:"center"}}><Trans>At affordable prices - in the Eastern Algarve, with Tavira being the focal point.</Trans></p>
-                </div>
-          </Col>
-        </Row>
-      </Container>
-      <div style={{ 
-          width: "100vw",
-          position: "absolute",
-          top: "auto",
-          bottom: "0",
-          right: "0",
-          height: "100px",
-          zIndex: "1",
-          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-            <svg fill="#333333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
-              width: "100%",
-              left: "0",
-              bottom: "-1px",
-              height: "100%",
-              position: "absolute",
-            }}> 
+              </div>
+            </Col>
+          </Row>
+          </Container>
+        <div style={{ 
+            width: "100vw",
+            position: "absolute",
+            top: "auto",
+            bottom: "0",
+            right: "0",
+            height: "100px",
+            zIndex: "1",
+            transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+          <svg fill="#333333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+            width: "100%",
+            left: "0",
+            bottom: "-1px",
+            height: "100%",
+            position: "absolute",
+          }}> 
             <path d="M0 20 C 30 80 70 0 100 75 L 100 100 0 100 Z"></path> 
-            </svg>
-            </div>
+          </svg>
+        </div>
       </section>
       <section style={{
         paddingBottom: "100px",
@@ -418,21 +485,7 @@ const handleSectionLeave = () => {
       </section>
       <Newsletter lang={language}/>
       <Container style={{paddingLeft:"0", paddingRight:"0"}}>
-                  <FirestoreCollection path="/Properties/">
-                    {data => {
-                        return (!data.isLoading && data.value) ?
-                        <>
-                        {featuredIds && featuredIds.length > 0 && 
-                          <div>
-                            <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('featured')}} /></h2>
-                            <FeatureCarousel ids={featuredIds} properties={data.value}/>
-                          </div>
-                        }
-                          </>
-                        : <Loading />
-                      }
-                    }
-                  </FirestoreCollection>
+        <FeaturedProperties />
       </Container>
       <section style={{paddingTop:"40px"}}>
         <Container>
@@ -480,7 +533,7 @@ const IndexPage = ({ data }) => {
   const post = data.pageData
 
   return (
-    <Layout navClass="transparent">
+    <Layout>
       <IndexPageTemplate
         image={post.frontmatter.image}
         title={post.frontmatter.title}

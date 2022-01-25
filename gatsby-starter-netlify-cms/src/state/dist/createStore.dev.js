@@ -9,6 +9,7 @@ var _redux = require("redux");
 
 function reducer(state, action) {
   var newObj = state.properties;
+  var featuredProps = state.featuredProps;
 
   if (action.type === "ADD_PROPERTY") {
     if (!newObj[action.propId]) {
@@ -35,6 +36,14 @@ function reducer(state, action) {
         properties: newObj
       };
     }
+  }
+
+  if (action.type === 'ADD_FEATURED') {
+    featuredProps = action.propIds;
+    return {
+      featuredProps: featuredProps,
+      properties: newObj
+    };
   }
 
   return state;
