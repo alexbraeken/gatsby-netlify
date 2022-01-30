@@ -164,25 +164,43 @@ const PropertiesDropDown = React.memo((props) => {
 
 const LanguageChange = (props) => {
 
+  const [langs, setLangs] = useState([])
+
   const {languages, changeLanguage} = useI18next();
-  
+  const {t} = useTranslation();
+
+  useEffect(() => {
+    let langList = [{name: {en:'languages'}, link:''}]
+    languages.map((lng) => {
+      let langName = lng
+      switch(lng){
+        case "en": 
+          langName = 'English'
+          break;
+        case "pt":
+          langName = 'Português'
+          break;
+        case "fr":
+          langName = 'Français'
+          break;
+        case "es":
+          langName = 'Español'
+          break;
+      }
+      langList.push({name:langName, link:lng})
+    })
+    setLangs(langList)
+  }, []);
 
   return (
-    <ul className="sub-menu">
-      {languages.map((lng) => (
-        <li key={lng} className="languages-item">
-          <Link
-            to="#"
-            className="languages-sub-item"
-            onClick={(e) => {
-              e.preventDefault();
-              changeLanguage(lng);
+        <li key={'language-link'} className="">
+          <a className='nav-main-link' role="button" tabIndex="0" 
+            onClick={() => {
+              props.handleSubLinks(langs)
             }}>
-            {lng.toUpperCase()} 
-          </Link>
+            {t('Language')} 
+          </a>
         </li>
-      ))}
-    </ul>
   )
 }
 
@@ -243,11 +261,13 @@ const Navbar = class extends React.Component {
     this.subLinks = React.createRef();
     this.logoContainer = React.createRef();
     this.navMenu = React.createRef();
+    this.menuContainer = React.createRef();
     this.tl = gsap.timeline({
       scrollTrigger: {
         start: 50,
-        end: 100, 
-        scrub: 1, 
+        end: 100,
+        scrub: 1,
+        onUpdate: self => console.log("progress", self.progress)
       }
     });
     this.state = {
@@ -265,11 +285,16 @@ const Navbar = class extends React.Component {
 
 
   componentDidMount(){
-    this.tl.to(this.logoContainer.current, {
-      ease: "Power2.easeOut",
-      width: "55px",
-      duration: 0.5,
-    })
+      this.tl.to(this.logoContainer.current, {
+        ease: "Power2.easeOut",
+        width: "55px",
+        duration: 0.5,
+      })
+      this.tl.to(this.menuContainer.current, {
+        ease: "Power2.easeOut",
+        width: "0",
+        duration: 0.5,
+      })
   }
 
   componentDidUpdate(){
@@ -328,7 +353,7 @@ const Navbar = class extends React.Component {
   render() {
 
     const { data } = this.props
-    const {language} = this.props.useI18next;
+    const {language, changeLanguage} = this.props.useI18next;
     const links = data.site.siteMetadata.menuLinks
     
 
@@ -344,6 +369,9 @@ const Navbar = class extends React.Component {
         </div>
         <div className='hr'>
           <div className={`menu-btn ${this.state.active ? 'active': ''}`} onClick={()=>this.handleNav()}>
+            <div className='menu-tag' ref={this.menuContainer}>
+              <h4 style={{paddingBottom:"6px", color: "#000", filter: "drop-shadow(0px 0px 0px black)"}}>menu</h4>
+            </div>
             <svg height="80" width="80">
               <defs>
                 <linearGradient id="gradient">
@@ -374,13 +402,14 @@ const Navbar = class extends React.Component {
                       </li>
                     )
                     :
-                    <li key={index}>
+                    <li key={`list-item-${index}`}>
                       <Link to={`${link.link}`}>
                         {link.name[language]}
                       </Link>
                     </li>
                   })
                 }
+                <LanguageChange handleSubLinks={this.handleSubLinks}/>
                 </ul>
               </nav>}
             </div>
@@ -409,11 +438,26 @@ const Navbar = class extends React.Component {
                 {this.state.subLinks.length > 0 && 
                 <div className="sub-menu-links-container">
                   <ul id="sublinks-ul" ref={this.subLinks}>
-                    {this.state.subLinks && this.state.subLinks[0].name.en !== "propertiesList" && this.state.subLinks.map((link, index) => {
+                    {this.state.subLinks && this.state.subLinks[0].name.en !== 'languages' && this.state.subLinks[0].name.en !== "propertiesList" && this.state.subLinks.map((link, index) => {
                       return <li key={`sublink-${index}`}><Link to={link.link}>{link.name[language]}</Link></li>
                     })}
                     {this.state.subLinks && this.state.subLinks[0].name.en === "propertiesList" && 
                     <PropertiesDropDown filterList={this.filterList}/>
+                    }
+                    {this.state.subLinks && this.state.subLinks[0].name.en === "languages" && 
+                    this.state.subLinks.map((lng, index)=>{
+                      return  index > 0 && <li key={lng.link} className="">
+                                <Link
+                                  to="#"
+                                  className=""
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    changeLanguage(lng.link);
+                                  }}>
+                                  {lng.name} 
+                                </Link>
+                              </li>
+                    })
                     }
                   </ul>
                 </div>

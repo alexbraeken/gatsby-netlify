@@ -189,7 +189,8 @@ export const WhyUsPageTemplate = ({
       </Container>    
     </section>
     <section style={{
-        paddingBottom: "100px"}}>
+        paddingBottom: "100px",
+        overflow: "hidden"}}>
       <Container>
         <Row>
           <Col>

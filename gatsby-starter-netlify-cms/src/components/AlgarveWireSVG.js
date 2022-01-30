@@ -8,7 +8,6 @@ const AlgarveWireSVG = (props) => {
     useEffect(() => {
         let path = svg.current
         let circle = circleSVG.current
-        console.log(circle.style)
 
         if(path){
             let pathLength = path.getTotalLength()

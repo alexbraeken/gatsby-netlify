@@ -445,7 +445,7 @@ const SearchFilter = (props) => {
           ref={bedrooms}
           placeholder={t("Bedrooms")}/>
         
-        <div role="button" tabindex="0" onClick={submitSearch} onKeyDown={(e)=>{if(e.key==="Enter"){submitSearch()}}}>
+        <div role="button" tabindex="0" onClick={submitSearch} onKeyDown={(e)=>{if(e.key==="Enter"){submitSearch()}}} style={{margin:"0 5px"}}>
         <SubmitButton text={t("See What We Have!")}/>
         </div>
         <Helmet>

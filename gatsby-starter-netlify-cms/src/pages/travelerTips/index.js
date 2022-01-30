@@ -49,31 +49,35 @@ class TravelerTipsIndex extends React.Component {
         </div>
         <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>{t("Activities")} <span style={{color:"#f5821e"}}>{t("Nearby")}</span></h2>
         <Row>
-          <Col xs={12} md={2}>
+          <Col xs={3} md={2} style={{zIndex: 2}}>
             <StickyBox>
               <div className="activities-filter">
                 <div role="button" tabindex="0" className={`filter-button ${!this.state.activityFilter? "selected":""}`} onClick={()=>this.handleClick(null)} onKeyDown={()=>this.handleClick(null)}>
+                  <div class="filter-button-content">
                     <span>{t("All")}</span><FontAwesomeIcon icon={faInfinity}/> 
+                  </div>
                 </div>
                 <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Family Activity" ? "selected":""}`} onClick={()=>this.handleClick("Family Activity")} onKeyDown={()=>this.handleClick("Family Activity")}>
-                    <span>{t("Family Activity")}</span><FontAwesomeIcon icon={faChild} /> 
+                    <div class="filter-button-content">
+                      <span>{t("Family Activity")}</span><FontAwesomeIcon icon={faChild} /> 
+                    </div>
                 </div>
                 <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Excursion" ? "selected":""}`} onClick={()=>this.handleClick("Excursion")} onKeyDown={()=>this.handleClick("Excursion")}>
-                    <span>{t("Excursion")}</span><FontAwesomeIcon icon={faHiking} /> 
+                    <div class="filter-button-content"><span>{t("Excursion")}</span><FontAwesomeIcon icon={faHiking} /> </div>
                 </div>
                 <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Horse Riding" ? "selected":""}`} onClick={()=>this.handleClick("Horse Riding")} onKeyDown={()=>this.handleClick("Horse Riding")}>
-                    <span>{t("Horse Riding")}</span><FontAwesomeIcon icon={faHorse}/> 
+                    <div class="filter-button-content"><span>{t("Horse Riding")}</span><FontAwesomeIcon icon={faHorse}/> </div>
                 </div>
                 <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Golf" ? "selected":""}`} onClick={()=>this.handleClick("Golf")} onKeyDown={()=>this.handleClick("Golf")}>
-                    <span>{t("Golf")}</span><FontAwesomeIcon icon={faGolfBall} /> 
+                    <div class="filter-button-content"><span>{t("Golf")}</span><FontAwesomeIcon icon={faGolfBall} /> </div>
                 </div>
                 <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Restaurant" ? "selected":""}`} onClick={()=>this.handleClick("Restaurant")} onKeyDown={()=>this.handleClick("Restaurant")}>
-                    <span>{t("Restaurants")}</span><FontAwesomeIcon icon={faUtensils} /> 
+                    <div class="filter-button-content"><span>{t("Restaurants")}</span><FontAwesomeIcon icon={faUtensils} /> </div>
                 </div>
               </div>
             </StickyBox>
           </Col>
-          <Col xs={12} md={10}>
+          <Col xs={9} md={10} style={{zIndex: 1}}>
             <section className="section">
               <Container>
                 <div className="content">

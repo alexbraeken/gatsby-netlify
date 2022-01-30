@@ -222,7 +222,7 @@ export const WhyBookPageTemplate = ({
       </Container>
     </section>
     }
-    <section>
+    <section style={{overflow: "hidden"}}>
       <Container>
         <Row>
           <Col>

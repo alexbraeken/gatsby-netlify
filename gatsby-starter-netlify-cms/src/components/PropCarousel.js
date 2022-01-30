@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useTranslation} from 'gatsby-plugin-react-i18next';
+import {useTranslation, Link} from 'gatsby-plugin-react-i18next';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,6 +7,10 @@ import { Container } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import ReactBnbGallery from 'react-bnb-gallery';
 import { Helmet } from 'react-helmet'
+import BedBathPax from '../components/BedBathPax';
+import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
+import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
+import Share from '../components/Share'
 
 class CustomSlide extends React.Component {
     render() {
@@ -17,7 +21,7 @@ class CustomSlide extends React.Component {
         margin: "0px auto",
         overflow: "hidden",
         position: "relative",
-        backgroundSize:"cover",
+        backgroundSize:"contain",
         backgroundPosition:"center",
         backgroundRepeat: "no-repeat"}} 
         key={this.props.key? this.props.key : 0}>
@@ -65,8 +69,8 @@ const PropCarousel = (props) => {
   const {t} = useTranslation(['translation']);
 
   const settings = {
-    afterChange: function(i) {
-      setNextImgIndex(i)
+    beforeChange: function(oldIndex, newIndex) {
+      setNextImgIndex(newIndex)
     },
     dots: false,
     infinite: true,
@@ -95,35 +99,81 @@ const PropCarousel = (props) => {
           photos={props.photos.map((photo,index)=>{return({photo: photo.url, caption: photo.description})})}
           onClose={() => setIsOpen(false)}
         />
-        <Slider {...settings} style={{position:"relative"}}>
-            {props.photos ? props.photos.map((photo, index)=>(
-                <CustomSlide backgroundImage={photo.url} key={index}/>
-            )): <CustomSlide backgroundImage={props.firstSlide} />}
-        </Slider>
-        {props.photos ? 
-          <div style={{position:"absolute",height:"100%",width:"100%"}}>
-            <Container>
-              <Button onClick={() => setIsOpen(true)}
+        <div style={{display:"flex", position:"relative"}}>
+          <div style={{
+            position: "absolute", 
+            width: "100%", 
+            height: "100%", 
+            left: 0, 
+            top: 0, 
+            backgroundImage:`url('${props.photos[nextImgIndex].url}'`,
+            filter: "blur(21px)",
+            backgroundSize: "cover",
+            backgroundPosition: "center center"}}>
+
+          </div>
+          <div style={{
+            position: "absolute", 
+            width: "30%", 
+            height: "100%", 
+            left: 0, 
+            top: 0,
+            background: "rgb(23,11,1)",
+            background: "linear-gradient(90deg, rgba(23,11,1,1) 0%, rgba(0,0,0,0.7819502801120448) 73%, rgba(0,0,0,0) 100%)"}}>
+          </div>
+          <div style={{position:"relative", width:"30%", display: "flex", justifyContent:"center", flexDirection:"column"}}>
+            <div style={{
+              padding: "0 calc(25px + 15%)",
+              lineHeight: "1.2"}}>
+              <h2 style={{color:"#f5821e", fontSize: "calc(5px + 23 * (100vw - 320px) / 1080)", fontweight: "800",filter: "drop-shadow(2px 4px 6px black)"}}>{props.name}</h2>
+              <br />
+              <div style={{color:"#fff", fontSize: "calc(3px + 23 * (100vw - 320px) / 1080)", display: "flex", flexDirection: "column"}}>
+                <div>
+                  <span className="prc">{t("From")} {props.baseRate} €</span>
+                  <span className="mth"> / {t("Night")}</span>
+                </div>
+                <br />
+                <BedBathPax bedrooms={props.bedrooms} bathrooms={props.bathrooms} baseGuests={props.baseGuests} color="rgba(256,256,256)"/>
+                <br />
+                <small><Link to={`/properties?city=${props.city}`} className="prop-city-link">{props.city}</Link></small>
+                <br />
+                <div className='socials-container'>
+                  <div className="add-favs">
+                      {props.inFavs ? 
+                      <AiFillHeart onClick={()=>{
+                        props.dispatch({type: 'REMOVE_PROPERTY', propId: props.propId})
+                      }}/> 
+                      :
+                      <AiOutlineHeart onClick={()=>{
+                          props.dispatch({ type: 'ADD_PROPERTY', propName: props.name, propId: props.propId, propImg: props.firstSlide, bedrooms: props.bedrooms, bathrooms:props.bathrooms, baseGuests: props.baseGuests, city: props.city, rate: props.baseRate })
+                          }}/>
+                      }
+                  </div>
+                  <br />
+                  <Share propImg={props.firstSlide} propName={props.name}/>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <Slider {...settings} style={{position:"relative", width: "70%", marginLeft: "auto"}}>
+              {props.photos ? props.photos.map((photo, index)=>(
+                  <CustomSlide backgroundImage={photo.url} key={index}/>
+              )): <CustomSlide backgroundImage={props.firstSlide} />}
+          </Slider>
+          {props.photos ?
+          <div className="gallery-btn-container">
+            <div className="gallery-btn" onClick={() => setIsOpen(true)}
               style={{
-                position:"absolute", 
-                bottom:"2rem", 
-                right:"0", 
-                backgroundColor:"#000", 
                 backgroundImage:`url('${(nextImgIndex+1) === props.photos.length ? props.photos[0].url : props.photos[nextImgIndex+1].url}')`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundBlendMode: "luminosity",
-                width: "5em",
-                height: "2em",
-                maxWidth: "400px",
-                maxHeight: "200px",
-                minWidth:"100px",
-                minHeight: "50px",
-              fontSize: "1.5em"}}>{t("Gallery")}</Button>
-            </Container>
-          </div> : null }
+                }}>
+                  <span>{t("Gallery")}</span>
+              </div>
+          </div>
+            : null }
+        </div>
         </>
-      );
+      )
 }
 
 export default PropCarousel

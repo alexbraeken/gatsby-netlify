@@ -52,7 +52,7 @@ const Favourites = (props) => {
       infinite: true,
       dots: true,
       className: "fav-slider center",
-      centerPadding: "30px",
+      centerPadding: "10px",
       slidesToShow: Object.keys(favProps).length > 4 ? 4 : Object.keys(favProps).length,
       slidesToScroll: 1,
       swipeToSlide: true,

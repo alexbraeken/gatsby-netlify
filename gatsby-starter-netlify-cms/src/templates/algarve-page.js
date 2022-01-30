@@ -136,46 +136,55 @@ export const AlgarvePageTemplate = ({
       }, [])
 
       useEffect(() => {
-        Object.keys(featureImgs).forEach((img, index)=>{
-          gsap.to(featureImgs[index], {
-            scrollTrigger: {
-              trigger: stickyFeature.current,
-              start: `${index*25}% 75%`,
-              end: "bottom top",
-              scrub: 1,
-              toggleClass: {targets: featureImgs[index],  className: "visible"}
-            }
+        if(featureImgs.length > 0){
+          Object.keys(featureImgs).forEach((img, index)=>{
+            gsap.to(featureImgs[index], {
+              scrollTrigger: {
+                trigger: stickyFeature.current,
+                start: `${index*25}% 75%`,
+                end: "bottom top",
+                scrub: 1,
+                toggleClass: {targets: featureImgs[index],  className: "visible"}
+              }
+            })
           })
-        })
+        }
+
       }, [featureImgs])
 
       useEffect(() => {
-        Object.keys(postcards).forEach((img, index)=>{
-          gsap.to(postcards[index], {
-            scrollTrigger: {
-              trigger: stickyFeature.current,
-              start: `${index*25}% 100%`,
-              end: `${(index*25)+25}% 100%`,
-              scrub: 1,
-              toggleClass: {targets: postcards[index],  className: "visible"},
-              onToggle: ()=>{stickyFeature.current.classList.toggle(`background-${index}`)}
-            }
+        if(postcards.length > 0){
+          Object.keys(postcards).forEach((img, index)=>{
+            gsap.to(postcards[index], {
+              scrollTrigger: {
+                trigger: stickyFeature.current,
+                start: `${index*25}% 100%`,
+                end: `${(index*25)+25}% 100%`,
+                scrub: 1,
+                toggleClass: {targets: postcards[index],  className: "visible"},
+                onToggle: ()=>{
+                  if(stickyFeature && stickyFeature.current)stickyFeature.current.classList.toggle(`background-${index}`)
+                }
+              }
+            })
           })
-        })
+        }
       }, [postcards])
 
       useEffect(() => {
-        Object.keys(galleryImgs).forEach((img, index)=>{
-          gsap.to(galleryImgs[index], {
-            scrollTrigger: {
-              trigger: galleryImgs[index],
-              start: `top 80%`,
-              end: "bottom top",
-              scrub: 1,
-              toggleClass: {targets: galleryImgs[index],  className: "visible"}
-            }
+        if(galleryImgs.length > 0){
+          Object.keys(galleryImgs).forEach((img, index)=>{
+            gsap.to(galleryImgs[index], {
+              scrollTrigger: {
+                trigger: galleryImgs[index],
+                start: `top 80%`,
+                end: "bottom top",
+                scrub: 1,
+                toggleClass: {targets: galleryImgs[index],  className: "visible"}
+              }
+            })
           })
-        })
+        }
       }, [galleryImgs])
       
 

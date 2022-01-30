@@ -20,7 +20,7 @@ import BackgroundImage from 'gatsby-background-image'
 import PortugalWireSVG from '../components/PortugalWireSVG'
 import AlgarveWireSVG from '../components/AlgarveWireSVG'
 import VacationWireSVG from '../components/VacationWireSVG'
-
+import smartaLogo from '../img/logo.svg'
 
 const mapStateToProps = (state) => {
   return  {featuredProps: state.featuredProps}
@@ -62,6 +62,7 @@ const FeaturedProperties = connect(mapStateToProps)(ConnectedFeatured)
 export const IndexPageTemplate = ({
   image,
   pitchImage,
+  clipPathImage,
   tripImage,
   listImage,
   trustedImage,
@@ -95,11 +96,17 @@ export const IndexPageTemplate = ({
   const diamond = useRef(null)
   const bgImage = useRef(null)
   const borderSection = useRef(null)
+  const clipCircle = useRef(null)
 
 
   useEffect(() => {
     let sectionsLeft = gsap.utils.toArray('.grey-in-left');
     let sectionsRight = gsap.utils.toArray('.grey-in');
+    let textFadeLeft = gsap.utils.toArray('.fade-left')
+    let textFadeRight = gsap.utils.toArray('.fade-right')
+    let homeCards = gsap.utils.toArray('.home-card')
+    let parallaxScrolls = gsap.utils.toArray('.parallax-scroll')
+    let parallaxBGs = gsap.utils.toArray('.parallax-bg')
 
     sectionsLeft.forEach((section) => {
       gsap.from(section, { 
@@ -134,16 +141,121 @@ export const IndexPageTemplate = ({
             duration:0.5,
             ease:"Power2.easeOut",
             onLeave: index === sectionsRight.length - 1 ? ()=>{
-              console.log("trigger")
-              borderSection.current.classList.add('trigger')
+              if(borderSection && borderSection.current)borderSection.current.classList.add('trigger')
             } : null,
             onEnterBack: index === sectionsRight.length - 1 ? ()=>{
-              console.log("trigger")
-              borderSection.current.classList.remove('trigger')
+              if(borderSection && borderSection.current)borderSection.current.classList.remove('trigger')
             } : null,
         }
     });
     });
+
+    textFadeLeft.forEach((section) => {
+      gsap.from(section, { 
+        filter: "grayscale(0.1)",
+        xPercent: -100,
+        autoAlpha: 0,
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 90%',
+            once: true,
+            duration:0.5,
+            ease:"Power2.easeOut",
+        }
+    });
+    });
+
+    textFadeRight.forEach((section) => {
+      gsap.from(section, { 
+        filter: "grayscale(0.1)",
+        xPercent: 100,
+        autoAlpha: 0,
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 90%',
+            once: true,
+            duration:0.5,
+            ease:"Power2.easeOut",
+        }
+      });
+    });
+
+    
+
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: clipCircle.current,
+        start: 'top 90%',
+        once: true,
+        ease:"Power2.easeOut"
+      },
+    });
+
+    tl.fromTo(
+      clipCircle.current, 
+      0.5,
+      {
+        attr: {
+          r: 0,
+        },
+        strokeWidth: 0
+      },
+      {
+        attr: {
+          r: 150,
+        },
+        strokeWidth: 450,
+        once: true,
+      }
+    )
+
+    tl.to(
+      clipCircle.current, 
+      0.5,
+      {
+        attr: {
+          r: 380,
+        },
+        strokeWidth: 50,
+        opacity: 0.6,
+        once: true,
+        delay: 0.5
+      }
+    )
+
+    homeCards.forEach((section) => {
+      tl.from(section, 
+        0.5,
+        { 
+          scale: 0
+        }
+      );
+    });
+    
+
+    parallaxScrolls.forEach((section) => {
+
+      gsap.from(section, { 
+        yPercent: 50,
+        ease: "none",
+        scrollTrigger: {
+            trigger: section,
+            scrub: true
+        }
+      });
+    });
+
+    parallaxBGs.forEach((section) => {
+      gsap.from(section, { 
+        yPercent: -15,
+        ease: "none",
+        scrollTrigger: {
+            trigger: section,
+            scrub: true
+        }
+      });
+    });
+
   }, []);
   
 
@@ -204,8 +316,8 @@ useScrollPosition(({ prevPos, currPos }) => {
 
   return(
   <div>
-    <div class="hero-container">
-      <div class="hero-bg-container" ref={bgImage}>
+    <div className="hero-container">
+      <div className="hero-bg-container" ref={bgImage}>
       <BackgroundImage
         Tag="div"
         className={"main-hero"}
@@ -240,25 +352,27 @@ useScrollPosition(({ prevPos, currPos }) => {
       <section className='main-section'>   
       <Container style={{zIndex:"1", margin:"auto"}}>
         <Row style={{height: "100%"}}>
-          <Col xs={12} md={6} className='main-col left'>
+          <Col xs={12} lg={6} className='main-col left'>
             <div className="intro-para">
-              <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com <Trans>Property Rentals & Management</Trans></h1>
-              <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-              <h2>{t('description')}</h2>
+              <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}} className='fade-left'><span style={{color:"#f5821e"}}>Smartavillas</span>.com <Trans>Property Rentals & Management</Trans></h1>
+              <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}} className='fade-left'/>
+              <h2 className='fade-left'>{t('description')}</h2>
             </div>
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={12} lg={6}>
           </Col>
         </Row>
       </Container>
       <div className="section-background">
+        <div className='half-image grey-in'>
           <BackgroundImage
-            Tag="div"
-            className={"half-image grey-in"}
-            fluid={pitchImage.childImageSharp?.fluid || pitchImage}
-            backgroundColor={`#040e18`}
-          ></BackgroundImage>
-          <PortugalWireSVG />
+              Tag="div"
+              className={"parallax-bg"}
+              fluid={pitchImage.childImageSharp?.fluid || pitchImage}
+              backgroundColor={`#040e18`}
+            ></BackgroundImage>
+        </div>
+        <PortugalWireSVG />
         </div>
       <div style={{ 
           width: "100vw",
@@ -291,66 +405,85 @@ useScrollPosition(({ prevPos, currPos }) => {
       </section>
       <section className='main-section mobile-reverse orange-gradient'>
           <div className="section-background">
+            <div className={"half-image-left grey-in-left"}>
             <BackgroundImage
                 Tag="div"
-                className={"half-image-left grey-in-left"}
+                className={"parallax-bg"}
                 fluid={tripImage.childImageSharp?.fluid || tripImage}
                 backgroundColor={`#040e18`}
               ></BackgroundImage>
-              <VacationWireSVG />
+            </div>
+            <VacationWireSVG />
           </div>
           <Container style={{zIndex:"1", margin:"auto"}}>
             <Row style={{height: "100%"}}>
-              <Col xs={12} md={6}></Col>
-              <Col xs={12} md={6} className='main-col right'>
-              <center style={{margin: "auto"}}><h2 style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}><Trans>What We</Trans> <span style={{color:"#fff"}}><Trans>Offer!</Trans></span></h2></center>
+              <Col xs={12} lg={6}></Col>
+              <Col xs={12} lg={6} className='main-col right'>
+              <center style={{margin: "auto"}}><h2 className='fade-right' style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}><Trans>What We</Trans> <span style={{color:"#fff"}}><Trans>Offer!</Trans></span></h2></center>
                 <div className="intro-para">
-                  <h3 style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Plan the trip of your dreams with us!</Trans></h3>
-                  <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-                  <p>
+                  <h3 className='fade-right' style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Plan the trip of your dreams with us!</Trans></h3>
+                  <hr className='fade-right' style={{width:"50%", height:"4px", backgroundColor:"#333333"}}/>
+                  <p className='fade-right'>
                     <Trans>Book your trip with us and enjoy the best the Algarve has to offer with our spectacular selection of properties and best in class customer service.</Trans>
                     <Trans>We have dedicated classic customer care with modern technology to provide a worry free vacation.</Trans> <Link to="/whyBookSmartavillas" style={{fontWeight:"bold", textDecoration:"underline"}}><Trans>Read more</Trans>...</Link>
                   </p>
                   <br />
-                  <SubmitButton text={t('See Our Properties')} link="/properties"/>
+                  <SubmitButton className='fade-right' text={t('See Our Properties')} link="/properties"/>
                 </div>
               </Col>
             </Row>
           </Container>
       </section>
       <section className='main-section orange-gradient'>
+        <div class="parallax-scroll bg-logo">
+          <img
+              src={smartaLogo}
+              alt="Smartavillas logo"
+              style={{width:"500px"}}
+            />
+        </div>
           <Container style={{zIndex:"1", margin:"auto"}}>
             <Row style={{height: "100%"}}>    
-              <Col xs={12} md={6} className='main-col left'>
-                <div className="" style={{margin: "auto"}}>
-                  <h3 style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
-                  <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-                  <p>
+              <Col xs={12} lg={6} className='main-col left'>
+                <div className="intro-para" >
+                  <h3 className='fade-left' style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
+                  <hr className='fade-left' style={{width:"50%", height:"4px", backgroundColor:"#333333"}}/>
+                  <p className='fade-left'>
                     <Trans>We pride ourselves on tailoring our services to meet your needs. Join hundreds of property owners and enjoy the benefits our best in the region service provide.</Trans>
                   </p>
                   <br />
                   <SubmitButton text={t('Read more')} link="/ListWithUs"/>
                 </div>
               </Col>
-              <Col xs={12} md={6}>
+              <Col xs={12} lg={6}>
               </Col>
             </Row>
           </Container>
           <div className="section-background">
-            <BackgroundImage
+          <div className={"half-image grey-in"}>
+          <BackgroundImage
                 Tag="div"
-                className={"half-image grey-in"}
+                className={"parallax-bg"}
                 fluid={listImage.childImageSharp?.fluid || listImage}
                 backgroundColor={`#040e18`}
               ></BackgroundImage>
-              <AlgarveWireSVG />
+          </div>
+          <AlgarveWireSVG />
           </div>
       </section>
       <section className='main-section section-top-border orange-gradient' ref={borderSection} >
-          <Container style={{zIndex:"2", paddingTop: "30px"}}>
+          <svg className="clipped-image-container">
+            <defs>
+            <pattern id="img1" patternUnits="userSpaceOnUse" width="1500" height="1500">
+              <image href={clipPathImage.childImageSharp?.fluid.src} x="100" y="-250" width="1500" height="1500" />
+            </pattern>
+          </defs>
+            <circle ref={clipCircle} xmlns="http://www.w3.org/2000/svg" cx="600" cy="450" r="380" stroke="url(#img1)" stroke-width="50" fill="none"/>
+          </svg>
+          <Container style={{zIndex:"2", paddingTop: "30px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
           <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><Trans>At Home in the</Trans> <span style={{color:"#fff"}}>Algarve</span></h2>
           <br />
-          <Row style={{justifyContent:"center"}}>
+          <Row style={{justifyContent:"center", position: "relative"}}>
             <Col className="home-card-container" xs={12} md={4} >
               <Card className="home-card">
                 <a href="/team" aria-label="team"></a>
@@ -494,7 +627,7 @@ useScrollPosition(({ prevPos, currPos }) => {
           <div dangerouslySetInnerHTML={{ __html: `<div> ${news[language]} </div>` }} />
         </Container>
       </section>
-      <section style={{paddingTop:"40px"}}>
+      <section style={{paddingTop:"40px", paddingBottom:"40px"}}>
       <Container>
       <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('our feed')}} /></h2>
       <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
@@ -518,6 +651,7 @@ IndexPageTemplate.propTypes = {
   subheading: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   mainpitch: PropTypes.object,
   pitchImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  clipPathImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   tripImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   listImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   trustedImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -542,6 +676,7 @@ const IndexPage = ({ data }) => {
         subheading={post.frontmatter.subheading}
         mainpitch={post.frontmatter.mainpitch}
         pitchImage={post.frontmatter.pitchImage}
+        clipPathImage={post.frontmatter.clipPathImage}
         tripImage={post.frontmatter.tripImage}
         listImage={post.frontmatter.listImage}
         trustedImage={post.frontmatter.trustedImage}
@@ -608,7 +743,14 @@ query IndexPageTemplate ($language: String!) {
       }
       pitchImage {
         childImageSharp {
-          fluid(maxWidth: 526, quality: 92) {
+          fluid(maxWidth: 926, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      clipPathImage {
+        childImageSharp {
+          fluid(maxWidth: 926, quality: 100) {
             ...GatsbyImageSharpFluid
           }
         }

@@ -282,59 +282,8 @@ export const PropertyPageTemplate = ( props ) =>
                         <div style={{display:"flex", flexWrap:"wrap"}}>
                             {setLoading(false)}
                             <div style={{width:"100%"}}>
-                                <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
-                                <div className="prdtitlesolo productNameTitle">
-                                {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-                                    <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
-                                }
-                                <Container>
-                                    <Row>
-                                    <Col xs={12} md={11}>
-                                        <Row>     
-                                        <h1 style={{margin:"0",fontSize:"inherit",padding:"0",fontWeight:"inherit", width:"100%"}}>
-                                            <Col>
-                                                <Row>
-                                                    {propName?
-                                                    <span className="prdname">{propName}</span>
-                                                    :
-                                                    <Col xs={12} md={9}>
-                                                        <div className="placeholder-box blink" style={{height:"40px"}}></div>
-                                                    </Col> 
-                                                    }
-                                                </Row>
-                                                <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
-                                                <Row>
-                                                    <div className="flag under" style={{marginRight:"10px"}}>
-                                                        <span className="prc">{t("From")} {data.value.baseDailyRate} €</span>
-                                                        <span className="mth"> / {t("Night")}</span>
-                                                    </div>
-                                                
-                                                <span className="titleTags">
-                                                    <span className="titleTag"><Link to={`/properties?city=${data.value.city}`}>{data.value.city}</Link></span >
-                                                    <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
-                                                </span>
-                                                </Row>
-                                            </Col>
-                                        </h1>
-                                        <div className="winterLetsRibbon" title="Winter let">
-                                            
-                                        </div>
-                                        </Row>
-                                    </Col>
-                                    <Col xs={12} md={1} style={{display: "flex", maxWidth: "90px", margin: "auto 0 auto auto"}}>
-                                        <div className="add-favs">
-                                            {props.inFavs ? <AiFillHeart onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.id})} /> 
-                                            :
-                                            <AiOutlineHeart onClick={()=>{
-                                                props.dispatch({ type: 'ADD_PROPERTY', propName: data.value.name, propId: props.id, propImg: data.value.picture, bedrooms: data.value.bedrooms, bathrooms: data.value.bathrooms, baseGuests: data.value.baseGuests, city: data.value.city, rate: data.value.baseDailyRate })
-                                                }}/>
-                                            }
-                                        </div>
-                                        <Share propImg={data.value.picture} propName={data.value.name}/>
-                                    </Col>
-                                    </Row>
-                                </Container>
-                            </div>
+                                <PropCarousel name={propName? propName: ''} baseRate={data.value.baseDailyRate} city={data.value.city} bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} propId={props.id} firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow} dispatch={props.dispatch} inFavs={props.inFavs}/>
+                                
                                 <Container style={{paddingTop:"30px"}}>
                                     <section id="prop-summary">
                                     <div id="prop-nav">

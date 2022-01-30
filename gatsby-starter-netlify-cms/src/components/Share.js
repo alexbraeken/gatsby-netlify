@@ -24,19 +24,19 @@ const Share = (props) => {
         <AiOutlineShareAlt />
         <div className="share expand-btn" >
             <EmailShareButton url={encodeURI(props.target)}>
-                <EmailIcon size={32} round={true}/>
+                <EmailIcon size={34} round={true}/>
             </EmailShareButton>
             <FacebookShareButton url={encodeURI(props.target)} title={String(props.propName)} quote={`Check out ${props.propName}`} hashtag={"#Smartavillas"}>
-                <FacebookIcon size={32} round={true}/>
+                <FacebookIcon size={34} round={true}/>
             </FacebookShareButton>
             <PinterestShareButton url={encodeURI(props.target)} media={String(props.propImg)} description={`Loving ${props.propName} from Smartavillas`}>
-                <PinterestIcon size={32} round={true}/>
+                <PinterestIcon size={34} round={true}/>
             </PinterestShareButton>
             <TwitterShareButton url={encodeURI(props.target)} title={`${t("Check out Smartavillas property")} ${String(props.propName)}`} hashtags={["Smartavillas", "Algarve", "Portugal"]} related={["https://twitter.com/smartavillas"]}>
-                <TwitterIcon size={32} round={true}/>
+                <TwitterIcon size={34} round={true}/>
             </TwitterShareButton>
             <WhatsappShareButton url={encodeURI(props.target)} title={`${t("Check out Smartavillas property")} ${String(props.propName)}`}>
-                <WhatsappIcon size={32} round={true}/>
+                <WhatsappIcon size={34} round={true}/>
             </WhatsappShareButton>
         </div>
     </div>

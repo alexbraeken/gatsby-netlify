@@ -281,7 +281,7 @@ const Properties = React.memo((props) => {
                                 </div>
                                 </StickyBox>
                                 </Col>
-                                <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
+                                <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s", overflowX:"hidden"}}>
                                 <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError}/>
                                 </Col>
                             </Row>

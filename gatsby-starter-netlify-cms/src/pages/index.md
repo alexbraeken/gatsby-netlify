@@ -8,7 +8,8 @@ langTitles:
   fr: Smartavillas
   es: Smartavillas
 image: ../../static/img/smartavillas_home_1.jpg
-pitchImage: ../../static/img/Ria_Formosa_Sunset.jpg
+pitchImage: ../../static/img/algarve_holiday_lets_tavira_detached_villa_5_bedrooms_tav-83_1.jpg
+clipPathImage: ../../static/img/M_Rota_Beach.jpg
 heading: 
   en: Smartavillas
   pt: "Smartavillas"
