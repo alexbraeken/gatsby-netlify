@@ -18,63 +18,63 @@ carPricing:
             fr: Fiat Panda ou similaire 5 portes
             es: Fiat Panda ou similares 5 portas
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "15"
                 }'   
             ,'{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "15"
             }'  
             ,'{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "20"
             }'  
             ,'{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "20"
             }'  
             ,'{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "19"
             }'
             ,'{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "20"
             }'    
             ,'{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "28"
             }'   
             ,'{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "31"
             }'  
             ,'{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "35"
             }'
             ,'{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "28"
             }'  
             ,'{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "20"
             }'  
             ,'{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "19"
             }' 
             ,'{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "15"
             }'  
             ,'{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "15"
             }'
             ,'{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "15"
             }']
                 
@@ -86,63 +86,63 @@ carPricing:
             fr: Clio,Ibiza avec GPS
             es: Clio, Ibiza con GPS
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "18"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "17"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "23"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "24"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "23"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "24"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "31"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "50"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "40"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "31"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "25"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "21"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "17"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "18"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "18"
                 }'
             ]
@@ -154,63 +154,63 @@ carPricing:
             fr: Renault Captur Petit SUV
             es: Renault Captur SUV pequeño
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "21"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "20"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "27"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "28"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "27"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "28"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "34"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "40"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "44"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "34"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "27"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "25"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "20"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "21"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "21"
                 }'
             ]
@@ -222,63 +222,63 @@ carPricing:
             fr: Citroën C4 (petite 7 places)
             es: Citroen C4 (pequeño 7 plazas)
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "34"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "30"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "34"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "55"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "34"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "55"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "52"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "60"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "68"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "52"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "45"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "41"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "31"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "34"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "30"
                 }'
             ]
@@ -290,63 +290,63 @@ carPricing:
             fr: Seat Arona Automatique
             es: Seat Arona Automático
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "26"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "24"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "30"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "31"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "30"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "31"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "40"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "47"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "53"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "40"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "32"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "28"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "24"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "26"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "26"
                 }'
             ]
@@ -358,63 +358,63 @@ carPricing:
             fr: Clio Break
             es: Clio Break
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "20"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "18"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "25"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "27"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "25"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "27"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "33"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "38"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "43"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "33"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "24"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "24"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "18"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "20"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "20"
                 }'
             ]
@@ -426,63 +426,63 @@ carPricing:
             fr: Seat Alhambra 7 places
             es: Seat Alhambra 7 plazas
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "48"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "44"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "63"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "70"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "63"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "70"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "77"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "91"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "104"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "77"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "63"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "55"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "44"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "48"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "48"
                 }'
             ]
@@ -494,63 +494,63 @@ carPricing:
             fr: Megane SW
             es: Megane SW
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "23"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "21"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "30"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "32"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "30"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "32"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "45"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "53"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "58"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "45"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "33"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "29"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "21"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "23"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "23"
                 }'
             ]
@@ -562,63 +562,63 @@ carPricing:
             fr: Renault Traveller, Citroën space tourer XL 9 places
             es: Renault Traveller, Citroën space tourer XL 9 plazas
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "38"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "35"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "59"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "66"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "59"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "66"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "74"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "84"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "95"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "74"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "59"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "52"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "35"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "38"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "38"
                 }'
             ]
@@ -630,63 +630,63 @@ carPricing:
             fr: Renault Mégane SW automatique
             es: Renault Megane SW automático
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "24"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "23"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "31"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "33"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "31"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "33"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "48"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "55"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "63"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "48"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "33"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "28"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "23"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "24"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "24"
                 }'
             ]
@@ -698,63 +698,63 @@ carPricing:
             fr: Opel Corsa Automatique
             es: Opel Corsa Automático
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "19"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "18"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "23"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "25"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "23"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "25"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "30"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "35"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "40"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "30"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "23"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "22"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "18"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "19"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "19"
                 }'
             ]
@@ -766,63 +766,63 @@ carPricing:
             fr: Citroën C3 Automatique
             es: Citroen C3 Automático
         pricing: ['{
-                "date": "2021-01-01",
+                "date": "2022-01-01",
                 "price": "20"
                 }',
             '{
-                "date": "2021-01-03",
+                "date": "2022-01-03",
                 "price": "20"
                 }',
             '{
-                "date": "2021-04-01",
+                "date": "2022-04-01",
                 "price": "25"
                 }',
             '{
-                "date": "2021-04-06",
+                "date": "2022-04-06",
                 "price": "26"
                 }',
             '{
-                "date": "2021-04-20",
+                "date": "2022-04-20",
                 "price": "25"
                 }',
             '{
-                "date": "2021-06-01",
+                "date": "2022-06-01",
                 "price": "26"
                 }',
             '{
-                "date": "2021-07-01",
+                "date": "2022-07-01",
                 "price": "33"
                 }',
             '{
-                "date": "2021-07-16",
+                "date": "2022-07-16",
                 "price": "41"
                 }',
             '{
-                "date": "2021-08-01",
+                "date": "2022-08-01",
                 "price": "42"
                 }',
             '{
-                "date": "2021-08-20",
+                "date": "2022-08-20",
                 "price": "33"
                 }',
             '{
-                "date": "2021-09-01",
+                "date": "2022-09-01",
                 "price": "26"
                 }',
             '{
-                "date": "2021-10-01",
+                "date": "2022-10-01",
                 "price": "23"
                 }',
             '{
-                "date": "2021-11-01",
+                "date": "2022-11-01",
                 "price": "20"
                 }',
             '{
-                "date": "2021-12-21",
+                "date": "2022-12-21",
                 "price": "20"
                 }',
             '{
-                "date": "2021-12-31",
+                "date": "2022-12-31",
                 "price": "20"
                 }'
             ]
@@ -895,7 +895,7 @@ html:
 <table>
 <thead><tr><th>MONTH</th><th>PERIOD</th><th>A</th><th>B</th><th>C</th><th>E</th><th>G</th><th>I</th><th>J</th><th>K</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Fiat Panda or similar 5 door</td><td>Clio,Ibiza with GPS</td><td>Renault Captur Small SUV</td><td>Citroen C4 (small 7 seater)</td><td>Clio Break </td><td>Seat Alhambra 7 seater</td><td>Megane SW</td><td>Renault Traveller, Citroen space tourer XL 9 Seater</td></tr>
- <tr><td>1 Nov 2021 - 20 Dec</td><td>week</td><td>100</td><td>115</td><td>135</td><td>215</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>1 Nov 2022 - 20 Dec</td><td>week</td><td>100</td><td>115</td><td>135</td><td>215</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
  <tr><td>21 Dec- 2 Jan</td><td>week</td><td>105</td><td>125</td><td>145</td><td>235</td><td>135</td><td>335</td><td>155</td><td>265</td></tr>
  <tr><td>3 Jan-31 Mar</td><td>week</td><td>100</td><td>115</td><td>135</td><td>205</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
  <tr><td>1 April - 5 April</td><td>week</td><td>140</td><td>155</td><td>185</td><td>235</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
@@ -919,7 +919,7 @@ html:
 <table>
 <thead><tr><th>MONTH</th><th>PERIOD</th><th>F</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Seat Arona Automatic</td><td>Renault Megane SW automatic</td><td>Opel Corsa Automatic</td><td>Citroen C3 Automatic</td></tr>
- <tr><td>1 Nov 2021 - 20 Dec</td><td>week</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>1 Nov 2022 - 20 Dec</td><td>week</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>21 Dec- 2 Jan</td><td>week</td><td>180</td><td>165</td><td>130</td><td>140</td></tr>
  <tr><td>3 Jan-31 Mar</td><td>week</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>1 April - 5 April</td><td>week</td><td>205</td><td>215</td><td>160</td><td>170</td></tr>
@@ -1032,7 +1032,7 @@ Airport Taxes: 15 Euros per car (this charge is imposed by the airport, not the 
 <table>
 <thead><tr><th>MÊS</th><th>PERÍODO</th><th>A</th><th>B</th><th>C</th><th>E</th><th>F</th><th>G</th><th>I</th><th>J</th><th>K</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Fiat Panda ou similar 5 portas</td><td>Clio,Ibiza com GPS</td><td>Renault Captur SUV pequeno</td><td>Citroen C4 (pequeno de 7 lugares)</td><td>Seat Arona Automatico</td><td>Clio Break </td><td>Seat Alhambra 7 lugares</td><td>Megane SW</td><td>Renault Traveller, Citroen space tourer XL 9 lugares</td></tr>
- <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>215</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>1 Nov 2022 - 20 Dez</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>215</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
  <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>105</td><td>125</td><td>145</td><td>235</td><td>180</td><td>135</td><td>335</td><td>155</td><td>265</td></tr>
  <tr><td>3 Jan-31 Mar</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>205</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
  <tr><td>1 Abril - 5 Abril</td><td>Semana</td><td>140</td><td>155</td><td>185</td><td>235</td><td>205</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
@@ -1056,7 +1056,7 @@ Airport Taxes: 15 Euros per car (this charge is imposed by the airport, not the 
 <table>
 <thead><tr><th>MÊS</th><th>PERÍODO</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Renault Megane SW automático</td><td>Opel Corsa automático</td><td>Citroen C3 automático</td></tr>
- <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>1 Nov 2022 - 20 Dez</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>165</td><td>130</td><td>140</td></tr>
  <tr><td>3 Jan-31 Mar</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>1 Abril - 5 Abril</td><td>Semana</td><td>215</td><td>160</td><td>170</td></tr>
@@ -1171,7 +1171,7 @@ Taxas de aeroporto: 15 euros por carro (esta taxa é cobrada pelo aeroporto, nã
 <table>
 <thead><tr><th>MOIS</th><th>PÉRIODE</th><th>A</th><th>B</th><th>C</th><th>E</th><th>G</th><th>I</th><th>J</th><th>K</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Fiat Panda ou similaire 5 portes</td><td>Clio,Ibiza avec GPS</td><td>Renault Captur Petit SUV</td><td>Citroen C4 (petit 7 places)</td><td>Clio Break </td><td>Seat Alhambra 7 places</td><td>Megane SW</td><td>Renault Traveller, Citroen space tourer XL 9 places</td></tr>
- <tr><td>1 Nov 2021 - 20 Dec</td><td>semaine</td><td>100</td><td>115</td><td>135</td><td>215</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>1 Nov 2022 - 20 Dec</td><td>semaine</td><td>100</td><td>115</td><td>135</td><td>215</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
  <tr><td>21 Dec - 2 Jan</td><td>semaine</td><td>105</td><td>125</td><td>145</td><td>235</td><td>135</td><td>335</td><td>155</td><td>265</td></tr>
  <tr><td>3 Jan - 31 Mar</td><td>semaine</td><td>100</td><td>115</td><td>135</td><td>205</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
  <tr><td>1 Avr - 5 Avr</td><td>semaine</td><td>140</td><td>155</td><td>185</td><td>235</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
@@ -1195,7 +1195,7 @@ Taxas de aeroporto: 15 euros por carro (esta taxa é cobrada pelo aeroporto, nã
 <table>
 <thead><tr><th>MOIS</th><th>PÉRIODE</th><th>F</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Seat Arona Automatique</td><td>Renault Megane SW Automatique</td><td>Opel Corsa Automatique</td><td>Citroen C3 Automatique</td></tr>
- <tr><td>1 Nov 2021 - 20 Dec</td><td>semaine</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>1 Nov 2022 - 20 Dec</td><td>semaine</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>21 Dec - 2 Jan</td><td>semaine</td><td>180</td><td>165</td><td>130</td><td>140</td></tr>
  <tr><td>3 Jan - 31 Mar</td><td>semaine</td><td>165</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>1 Avr - 5 Avr</td><td>semaine</td><td>205</td><td>215</td><td>160</td><td>170</td></tr>
@@ -1308,7 +1308,7 @@ Taxes d'aéroport : 15 euros par voiture (cette taxe est imposée par l'aéropor
 <table>
 <thead><tr><th>MES</th><th>PERÍODO</th><th>A</th><th>B</th><th>C</th><th>E</th><th>F</th><th>G</th><th>I</th><th>J</th><th>K</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Fiat Panda o similar 5 puertas</td><td>Clio,Ibiza con GPS</td><td>Renault Captur SUV pequeño</td><td>Citroen C4 (pequeño de 7 lugares)</td><td>Seat Arona Automatico</td><td>Clio Break </td><td>Seat Alhambra 7 lugares</td><td>Megane SW</td><td>Renault Traveller, Citroen space tourer XL 9 lugares</td></tr>
- <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>215</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
+ <tr><td>1 Nov 2022 - 20 Dez</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>215</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
  <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>105</td><td>125</td><td>145</td><td>235</td><td>180</td><td>135</td><td>335</td><td>155</td><td>265</td></tr>
  <tr><td>3 Jan-31 Mar</td><td>Semana</td><td>100</td><td>115</td><td>135</td><td>205</td><td>165</td><td>120</td><td>305</td><td>145</td><td>240</td></tr>
  <tr><td>1 Abril - 5 Abril</td><td>Semana</td><td>140</td><td>155</td><td>185</td><td>235</td><td>205</td><td>175</td><td>435</td><td>210</td><td>410</td></tr>
@@ -1332,7 +1332,7 @@ Taxes d'aéroport : 15 euros par voiture (cette taxe est imposée par l'aéropor
 <table>
 <thead><tr><th>MES</th><th>PERÍODO</th><th>J1</th><th>L</th><th>M</th></tr></thead><tbody>
  <tr><td>&nbsp;</td><td>&nbsp;</td><td>Renault Megane SW automático</td><td>Opel Corsa automático</td><td>Citroen C3 automático</td></tr>
- <tr><td>1 Nov 2021 - 20 Dez</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
+ <tr><td>1 Nov 2022 - 20 Dez</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>21 Dez- 2 Jan</td><td>Semana</td><td>165</td><td>130</td><td>140</td></tr>
  <tr><td>3 Jan-31 Mar</td><td>Semana</td><td>155</td><td>120</td><td>135</td></tr>
  <tr><td>1 Abril - 5 Abril</td><td>Semana</td><td>215</td><td>160</td><td>170</td></tr>
