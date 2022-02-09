@@ -106,7 +106,8 @@ export const IndexPageTemplate = ({
     let textFadeRight = gsap.utils.toArray('.fade-right')
     let homeCards = gsap.utils.toArray('.home-card')
     let parallaxScrolls = gsap.utils.toArray('.parallax-scroll')
-    let parallaxBGs = gsap.utils.toArray('.parallax-bg')
+    let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
+    let seciontTitles = gsap.utils.toArray('.home-section-title')
 
     sectionsLeft.forEach((section) => {
       gsap.from(section, { 
@@ -256,6 +257,20 @@ export const IndexPageTemplate = ({
       });
     });
 
+    seciontTitles.forEach((section) => {
+      gsap.from(section, { 
+        opacity: 0,
+        width: 0,
+        scrollTrigger: {
+            trigger: section,
+            scrub: true,
+            once: true,
+            duration:0.5,
+            ease:"Power2.easeOut",
+        }
+      });
+    })
+
   }, []);
   
 
@@ -352,6 +367,7 @@ useScrollPosition(({ prevPos, currPos }) => {
       <section className='main-section'>   
       <Container style={{zIndex:"1", margin:"auto"}}>
         <Row style={{height: "100%"}}>
+        <h2 className="home-section-title" style={{left: "-200px", top:"-80px"}}>smartavillas.com</h2>
           <Col xs={12} lg={6} className='main-col left'>
             <div className="intro-para">
               <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}} className='fade-left'><span style={{color:"#f5821e"}}>Smartavillas</span>.com <Trans>Property Rentals & Management</Trans></h1>
@@ -417,6 +433,7 @@ useScrollPosition(({ prevPos, currPos }) => {
           </div>
           <Container style={{zIndex:"1", margin:"auto"}}>
             <Row style={{height: "100%"}}>
+            <h2 className="home-section-title" style={{left: "50%"}}>{t("book")}</h2>
               <Col xs={12} lg={6}></Col>
               <Col xs={12} lg={6} className='main-col right'>
               <center style={{margin: "auto"}}><h2 className='fade-right' style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}><Trans>What We</Trans> <span style={{color:"#fff"}}><Trans>Offer!</Trans></span></h2></center>
@@ -443,7 +460,8 @@ useScrollPosition(({ prevPos, currPos }) => {
             />
         </div>
           <Container style={{zIndex:"1", margin:"auto"}}>
-            <Row style={{height: "100%"}}>    
+            <Row style={{height: "100%"}}>  
+            <h2 className="home-section-title" style={{left: "-100px"}}>{t("manage")}</h2>  
               <Col xs={12} lg={6} className='main-col left'>
                 <div className="intro-para" >
                   <h3 className='fade-left' style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
@@ -481,6 +499,7 @@ useScrollPosition(({ prevPos, currPos }) => {
             <circle ref={clipCircle} xmlns="http://www.w3.org/2000/svg" cx="600" cy="450" r="380" stroke="url(#img1)" stroke-width="50" fill="none"/>
           </svg>
           <Container style={{zIndex:"2", paddingTop: "30px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+          <h2 className="home-section-title" style={{left: "40%", transform: "translateX(-50%)", top: "-67px", zIndex:"-1"}}>About</h2>
           <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><Trans>At Home in the</Trans> <span style={{color:"#fff"}}>Algarve</span></h2>
           <br />
           <Row style={{justifyContent:"center", position: "relative"}}>

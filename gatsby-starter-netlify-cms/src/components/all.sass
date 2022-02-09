@@ -4135,3 +4135,38 @@ header
   &:hover
     &:after
       width: 100%
+
+.home-section-title, .prop-section-title
+  position: absolute
+  font-weight: 700
+  color: #f0f2f2
+  text-transform: lowercase
+  top: -123px
+  font-size: calc(130PX + 30 * (100vw - 320px) / 1080)
+  line-height: 312px
+  letter-spacing: -6.07639px
+  opacity: 0.5
+  width: 100%
+  overflow: hidden
+  max-width: 100vw
+  white-space: nowrap
+  pointer-events: none
+
+.prop-page-section
+  position: relative
+  z-index: 0
+  
+
+.prop-section-title
+  font-size: calc(90PX + 30 * (100vw - 320px) / 1080)
+  color: $primary
+  left: -20px
+  top: 0
+  opacity: 0.2
+  transform: translateY(-52%)
+  
+
+
+@media screen and (max-width: 900px)
+  .home-section-title, .prop-section-title
+    font-size: calc(20px + 30 * (100vw - 320px) / 1080)

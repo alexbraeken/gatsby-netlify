@@ -302,7 +302,8 @@ export const PropertyPageTemplate = ( props ) =>
                                     <Row>
                                     <Col>
                                         <Row id="about" data-title={t("About Prop")} className="prop-page-section">
-                                            <Col xs={12} md={9}>
+                                            <Col xs={12} md={9} style={{position: "relative"}}>
+                                                <h2 className="prop-section-title">{t("About Prop")}</h2>
                                                 <h2>{t("About Prop")}</h2>
                                                 <br />
                                                 {propSummary ?
@@ -322,7 +323,8 @@ export const PropertyPageTemplate = ( props ) =>
                                             <FirestoreDocument path={`/amenities/${props.id}`}>
                                                 {amens => {
                                                     return (!amens.isLoading && amens.value) ? 
-                                                    <div id="amenities" data-title={t("Amenities")} className="prop-page-section">
+                                                    <div id="amenities" data-title={t("Amenities")} className="prop-page-section" >
+                                                        <h2 className="prop-section-title">{t("Amenities")}</h2>
                                                         <h2>{t("Amenities")}</h2>
                                                         <br />
                                                         <div className="amenities-list">
@@ -351,6 +353,7 @@ export const PropertyPageTemplate = ( props ) =>
                                         <Col xs={12} md={9}>
                                             <hr />
                                             <div id="calendar" data-title={t("Calendar")} className="prop-page-section">
+                                                <h2 className="prop-section-title">{t("Calendar")}</h2>
                                                 <h2>{t("Calendar")}</h2>
                                                 <br />
                                                 <FirestoreDocument path={`PricingPeriods/${props.id}`}>
@@ -377,6 +380,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="space" data-title={t("Space")} className="prop-page-section">
+                                                                    <h2 className="prop-section-title">{t("Space")}</h2>
                                                                     <h2>{t("Space")}</h2>
                                                                     <br />
                                                                     {descriptions.value[lang]?.space || descriptions.value.en_US.space}
@@ -402,6 +406,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                             <hr />
                                                                 <div id="neighborhood" data-title={t("Neighborhood")} className="prop-page-section">
                                                                 <div className={(descriptions.value[lang]?.neighborhood.length>400 || descriptions.value.en_US.neighborhood.length>400) ? `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`: undefined}>
+                                                                    <h2 className="prop-section-title">{t("Neighborhood")}</h2>
                                                                     <h2>{t("Neighborhood")}</h2>
                                                                     <br />
                                                                     {descriptions.value[lang]?.neighborhood.substring(0,400) || descriptions.value.en_US.neighborhood.substring(0,400)}
@@ -433,7 +438,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <hr />
                                                         <Col xs={12} md={travelDistances.display? 5 : 9}>
                                                                 <div id="gettingAround" data-title={t("Getting Around")} className="prop-page-section">
-                                                                <div className={(descriptions.value[lang]?.transit.length>400 || descriptions.value.en_US.transit.length>400) ? `prop-description-box ${showTransitReadMore ? 'show' : ''}`: undefined}>
+                                                                <div className={(descriptions.value[lang]?.transit.length>400 || descriptions.value.en_US.transit.length>400) ? `prop-description-box ${showTransitReadMore ? 'show' : ''}`: undefined} style={{position: "relative", zIndex:"0"}}>
+                                                                    <h2 className="prop-section-title">{t("Getting Around")}</h2>
                                                                     <h2>{t("Getting Around")}</h2>
                                                                     <br />
                                                                     {descriptions.value[lang]?.transit.substring(0,400) || descriptions.value.en_US.transit.substring(0,400)}
@@ -449,7 +455,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </Col>
                                                         {travelDistances.display && 
                                                         <Col xs={12} md={4}>
-                                                                <div className="keyDistances">
+                                                                <div className="keyDistances" style={{position: "relative", zIndex:"0"}}>
+                                                                    <h2 className="prop-section-title">{t("Key Distances")}</h2>
                                                                     <h3>{t("Key Distances")}</h3>
                                                                     <hr />
                                                                     <div>
@@ -489,7 +496,10 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                             <div id="reviews" data-title={t("Reviews")} className="prop-page-section">
-                                                                <div style={{display: "flex", flexWrap: "nowrap", justifyContent: "space-between"}}><h2>{t("Reviews")}</h2> <div style={{display: "flex"}}><small style={{margin:"auto", display: "flex"}}>{t("Average Rating")}: {avgRating} <BsStarFill className="review-star" style={{margin: "auto"}}/></small></div></div>
+                                                                <div style={{display: "flex", flexWrap: "nowrap", justifyContent: "space-between", position:"relative", zIndex:"0"}}>
+                                                                    <h2 className="prop-section-title">{t("Reviews")}</h2>
+                                                                    <h2>{t("Reviews")}</h2> 
+                                                                    <div style={{display: "flex"}}><small style={{margin:"auto", display: "flex"}}>{t("Average Rating")}: {avgRating} <BsStarFill className="review-star" style={{margin: "auto"}}/></small></div></div>
                                                                 <br />
                                                                 <Reviews reviews={reviews}/>
                                                             </div>
@@ -501,7 +511,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="notes" data-title={t("Notes")} className="prop-page-section">
-                                                                    <div className={(descriptions.value[lang]?.notes.length>400 || descriptions.value.en_US.notes.length>400) ? `prop-description-box ${showNotesReadMore ? 'show' : ''}` : undefined}>
+                                                                    <div className={(descriptions.value[lang]?.notes.length>400 || descriptions.value.en_US.notes.length>400) ? `prop-description-box ${showNotesReadMore ? 'show' : ''}` : undefined} style={{position:"relative", zIndex:"0"}}>
+                                                                    <h2 className="prop-section-title">{t("Notes")}</h2>
                                                                     <h2>{t("Notes")}</h2>
                                                                     <br />
                                                                     {(descriptions.value[lang]?.notes.substring(0,400) || descriptions.value.en_US.notes.substring(0,400))}
@@ -527,7 +538,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="access" data-title={t("Your Arrival")} className="prop-page-section">
-                                                                    <div className={(descriptions.value[lang]?.access.length>400 || descriptions.value.en_US.access.length>400) ? `prop-description-box ${showAccessReadMore ? 'show' : ''}` : undefined}>
+                                                                    <div className={(descriptions.value[lang]?.access.length>400 || descriptions.value.en_US.access.length>400) ? `prop-description-box ${showAccessReadMore ? 'show' : ''}` : undefined} style={{position:"relative", zIndex:"0"}}>
+                                                                    <h2 className="prop-section-title">{t("Your Arrival")}</h2>
                                                                     <h2>{t("Your Arrival")}</h2>
                                                                     <br />
                                                                     {descriptions.value[lang]?.access.substring(0,400) || descriptions.value.en_US.access.substring(0,400)}
@@ -553,7 +565,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="interaction">
-                                                                <div className={(descriptions.value[lang]?.interaction.length>400 || descriptions.value.en_US.interaction.length>400) ? `prop-description-box ${showInteractionReadMore ? 'show' : ''}` : undefined}>
+                                                                <div className={(descriptions.value[lang]?.interaction.length>400 || descriptions.value.en_US.interaction.length>400) ? `prop-description-box ${showInteractionReadMore ? 'show' : ''}` : undefined} style={{position:"relative", zIndex:"0"}}>
+                                                                    <h2 className="prop-section-title">{t("During Your Stay")}</h2>
                                                                     <h2>{t("During Your Stay")}</h2>
                                                                     <br />
                                                                     {descriptions.value[lang]?.interaction.substring(0,400) || descriptions.value.en_US.interaction.substring(0,400)}
