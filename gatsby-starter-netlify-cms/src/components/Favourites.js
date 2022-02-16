@@ -115,7 +115,7 @@ const Favourites = (props) => {
                           <BedBathPax bedrooms={favProps[property].bedrooms} bathrooms={favProps[property].bathrooms} baseGuests={favProps[property].baseGuests} color="rgba(0,0,0)"/>
                           <div className="favs-ps">
                             <small style={{float:"left"}}>{favProps[property].city}</small>
-                            <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{favProps[property].rate}€ </span>/ {t("Night")}</small>
+                            <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{favProps[property].rate}{favProps[property].currSymbol} </span>/ {t("Night")}</small>
                           </div>
                         </Link>
                       </Card.ImgOverlay>

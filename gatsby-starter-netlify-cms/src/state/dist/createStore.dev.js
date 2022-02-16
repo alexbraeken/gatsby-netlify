@@ -20,7 +20,8 @@ function reducer(state, action) {
         bathrooms: action.bathrooms,
         baseGuests: action.baseGuests,
         city: action.city,
-        rate: action.rate
+        rate: action.rate,
+        currSymbol: action.currSymbol
       };
       return {
         properties: newObj

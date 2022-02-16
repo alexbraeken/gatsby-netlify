@@ -4,7 +4,7 @@ function reducer(state, action) {
   let newObj = state.properties
     if(action.type === `ADD_PROPERTY`) {
       if(!newObj[action.propId]){
-        newObj[action.propId] = {name: action.propName, id: action.propId, img: action.propImg, bedrooms: action.bedrooms, bathrooms: action.bathrooms, baseGuests: action.baseGuests, city: action.city, rate: action.rate}
+        newObj[action.propId] = {name: action.propName, id: action.propId, img: action.propImg, bedrooms: action.bedrooms, bathrooms: action.bathrooms, baseGuests: action.baseGuests, city: action.city, rate: action.rate, currSymbol: action.currSymbol}
         return {
           properties: newObj
         }

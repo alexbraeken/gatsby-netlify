@@ -305,7 +305,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
                                                 <Row>
                                                     <div className="flag under" style={{marginRight:"10px"}}>
-                                                        <span className="prc">{t("From")} {data.value.baseDailyRate} €</span>
+                                                <span className="prc">{t("From")} {data.value.baseDailyRate}{data.value.currencySymbol}</span>
                                                         <span className="mth"> / {t("Night")}</span>
                                                     </div>
                                                 
@@ -326,7 +326,7 @@ export const PropertyPageTemplate = ( props ) =>
                                             {props.inFavs ? <AiFillHeart onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.id})} /> 
                                             :
                                             <AiOutlineHeart onClick={()=>{
-                                                props.dispatch({ type: 'ADD_PROPERTY', propName: data.value.name, propId: props.id, propImg: data.value.picture, bedrooms: data.value.bedrooms, bathrooms: data.value.bathrooms, baseGuests: data.value.baseGuests, city: data.value.city, rate: data.value.baseDailyRate })
+                                                props.dispatch({ type: 'ADD_PROPERTY', propName: data.value.name, propId: props.id, propImg: data.value.picture, bedrooms: data.value.bedrooms, bathrooms: data.value.bathrooms, baseGuests: data.value.baseGuests, city: data.value.city, rate: data.value.baseDailyRate, currSymbol: data.value.currencySymbol })
                                                 }}/>
                                             }
                                         </div>
@@ -407,7 +407,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <FirestoreDocument path={`PricingPeriods/${props.id}`}>
                                                     {pricePeriods => {
                                                     return (!pricePeriods.isLoading && pricePeriods.value) ? 
-                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods.value} minDays={data.value.minimumStay}/>
+                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods.value} minDays={data.value.minimumStay} currSymbol={data.value.currencySymbol}/>
                                                         :
                                                         <Loading />
                                                     }}
@@ -724,10 +724,12 @@ export const PropertyPageTemplate = ( props ) =>
                                                     </svg>
                                                 </div>
                                                 <br />
+                                                {propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
                                                 <div>
                                                 <center><a href="/about/booking-terms-conditions" target="_blank"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>{t("Booking Terms & Conditions")}</span> <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto"}} /></a></center>
                                                 </div>
-                                                {damageWaiver &&
+                                                }
+                                                {damageWaiver && propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
                                                 <div style={{paddingBottom:"20px"}}> 
                                                     <br />
                                                     <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span role="button" tabindex="0" aria-label="Damage Waiver" style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)} onKeyDown={(e)=>{if(e.key==="Enter"){setWaiverOpen(!waiverOpen)}}}>{t("Security Deposit/Damage Waivers")}</span> <FontAwesomeIcon className={`expand-chevron ${waiverOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto"}} /></center>

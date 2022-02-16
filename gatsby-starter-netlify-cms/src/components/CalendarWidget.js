@@ -409,7 +409,7 @@ const CalendarWidget = (props) => {
             }
             {props.pricingPeriods?.[date] &&
                 <div style={priceStyle}>
-                  {props.pricingPeriods[date].amount}€
+                  {props.pricingPeriods[date].amount}{props.currSymbol}
                 </div>
                 }
           </div>
