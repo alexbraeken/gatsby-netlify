@@ -675,7 +675,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </div>
                                                     </Tab>
                                                     {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-                                                    <Tab eventKey="winterLets" title="Winter Let Details" tabClassName="orangeText">
+                                                    <Tab eventKey="winterLets" title={t("Winter Let Details")} tabClassName="orangeText">
                                                         <p>{t("Winter Let Discount Paragraph pre price")}<b>{data.value.customData?.Winter_Let_Price}</b>{t("Winter Let Discount Paragraph post price")}
                                                             <br />
                                                             <small>
