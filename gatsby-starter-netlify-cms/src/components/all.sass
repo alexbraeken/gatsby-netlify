@@ -3680,6 +3680,7 @@ header
 .nav-menu
   position: fixed
   width: 0
+  max-width: 100vw
   height: 100vh
   top: 0
   left: 0
@@ -4172,6 +4173,8 @@ header
     font-size: calc(20px + 30 * (100vw - 320px) / 1080)
 
 .mask-container
+  width: 100vw
+  cursor: pointer
   & img
       object-fit: cover
       display: block
@@ -4180,3 +4183,76 @@ header
       -webkit-clip-path: circle(80px)
       clip-path: circle(80px)
       transition: -webkit-mask-size 0.3s ease-in-out
+
+.member-img-container
+  & .member-image.primary
+      opacity: 1
+      transition: 0.3s
+  & .member-image.secondary
+      opacity: 0
+      transition: 0.3s
+  &.active
+    & .member-image.primary
+        opacity: 0
+    & .member-image.secondary
+        opacity: 1
+
+.team-section
+  position: relative
+  display: block
+  & article
+      width: 100%
+      height: 100vh
+      position: relative
+      clear: both
+      z-index: 1000
+      & hgroup
+          position: absolute
+          padding: 0 2vw
+          top: 50vh
+          width: calc(100% - 4vw)
+          transform: translateY(-50%)
+          max-width: 100vw
+          & h1
+              color: $primary;
+              filter: drop-shadow(1px 1px 2px #b5b5b5);
+          & h3
+              position: absolute
+              right: 2vw
+              width: 22.6vw
+              text-align: right
+              top: 50%
+              font-size: 1.2rem
+              transform: translateY(-50%)
+              &.member-info
+                cursor: pointer
+                background: rgba(256, 256, 256, 0.3)
+                border-radius: 500px
+                padding: 10px 10px 10px 30px
+  & .headshot
+      position: absolute
+      width: 100%
+      height: 100vh
+      top: 0
+      left: 0
+      z-index: 10
+      -moz-clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)
+      -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)
+      clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)
+      &.first
+        -moz-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+        -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+      & figure
+          width: 40vw
+          height: 86vh
+          min-width: 600px
+          position: absolute !important
+          margin-top: 50vh
+          left: 50%
+          transform: translateY(-50%) translateX(-50%)
+          & .anystretch
+              z-index: 1 !important
+              & img
+                  filter: grayscale(1)
+  

@@ -42,45 +42,36 @@ export const MeetTheTeamPageTemplate = ({
         }
       }, [])
 
-      const posSet = gsap.quickSetter(maskImg.current, "css")
-
       const handleMouseMove = (e) => {
-        //setmouse({x: e.pageX, y: e.pageY})
-        let circle = `circle(${circleClip.radius}px at ${e.pageX}px ${e.pageY}px)`
         setMouse({x: e.pageX, y: e.pageY})
-        posSet({ webkitClipPath: `${circle}` })
+        updateClipPath(maskImg.current)
       }
 
       useEffect(() => {
          let tempCircle = circleClip
-         console.log(heroEnter)
-        heroEnter ?  gsap.to(tempCircle, 1.5, {radius:200}) : gsap.to(tempCircle, 0.5, {radius:0})
-        setCircleClip(tempCircle)
+        gsap.to(tempCircle, heroEnter ?  0.1 : 0.5, {radius: heroEnter ?  200 : 0, onUpdate:()=>{
+          updateClipPath(maskImg.current, tempCircle)
+          setCircleClip(tempCircle)
+        }
+        })
         if(!heroEnter)setClicked(false)
       }, [heroEnter])
 
-      
       useEffect(() => {
-        console.log(circleClip)
-      }, [circleClip])
-
-      
-
-      const handleHeroClick = (e) => {
-        const clipPath = () => {
-          gsap.set(maskImg.current, {webkitClipPath:`circle(${circleClip.radius}px) at ${clicked? '50% 50%' : `${mouse.x}px ${mouse.y}px`}`})
-        }
-        if(clicked){
-          let tempCircle = circleClip
-          gsap.to(tempCircle, 0.5, {radius:200, onUpdate:clipPath})
+        let tempCircle = circleClip
+        if(heroEnter)gsap.to(tempCircle, 1, {radius: clicked? 2000: 200 , onUpdate:()=>{
+          updateClipPath(maskImg.current)
           setCircleClip(tempCircle)
-        }else{
-          let tempCircle = circleClip
-          gsap.to(tempCircle, 0.8, {radius:2000, onUpdate:clipPath})
-          setCircleClip(tempCircle)
-        }
-        setClicked(!clicked)
+          }
+        })
+      }, [clicked])
+
+      const updateClipPath = () => {
+        let circle = `circle(${circleClip.radius}px at ${clicked ? `50% 50%` : `${mouse.x}px ${mouse.y}px`})`
+        gsap.set(maskImg.current, { webkitClipPath: `${circle}` })
+        
       }
+
 
   return(
 <>
@@ -90,7 +81,7 @@ export const MeetTheTeamPageTemplate = ({
           onMouseMove={(e)=>handleMouseMove(e)}
           onMouseEnter={()=>setHeroEnter(!heroEnter)}
           onMouseLeave={()=>setHeroEnter(!heroEnter)}
-          onClick={(e)=>handleHeroClick(e)}
+          onClick={()=>setClicked(!clicked)}
           style={{
             backgroundImage: `url(${ !!image.childImageSharp ? image.childImageSharp.fluid.src : image })`, height: "100vh"
           }}
@@ -121,7 +112,7 @@ export const MeetTheTeamPageTemplate = ({
                     <h3>{heading[language]}</h3>
                     <p>{description[language]}</p>
                 </section>
-                <section>
+                <section className="team-section" id="team-1">
                     <TeamRoll />
                 </section>
             </div>

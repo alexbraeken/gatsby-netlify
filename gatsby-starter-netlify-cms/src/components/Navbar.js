@@ -267,7 +267,6 @@ const Navbar = class extends React.Component {
         start: 50,
         end: 100,
         scrub: 1,
-        onUpdate: self => console.log("progress", self.progress)
       }
     });
     this.state = {
