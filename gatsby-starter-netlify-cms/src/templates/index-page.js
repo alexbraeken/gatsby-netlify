@@ -21,6 +21,8 @@ import PortugalWireSVG from '../components/PortugalWireSVG'
 import AlgarveWireSVG from '../components/AlgarveWireSVG'
 import VacationWireSVG from '../components/VacationWireSVG'
 import smartaLogo from '../img/logo.svg'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const mapStateToProps = (state) => {
   return  {featuredProps: state.featuredProps}
@@ -84,9 +86,9 @@ export const IndexPageTemplate = ({
   const {language} = useI18next();
 
   const [animationPlaying, setAnimationPlaying] = useState(false)
-  const [delta, setDelta] = useState({prev: 0, curr: 0})
 
-  const logo = useRef(null);
+  const body = useRef(null)
+  const logo = useRef(null)
   const shadow =useRef(null)
   const com = useRef(null)
   const suitcase = useRef(null)
@@ -100,6 +102,7 @@ export const IndexPageTemplate = ({
 
 
   useEffect(() => {
+
     let sectionsLeft = gsap.utils.toArray('.grey-in-left');
     let sectionsRight = gsap.utils.toArray('.grey-in');
     let textFadeLeft = gsap.utils.toArray('.fade-left')
@@ -295,19 +298,6 @@ useEffect(() => {
   }
 }, [logo, shadow, com, suitcase, home, swim])
 
-useEffect(() => {
-  let width = logo.current.scrollWidth;
-  if(delta.curr> 0 && (delta.prev - delta.curr) > 3 && !animationPlaying){
-    setAnimationPlaying(true);
-    gsap.to(logo.current, 1 / 4, {y:-(delta.prev-delta.curr)*5, ease:"Power2.easeOut"})
-    gsap.to(logo.current, 0.75 , {y:0, ease:"Bounce.easeOut", delay:1 / 4, onComplete:()=>{setAnimationPlaying(false); setDelta({prev: 0, curr: 0})}})
-    gsap.to(shadow.current,  1 / 4, {width: width/2, ease:"Power2.easeOut"})
-    gsap.to(shadow.current, 0.75, {width: width, ease:"Bounce.easeOut", delay: 1/4})
-  }
-  return () => {
-   
-  }
-}, [delta, logo, shadow])
 
 
 const handleLogoHover = () => {
@@ -321,16 +311,9 @@ const handleLogoHover = () => {
   }
 } 
 
-useScrollPosition(({ prevPos, currPos }) => {
-  let prevDelta = delta.curr;
-  setDelta({prev: prevDelta, curr: (currPos.y - prevPos.y)})
-  if(currPos.y<0){
-   
-  }
-})
 
   return(
-  <div>
+  <div ref={body}>
     <div className="hero-container">
       <div className="hero-bg-container" ref={bgImage}>
       <BackgroundImage

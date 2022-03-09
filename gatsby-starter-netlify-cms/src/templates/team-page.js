@@ -1,10 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import TeamRoll from '../components/TeamRoll'
 import { Container } from 'react-bootstrap';
+import { gsap } from "gsap";
+import { CSSPlugin } from 'gsap/CSSPlugin'
+
+gsap.registerPlugin(CSSPlugin)
 
 export const MeetTheTeamPageTemplate = ({
   image,
@@ -15,6 +19,14 @@ export const MeetTheTeamPageTemplate = ({
   intro,
 }) => {
   const [loaded, setLoaded] = useState(false);
+  const [circleClip, setCircleClip] = useState({radius: 0, clickedRadius: 0})
+  const [clicked, setClicked] = useState(false)
+  const [heroEnter, setHeroEnter] = useState(false)
+  const [heroHover, setHeroHover] = useState(false)
+  const [mouse, setMouse] = useState({x: 0, y: 0})
+
+  const hero = useRef(null)
+  const maskImg = useRef(null)
 
   const {t} = useTranslation();
   const {language } = useI18next();
@@ -23,21 +35,80 @@ export const MeetTheTeamPageTemplate = ({
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
+          
+          
         return () => {
           setLoaded(false)
         }
       }, [])
+
+      const posSet = gsap.quickSetter(maskImg.current, "css")
+
+      const handleMouseMove = (e) => {
+        //setmouse({x: e.pageX, y: e.pageY})
+        let circle = `circle(${circleClip.radius}px at ${e.pageX}px ${e.pageY}px)`
+        setMouse({x: e.pageX, y: e.pageY})
+        posSet({ webkitClipPath: `${circle}` })
+      }
+
+      useEffect(() => {
+         let tempCircle = circleClip
+         console.log(heroEnter)
+        heroEnter ?  gsap.to(tempCircle, 1.5, {radius:200}) : gsap.to(tempCircle, 0.5, {radius:0})
+        setCircleClip(tempCircle)
+        if(!heroEnter)setClicked(false)
+      }, [heroEnter])
+
+      
+      useEffect(() => {
+        console.log(circleClip)
+      }, [circleClip])
+
+      
+
+      const handleHeroClick = (e) => {
+        const clipPath = () => {
+          gsap.set(maskImg.current, {webkitClipPath:`circle(${circleClip.radius}px) at ${clicked? '50% 50%' : `${mouse.x}px ${mouse.y}px`}`})
+        }
+        if(clicked){
+          let tempCircle = circleClip
+          gsap.to(tempCircle, 0.5, {radius:200, onUpdate:clipPath})
+          setCircleClip(tempCircle)
+        }else{
+          let tempCircle = circleClip
+          gsap.to(tempCircle, 0.8, {radius:2000, onUpdate:clipPath})
+          setCircleClip(tempCircle)
+        }
+        setClicked(!clicked)
+      }
+
   return(
 <>
         <div
           className="full-width-image-container margin-top-0"
+          ref={hero}
+          onMouseMove={(e)=>handleMouseMove(e)}
+          onMouseEnter={()=>setHeroEnter(!heroEnter)}
+          onMouseLeave={()=>setHeroEnter(!heroEnter)}
+          onClick={(e)=>handleHeroClick(e)}
           style={{
-            backgroundImage: `url(${ !!image.childImageSharp ? image.childImageSharp.fluid.src : image })`,
+            backgroundImage: `url(${ !!image.childImageSharp ? image.childImageSharp.fluid.src : image })`, height: "100vh"
           }}
         >
+        <div className="mask-container">
+          <img src="https://greatpeopleinside.com/se/wp-content/uploads/2019/11/team-building-1030x579.jpg" 
+          ref={maskImg}
+          draggable="false"
+          alt="Morraine Lake" 
+          id="clipped-image" />
+        </div>
           <h1
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
-        style={{color: "white"}}>
+        style={{color: "white", position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%,-50%)",
+  zIndex: "3"}}>
             {langTitles[language]}
           </h1>
         </div>

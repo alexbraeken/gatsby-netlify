@@ -4170,3 +4170,13 @@ header
 @media screen and (max-width: 900px)
   .home-section-title, .prop-section-title
     font-size: calc(20px + 30 * (100vw - 320px) / 1080)
+
+.mask-container
+  & img
+      object-fit: cover
+      display: block
+      width: 100%
+      height: 100vh
+      -webkit-clip-path: circle(80px)
+      clip-path: circle(80px)
+      transition: -webkit-mask-size 0.3s ease-in-out
