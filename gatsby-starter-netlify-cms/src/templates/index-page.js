@@ -86,6 +86,7 @@ export const IndexPageTemplate = ({
   const {language} = useI18next();
 
   const [animationPlaying, setAnimationPlaying] = useState(false)
+  const [searchActive, setSearchActive] = useState(false)
 
   const body = useRef(null)
   const logo = useRef(null)
@@ -99,9 +100,21 @@ export const IndexPageTemplate = ({
   const bgImage = useRef(null)
   const borderSection = useRef(null)
   const clipCircle = useRef(null)
+  const searchBar = useRef(null)
 
 
   useEffect(() => {
+
+    gsap.to(searchBar.current,{
+      scrollTrigger: {
+      trigger: searchBar.current,
+      scrub: true,
+      start: "top bottom",
+      onToggle: (self)=>{
+        setSearchActive(!self.isActive)
+      },
+    }
+  })
 
     let sectionsLeft = gsap.utils.toArray('.grey-in-left');
     let sectionsRight = gsap.utils.toArray('.grey-in');
@@ -111,6 +124,7 @@ export const IndexPageTemplate = ({
     let parallaxScrolls = gsap.utils.toArray('.parallax-scroll')
     let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
     let seciontTitles = gsap.utils.toArray('.home-section-title')
+
 
     sectionsLeft.forEach((section) => {
       gsap.from(section, { 
@@ -311,6 +325,10 @@ const handleLogoHover = () => {
   }
 } 
 
+const toggleActiveSearch = (active) => {
+  setSearchActive(active)
+}
+
 
   return(
   <div ref={body}>
@@ -342,7 +360,9 @@ const handleLogoHover = () => {
           </div>
         </div>
         </div>
-        <SearchFilter className="search-filter" />
+        <div className={`search-filter`}  ref={searchBar} >
+          <SearchFilter  active={searchActive} toggleActiveSearch={toggleActiveSearch}/>
+        </div>
     </div>
      
     

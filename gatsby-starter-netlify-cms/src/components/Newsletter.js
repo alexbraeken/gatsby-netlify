@@ -15,6 +15,19 @@ var ml_account = ml('accounts', '2710252', 's7t2o9x9p0', 'load');`}
 </script>
             <style>
                 {`
+                ${props.transparent ? 
+                    `
+                    #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper{
+                        background-color: transparent;
+                    }
+                    #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper.embedForm .horizontal.privacy-policy p{
+                        color: #fff
+                    }
+                    #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper.embedForm strong span{
+                        color: #fff
+                    }
+                    ` 
+                : ''}
                 #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper.embedForm{
                 max-width:80%
                 }

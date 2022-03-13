@@ -143,6 +143,8 @@ refreshBounds = (mapInstance) => {
   
     onLoad = 
        (mapInstance) => {
+        mapInstance.setTilt(45)
+        console.log(mapInstance)
         this.setState({map:mapInstance})
         mapInstance.addListener("dragend", ()=>{
           this.setState({center:{lat:this.state.map.getCenter().lat(), lng:this.state.map.getCenter().lng()}})
@@ -196,21 +198,83 @@ refreshBounds = (mapInstance) => {
       this.setState({overlay: {position: position, name: name, type: type, img: img, link: link}})
     }
 
+
 render(){
     return (<GoogleMap
-          mapContainerStyle={{height:this.props.props.height}}
+          mapContainerStyle={{height:this.props.props.height, position: this.props.props.position || 'relative', width: this.props.props.width || '100%'}}
           options={{
+            disableDefaultUI:true,
+            tilt: 45,
             styles: [
+              {
+                featureType: "all",
+                stylers: [{ "saturation": this.props.props.saturation || 0 }],
+              },
+              {
+                featureType: "administrative",
+                elementType: "labels",
+                stylers: [{ visibility: this.props.props.visibility || "on"}],
+              },
+              {
+                featureType: "administrative",
+                elementType: "geometry",
+                stylers: [{ lightness: this.props.props.lightness || 0}],
+              },
+              {
+                featureType: "road",
+                elementType: "labels",
+                stylers: [{ visibility: this.props.props.visibility || "on"}],
+              },
+              {
+                featureType: "road",
+                elementType: "geometry",
+                stylers: [{ lightness: this.props.props.lightness || 0}],
+              },
+              {
+                featureType: "road",
+                elementType: "geometry.stroke",
+                stylers: [{ color: this.props.props.roadStroke || ""}],
+              },
+              {
+                featureType: "road",
+                elementType: "geometry.fill",
+                stylers: [{ color: this.props.props.roadFill || ""}],
+              },
+              {
+                featureType: "transit",
+                elementType: "labels",
+                stylers: [{ visibility: this.props.props.visibility || "on"}],
+              },
+              {
+                featureType: "landscape",
+                elementType: "geometry",
+                stylers: [{ lightness: this.props.props.lightness || 0}],
+              },
+              {
+                featureType: "water",
+                elementType: "geometry",
+                stylers: [{ lightness: this.props.props.lightness || 0}],
+              },
+              {
+                featureType: "landscape",
+                elementType: "labels",
+                stylers: [{ visibility: this.props.props.visibility || "on"}],
+              },
+              {
+                featureType: "poi",
+                stylers: [{ visibility: this.props.props.visibility || "on" }],
+              },
               {
                 featureType: "poi.business",
                 stylers: [{ visibility: "off" }],
               }
             ]
           }}
-          zoom={this.props.zoom}
+          zoom={this.props.props.zoom || this.props.zoom}
           onLoad={this.onLoad}
           gestureHandling= {this.state.isMobile ? "cooperative" : "greedy" }
           onMouseOut={()=>this.handleMouseOut()}
+          
           center={this.state.center}
         >
           {(this.props.props.isMarkerShown && this.props.props.list)?

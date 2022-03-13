@@ -13,8 +13,8 @@ const GoogleMapComponent = (props) =>{
   })
 
   useEffect(() => {
-    setCenter({ lat: 37.1290033,
-      lng: -7.6337298})
+    setCenter({ lat: 37.1391462,
+      lng: -7.6286182})
     setZoom(13)
     return () => {
       setCenter(null)

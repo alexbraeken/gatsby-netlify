@@ -653,7 +653,7 @@ a:hover
   background-repeat: no-repeat
   background-size: cover
   background-color: #cae6fe
-  z-index: 2
+  z-index: 3
 
 .hero-container
   position: relative
@@ -1121,13 +1121,15 @@ $min-margin: 10px
           height: 100%
           width: 100%
           border: none
-          border-radius: 4px
+          border-radius: 40px
           cursor: pointer
-          padding: .375rem .75rem
-      & input:focus
-          border-color: $light-orange
-          box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
+          padding: 10px
+          transition: all 0.3s
           outline: none!important
+          border: 1px solid transparent
+      & input:focus, input:hover
+          box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
+          border: 1px solid $primary
 
 @media (max-width: 991px)
   .InputFromTo .DayPickerInput
@@ -1135,11 +1137,17 @@ $min-margin: 10px
   .InputFromTo-to .DayPickerInput
     padding: 5px 0
 
-.InputFromTo-to
-  padding-right: 5px
+.InputFromTo.daypicker-container
+  display: flex
+  justify-content: center
+  position: relative
+  margin: 5px auto
+  height: 50px
+  minWidth: 200px
 
 .InputFromTo .DayPickerInput, .InputFromTo-to
   flex: 1 1 48%
+    
 
 .InputFromTo-to .DayPickerInput
   padding: 0 0 0 5px
@@ -1235,15 +1243,68 @@ $min-margin: 10px
   border-color: $light-orange
   box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
 
+.search-filter
+  position: relative
+
 .home-search-container
   width: 80%
+  max-width: 1400px
   display: flex
-  flex-wrap: wrap
+  flex-wrap: nowrap
   justify-content: center
   margin: 100px auto auto auto
   height: auto
-  position: relative
+  position: absolute
+  top: 0
+  left: 50%
   z-index: 2
+  background-color: #fff
+  border-radius: 40px
+  padding: 15px
+  transition: all 0.3s
+  transform: translateX(-50%)
+  pointer-events: all
+  & .expand-search
+      max-width: 0
+      min-width: 0
+      opacity: 0
+      margin: 0
+      transition: all 0.3s
+      pointer-events: none
+  & > *:not(.submitBtn):not(.expand-search)
+          max-width: 1000px
+          opacity: 1
+          transition: all 0.3s
+  &.fixed
+    position: fixed
+    & .expand-search
+        opacity: 1
+        max-width: 1000px
+        width: 35px
+        display: flex
+        align-content: center
+        pointer-events: all
+  &.shrink
+    max-width: 330px
+    padding: 5px
+    & .expand-search
+        opacity: 1
+        max-width: 1000px
+        width: 35px
+        display: flex
+        align-content: center
+        pointer-events: all
+    & > *:not(.submitBtn):not(.expand-search)
+          max-width: 0
+          min-width: 0
+          opacity: 0
+          margin: 0
+          pointer-events: none
+    
+
+@media (max-width: 991px)
+  .home-search-container
+    flex-wrap: wrap
 
 //Top Date Picker
 .top-date-picker
@@ -4163,7 +4224,7 @@ header
   color: $primary
   left: -20px
   top: 0
-  opacity: 0.2
+  opacity: 0.1
   transform: translateY(-52%)
   
 
@@ -4208,9 +4269,9 @@ header
       z-index: 1000
       & hgroup
           position: absolute
-          padding: 0 2vw
+          padding: 0 30px
           top: 50vh
-          width: calc(100% - 4vw)
+          width: calc(100% - 30px)
           transform: translateY(-50%)
           max-width: 100vw
           & h1
@@ -4218,8 +4279,9 @@ header
               filter: drop-shadow(1px 1px 2px #b5b5b5);
           & h3
               position: absolute
-              right: 2vw
+              right: 30px
               width: 22.6vw
+              max-width: 500px
               text-align: right
               top: 50%
               font-size: 1.2rem
@@ -4229,6 +4291,10 @@ header
                 background: rgba(256, 256, 256, 0.3)
                 border-radius: 500px
                 padding: 10px 10px 10px 30px
+                transition: all 0.3s
+                &:hover
+                  background: rgba(256, 256, 256, 0.8)
+                  color: $primary
   & .headshot
       position: absolute
       width: 100%
@@ -4247,6 +4313,7 @@ header
           width: 40vw
           height: 86vh
           min-width: 600px
+          max-width: 800px
           position: absolute !important
           margin-top: 50vh
           left: 50%
