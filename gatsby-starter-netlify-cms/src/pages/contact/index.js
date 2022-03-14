@@ -71,15 +71,15 @@ const Contact = class extends React.Component {
   </script>
 </Helmet>
       <Layout propTitle="Smartavillas - Contact Us" >
-        <section className="section contact-section" style={{padding: 0}}>
-          <div className='bg-map' style={{position: "relative", width: "100vw", height: "100vh"}}>
+        <section className="section contact-section" style={{padding: 0, position: "relative"}}>
+          <div className='bg-map' style={{position: "absolute", width: "100vw", height: "100%"}}>
             <GoogleMapComponent 
             isMarkerShown="true" 
             zoom={15} 
             lat={37.1391462} 
             lng={-7.6286182} 
             activities={false} 
-            height="100vh" 
+            height="100%" 
             width="100vw" 
             position="absolute" 
             tilt={45} 
@@ -92,10 +92,7 @@ const Contact = class extends React.Component {
             </div>
           </div>
 
-          <div className="container contact-form" style={{position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)"}}>
+          <div className="container contact-form" style={{position: "relative", padding: "50px 15px"}}>
             <div className="content">
               <h1  className="orangeText" style={{color: "#f5821e"}}>{t("Contact")}</h1>
               {this.state.sent ? 

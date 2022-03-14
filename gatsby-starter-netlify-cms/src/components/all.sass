@@ -1261,8 +1261,6 @@ $min-margin: 10px
   background-color: #fff
   border-radius: 40px
   padding: 15px
-  transition: all 0.3s
-  transform: translateX(-50%)
   pointer-events: all
   & .expand-search
       max-width: 0
@@ -1284,6 +1282,10 @@ $min-margin: 10px
         display: flex
         align-content: center
         pointer-events: all
+        & svg
+            cursor: pointer
+            &:hover
+              color: $primary
   &.shrink
     max-width: 330px
     padding: 5px

@@ -28,8 +28,9 @@ const customStyles = {
   }),
   menu: () => ({
     position: "absolute",
-    top: "65px",
+    top: "70px",
     left: "0",
+    borderRadius: "4px",
     zIndex: "20",
     width: "100%"
 
@@ -249,7 +250,6 @@ const SearchFilter = (props) => {
       setDatesWidth(fromToContainer.current.clientWidth)
 
       if(props.active){
-        console.log(props.active)
         setClicked(true)
       }
      
@@ -262,7 +262,7 @@ const SearchFilter = (props) => {
 
     useEffect(() => {
 
-        gsap.fromTo(searchBar.current, 1, {opacity:0, y: 200}, {opacity: 1, y: 0, ease:"power4.out", delay: 4})
+        gsap.fromTo(searchBar.current, 1, {opacity:0, x:"-50%", y: 200}, {opacity:1, x:"-50%", y: 0, ease:"power4.out", delay: 4})
         
         return () => {
         }
@@ -506,14 +506,17 @@ const SearchFilter = (props) => {
   .InputFromTo .DayPickerInput-Overlay {
     display: flex;
     flex-wrap: nowrap;
-    width: ${datesWidth}px;
+    width: fit-content;
     max-width: 550px;
     border-radius: 5px;
+    background-color: #fff
   }
 
   .InputFromTo-to .DayPickerInput-Overlay {
     right: 0;
     left: auto;
+    background-color: #fff;
+    width: fit-content;
   }
 
   .DayPicker{
@@ -525,6 +528,7 @@ const SearchFilter = (props) => {
   }
   .DayPickerInput-OverlayWrapper{
     z-index: 100;
+    width: inherit;
   }
   .DayPicker-Months {
     max-width: 100%;
