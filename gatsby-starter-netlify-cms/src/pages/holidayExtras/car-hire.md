@@ -19,27 +19,27 @@ carPricing:
             es: Fiat Panda ou similares 5 portas
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "20"
+                "price": "15"
                 }'   
             ,'{
-                "date": "2022-01-03",
-                "price": "20"
+                "date": "2022-03-08",
+                "price": "26"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "114"
             }'  
             ,'{
                 "date": "2022-04-01",
-                "price": "25"
+                "price": "34"
             }'  
             ,'{
-                "date": "2022-04-06",
-                "price": "25"
-            }'  
-            ,'{
-                "date": "2022-04-20",
-                "price": "24"
+                "date": "2022-04-25",
+                "price": "28"
             }'
             ,'{
                 "date": "2022-06-01",
-                "price": "25"
+                "price": "28"
             }'    
             ,'{
                 "date": "2022-07-01",
@@ -47,23 +47,146 @@ carPricing:
             }'   
             ,'{
                 "date": "2022-07-16",
-                "price": "36"
+                "price": "41"
             }'  
             ,'{
-                "date": "2022-08-01",
-                "price": "40"
-            }'
-            ,'{
                 "date": "2022-08-20",
-                "price": "33"
+                "price": "35"
             }'  
             ,'{
                 "date": "2022-09-01",
-                "price": "25"
+                "price": "30"
             }'  
             ,'{
                 "date": "2022-10-01",
-                "price": "24"
+                "price": "23"
+            }' 
+            ,'{
+                "date": "2022-11-01",
+                "price": "15"
+            }'  
+            ,'{
+                "date": "2022-12-21",
+                "price": "15"
+            }'
+            ,'{
+                "date": "2022-12-31",
+                "price": "15"
+            }']
+                
+    B:
+        class: B
+        name:
+            en: Clio,Ibiza with GPS
+            pt: Clio,Ibiza com GPS
+            fr: Clio,Ibiza avec GPS
+            es: Clio, Ibiza con GPS
+        pricing: ['{
+                "date": "2022-01-01",
+                "price": "17"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "30"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "32"
+            }'  
+            ,'{
+                "date": "2022-04-01",
+                "price": "34"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "30"
+            }'
+            ,'{
+                "date": "2022-06-01",
+                "price": "31"
+            }'    
+            ,'{
+                "date": "2022-07-01",
+                "price": "36"
+            }'   
+            ,'{
+                "date": "2022-07-16",
+                "price": "45"
+            }'  
+            ,'{
+                "date": "2022-08-20",
+                "price": "40"
+            }'
+            ,'{
+                "date": "2022-09-01",
+                "price": "34"
+            }'  
+            ,'{
+                "date": "2022-10-01",
+                "price": "26"
+            }' 
+            ,'{
+                "date": "2022-11-01",
+                "price": "17"
+            }'  
+            ,'{
+                "date": "2022-12-21",
+                "price": "17"
+            }'
+            ,'{
+                "date": "2022-12-31",
+                "price": "17"
+            }']
+    C:
+        class: C
+        name:
+            en: Renault Captur Small SUV
+            pt: Renault Captur SUV pequeno
+            fr: Renault Captur Petit SUV
+            es: Renault Captur SUV pequeño
+        pricing: ['{
+                "date": "2022-01-01",
+                "price": "20"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "37"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "42"
+            }'  
+            ,'{
+                "date": "2022-04-01",
+                "price": "49"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "40"
+            }'
+            ,'{
+                "date": "2022-06-01",
+                "price": "41"
+            }'    
+            ,'{
+                "date": "2022-07-01",
+                "price": "46"
+            }'   
+            ,'{
+                "date": "2022-07-16",
+                "price": "55"
+            }'  
+            ,'{
+                "date": "2022-08-20",
+                "price": "43"
+            }'
+            ,'{
+                "date": "2022-09-01",
+                "price": "40"
+            }'  
+            ,'{
+                "date": "2022-10-01",
+                "price": "29"
             }' 
             ,'{
                 "date": "2022-11-01",
@@ -77,143 +200,6 @@ carPricing:
                 "date": "2022-12-31",
                 "price": "20"
             }']
-                
-    B:
-        class: B
-        name:
-            en: Clio,Ibiza with GPS
-            pt: Clio,Ibiza com GPS
-            fr: Clio,Ibiza avec GPS
-            es: Clio, Ibiza con GPS
-        pricing: ['{
-                "date": "2022-01-01",
-                "price": "23"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "22"
-                }',
-            '{
-                "date": "2022-04-01",
-                "price": "28"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "29"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "28"
-                }',
-            '{
-                "date": "2022-06-01",
-                "price": "29"
-                }',
-            '{
-                "date": "2022-07-01",
-                "price": "36"
-                }',
-            '{
-                "date": "2022-07-16",
-                "price": "55"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "45"
-                }',
-            '{
-                "date": "2022-08-20",
-                "price": "36"
-                }',
-            '{
-                "date": "2022-09-01",
-                "price": "30"
-                }',
-            '{
-                "date": "2022-10-01",
-                "price": "26"
-                }',
-            '{
-                "date": "2022-11-01",
-                "price": "22"
-                }',
-            '{
-                "date": "2022-12-21",
-                "price": "23"
-                }',
-            '{
-                "date": "2022-12-31",
-                "price": "23"
-                }'
-            ]
-    C:
-        class: C
-        name:
-            en: Renault Captur Small SUV
-            pt: Renault Captur SUV pequeno
-            fr: Renault Captur Petit SUV
-            es: Renault Captur SUV pequeño
-        pricing: ['{
-                "date": "2022-01-01",
-                "price": "26"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "25"
-                }',
-            '{
-                "date": "2022-04-01",
-                "price": "32"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "33"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "32"
-                }',
-            '{
-                "date": "2022-06-01",
-                "price": "33"
-                }',
-            '{
-                "date": "2022-07-01",
-                "price": "39"
-                }',
-            '{
-                "date": "2022-07-16",
-                "price": "45"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "49"
-                }',
-            '{
-                "date": "2022-08-20",
-                "price": "39"
-                }',
-            '{
-                "date": "2022-09-01",
-                "price": "32"
-                }',
-            '{
-                "date": "2022-10-01",
-                "price": "30"
-                }',
-            '{
-                "date": "2022-11-01",
-                "price": "25"
-                }',
-            '{
-                "date": "2022-12-21",
-                "price": "26"
-                }',
-            '{
-                "date": "2022-12-31",
-                "price": "26"
-                }'
-            ]
     E:
         class: E
         name:
@@ -223,65 +209,60 @@ carPricing:
             es: Citroen C4 (pequeño 7 plazas)
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "39"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "35"
-                }',
-            '{
+                "price": "31"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "63"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "86"
+            }'  
+            ,'{
                 "date": "2022-04-01",
-                "price": "39"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "60"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "39"
-                }',
-            '{
+                "price": "102"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "75"
+            }'
+            ,'{
                 "date": "2022-06-01",
-                "price": "60"
-                }',
-            '{
+                "price": "76"
+            }'    
+            ,'{
                 "date": "2022-07-01",
-                "price": "57"
-                }',
-            '{
-                "date": "2022-07-16",
-                "price": "65"
-                }',
-            '{
-                "date": "2022-08-01",
                 "price": "73"
-                }',
-            '{
+            }'   
+            ,'{
+                "date": "2022-07-16",
+                "price": "79"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "57"
-                }',
-            '{
+                "price": "65"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "50"
-                }',
-            '{
+                "price": "68"
+            }'  
+            ,'{
                 "date": "2022-10-01",
-                "price": "46"
-                }',
-            '{
+                "price": "50"
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "36"
-                }',
-            '{
+                "price": "31"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "39"
-                }',
-            '{
+                "price": "31"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "35"
-                }'
-            ]
+                "price": "31"
+            }']
     F:
         class: F
         name:
@@ -291,65 +272,60 @@ carPricing:
             es: Seat Arona Automático
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "31"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "29"
-                }',
-            '{
+                "price": "24"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "47"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "50"
+            }'  
+            ,'{
                 "date": "2022-04-01",
-                "price": "35"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "36"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "35"
-                }',
-            '{
+                "price": "60"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "48"
+            }'
+            ,'{
                 "date": "2022-06-01",
-                "price": "36"
-                }',
-            '{
+                "price": "48"
+            }'    
+            ,'{
                 "date": "2022-07-01",
-                "price": "45"
-                }',
-            '{
+                "price": "53"
+            }'   
+            ,'{
                 "date": "2022-07-16",
-                "price": "52"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "58"
-                }',
-            '{
+                "price": "62"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "45"
-                }',
-            '{
+                "price": "50"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "37"
-                }',
-            '{
+                "price": "48"
+            }'  
+            ,'{
                 "date": "2022-10-01",
                 "price": "33"
-                }',
-            '{
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "29"
-                }',
-            '{
+                "price": "24"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "31"
-                }',
-            '{
+                "price": "24"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "31"
-                }'
-            ]
+                "price": "24"
+            }']
     G:
         class: G
         name:
@@ -359,65 +335,60 @@ carPricing:
             es: Clio Break
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "25"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "23"
-                }',
-            '{
+                "price": "18"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "33"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "41"
+            }'  
+            ,'{
                 "date": "2022-04-01",
-                "price": "30"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "32"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "30"
-                }',
-            '{
+                "price": "49"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "39"
+            }'
+            ,'{
                 "date": "2022-06-01",
-                "price": "32"
-                }',
-            '{
+                "price": "40"
+            }'    
+            ,'{
                 "date": "2022-07-01",
-                "price": "38"
-                }',
-            '{
+                "price": "45"
+            }'   
+            ,'{
                 "date": "2022-07-16",
-                "price": "43"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "48"
-                }',
-            '{
+                "price": "54"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "38"
-                }',
-            '{
+                "price": "42"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "29"
-                }',
-            '{
+                "price": "39"
+            }'  
+            ,'{
                 "date": "2022-10-01",
-                "price": "29"
-                }',
-            '{
+                "price": "28"
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "23"
-                }',
-            '{
+                "price": "18"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "25"
-                }',
-            '{
+                "price": "18"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "25"
-                }'
-            ]
+                "price": "18"
+            }']
     I:
         class: I
         name:
@@ -427,65 +398,60 @@ carPricing:
             es: Seat Alhambra 7 plazas
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "53"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "49"
-                }',
-            '{
+                "price": "41"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "88"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "108"
+            }'  
+            ,'{
                 "date": "2022-04-01",
-                "price": "68"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "75"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "68"
-                }',
-            '{
+                "price": "128"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "98"
+            }'
+            ,'{
                 "date": "2022-06-01",
-                "price": "75"
-                }',
-            '{
+                "price": "98"
+            }'    
+            ,'{
                 "date": "2022-07-01",
-                "price": "82"
-                }',
-            '{
+                "price": "100"
+            }'   
+            ,'{
                 "date": "2022-07-16",
-                "price": "96"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "109"
-                }',
-            '{
+                "price": "118"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "82"
-                }',
-            '{
+                "price": "97"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "68"
-                }',
-            '{
+                "price": "93"
+            }'  
+            ,'{
                 "date": "2022-10-01",
-                "price": "60"
-                }',
-            '{
+                "price": "65"
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "49"
-                }',
-            '{
+                "price": "41"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "53"
-                }',
-            '{
+                "price": "41"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "53"
-                }'
-            ]
+                "price": "41"
+            }']
     J:
         class: J
         name:
@@ -495,65 +461,60 @@ carPricing:
             es: Megane SW
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "28"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "26"
-                }',
-            '{
+                "price": "21"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "40"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "48"
+            }'  
+            ,'{
                 "date": "2022-04-01",
-                "price": "35"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "37"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "35"
-                }',
-            '{
-                "date": "2022-06-01",
-                "price": "37"
-                }',
-            '{
-                "date": "2022-07-01",
-                "price": "50"
-                }',
-            '{
-                "date": "2022-07-16",
                 "price": "58"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "63"
-                }',
-            '{
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "46"
+            }'
+            ,'{
+                "date": "2022-06-01",
+                "price": "47"
+            }'    
+            ,'{
+                "date": "2022-07-01",
+                "price": "59"
+            }'   
+            ,'{
+                "date": "2022-07-16",
+                "price": "68"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "50"
-                }',
-            '{
+                "price": "58"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "38"
-                }',
-            '{
+                "price": "50"
+            }'  
+            ,'{
                 "date": "2022-10-01",
-                "price": "34"
-                }',
-            '{
+                "price": "33"
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "26"
-                }',
-            '{
+                "price": "21"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "28"
-                }',
-            '{
+                "price": "21"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "28"
-                }'
-            ]
+                "price": "21"
+            }']
     K:
         class: K
         name:
@@ -563,65 +524,60 @@ carPricing:
             es: Renault Traveller, Citroën space tourer XL 9 plazas
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "43"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "40"
-                }',
-            '{
-                "date": "2022-04-01",
-                "price": "64"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "71"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "64"
-                }',
-            '{
-                "date": "2022-06-01",
-                "price": "71"
-                }',
-            '{
-                "date": "2022-07-01",
-                "price": "79"
-                }',
-            '{
-                "date": "2022-07-16",
-                "price": "89"
-                }',
-            '{
-                "date": "2022-08-01",
+                "price": "34"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "72"
+            }'  
+            ,'{
+                "date": "2022-03-24",
                 "price": "100"
-                }',
-            '{
+            }'  
+            ,'{
+                "date": "2022-04-01",
+                "price": "120"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "93"
+            }'
+            ,'{
+                "date": "2022-06-01",
+                "price": "94"
+            }'    
+            ,'{
+                "date": "2022-07-01",
+                "price": "97"
+            }'   
+            ,'{
+                "date": "2022-07-16",
+                "price": "108"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "79"
-                }',
-            '{
+                "price": "86"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "64"
-                }',
-            '{
+                "price": "90"
+            }'  
+            ,'{
                 "date": "2022-10-01",
-                "price": "57"
-                }',
-            '{
+                "price": "61"
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "40"
-                }',
-            '{
+                "price": "34"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "43"
-                }',
-            '{
+                "price": "34"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "43"
-                }'
-            ]
+                "price": "34"
+            }']
     J1:
         class: J1
         name:
@@ -631,65 +587,60 @@ carPricing:
             es: Renault Megane SW automático
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "29"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "28"
-                }',
-            '{
+                "price": "23"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "43"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "51"
+            }'  
+            ,'{
                 "date": "2022-04-01",
-                "price": "36"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "38"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "36"
-                }',
-            '{
+                "price": "63"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "48"
+            }'
+            ,'{
                 "date": "2022-06-01",
-                "price": "38"
-                }',
-            '{
+                "price": "49"
+            }'    
+            ,'{
                 "date": "2022-07-01",
-                "price": "53"
-                }',
-            '{
+                "price": "62"
+            }'   
+            ,'{
                 "date": "2022-07-16",
-                "price": "60"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "68"
-                }',
-            '{
+                "price": "72"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "53"
-                }',
-            '{
+                "price": "60"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "38"
-                }',
-            '{
+                "price": "53"
+            }'  
+            ,'{
                 "date": "2022-10-01",
-                "price": "33"
-                }',
-            '{
+                "price": "35"
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "28"
-                }',
-            '{
+                "price": "23"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "29"
-                }',
-            '{
+                "price": "23"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "29"
-                }'
-            ]
+                "price": "23"
+            }']
     L:
         class: L
         name:
@@ -699,65 +650,60 @@ carPricing:
             es: Opel Corsa Automático
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "24"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "23"
-                }',
-            '{
+                "price": "18"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "32"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "35"
+            }'  
+            ,'{
                 "date": "2022-04-01",
-                "price": "28"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "30"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "28"
-                }',
-            '{
-                "date": "2022-06-01",
-                "price": "30"
-                }',
-            '{
-                "date": "2022-07-01",
-                "price": "35"
-                }',
-            '{
-                "date": "2022-07-16",
                 "price": "40"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "45"
-                }',
-            '{
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "33"
+            }'
+            ,'{
+                "date": "2022-06-01",
+                "price": "34"
+            }'    
+            ,'{
+                "date": "2022-07-01",
+                "price": "39"
+            }'   
+            ,'{
+                "date": "2022-07-16",
+                "price": "48"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "35"
-                }',
-            '{
+                "price": "40"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "28"
-                }',
-            '{
+                "price": "35"
+            }'  
+            ,'{
                 "date": "2022-10-01",
-                "price": "27"
-                }',
-            '{
+                "price": "28"
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "23"
-                }',
-            '{
+                "price": "18"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "24"
-                }',
-            '{
+                "price": "18"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "24"
-                }'
-            ]
+                "price": "18"
+            }']
     M:
         class: M
         name:
@@ -767,65 +713,60 @@ carPricing:
             es: Citroen C3 Automático
         pricing: ['{
                 "date": "2022-01-01",
-                "price": "25"
-                }',
-            '{
-                "date": "2022-01-03",
-                "price": "25"
-                }',
-            '{
+                "price": "20"
+                }'   
+            ,'{
+                "date": "2022-03-08",
+                "price": "35"
+            }'  
+            ,'{
+                "date": "2022-03-24",
+                "price": "38"
+            }'  
+            ,'{
                 "date": "2022-04-01",
-                "price": "30"
-                }',
-            '{
-                "date": "2022-04-06",
-                "price": "31"
-                }',
-            '{
-                "date": "2022-04-20",
-                "price": "30"
-                }',
-            '{
+                "price": "43"
+            }'  
+            ,'{
+                "date": "2022-04-25",
+                "price": "35"
+            }'
+            ,'{
                 "date": "2022-06-01",
-                "price": "31"
-                }',
-            '{
+                "price": "35"
+            }'    
+            ,'{
                 "date": "2022-07-01",
-                "price": "38"
-                }',
-            '{
+                "price": "43"
+            }'   
+            ,'{
                 "date": "2022-07-16",
-                "price": "46"
-                }',
-            '{
-                "date": "2022-08-01",
-                "price": "47"
-                }',
-            '{
+                "price": "49"
+            }'  
+            ,'{
                 "date": "2022-08-20",
-                "price": "38"
-                }',
-            '{
+                "price": "42"
+            }'
+            ,'{
                 "date": "2022-09-01",
-                "price": "31"
-                }',
-            '{
+                "price": "37"
+            }'  
+            ,'{
                 "date": "2022-10-01",
-                "price": "28"
-                }',
-            '{
+                "price": "29"
+            }' 
+            ,'{
                 "date": "2022-11-01",
-                "price": "25"
-                }',
-            '{
+                "price": "20"
+            }'  
+            ,'{
                 "date": "2022-12-21",
-                "price": "25"
-                }',
-            '{
+                "price": "20"
+            }'
+            ,'{
                 "date": "2022-12-31",
-                "price": "25"
-                }'
-            ]
+                "price": "20"
+            }']
 html:
     en: "<style>
   .base-table {
@@ -840,8 +781,8 @@ html:
     color: #fff;
     text-align: center;
   }
-  .base-table tbody tr:first-child {
-    font-weight: bold;
+   .base-table tbody tr td:first-child {
+    white-space: nowrap;
   }
   .base-table table tr:nth-of-type(odd) td {
     background-color: #f5f5f5;
@@ -936,323 +877,263 @@ html:
   <br />
   <div class='base-table'>
     <table>
-      <thead>
-        <tr>
-          <th>MONTH</th>
-          <th>PERIOD</th>
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-          <th>E</th>
-          <th>G</th>
-          <th>I</th>
-          <th>J</th>
-          <th>K</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>Fiat Panda or similar 5 door</td>
-          <td>Clio,Ibiza with GPS</td>
-          <td>Renault Captur Small SUV</td>
-          <td>Citroen C4 (small 7 seater)</td>
-          <td>Clio Break</td>
-          <td>Seat Alhambra 7 seater</td>
-          <td>Megane SW</td>
-          <td>Renault Traveller, Citroen space tourer XL 9 Seater</td>
-        </tr>
-        <tr>
-          <td>1 Nov 2022 - 20 Dec</td>
-          <td>week</td>
-          <td>135</td>
-          <td>150</td>
-          <td>170</td>
-          <td>250</td>
-          <td>155</td>
-          <td>340</td>
-          <td>180</td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>21 Dec- 2 Jan</td>
-          <td>week</td>
-          <td>140</td>
-          <td>160</td>
-          <td>180</td>
-          <td>270</td>
-          <td>170</td>
-          <td>370</td>
-          <td>190</td>
-          <td>300</td>
-        </tr>
-        <tr>
-          <td>3 Jan-31 Mar</td>
-          <td>week</td>
-          <td>135</td>
-          <td>150</td>
-          <td>170</td>
-          <td>240</td>
-          <td>155</td>
-          <td>340</td>
-          <td>180</td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>1 April - 5 April</td>
-          <td>week</td>
-          <td>175</td>
-          <td>190</td>
-          <td>220</td>
-          <td>270</td>
-          <td>210</td>
-          <td>470</td>
-          <td>245</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>6 April -19 April</td>
-          <td>week</td>
-          <td>175</td>
-          <td>200</td>
-          <td>230</td>
-          <td>420</td>
-          <td>220</td>
-          <td>520</td>
-          <td>255</td>
-          <td>495</td>
-        </tr>
-        <tr>
-          <td>20 April - 31 May</td>
-          <td>week</td>
-          <td>165</td>
-          <td>190</td>
-          <td>220</td>
-          <td>270</td>
-          <td>210</td>
-          <td>470</td>
-          <td>245</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>1 June-30 June</td>
-          <td>week</td>
-          <td>175</td>
-          <td>200</td>
-          <td>230</td>
-          <td>420</td>
-          <td>220</td>
-          <td>520</td>
-          <td>255</td>
-          <td>495</td>
-        </tr>
-        <tr>
-          <td>1 July - 15 July</td>
-          <td>week</td>
-          <td>225</td>
-          <td>250</td>
-          <td>270</td>
-          <td>395</td>
-          <td>260</td>
-          <td>570</td>
-          <td>350</td>
-          <td>550</td>
-        </tr>
-        <tr>
-          <td>16 July - 31 July</td>
-          <td>week</td>
-          <td>250</td>
-          <td>385</td>
-          <td>310</td>
-          <td>450</td>
-          <td>300</td>
-          <td>670</td>
-          <td>400</td>
-          <td>620</td>
-        </tr>
-        <tr>
-          <td>1 Aug - 19 Aug</td>
-          <td>week</td>
-          <td>275</td>
-          <td>310</td>
-          <td>340</td>
-          <td>510</td>
-          <td>330</td>
-          <td>760</td>
-          <td>440</td>
-          <td>700</td>
-        </tr>
-        <tr>
-          <td>20 Aug-31 Aug</td>
-          <td>week</td>
-          <td>225</td>
-          <td>250</td>
-          <td>270</td>
-          <td>395</td>
-          <td>260</td>
-          <td>570</td>
-          <td>350</td>
-          <td>550</td>
-        </tr>
-        <tr>
-          <td>1 Sept -30 Sept</td>
-          <td>week</td>
-          <td>175</td>
-          <td>210</td>
-          <td>220</td>
-          <td>350</td>
-          <td>200</td>
-          <td>470</td>
-          <td>260</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>1 Oct-31 Oct 2022</td>
-          <td>week</td>
-          <td>165</td>
-          <td>180</td>
-          <td>210</td>
-          <td>320</td>
-          <td>200</td>
-          <td>420</td>
-          <td>235</td>
-          <td>395</td>
-        </tr>
-      </tbody>
-    </table>
+<thead>
+  <tr>
+    <th></th>
+    <th>Period</th>
+    <th>Fiat Panda or similar 5 door<br>A</th>
+    <th>Clio,Ibiza with GPS<br>B</th>
+    <th>Renault Captur Small SUV<br>C</th>
+    <th>Citroen C4 (small 7 seater)<br>E</th>
+    <th>Clio Break<br>G</th>
+    <th>Seat Alhambra 7 seater<br>I</th>
+    <th>Megane SW<br>J</th>
+    <th>Renault Traveller, Citroen space tourer XL 9 Seater<br>K</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>08-03-22<br>23-03-22</td>
+    <td>Week</td>
+    <td>178</td>
+    <td>205</td>
+    <td>255</td>
+    <td>440</td>
+    <td>230</td>
+    <td>612</td>
+    <td>275</td>
+    <td>500</td>
+  </tr>
+  <tr>
+    <td>24-03-22<br>31-03-22</td>
+    <td>Week</td>
+    <td>797</td>
+    <td>222</td>
+    <td>290</td>
+    <td>600</td>
+    <td>285</td>
+    <td>750</td>
+    <td>330</td>
+    <td>700</td>
+  </tr>
+  <tr>
+    <td>01-04-22<br>24-04-22</td>
+    <td>Week</td>
+    <td>235</td>
+    <td>260</td>
+    <td>343</td>
+    <td>715</td>
+    <td>337</td>
+    <td>895</td>
+    <td>405</td>
+    <td>835</td>
+  </tr>
+  <tr>
+    <td>24-04-22<br>31-05-22</td>
+    <td>Week</td>
+    <td>190</td>
+    <td>210</td>
+    <td>280</td>
+    <td>525</td>
+    <td>270</td>
+    <td>680</td>
+    <td>320</td>
+    <td>650</td>
+  </tr>
+  <tr>
+    <td>01-06-22<br>30-06-22</td>
+    <td>Week</td>
+    <td>195</td>
+    <td>215</td>
+    <td>285</td>
+    <td>530</td>
+    <td>275</td>
+    <td>685</td>
+    <td>325</td>
+    <td>655</td>
+  </tr>
+  <tr>
+    <td>01-07-22<br>15-07-22</td>
+    <td>Week</td>
+    <td>230</td>
+    <td>250</td>
+    <td>320</td>
+    <td>506</td>
+    <td>310</td>
+    <td>700</td>
+    <td>410</td>
+    <td>675</td>
+  </tr>
+  <tr>
+    <td>16-07-22<br>19-08-22</td>
+    <td>Week</td>
+    <td>285</td>
+    <td>310</td>
+    <td>385</td>
+    <td>550</td>
+    <td>375</td>
+    <td>825</td>
+    <td>470</td>
+    <td>750</td>
+  </tr>
+  <tr>
+    <td>20-08-22<br>31-08-22</td>
+    <td>Week</td>
+    <td>240</td>
+    <td>275</td>
+    <td>300</td>
+    <td>450</td>
+    <td>290</td>
+    <td>675</td>
+    <td>400</td>
+    <td>600</td>
+  </tr>
+  <tr>
+    <td>01-09-22<br>30-09-22</td>
+    <td>Week</td>
+    <td>210</td>
+    <td>235</td>
+    <td>275</td>
+    <td>475</td>
+    <td>270</td>
+    <td>650</td>
+    <td>350</td>
+    <td>625</td>
+  </tr>
+  <tr>
+    <td>01-10-22<br>31-10-22</td>
+    <td>Week</td>
+    <td>155</td>
+    <td>180</td>
+    <td>200</td>
+    <td>350</td>
+    <td>195</td>
+    <td>450</td>
+    <td>230</td>
+    <td>425</td>
+  </tr>
+  <tr>
+    <td>01-11-22<br>23-03-23</td>
+    <td>Week</td>
+    <td>105</td>
+    <td>217</td>
+    <td>136</td>
+    <td>213</td>
+    <td>126</td>
+    <td>285</td>
+    <td>144</td>
+    <td>237</td>
+  </tr>
+</tbody>
+</table>
   </div>
 
   <br />
   <h4>Automatic Transmission</h4>
   <br />
   <div class='base-table'>
-    <table>
-      <thead>
-        <tr>
-          <th>MONTH</th>
-          <th>PERIOD</th>
-          <th>F</th>
-          <th>J1</th>
-          <th>L</th>
-          <th>M</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>Seat Arona Automatic</td>
-          <td>Renault Megane SW automatic</td>
-          <td>Opel Corsa Automatic</td>
-          <td>Citroen C3 Automatic</td>
-        </tr>
-        <tr>
-          <td>1 Nov 2022 - 20 Dec</td>
-          <td>week</td>
-          <td>200</td>
-          <td>190</td>
-          <td>155</td>
-          <td>170</td>
-        </tr>
-        <tr>
-          <td>21 Dec- 2 Jan</td>
-          <td>week</td>
-          <td>215</td>
-          <td>200</td>
-          <td>165</td>
-          <td>175</td>
-        </tr>
-        <tr>
-          <td>3 Jan-31 Mar</td>
-          <td>week</td>
-          <td>200</td>
-          <td>190</td>
-          <td>155</td>
-          <td>170</td>
-        </tr>
-        <tr>
-          <td>1 April - 5 April</td>
-          <td>week</td>
-          <td>240</td>
-          <td>250</td>
-          <td>195</td>
-          <td>205</td>
-        </tr>
-        <tr>
-          <td>6 April -19 April</td>
-          <td>week</td>
-          <td>250</td>
-          <td>260</td>
-          <td>205</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>20 April - 31 May</td>
-          <td>week</td>
-          <td>240</td>
-          <td>250</td>
-          <td>195</td>
-          <td>205</td>
-        </tr>
-        <tr>
-          <td>1 June-30 June</td>
-          <td>week</td>
-          <td>250</td>
-          <td>260</td>
-          <td>205</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>1 July - 15 July</td>
-          <td>week</td>
-          <td>315</td>
-          <td>365</td>
-          <td>245</td>
-          <td>260</td>
-        </tr>
-        <tr>
-          <td>16 July - 31 July</td>
-          <td>week</td>
-          <td>360</td>
-          <td>420</td>
-          <td>280</td>
-          <td>290</td>
-        </tr>
-        <tr>
-          <td>1 Aug - 19 Aug</td>
-          <td>week</td>
-          <td>400</td>
-          <td>470</td>
-          <td>315</td>
-          <td>325</td>
-        </tr>
-        <tr>
-          <td>20 Aug-31 Aug</td>
-          <td>week</td>
-          <td>315</td>
-          <td>365</td>
-          <td>245</td>
-          <td>260</td>
-        </tr>
-        <tr>
-          <td>1 Sept -30 Sept</td>
-          <td>week</td>
-          <td>255</td>
-          <td>265</td>
-          <td>195</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>1 Oct-31 Oct 2022</td>
-          <td>week</td>
-          <td>230</td>
-          <td>230</td>
-          <td>185</td>
-          <td>195</td>
-        </tr>
-      </tbody>
-    </table>
+   <table>
+<thead>
+  <tr>
+    <th> </th>
+    <th>PERIOD</th>
+    <th>Seat Arona Automatic<br>F</th>
+    <th>Renault Megane SW automatic<br>J1</th>
+    <th>Opel Corsa Automatic<br>L</th>
+    <th>Citroen C3 Automatic<br>M</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>08-03-22<br>23-03-22</td>
+    <td>week</td>
+    <td>327</td>
+    <td>297</td>
+    <td>222</td>
+    <td>245</td>
+  </tr>
+  <tr>
+    <td>24-03-22<br>31-03-22</td>
+    <td>week</td>
+    <td>350</td>
+    <td>355</td>
+    <td>245</td>
+    <td>260</td>
+  </tr>
+  <tr>
+    <td>01-04-22<br>24-04-22</td>
+    <td>week</td>
+    <td>415</td>
+    <td>435</td>
+    <td>280</td>
+    <td>295</td>
+  </tr>
+  <tr>
+    <td>24-04-22<br>31-05-22</td>
+    <td>week</td>
+    <td>330</td>
+    <td>335</td>
+    <td>230</td>
+    <td>240</td>
+  </tr>
+  <tr>
+    <td>01-06-22<br>30-06-22</td>
+    <td>week</td>
+    <td>335</td>
+    <td>340</td>
+    <td>235</td>
+    <td>245</td>
+  </tr>
+  <tr>
+    <td>01-07-22<br>15-07-22</td>
+    <td>week</td>
+    <td>368</td>
+    <td>430</td>
+    <td>272</td>
+    <td>296</td>
+  </tr>
+  <tr>
+    <td>16-07-22<br>19-08-22</td>
+    <td>week</td>
+    <td>430</td>
+    <td>500</td>
+    <td>330</td>
+    <td>340</td>
+  </tr>
+  <tr>
+    <td>20-08-22<br>31-08-22</td>
+    <td>week</td>
+    <td>350</td>
+    <td>415</td>
+    <td>280</td>
+    <td>290</td>
+  </tr>
+  <tr>
+    <td>01-09-22<br>30-09-22</td>
+    <td>week</td>
+    <td>330</td>
+    <td>365</td>
+    <td>245</td>
+    <td>255</td>
+  </tr>
+  <tr>
+    <td>01-10-22<br>31-10-22</td>
+    <td>week</td>
+    <td>225</td>
+    <td>240</td>
+    <td>190</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>01-11-22<br>23-03-23</td>
+    <td>week</td>
+    <td>165</td>
+    <td>155</td>
+    <td>121</td>
+    <td>135</td>
+  </tr>
+</tbody>
+</table>
   </div>
   <br />
 </center>
@@ -1319,8 +1200,8 @@ html:
     color: #fff;
     text-align: center;
   }
-  .base-table tbody tr:first-child {
-    font-weight: bold;
+   .base-table tbody tr td:first-child {
+    white-space: nowrap;
   }
   .base-table table tr:nth-of-type(odd) td {
     background-color: #f5f5f5;
@@ -1415,191 +1296,155 @@ html:
   <br />
   <div class='base-table'>
     <table>
-      <thead>
-        <tr>
-          <th>MÊS</th>
-          <th>PERÍODO</th>
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-          <th>E</th>
-          <th>G</th>
-          <th>I</th>
-          <th>J</th>
-          <th>K</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>Fiat Panda ou similar 5 portas</td>
-          <td>Clio,Ibiza com GPS</td>
-          <td>Renault Captur SUV pequeno</td>
-          <td>Citroen C4 (pequeno de 7 lugares)</td>
-          <td>Clio Break</td>
-          <td>Seat Alhambra 7 lugares</td>
-          <td>Megane SW</td>
-          <td>Renault Traveller, Citroen space tourer XL 9 lugares</td>
-        </tr>
-        <tr>
-          <td>1 Nov 2022 - 20 Dez</td>
-          <td>Semana</td>
-          <td>135</td>
-          <td>150</td>
-          <td>170</td>
-          <td>250</td>
-          <td>155</td>
-          <td>340</td>
-          <td>180</td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>21 Dez- 2 Jan</td>
-          <td>Semana</td>
-          <td>140</td>
-          <td>160</td>
-          <td>180</td>
-          <td>270</td>
-          <td>170</td>
-          <td>370</td>
-          <td>190</td>
-          <td>300</td>
-        </tr>
-        <tr>
-          <td>3 Jan-31 Mar</td>
-          <td>Semana</td>
-           <td>135</td>
-          <td>150</td>
-          <td>170</td>
-          <td>240</td>
-          <td>155</td>
-          <td>340</td>
-          <td>180</td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>1 Abril - 5 Abril</td>
-          <td>Semana</td>
-          <td>175</td>
-          <td>190</td>
-          <td>220</td>
-          <td>270</td>
-          <td>210</td>
-          <td>470</td>
-          <td>245</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>6 Abril -19 Abril</td>
-          <td>Semana</td>
-           <td>175</td>
-          <td>200</td>
-          <td>230</td>
-          <td>420</td>
-          <td>220</td>
-          <td>520</td>
-          <td>255</td>
-          <td>495</td>
-        </tr>
-        <tr>
-          <td>20 Abril - 31 Maio</td>
-          <td>Semana</td>
-          <td>165</td>
-          <td>190</td>
-          <td>220</td>
-          <td>270</td>
-          <td>210</td>
-          <td>470</td>
-          <td>245</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>1 Junho-30 Junho</td>
-          <td>Semana</td>
-           <td>175</td>
-          <td>200</td>
-          <td>230</td>
-          <td>420</td>
-          <td>220</td>
-          <td>520</td>
-          <td>255</td>
-          <td>495</td>
-        </tr>
-        <tr>
-          <td>1 Julho - 15 Julho</td>
-          <td>Semana</td>
-          <td>225</td>
-          <td>250</td>
-          <td>270</td>
-          <td>395</td>
-          <td>260</td>
-          <td>570</td>
-          <td>350</td>
-          <td>550</td>
-        </tr>
-        <tr>
-          <td>16 Julho - 31 Julho</td>
-          <td>Semana</td>
-          <td>250</td>
-          <td>385</td>
-          <td>310</td>
-          <td>450</td>
-          <td>300</td>
-          <td>670</td>
-          <td>400</td>
-          <td>620</td>
-        </tr>
-        <tr>
-          <td>1 Ago - 19 Ago</td>
-          <td>Semana</td>
-          <td>275</td>
-          <td>310</td>
-          <td>340</td>
-          <td>510</td>
-          <td>330</td>
-          <td>760</td>
-          <td>440</td>
-          <td>700</td>
-        </tr>
-        <tr>
-          <td>20 Ago-31 Ago</td>
-          <td>Semana</td>
-          <td>225</td>
-          <td>250</td>
-          <td>270</td>
-          <td>395</td>
-          <td>260</td>
-          <td>570</td>
-          <td>350</td>
-          <td>550</td>
-        </tr>
-        <tr>
-          <td>1 Set -30 Set</td>
-          <td>Semana</td>
-          <td>175</td>
-          <td>210</td>
-          <td>220</td>
-          <td>350</td>
-          <td>200</td>
-          <td>470</td>
-          <td>260</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>1 Oct-31 Oct 2022</td>
-          <td>Semana</td>
-          <td>165</td>
-          <td>180</td>
-          <td>210</td>
-          <td>320</td>
-          <td>200</td>
-          <td>420</td>
-          <td>235</td>
-          <td>395</td>
-        </tr>
-      </tbody>
-    </table>
+<thead>
+  <tr>
+    <th> </th>
+    <th>PERÍODO</th>
+    <th>Fiat Panda ou similar 5 portas<br>A</th>
+    <th>Clio,Ibiza com GPS<br>B</th>
+    <th>Renault Captur SUV pequeno<br>C</th>
+    <th>Citroen C4 (pequeno de 7 lugares)<br>E</th>
+    <th>Clio Break<br>G</th>
+    <th>Seat Alhambra 7 lugares<br>I</th>
+    <th>Megane SW<br>J</th>
+    <th>Renault Traveller, Citroen space tourer XL 9 lugares<br>K</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>08-03-22<br>23-03-22</td>
+    <td>Semana</td>
+    <td>178</td>
+    <td>205</td>
+    <td>255</td>
+    <td>440</td>
+    <td>230</td>
+    <td>612</td>
+    <td>275</td>
+    <td>500</td>
+  </tr>
+  <tr>
+    <td>24-03-22<br>31-03-22</td>
+    <td>Semana</td>
+    <td>797</td>
+    <td>222</td>
+    <td>290</td>
+    <td>600</td>
+    <td>285</td>
+    <td>750</td>
+    <td>330</td>
+    <td>700</td>
+  </tr>
+  <tr>
+    <td>01-04-22<br>24-04-22</td>
+    <td>Semana</td>
+    <td>235</td>
+    <td>260</td>
+    <td>343</td>
+    <td>715</td>
+    <td>337</td>
+    <td>895</td>
+    <td>405</td>
+    <td>835</td>
+  </tr>
+  <tr>
+    <td>24-04-22<br>31-05-22</td>
+    <td>Semana</td>
+    <td>190</td>
+    <td>210</td>
+    <td>280</td>
+    <td>525</td>
+    <td>270</td>
+    <td>680</td>
+    <td>320</td>
+    <td>650</td>
+  </tr>
+  <tr>
+    <td>01-06-22<br>30-06-22</td>
+    <td>Semana</td>
+    <td>195</td>
+    <td>215</td>
+    <td>285</td>
+    <td>530</td>
+    <td>275</td>
+    <td>685</td>
+    <td>325</td>
+    <td>655</td>
+  </tr>
+  <tr>
+    <td>01-07-22<br>15-07-22</td>
+    <td>Semana</td>
+    <td>230</td>
+    <td>250</td>
+    <td>320</td>
+    <td>506</td>
+    <td>310</td>
+    <td>700</td>
+    <td>410</td>
+    <td>675</td>
+  </tr>
+  <tr>
+    <td>16-07-22<br>19-08-22</td>
+    <td>Semana</td>
+    <td>285</td>
+    <td>310</td>
+    <td>385</td>
+    <td>550</td>
+    <td>375</td>
+    <td>825</td>
+    <td>470</td>
+    <td>750</td>
+  </tr>
+  <tr>
+    <td>20-08-22<br>31-08-22</td>
+    <td>Semana</td>
+    <td>240</td>
+    <td>275</td>
+    <td>300</td>
+    <td>450</td>
+    <td>290</td>
+    <td>675</td>
+    <td>400</td>
+    <td>600</td>
+  </tr>
+  <tr>
+    <td>01-09-22<br>30-09-22</td>
+    <td>Semana</td>
+    <td>210</td>
+    <td>235</td>
+    <td>275</td>
+    <td>475</td>
+    <td>270</td>
+    <td>650</td>
+    <td>350</td>
+    <td>625</td>
+  </tr>
+  <tr>
+    <td>01-10-22<br>31-10-22</td>
+    <td>Semana</td>
+    <td>155</td>
+    <td>180</td>
+    <td>200</td>
+    <td>350</td>
+    <td>195</td>
+    <td>450</td>
+    <td>230</td>
+    <td>425</td>
+  </tr>
+  <tr>
+    <td>01-11-22<br>23-03-23</td>
+    <td>Semana</td>
+    <td>105</td>
+    <td>217</td>
+    <td>136</td>
+    <td>213</td>
+    <td>126</td>
+    <td>285</td>
+    <td>144</td>
+    <td>237</td>
+  </tr>
+</tbody>
+</table>
   </div>
 
   <br />
@@ -1607,131 +1452,107 @@ html:
   <br />
   <div class='base-table'>
     <table>
-      <thead>
-        <tr>
-          <th>MÊS</th>
-          <th>PERÍODO</th>
-          <th>F</th>
-          <th>J1</th>
-          <th>L</th>
-          <th>M</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>Seat Arona Automatic</td>
-          <td>Renault Megane SW automático</td>
-          <td>Opel Corsa automático</td>
-          <td>Citroen C3 automático</td>
-        </tr>
-        <tr>
-          <td>1 Nov 2022 - 20 Dez</td>
-          <td>Semana</td>
-          <td>200</td>
-          <td>190</td>
-          <td>155</td>
-          <td>170</td>
-        </tr>
-        <tr>
-          <td>21 Dez- 2 Jan</td>
-          <td>Semana</td>
-          <td>215</td>
-          <td>200</td>
-          <td>165</td>
-          <td>175</td>
-        </tr>
-        <tr>
-          <td>3 Jan-31 Mar</td>
-          <td>Semana</td>
-          <td>200</td>
-          <td>190</td>
-          <td>155</td>
-          <td>170</td>
-        </tr>
-        <tr>
-          <td>1 Abril - 5 Abril</td>
-          <td>Semana</td>
-          <td>240</td>
-          <td>250</td>
-          <td>195</td>
-          <td>205</td>
-        </tr>
-        <tr>
-          <td>6 Abril -19 Abril</td>
-          <td>Semana</td>
-          <td>250</td>
-          <td>260</td>
-          <td>205</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>20 Abril - 31 Maio</td>
-          <td>Semana</td>
-          <td>240</td>
-          <td>250</td>
-          <td>195</td>
-          <td>205</td>
-        </tr>
-        <tr>
-          <td>1 Junho-30 Junho</td>
-          <td>Semana</td>
-          <td>250</td>
-          <td>260</td>
-          <td>205</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>1 Julho - 15 Julho</td>
-          <td>Semana</td>
-          <td>315</td>
-          <td>365</td>
-          <td>245</td>
-          <td>260</td>
-        </tr>
-        <tr>
-          <td>16 Julho - 31 Julho</td>
-          <td>Semana</td>
-          <td>360</td>
-          <td>420</td>
-          <td>280</td>
-          <td>290</td>
-        </tr>
-        <tr>
-          <td>1 Ago - 19 Ago</td>
-          <td>Semana</td>
-          <td>400</td>
-          <td>470</td>
-          <td>315</td>
-          <td>325</td>
-        </tr>
-        <tr>
-          <td>20 Ago-31 Ago</td>
-          <td>Semana</td>
-          <td>315</td>
-          <td>365</td>
-          <td>245</td>
-          <td>260</td>
-        </tr>
-        <tr>
-          <td>1 Set -30 Set</td>
-          <td>Semana</td>
-          <td>255</td>
-          <td>265</td>
-          <td>195</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>1 Oct-31 Oct 2022</td>
-          <td>Semana</td>
-          <td>230</td>
-          <td>230</td>
-          <td>185</td>
-          <td>195</td>
-        </tr>
-      </tbody>
-    </table>
+<thead>
+  <tr>
+    <th> </th>
+    <th>PERÍODO</th>
+    <th>Seat Arona Automatic<br>F</th>
+    <th>Renault Megane SW automático<br>J1</th>
+    <th>Opel Corsa automático<br>L</th>
+    <th>Citroen C3 automático<br>M</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>08-03-22<br>23-03-22</td>
+    <td>Semana</td>
+    <td>327</td>
+    <td>297</td>
+    <td>222</td>
+    <td>245</td>
+  </tr>
+  <tr>
+    <td>24-03-22<br>31-03-22</td>
+    <td>Semana</td>
+    <td>350</td>
+    <td>355</td>
+    <td>245</td>
+    <td>260</td>
+  </tr>
+  <tr>
+    <td>01-04-22<br>24-04-22</td>
+    <td>Semana</td>
+    <td>415</td>
+    <td>435</td>
+    <td>280</td>
+    <td>295</td>
+  </tr>
+  <tr>
+    <td>24-04-22<br>31-05-22</td>
+    <td>Semana</td>
+    <td>330</td>
+    <td>335</td>
+    <td>230</td>
+    <td>240</td>
+  </tr>
+  <tr>
+    <td>01-06-22<br>30-06-22</td>
+    <td>Semana</td>
+    <td>335</td>
+    <td>340</td>
+    <td>235</td>
+    <td>245</td>
+  </tr>
+  <tr>
+    <td>01-07-22<br>15-07-22</td>
+    <td>Semana</td>
+    <td>368</td>
+    <td>430</td>
+    <td>272</td>
+    <td>296</td>
+  </tr>
+  <tr>
+    <td>16-07-22<br>19-08-22</td>
+    <td>Semana</td>
+    <td>430</td>
+    <td>500</td>
+    <td>330</td>
+    <td>340</td>
+  </tr>
+  <tr>
+    <td>20-08-22<br>31-08-22</td>
+    <td>Semana</td>
+    <td>350</td>
+    <td>415</td>
+    <td>280</td>
+    <td>290</td>
+  </tr>
+  <tr>
+    <td>01-09-22<br>30-09-22</td>
+    <td>Semana</td>
+    <td>330</td>
+    <td>365</td>
+    <td>245</td>
+    <td>255</td>
+  </tr>
+  <tr>
+    <td>01-10-22<br>31-10-22</td>
+    <td>Semana</td>
+    <td>225</td>
+    <td>240</td>
+    <td>190</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>01-11-22<br>23-03-23</td>
+    <td>Semana</td>
+    <td>165</td>
+    <td>155</td>
+    <td>121</td>
+    <td>135</td>
+  </tr>
+</tbody>
+</table>
   </div>
   <br />
 </center>
@@ -1799,8 +1620,8 @@ html:
     color: #fff;
     text-align: center;
   }
-  .base-table tbody tr:first-child {
-    font-weight: bold;
+   .base-table tbody tr td:first-child {
+    white-space: nowrap;
   }
   .base-table table tr:nth-of-type(odd) td {
     background-color: #f5f5f5;
@@ -1895,191 +1716,155 @@ html:
   <br />
   <div class='base-table'>
     <table>
-      <thead>
-        <tr>
-          <th>MOIS</th>
-          <th>PÉRIODE</th>
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-          <th>E</th>
-          <th>G</th>
-          <th>I</th>
-          <th>J</th>
-          <th>K</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>Fiat Panda ou similaire 5 portes</td>
-          <td>Clio,Ibiza avec GPS</td>
-          <td>Renault Captur Petit SUV</td>
-          <td>Citroen C4 (petit 7 places)</td>
-          <td>Clio Break</td>
-          <td>Seat Alhambra 7 places</td>
-          <td>Megane SW</td>
-          <td>Renault Traveller, Citroen space tourer XL 9 places</td>
-        </tr>
-        <tr>
-          <td>1 Nov 2022 - 20 Dec</td>
-          <td>semaine</td>
-          <td>135</td>
-          <td>150</td>
-          <td>170</td>
-          <td>250</td>
-          <td>155</td>
-          <td>340</td>
-          <td>180</td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>21 Dec - 2 Jan</td>
-          <td>semaine</td>
-          <td>140</td>
-          <td>160</td>
-          <td>180</td>
-          <td>270</td>
-          <td>170</td>
-          <td>370</td>
-          <td>190</td>
-          <td>300</td>
-        </tr>
-        <tr>
-          <td>3 Jan - 31 Mar</td>
-          <td>semaine</td>
-          <td>135</td>
-          <td>150</td>
-          <td>170</td>
-          <td>240</td>
-          <td>155</td>
-          <td>340</td>
-          <td>180</td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>1 Avr - 5 Avr</td>
-          <td>semaine</td>
-          <td>175</td>
-          <td>190</td>
-          <td>220</td>
-          <td>270</td>
-          <td>210</td>
-          <td>470</td>
-          <td>245</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>6 Avr -19 Avr</td>
-          <td>semaine</td>
-          <td>175</td>
-          <td>200</td>
-          <td>230</td>
-          <td>420</td>
-          <td>220</td>
-          <td>520</td>
-          <td>255</td>
-          <td>495</td>
-        </tr>
-        <tr>
-          <td>20 Avr - 31 Mai</td>
-          <td>semaine</td>
-          <td>165</td>
-          <td>190</td>
-          <td>220</td>
-          <td>270</td>
-          <td>210</td>
-          <td>470</td>
-          <td>245</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>1 Juin - 30 Juin</td>
-          <td>semaine</td>
-          <td>175</td>
-          <td>200</td>
-          <td>230</td>
-          <td>420</td>
-          <td>220</td>
-          <td>520</td>
-          <td>255</td>
-          <td>495</td>
-        </tr>
-        <tr>
-          <td>1 Juillet - 15 Juillet</td>
-          <td>semaine</td>
-          <td>225</td>
-          <td>250</td>
-          <td>270</td>
-          <td>395</td>
-          <td>260</td>
-          <td>570</td>
-          <td>350</td>
-          <td>550</td>
-        </tr>
-        <tr>
-          <td>16 Juillet - 31 Juillet</td>
-          <td>semaine</td>
-          <td>250</td>
-          <td>385</td>
-          <td>310</td>
-          <td>450</td>
-          <td>300</td>
-          <td>670</td>
-          <td>400</td>
-          <td>620</td>
-        </tr>
-        <tr>
-          <td>1 Août - 19 Août</td>
-          <td>semaine</td>
-          <td>275</td>
-          <td>310</td>
-          <td>340</td>
-          <td>510</td>
-          <td>330</td>
-          <td>760</td>
-          <td>440</td>
-          <td>700</td>
-        </tr>
-        <tr>
-          <td>20 Août - 31 Août</td>
-          <td>semaine</td>
-          <td>225</td>
-          <td>250</td>
-          <td>270</td>
-          <td>395</td>
-          <td>260</td>
-          <td>570</td>
-          <td>350</td>
-          <td>550</td>
-        </tr>
-        <tr>
-          <td>1 Sept - 30 Sept</td>
-          <td>semaine</td>
-          <td>175</td>
-          <td>210</td>
-          <td>220</td>
-          <td>350</td>
-          <td>200</td>
-          <td>470</td>
-          <td>260</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>1 Oct - 31 Oct 2022</td>
-          <td>semaine</td>
-          <td>165</td>
-          <td>180</td>
-          <td>210</td>
-          <td>320</td>
-          <td>200</td>
-          <td>420</td>
-          <td>235</td>
-          <td>395</td>
-        </tr>
-      </tbody>
-    </table>
+<thead>
+  <tr>
+    <th> </th>
+    <th>PÉRIODE</th>
+    <th>Fiat Panda ou similaire 5 portes<br>A</th>
+    <th>Clio,Ibiza avec GPS<br>B</th>
+    <th>Renault Captur Petit SUV<br>C</th>
+    <th>Citroen C4 (petit 7 places)<br>E</th>
+    <th>Clio Break<br>G</th>
+    <th>Seat Alhambra 7 places<br>I</th>
+    <th>Megane SW<br>J</th>
+    <th>Renault Traveller, Citroen space tourer XL 9 places<br>K</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>08-03-22<br>23-03-22</td>
+    <td>semaine</td>
+    <td>178</td>
+    <td>205</td>
+    <td>255</td>
+    <td>440</td>
+    <td>230</td>
+    <td>612</td>
+    <td>275</td>
+    <td>500</td>
+  </tr>
+  <tr>
+    <td>24-03-22<br>31-03-22</td>
+    <td>semaine</td>
+    <td>797</td>
+    <td>222</td>
+    <td>290</td>
+    <td>600</td>
+    <td>285</td>
+    <td>750</td>
+    <td>330</td>
+    <td>700</td>
+  </tr>
+  <tr>
+    <td>01-04-22<br>24-04-22</td>
+    <td>semaine</td>
+    <td>235</td>
+    <td>260</td>
+    <td>343</td>
+    <td>715</td>
+    <td>337</td>
+    <td>895</td>
+    <td>405</td>
+    <td>835</td>
+  </tr>
+  <tr>
+    <td>24-04-22<br>31-05-22</td>
+    <td>semaine</td>
+    <td>190</td>
+    <td>210</td>
+    <td>280</td>
+    <td>525</td>
+    <td>270</td>
+    <td>680</td>
+    <td>320</td>
+    <td>650</td>
+  </tr>
+  <tr>
+    <td>01-06-22<br>30-06-22</td>
+    <td>semaine</td>
+    <td>195</td>
+    <td>215</td>
+    <td>285</td>
+    <td>530</td>
+    <td>275</td>
+    <td>685</td>
+    <td>325</td>
+    <td>655</td>
+  </tr>
+  <tr>
+    <td>01-07-22<br>15-07-22</td>
+    <td>semaine</td>
+    <td>230</td>
+    <td>250</td>
+    <td>320</td>
+    <td>506</td>
+    <td>310</td>
+    <td>700</td>
+    <td>410</td>
+    <td>675</td>
+  </tr>
+  <tr>
+    <td>16-07-22<br>19-08-22</td>
+    <td>semaine</td>
+    <td>285</td>
+    <td>310</td>
+    <td>385</td>
+    <td>550</td>
+    <td>375</td>
+    <td>825</td>
+    <td>470</td>
+    <td>750</td>
+  </tr>
+  <tr>
+    <td>20-08-22<br>31-08-22</td>
+    <td>semaine</td>
+    <td>240</td>
+    <td>275</td>
+    <td>300</td>
+    <td>450</td>
+    <td>290</td>
+    <td>675</td>
+    <td>400</td>
+    <td>600</td>
+  </tr>
+  <tr>
+    <td>01-09-22<br>30-09-22</td>
+    <td>semaine</td>
+    <td>210</td>
+    <td>235</td>
+    <td>275</td>
+    <td>475</td>
+    <td>270</td>
+    <td>650</td>
+    <td>350</td>
+    <td>625</td>
+  </tr>
+  <tr>
+    <td>01-10-22<br>31-10-22</td>
+    <td>semaine</td>
+    <td>155</td>
+    <td>180</td>
+    <td>200</td>
+    <td>350</td>
+    <td>195</td>
+    <td>450</td>
+    <td>230</td>
+    <td>425</td>
+  </tr>
+  <tr>
+    <td>01-11-22<br>23-03-23</td>
+    <td>semaine</td>
+    <td>105</td>
+    <td>217</td>
+    <td>136</td>
+    <td>213</td>
+    <td>126</td>
+    <td>285</td>
+    <td>144</td>
+    <td>237</td>
+  </tr>
+</tbody>
+</table>
   </div>
 
   <br />
@@ -2087,131 +1872,107 @@ html:
   <br />
   <div class='base-table'>
     <table>
-      <thead>
-        <tr>
-          <th>MOIS</th>
-          <th>PÉRIODE</th>
-          <th>F</th>
-          <th>J1</th>
-          <th>L</th>
-          <th>M</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>Seat Arona Automatique</td>
-          <td>Renault Megane SW Automatique</td>
-          <td>Opel Corsa Automatique</td>
-          <td>Citroen C3 Automatique</td>
-        </tr>
-        <tr>
-          <td>1 Nov 2022 - 20 Dec</td>
-          <td>semaine</td>
-          <td>200</td>
-          <td>190</td>
-          <td>155</td>
-          <td>170</td>
-        </tr>
-        <tr>
-          <td>21 Dec - 2 Jan</td>
-          <td>semaine</td>
-          <td>215</td>
-          <td>200</td>
-          <td>165</td>
-          <td>175</td>
-        </tr>
-        <tr>
-          <td>3 Jan - 31 Mar</td>
-          <td>semaine</td>
-          <td>200</td>
-          <td>190</td>
-          <td>155</td>
-          <td>170</td>
-        </tr>
-        <tr>
-          <td>1 Avr - 5 Avr</td>
-          <td>semaine</td>
-          <td>240</td>
-          <td>250</td>
-          <td>195</td>
-          <td>205</td>
-        </tr>
-        <tr>
-          <td>6 Avr -19 Avr</td>
-          <td>semaine</td>
-          <td>250</td>
-          <td>260</td>
-          <td>205</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>20 Avr - 31 Mai</td>
-          <td>semaine</td>
-          <td>240</td>
-          <td>250</td>
-          <td>195</td>
-          <td>205</td>
-        </tr>
-        <tr>
-          <td>1 Juin - 30 Juin</td>
-          <td>semaine</td>
-          <td>250</td>
-          <td>260</td>
-          <td>205</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>1 Juillet - 15 Juillet</td>
-          <td>semaine</td>
-          <td>315</td>
-          <td>365</td>
-          <td>245</td>
-          <td>260</td>
-        </tr>
-        <tr>
-          <td>16 Juillet - 31 Juillet</td>
-          <td>semaine</td>
-          <td>360</td>
-          <td>420</td>
-          <td>280</td>
-          <td>290</td>
-        </tr>
-        <tr>
-          <td>1 Août - 19 Août</td>
-          <td>semaine</td>
-          <td>400</td>
-          <td>470</td>
-          <td>315</td>
-          <td>325</td>
-        </tr>
-        <tr>
-          <td>20 Août - 31 Août</td>
-          <td>semaine</td>
-          <td>315</td>
-          <td>365</td>
-          <td>245</td>
-          <td>260</td>
-        </tr>
-        <tr>
-          <td>1 Sept - 30 Sept</td>
-          <td>semaine</td>
-          <td>255</td>
-          <td>265</td>
-          <td>195</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>1 Oct - 31 Oct 2022</td>
-          <td>semaine</td>
-          <td>230</td>
-          <td>230</td>
-          <td>185</td>
-          <td>195</td>
-        </tr>
-      </tbody>
-    </table>
+<thead>
+  <tr>
+    <th> </th>
+    <th>PÉRIODE</th>
+    <th>Seat Arona Automatique<br>F</th>
+    <th>Renault Megane SW Automatique<br>J1</th>
+    <th>Opel Corsa Automatique<br>L</th>
+    <th>Citroen C3 Automatique<br>M</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>08-03-22<br>23-03-22</td>
+    <td>semaine</td>
+    <td>327</td>
+    <td>297</td>
+    <td>222</td>
+    <td>245</td>
+  </tr>
+  <tr>
+    <td>24-03-22<br>31-03-22</td>
+    <td>semaine</td>
+    <td>350</td>
+    <td>355</td>
+    <td>245</td>
+    <td>260</td>
+  </tr>
+  <tr>
+    <td>01-04-22<br>24-04-22</td>
+    <td>semaine</td>
+    <td>415</td>
+    <td>435</td>
+    <td>280</td>
+    <td>295</td>
+  </tr>
+  <tr>
+    <td>24-04-22<br>31-05-22</td>
+    <td>semaine</td>
+    <td>330</td>
+    <td>335</td>
+    <td>230</td>
+    <td>240</td>
+  </tr>
+  <tr>
+    <td>01-06-22<br>30-06-22</td>
+    <td>semaine</td>
+    <td>335</td>
+    <td>340</td>
+    <td>235</td>
+    <td>245</td>
+  </tr>
+  <tr>
+    <td>01-07-22<br>15-07-22</td>
+    <td>semaine</td>
+    <td>368</td>
+    <td>430</td>
+    <td>272</td>
+    <td>296</td>
+  </tr>
+  <tr>
+    <td>16-07-22<br>19-08-22</td>
+    <td>semaine</td>
+    <td>430</td>
+    <td>500</td>
+    <td>330</td>
+    <td>340</td>
+  </tr>
+  <tr>
+    <td>20-08-22<br>31-08-22</td>
+    <td>semaine</td>
+    <td>350</td>
+    <td>415</td>
+    <td>280</td>
+    <td>290</td>
+  </tr>
+  <tr>
+    <td>01-09-22<br>30-09-22</td>
+    <td>semaine</td>
+    <td>330</td>
+    <td>365</td>
+    <td>245</td>
+    <td>255</td>
+  </tr>
+  <tr>
+    <td>01-10-22<br>31-10-22</td>
+    <td>semaine</td>
+    <td>225</td>
+    <td>240</td>
+    <td>190</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>01-11-22<br>23-03-23</td>
+    <td>semaine</td>
+    <td>165</td>
+    <td>155</td>
+    <td>121</td>
+    <td>135</td>
+  </tr>
+</tbody>
+</table>
   </div>
   <br />
 </center>
@@ -2280,8 +2041,8 @@ html:
     color: #fff;
     text-align: center;
   }
-  .base-table tbody tr:first-child {
-    font-weight: bold;
+   .base-table tbody tr td:first-child {
+    white-space: nowrap;
   }
   .base-table table tr:nth-of-type(odd) td {
     background-color: #f5f5f5;
@@ -2376,191 +2137,155 @@ html:
   <br />
   <div class='base-table'>
     <table>
-      <thead>
-        <tr>
-          <th>MES</th>
-          <th>PERÍODO</th>
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-          <th>E</th>
-          <th>G</th>
-          <th>I</th>
-          <th>J</th>
-          <th>K</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>Fiat Panda o similar 5 puertas</td>
-          <td>Clio,Ibiza con GPS</td>
-          <td>Renault Captur SUV pequeño</td>
-          <td>Citroen C4 (pequeño de 7 lugares)</td>
-          <td>Clio Break</td>
-          <td>Seat Alhambra 7 lugares</td>
-          <td>Megane SW</td>
-          <td>Renault Traveller, Citroen space tourer XL 9 lugares</td>
-        </tr>
-        <tr>
-          <td>1 Nov 2022 - 20 Dez</td>
-          <td>Semana</td>
-          <td>135</td>
-          <td>150</td>
-          <td>170</td>
-          <td>250</td>
-          <td>155</td>
-          <td>340</td>
-          <td>180</td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>21 Dez- 2 Jan</td>
-          <td>Semana</td>
-          <td>140</td>
-          <td>160</td>
-          <td>180</td>
-          <td>270</td>
-          <td>170</td>
-          <td>370</td>
-          <td>190</td>
-          <td>300</td>
-        </tr>
-        <tr>
-          <td>3 Jan-31 Mar</td>
-          <td>Semana</td>
-          <td>135</td>
-          <td>150</td>
-          <td>170</td>
-          <td>240</td>
-          <td>155</td>
-          <td>340</td>
-          <td>180</td>
-          <td>275</td>
-        </tr>
-        <tr>
-          <td>1 Abril - 5 Abril</td>
-          <td>Semana</td>
-          <td>175</td>
-          <td>190</td>
-          <td>220</td>
-          <td>270</td>
-          <td>210</td>
-          <td>470</td>
-          <td>245</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>6 Abril -19 Abril</td>
-          <td>Semana</td>
-          <td>175</td>
-          <td>200</td>
-          <td>230</td>
-          <td>420</td>
-          <td>220</td>
-          <td>520</td>
-          <td>255</td>
-          <td>495</td>
-        </tr>
-        <tr>
-          <td>20 Abril - 31 Maio</td>
-          <td>Semana</td>
-          <td>165</td>
-          <td>190</td>
-          <td>220</td>
-          <td>270</td>
-          <td>210</td>
-          <td>470</td>
-          <td>245</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>1 Junho-30 Junho</td>
-          <td>Semana</td>
-          <td>175</td>
-          <td>200</td>
-          <td>230</td>
-          <td>420</td>
-          <td>220</td>
-          <td>520</td>
-          <td>255</td>
-          <td>495</td>
-        </tr>
-        <tr>
-          <td>1 Julho - 15 Julho</td>
-          <td>Semana</td>
-          <td>225</td>
-          <td>250</td>
-          <td>270</td>
-          <td>395</td>
-          <td>260</td>
-          <td>570</td>
-          <td>350</td>
-          <td>550</td>
-        </tr>
-        <tr>
-          <td>16 Julho - 31 Julho</td>
-          <td>Semana</td>
-          <td>250</td>
-          <td>385</td>
-          <td>310</td>
-          <td>450</td>
-          <td>300</td>
-          <td>670</td>
-          <td>400</td>
-          <td>620</td>
-        </tr>
-        <tr>
-          <td>1 Ago - 19 Ago</td>
-          <td>Semana</td>
-          <td>275</td>
-          <td>310</td>
-          <td>340</td>
-          <td>510</td>
-          <td>330</td>
-          <td>760</td>
-          <td>440</td>
-          <td>700</td>
-        </tr>
-        <tr>
-          <td>20 Ago-31 Ago</td>
-          <td>Semana</td>
-          <td>225</td>
-          <td>250</td>
-          <td>270</td>
-          <td>395</td>
-          <td>260</td>
-          <td>570</td>
-          <td>350</td>
-          <td>550</td>
-        </tr>
-        <tr>
-          <td>1 Set -30 Set</td>
-          <td>Semana</td>
-          <td>175</td>
-          <td>210</td>
-          <td>220</td>
-          <td>350</td>
-          <td>200</td>
-          <td>470</td>
-          <td>260</td>
-          <td>445</td>
-        </tr>
-        <tr>
-          <td>1 Oct-31 Oct 2022</td>
-          <td>Semana</td>
-          <td>165</td>
-          <td>180</td>
-          <td>210</td>
-          <td>320</td>
-          <td>200</td>
-          <td>420</td>
-          <td>235</td>
-          <td>395</td>
-        </tr>
-      </tbody>
-    </table>
+<thead>
+  <tr>
+    <th> </th>
+    <th>PERÍODO</th>
+    <th>Fiat Panda o similar 5 puertas<br>A</th>
+    <th>Clio,Ibiza con GPS<br>B</th>
+    <th>Renault Captur SUV pequeño<br>C</th>
+    <th>Citroen C4 (pequeño de 7 lugares)<br>E</th>
+    <th>Clio Break<br>G</th>
+    <th>Seat Alhambra 7 lugares<br>I</th>
+    <th>Megane SW<br>J</th>
+    <th>Renault Traveller, Citroen space tourer XL 9 lugares<br>K</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>08-03-22<br>23-03-22</td>
+    <td>Semana</td>
+    <td>178</td>
+    <td>205</td>
+    <td>255</td>
+    <td>440</td>
+    <td>230</td>
+    <td>612</td>
+    <td>275</td>
+    <td>500</td>
+  </tr>
+  <tr>
+    <td>24-03-22<br>31-03-22</td>
+    <td>Semana</td>
+    <td>797</td>
+    <td>222</td>
+    <td>290</td>
+    <td>600</td>
+    <td>285</td>
+    <td>750</td>
+    <td>330</td>
+    <td>700</td>
+  </tr>
+  <tr>
+    <td>01-04-22<br>24-04-22</td>
+    <td>Semana</td>
+    <td>235</td>
+    <td>260</td>
+    <td>343</td>
+    <td>715</td>
+    <td>337</td>
+    <td>895</td>
+    <td>405</td>
+    <td>835</td>
+  </tr>
+  <tr>
+    <td>24-04-22<br>31-05-22</td>
+    <td>Semana</td>
+    <td>190</td>
+    <td>210</td>
+    <td>280</td>
+    <td>525</td>
+    <td>270</td>
+    <td>680</td>
+    <td>320</td>
+    <td>650</td>
+  </tr>
+  <tr>
+    <td>01-06-22<br>30-06-22</td>
+    <td>Semana</td>
+    <td>195</td>
+    <td>215</td>
+    <td>285</td>
+    <td>530</td>
+    <td>275</td>
+    <td>685</td>
+    <td>325</td>
+    <td>655</td>
+  </tr>
+  <tr>
+    <td>01-07-22<br>15-07-22</td>
+    <td>Semana</td>
+    <td>230</td>
+    <td>250</td>
+    <td>320</td>
+    <td>506</td>
+    <td>310</td>
+    <td>700</td>
+    <td>410</td>
+    <td>675</td>
+  </tr>
+  <tr>
+    <td>16-07-22<br>19-08-22</td>
+    <td>Semana</td>
+    <td>285</td>
+    <td>310</td>
+    <td>385</td>
+    <td>550</td>
+    <td>375</td>
+    <td>825</td>
+    <td>470</td>
+    <td>750</td>
+  </tr>
+  <tr>
+    <td>20-08-22<br>31-08-22</td>
+    <td>Semana</td>
+    <td>240</td>
+    <td>275</td>
+    <td>300</td>
+    <td>450</td>
+    <td>290</td>
+    <td>675</td>
+    <td>400</td>
+    <td>600</td>
+  </tr>
+  <tr>
+    <td>01-09-22<br>30-09-22</td>
+    <td>Semana</td>
+    <td>210</td>
+    <td>235</td>
+    <td>275</td>
+    <td>475</td>
+    <td>270</td>
+    <td>650</td>
+    <td>350</td>
+    <td>625</td>
+  </tr>
+  <tr>
+    <td>01-10-22<br>31-10-22</td>
+    <td>Semana</td>
+    <td>155</td>
+    <td>180</td>
+    <td>200</td>
+    <td>350</td>
+    <td>195</td>
+    <td>450</td>
+    <td>230</td>
+    <td>425</td>
+  </tr>
+  <tr>
+    <td>01-11-22<br>23-03-23</td>
+    <td>Semana</td>
+    <td>105</td>
+    <td>217</td>
+    <td>136</td>
+    <td>213</td>
+    <td>126</td>
+    <td>285</td>
+    <td>144</td>
+    <td>237</td>
+  </tr>
+</tbody>
+</table>
   </div>
 
   <br />
@@ -2568,131 +2293,107 @@ html:
   <br />
   <div class='base-table'>
     <table>
-      <thead>
-        <tr>
-          <th>MES</th>
-          <th>PERÍODO</th>
-          <th>F</th>
-          <th>J1</th>
-          <th>L</th>
-          <th>M</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>Seat Arona Automático</td>
-          <td>Renault Megane SW automático</td>
-          <td>Opel Corsa automático</td>
-          <td>Citroen C3 automático</td>
-        </tr>
-        <tr>
-          <td>1 Nov 2022 - 20 Dez</td>
-          <td>Semana</td>
-          <td>200</td>
-          <td>190</td>
-          <td>155</td>
-          <td>170</td>
-        </tr>
-        <tr>
-          <td>21 Dez- 2 Jan</td>
-          <td>Semana</td>
-          <td>215</td>
-          <td>200</td>
-          <td>165</td>
-          <td>175</td>
-        </tr>
-        <tr>
-          <td>3 Jan-31 Mar</td>
-          <td>Semana</td>
-          <td>200</td>
-          <td>190</td>
-          <td>155</td>
-          <td>170</td>
-        </tr>
-        <tr>
-          <td>1 Abril - 5 Abril</td>
-          <td>Semana</td>
-          <td>240</td>
-          <td>250</td>
-          <td>195</td>
-          <td>205</td>
-        </tr>
-        <tr>
-          <td>6 Abril -19 Abril</td>
-          <td>Semana</td>
-          <td>250</td>
-          <td>260</td>
-          <td>205</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>20 Abril - 31 Maio</td>
-          <td>Semana</td>
-          <td>240</td>
-          <td>250</td>
-          <td>195</td>
-          <td>205</td>
-        </tr>
-        <tr>
-          <td>1 Junho-30 Junho</td>
-          <td>Semana</td>
-          <td>250</td>
-          <td>260</td>
-          <td>205</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>1 Julho - 15 Julho</td>
-          <td>Semana</td>
-          <td>315</td>
-          <td>365</td>
-          <td>245</td>
-          <td>260</td>
-        </tr>
-        <tr>
-          <td>16 Julho - 31 Julho</td>
-          <td>Semana</td>
-          <td>360</td>
-          <td>420</td>
-          <td>280</td>
-          <td>290</td>
-        </tr>
-        <tr>
-          <td>1 Ago - 19 Ago</td>
-          <td>Semana</td>
-          <td>400</td>
-          <td>470</td>
-          <td>315</td>
-          <td>325</td>
-        </tr>
-        <tr>
-          <td>20 Ago-31 Ago</td>
-          <td>Semana</td>
-          <td>315</td>
-          <td>365</td>
-          <td>245</td>
-          <td>260</td>
-        </tr>
-        <tr>
-          <td>1 Set -30 Set</td>
-          <td>Semana</td>
-          <td>255</td>
-          <td>265</td>
-          <td>195</td>
-          <td>215</td>
-        </tr>
-        <tr>
-          <td>1 Oct-31 Oct 2022</td>
-          <td>Semana</td>
-          <td>230</td>
-          <td>230</td>
-          <td>185</td>
-          <td>195</td>
-        </tr>
-      </tbody>
-    </table>
+<thead>
+  <tr>
+    <th> </th>
+    <th>PERÍODO</th>
+    <th>Seat Arona Automático<br>F</th>
+    <th>Renault Megane SW automático<br>J1</th>
+    <th>Opel Corsa automático<br>L</th>
+    <th>Citroen C3 automático<br>M</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>08-03-22<br>23-03-22</td>
+    <td>Semana</td>
+    <td>327</td>
+    <td>297</td>
+    <td>222</td>
+    <td>245</td>
+  </tr>
+  <tr>
+    <td>24-03-22<br>31-03-22</td>
+    <td>Semana</td>
+    <td>350</td>
+    <td>355</td>
+    <td>245</td>
+    <td>260</td>
+  </tr>
+  <tr>
+    <td>01-04-22<br>24-04-22</td>
+    <td>Semana</td>
+    <td>415</td>
+    <td>435</td>
+    <td>280</td>
+    <td>295</td>
+  </tr>
+  <tr>
+    <td>24-04-22<br>31-05-22</td>
+    <td>Semana</td>
+    <td>330</td>
+    <td>335</td>
+    <td>230</td>
+    <td>240</td>
+  </tr>
+  <tr>
+    <td>01-06-22<br>30-06-22</td>
+    <td>Semana</td>
+    <td>335</td>
+    <td>340</td>
+    <td>235</td>
+    <td>245</td>
+  </tr>
+  <tr>
+    <td>01-07-22<br>15-07-22</td>
+    <td>Semana</td>
+    <td>368</td>
+    <td>430</td>
+    <td>272</td>
+    <td>296</td>
+  </tr>
+  <tr>
+    <td>16-07-22<br>19-08-22</td>
+    <td>Semana</td>
+    <td>430</td>
+    <td>500</td>
+    <td>330</td>
+    <td>340</td>
+  </tr>
+  <tr>
+    <td>20-08-22<br>31-08-22</td>
+    <td>Semana</td>
+    <td>350</td>
+    <td>415</td>
+    <td>280</td>
+    <td>290</td>
+  </tr>
+  <tr>
+    <td>01-09-22<br>30-09-22</td>
+    <td>Semana</td>
+    <td>330</td>
+    <td>365</td>
+    <td>245</td>
+    <td>255</td>
+  </tr>
+  <tr>
+    <td>01-10-22<br>31-10-22</td>
+    <td>Semana</td>
+    <td>225</td>
+    <td>240</td>
+    <td>190</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>01-11-22<br>23-03-23</td>
+    <td>Semana</td>
+    <td>165</td>
+    <td>155</td>
+    <td>121</td>
+    <td>135</td>
+  </tr>
+</tbody>
+</table>
   </div>
   <br />
 </center>
