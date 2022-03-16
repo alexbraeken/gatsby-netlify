@@ -92,7 +92,7 @@ const Contact = class extends React.Component {
             </div>
           </div>
 
-          <div className="container contact-form" style={{position: "relative", padding: "50px 15px"}}>
+          <div className="container contact-form">
             <div className="content">
               <h1  className="orangeText" style={{color: "#f5821e"}}>{t("Contact")}</h1>
               {this.state.sent ? 
