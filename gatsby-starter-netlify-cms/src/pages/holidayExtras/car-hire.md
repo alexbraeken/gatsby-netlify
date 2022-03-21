@@ -8,7 +8,7 @@ langTitles:
     pt: "Aluguer de Automóveis"
     fr: Location de voitures
     es: Alquiler de coches
-hero: ../../../static/img/car-hire.jpg
+hero: ../../../static/img/pexels-torsten-dettlaff-70912.jpg
 carPricing:
     A:
         class: A
@@ -27,7 +27,7 @@ carPricing:
             }'  
             ,'{
                 "date": "2022-03-24",
-                "price": "114"
+                "price": "29"
             }'  
             ,'{
                 "date": "2022-04-01",
@@ -907,7 +907,7 @@ html:
   <tr>
     <td>24-03-22<br>31-03-22</td>
     <td>Week</td>
-    <td>797</td>
+    <td>197</td>
     <td>222</td>
     <td>290</td>
     <td>600</td>
@@ -1326,7 +1326,7 @@ html:
   <tr>
     <td>24-03-22<br>31-03-22</td>
     <td>Semana</td>
-    <td>797</td>
+    <td>197</td>
     <td>222</td>
     <td>290</td>
     <td>600</td>
@@ -1746,7 +1746,7 @@ html:
   <tr>
     <td>24-03-22<br>31-03-22</td>
     <td>semaine</td>
-    <td>797</td>
+    <td>197</td>
     <td>222</td>
     <td>290</td>
     <td>600</td>
@@ -2167,7 +2167,7 @@ html:
   <tr>
     <td>24-03-22<br>31-03-22</td>
     <td>Semana</td>
-    <td>797</td>
+    <td>197</td>
     <td>222</td>
     <td>290</td>
     <td>600</td>
