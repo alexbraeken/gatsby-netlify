@@ -38,7 +38,7 @@ const PropertiesDropDown = React.memo((props) => {
   const CustomOption = props => {
     const { data, innerRef, innerProps } = props;
     return (
-      <Link to={`/properties/${data.value}`}>
+      <a href={`/properties/${data.value}`}>
       <div ref={innerRef} {...innerProps} className="nav-name-search">
         <div  className="nav-prop-name">
         <div>{data.label}</div>
@@ -49,7 +49,7 @@ const PropertiesDropDown = React.memo((props) => {
           </div>
         </div>
         </div> 
-      </Link>
+      </a>
     );
   };
 
@@ -66,11 +66,11 @@ const PropertiesDropDown = React.memo((props) => {
       boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
       <h4 className="dropdown-title" style={{color:"#fff"}}>{t("All")}</h4>
     </div>
-          <Link to={`/properties`}>
+          <a href={`/properties`}>
             <div  className="navbar-item drop-item">
             {t("All Properties")}
             </div>
-          </Link>
+          </a>
           <Select 
           options={options}
           onChange={(e)=>onInputChange(e.value)}
@@ -90,11 +90,11 @@ const PropertiesDropDown = React.memo((props) => {
                                   </div>
                                   
                                   {d.value.Locations.map((city, index)=>(
-                                    <Link to={`/properties?city=${city}`} key={index}>
+                                    <a href={`/properties?city=${city}`} key={index}>
                                       <div  className="navbar-item drop-item">
                                         {city}
                                       </div>
-                                    </Link>
+                                    </a>
                                     ))
                                   }
                                   </div>
@@ -103,11 +103,11 @@ const PropertiesDropDown = React.memo((props) => {
                                     <h4 className="dropdown-title" style={{color:"#fff"}}>{t("Property Type")}</h4>
                                   </div>
                                   {d.value.Types.map((type, index)=>(
-                                    <Link to={`/properties?type=${type}`} key={index}>
+                                    <a href={`/properties?type=${type}`} key={index}>
                                       <div  className="navbar-item drop-item">
                                         {type[0].toUpperCase() + type.slice(1).toLowerCase()}
                                       </div>
-                                    </Link>
+                                    </a>
                                     ))
                                   }
                                   </div>

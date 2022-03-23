@@ -9,6 +9,8 @@ var _redux = require("redux");
 
 function reducer(state, action) {
   var newObj = state.properties;
+  var city = state.city;
+  var propType = state.propType;
 
   if (action.type === "ADD_PROPERTY") {
     if (!newObj[action.propId]) {
@@ -38,11 +40,21 @@ function reducer(state, action) {
     }
   }
 
+  if (action.type === 'SEARCH_PARAMETER') {
+    return {
+      properties: newObj,
+      city: action.city || city,
+      propType: action.propType || propType
+    };
+  }
+
   return state;
 }
 
 var initialState = {
-  properties: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('state')) || {} : {}
+  properties: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('state')) || {} : {},
+  city: "",
+  propType: ""
 }; // preloadedState will be passed in by the plugin
 
 var _default = function _default(preloadedState) {
