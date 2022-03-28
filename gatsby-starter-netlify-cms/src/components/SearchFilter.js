@@ -12,7 +12,7 @@ import SubmitButton from './SubmitButton'
 import Select from 'react-select'
 import { FirestoreDocument } from '@react-firebase/firestore'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 const customStyles = {
   option: (provided, state) => ({
@@ -479,9 +479,7 @@ const SearchFilter = (props) => {
                 setClicked(!clicked)
               }
           }>
-          <FontAwesomeIcon icon={faSearch} style={{margin: "auto",
-    width: "30px",
-    height: "30px"}} />
+          <FontAwesomeIcon icon={faCalendarAlt} />
         </div>
         <div role="button" className="submitBtn" tabindex="0" onClick={submitSearch} onKeyDown={(e)=>{if(e.key==="Enter"){submitSearch()}}} style={{margin:"0 5px"}}>
         <SubmitButton text={t("See What We Have!")}/>

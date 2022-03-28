@@ -1284,10 +1284,17 @@ $min-margin: 10px
         pointer-events: all
         & svg
             cursor: pointer
+            margin: auto 
+            margin-right: 0
+            width: 30px
+            height: 30px
+            transition: all 0.3s
             &:hover
               color: $primary
+              transform: scale(1.0)
+              margin-right: 5px
   &.shrink
-    max-width: 330px
+    max-width: 350px
     padding: 5px
     & .expand-search
         opacity: 1
