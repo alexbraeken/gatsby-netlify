@@ -10,6 +10,8 @@ var _redux = require("redux");
 function reducer(state, action) {
   var newObj = state.properties;
   var featuredProps = state.featuredProps;
+  var city = state.city;
+  var propType = state.propType;
 
   if (action.type === "ADD_PROPERTY") {
     if (!newObj[action.propId]) {
@@ -21,7 +23,8 @@ function reducer(state, action) {
         bathrooms: action.bathrooms,
         baseGuests: action.baseGuests,
         city: action.city,
-        rate: action.rate
+        rate: action.rate,
+        currSymbol: action.currSymbol
       };
       return {
         properties: newObj
@@ -50,7 +53,9 @@ function reducer(state, action) {
 }
 
 var initialState = {
-  properties: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('state')) || {} : {}
+  properties: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('state')) || {} : {},
+  city: "",
+  propType: ""
 }; // preloadedState will be passed in by the plugin
 
 var _default = function _default(preloadedState) {

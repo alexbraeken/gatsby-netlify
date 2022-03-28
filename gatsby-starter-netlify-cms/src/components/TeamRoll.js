@@ -51,18 +51,25 @@ const TeamCard = React.memo((props) =>{
     let memberDescriptions = gsap.utils.toArray('.team-section article');
 
     memberDescriptions.forEach((section, i) => {
-      if(i>0)gsap.fromTo(team1[i],{
-          clipPath: `polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)`
-        },{
-        scrollTrigger: {
-          trigger: section,
-          scrub: true,
-          start: "top bottom",
-          end: "+=100%"
-        },
-        clipPath: `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)`,
-        ease: "none"
-      });
+      if(i>0){
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top center",
+            toggleActions: "play none none reverse"
+          },
+        }).fromTo(
+          team1[i],
+          {
+            clipPath: `polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)`
+          },
+          { 
+            clipPath: `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)`, 
+            duration: 0.5,
+            ease: 'Power2.easeOut' 
+          }
+        )
+      }
     })
 
   }, [])

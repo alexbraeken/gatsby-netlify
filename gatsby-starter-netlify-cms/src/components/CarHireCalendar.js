@@ -85,7 +85,7 @@ const MONTHS = {
     'Février',
     'Mars',
     'Avril',
-    'Peut',
+    'Mai',
     'Juin',
     'Juillet',
     'Août',
@@ -207,9 +207,9 @@ const CarHireCalendar = (props) => {
         let count = 0;
         let selected = document.getElementsByClassName("DayPicker-Day--selected")
         if(selected.length > 0){
-            for (const el of selected) {
-                if(el.firstChild)count += parseInt(el.firstChild.getAttribute("data-price"))
-              }
+          [...selected].forEach((el, i) => {
+            if(el.firstChild && i < selected.length - 1)count += parseInt(el.firstChild.getAttribute("data-price"))
+          })
         }
         setTotal(count)
 

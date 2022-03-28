@@ -139,7 +139,6 @@ const Properties = React.memo((props) => {
             return amenitiesList[amenity] ? amenities.push(amenity) : null
         })
 
-
         const list = []
         if(data){
             data.forEach((item, index) => {
@@ -147,7 +146,8 @@ const Properties = React.memo((props) => {
                 
                 if(amenities.length > 0 && item.amenities){
                     amenities.forEach(amenity => {
-                        amenityBool.push(item.amenities[`${amenity}`])
+                        amenityBool.push((item.amenities[`${amenity}`] === null || item.amenities[`${amenity}`] === false) ? false : true )
+                        console.log(item.amenities[`${amenity}`])
                     })
                 }else{
                     amenityBool.push(true)

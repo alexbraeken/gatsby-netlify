@@ -110,7 +110,7 @@ const PropertyCardComp = (props) => {
           {!inFavs ? 
           <div className="favs-heart-container">
             <AiOutlineHeart class="add-favs-heart" onClick={()=>{
-            props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests, city: props.item.city, rate: displayPrice })
+            props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests, city: props.item.city, rate: displayPrice, currSymbol: props.item.currencySymbol})
             }}/><span className="favs tooltiptext">{t("add favs")}</span>
           </div>
           :
@@ -198,7 +198,7 @@ const PropertyCardComp = (props) => {
                 </Card.Text>
                 <div className="prop-card-description-ps">
                   <small style={{float:"left"}}>{props.item.city}</small>
-                  <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{displayPrice}€ </span>/ {t("Night")}</small>
+                  <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{displayPrice}{props.item.currencySymbol} </span>/ {t("Night")}</small>
                 </div>
                 </Link>
                 <Card.Footer className="prop-card-footer-container">

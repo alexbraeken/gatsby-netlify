@@ -359,7 +359,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <FirestoreDocument path={`PricingPeriods/${props.id}`}>
                                                     {pricePeriods => {
                                                     return (!pricePeriods.isLoading && pricePeriods.value) ? 
-                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods.value} minDays={data.value.minimumStay}/>
+                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods.value} minDays={data.value.minimumStay} currSymbol={data.value.currencySymbol}/>
                                                         :
                                                         <Loading />
                                                     }}
@@ -637,7 +637,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </div>
                                                     </Tab>
                                                     {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-                                                    <Tab eventKey="winterLets" title="Winter Let Details" tabClassName="orangeText">
+                                                    <Tab eventKey="winterLets" title={t("Winter Let Details")} tabClassName="orangeText">
                                                         <p>{t("Winter Let Discount Paragraph pre price")}<b>{data.value.customData?.Winter_Let_Price}</b>{t("Winter Let Discount Paragraph post price")}
                                                             <br />
                                                             <small>
@@ -686,10 +686,12 @@ export const PropertyPageTemplate = ( props ) =>
                                                     </svg>
                                                 </div>
                                                 <br />
+                                                {propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
                                                 <div>
                                                 <center><a href="/about/booking-terms-conditions" target="_blank"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>{t("Booking Terms & Conditions")}</span> <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto"}} /></a></center>
                                                 </div>
-                                                {damageWaiver &&
+                                                }
+                                                {damageWaiver && propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
                                                 <div style={{paddingBottom:"20px"}}> 
                                                     <br />
                                                     <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span role="button" tabindex="0" aria-label="Damage Waiver" style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)} onKeyDown={(e)=>{if(e.key==="Enter"){setWaiverOpen(!waiverOpen)}}}>{t("Security Deposit/Damage Waivers")}</span> <FontAwesomeIcon className={`expand-chevron ${waiverOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto"}} /></center>

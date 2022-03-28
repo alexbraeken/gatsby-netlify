@@ -37,67 +37,67 @@ part2:
         es: "LO QUE NOS DIFERENCIA"
     text: 
         en: "<ol>
-        <li> Customer Orientated  -  We endeavour to create the right service solutions and customer care standards for your property to ensure guest satisfaction and promote your rental business
+        <li> <span>Customer Orientated</span>
         </li>
 
-        <li> Dedicated - No matter what the job is, we will always strive to provide a first-class service for property owners and guests alike, with attention to detail and a friendly 'no problem' approach. 
+        <li> <span>Dedicated</span>
         </li>
 
-        <li> A Positive 'Can Do Attitude' - We will solve it, and only if we can't, we will find the person who can!  
+        <li> <span>A Positive 'Can Do Attitude'</span>
         </li>
 
-        <li> Knowledgeable - Our professional maintenance, house-keeping and office teams are full of local knowledge! If you've got a question, one of us can answer it
+        <li> <span>Knowledgeable</span>
         </li>
 
-        <li> Our Friendly Service - Our long serving staff members and our dedication earn us a strong reputation in the East Algarve. We are proud to be part of the 'Smarta' Family and work together to bring your rental property to life.
+        <li> <span>Our Friendly Service</span>
         </li>
         </ol>"
         pt: "<ol>
-        <li> Orientado para o cliente - Esforçamo-nos para criar as soluções de serviço e padrões de atendimento ao cliente certos para a sua propriedade, a fim de garantir a satisfação do hóspede e promover o seu negócio de locação
+        <li> <span>Orientado para o cliente</span>
         </li>
 
-        <li> Dedicado - Não importa qual seja o trabalho, sempre nos esforçaremos para fornecer um serviço de primeira classe para proprietários e hóspedes, com atenção aos detalhes e uma abordagem amigável 'sem problemas'.
+        <li><span> Dedicado</span>
         </li>
 
-        <li> Uma atitude positiva 'posso fazer' - nós vamos resolver isso, e somente se não pudermos, vamos encontrar a pessoa que pode!
+        <li> <span>Uma atitude positiva 'posso fazer'</span>
         </li>
 
-        <li> Conhecedor - Nossas equipes profissionais de manutenção, limpeza e escritório estão repletas de conhecimento local! Se você tem uma pergunta, um de nós pode respondê-la
+        <li> <span>Conhecedor</span>
         </li>
 
-        <li> O nosso serviço amigável - Os nossos funcionários há muito tempo e a nossa dedicação garantem-nos uma forte reputação no Sotavento Algarvio. Temos orgulho de fazer parte da família 'Smarta' e trabalhar juntos para dar vida ao seu imóvel alugado.
+        <li> <span>O nosso serviço amigável</span>
         </li>
         </ol>"
         fr: "<ol>
-        <li> Orienté client - Nous nous efforçons de créer les bonnes solutions de service et les normes de service client pour votre propriété afin d'assurer la satisfaction des clients et de promouvoir votre entreprise de location
+        <li> <span>Orienté client</span>
         </li>
 
-        <li> Dévoué - Quel que soit le travail, nous nous efforcerons toujours de fournir un service de première classe aux propriétaires et aux invités, avec une attention aux détails et une approche amicale « sans problème ».
+        <li> <span>Dévoué</span>
         </li>
 
-        <li> Une « attitude capable de faire » positive - Nous allons le résoudre, et seulement si nous ne pouvons pas, nous trouverons la personne qui le peut !
+        <li> <span>Une « attitude capable de faire » positive</span>
         </li>
 
-        <li> Bien informé - Nos équipes professionnelles de maintenance, d'entretien ménager et de bureau sont pleines de connaissances locales ! Si vous avez une question, l'un de nous peut y répondre
+        <li> <span>Bien informé</span>
         </li>
 
-        <li> Notre service amical - Nos employés de longue date et notre dévouement nous valent une solide réputation dans l'est de l'Algarve. Nous sommes fiers de faire partie de la famille 'Smarta' et de travailler ensemble pour donner vie à votre propriété locative.
+        <li> <span>Notre service amical</span>
         </li>
         </ol>"
         es: "<ol>
-        <li> Orientación al cliente: nos esforzamos por crear las soluciones de servicio adecuadas y los estándares de atención al cliente para su propiedad a fin de garantizar la satisfacción de los huéspedes y promover su negocio de alquiler.
+        <li> <span>Orientación al cliente</span>
         </li>
 
-        <li> Dedicado: no importa cuál sea el trabajo, siempre nos esforzaremos por brindar un servicio de primera clase tanto para los propietarios como para los huéspedes, con atención a los detalles y un enfoque amigable 'sin problemas'.
+        <li> <span>Dedicado</span>
         </li>
 
-        <li> Una actitud positiva 'Puedo hacerlo': lo resolveremos, y solo si no podemos, encontraremos a la persona que pueda.
+        <li> <span>Una actitud positiva 'Puedo hacerlo'</span>
         </li>
 
-        <li> Conocedor - ¡Nuestros equipos profesionales de mantenimiento, limpieza y oficina están llenos de conocimiento local! Si tiene alguna pregunta, uno de nosotros puede responderla.
+        <li> <span>Conocedor</span>
         </li>
 
-        <li> Nuestro servicio cordial: nuestro personal con muchos años de servicio y nuestra dedicación nos otorgan una sólida reputación en el este del Algarve. Estamos orgullosos de ser parte de la familia 'Smarta' y trabajar juntos para darle vida a su propiedad de alquiler.
+        <li> <span>Nuestro servicio cordial</span>
         </li>
         </ol>"
 part2Img: ../../../static/img/R17_-_1280_1.jpg
@@ -128,7 +128,7 @@ part3:
         pt: "A visita à propriedade é um requisito essencial da nossa empresa para podermos guiá-lo da melhor forma."
         fr: "Une visite de la propriété est un must pour satisfaire nos exigences standard et pour vous guider dans toutes vos questions."
         es: "Una visita a la propiedad es imprescindible para satisfacer nuestros requisitos estándar y para ayudarle a resolver cualquier duda."
-    col2img: ../../../static/img/Lets_Visit.jpg
+    col2img: ../../../static/img/Lets_Visit2.jpg
     col3Header: 
         en: "Agree & Sign the paperwork!"
         pt: "Concorde e assine o Contrato"
@@ -139,7 +139,7 @@ part3:
         pt: "Uma vez decidido sobre o pacote certo, basta preencher alguns formulários, assinar o acordo e iremos começar!"
         fr: "Une fois que vous avez choisi le bon forfait, remplissez simplement quelques formulaires, signez l'accord et c'est parti !"
         es: "Una vez decidido el paquete adecuado, sólo hay que completar unos cuantos formularios, firmar el acuerdo y ya está."
-    col3img: ../../../static/img/Agree_&_Sign.jpg
+    col3img: ../../../static/img/Agree_&_Sign2.jpg
 part4: 
     header: 
         en: "CUTTING EDGE TECHNOLOGY WITH A CLASSIC CUSTOMER FOCUSED APPROACH"

@@ -159,9 +159,9 @@
     "The beach of Manta Rota is the sun worshipper’s paradise with white expansive sands and good water for swimming. Located at the bottom end of the village, the beach can be reached in easily on foot or by car. There is no need to take a boat ride as it is here that the lagoon of the Ria Formosa finally comes to an end! The car park can get quite busy in high season though. The beach offers amenities including sunbeds, shade, and some water sports in high season. There are also a couple of excellent fish restaurants to try. For those who enjoy walking, the coastline is long and easy to navigate with the neighboring resorts of Praia Verde and Monte Gordo all within around 30 minutes walk.":"La plage de Manta Rota est le paradis des adorateurs du soleil avec un sable blanc et une bonne eau pour la baignade. Située en bas du village, la plage est facilement accessible à pied ou en voiture. Inutile de faire une promenade en bateau car c'est ici que se termine enfin le lagon de la Ria Formosa ! Le parking peut cependant être assez fréquenté en haute saison. La plage propose des équipements tels que des chaises longues, de l'ombre et des sports nautiques en haute saison. Il y a aussi quelques excellents restaurants de poisson à essayer. Pour ceux qui aiment marcher, le littoral est long et facile à parcourir avec les stations balnéaires voisines de Praia Verde et Monte Gordo, toutes situées à environ 30 minutes à pied.",
     "january":"er",
     "february":"février",
-    "march":"Mars",
+    "march":"mars",
     "april":"avril",
-    "may":"peut",
+    "may":"mai",
     "june":"juin",
     "july":"juillet",
     "august":"août",
@@ -460,5 +460,6 @@
     "Preferred Make and Model of Car":"Marque et modèle de voiture préférés",
     "Estimated Price":"Prix Estimé",
     "Check out Smartavillas property":"Découvrez la propriété Smartavillas",
-    "Language":"Langue"
+    "Language":"Langue",
+    "Winter Let Details":"Détails Location d'Hiver"
 }

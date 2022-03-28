@@ -86,7 +86,7 @@ const MONTHS = {
     'Février',
     'Mars',
     'Avril',
-    'Peut',
+    'Mai',
     'Juin',
     'Juillet',
     'Août',

@@ -186,8 +186,8 @@ refreshBounds = (mapInstance) => {
     }
 
     
-    handleClick = (position, name, bed, bath, guests, img, baseDailyRate, uid) =>{
-        this.setState({overlay:{position:position, name:name, bed:bed, bath:bath, guests:guests, img:img, baseDailyRate: baseDailyRate, uid: uid}})
+    handleClick = (position, name, bed, bath, guests, img, baseDailyRate, currencySymbol, uid) =>{
+        this.setState({overlay:{position:position, name:name, bed:bed, bath:bath, guests:guests, img:img, baseDailyRate: baseDailyRate, currSymbol: currencySymbol, uid: uid}})
     }
   
     handleMouseOut = () =>{
@@ -300,7 +300,7 @@ render(){
               <MarkerClusterer options={options} maxZoom={14}>
                 {(clusterer)=> 
                   this.state.propList.map((prop, index)=>{
-                    return <Marker onLoad={this.markerOnLoad} position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} id={prop.uid} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.uid)}/>
+                    return <Marker onLoad={this.markerOnLoad} position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} id={prop.uid} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.currencySymbol, prop.uid)}/>
                   })
                 }
               </MarkerClusterer>

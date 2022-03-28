@@ -75,7 +75,7 @@ const FeatureCarousel = (props) => {
                   <div className="home-feature-text">
                     <Row>
                       <Container>
-                      <h3 className="text-muted">{t('From')} <span className="feature-text-price">{prop.baseDailyRate}€ / {t('Night')}</span></h3>
+                      <h3 className="text-muted">{t('From')} <span className="feature-text-price">{prop.baseDailyRate}{prop.currencySymbol} / {t('Night')}</span></h3>
                       <p>
                       {prop.descriptions ? prop.descriptions[lang] : prop.description}
                       </p>

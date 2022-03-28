@@ -7,11 +7,13 @@ import TeamRoll from '../components/TeamRoll'
 import { Container } from 'react-bootstrap';
 import { gsap } from "gsap";
 import { CSSPlugin } from 'gsap/CSSPlugin'
+import BackgroundImage from 'gatsby-background-image'
 
 gsap.registerPlugin(CSSPlugin)
 
 export const MeetTheTeamPageTemplate = ({
   image,
+  secondaryImage,
   title,
   langTitles,
   heading,
@@ -35,7 +37,20 @@ export const MeetTheTeamPageTemplate = ({
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
+
+          let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
           
+          parallaxBGs.forEach((section) => {
+            gsap.from(section, { 
+              yPercent: -15,
+              ease: "none",
+              scrollTrigger: {
+                  trigger: section,
+                  scrub: true
+              }
+            });
+          });
+
           
         return () => {
           setLoaded(false)
@@ -78,6 +93,7 @@ export const MeetTheTeamPageTemplate = ({
         <div
           className="full-width-image-container margin-top-0"
           ref={hero}
+          style={{margin: "0 -50vw"}}
           onMouseMove={(e)=>handleMouseMove(e)}
           onMouseEnter={()=>setHeroEnter(!heroEnter)}
           onMouseLeave={()=>setHeroEnter(!heroEnter)}
@@ -103,26 +119,42 @@ export const MeetTheTeamPageTemplate = ({
             {langTitles[language]}
           </h1>
         </div>
-        <section className="section">
+          <div style={{marginBottom:"50px", height: "100vh", backgroundColor: "#000"}}>
+          <section className="team-intro" style={{display: "flex", flexWrap: "wrap", height: "100%", flexWrap: "wrap",
+    position: "relative"}}>
+                  <div style={{flex: "1 1 40%", minWidth: "350px", display: "flex", color: "orange"}}>
+                  <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px"}}>About</h2>
+                    <p style={{margin: "auto 20px", lineHeight: "1.8rem",letterSpacing: "1px", fontSize: "1.3rem"}}>
+                    {intro.description[language]}
+                    </p>
+                  </div>
+                  <div style={{flex: "1 1 40%", minWidth: "350px"}}>
+                    <div className={"grey-in"} style={{height: "100%", overflow: "hidden"}}>
+                      <BackgroundImage
+                          Tag="div"
+                          className={"parallax-bg"}
+                          fluid={secondaryImage.childImageSharp?.fluid || secondaryImage}
+                          backgroundColor={`#040e18`}
+                        ></BackgroundImage>
+                    </div>
+                  </div>
+                </section>
+          </div>
           <Container>
             <div className="content">
-                <section style={{marginBottom:"50px"}}>
-                    {intro.description[language]}
-                    <br />
+                <section className="team-section" id="team-1">
                     <h3>{heading[language]}</h3>
                     <p>{description[language]}</p>
-                </section>
-                <section className="team-section" id="team-1">
                     <TeamRoll />
                 </section>
             </div>
           </Container>
-        </section>
 </>
 )}
 
 MeetTheTeamPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  secondaryImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   heading: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -142,6 +174,7 @@ const MeetTheTeamPage = ({ data }) => {
     <Layout propTitle={post.frontmatter.langTitles[language]}>
       <MeetTheTeamPageTemplate
         image={post.frontmatter.image}
+        secondaryImage={post.frontmatter.secondaryImage}
         title={post.frontmatter.title}
         langTitles={post.frontmatter.langTitles}
         heading={post.frontmatter.heading}
@@ -176,6 +209,13 @@ export const MeetTheTeamPageQuery = graphql`
         image {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        secondaryImage {
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }

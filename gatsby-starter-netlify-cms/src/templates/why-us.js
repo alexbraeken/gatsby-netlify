@@ -100,12 +100,79 @@ export const WhyUsPageTemplate = ({
       <Container>
         <Row>
           <Col xs={12} md={6}>
-            <PreviewCompatibleImage imageInfo={part2Img} />
+            <PreviewCompatibleImage imageInfo={part2Img} imgStyle={{width:"100%", height:"100%", borderRadius: '5px'}}/>
           </Col>
           <Col style={{display:"flex"}} xs={12} md={6}>
-          <div style={{margin: "auto"}}>
-            <h3 className="has-text-weight-semibold is-size-2">{part2.header[language]}</h3>
-              <div dangerouslySetInnerHTML={{ __html: `<div> ${part2.text[language]} </div>` }} />
+          <div style={{margin: "auto"}} className="why-list">
+            <h3 className="has-text-weight-semibold is-size-2" style={{color: "#fff"}}>{part2.header[language]}</h3>
+              <div dangerouslySetInnerHTML={{ __html: `
+              <div>
+              <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
+                <style>
+                  .why-list ol{
+                    counter-reset: item;
+                    list-style-type: none;
+                    line-height: 2.2;
+                    margin-left: -40px;
+                  }
+                .why-list ol li{
+                  display: block;
+                  position: relative;
+                  padding-left: 90px;
+                }
+                .why-list ol li:before{
+                  content: counter(item) " ";
+                  counter-increment: item;
+                  color: #ffffff;
+                  font-family: 'Bebas Neue', cursive;
+                  position: absolute;
+                  top: 50%;
+                  left: 0;
+                  transform: translateY(-50%);
+                  background: #2b2523;
+                  height: 4rem;
+                  width: 4rem;
+                  line-height: 1.2em;
+                  text-align: center;
+                  border-radius: 2em;
+                  font-weight: 900;
+                  font-size: 3.4rem;
+                  box-shadow: 0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%);
+                  transition: all 0.3s
+                }
+                .why-list ol li span{
+                  font-style: inherit;
+                  font-weight: inherit;
+                  font-size: 2rem;
+                  font-weight: 800;
+                }
+
+                .why-list ol li span:after {
+                  content: '';
+                  position: absolute;
+                  bottom: 0;
+                  width: 0;
+                  height: 0;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  border-bottom: 1px solid black;
+                  box-shadow: 0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%);
+                  transition: all 0.3s
+                }
+
+                .why-list ol li:hover span:after{
+                  width: 61%;
+                }
+
+                .why-list ol li:hover:before{
+                  box-shadow: 0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 30%), 0 0 0 1px rgb(0 0 0 / 2%);
+                }
+                </style>
+                ${part2.text[language]} 
+              </div>
+              ` }} />
             </div>
           </Col>
         </Row>

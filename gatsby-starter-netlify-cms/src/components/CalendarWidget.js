@@ -85,7 +85,7 @@ const MONTHS = {
     'Février',
     'Mars',
     'Avril',
-    'Peut',
+    'Mai',
     'Juin',
     'Juillet',
     'Août',
@@ -354,19 +354,14 @@ const CalendarWidget = (props) => {
 
     const today = new Date()
     let nextYear = DateUtils.addMonths(today, 12)
-    let limitDate = DateUtils.addMonths(today, 24)
+    let limitDate = DateUtils.addMonths(today, 30)
 
     const renderDay = (day, modifiers) => {
         const dateDay = day.getDate()
         const dateMonth = day.getMonth()
         const dateYear = day.getFullYear()
-        let date;
-        if(day > nextYear){
-          date = `${dateYear-1}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
-        }
-        else{
-          date = `${dateYear}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
-        }
+        let date= `${dateYear}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
+        let earlier = `${dateYear-1}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
 
         
         //check if more than 1 year
@@ -409,7 +404,7 @@ const CalendarWidget = (props) => {
             }
             {props.pricingPeriods?.[date] &&
                 <div style={priceStyle}>
-                  {props.pricingPeriods[date].amount}€
+                  {props.pricingPeriods[date]? props.pricingPeriods[date].amount : props.pricingPeriods[earlier].amount}{props.currSymbol}
                 </div>
                 }
           </div>

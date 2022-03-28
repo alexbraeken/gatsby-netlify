@@ -8,7 +8,8 @@ langTitles:
     pt: "Quem somos nós?"
     fr: "Qui sommes nous?"
     es: "Quienes somos nosotros"
-image: ../../../static/img/team.jpeg
+image: ../../../static/img/team-drone.jpg
+secondaryImage: ../../../static/img/R17_-_1280_1.jpg
 heading: 
     en: "Meet the Team"
     pt: "Conheça a Equipa"
