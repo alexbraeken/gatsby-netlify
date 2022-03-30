@@ -222,7 +222,7 @@ const ConnectedFeaturedPropertyComp = (props) => {
             <div>
               {data.value?.map((prop, index)=>{
                   return (props.featuredProps.indexOf(prop.uid)!== -1) && 
-                  <li class="featured-card" key={index}>
+                  <li className="featured-card" key={index}>
                     <Link to={`/properties/${prop.uid}`} target="_blank" rel="noopener noreferrer">
                       <div className="featured-wrap">
                         <div className="featured-image-wrap">
@@ -284,16 +284,25 @@ const Navbar = class extends React.Component {
 
 
   componentDidMount(){
-      this.tl.to(this.logoContainer.current, {
+      this.tl.fromTo(this.logoContainer.current, 
+        {
+          width: "200px",
+        },
+        {
         ease: "Power2.easeOut",
         width: "55px",
         duration: 0.5,
-      })
-      this.tl.to(this.menuContainer.current, {
+      }).fromTo(this.menuContainer.current, 
+        {
+          width: "50px",
+        },
+        {
         ease: "Power2.easeOut",
-        width: "0",
+        width: "0px",
         duration: 0.5,
-      })
+      },
+      "<"
+      )
   }
 
   componentDidUpdate(){

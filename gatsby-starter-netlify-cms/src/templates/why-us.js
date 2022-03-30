@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
@@ -6,6 +6,9 @@ import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import OwnerTestimonials from '../components/OwnerTestimonials'
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 export const WhyUsPageTemplate = ({
   image,
@@ -23,13 +26,45 @@ export const WhyUsPageTemplate = ({
 
   const [loaded, setLoaded] = useState(false);
 
+  const parallaxCont = useRef(null)
+  const parallaxImg = useRef(null)
+  const parallaxBg = useRef(null)
+
   const {t} = useTranslation();
   const {language } = useI18next();
 
   useEffect(() => {
+
     setTimeout(()=>{
       setLoaded(true)}, 1000
       )
+
+      
+
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: parallaxCont.current,
+          start: 'top bottom',
+          scrub: true
+        },
+      });
+
+      tl.to(
+        parallaxBg.current, 
+        {
+          yPercent: -90,
+          ease: "none",
+        },
+        "<"
+      ).to(
+        parallaxImg.current, 
+        {
+          yPercent: -50,
+          ease: "none",
+        },
+        "<"
+      )
+
     return () => {
       setLoaded(false)
     }
@@ -56,8 +91,9 @@ export const WhyUsPageTemplate = ({
     <section className="newLine" style={{
         paddingBottom: "100px",
         position: "relative"}}>
+          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)"}}>We Create</h2>
       <Container>
-        <Row>
+        <Row style={{minHeight: "100vh"}}>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
         <div className="section intro-para" style={{margin: "auto"}}>
           <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}</h3>
@@ -65,7 +101,12 @@ export const WhyUsPageTemplate = ({
         </div>
         </Col>
         <Col xs={12} md={6}>
-          <PreviewCompatibleImage imageInfo={part1Img} imgStyle={{borderRadius: "5px", marginLeft: "-150px"}}/>
+          <div className="parallax-tone-container" ref={parallaxCont}>
+            <div ref={parallaxImg} className="img-cont" >
+              <PreviewCompatibleImage imageInfo={part1Img} className="parallax-tone-img" imgStyle={{borderRadius: "5px"}} />
+            </div>
+            <div className="parallax-tone-bg" ref={parallaxBg}></div>
+          </div>
         </Col>
         </Row> 
       </Container>
@@ -78,7 +119,7 @@ export const WhyUsPageTemplate = ({
           height: "100px",
           zIndex: "1",
           transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-            <svg fill="#f5821e" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+            <svg fill="url(#Gradient)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
               width: "100%",
               left: "0",
               bottom: "-1px",
@@ -86,17 +127,26 @@ export const WhyUsPageTemplate = ({
               position: "absolute",
             }}> 
             <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
+            <defs>
+              <linearGradient id="Gradient">
+                <stop offset="0%" stop-color="#ffa600"/>
+                <stop offset="17%" stop-color="#ff8400"/>
+                <stop offset="48%" stop-color="#ff7c00"/>
+                <stop offset="88%" stop-color="#ff6200"/>
+                <stop offset="100%" stop-color="#e92e00"/>
+              </linearGradient>
+            </defs>
             </svg>
             </div>
     </section>
-    <section style={{
+    <section className="orange-gradient" style={{
         paddingBottom: "100px",
+        paddingTop: "200px",
         width: "100vw",
         position: "relative",
         marginLeft: "-50vw",
-        left: "50%",
-        backgroundColor:"#f5821e"}}>
-          
+        left: "50%"}}>
+          <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>Different</h2>
       <Container>
         <Row>
           <Col xs={12} md={6}>
@@ -115,7 +165,7 @@ export const WhyUsPageTemplate = ({
                     counter-reset: item;
                     list-style-type: none;
                     line-height: 2.2;
-                    margin-left: -40px;
+                    margin-left: -25px;
                   }
                 .why-list ol li{
                   display: block;
@@ -147,6 +197,9 @@ export const WhyUsPageTemplate = ({
                   font-weight: inherit;
                   font-size: 2rem;
                   font-weight: 800;
+                  margin-left: 40px;
+                  -webkit-box-decoration-break: clone;
+                  box-decoration-break: clone;
                 }
 
                 .why-list ol li span:after {
@@ -169,6 +222,15 @@ export const WhyUsPageTemplate = ({
                 .why-list ol li:hover:before{
                   box-shadow: 0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 30%), 0 0 0 1px rgb(0 0 0 / 2%);
                 }
+
+                @media only screen and (max-width: 900px) {
+                  .why-list ol {
+                    margin-left: 0px; }
+                    .why-list ol li {
+                      padding-left: 70px; }
+                      .why-list ol li span {
+                        margin-left: 20px;
+                        margin-left: 20px; } }
                 </style>
                 ${part2.text[language]} 
               </div>

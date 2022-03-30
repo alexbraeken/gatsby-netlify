@@ -21,15 +21,15 @@ return(
                     <img className="member-image primary"   
                     src={props.member.node.frontmatter.featuredimage.childImageSharp.fluid.src} 
                     alt={props.member.node.frontmatter.name}
-                    style={{position: "absolute", margin: "0px", padding: "0px", border: "none", zIndex: "-999999", left: "0px",flexShrink: "0",
+                    style={{position: "absolute", margin: "0px", padding: "0px", border: "none", zIndex: "-999999", left: "50%", top: "50%", transform: "translate(-50%, -50%)", flexShrink: "0",
                     minWidth: "100%",
                     minHeight: "100%",
                     maxWidth: "unset",
                     maxHeight:"unset"}} />
                     <img className="member-image secondary" 
-                    src="https://en.freejpg.com.ar/asset/900/a1/a114/F100012077.jpg"   
+                    src={props.member.node.frontmatter.secondaryImage.childImageSharp.fluid.src}   
                     alt={props.member.node.frontmatter.name}
-                    style={{position: "absolute", margin: "0px", padding: "0px", border: "none", zIndex: "-999999", left: "0px",flexShrink: "0",
+                    style={{position: "absolute", margin: "0px", padding: "0px", border: "none", zIndex: "-999999", left: "50%", top: "50%", transform: "translate(-50%, -50%)", flexShrink: "0",
                     minWidth: "100%",
                     minHeight: "100%",
                     maxWidth: "unset",
@@ -49,6 +49,7 @@ const TeamCard = React.memo((props) =>{
 
     let team1 = gsap.utils.toArray('#team-1 .headshot');
     let memberDescriptions = gsap.utils.toArray('.team-section article');
+    let memberNames = gsap.utils.toArray('.member-name')
 
     memberDescriptions.forEach((section, i) => {
       if(i>0){
@@ -69,6 +70,18 @@ const TeamCard = React.memo((props) =>{
             ease: 'Power2.easeOut' 
           }
         )
+        .fromTo(
+          memberNames[i],
+          {
+            x: -1000,
+          },
+          {
+            x: 0,
+            duration: 0.5,
+            ease: 'Power2.easeOut' 
+          },
+          '<'
+        )
       }
     })
 
@@ -83,7 +96,7 @@ const TeamCard = React.memo((props) =>{
   return(
       <article>
         <hgroup>
-          <h1 onClick={()=>handleImageClick()}>{props.member.node.frontmatter.name}</h1>
+          <h1 className="member-name" onClick={()=>handleImageClick()}>{props.member.node.frontmatter.name}</h1>
           <h2 onClick={()=>handleImageClick()}>{props.member.node.frontmatter.jobTitle}</h2>
           <h3 className="member-info" onClick={()=>handleImageClick()}>{props.member.node.frontmatter.description[language]}</h3>
         </hgroup>
@@ -150,6 +163,14 @@ export default (props) => (
                 }
                 templateKey
                 featuredimage {
+                  childImageSharp{
+                    fluid (maxWidth: 500, quality: 90){
+                      src
+                    }
+                  }
+                  publicURL
+                }
+                secondaryImage{
                   childImageSharp{
                     fluid (maxWidth: 500, quality: 90){
                       src

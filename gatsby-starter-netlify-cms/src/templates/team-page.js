@@ -39,6 +39,7 @@ export const MeetTheTeamPageTemplate = ({
           )
 
           let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
+          let homeSectionTitles = gsap.utils.toArray('.home-section-title')
           
           parallaxBGs.forEach((section) => {
             gsap.from(section, { 
@@ -50,6 +51,19 @@ export const MeetTheTeamPageTemplate = ({
               }
             });
           });
+
+          homeSectionTitles.forEach((title) => {
+            gsap.from(title, { 
+              x: -1000,
+              ease: "none",
+              scrollTrigger: {
+                  trigger: title,
+                  start: "top center",
+              },
+              duration: 0.5,
+              ease: 'Power2.easeOut' 
+            });
+          })
 
           
         return () => {
@@ -93,13 +107,12 @@ export const MeetTheTeamPageTemplate = ({
         <div
           className="full-width-image-container margin-top-0"
           ref={hero}
-          style={{margin: "0 -50vw"}}
           onMouseMove={(e)=>handleMouseMove(e)}
-          onMouseEnter={()=>setHeroEnter(!heroEnter)}
-          onMouseLeave={()=>setHeroEnter(!heroEnter)}
+          onMouseEnter={()=>setHeroEnter(true)}
+          onMouseLeave={()=>setHeroEnter(false)}
           onClick={()=>setClicked(!clicked)}
           style={{
-            backgroundImage: `url(${ !!image.childImageSharp ? image.childImageSharp.fluid.src : image })`, height: "100vh"
+            backgroundImage: `url(${ !!image.childImageSharp ? image.childImageSharp.fluid.src : image })`, height: "100vh", margin: "0px -50vw", marginBottom: "0px"
           }}
         >
         <div className="mask-container">
@@ -119,16 +132,16 @@ export const MeetTheTeamPageTemplate = ({
             {langTitles[language]}
           </h1>
         </div>
-          <div style={{marginBottom:"50px", height: "100vh", backgroundColor: "#000"}}>
-          <section className="team-intro" style={{display: "flex", flexWrap: "wrap", height: "100%", flexWrap: "wrap",
+          <div style={{marginBottom:"50px", minHeight: "100vh", backgroundColor: "#000"}}>
+          <section className="team-intro" style={{display: "flex", flexWrap: "wrap", height: "100%", minHeight: "100vh", flexWrap: "wrap",
     position: "relative"}}>
-                  <div style={{flex: "1 1 40%", minWidth: "350px", display: "flex", color: "orange"}}>
-                  <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px"}}>About</h2>
-                    <p style={{margin: "auto 20px", lineHeight: "1.8rem",letterSpacing: "1px", fontSize: "1.3rem"}}>
+                  <div style={{flex: "1 1 40%", minWidth: "350px", display: "flex", color: "orange", justifyContent:"center"}}>
+                  <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px"}}>{t("about")}</h2>
+                    <p className="about-section" >
                     {intro.description[language]}
                     </p>
                   </div>
-                  <div style={{flex: "1 1 40%", minWidth: "350px"}}>
+                  <div style={{flex: "1 1 40%", minWidth: "350px", minHeight: "500px"}}>
                     <div className={"grey-in"} style={{height: "100%", overflow: "hidden"}}>
                       <BackgroundImage
                           Tag="div"
@@ -140,10 +153,10 @@ export const MeetTheTeamPageTemplate = ({
                   </div>
                 </section>
           </div>
-          <Container>
+          <Container style={{marginTop: "200px"}}>
+          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-250px", color: "rgba(245, 130, 30, 0.5)"}}>{heading[language]}</h2>
             <div className="content">
-                <section className="team-section" id="team-1">
-                    <h3>{heading[language]}</h3>
+                <section className="team-section" id="team-1" >
                     <p>{description[language]}</p>
                     <TeamRoll />
                 </section>

@@ -11,10 +11,10 @@ langTitles:
 image: ../../../static/img/team-drone.jpg
 secondaryImage: ../../../static/img/R17_-_1280_1.jpg
 heading: 
-    en: "Meet the Team"
-    pt: "Conheça a Equipa"
-    fr: "Rencontrez l'équipe"
-    es: "Conoce al equipo"
+    en: "The Team"
+    pt: "A Equipa"
+    fr: "L'équipe"
+    es: "El Equipo"
 description: 
     en: "At Smartavillas we have a dedicated team of professionals helping you to manage your property or find the perfect holiday rental."
     pt: "Na Smartavillas temos uma equipa de profissionais dedicada a ajudá-lo a gerir a sua propriedade ou encontrar o melhor aluguer de férias."

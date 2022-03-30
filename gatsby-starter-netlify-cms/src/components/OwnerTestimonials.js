@@ -39,8 +39,8 @@ export default (props) => (
                   location
                   img {
                     childImageSharp{
-                      fluid{
-                        src
+                      fluid(maxWidth: 500, quality: 92) {
+                        ...GatsbyImageSharpFluid
                       }
                     }
                     publicURL

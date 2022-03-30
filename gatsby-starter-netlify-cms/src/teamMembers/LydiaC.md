@@ -2,6 +2,7 @@
 templateKey: team-member
 name: Lydia Corredeira
 featuredimage: ../../static/img/Lydia.jpeg
+secondaryImage: ../../static/img/pexels-samson-katt-5257587.jpg
 description: 
     en: Lydia’s talents for multi-tasking and multi linguistics mean that she is a valuable member of the team! Lydia responds to proprietors, guests, and clients alike whilst helping the boss to stay on track!
     pt: "Os talentos de Lydia para multitarefas e multilinguística significam que ela é um membro valioso da equipe! Lydia responde a proprietários, hóspedes e clientes enquanto ajuda o chefe a permanecer no caminho certo!"

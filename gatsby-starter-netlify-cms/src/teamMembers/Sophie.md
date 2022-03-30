@@ -2,6 +2,7 @@
 templateKey: team-member
 name: Sophie Catlin
 featuredimage: ../../static/img/R11-000948.jpg
+secondaryImage: ../../static/img/pexels-anna-shvets-4588065.jpg
 description: 
     en: "As Smartavillas Operations Manager, it's her job to ensure that our properties are in top condition, well equipped and everything is in order for the summer. With an extensive background in property sales and lettings, Sophie brings vibrancy and experience to the team!"
     pt: "Como Gerente de Operações da Smartavilas, é seu trabalho garantir que nossas propriedades estejam em ótimas condições, bem equipadas e tudo em ordem para o verão. Com uma extensa experiência em vendas e locações de imóveis, Sophie traz vitalidade e experiência para a equipe!"
