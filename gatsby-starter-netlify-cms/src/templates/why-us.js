@@ -140,7 +140,7 @@ export const WhyUsPageTemplate = ({
             </div>
     </section>
     <section className="orange-gradient" style={{
-        paddingBottom: "100px",
+        paddingBottom: "200px",
         paddingTop: "200px",
         width: "100vw",
         position: "relative",

@@ -39,6 +39,7 @@ const PropertyCardComp = (props) => {
     const [showSlider, setShowSlider] = useState(false)
     const [inFavs, setInFavs] = useState(false)
     const [bgImg, setBgImg] = useState('')
+    const [bgGlowIndex, setBgGlowIndex] = useState(0)
 
     const {t} = useTranslation(['properties', 'translation', 'amenities']);
     const {language} = useI18next();
@@ -87,6 +88,9 @@ const PropertyCardComp = (props) => {
     }, [props.item])
 
     const settings = {
+      beforeChange: function(oldIndex, newIndex) {
+        setBgGlowIndex(newIndex)
+      },
       infinite: true,
       dots: false,
       initialSlide: 1,
@@ -98,6 +102,7 @@ const PropertyCardComp = (props) => {
       slidesToScroll: 1,
       swipeToSlide: true,
       autoplay: false,
+      lazyLoad: "progressive"
     };
 
 
@@ -182,6 +187,9 @@ const PropertyCardComp = (props) => {
                 }
               </Slider>
               }
+            </div>
+            <div className="card-slider-glow" style={{backgroundImage: `url(${props.item.photos[`${bgGlowIndex}`].url})`}}>
+
             </div>
               <Card.Text>
                 <small className="feature-text-type">{props.item.type}</small>

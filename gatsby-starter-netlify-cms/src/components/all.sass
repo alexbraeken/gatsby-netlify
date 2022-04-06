@@ -365,6 +365,7 @@ a:hover
   backface-visibility: hidden
   -webkit-font-smoothing: subpixel-antialiased
   box-shadow: none
+  z-index: 1
   &:hover
     & .card-buttons-right
         right: 0
@@ -521,6 +522,21 @@ a:hover
   background-size: cover
   border-radius: 5px
   padding: 10px
+  position: relative
+  & .card-slider-glow
+      background-repeat: no-repeat
+      background: grey
+      background-position: center
+      background-size: cover
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 100%
+      height: 100%
+      z-index: -1
+      transform: translate(-50%, -50%)
+      filter: blur(15px) saturate(3)
+
 
 .prop-card-slider
   width: 100%
@@ -4368,7 +4384,7 @@ p.about-section
   letter-spacing: 1px
   font-size: 1.3rem
   max-width: 600px
-  &:first-child::first-letter
+  &::first-letter
     font-size: 4rem
     float: left
     line-height: 0.9
@@ -4452,7 +4468,6 @@ p.about-section
   align-content: center
   justify-content: center
   & .img-cont
-      transform: translateY(300px)
       width: 100%
       margin: auto
   & .parallax-tone-img
