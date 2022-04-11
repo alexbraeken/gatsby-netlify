@@ -423,6 +423,7 @@
 "Please select the first day":"Por favor selecione o primeiro dia",
 "Please select the last day":"Selecione o último dia",
 "Selected from":"Selecionado de",
+"Selected":"Selecionado",
 "Days":"Dias",
 "Clear":"Limpar",
 "Questions or extra information":"Dúvidas ou informações extras",
@@ -456,5 +457,10 @@
 "Estimated Price":"Preço Estimado",
 "Check out Smartavillas property":"Confira a propriedade Smartavilas",
 "Language":"Língua",
-"Winter Let Details":"Detalhes Aluguel de Inverno"
+"Winter Let Details":"Detalhes Aluguel de Inverno",
+"1 to 4 Persons":"1 a 4 pessoas",
+"5 to 8 Persons":"5 a 8 pessoas",
+"Select persons":"Selecionar pessoas",
+"Select destination":"Selecione o destino",
+"Select day":"Selecionar dia"
 }

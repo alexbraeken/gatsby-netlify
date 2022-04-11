@@ -1,5 +1,5 @@
 ---
-templateKey: 'content-page'
+templateKey: 'taxi-page'
 path: /holidayExtras
 preferred_language: default
 title: Private Airport Transfers
@@ -9,6 +9,10 @@ langTitles:
     fr: Transferts aéroport privés
     es: Traslados privados al aeropuerto
 hero: ../../../static/img/airport-transfer.jpg
+destinations: ['Tavira', 'Cabanas', 'Vila Nova de Cacela', 'Manta Rota', 'Altura', 'Castro Marim', 'Fuseta']
+prices:
+    oneToFourPrices: ['50', '50', '60', '60', '60', '70', '45']
+    fiveToEightPrices: ['60', '60', '70', '70', '70', '75', '50']
 html:
     en: "<h2 style='text-align: center; font-size: 3rem; font-weight: bold'>Airport transfers to and from <span style='color: #f5821e'>Faro Airport</span></h2>
 <hr style='width: 50%; height: 4px; background-color: #f5821e; margin: 1.5rem auto'/>
