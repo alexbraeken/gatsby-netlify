@@ -89,14 +89,16 @@ const TeamCard = React.memo((props) =>{
 
   const handleImageClick = () => {
     let image = document.querySelector(`#member-img-${props.id}`)
+    let name = document.querySelector(`#member-name-${props.id}`)
     image.classList.toggle('active')
+    name.classList.toggle('active')
   }
 
 
   return(
       <article>
         <hgroup>
-          <h1 className="member-name" onClick={()=>handleImageClick()}>{props.member.node.frontmatter.name}</h1>
+          <h1 className="member-name" id={`member-name-${props.id}`} onClick={()=>handleImageClick()}>{props.member.node.frontmatter.name}</h1>
           <h2 onClick={()=>handleImageClick()}>{props.member.node.frontmatter.jobTitle}</h2>
           <h3 className="member-info" onClick={()=>handleImageClick()}>{props.member.node.frontmatter.description[language]}</h3>
         </hgroup>

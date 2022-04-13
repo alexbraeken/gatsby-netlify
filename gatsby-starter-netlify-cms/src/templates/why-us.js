@@ -91,7 +91,7 @@ export const WhyUsPageTemplate = ({
     <section className="newLine" style={{
         paddingBottom: "100px",
         position: "relative"}}>
-          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)"}}>We Create</h2>
+          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>We Create</h2>
       <Container>
         <Row style={{minHeight: "100vh"}}>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
