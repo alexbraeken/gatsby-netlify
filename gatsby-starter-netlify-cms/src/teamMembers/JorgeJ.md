@@ -10,5 +10,6 @@ description:
     es: "Jefe de nuestro equipo de mantenimiento, no hay nada que Jorge y sus experimentados colegas no puedan arreglar o reparar para garantizar que nuestras propiedades se mantengan en óptimas condiciones. Desde reparaciones simples hasta obras en edificios y asuntos de salud y seguridad, ¡Jorge y su equipo lo tienen cubierto!"
 jobTitle: "Operations Team: Maintenance"
 position: "8"
+team: maintenance
 ---
 

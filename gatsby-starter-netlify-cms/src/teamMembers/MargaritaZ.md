@@ -10,5 +10,6 @@ description:
     es: "Margarita es una de los miembros más antiguas de la familia Smarta. Al unirse a la empresa en sus humildes comienzos, ha contribuido a nuestro éxito con su fuerza y determinación para hacer un gran trabajo. Su pasión es la ropa sucia, ¡asegurando que los huéspedes tengan una cama fresca y limpia para dormir! ¡Nada es demasiado para Margo!"
 jobTitle: "Operations Team: Housekeeping"
 position: "8"
+team: housekeeping
 ---
 

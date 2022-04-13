@@ -9,6 +9,7 @@ description:
     fr: "Les talents de Lydia pour le multitâche et la multilinguistique font d'elle un membre précieux de l'équipe! Lydia répond aux propriétaires, aux invités et aux clients tout en aidant le patron à rester sur la bonne voie !"
     es: "¡Los talentos de Lydia para la multitarea y la multilingüística significan que es un miembro valioso del equipo! Lydia responde a los propietarios, invitados y clientes por igual mientras ayuda al jefe a mantenerse en el camino."
 jobTitle: "Personal Assistant to Director (Part time), Admin Co-Ordinator for Real Estate (Part Time)"
+team: office
 position: "9"
 ---
 

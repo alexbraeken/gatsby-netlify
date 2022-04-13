@@ -10,5 +10,6 @@ description:
     es: "¡Alex es el tipo que hace que nuestro negocio se destaque! Con su profundo conocimiento de los sistemas de TI, la programación de sitios web y las plataformas de redes sociales, mantiene nuestro negocio actualizado. Desde arreglar impresoras hasta diseñar un sitio web completamente nuevo, nada es demasiado pequeño o demasiado grande para Alex. ¡Su disposición tranquilizadora mantiene en paz a los tecnofóbicos!"
 jobTitle: "IT Solutions"
 position: "99"
+team: office
 ---
 

@@ -10,5 +10,6 @@ description:
     es: "Responsable de reservas y contacto con huéspedes. Denise, una de las integrantes de nuestro equipo con más años de servicio, aporta experiencia y dinamismo al equipo, junto con un gran sentido del humor."
 jobTitle: "Office Team: Reservations Team"
 position: "2"
+team: office
 ---
 

@@ -9,6 +9,7 @@ description:
     fr: "Lorraine possède une fabuleuse expérience dans le domaine de la location saisonnière et de l'immobilier. Sa connaissance du marché est de première classe et en tant que nouveau membre de l'équipe, elle met la passion et le dynamisme au premier plan! Travaillant toujours à grande vitesse, Lorraine apporte à la Smarta Family une réelle orientation commerciale."
     es: "Lorraine tiene una fabulosa experiencia en el campo del alquiler vacacional y el sector inmobiliario. Su conocimiento del mercado es de primera clase y, como miembro más nuevo de nuestro equipo, ¡trae la pasión y el impulso a un primer plano! Trabajando siempre a gran velocidad, Lorraine aporta un verdadero enfoque de ventas a la familia Smarta."
 jobTitle: "Real Estate Team: Commercial, Sales and Viewings"
+team: office
 position: "9"
 ---
 
