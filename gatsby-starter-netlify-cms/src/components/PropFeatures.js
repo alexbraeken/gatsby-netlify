@@ -15,6 +15,7 @@ import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
+import Slider from "react-slick";
 
 gsap.registerPlugin(gsap);
 
@@ -24,30 +25,83 @@ const PropFeatureGrid = React.memo((data) => {
   const [displayNumber, setDisplayNumber] = useState(20)
   const [loadMoreTop, setLoadMoreTop] = useState(null)
   const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
+  const [bgImg, setBgImg] = useState(null)
+  const [categories, setCategories] = useState(null)
 
   const loadMore = useRef(null)
   const container = useRef(null)
+  const heroContainer = useRef(null)
 
   const {t} = useTranslation(['properties', 'translation', 'amenities', 'calendar']);
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    lazyLoad: "progressive",
+  };
 
 
   useEffect(() => {
     setLoadMoreTop(loadMore.current.getBoundingClientRect().top)
+    
+
     return () => {
       setLoadMoreTop(null)
       setStickyStyle({position:"absolute"})
     }
   }, [])
 
+  
+
   useEffect(()=>{
+    let uniqueCategories = new Set()
     let propArray = data.propList.map(prop => {
       let details = {value: prop.uid, label: prop.name, picture: prop.picture, city: prop.city, guests: prop.baseGuests, bathrooms: prop.bathrooms, bedrooms: prop.bedrooms}
+      uniqueCategories.add(prop.city)
+      uniqueCategories.add(prop.type)
       return details
     })
     propArray.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0))))
     setPropOptionsArray(propArray)
-  }, [data.propList])
 
+    setCategories([...uniqueCategories])
+
+  }, [data])
+
+  useEffect(() => {
+    if(data.heroBg){
+      const imgLoader = new Image()
+    
+      imgLoader.src = data.heroBg.picture
+  
+      imgLoader.onload = () => {
+        setBgImg(data.heroBg.picture)
+      }
+      gsap.utils.toArray(".parallax-hero-container").forEach((paraHero, i) => {
+        paraHero.bg = paraHero.querySelector(".bg")
+        let innerHeight = 0
+        if(window){
+          innerHeight = window.innerHeight;
+          paraHero.bg.style.backgroundPosition = `50% 0px`; 
+      
+          gsap.to(paraHero.bg, {
+            backgroundPosition: `50% ${innerHeight / 2}px`,
+            ease: "none",
+            scrollTrigger: {
+              trigger: paraHero,
+              start: "top top", 
+              end: "bottom top",
+              scrub: true
+            }
+          });
+        } 
+      })
+    }
+  }, [data.heroBg])
 
   const customStyles = {
     menu: () => ({
@@ -125,7 +179,23 @@ const PropFeatureGrid = React.memo((data) => {
         />
       </StickyBox>
     </div>
-    <Container>
+    { data.heroBg &&
+    <div className="parallax-hero-container" style={{
+      width:"100%", 
+      height: "80vh", 
+      backgroundColor: "#333", 
+      position:"relative",
+      marginLeft: "-15px",
+      width: "calc(100% + 30px)"}} ref={heroContainer}>
+      <div className="bg" style={{position: "absolute", left: "0", top:"0", width:"100%", height:"100%",  backgroundImage:`url(${bgImg})`, backgroundPosition:"center", backgroundSize:"cover", }}>
+      </div>
+      <div style={{position: "absolute", left: "20px", top:"90%", transform:"translateY(-50%)", width:"100%"}}>
+          <h3 className='home-section-title orangeText' style={{top: "-262px", opacity: "0.7", color:"#f5821e"}}>Featured</h3>
+          <h2 className='home-section-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1}}>{data.heroBg.name}</h2>
+      </div>
+    </div>
+    }
+    <Container style={{padding:"50px 0"}}>
       <Row style={{paddingTop: "50px"}}>
       <Col xs={12} md={3} style={{margin: "auto 20px", display:"flex", padding: "5px"}}>
         {data.propList?.length > 0 ? 
@@ -190,14 +260,29 @@ const PropFeatureGrid = React.memo((data) => {
     </Container>
     <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
       <br />
-      {data.propList && data.propList.map((item, index) => 
-      {    
-        if(index > displayNumber)return null
-        if(item != null){
-          return(
-            <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
-            )}
-        })
+      {data.propList && categories && categories.map(category=>{
+        return(
+          <div style={{width: "100%", position: "relative", paddingTop:"100px"}}>
+            <h2 className='home-section-title category-title'>{category}</h2>
+            <Slider {...settings} style={{position:"relative", maxWidth: "100vw"}} className="props-slider">
+            {
+              data.propList.map((item, index) => 
+              {    
+                if(item != null && (item.city=== category ||item.type=== category)){
+                  console.log(category + ' ' + item.name)
+                  return(
+                    <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
+                    )
+                  }
+                })
+            }
+            </Slider>
+          </div>
+          
+        )
+        
+      })
+      
         }
         <div style={{flex: "1 1 100%", display: "flex", justifyContent:"center"}}>
           <div ref={loadMore} id="loadMore">{displayNumber !== data.propList?.length ? <Loading />:null}

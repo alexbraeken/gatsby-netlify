@@ -374,8 +374,6 @@ a:hover
         visibility: visible
 
 .prop-card-container:hover 
-  & .prop-card
-      transform: scale(1.019) translateZ(0)
   & .prop-card-text
       text-decoration: none
   & .prop-card-title
@@ -393,14 +391,6 @@ a:hover
   padding: 1.3rem
   height: 250px
 
-.prop-card-text:before
-  position: absolute
-  left: 0
-  top: 0
-  width: 100%
-  height: 100%
-  content: ""
-  box-shadow:  20px 20px 60px #d9d9d9
 
 .prop-card-description-ps
     position: absolute
@@ -439,8 +429,9 @@ a:hover
   bottom: 0
   left: 0 
   z-index: 3
-  background-color: transparent
+  background-color: #000
   border-radius: 0 0 5px 5px
+  opacity: 0
 
 .footer-btn-container
   flex: 1 1 30%
@@ -4606,3 +4597,18 @@ p.about-section
                 left: 0
                 transform: rotate(-45deg)
                 width: 65%
+
+.props-slider
+  z-index: 1
+  & .slick-list
+      overflow: visible
+  & .slick-slide
+      min-width: 333px;
+      max-width: 450px;
+
+.category-title
+  font-size: calc(50px + 30 * (100vw - 320px) / 1080)
+  filter: drop-shadow(2px 2px 15px black)
+  z-Index: 0
+  color: $primary
+  opacity: 0.7

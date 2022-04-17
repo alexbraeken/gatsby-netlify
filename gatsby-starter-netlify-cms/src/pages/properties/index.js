@@ -20,11 +20,16 @@ import ReactBnbGallery from 'react-bnb-gallery';
 import { gsap } from "gsap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { connect } from "react-redux"
 import { Helmet } from 'react-helmet'
 
 gsap.registerPlugin(gsap);
 
-const Properties = React.memo((props) => {
+const mapStateToProps = (state) => {
+    return  {featuredProps: state.featuredProps}
+  }
+
+const ConnectedProperties = React.memo((props) => {
 
     const [show, setShow]=useState(false)
     const [showSidebarModal, setShowSidebarModal] = useState(false)
@@ -40,6 +45,7 @@ const Properties = React.memo((props) => {
     const [filterExpanded, setFilterExpanded] = useState(true)
     const [cardDisplayNum, setCardDisplayNum] = useState(null)
     const [fetchError, setFetchError] = useState(false)
+    const [heroBg, setHeroBg] = useState(null)
     
     const [amenitiesList, setAmenitiesList] = useState({
         hasPool: false,
@@ -130,6 +136,12 @@ const Properties = React.memo((props) => {
     useEffect(() => {
         if(data){
             props.filterList(data);
+            if(props.featuredProps){
+                let i = Math.floor(Math.random()*(props.featuredProps.length))
+                setHeroBg(data.find(prop=>{
+                    return prop.uid === props.featuredProps[i]
+                }))
+            }
         }
     }, [data])
 
@@ -282,7 +294,7 @@ const Properties = React.memo((props) => {
                                 </StickyBox>
                                 </Col>
                                 <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s", overflowX:"hidden"}}>
-                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError}/>
+                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
@@ -327,6 +339,8 @@ const Properties = React.memo((props) => {
             </div>
         )
 })
+
+const Properties = connect(mapStateToProps)(ConnectedProperties)
 
 
 
