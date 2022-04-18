@@ -330,7 +330,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 }}/>
                                             }
                                         </div>
-                                        <Share propImg={data.value.picture} propName={data.value.name}/>
+                                        <Share propImg={data.value.picture} propName={data.value.name} target={`${window.location.href}`}/>
                                     </Col>
                                     </Row>
                                 </Container>
