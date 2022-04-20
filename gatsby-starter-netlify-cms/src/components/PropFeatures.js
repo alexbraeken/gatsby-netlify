@@ -15,9 +15,47 @@ import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
+import { IoIosArrowBack   } from "@react-icons/all-files/io/IoIosArrowBack";
+import { IoIosArrowForward   } from "@react-icons/all-files/io/IoIosArrowForward";
+
 import Slider from "react-slick";
 
 gsap.registerPlugin(gsap);
+
+
+const PrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      role="button"
+      tabindex="0"
+      className="custom-arrow"
+      aria-label="previous"
+      style={{left: "0%", zIndex:"5", height: "100%", width:"50px", position: "absolute", top: "50%", transform: "translateY(-50%)", display: "flex"}}
+      onClick={onClick}
+      onKeyDown={onClick}
+    >
+      <IoIosArrowBack style={{margin: "auto 5px", height: "40px", width:"40px", filter: "drop-shadow(1px 0px 2px white)"}}/>
+    </div>
+  );
+}
+
+const NextArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      role="button"
+      tabindex="0"
+      aria-label="next"
+      className="custom-arrow"
+      style={{right: "0%", zIndex:"5", height: "100%", width:"50px", position: "absolute", top: "50%", transform: "translateY(-50%)", display: "flex"}}
+      onClick={onClick}
+      onKeyDown={onClick}
+    >
+      <IoIosArrowForward style={{margin: "auto 5px", height: "40px", width:"40px", filter: "drop-shadow(1px 0px 2px white)"}}/>
+    </div>
+  );
+}
 
 const PropFeatureGrid = React.memo((data) => {
 
@@ -36,13 +74,18 @@ const PropFeatureGrid = React.memo((data) => {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
     lazyLoad: "progressive",
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    draggable: false
   };
+
+  
 
 
   useEffect(() => {
@@ -58,6 +101,7 @@ const PropFeatureGrid = React.memo((data) => {
   
 
   useEffect(()=>{
+
     let uniqueCategories = new Set()
     let propArray = data.propList.map(prop => {
       let details = {value: prop.uid, label: prop.name, picture: prop.picture, city: prop.city, guests: prop.baseGuests, bathrooms: prop.bathrooms, bedrooms: prop.bedrooms}
@@ -73,6 +117,7 @@ const PropFeatureGrid = React.memo((data) => {
   }, [data.propList])
 
   useEffect(() => {
+
     if(data.heroBg){
       const imgLoader = new Image()
     
@@ -83,14 +128,14 @@ const PropFeatureGrid = React.memo((data) => {
       }
       gsap.utils.toArray(".parallax-hero-container").forEach((paraHero, i) => {
         paraHero.bg = paraHero.querySelector(".bg")
+        let oh = paraHero.bg.offsetHeight
           gsap.to(paraHero.bg, {
-            yPercent: 5,
+            y: oh*0.2,
             ease: "none",
             scrollTrigger: {
               trigger: paraHero,
-              start: "top top", 
-              end: "bottom top",
-              scrub: true
+              scrub: true,
+              start: "top top"
             }
           });
       })
@@ -159,6 +204,7 @@ const PropFeatureGrid = React.memo((data) => {
   })
 
   useEffect(() => {
+
     data.handleDisplayNumChange(displayNumber)
   }, [displayNumber])
 
@@ -191,7 +237,7 @@ const PropFeatureGrid = React.memo((data) => {
       </div>
       <div style={{position: "absolute", left: "20px", top:"90%", transform:"translateY(-50%)", width:"100%"}}>
             <h3 className='home-section-title orangeText' style={{top: "-262px", opacity: "0.7", color:"#f5821e"}}>Featured</h3>
-            <h2 className='home-section-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1}}>{data.heroBg.name}</h2>
+            <h2 className='home-section-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1}}><Link to={`/properties/${data.heroBg.uid}`}>{data.heroBg.name}</Link></h2>
         </div>
     </div>
     
@@ -264,15 +310,15 @@ const PropFeatureGrid = React.memo((data) => {
       {data.propList && categories && categories.map((category, index)=>{
          if(index > displayNumber)return null
         return(
-          <div style={{width: "100%", position: "relative", paddingTop:"100px"}}>
+          <div className="category-slider" style={{width: "100%", position: "relative", paddingTop:"100px"}}>
             <h2 className='home-section-title category-title'>{category}</h2>
-            <Slider {...settings} style={{position:"relative", maxWidth: "100vw"}} className="props-slider">
+            <Slider {...settings} style={{position:"relative", maxWidth: "100vw"}} className={`props-slider`}>
             {
-              data.propList.map((item, index) => 
+              data.propList.map((item, i) => 
               {    
                 if(item != null && (item.city=== category ||item.type=== category)){
                   return(
-                    <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
+                    <PropertyCard item={item} index={i} key={i} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
                     )
                   }
                 })

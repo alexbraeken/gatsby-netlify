@@ -329,7 +329,6 @@ const SearchFilter = (props) => {
 
 
     useEffect(() => {
-      console.log(clicked)
       if(props.active){
         setClicked(false)
       }else{

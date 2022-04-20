@@ -175,9 +175,6 @@ const PropertyCardComp = (props) => {
     
 
     const settings = {
-      beforeChange: function(oldIndex, newIndex) {
-        setBgGlowIndex(newIndex)
-      },
       infinite: true,
       dots: false,
       initialSlide: 1,
@@ -188,8 +185,10 @@ const PropertyCardComp = (props) => {
       slidesToShow: 1,
       slidesToScroll: 1,
       swipeToSlide: true,
-      autoplay: false,
-      lazyLoad: "progressive"
+      autoplay: true,
+      lazyLoad: "progressive",
+      autoplaySpeed: 5000,
+      pauseOnHover: false
     };
 
 
@@ -204,25 +203,6 @@ const PropertyCardComp = (props) => {
 
             <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
             <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
-    {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-prev card-arrow"
-   aria-label="Show Slider" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
-    {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-next card-arrow"
-   aria-label="Show Slider" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowSlider(!showSlider)}}} ></button> }
-            <div style={{position: "absolute", top: "0", left:"0", width:"100%", height:"100%"}}>
-            {showSlider && <Slider {...settings}>
-                {props.item.photos.map((photo, index) => {
-                  return (
-                    <div key={index}>
-                      <div className="prop-card-slider"  style={{backgroundImage:`url(${photo.url})`}}>
-                      </div>
-                    </div>
-                  
-                  )
-                })
-                }
-              </Slider>
-              }
-            </div>
             <div className="card-slider-glow" style={{backgroundImage: `url(${props.item.photos[`${bgGlowIndex}`].url})`}}>
 
             </div>
@@ -248,13 +228,13 @@ const PropertyCardComp = (props) => {
         <div className="card-buttons-right">
         {!inFavs ? 
         <div className="favs-heart-container">
-          <AiOutlineHeart class="add-favs-heart" onClick={()=>{
+          <AiOutlineHeart className="add-favs-heart" onClick={()=>{
           props.dispatch({ type: 'ADD_PROPERTY', propName: props.item.name, propId: props.item.uid, propImg: props.item.picture, bedrooms: props.item.bedrooms, bathrooms: props.item.bathrooms, baseGuests: props.item.baseGuests, city: props.item.city, rate: displayPrice, currSymbol: props.item.currencySymbol})
           }}/><span className="favs tooltiptext">{t("add favs")}</span>
         </div>
         :
         <div className="favs-heart-container">
-          <AiFillHeart class="add-favs-heart" onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.item.uid})}/>
+          <AiFillHeart className="add-favs-heart" onClick={()=>props.dispatch({type: 'REMOVE_PROPERTY', propId: props.item.uid})}/>
           <span className="favs tooltiptext">{t("remove favs")}</span>
         </div>
         }

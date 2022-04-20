@@ -498,6 +498,7 @@ a:hover
   height: 300px
   background-color: grey
   border-radius: 5px
+  overflow: hidden
   & .slick-prev
       left: 5px
       z-index: 2
@@ -1272,6 +1273,7 @@ $min-margin: 10px
   border-radius: 40px
   padding: 15px
   pointer-events: all
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9))
   & .expand-search
       max-width: 0
       min-width: 0
@@ -4603,8 +4605,25 @@ p.about-section
   & .slick-list
       overflow: visible
   & .slick-slide
-      min-width: 333px;
-      max-width: 450px;
+      min-width: 333px
+      max-width: 450px
+      position: relative
+      z-index: 1
+      &:hover
+        z-index: 2
+  & .custom-arrow
+      & svg
+          margin: auto 5px
+          height: 40px
+          width: 40px
+          filter: drop-shadow(1px 0px 2px white)
+          transition: all 0.3s
+      &:hover
+        & svg
+            color: $primary
+            transform: scale(1.2)
+  & .hovered .prop-card-text
+      border-radius: 0
 
 .category-title
   font-size: calc(50px + 30 * (100vw - 320px) / 1080)
@@ -4612,3 +4631,11 @@ p.about-section
   z-Index: 0
   color: $primary
   opacity: 0.7
+
+.category-slider
+  width: 100%
+  position: relative
+  paddingTop: 100px
+  z-index: 1
+  &:hover
+    z-index: 2
