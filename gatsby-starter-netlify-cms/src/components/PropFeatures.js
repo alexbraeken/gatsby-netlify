@@ -71,22 +71,6 @@ const PropFeatureGrid = React.memo((data) => {
 
   const {t} = useTranslation(['properties', 'translation', 'amenities', 'calendar']);
 
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: false,
-    lazyLoad: "progressive",
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    draggable: false,
-    variableWidth: true
-  };
-
-
-
   useEffect(() => {
 
     ScrollTrigger.create({
@@ -303,30 +287,15 @@ const PropFeatureGrid = React.memo((data) => {
     </Container>
     <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
       <br />
-      {data.propList && categories && categories.map((category, index)=>{
+      {data.propList.map((item, index)=>{
         if(index > limit)return null
-        return(
-          <div className="category-slider" style={{width: "100%", position: "relative", paddingTop:"100px"}}>
-            <h2 className='home-section-title category-title'>{category}</h2>
-            <Slider {...settings} style={{position:"relative", maxWidth: "100vw"}} className={`props-slider`}>
-            {
-              data.propList.map((item, i) => 
-              {    
-                if(item != null && (item.city=== category ||item.type=== category)){
-                  return(
-                    <PropertyCard item={item} index={i} key={`${category}-propCard-${i}`} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
-                    )
-                  }
-                })
-            }
-            </Slider>
-          </div>
-          
-        )
-        
+          if(item != null && (item.city=== category ||item.type=== category)){
+            return(
+              <PropertyCard item={item} index={index} key={`propCard-${index}`} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
+            )
+          }
       })
-      
-        }
+      }
     </div>
   </div>
 )})
