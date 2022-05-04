@@ -411,11 +411,11 @@ const toggleActiveSearch = (active) => {
             }}> 
             <defs>
               <linearGradient id="Gradient">
-                <stop offset="0%" stop-color="#ffa600"/>
-                <stop offset="17%" stop-color="#ff8400"/>
-                <stop offset="48%" stop-color="#ff7c00"/>
-                <stop offset="88%" stop-color="#ff6200"/>
-                <stop offset="100%" stop-color="#e92e00"/>
+                <stop offset="0%" stopColor="#ffa600"/>
+                <stop offset="17%" stopColor="#ff8400"/>
+                <stop offset="48%" stopColor="#ff7c00"/>
+                <stop offset="88%" stopColor="#ff6200"/>
+                <stop offset="100%" stopColor="#e92e00"/>
               </linearGradient>
             </defs>
             <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 

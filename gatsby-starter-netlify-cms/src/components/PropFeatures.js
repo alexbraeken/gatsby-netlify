@@ -17,10 +17,11 @@ import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
 import { IoIosArrowBack   } from "@react-icons/all-files/io/IoIosArrowBack";
 import { IoIosArrowForward   } from "@react-icons/all-files/io/IoIosArrowForward";
-
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Slider from "react-slick";
 
 gsap.registerPlugin(gsap);
+gsap.registerPlugin(ScrollTrigger);
 
 
 const PrevArrow = (props) => {
@@ -60,13 +61,11 @@ const NextArrow = (props) => {
 const PropFeatureGrid = React.memo((data) => {
 
   const [propOptionsArray, setPropOptionsArray] = useState([])
-  const [displayNumber, setDisplayNumber] = useState(3)
-  const [loadMoreTop, setLoadMoreTop] = useState(null)
   const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
   const [bgImg, setBgImg] = useState(null)
   const [categories, setCategories] = useState(null)
+  const [limit, setLimit] = useState(2)
 
-  const loadMore = useRef(null)
   const container = useRef(null)
   const heroContainer = useRef(null)
 
@@ -74,7 +73,7 @@ const PropFeatureGrid = React.memo((data) => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -82,23 +81,36 @@ const PropFeatureGrid = React.memo((data) => {
     lazyLoad: "progressive",
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    draggable: false
+    draggable: false,
+    variableWidth: true
   };
 
-  
 
 
   useEffect(() => {
-    setLoadMoreTop(loadMore.current.getBoundingClientRect().top)
-    
+
+    ScrollTrigger.create({
+      trigger: document.body,
+      start: "top top",
+      end: document.body.offsetHeight + " " + document.body.offsetHeight,
+      invalidateOnRefresh: true,
+      onEnter: (self) => {
+        console.log(self)
+        ScrollTrigger.refresh();
+      },
+      onRefresh: () => {
+        setLimit(limit+1)
+        console.log(limit+1);
+      }
+  });
 
     return () => {
-      setLoadMoreTop(null)
       setStickyStyle({position:"absolute"})
     }
   }, [])
 
-  
+
+
 
   useEffect(()=>{
 
@@ -191,22 +203,6 @@ const PropFeatureGrid = React.memo((data) => {
   }
 
 
-  
-
-  useScrollPosition(({ prevPos, currPos }) => {
-    if(loadMoreTop){
-      if(1000 > loadMore.current.getBoundingClientRect().top){
-        if(displayNumber !== data.propList?.length){
-          setDisplayNumber((displayNumber + 2) > data.propList?.length ? data.propList.length : displayNumber +2)
-        }
-      }
-    }
-  })
-
-  useEffect(() => {
-
-    data.handleDisplayNumChange(displayNumber)
-  }, [displayNumber])
 
   
 
@@ -308,7 +304,7 @@ const PropFeatureGrid = React.memo((data) => {
     <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
       <br />
       {data.propList && categories && categories.map((category, index)=>{
-         if(index > displayNumber)return null
+        if(index > limit)return null
         return(
           <div className="category-slider" style={{width: "100%", position: "relative", paddingTop:"100px"}}>
             <h2 className='home-section-title category-title'>{category}</h2>
@@ -318,7 +314,7 @@ const PropFeatureGrid = React.memo((data) => {
               {    
                 if(item != null && (item.city=== category ||item.type=== category)){
                   return(
-                    <PropertyCard item={item} index={i} key={i} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
+                    <PropertyCard item={item} index={i} key={`${category}-propCard-${i}`} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
                     )
                   }
                 })
@@ -331,10 +327,6 @@ const PropFeatureGrid = React.memo((data) => {
       })
       
         }
-        <div style={{flex: "1 1 100%", display: "flex", justifyContent:"center"}}>
-          <div ref={loadMore} id="loadMore">{displayNumber !== data.propList?.length ? <Loading />:null}
-          </div>
-        </div>
     </div>
   </div>
 )})
