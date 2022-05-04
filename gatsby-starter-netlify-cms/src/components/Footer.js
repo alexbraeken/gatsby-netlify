@@ -120,6 +120,9 @@ const Footer = class extends React.Component {
                 </a>
               </div>
             </div>
+            <div className="trustpilot-widget" style={{margin:"20px auto"}} data-locale="en-US" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="6269454aa9c09b59bf311cdf" data-style-height="24px" data-style-width="100%" data-theme="dark" data-min-review-count="10" data-without-reviews-preferred-string-id="1">
+  <a href="https://www.trustpilot.com/review/smartavillas.com" target="_blank" rel="noopener">Trustpilot</a>
+</div>
             <div style={{ maxWidth: '100vw' }}>
               <center>
               &#169; Smartavillas.com - {t("All Rights Reserved")}
