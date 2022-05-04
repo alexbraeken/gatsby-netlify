@@ -109,8 +109,8 @@ const PropertiesDropDown = React.memo((props) => {
           options={options}
           onChange={(e)=>onInputChange(e.value)}
           closeMenuOnSelect={true}
-          components={{ Option: CustomOption, DropdownIndicator }}
-          placeholder={t('Or Search By Name...')}
+          components={{ Option: CustomOption}}
+          placeholder={t("Enter Property Name...")}
           styles={customStyles}/>
           </div>
           <FirestoreDocument path="/Navbar/Nav">
