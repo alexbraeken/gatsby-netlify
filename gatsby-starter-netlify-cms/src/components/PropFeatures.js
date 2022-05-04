@@ -24,119 +24,100 @@ gsap.registerPlugin(gsap);
 gsap.registerPlugin(ScrollTrigger);
 
 
-const PrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      role="button"
-      tabindex="0"
-      className="custom-arrow"
-      aria-label="previous"
-      style={{left: "0%", zIndex:"5", height: "100%", width:"50px", position: "absolute", top: "50%", transform: "translateY(-50%)", display: "flex"}}
-      onClick={onClick}
-      onKeyDown={onClick}
-    >
-      <IoIosArrowBack style={{margin: "auto 5px", height: "40px", width:"40px", filter: "drop-shadow(1px 0px 2px white)"}}/>
-    </div>
-  );
-}
-
-const NextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      role="button"
-      tabindex="0"
-      aria-label="next"
-      className="custom-arrow"
-      style={{right: "0%", zIndex:"5", height: "100%", width:"50px", position: "absolute", top: "50%", transform: "translateY(-50%)", display: "flex"}}
-      onClick={onClick}
-      onKeyDown={onClick}
-    >
-      <IoIosArrowForward style={{margin: "auto 5px", height: "40px", width:"40px", filter: "drop-shadow(1px 0px 2px white)"}}/>
-    </div>
-  );
-}
 
 const PropFeatureGrid = React.memo((data) => {
 
   const [propOptionsArray, setPropOptionsArray] = useState([])
   const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
+  const [displayNumber, setDisplayNumber] = useState(10)
   const [bgImg, setBgImg] = useState(null)
-  const [categories, setCategories] = useState(null)
-  const [limit, setLimit] = useState(2)
+  const [bgName, setBgName] = useState(null)
 
   const container = useRef(null)
   const heroContainer = useRef(null)
+  const loadMore = useRef(null)
 
   const {t} = useTranslation(['properties', 'translation', 'amenities', 'calendar']);
 
   useEffect(() => {
-
-    ScrollTrigger.create({
-      trigger: document.body,
-      start: "top top",
-      end: document.body.offsetHeight + " " + document.body.offsetHeight,
-      invalidateOnRefresh: true,
-      onEnter: (self) => {
-        console.log(self)
-        ScrollTrigger.refresh();
-      },
-      onRefresh: () => {
-        setLimit(limit+1)
-        console.log(limit+1);
-      }
-  });
-
+    
     return () => {
       setStickyStyle({position:"absolute"})
     }
   }, [])
 
+  const increaseDisplayNumber = () => {
+    if(displayNumber < data.propList.length){
+      setDisplayNumber(displayNumber+10)
+    }
+  }
+
+  useEffect(() => {
+    let st = ScrollTrigger.getById(`ST-${displayNumber}`)
+    if(st){
+      st.kill()
+    }
+    ScrollTrigger.create({
+      trigger: loadMore.current,
+      invalidateOnRefresh: true,
+      id: `ST-${displayNumber+10}`,
+      onEnter: (self) => {
+        increaseDisplayNumber()
+      }
+    });
+  }, [displayNumber])
 
 
 
   useEffect(()=>{
+    ScrollTrigger.create({
+      trigger: loadMore.current,
+      invalidateOnRefresh: true,
+      id: `ST-${displayNumber}`,
+      onEnter: (self) => {
+        increaseDisplayNumber()
+      }
+    });
 
-    let uniqueCategories = new Set()
     let propArray = data.propList.map(prop => {
       let details = {value: prop.uid, label: prop.name, picture: prop.picture, city: prop.city, guests: prop.baseGuests, bathrooms: prop.bathrooms, bedrooms: prop.bedrooms}
-      uniqueCategories.add(prop.city)
-      uniqueCategories.add(prop.type)
       return details
     })
     propArray.sort((a, b)=>(a === null)? 1 : ((b === null)? -1 : ((a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0))))
     setPropOptionsArray(propArray)
 
-    setCategories([...uniqueCategories])
-
   }, [data.propList])
 
   useEffect(() => {
 
-    if(data.heroBg){
+    if(data.heroBg && !bgImg){
       const imgLoader = new Image()
     
       imgLoader.src = data.heroBg.picture
   
       imgLoader.onload = () => {
         setBgImg(data.heroBg.picture)
+        setBgName(data.heroBg.name)
+        gsap.utils.toArray(".parallax-hero-container").forEach((paraHero, i) => {
+          paraHero.bg = paraHero.querySelector(".bg")
+          let oh = paraHero.bg.offsetHeight
+            gsap.to(paraHero.bg, {
+              y: oh*0.2,
+              ease: "none",
+              scrollTrigger: {
+                trigger: paraHero,
+                scrub: 0.3,
+                start: "top top"
+              }
+            });
+        })
       }
-      gsap.utils.toArray(".parallax-hero-container").forEach((paraHero, i) => {
-        paraHero.bg = paraHero.querySelector(".bg")
-        let oh = paraHero.bg.offsetHeight
-          gsap.to(paraHero.bg, {
-            y: oh*0.2,
-            ease: "none",
-            scrollTrigger: {
-              trigger: paraHero,
-              scrub: true,
-              start: "top top"
-            }
-          });
-      })
     }
   }, [data.heroBg])
+
+  useEffect(() => {
+    data.handleDisplayNumChange(displayNumber)
+  }, [displayNumber])
 
   const customStyles = {
     menu: () => ({
@@ -217,7 +198,7 @@ const PropFeatureGrid = React.memo((data) => {
       </div>
       <div style={{position: "absolute", left: "20px", top:"90%", transform:"translateY(-50%)", width:"100%"}}>
             <h3 className='home-section-title orangeText' style={{top: "-262px", opacity: "0.7", color:"#f5821e"}}>Featured</h3>
-            <h2 className='home-section-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1}}><Link to={`/properties/${data.heroBg.uid}`}>{data.heroBg.name}</Link></h2>
+            <h2 className='home-section-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1}}><Link to={`/properties/${data.heroBg.uid}`}>{bgName}</Link></h2>
         </div>
     </div>
     
@@ -285,17 +266,21 @@ const PropFeatureGrid = React.memo((data) => {
       </Row>
       }
     </Container>
-    <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
+     <div className="columns is-multiline" style={{margin:"auto", justifyContent:"center"}}>
       <br />
-      {data.propList.map((item, index)=>{
-        if(index > limit)return null
-          if(item != null && (item.city=== category ||item.type=== category)){
-            return(
-              <PropertyCard item={item} index={index} key={`propCard-${index}`} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
-            )
-          }
-      })
-      }
+      {data.propList && data.propList.map((item, index) => 
+      {    
+        if(index > displayNumber)return null
+        if(item != null){
+          return(
+            <PropertyCard item={item} index={index} key={index} handleGalleryClick={data.handleGalleryClick} dates={data.dates}/>
+            )}
+        })
+        }
+        <div style={{flex: "1 1 100%", display: "flex", justifyContent:"center"}}>
+          <div ref={loadMore} id="loadMore">{displayNumber !== data.propList?.length ? <Loading />:null}
+          </div>
+        </div>
     </div>
   </div>
 )})
