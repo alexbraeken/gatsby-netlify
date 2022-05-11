@@ -4238,6 +4238,12 @@ header
   max-width: 100vw
   white-space: nowrap
   pointer-events: none
+  &.hero-feature-title
+    pointer-events: unset
+    & a
+      transition: color 0.3s
+      &:hover
+        color: $primary
 
 .prop-page-section
   position: relative

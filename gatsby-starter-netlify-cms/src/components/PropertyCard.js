@@ -39,7 +39,6 @@ const PropertyCardComp = (props) => {
     const [showSlider, setShowSlider] = useState(false)
     const [inFavs, setInFavs] = useState(false)
     const [bgImg, setBgImg] = useState('')
-    const [bgGlowIndex, setBgGlowIndex] = useState(0)
     const [hover, setHover] = useState(false)
     const [displayed, setDisplayed] = useState(false)
     const [timerId, setTimerId] = useState(null)
@@ -116,7 +115,7 @@ const PropertyCardComp = (props) => {
             {
               scale: 1,
               duration: 0.3,
-              ease:"Power2.easeOut",
+              ease: "back.in(1)",
               onComplete:()=>setDisplayed(false)
             }
           ).to(
@@ -147,8 +146,9 @@ const PropertyCardComp = (props) => {
         tl.to(
           hovered.current,
           {
-            scale: 1.3,
-            duration: 0.3
+            scale: 1.2,
+            duration: 0.3,
+            ease: "back.in(1)"
           }
         ).to(
           footer.current,
@@ -201,9 +201,9 @@ const PropertyCardComp = (props) => {
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
           }
 
-            <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
+            <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></Link>
             <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
-            <div className="card-slider-glow" style={{backgroundImage: `url(${props.item.photos[`${bgGlowIndex}`].url})`}}>
+            <div className="card-slider-glow" style={{backgroundImage: `url(${bgImg})`}}>
 
             </div>
               <Card.Text>
@@ -212,7 +212,7 @@ const PropertyCardComp = (props) => {
             </div>
             <Card.ImgOverlay style={{position:"absolute", padding:"1rem", width: "100%", height:"unset", backgroundColor:"transparent", left:"0", bottom:"0", top:"auto", padding:0}}>
               <section className="section prop-card-text" style={{background:"linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%)", color: "#fff", marginTop:0, height:"unset", paddingBottom: "3px"}}>
-              <Link to={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}}>
+              <Link to={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}} target="_blank" rel="noopener noreferrer">
                 <Card.Title style={{textAlign:"center"}}><span className="prop-card-title" style={{fontSize:"1.8rem"}}>{props.item.name}</span></Card.Title>
                 <BedBathPax bedrooms={props.item.bedrooms} bathrooms={props.item.bathrooms} baseGuests={props.item.baseGuests} color="rgba(256,256,256)"/>
                 <div className="prop-card-description-ps">
@@ -281,7 +281,7 @@ const PropertyCardComp = (props) => {
           </div>
 
           }
-          <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}}></Link>
+          <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></Link>
           <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
   {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-prev card-arrow"
  aria-label="Show Slider" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
@@ -308,7 +308,7 @@ const PropertyCardComp = (props) => {
           </div>
           <Card.ImgOverlay style={{position:"absolute", padding:"1rem", width: "100%", height:"unset", backgroundColor:"transparent", left:"0", bottom:"0", top:"auto", padding:0}}>
             <section className="section prop-card-text" style={{background:"linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%)", color: "#fff", marginTop:0, height:"unset", paddingBottom: "3px"}}>
-            <Link to={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}}>
+            <Link to={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}} target="_blank" rel="noopener noreferrer">
               <Card.Title style={{textAlign:"center"}}><span className="prop-card-title" style={{fontSize:"1.8rem"}}>{props.item.name}</span></Card.Title>
               <div ref={description} style={{overflow:"hidden"}}>
               <Card.Text style={{fontSize: "0.8rem", padding:"0 0 15px 0"}}>

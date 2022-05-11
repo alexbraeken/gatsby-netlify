@@ -1,15 +1,15 @@
 ---
 templateKey: news-alert
-title: "Meet The Team"
+title: "Sustainability"
 langTitles:
-    en: "Meet The Team"
-    pt: "Conheça a Equipa"
-    fr: "Rencontrez l'équipe"
-    es: "Conocer al equipo"
+    en: "Sustainability"
+    pt: "Sustainability"
+    fr: "Sustainability"
+    es: "Sustainability"
 news: 
-    en: "Meet the great people who make Smartavillas a fantastic property management company in the Algarve"
-    pt: "Conheça as pessoas fantásticas que fazem da Smartavillas uma fantástica empresa de gestão imobiliária no Algarve"
-    fr: "Rencontrez les personnes extraordinaires qui font de Smartavillas une fantastique société de gestion immobilière en Algarve"
-    es: "Conozca a las personas increíbles que hacen de Smartavillas una fantástica empresa de administración de propiedades en el Algarve"
-link: "../team"
+    en: "At Smartavillas we care about the environment. Checkout how we're commited to a greener future"
+    pt: "At Smartavillas we care about the environment. Checkout how we're commited to a greener future"
+    fr: "At Smartavillas we care about the environment. Checkout how we're commited to a greener future"
+    es: "At Smartavillas we care about the environment. Checkout how we're commited to a greener future"
+link: "../about/sustainability"
 ---

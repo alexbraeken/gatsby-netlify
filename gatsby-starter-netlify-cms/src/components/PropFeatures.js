@@ -28,7 +28,6 @@ gsap.registerPlugin(ScrollTrigger);
 const PropFeatureGrid = React.memo((data) => {
 
   const [propOptionsArray, setPropOptionsArray] = useState([])
-  const [stickyStyle, setStickyStyle] = useState({position:"absolute"})
   const [displayNumber, setDisplayNumber] = useState(10)
   const [bgImg, setBgImg] = useState(null)
   const [bgName, setBgName] = useState(null)
@@ -38,13 +37,6 @@ const PropFeatureGrid = React.memo((data) => {
   const loadMore = useRef(null)
 
   const {t} = useTranslation(['properties', 'translation', 'amenities', 'calendar']);
-
-  useEffect(() => {
-    
-    return () => {
-      setStickyStyle({position:"absolute"})
-    }
-  }, [])
 
   const increaseDisplayNumber = () => {
     if(displayNumber < data.propList.length){
@@ -98,22 +90,28 @@ const PropFeatureGrid = React.memo((data) => {
       imgLoader.onload = () => {
         setBgImg(data.heroBg.picture)
         setBgName(data.heroBg.name)
-        gsap.utils.toArray(".parallax-hero-container").forEach((paraHero, i) => {
-          paraHero.bg = paraHero.querySelector(".bg")
-          let oh = paraHero.bg.offsetHeight
-            gsap.to(paraHero.bg, {
-              y: oh*0.2,
-              ease: "none",
-              scrollTrigger: {
-                trigger: paraHero,
-                scrub: 0.3,
-                start: "top top"
-              }
-            });
-        })
       }
     }
   }, [data.heroBg])
+
+  useEffect(() => {
+    if(bgImg){
+      gsap.utils.toArray(".parallax-hero-container").forEach((paraHero, i) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: paraHero,
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+        paraHero.bg = paraHero.querySelector(".bg")
+        let oh = paraHero.bg.offsetHeight
+        tl.to(paraHero.bg, {y: oh*0.2, ease: "none"}, 0)
+      })
+    }
+     
+  }, [bgImg])
 
   useEffect(() => {
     data.handleDisplayNumChange(displayNumber)
@@ -176,7 +174,7 @@ const PropFeatureGrid = React.memo((data) => {
     <div style={{position: "absolute", top: "0", height: "100%", left: "50%", transform:"translateX(-50%)", zIndex: "10"}}>
       <StickyBox>
       <DatePicker from={data.state.searchArray.from ? data.state.searchArray.from[0] : null} to={data.state.searchArray.to ? data.state.searchArray.to[0] : null} 
-        className="top-date-picker" style={stickyStyle} handleDateChange={data.handleDateChange} handleNewIds={data.handleNewIds} handleClearDates={data.handleClearDates}
+        className="top-date-picker" style={{position:"absolute"}} handleDateChange={data.handleDateChange} handleNewIds={data.handleNewIds} handleClearDates={data.handleClearDates}
         />
       </StickyBox>
     </div>
@@ -198,7 +196,7 @@ const PropFeatureGrid = React.memo((data) => {
       </div>
       <div style={{position: "absolute", left: "20px", top:"90%", transform:"translateY(-50%)", width:"100%"}}>
             <h3 className='home-section-title orangeText' style={{top: "-262px", opacity: "0.7", color:"#f5821e"}}>Featured</h3>
-            <h2 className='home-section-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1}}><Link to={`/properties/${data.heroBg.uid}`}>{bgName}</Link></h2>
+            <h2 className='home-section-title hero-feature-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1, pointerEvents: "unset"}}><Link to={`/properties/${data.heroBg.uid}`} target="_blank" rel="noopener noreferrer">{bgName}</Link></h2>
         </div>
     </div>
     
@@ -277,8 +275,8 @@ const PropFeatureGrid = React.memo((data) => {
             )}
         })
         }
-        <div style={{flex: "1 1 100%", display: "flex", justifyContent:"center"}}>
-          <div ref={loadMore} id="loadMore">{displayNumber !== data.propList?.length ? <Loading />:null}
+        <div style={{flex: "1 1 100%", display: "flex", justifyContent:"center", alignItems: "center"}}>
+          <div ref={loadMore} id="loadMore" style={{height:"300px"}}>{displayNumber < data.propList?.length ? <Loading />:null}
           </div>
         </div>
     </div>
