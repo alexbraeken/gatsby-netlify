@@ -7,6 +7,7 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import OwnerTestimonials from '../components/OwnerTestimonials'
 import { gsap } from "gsap";
+import BackgroundImage from 'gatsby-background-image'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,19 +42,12 @@ export const WhyUsPageTemplate = ({
 
       let parallaxCont = gsap.utils.toArray('.parallax-tone-container');
       let parallaxImg = gsap.utils.toArray('.img-cont');
-      let parallaxBg = gsap.utils.toArray('.parallax-tone-bg');
-
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: parallaxCont,
-          start: 'top bottom',
-          scrub: true
-        },
-      });
+      let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
+      let parallaxToneBg = gsap.utils.toArray('.parallax-tone-bg');
 
       parallaxCont.forEach((cont, i)=>{
         gsap.to(
-          parallaxBg[i], 
+          parallaxToneBg[i], 
           {
             yPercent: -90,
             ease: "none",
@@ -78,26 +72,53 @@ export const WhyUsPageTemplate = ({
         )
       })
 
+      parallaxBGs.forEach((section) => {
+        gsap.from(section, { 
+          yPercent: -15,
+          ease: "none",
+          scrollTrigger: {
+              trigger: section,
+              scrub: true
+          }
+        });
+      });
+
     const bigNums = document.querySelectorAll(".strong-num")
+    const counterBg = document.querySelectorAll(".counter-bg")
 
       bigNums.forEach((num, i)=> {
-        gsap.from(num, {
-          textContent: 0,
-          duration: 4,
-          ease: "power1.in",
-          snap: { textContent: 1 },
+
+        let tl = gsap.timeline({
           scrollTrigger:{
             trigger: num,
             once: true,
             start: "top bottom"
-          },
+          }
+        })
+
+        tl.from(num, {
+          x: 1000,
+          duration: 1,
+          ease: "power2.out"
+        }).from(num, {
+          textContent: 0,
+          duration: 4,
+          ease: "power2.out",
+          snap: { textContent: 1 },
           stagger: {
             each: 1.0,
             onUpdate: function() {
               this.targets()[0].innerHTML = numberWithCommas(Math.ceil(this.targets()[0].textContent));
             },
           }
-        });
+        }).to(counterBg[i],
+          {
+            width: "110%",
+            duration: 4,
+            ease: "power2.out"
+          },
+          "<"
+          )
       })
 
       function numberWithCommas(x) {
@@ -139,7 +160,7 @@ export const WhyUsPageTemplate = ({
           <div dangerouslySetInnerHTML={{ __html: `<div> ${part1.text[language]} </div>` }} />
         </div>
         </Col>
-        <Col xs={12} md={6}>
+        <Col xs={12} md={6} style={{display:"flex"}}>
           <div className="parallax-tone-container" ref={parallaxCont}>
             <div ref={parallaxImg} className="img-cont" >
               <PreviewCompatibleImage imageInfo={part1Img} className="parallax-tone-img" imgStyle={{borderRadius: "5px"}} />
@@ -186,38 +207,82 @@ export const WhyUsPageTemplate = ({
         marginLeft: "-50vw",
         left: "50%"}}>
           <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>Different</h2>
+          <div className="section-background">
+        <div className='half-image-left grey-in'>
+          <BackgroundImage
+              Tag="div"
+              className={"parallax-bg"}
+              fluid={part2Img.childImageSharp?.fluid || part2Img}
+              backgroundColor={`#040e18`}
+            ></BackgroundImage>
+        </div>
+        </div>
       <Container>
         <Row>
-          <Col xs={12} md={6}>
-          <div className="parallax-tone-container" ref={parallaxCont}>
-            <div ref={parallaxImg} className="img-cont" >
-            <PreviewCompatibleImage imageInfo={part2Img} className="parallax-tone-img" imgStyle={{width:"100%", height:"100%", borderRadius: '5px'}}/>
-            </div>
-            <div className="parallax-tone-bg light" ref={parallaxBg}></div>
-          </div>
+          <Col xs={12} md={6} style={{display:"flex", overflow:"hidden"}}>
           </Col>
           <Col style={{display:"flex"}} xs={12} md={6}>
           <div style={{margin: "auto"}} className="why-list">
             <h3 className="has-text-weight-semibold is-size-2" style={{color: "#fff"}}>{part2.header[language]}</h3>
-              <div style={{margin:"50px auto", display:"flex", flexWrap:"nowrap"}}>
-                <strong style={{fontSize: "calc(100px + 10vw)",
+              <div style={{margin:"80px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
+                <div className="counter-bg" style={{position: "absolute", left:"-5%", top:0, width:0, height: "115%", backgroundColor:"#363636", zIndex:"1", borderTopRightRadius: "25px",
+    borderBottomRightRadius: "25px",
+    filter: "drop-shadow(2px 4px 6px black)"}}>
+
+                </div>
+                <strong style={{fontSize: "calc(100px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400"}} ><span className="strong-num" data-value={160}>160</span>+</strong><p>Properties<br />managed</p>
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={160}>160</span>+</strong><p style={{fontSize: "calc(30px + 1vw)",
+    margin: "auto 0",
+    textAlign: "center", color:"#fff", position: "absolute",
+    right: "0",
+    top: "50%",
+    transform: "translateY(-50%)", filter: "drop-shadow(2px 4px 6px black)", zIndex:"2"}}>Properties<br />managed</p>
               </div>
-              <div style={{margin:"50px auto", display:"flex", flexWrap:"nowrap"}}>
-                <strong style={{fontSize: "calc(100px + 10vw)",
+              <div style={{margin:"80px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
+              <div className="counter-bg" style={{position: "absolute", left:"-5%", top:0, width:0, height: "115%", backgroundColor:"#363636", zIndex:"1", borderTopRightRadius: "25px",
+    borderBottomRightRadius: "25px",
+    filter: "drop-shadow(2px 4px 6px black)"}}>
+
+</div>
+                <strong style={{fontSize: "calc(100px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400"}} ><span className="strong-num" data-value={13}>13</span></strong><p>Years<br />experience</p>
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={13}>13</span>+</strong><p style={{fontSize: "calc(30px + 1vw)",
+    margin: "auto 0",
+    textAlign: "center", color:"#fff", position: "absolute",
+    right: "0",
+    top: "50%",
+    transform: "translateY(-50%)", filter: "drop-shadow(2px 4px 6px black)", zIndex:"2"}}>Years<br />experience</p>
               </div>
-              <div style={{margin:"50px auto", display:"flex", flexWrap:"nowrap"}}>
-                <strong style={{fontSize: "calc(100px + 10vw)",
+              <div style={{margin:"80px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
+              <div className="counter-bg" style={{position: "absolute", left:"-5%", top:0, width:0, height: "115%", backgroundColor:"#363636", zIndex:"1", borderTopRightRadius: "25px",
+    borderBottomRightRadius: "25px",
+    filter: "drop-shadow(2px 4px 6px black)"}}>
+
+</div>
+                <strong style={{fontSize: "calc(100px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400"}} ><span className="strong-num" data-value={20}>20</span>+</strong><p>Dedicated<br />Team<br />members</p>
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={20}>20</span>+</strong><p style={{fontSize: "calc(30px + 1vw)",
+    margin: "auto 0",
+    textAlign: "center", color:"#fff", position: "absolute",
+    right: "0",
+    top: "50%",
+    transform: "translateY(-50%)", filter: "drop-shadow(2px 4px 6px black)", zIndex:"2"}}>Dedicated<br />Team<br />members</p>
               </div>
-              <div style={{margin:"50px auto", display:"flex", flexWrap:"nowrap"}}>
-                <strong style={{fontSize: "calc(100px + 10vw)",
+              <div style={{margin:"80px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
+              <div className="counter-bg" style={{position: "absolute", left:"-5%", top:0, width:0, height: "115%", backgroundColor:"#363636", zIndex:"1", borderTopRightRadius: "25px",
+    borderBottomRightRadius: "25px",
+    filter: "drop-shadow(2px 4px 6px black)"}}>
+
+</div>
+                <strong style={{fontSize: "calc(100px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400"}} ><span className="strong-num" data-value={80}>80</span>%</strong><p>Occupancy<br />rate</p>
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={80}>80</span>%</strong><p style={{fontSize: "calc(30px + 1vw)",
+    margin: "auto 0",
+    textAlign: "center", color:"#fff", position: "absolute",
+    right: "0",
+    top: "50%",
+    transform: "translateY(-50%)", filter: "drop-shadow(2px 4px 6px black)", zIndex:"2"}}>Occupancy<br />rate</p>
               </div>
             </div>
           </Col>
