@@ -99,35 +99,30 @@ const PropCarousel = (props) => {
           photos={props.photos.map((photo,index)=>{return({photo: photo.url, caption: photo.description})})}
           onClose={() => setIsOpen(false)}
         />
-        <div style={{display:"flex", position:"relative"}}>
-          <div style={{
-            position: "absolute", 
-            width: "100%", 
-            height: "100%", 
-            left: 0, 
-            top: 0, 
+        <div className="prop-carousel-container" style={{}}>
+          <div 
+          className="bg-blur"
+          style={{
+            
             backgroundImage:`url('${props.photos[nextImgIndex].url}'`,
-            filter: "blur(21px)",
-            backgroundSize: "cover",
-            backgroundPosition: "center center"}}>
+            }}>
 
           </div>
-          <div style={{
-            position: "absolute", 
-            width: "30%", 
-            height: "100%", 
-            left: 0, 
-            top: 0,
-            background: "rgb(23,11,1)",
-            background: "linear-gradient(90deg, rgba(23,11,1,1) 0%, rgba(0,0,0,0.7819502801120448) 73%, rgba(0,0,0,0) 100%)"}}>
+          <div 
+          className="bg-gradient"
+          style={{
+            }}>
           </div>
-          <div style={{position:"relative", width:"30%", display: "flex", justifyContent:"center", flexDirection:"column"}}>
-            <div style={{
-              padding: "0 calc(25px + 15%)",
-              lineHeight: "1.2"}}>
-              <h2 style={{color:"#f5821e", fontSize: "calc(5px + 23 * (100vw - 320px) / 1080)", fontweight: "800",filter: "drop-shadow(2px 4px 6px black)"}}>{props.name}</h2>
+          <div 
+          className="prop-details-container"
+          style={{}}>
+            <div 
+            className="prop-details"
+            style={{
+              }}>
+              <h2 style={{}}>{props.name}</h2>
               <br />
-              <div style={{color:"#fff", fontSize: "calc(3px + 23 * (100vw - 320px) / 1080)", display: "flex", flexDirection: "column"}}>
+              <div className="prop-stats" style={{}}>
                 <div>
                   <span className="prc">{t("From")} {props.baseRate} €</span>
                   <span className="mth"> / {t("Night")}</span>
@@ -156,7 +151,7 @@ const PropCarousel = (props) => {
               </div>
             </div>
           </div>
-          <Slider {...settings} style={{position:"relative", width: "70%", marginLeft: "auto"}}>
+          <Slider {...settings} className="prop-carousel-slider" style={{}}>
               {props.photos ? props.photos.map((photo, index)=>(
                   <CustomSlide backgroundImage={photo.url} key={index}/>
               )): <CustomSlide backgroundImage={props.firstSlide} />}

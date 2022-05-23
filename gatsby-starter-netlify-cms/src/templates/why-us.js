@@ -208,7 +208,7 @@ export const WhyUsPageTemplate = ({
         left: "50%"}}>
           <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>Different</h2>
           <div className="section-background">
-        <div className='half-image-left grey-in'>
+        <div className='half-image-left grey-in mobile-full-width'>
           <BackgroundImage
               Tag="div"
               className={"parallax-bg"}

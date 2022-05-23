@@ -144,7 +144,6 @@ refreshBounds = (mapInstance) => {
     onLoad = 
        (mapInstance) => {
         mapInstance.setTilt(45)
-        console.log(mapInstance)
         this.setState({map:mapInstance})
         mapInstance.addListener("dragend", ()=>{
           this.setState({center:{lat:this.state.map.getCenter().lat(), lng:this.state.map.getCenter().lng()}})

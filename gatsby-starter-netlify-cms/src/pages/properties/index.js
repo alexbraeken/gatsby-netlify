@@ -259,7 +259,8 @@ const ConnectedProperties = React.memo((props) => {
                                         display: "flex",
                                         justifyContent: "space-between",
                                         height: "6vh",
-                                        minHeight: "55px"}}>
+                                        minHeight: "55px"}}
+                                        className="fixed-mobile">
                                             <div style={{display:"flex", flexWrap:"nowrap", margin: "auto 10px auto 0"}}>
                                         <Form.Group style={{margin:"10px auto"}}>
                                             <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm">

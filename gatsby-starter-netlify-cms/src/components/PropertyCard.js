@@ -47,11 +47,25 @@ const PropertyCardComp = (props) => {
     const {language} = useI18next();
     const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
 
-
+    const card = useRef(null)
+    const cardContainer = useRef(null)
     const calendar = useRef(null)
     const hovered = useRef(null)
     const footer = useRef(null)
     const description = useRef(null)
+
+    useEffect(() => {
+      gsap.from(card.current, { 
+        y: 1000,
+        opacity: 0,
+        ease:"Power2.easeOut",
+        scrollTrigger: {
+            trigger: cardContainer.current,
+            once: true,
+            duration:1
+        }
+      })
+    }, [])
 
     useEffect(() => {
 
@@ -194,8 +208,8 @@ const PropertyCardComp = (props) => {
 
 
     return (
-    <div className="prop-card-container" key={props.index} onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={{position: "relative", margin:"20px"}}>
-        
+    <div className="prop-card-container" key={props.index} onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={{position: "relative", margin:"20px"}} ref={cardContainer}>
+        <div ref={card}>
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}}>
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
@@ -223,6 +237,7 @@ const PropertyCardComp = (props) => {
               </section>
             </Card.ImgOverlay>   
         </Card>
+        </div>
       {displayed && 
         <Card className="bg-dark text-white prop-card hovered" ref={hovered} style={{flexWrap:"wrap", flexDirection: "row", position:"absolute", left:0, top:0}} id={props.item.name}>
         <div className="card-buttons-right">

@@ -179,13 +179,8 @@ const PropFeatureGrid = React.memo((data) => {
       </StickyBox>
     </div>
     { data.heroBg &&
-    <div style={{
-      width:"100%", 
-      height: "80vh", 
-      backgroundColor: "#333", 
-      position:"relative",
-      marginLeft: "-15px",
-      width: "calc(100% + 30px)"}}>
+    <div 
+    className="prop-features-header">
       <div className="parallax-hero-container" style={{
         width:"100%", 
         height: "100%",
