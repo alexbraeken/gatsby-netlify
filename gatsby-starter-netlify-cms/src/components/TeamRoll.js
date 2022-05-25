@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import StickyBox from "react-sticky-box"
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const TeamPhoto = React.memo((props) =>{

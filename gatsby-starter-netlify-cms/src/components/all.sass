@@ -804,6 +804,9 @@ $min-margin: 10px
   background:#fff
   box-shadow: 1px 0px 10px -4px black
   z-index: 2
+
+.filter-sidebar-sticky
+  z-index: 2
   
 @media (max-width: 991px)
   #filter-sidebar
@@ -939,6 +942,62 @@ $min-margin: 10px
         transform: scale(0.9)
     100%
         transform: scale(1)
+
+.filter-tab-container
+  height: fit-content
+  width: 50px
+  position: absolute
+  left: 0
+  top: 50vh
+  transform: translateY(-50%)
+  cursor: pointer
+  pointer-events: all
+  &:after
+    content: ''
+    position: absolute
+    box-shadow: 2px 0px 6px 0px $primary
+    top: 50%
+    left: 49px
+    width: 2px
+    transform: translateY(-50%)
+    height: 10px
+    background: $primary
+    transition: all 0.3s
+  &:hover:after
+    height: 100%
+  & .filter-tab
+      background: #fff
+      height: 100%
+      width: 100%
+      position: relative
+      filter: drop-shadow(2px 1px 2px #666666)
+      &:after
+        position: absolute
+        content: ''
+        background: #fff
+        height: 50px
+        width: 50px
+        bottom: -49px
+        left: 0
+        border-radius: 0 0 50px 0
+        -moz-border-radius: 0 0 50px 0
+        -webkit-border-radius: 0 0 50px 0
+      &:before
+        position: absolute
+        height: 50px
+        background: #fff
+        content: ''
+        width: 50px
+        top: -49px
+        left: 0
+        border-radius: 0 50px 0 0
+        -moz-border-radius: 0 50px 0 0
+        -webkit-border-radius: 0 50px 0 0
+
+
+
+
+
 
 .expandBtn
   position: relative
@@ -2281,6 +2340,7 @@ a.navbar-item, .navbar-item
   overflow: auto
   min-width: min-content
   max-width: 25%
+  position: absolute
   &.active
     transform: translateX(0)
 
@@ -2292,8 +2352,10 @@ a.navbar-item, .navbar-item
 
 .sidebar-modal-container
   z-index: -1
+  pointer-events: none
   &.active
     z-index: 10
+    pointer-events: all
     & .sidebar-overlay
         background-color: rgba(0, 0, 0, 0.7)
 
@@ -2307,9 +2369,9 @@ a.navbar-item, .navbar-item
     
 
 .sidebar-modal-container, .sidebar-modal, .sidebar-overlay
-  position: fixed
   top: 0
   height: 100vh
+  
 
 .search-icon
   color: #000

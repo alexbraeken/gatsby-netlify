@@ -189,7 +189,7 @@ const PropFeatureGrid = React.memo((data) => {
         <div className="bg" style={{position: "absolute", left: "0", top:"0", width:"100%", height:"120%",  backgroundImage:`url(${bgImg})`, backgroundPosition:"center", backgroundSize:"cover", }}>
         </div>
       </div>
-      <div style={{position: "absolute", left: "20px", top:"90%", transform:"translateY(-50%)", width:"100%"}}>
+      <div style={{position: "absolute", left: "60px", top:"90%", transform:"translateY(-50%)", width:"100%"}}>
             <h3 className='home-section-title orangeText' style={{top: "-262px", opacity: "0.7", color:"#f5821e"}}>Featured</h3>
             <h2 className='home-section-title hero-feature-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1, pointerEvents: "unset"}}><Link to={`/properties/${data.heroBg.uid}`} target="_blank" rel="noopener noreferrer">{bgName}</Link></h2>
         </div>

@@ -1,9 +1,9 @@
 import React, {useState, useEffect, Component, useCallback} from 'react'
 import { graphql } from 'gatsby'
-import 'firebase/firestore';
-import { FirestoreCollection } from "@react-firebase/firestore";
+import 'firebase/firestore'
+import { FirestoreCollection } from "@react-firebase/firestore"
 import { Router, useLocation } from "@reach/router"
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next'
 import PropertyTemplate from "../../templates/property-page"
 import Layout from '../../components/Layout'
 import PropFeatures from '../../components/PropFeatures'
@@ -13,15 +13,22 @@ import Row from 'react-bootstrap/Row'
 import queryString from 'query-string'
 import Loading from '../../components/Loading'
 import SideBarModal from '../../components/SideBarModal'
-import StickyBox from "react-sticky-box";
-import { Col } from 'react-bootstrap';
-import GoogleMapComponent from '../../components/GoogleMapComponent';
-import ReactBnbGallery from 'react-bnb-gallery';
-import { gsap } from "gsap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import StickyBox from "react-sticky-box"
+import { Col } from 'react-bootstrap'
+import GoogleMapComponent from '../../components/GoogleMapComponent'
+import ReactBnbGallery from 'react-bnb-gallery'
+import { gsap } from "gsap"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faChevronLeft, faUsers, faBed, faShower, faFan, faDog, faWifi, faSwimmingPool, faTree } from '@fortawesome/free-solid-svg-icons'
 import { connect } from "react-redux"
 import { Helmet } from 'react-helmet'
+import { BsFillHouseFill } from "@react-icons/all-files/bs/BsFillHouseFill"
+import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
+import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
+import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
+import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
+import { IoIosArrowBack   } from "@react-icons/all-files/io/IoIosArrowBack";
+import { IoIosArrowForward   } from "@react-icons/all-files/io/IoIosArrowForward";
 
 gsap.registerPlugin(gsap);
 
@@ -159,7 +166,6 @@ const ConnectedProperties = React.memo((props) => {
                 if(amenities.length > 0 && item.amenities){
                     amenities.forEach(amenity => {
                         amenityBool.push((item.amenities[`${amenity}`] === null || item.amenities[`${amenity}`] === false) ? false : true )
-                        console.log(item.amenities[`${amenity}`])
                     })
                 }else{
                     amenityBool.push(true)
@@ -294,7 +300,62 @@ const ConnectedProperties = React.memo((props) => {
                                 </div>
                                 </StickyBox>
                                 </Col>
-                                <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
+                                <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s", position: "relative", zIndex: "1", paddingLeft:"0"}}>
+                                    <div style={{position:"absolute", height:"100%", width: "100%", pointerEvents:"none"}}>
+                                    <StickyBox className="filter-sidebar-sticky" >
+                                        <div className="filter-tab-container" onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>
+                                            <div className="filter-tab" style={{display: "flex", flexDirection: "column"}}>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
+                                                    <BsFillHouseFill style={{margin:"auto"}}/>
+                                                    <h4>{propList.length}</h4>
+                                                </div>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
+                                                    <FontAwesomeIcon icon={faBed} style={{margin: "auto"}} />
+                                                    <h4>{props.state.bedrooms[0]} - {props.state.bedrooms[1]}</h4>
+                                                </div>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
+                                                    <FontAwesomeIcon icon={faShower} style={{margin: "auto"}}/>
+                                                    <h4>{props.state.bathrooms[0]} - {props.state.bathrooms[1]}</h4>
+                                                </div>
+                                                <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column"}}>
+                                                    {Object.keys(amenitiesList).map(amenity => {
+                                                        switch(amenity){
+                                                        case "hasPool":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "5px auto"}}/></div> : null
+                                                        case "isWheelchairAccessible":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FaWheelchair style={{margin: "5px auto"}}/></div> : null
+                                                        case "allowsPets":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faDog} style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasAirConditioning":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faFan} style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasBarbecue":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GiBarbecue style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasElevator":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GrElevator style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasGarden":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faTree} style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasInternetWifi":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "5px auto"}}/></div> : null
+                                                        default:
+                                                        return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><BsCheckCircle style={{margin: "5px auto"}} /></div> : null
+                                                        }
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <SideBarModal 
+                                                    show={showSidebarModal} 
+                                                    close={handleSidebarModal}
+                                                    data= {data} 
+                                                    handleChange={props.handleChange} 
+                                                    amenitiesList={amenitiesList}
+                                                    handleAmenityChange= {handleAmenityChange}
+                                                    state={props.state}
+                                                    handleSliderChange={props.handleSliderChange}
+                                                    handleSelectDeselectAll={props.handleSelectDeselectAll}/>
+                                    </StickyBox>
+                                    </div>
+                                    
                                 <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg}/>
                                 </Col>
                             </Row>
@@ -311,16 +372,7 @@ const ConnectedProperties = React.memo((props) => {
                                     </style>
                                 </Helmet> 
                         </Container>
-                        <SideBarModal 
-                            show={showSidebarModal} 
-                            close={handleSidebarModal}
-                            data= {data} 
-                            handleChange={props.handleChange} 
-                            amenitiesList={amenitiesList}
-                            handleAmenityChange= {handleAmenityChange}
-                            state={props.state}
-                            handleSliderChange={props.handleSliderChange}
-                            handleSelectDeselectAll={props.handleSelectDeselectAll}/>
+                        
                         </> 
                         : 
                         <>
