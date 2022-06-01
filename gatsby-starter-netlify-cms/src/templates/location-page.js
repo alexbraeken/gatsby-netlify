@@ -292,9 +292,13 @@ export const LocationPageTemplate = ({
         <br />
         <ActivitiesRoll location={location}  key="all"/>
         <br />
-  <h4>{t("Full list of activities")} <a href="/travelerTips"><span style={{color:"#f5821e"}}>{t("here")}!</span></a></h4>
+        <div style={{paddingBottom:"1em"}}>
+          <h4>{t("Full list of activities")} <a href="/travelerTips"><span style={{color:"#f5821e"}}>{t("here")}!</span></a></h4>
+        </div>
       </Container>
     </section>
+    <section
+    className="last"></section>
   </div>
 )}
 

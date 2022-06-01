@@ -731,8 +731,11 @@ export const PropertyPageTemplate = ( props ) =>
                                 <title>{propName}</title>
                                 <meta name="description" content={data.value.description} />
                             </Helmet>                 
+                            <section
+    className="last"></section>
                         </div> : <></>
             }}
+            
         </FirestoreDocument>
 </>
 )

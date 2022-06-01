@@ -233,7 +233,11 @@ export const WhyBookPageTemplate = ({
         </Row>
       </Container>
     </section>
-    <Newsletter lang={language}/>
+    <section>
+      <Newsletter lang={language}/>
+    </section>
+    <section
+    className="last"></section>
   </div>
 )}
 

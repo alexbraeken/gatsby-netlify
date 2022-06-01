@@ -54,6 +54,8 @@ export const ContentPageTemplate = ({ title, langTitles, content, contentCompone
             </div>
           </div>
         </div>
+        <section
+    className="last"></section>
     </div>
   )
 }

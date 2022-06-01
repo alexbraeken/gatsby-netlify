@@ -373,7 +373,8 @@ export const WhyUsPageTemplate = ({
         </Row> 
       </Container>    
     </section>
-    <section style={{
+    <section
+     style={{
         paddingBottom: "100px",
         overflow: "hidden"}}>
       <Container>
@@ -386,6 +387,8 @@ export const WhyUsPageTemplate = ({
         </Row>
       </Container>
     </section>
+    <section
+    className="last"></section>
   </div>
 )}
 

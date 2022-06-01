@@ -425,6 +425,8 @@ export const AlgarvePageTemplate = ({
         </p>
       </Container>
     </section>
+    <section
+    className="last"></section>
   </div>
 )}
 

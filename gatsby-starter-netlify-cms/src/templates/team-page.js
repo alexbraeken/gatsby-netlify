@@ -218,11 +218,11 @@ export const MeetTheTeamPageTemplate = ({
               <p>{description[language]}</p>
             </div>
           </Container>
-          <div style={{marginBottom:"50px", minHeight: "100vh"}}>
+          <div className="team-section-container" style={{marginBottom:"50px", minHeight: "100vh"}}>
             {
               Object.keys(teams).map((team, i) => {
                 return(
-                  <section className="team-section" id={`team-${team}`}>
+                  <div className="team-section" id={`team-${team}`}>
                               {
                                 displayTeam === team ?
                                 <div className="team-roll-container" id={`roll-${team}`}>
@@ -266,12 +266,13 @@ export const MeetTheTeamPageTemplate = ({
                                 </div>
                               </div>
                               }
-                            </section>
+                            </div>
                 )
               })
             }
 
-          
+<section
+    className="last"></section>
           </div>
           
 </>

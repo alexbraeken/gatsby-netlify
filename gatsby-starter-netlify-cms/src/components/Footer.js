@@ -1,18 +1,22 @@
-import React from 'react'
-import {Link} from 'gatsby-plugin-react-i18next';
+import React, {useEffect, useState, useRef} from 'react'
 import logo from '../img/logo.svg'
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import facebook from '../img/social/facebook.svg'
 import instagram from '../img/social/instagram.svg'
+import SubmitButton from'./SubmitButton'
 import twitter from '../img/social/twitter.svg'
 
-const Footer = class extends React.Component {
-  render() {
+const Footer = () =>{
 
-    const t = this.props.useTranslation.t
-    const language = this.props.useI18next.language
+
+    const {t} = useTranslation();
+    const {language} = useI18next();
+
+    const footer = useRef(null)
+
 
     return (
-      <footer className="footer has-background-black has-text-white-ter">
+      <footer className={`footer black-bg has-text-white-ter`} style={{overflow:"hidden"}}>
         <div className="content has-text-centered">
           <img
             src={logo}
@@ -20,11 +24,12 @@ const Footer = class extends React.Component {
             style={{width:"50px", height:"50px"}}
           />
         </div>
-        <div className="content has-text-centered has-background-black has-text-white-ter">
-          <div className="container has-background-black has-text-white-ter">
+        <div className="content has-text-centered black-bg has-text-white-ter">
+          <div className="container black-bg has-text-white-ter">
             <div style={{ maxWidth: '100vw' }} className="columns">
               <div className="column is-4">
-                <section className="menu">
+                <section className="menu" style={{position: "relative"}}>
+                <h2 className="prop-section-title" style={{overflow:"visible", left:"0", transform:"translateY(0)"}}>{t("explore")}</h2>
                   <ul className="menu-list">
                     <li>
                       <Link to="/" className="navbar-item">
@@ -51,12 +56,6 @@ const Footer = class extends React.Component {
                     {t("Health & Safety")}
                       </Link>
                     </li>
-                  </ul>
-                </section>
-              </div>
-              <div className="column is-4">
-                <section>
-                  <ul className="menu-list">
                     <li>
                       <Link className="navbar-item" to="/properties">
                       {t("Properties")}
@@ -98,31 +97,55 @@ const Footer = class extends React.Component {
                   </ul>
                 </section>
               </div>
-              <div className="column is-4 social">
-                <a className="social-hover fb-icon" title="facebook" href="https://facebook.com/smartavillas">
-                  <img
-                    className="fas fa-lg"
-                    src={facebook}
-                    alt="Facebook"
-                    style={{ width: '1em', height: '1em' }}
-                  />
-                </a>
-                <a className="social-hover twitter-icon" title="twitter" href="https://twitter.com/smartavillas">
-                  <img
-                    className="fas fa-lg"
-                    src={twitter}
-                    alt="Twitter"
-                    style={{ width: '1em', height: '1em' }}
-                  />
-                </a>
-                <a className="social-hover insta-icon" title="instagram" href="https://instagram.com/smartavillas">
-                  <img
-                    className="fas fa-lg"
-                    src={instagram}
-                    alt="Instagram"
-                    style={{ width: '1em', height: '1em' }}
-                  />
-                </a>
+              <div className="column social" >
+                <section style={{}}>
+                  <h2 className="prop-section-title">{t("get in touch")}</h2>
+                  <ul className="menu-list">
+                    <li>
+                      <div style={{width:"fit-content"}}>
+                        <SubmitButton text={t('Contact')} link={`/contact`}/>
+                      </div>
+                    </li>
+                    <br />
+                    <li>
+                      <h4 style={{color:"whitesmoke", fontWeight:"unset"}}>reservas@smartavillas.com</h4>
+                      
+                    </li>
+                    <li>
+                      <h4 style={{color:"whitesmoke", fontWeight:"unset"}}>+351 281027089 / +351 913692170</h4>
+                    
+                    </li>
+                    <li>
+                      <h4 style={{color:"whitesmoke", fontWeight:"unset"}}>Rua Maria Helena Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal</h4>
+                    </li>
+                  </ul>
+                  <div style={{margin:"auto 0 auto 1.5em"}}>
+                    <a className="social-hover fb-icon" title="facebook" href="https://facebook.com/smartavillas">
+                      <img
+                        className="fas fa-lg"
+                        src={facebook}
+                        alt="Facebook"
+                        style={{ width: '1em', height: '1em' }}
+                      />
+                    </a>
+                    <a className="social-hover twitter-icon" title="twitter" href="https://twitter.com/smartavillas">
+                      <img
+                        className="fas fa-lg"
+                        src={twitter}
+                        alt="Twitter"
+                        style={{ width: '1em', height: '1em' }}
+                      />
+                    </a>
+                    <a className="social-hover insta-icon" title="instagram" href="https://instagram.com/smartavillas">
+                      <img
+                        className="fas fa-lg"
+                        src={instagram}
+                        alt="Instagram"
+                        style={{ width: '1em', height: '1em' }}
+                      />
+                    </a>
+                  </div>
+                </section>
               </div>
             </div>
             <div className="trustpilot-widget" style={{margin:"20px auto"}} data-locale="en-US" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="6269454aa9c09b59bf311cdf" data-style-height="24px" data-style-width="100%" data-theme="dark" data-min-review-count="10" data-without-reviews-preferred-string-id="1">
@@ -137,7 +160,7 @@ const Footer = class extends React.Component {
         </div>
       </footer>
     )
-  }
 }
+
 
 export default Footer

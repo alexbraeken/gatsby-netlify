@@ -52,7 +52,10 @@ const ConnectedFeatured = (props) => {
             </div>
           }
             </>
-          : <Loading />
+          : 
+          <div style={{minHeight:"70vmin", backgroundColor:"grey", width:"80%"}}>
+            <Loading />
+          </div>
         }
       }
     </FirestoreCollection>
@@ -591,7 +594,9 @@ const toggleActiveSearch = (active) => {
           </svg>
         </div>
       </section>
-      <section style={{
+      <section 
+      className="black-bg"
+      style={{
         paddingBottom: "100px",
         width: "100vw",
         position: "relative",
@@ -656,7 +661,7 @@ const toggleActiveSearch = (active) => {
       <InstagramFeed />
       </Container>
       </section>
-      <section>
+      <section className="last">
         <Container>
         <PageContent className="content" content={content} />
         </Container>

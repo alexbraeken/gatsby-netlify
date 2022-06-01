@@ -129,7 +129,7 @@ useEffect(() => {
       <FirestoreProvider {...config} firebase={firebase}>
       <NewsAlert/>
       <Navbar key={path} navClass={navClass}/>
-      <div>{children}</div>
+      <div className="layout-children">{children}</div>
       <BackToTop />
       <Footer useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>
       <ConnectedFavourites useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>
