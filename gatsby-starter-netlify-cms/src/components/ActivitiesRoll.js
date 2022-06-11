@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import Slider from "react-slick"
-import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next'
+import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt"
 
 //Individual Activity Cards
 const ActivityCard = React.memo((props) =>{
@@ -25,7 +26,7 @@ const ActivityCard = React.memo((props) =>{
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
-            
+            {props.activity.frontmatter.gps.lat && props.activity.frontmatter.gps.lng && <div style={{position: "absolute", top:"5px", right:"5px"}}><a href={`https://www.google.com/maps/dir/?api=1&destination=${props.activity.frontmatter.gps.lat},${props.activity.frontmatter.gps.lng}`} target="_blank"><FaMapMarkerAlt className="card-marker"/></a></div>}
             <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
             
               <h3 className="card__title">{props.activity.frontmatter.langTitles[language]}</h3>
