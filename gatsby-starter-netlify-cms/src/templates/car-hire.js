@@ -7,6 +7,7 @@ import Content, { HTMLContent } from '../components/Content'
 import CarHireCalendar from '../components/CarHireCalendar'
 import Select from 'react-select'
 import { Col, Row } from 'react-bootstrap';
+import CarAlertModal from '../components/CarAlertModal'
 
 const carSelectStyle = {
     option: (provided, state) => ({
@@ -63,7 +64,11 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
   const [loaded, setLoaded] = useState(false)
   const [selectedPricing, setSelectedPricing] = useState(null)
   const [selected, setSelected] = useState(null)
-
+  const [showCarAlert, setShowCarAlert] = useState(true)
+  const handleClose = () => setShowCarAlert(false);
+  const handleShowCarAlert = () => setShowCarAlert(true);
+  
+  
   const car = useRef(null)
 
   const {t} = useTranslation(['translation'])
@@ -122,7 +127,7 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                 <PageContent className="content" content={html[language] && html[language].length > 0 ? html[language] : content} />
                 {true && <Row>
                     <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
-    borderRadius: "4px"}}>
+                      borderRadius: "4px"}}>
                     <h4 style={{marginTop: "0.8em"}}>{t("Get a Quote")}</h4>
                     <Select options={[
                     {value: "A", label: "Class A"}, 
@@ -150,7 +155,12 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
               </div>
             </div>
           </div>
+          <CarAlertModal show={showCarAlert} handleClose={handleClose} />
+          
         </div>
+        <div className={`car-alert ${showCarAlert ? '' : 'show'}`} style={{}} onClick={()=>{handleShowCarAlert()}}>
+            <h3>{t("No Availabilities of any class vehicles till 31st August 2022")}</h3>
+          </div>
     </div>
   )
 }
