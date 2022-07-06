@@ -63,6 +63,11 @@ const Footer = class extends React.Component {
                       </Link>
                     </li>
                     <li>
+                      <Link className="navbar-item" to="/about/sustainability">
+                      {t("Sustainability")}
+                      </Link>
+                    </li>
+                    <li>
                     <Link className="navbar-item" to="/about/Covid-faq">
                     {t("COVID-19 FAQ")}
                       </Link>
