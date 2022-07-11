@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react'
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
-import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
+import hostfully from '../img/Hostfully logo.webp'
 import logo from '../img/smartavillas logo.png'
 import Container from 'react-bootstrap/Container'
 import { FirestoreDocument } from "@react-firebase/firestore";

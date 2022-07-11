@@ -16,6 +16,7 @@ import Newsletter from '../components/Newsletter'
 import Content, { HTMLContent } from '../components/Content'
 import InstagramFeed from '../components/InstagramFeed';
 import BackgroundImage from 'gatsby-background-image'
+import cleanSafe from '../img/badge.webp'
 
 export const IndexPageTemplate = ({
   image,
@@ -248,7 +249,7 @@ const handleSectionLeave = () => {
             <hr style={{width:"50%", height:"2px", backgroundColor:"#f5821e"}}/>
             <p>
             <Trans>Book your trip with us and enjoy the best the Algarve has to offer with our spectacular selection of properties and best in class customer service.</Trans>
-            <Trans>We have dedicated classic customer care with modern technology to provide a worry free vacation.</Trans> <Link to="/whyBookSmartavillas" style={{color: "#f5821e", fontWeight:"bold", textDecoration:"underline"}}><Trans>Read more</Trans>...</Link>
+            <Trans>We have dedicated classic customer care with modern technology to provide a worry free vacation.</Trans> <Link to="/whyBookSmartavillas" style={{color: "#f5821e", fontWeight:"bold", textDecoration:"underline"}}><Trans>Why Book With Us</Trans>...</Link>
             </p>
             <br />
             <SubmitButton text={t('See Our Properties')} link="/properties"/>
@@ -391,7 +392,7 @@ const handleSectionLeave = () => {
           </Col>
           <Col xs={12} md={4}>
             <div style={{display: "flex"}}>
-              <img alt="Clean &amp; Safe Seal" src="https://portugalcleanandsafe.com/assets/badge.png" style={{margin: "auto", maxHeight:"300px", minHeight:"250px"}} />
+              <img alt="Clean &amp; Safe Seal" src={cleanSafe} style={{margin: "auto", maxHeight:"300px", minHeight:"250px"}} />
             </div>
           </Col>
         </Row>
