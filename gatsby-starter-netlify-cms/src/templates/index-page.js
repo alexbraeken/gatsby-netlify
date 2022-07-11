@@ -191,7 +191,7 @@ const handleSectionLeave = () => {
             <div className="intro-para">
               <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}}><span style={{color:"#f5821e"}}>Smartavillas</span>.com <Trans>Property Rentals & Management</Trans></h1>
               <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-              <h2>{t('description')}</h2>
+              <h2>{mainpitch.description[language] || mainpitch.description.en}</h2>
             </div>
           </Col>
           <Col xs={12} md={4}>
@@ -522,7 +522,7 @@ query IndexPageTemplate ($language: String!) {
       }
       image {
         childImageSharp {
-          fluid(maxWidth: 2000, quality: 100) {
+          fluid(maxWidth: 1500, quality: 95) {
             ...GatsbyImageSharpFluid
           }
         }

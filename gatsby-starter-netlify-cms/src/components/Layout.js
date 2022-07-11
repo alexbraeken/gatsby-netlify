@@ -79,10 +79,25 @@ useEffect(() => {
         <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" 
         rel="stylesheet" 
         />
-                  <script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js"/>
+        <script type="application/ld+json">
+    {`
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "url": "https://www.smartavillas.com",
+          "name": "Smartavillas.com",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+351 281 027 089",
+            "contactType": ${t("Reservations & Customer Support")}
+          }
+        }
+      `}
+  </script>
+                  <script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js" async/>
 
-<script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
-        <script type="text/javascript" src="https://platform.hostfully.com/assets/widgets/searchwidget/searchwidget.js" />
+<script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js" async/>
+        <script type="text/javascript" src="https://platform.hostfully.com/assets/widgets/searchwidget/searchwidget.js" async/>
 
 <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
 

@@ -26,10 +26,10 @@ mainpitch:
     fr: "Pourquoi Smartavillas"
     es: "Por qué Smartavillas"
   description: 
-    en: If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further!
-    pt: "Se está à procura do aluguer de férias perfeito ou se são proprietários de imóveis que desejam disponibilizar a sua casa de férias para aluguer, então não procure mais!"
-    fr: "Si vous êtes à la recherche de la location de vacances idéale ou si vous êtes des propriétaires souhaitant proposer votre maison de vacances à la location, ne cherchez plus!"
-    es: "Si está buscando el alquiler de vacaciones perfecto o si los propietarios desean ofrecer su casa de vacaciones en alquiler, ¡no busque más!"
+    en: With over 160 villas and apartments managed in Tavira and all across the east Algarve, we provide and manage the perfect holiday rentals.
+    pt: "Com mais de 160 moradias e apartamentos geridos em Tavira e em todo o Sotavento Algarvio, oferecemos e gerimos os alugueres de férias perfeitos."
+    fr: "Avec plus de 160 villas et appartements gérés à Tavira et dans tout l'est de l'Algarve, nous proposons et gérons les locations de vacances idéales."
+    es: "Con más de 160 villas y apartamentos gestionados en Tavira y en todo el este del Algarve, ofrecemos y gestionamos los alquileres vacacionales perfectos."
 news: 
   en: " <h3>CLEAN & SAFE SEAL</h3>
   <br />
