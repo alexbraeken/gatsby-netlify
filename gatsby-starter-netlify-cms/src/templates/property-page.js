@@ -768,6 +768,10 @@ export const PropertyPageTemplate = ( props ) =>
                             <Helmet link={[{rel: "canonical", href: `https://www.smartavillas.com/properties/${propId}`}]}>
                                 <title>{propName}</title>
                                 <meta name="description" content={data.value.description} />
+                                <script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js" async/>
+
+<script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js" async/>
+        <script type="text/javascript" src="https://platform.hostfully.com/assets/widgets/searchwidget/searchwidget.js" async/>
                             </Helmet>                 
                         </div> : <></>
             }}

@@ -76,9 +76,6 @@ const lang = language === 'en' || language === 'fr' || language === 'es' ? `"${l
     return(
         <>
         <Helmet>
-        <script type="text/javascript" src="https://platform.hostfully.com/assets/widgets/searchwidget/searchwidget.js" />
-        <script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js"/>
-
 <script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
 <script>
 {`var widget = new Widget('leadWidget', '${props.id}', {
