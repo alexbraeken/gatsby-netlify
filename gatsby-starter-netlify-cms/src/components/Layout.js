@@ -26,11 +26,12 @@ const TemplateWrapper = ({ children, pathKey, propTitle, propDescription, navFil
   title = propTitle || title
   description = propDescription || description
 
-  const [path, setPath] = useState('')
+  const [path, setPath] = useState(null)
   const {t} = useTranslation();
 
 useEffect(() => {
-  setPath(pathKey)
+  let firstString = pathKey?.pathname.split('/')[1] || null
+  setPath(firstString)
   return () => {
     setPath('')
   }
@@ -93,11 +94,16 @@ useEffect(() => {
           }
         }
       `}
-  </script>      
+  </script>   
 <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-
-    
       </Helmet>
+      {path && path === "properties" &&
+        <Helmet>
+        <script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js" />    
+        <script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
+        </Helmet>
+      }
+
       <FirestoreProvider {...config} firebase={firebase}>
       <NewsAlert/>
       <Navbar key={path} navClass={navClass}/>

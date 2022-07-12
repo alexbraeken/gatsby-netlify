@@ -76,7 +76,7 @@ const lang = language === 'en' || language === 'fr' || language === 'es' ? `"${l
     return(
         <>
         <Helmet>
-<script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
+            
 <script>
 {`var widget = new Widget('leadWidget', '${props.id}', {
 "maximun_availability":"2024-04-11T12:55:08.095Z",
