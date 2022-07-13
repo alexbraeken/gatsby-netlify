@@ -383,12 +383,13 @@ module.exports = {
       // [optional] - name of key on `window` where serialized state will be stored, default:
       windowKey: '__PRELOADED_STATE__'
     }
-  }, 'gatsby-plugin-sharp', {
+  }, "gatsby-plugin-image", 'gatsby-plugin-sharp', {
     resolve: "gatsby-plugin-sharp",
     options: {
       defaults: {
         formats: ["avif", "webp", "auto"],
-        quality: 90
+        quality: 90,
+        placeholder: "dominantColor"
       }
     }
   }, 'gatsby-transformer-sharp', {

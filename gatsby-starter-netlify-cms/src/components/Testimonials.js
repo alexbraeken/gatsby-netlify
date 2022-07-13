@@ -24,32 +24,28 @@ Testimonials.propTypes = {
 
 export default (props) => (
     <StaticQuery
-      query={graphql`
-        query Testimonials {
-          allMarkdownRemark(
-            filter: { frontmatter: { templateKey: { eq: "testimonial" } } } ) {
-            edges {
-              node {
-                id
-                frontmatter {
-                  author
-                  templateKey
-                  quote
-                  location
-                  img {
-                    childImageSharp{
-                      fluid(maxWidth: 526, quality: 92) {
-                        ...GatsbyImageSharpFluid
-                      }
-                    }
-                    publicURL
-                  }
-                }
-              }
+      query={graphql`query Testimonials {
+  allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "testimonial"}}}) {
+    edges {
+      node {
+        id
+        frontmatter {
+          author
+          templateKey
+          quote
+          location
+          img {
+            childImageSharp {
+              gatsbyImageData(width: 526, quality: 92, layout: CONSTRAINED)
             }
+            publicURL
           }
         }
-      `}
+      }
+    }
+  }
+}
+`}
       render={(data, count) => <Testimonials data={data.allMarkdownRemark} count={count}/>}
     />
   )

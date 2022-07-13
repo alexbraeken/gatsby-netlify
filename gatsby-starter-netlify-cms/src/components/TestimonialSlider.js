@@ -34,7 +34,7 @@ class TestimonialSlider extends Component {
             <BackgroundImage
               Tag="div"
               className={"testimonial-img"}
-              fluid={testimonial.node.frontmatter.img ? testimonial.node.frontmatter.img.childImageSharp.fluid : ''}
+              fluid={testimonial.node.frontmatter.img ? testimonial.node.frontmatter.img.childImageSharp.gatsbyImageData : ''}
               backgroundColor={`#040e18`}
             >
               <div className="testimonial-img-overlay"></div>

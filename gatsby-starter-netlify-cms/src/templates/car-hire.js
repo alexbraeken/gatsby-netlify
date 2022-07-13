@@ -200,164 +200,163 @@ CareHirePage.propTypes = {
 
 export default CareHirePage
 
-export const CareHirePageQuery = graphql`
-  query CareHirePage($id: String!, $language: String!) {
-    pageData: markdownRemark(id: { eq: $id }) {
-      html
-      frontmatter {
-        title 
-        langTitles{
-          en
-          pt
-          fr
-          es
+export const CareHirePageQuery = graphql`query CareHirePage($id: String!, $language: String!) {
+  pageData: markdownRemark(id: {eq: $id}) {
+    html
+    frontmatter {
+      title
+      langTitles {
+        en
+        pt
+        fr
+        es
+      }
+      hero {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
-        hero {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
+        publicURL
+      }
+      carPricing {
+        A {
+          class
+          name {
+            en
+            pt
+            fr
+            es
           }
-          publicURL
+          pricing
         }
-        carPricing {
-            A {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }
-            B {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }
-            C {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }
-            E {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }
-            F {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }  
-            G {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            I {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            J {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            J1 {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            K {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            L {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }  
-            M {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }         
-        }   
-        html {
-          en
-          pt
-          fr
-          es
+        B {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        C {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        E {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        F {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        G {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        I {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        J {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        J1 {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        K {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        L {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        M {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
         }
       }
-    }
-    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
-      edges {
-        node {
-          ns
-          data
-          language
-        }
+      html {
+        en
+        pt
+        fr
+        es
       }
     }
   }
+  locales: allLocale(
+    filter: {ns: {in: ["translation"]}, language: {eq: $language}}
+  ) {
+    edges {
+      node {
+        ns
+        data
+        language
+      }
+    }
+  }
+}
 `

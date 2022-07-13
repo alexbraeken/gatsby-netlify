@@ -89,7 +89,7 @@ useEffect(() => {
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+351 281 027 089",
-            "contactType": ${t("Reservations & Customer Support")}
+            "contactType": "${t("Reservations & Customer Support")}"
           }
         }
       `}

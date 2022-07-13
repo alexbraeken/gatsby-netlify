@@ -8,7 +8,7 @@ class CustomSlide extends React.Component {
     render() {
       
       return (
-        <div style={{backgroundImage: `url(${this.props.slide.frontmatter.featuredimage.childImageSharp.fluid.src})`,
+        <div style={{backgroundImage: `url(${this.props.slide.frontmatter.featuredimage.childImageSharp.gatsbyImageData.src})`,
         minHeight: "400px",
         height: "70vh",
         width:"100vw",
@@ -62,49 +62,46 @@ const AlgarveCarousel = (props) => {
 
 export default () => (
     <StaticQuery
-      query={graphql`
-        query AlgarveCarouselQuery {
-          allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___title] }
-            filter: { frontmatter: { templateKey: { eq: "algarve-slide" } } }
-          ) {
-            edges {
-              node {
-                id
-                fields {
-                  slug
-                }
-                frontmatter {
-                  title 
-                  langTitles{
-                    en
-                    pt
-                    fr
-                    es
-                  }
-                  description{
-                    en
-                    pt
-                    fr
-                    es
-                  }
-                  link
-                  visibleLink  
-                  templateKey
-                  featuredimage {
-                    childImageSharp{
-                      fluid{
-                        src
-                      }
-                    }
-                    publicURL
-                  }
-                }
-              }
+      query={graphql`query AlgarveCarouselQuery {
+  allMarkdownRemark(
+    sort: {order: DESC, fields: [frontmatter___title]}
+    filter: {frontmatter: {templateKey: {eq: "algarve-slide"}}}
+  ) {
+    edges {
+      node {
+        id
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          langTitles {
+            en
+            pt
+            fr
+            es
+          }
+          description {
+            en
+            pt
+            fr
+            es
+          }
+          link
+          visibleLink
+          templateKey
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
             }
+            publicURL
           }
         }
-      `}
+      }
+    }
+  }
+}
+`}
       render={(data, count) => <AlgarveCarousel data={data} count={count} />}
     />
   )

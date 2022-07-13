@@ -10,18 +10,18 @@ const ActivityCard = React.memo((props) =>{
   const {t} = useTranslation();
   const {language } = useI18next();
 
-  return(
+  return (
     <article className="activity-card">
                 { props.activity.frontmatter.featuredimage ? 
                 (
             <div className="card__img" style={{
-                backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`, 
+                backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.gatsbyImageData.src}')`, 
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
             { props.activity.frontmatter.featuredimage ? (
             <div className="card__img--hover" style={{
-              backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`,
+              backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.gatsbyImageData.src}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
@@ -32,7 +32,7 @@ const ActivityCard = React.memo((props) =>{
             <span className="card__details">{props.activity.frontmatter.description[language]}<br />
               <a className="card__link" href={props.activity.frontmatter.link}>{props.activity.frontmatter.visibleLink}</a></span></div>
             </article>
-  )
+  );
 })
 
 //Slider Component
@@ -120,7 +120,7 @@ class ActivitiesRoll extends React.PureComponent {
     if(this.props.handleActivitiesCoords){
       this.state.activities.forEach(({ node: activity }) =>{ 
         
-        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[this.state.language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp.fluid.src})
+        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[this.state.language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp?.gatsbyImageData.src})
       })
       this.props.handleActivitiesCoords(coords)
     }
@@ -248,59 +248,56 @@ export default (props) => {
   const filter = props.filter || null
   const location = props.location || null
   const type = props.type || null
-return(
+return (
   <StaticQuery
-    query={graphql`
-      query ActivitiesRollQuery {
-        allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___title] }
-          filter: { frontmatter: { templateKey: { eq: "activity-post" } } }
-        ) {
-          edges {
-            node {
-              id
-              fields {
-                slug
-              }
-              frontmatter {
-                title 
-                langTitles{
-                  en
-                  pt
-                  fr
-                  es
-                }
-                description{
-                  en
-                  pt
-                  fr
-                  es
-                }
-                tags
-                category
-                link
-                visibleLink
-                gps {
-                  lat
-                  lng
-                }
-                templateKey
-                featuredpost
-                featuredimage {
-                  childImageSharp{
-                    fluid{
-                      src
-                    }
-                  }
-                  publicURL
-                }
-              }
+    query={graphql`query ActivitiesRollQuery {
+  allMarkdownRemark(
+    sort: {order: DESC, fields: [frontmatter___title]}
+    filter: {frontmatter: {templateKey: {eq: "activity-post"}}}
+  ) {
+    edges {
+      node {
+        id
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          langTitles {
+            en
+            pt
+            fr
+            es
+          }
+          description {
+            en
+            pt
+            fr
+            es
+          }
+          tags
+          category
+          link
+          visibleLink
+          gps {
+            lat
+            lng
+          }
+          templateKey
+          featuredpost
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
             }
+            publicURL
           }
         }
       }
-    `}
+    }
+  }
+}
+`}
     render={(data, count) => <ActivitiesRoll useTranslation={useTranslation()} useI18next={useI18next()} data={data} count={count} location={location} filter={filter} type={type} handleActivitiesCoords={props.handleActivitiesCoords}/>}
   />
-)
+);
 }

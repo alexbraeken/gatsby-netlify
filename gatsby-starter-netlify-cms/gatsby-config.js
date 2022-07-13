@@ -435,6 +435,7 @@ module.exports = {
         windowKey: '__PRELOADED_STATE__',
       }
     },
+    `gatsby-plugin-image`,
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-sharp`,
@@ -442,6 +443,7 @@ module.exports = {
         defaults: {
           formats: [`avif`, `webp`, `auto`],
           quality: 90,
+          placeholder: `dominantColor`,
         },
       },
     },

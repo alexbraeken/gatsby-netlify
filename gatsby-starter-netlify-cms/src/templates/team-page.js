@@ -5,6 +5,9 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import TeamRoll from '../components/TeamRoll'
 import { Container } from 'react-bootstrap';
+import convertToBgImage from "../Helpers/images"
+import BackgroundImage from 'gatsby-background-image'
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
 export const MeetTheTeamPageTemplate = ({
   image,
@@ -15,49 +18,57 @@ export const MeetTheTeamPageTemplate = ({
   intro,
 }) => {
   const [loaded, setLoaded] = useState(false);
+  const [src, setSrc] = useState('')
 
   const {t} = useTranslation();
   const {language } = useI18next();
+
+  const heroImage = getImage(image.childImageSharp)
+
+
+  const bgImage = convertToBgImage(heroImage)
+  
     
       useEffect(() => {
         setTimeout(()=>{
           setLoaded(true)}, 1000
           )
+
         return () => {
           setLoaded(false)
         }
       }, [])
-  return(
-<>
-        <div
-          className="full-width-image-container margin-top-0"
-          style={{
-            backgroundImage: `url(${ !!image.childImageSharp ? image.childImageSharp.fluid.src : image })`,
-          }}
+  return <>
+        <BackgroundImage
+          className={"full-width-image-container margin-top-0"}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1"}}
+          preserveStackingContext
         >
           <h1
-        className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
-        style={{color: "white"}}>
-            {langTitles[language]}
-          </h1>
-        </div>
-        <section className="section">
-          <Container>
-            <div className="content">
-                <section style={{marginBottom:"50px"}}>
-                    {intro.description[language]}
-                    <br />
-                    <h3>{heading[language]}</h3>
-                    <p>{description[language]}</p>
-                </section>
-                <section>
-                    <TeamRoll />
-                </section>
-            </div>
-          </Container>
-        </section>
-</>
-)}
+          className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
+          style={{color: "white"}}>
+              {langTitles[language]}
+            </h1>
+        </BackgroundImage>
+          <section className="section">
+            <Container>
+              <div className="content">
+                  <section style={{marginBottom:"50px"}}>
+                      {intro.description[language]}
+                      <br />
+                      <h3>{heading[language]}</h3>
+                      <p>{description[language]}</p>
+                  </section>
+                  <section>
+                      <TeamRoll />
+                  </section>
+              </div>
+            </Container>
+          </section>
+  </>;}
 
 MeetTheTeamPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -100,24 +111,34 @@ MeetTheTeamPage.propTypes = {
 
 export default MeetTheTeamPage
 
-export const MeetTheTeamPageQuery = graphql`
-  query MeetTheTeamPage($id: String!, $language: String!) {
-    pageData: markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        title 
-        langTitles{
-          en
-          pt
-          fr
-          es
+export const MeetTheTeamPageQuery = graphql`query MeetTheTeamPage($id: String!, $language: String!) {
+  pageData: markdownRemark(id: {eq: $id}) {
+    frontmatter {
+      title
+      langTitles {
+        en
+        pt
+        fr
+        es
+      }
+      image {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
+      }
+      heading {
+        en
+        pt
+        fr
+        es
+      }
+      description {
+        en
+        pt
+        fr
+        es
+      }
+      intro {
         heading {
           en
           pt
@@ -130,30 +151,19 @@ export const MeetTheTeamPageQuery = graphql`
           fr
           es
         }
-        intro {
-          heading {
-            en
-            pt
-            fr
-            es
-          }
-          description {
-            en
-            pt
-            fr
-            es
-          }
-        }
-      }
-    }
-    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
-      edges {
-        node {
-          ns
-          data
-          language
-        }
       }
     }
   }
+  locales: allLocale(
+    filter: {ns: {in: ["translation"]}, language: {eq: $language}}
+  ) {
+    edges {
+      node {
+        ns
+        data
+        language
+      }
+    }
+  }
+}
 `

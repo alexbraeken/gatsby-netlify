@@ -12,11 +12,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import StickyBox from "react-sticky-box";
 import { Helmet } from 'react-helmet'
 import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 class CustomSlide extends React.Component {
 
   
   render() {
+
+    const heroImage = getImage(this.props.slide.slide? this.props.slide.slide.childImageSharp: null)
+    const bgImage = heroImage ? convertToBgImage(heroImage) : null
 
     gsap.registerPlugin(ScrollTrigger); 
     
@@ -24,7 +29,7 @@ class CustomSlide extends React.Component {
       <BackgroundImage
       Tag="div"
       className={""}
-      fluid={this.props.slide.slide? this.props.slide.slide.childImageSharp.fluid: null}
+      {...bgImage}
       backgroundColor={`#040e18`}
       style={{minHeight: "400px",
       height: "50vh",
@@ -36,6 +41,7 @@ class CustomSlide extends React.Component {
       backgroundPosition:"center",
       backgroundAttachment: "initial",
       padding: "40px"}}
+      preserveStackingContext
     >
       <div className="slide__content">
         <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
@@ -83,12 +89,16 @@ export const AlgarvePageTemplate = ({
   const [postcards, setPostcards] = useState([])
 
   const galleryContainer = useRef(null)
-  const hero = useRef(null)
   const stickyContainer = useRef(null)
   const stickyFeature = useRef(null)
   const botSVG= useRef(null)
 
   const {language} = useI18next();
+
+  const heroImage = getImage(image.childImageSharp)
+  console.log(heroImage)
+  const bgImage = convertToBgImage(heroImage)
+  console.log(bgImage)
 
 
     const handleSelect = (selectedIndex, e) => {
@@ -187,237 +197,233 @@ export const AlgarvePageTemplate = ({
       {slide: sliderImage4, title: sliderImageTitle4}]
 
 
-  return(
-  <div className="content newLine">
-    <div
-      className="full-width-image-container margin-top-0 gradient-bg"
-      ref={hero}
-      style={{
-        backgroundImage: `url(${
-          image.publicURL
-        })`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        marginBottom: "0"
-      }}
-    >
-      <h2
-        className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
-        style={{color: "white"}}>
-        {langTitles[language]}
-      </h2>
-    </div>
-    <section style={{
-        position: "relative"
-        }}>
-      <Container>
-        <style>
-
-        </style>
-        <div className="full-width sticky-feature" style={{height:"400vh", position:"relative"}} ref={stickyFeature}>
-          <div style={{display: "none"}} className="background-0 background-1 background-2 background-3"></div>
-          <StickyBox style={{height: "100vh"}} className="feature-postcards">
-            {Object.keys(featureSection.text).map((feature, index) => 
-              
-              <section className={`postcard-container ${index > 0 ? "" : "visible"}`}>
-              <div style={{paddingTop: "2rem", paddingLeft: "2rem", gridArea: "stamp", position: "relative"}}>
-                <img src="/img/airmail.png" alt="Airmail" style={{position: "absolute", top: "20px", left:"10%", filter: "none"}} width="150px"/>
-                <img src="/img/mailwaves.png" alt="Mail waves" style={{position: "absolute", top: "10%", left:"11%", filter: "none", transform: "rotate(210deg)"}} width="150px"/>
-              </div>
-              <h1>{featureSection.title[`title${index+1}`][language]}</h1>
-              <div className="content">
-                <p>
-                  {featureSection.text[feature][language]}
-                </p>
-              </div>
-              <div className="img">
-                <h2 style={{fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.title[`title${index+1}`][language]}</h2>
-                <PreviewCompatibleImage imageInfo={featureSection.imgs[`img${index+1}`]} alt={featureSection.imgs[`img${index+1}`].alt || "Feature Image"}/>
-              </div>
-            </section>
-            )}
-            
-          </StickyBox>
-        </div>
-        <Helmet>
-            <link rel="preconnect" href="https://fonts.gstatic.com" />
-            <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet"></link>
-        </Helmet>
-        <div className="full-width" ref={stickyContainer}>
-          <div className="grid-container" style={{}}>
-          {Object.keys(gallery.imgs1)?.map((img, index) => {
-              return <PreviewCompatibleImage 
-                        imageInfo={gallery.imgs1[img]} 
-                        key={index} 
-                        imgStyle={{
-                          width: "100%",
-                          position: "relative",
-                          gridColumn: `${(index+1) % 2 === 0 ? '1 / 2' : '3 / 4'}`,
-                          boxShadow: `${(index+1) % 2 === 0 ? '4px 0px 20px -4px' : '-4px 0px 20px -4px'}`}}
-                          className= {`scroll-parallax-img img-${index}`} 
-                          />
-            })}
-            <div style={{gridColumn:"2 / 3", gridRow: "1 / 6"}}>
-            <StickyBox style={{
-            height: "100vh",
-            overflow:"hidden"}}>
-          <div className="gallery-container" ref={galleryContainer}>
-            <div className="text-container">
-              <h3>{gallery.text1.header[language]}</h3>
-              <p>{gallery.text1.text[language]}</p>
-            </div>
-            <div style={{
-          width: "100%",
-          position: "absolute",
-          top: "auto",
-          bottom: "0",
-          right: "0",
-          height: "100%",
-          zIndex: "1",
-          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-            <svg  fill="#FF8C00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 469.539032 263.986786" preserveAspectRatio="none" style={{width: "100%", left: "0", bottom: "-1px", height: "100%", position: "absolute"}}> 
-            <path ref={botSVG} d="M469.539032,263.986786H-0.000001L0,263.557617c66.11113,0.429169,351.088104,0.429169,469.539032,0.208344V263.986786z"></path> 
-            </svg>
-            </div>
-          </div>
-          </StickyBox>
-            </div>
-          </div> 
-        </div>
-        <div className="full-width">
-          <div className="grid-container" style={{gridAutoRows:"unset"}}>
-          {Object.keys(gallery.imgs2)?.map((img, index) => {
-              return <PreviewCompatibleImage 
-                        imageInfo={gallery.imgs2[img]} 
-                        key={index} 
-                        imgStyle={{
-                          width: "100%",
-                          position: "relative"}}
-                          className={`scroll-parallax-img img-${index + Object.keys(gallery.imgs1).length} feature-img`}/>
-            })}
-             <div className="gallery-text" style={{gridRow: "1 / 3", backgroundColor:"rgb(51, 51, 51)"}}>
-            <StickyBox style={{
-            height: "100vh",
-            overflow:"hidden"}}>
-          <div className="gallery-container">
-            <div className="text-container feature-text">
-              <h3>{gallery.text2.header[language]}</h3>
-              <p>{gallery.text2.text[language]}</p>
-            </div>
-          </div>
-          
-          </StickyBox>
-            </div>
-          </div>
-        </div>
+  return (
+    <div className="content newLine">
         <BackgroundImage
-      Tag="div"
-      className={"full-width full-img"}
-      fluid={gallery.staticImg.img.childImageSharp.fluid || image}
-      backgroundColor={`#040e18`}
-    >
-          <div className="gallery-container">
-            <div className="text-container static-text">
-            <h3>
-              {gallery.staticImg.text.header[language]}
-            </h3>
-            <p>
-            {gallery.staticImg.text.text[language]}
-            </p>
-            </div>
-          </div>              
-
+          className={"full-width-image-container margin-top-0 gradient-bg"}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1", marginBottom: "0"}}
+          preserveStackingContext
+        >
+          <h2
+            className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
+            style={{color: "white"}}>
+            {langTitles[language]}
+          </h2>
         </BackgroundImage>
-        </Container>
-        </section>
-        <section style={{
-        paddingBottom: "100px",
-        position: "relative"}}>
-          <Container>
-          <h3 className="has-text-weight-semibold is-size-2">{heading[language]}</h3>
-            <PageContent className="content" content={content} />
-          </Container>
-      <div style={{ 
-          width: "100vw",
-          position: "absolute",
-          top: "auto",
-          bottom: "0",
-          right: "0",
-          height: "100px",
-          zIndex: "1",
-          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-            <svg fill="#f5821e" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
-              width: "100%",
-              left: "0",
-              bottom: "-1px",
-              height: "100%",
-              position: "absolute",
-            }}> 
-            <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
-            </svg>
-            </div>
-    </section>
-    <section style={{
-        paddingBottom: "100px",
-        width: "100vw",
-        position: "relative",
-        marginLeft: "-50vw",
-        left: "50%",
-        backgroundColor:"#f5821e"}}>
-          
-      <Container>
-        <Row>
-          <Col md={12} lg={6} style={{display:"flex"}}>
-            <p style={{margin: "auto"}}>
-            {sliderText[language]}
-            </p>
-            
-          </Col>
-          <Col md={12} lg={6}>
-            <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
-              {slides &&
-            slides.map((slide, index) => {
-                  return<Carousel.Item key={index}>
-                      <Row>
-                          <CustomSlide slide={slide} key={index}/>
-                      </Row>
-          </Carousel.Item>
+      <section style={{
+          position: "relative"
+          }}>
+        <Container>
+          <style>
+
+          </style>
+          <div className="full-width sticky-feature" style={{height:"400vh", position:"relative"}} ref={stickyFeature}>
+            <div style={{display: "none"}} className="background-0 background-1 background-2 background-3"></div>
+            <StickyBox style={{height: "100vh"}} className="feature-postcards">
+              {Object.keys(featureSection.text).map((feature, index) => 
+                
+                <section className={`postcard-container ${index > 0 ? "" : "visible"}`}>
+                <div style={{paddingTop: "2rem", paddingLeft: "2rem", gridArea: "stamp", position: "relative"}}>
+                  <img src="/img/airmail.png" alt="Airmail" style={{position: "absolute", top: "20px", left:"10%", filter: "none"}} width="150px"/>
+                  <img src="/img/mailwaves.png" alt="Mail waves" style={{position: "absolute", top: "10%", left:"11%", filter: "none", transform: "rotate(210deg)"}} width="150px"/>
+                </div>
+                <h1>{featureSection.title[`title${index+1}`][language]}</h1>
+                <div className="content">
+                  <p>
+                    {featureSection.text[feature][language]}
+                  </p>
+                </div>
+                <div className="img">
+                  <h2 style={{fontFamily: "'Mrs Sheppards', cursive"}}>{featureSection.title[`title${index+1}`][language]}</h2>
+                  <PreviewCompatibleImage imageInfo={featureSection.imgs[`img${index+1}`]} alt={featureSection.imgs[`img${index+1}`].alt || "Feature Image"}/>
+                </div>
+              </section>
+              )}
+              
+            </StickyBox>
+          </div>
+          <Helmet>
+              <link rel="preconnect" href="https://fonts.gstatic.com" />
+              <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet"></link>
+          </Helmet>
+          <div className="full-width" ref={stickyContainer}>
+            <div className="grid-container" style={{}}>
+            {Object.keys(gallery.imgs1)?.map((img, index) => {
+                return <PreviewCompatibleImage 
+                          imageInfo={gallery.imgs1[img]} 
+                          key={index} 
+                          imgStyle={{
+                            width: "100%",
+                            position: "relative",
+                            gridColumn: `${(index+1) % 2 === 0 ? '1 / 2' : '3 / 4'}`,
+                            boxShadow: `${(index+1) % 2 === 0 ? '4px 0px 20px -4px' : '-4px 0px 20px -4px'}`}}
+                            className= {`scroll-parallax-img img-${index}`} 
+                            />
               })}
-          </Carousel>
-          </Col>
-        </Row>
-      </Container>
-      <div style={{ 
-          width: "100vw",
-          position: "absolute",
-          top: "auto",
-          bottom: "0",
-          right: "0",
-          height: "100px",
-          zIndex: "1",
-          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-            <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
-              width: "100%",
-              left: "0",
-              bottom: "-1px",
-              height: "100%",
-              position: "absolute",
-            }}> 
-            <path d="M0 100 C 50 0 75 100 100 75 L 100 100 Z"></path> 
-            </svg>
+              <div style={{gridColumn:"2 / 3", gridRow: "1 / 6"}}>
+              <StickyBox style={{
+              height: "100vh",
+              overflow:"hidden"}}>
+            <div className="gallery-container" ref={galleryContainer}>
+              <div className="text-container">
+                <h3>{gallery.text1.header[language]}</h3>
+                <p>{gallery.text1.text[language]}</p>
+              </div>
+              <div style={{
+            width: "100%",
+            position: "absolute",
+            top: "auto",
+            bottom: "0",
+            right: "0",
+            height: "100%",
+            zIndex: "1",
+            transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+              <svg  fill="#FF8C00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 469.539032 263.986786" preserveAspectRatio="none" style={{width: "100%", left: "0", bottom: "-1px", height: "100%", position: "absolute"}}> 
+              <path ref={botSVG} d="M469.539032,263.986786H-0.000001L0,263.557617c66.11113,0.429169,351.088104,0.429169,469.539032,0.208344V263.986786z"></path> 
+              </svg>
+              </div>
             </div>
-    </section>
-    <section style={{
-        paddingBottom: "100px",
-        position: "relative"}}>
-      <Container>
-        <p>
-          {conclusion[language]}
-        </p>
-      </Container>
-    </section>
-  </div>
-)}
+            </StickyBox>
+              </div>
+            </div> 
+          </div>
+          <div className="full-width">
+            <div className="grid-container" style={{gridAutoRows:"unset"}}>
+            {Object.keys(gallery.imgs2)?.map((img, index) => {
+                return <PreviewCompatibleImage 
+                          imageInfo={gallery.imgs2[img]} 
+                          key={index} 
+                          imgStyle={{
+                            width: "100%",
+                            position: "relative"}}
+                            className={`scroll-parallax-img img-${index + Object.keys(gallery.imgs1).length} feature-img`}/>
+              })}
+               <div className="gallery-text" style={{gridRow: "1 / 3", backgroundColor:"rgb(51, 51, 51)"}}>
+              <StickyBox style={{
+              height: "100vh",
+              overflow:"hidden"}}>
+            <div className="gallery-container">
+              <div className="text-container feature-text">
+                <h3>{gallery.text2.header[language]}</h3>
+                <p>{gallery.text2.text[language]}</p>
+              </div>
+            </div>
+            
+            </StickyBox>
+              </div>
+            </div>
+          </div>
+          <BackgroundImage
+        Tag="div"
+        className={"full-width full-img"}
+        fluid={gallery.staticImg.img.childImageSharp.gatsbyImageData || image}
+        backgroundColor={`#040e18`}
+      >
+            <div className="gallery-container">
+              <div className="text-container static-text">
+              <h3>
+                {gallery.staticImg.text.header[language]}
+              </h3>
+              <p>
+              {gallery.staticImg.text.text[language]}
+              </p>
+              </div>
+            </div>              
+
+          </BackgroundImage>
+          </Container>
+          </section>
+          <section style={{
+          paddingBottom: "100px",
+          position: "relative"}}>
+            <Container>
+            <h3 className="has-text-weight-semibold is-size-2">{heading[language]}</h3>
+              <PageContent className="content" content={content} />
+            </Container>
+        <div style={{ 
+            width: "100vw",
+            position: "absolute",
+            top: "auto",
+            bottom: "0",
+            right: "0",
+            height: "100px",
+            zIndex: "1",
+            transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+              <svg fill="#f5821e" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+                width: "100%",
+                left: "0",
+                bottom: "-1px",
+                height: "100%",
+                position: "absolute",
+              }}> 
+              <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
+              </svg>
+              </div>
+      </section>
+      <section style={{
+          paddingBottom: "100px",
+          width: "100vw",
+          position: "relative",
+          marginLeft: "-50vw",
+          left: "50%",
+          backgroundColor:"#f5821e"}}>
+            
+        <Container>
+          <Row>
+            <Col md={12} lg={6} style={{display:"flex"}}>
+              <p style={{margin: "auto"}}>
+              {sliderText[language]}
+              </p>
+              
+            </Col>
+            <Col md={12} lg={6}>
+              <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
+                {slides &&
+              slides.map((slide, index) => {
+                    return<Carousel.Item key={index}>
+                        <Row>
+                            <CustomSlide slide={slide} key={index}/>
+                        </Row>
+            </Carousel.Item>
+                })}
+            </Carousel>
+            </Col>
+          </Row>
+        </Container>
+        <div style={{ 
+            width: "100vw",
+            position: "absolute",
+            top: "auto",
+            bottom: "0",
+            right: "0",
+            height: "100px",
+            zIndex: "1",
+            transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+              <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+                width: "100%",
+                left: "0",
+                bottom: "-1px",
+                height: "100%",
+                position: "absolute",
+              }}> 
+              <path d="M0 100 C 50 0 75 100 100 75 L 100 100 Z"></path> 
+              </svg>
+              </div>
+      </section>
+      <section style={{
+          paddingBottom: "100px",
+          position: "relative"}}>
+        <Container>
+          <p>
+            {conclusion[language]}
+          </p>
+        </Container>
+      </section>
+    </div>
+  );}
 
 AlgarvePageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -478,324 +484,279 @@ AlgarvePage.propTypes = {
 
 export default AlgarvePage
 
-export const algarvePageQuery = graphql`
-  query AlgarvePage($id: String!, $language: String!) {
-    pageData: markdownRemark(id: { eq: $id }) {
-      html
-      frontmatter {
-        title 
-        langTitles{
-          en
-          pt
-          fr
-          es
+export const algarvePageQuery = graphql`query AlgarvePage($id: String!, $language: String!) {
+  pageData: markdownRemark(id: {eq: $id}) {
+    html
+    frontmatter {
+      title
+      langTitles {
+        en
+        pt
+        fr
+        es
+      }
+      image {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-          publicURL
-        }
-        heading {
-          en
-          pt
-          fr
-          es
-        }
-        description {
-          en
-          pt
-          fr
-          es
-        }
-        staticBg {
-          childImageSharp {
-            fluid(maxWidth: 1500, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        featureSection{
-          imgs{
-            img1 {
-              childImageSharp {
-                fluid(maxWidth: 1000, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img2 {
-              childImageSharp {
-                fluid(maxWidth: 1000, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img3 {
-              childImageSharp {
-                fluid(maxWidth: 1000, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img4 {
-              childImageSharp {
-                fluid(maxWidth: 1000, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          title{
-            title1{
-              en
-              pt
-              fr
-              es
-            }
-            title2{
-              en
-              pt
-              fr
-              es
-            }
-            title3{
-              en
-              pt
-              fr
-              es
-            }
-            title4{
-              en
-              pt
-              fr
-              es
-            }
-          }
-          text{
-            text1 {
-              en
-              pt
-              fr
-              es
-            }
-            text2 {
-              en
-              pt
-              fr
-              es
-            }
-            text3 {
-              en
-              pt
-              fr
-              es
-            }
-            text4 {
-              en
-              pt
-              fr
-              es
-            }
-          }
-        }
-        gallery {
-          imgs1 {
-            img1 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img2 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img3 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img4 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img5 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img6 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img7 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img8 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img9 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img10 {
-              childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          text1 {
-            header {
-              en
-              pt
-              fr
-              es
-            }
-            text {
-              en
-              pt
-              fr
-              es
-            }
-          }
-          imgs2 {
-            img1 {
-              childImageSharp {
-                fluid(maxWidth: 900, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            img2 {
-              childImageSharp {
-                fluid(maxWidth: 900, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          text2 {
-            header {
-              en
-              pt
-              fr
-              es
-            }
-            text {
-              en
-              pt
-              fr
-              es
-            }
-          }
-          staticImg {
-            text {
-              header {
-                en
-                pt
-                fr
-                es
-              }
-              text {
-                en
-                pt
-                fr
-                es
-              }
-            }
-            img {
-              childImageSharp {
-                fluid(maxWidth: 1500, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-        sliderText {
-          en
-          pt
-          fr
-          es
-        }
-        sliderImage1 {
-          childImageSharp {
-            fluid(maxWidth: 800, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        sliderImageTitle1
-        sliderImage2 {
-          childImageSharp {
-            fluid(maxWidth: 800, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        sliderImageTitle2
-        sliderImage3 {
-          childImageSharp {
-            fluid(maxWidth: 800, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        sliderImageTitle3
-        sliderImage4 {
-          childImageSharp {
-            fluid(maxWidth: 800, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        sliderImageTitle4
-        conclusion {
-          en
-          pt
-          fr
-          es
+        publicURL
+      }
+      heading {
+        en
+        pt
+        fr
+        es
+      }
+      description {
+        en
+        pt
+        fr
+        es
+      }
+      staticBg {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
       }
-    }
-    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
-      edges {
-        node {
-          ns
-          data
-          language
+      featureSection {
+        imgs {
+          img1 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+          img2 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+          img3 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+          img4 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
         }
+        title {
+          title1 {
+            en
+            pt
+            fr
+            es
+          }
+          title2 {
+            en
+            pt
+            fr
+            es
+          }
+          title3 {
+            en
+            pt
+            fr
+            es
+          }
+          title4 {
+            en
+            pt
+            fr
+            es
+          }
+        }
+        text {
+          text1 {
+            en
+            pt
+            fr
+            es
+          }
+          text2 {
+            en
+            pt
+            fr
+            es
+          }
+          text3 {
+            en
+            pt
+            fr
+            es
+          }
+          text4 {
+            en
+            pt
+            fr
+            es
+          }
+        }
+      }
+      gallery {
+        imgs1 {
+          img1 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img2 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img3 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img4 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img5 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img6 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img7 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img8 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img9 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img10 {
+            childImageSharp {
+              gatsbyImageData(width: 600, quality: 100, layout: CONSTRAINED)
+            }
+          }
+        }
+        text1 {
+          header {
+            en
+            pt
+            fr
+            es
+          }
+          text {
+            en
+            pt
+            fr
+            es
+          }
+        }
+        imgs2 {
+          img1 {
+            childImageSharp {
+              gatsbyImageData(width: 900, quality: 100, layout: CONSTRAINED)
+            }
+          }
+          img2 {
+            childImageSharp {
+              gatsbyImageData(width: 900, quality: 100, layout: CONSTRAINED)
+            }
+          }
+        }
+        text2 {
+          header {
+            en
+            pt
+            fr
+            es
+          }
+          text {
+            en
+            pt
+            fr
+            es
+          }
+        }
+        staticImg {
+          text {
+            header {
+              en
+              pt
+              fr
+              es
+            }
+            text {
+              en
+              pt
+              fr
+              es
+            }
+          }
+          img {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+      }
+      sliderText {
+        en
+        pt
+        fr
+        es
+      }
+      sliderImage1 {
+        childImageSharp {
+          gatsbyImageData(width: 800, quality: 100, layout: CONSTRAINED)
+        }
+      }
+      sliderImageTitle1
+      sliderImage2 {
+        childImageSharp {
+          gatsbyImageData(width: 800, quality: 100, layout: CONSTRAINED)
+        }
+      }
+      sliderImageTitle2
+      sliderImage3 {
+        childImageSharp {
+          gatsbyImageData(width: 800, quality: 100, layout: CONSTRAINED)
+        }
+      }
+      sliderImageTitle3
+      sliderImage4 {
+        childImageSharp {
+          gatsbyImageData(width: 800, quality: 100, layout: CONSTRAINED)
+        }
+      }
+      sliderImageTitle4
+      conclusion {
+        en
+        pt
+        fr
+        es
       }
     }
   }
+  locales: allLocale(
+    filter: {ns: {in: ["translation"]}, language: {eq: $language}}
+  ) {
+    edges {
+      node {
+        ns
+        data
+        language
+      }
+    }
+  }
+}
 `

@@ -91,42 +91,41 @@ ContentPage.propTypes = {
 
 export default ContentPage
 
-export const ContentPageQuery = graphql`
-  query ContentPage($id: String!, $language: String!) {
-    pageData: markdownRemark(id: { eq: $id }) {
-      html
-      frontmatter {
-        title 
-        langTitles{
-          en
-          pt
-          fr
-          es
-        }
-        hero {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-          publicURL
-        }
-        html {
-          en
-          pt
-          fr
-          es
-        }
+export const ContentPageQuery = graphql`query ContentPage($id: String!, $language: String!) {
+  pageData: markdownRemark(id: {eq: $id}) {
+    html
+    frontmatter {
+      title
+      langTitles {
+        en
+        pt
+        fr
+        es
       }
-    }
-    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
-      edges {
-        node {
-          ns
-          data
-          language
+      hero {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
+        publicURL
+      }
+      html {
+        en
+        pt
+        fr
+        es
       }
     }
   }
+  locales: allLocale(
+    filter: {ns: {in: ["translation"]}, language: {eq: $language}}
+  ) {
+    edges {
+      node {
+        ns
+        data
+        language
+      }
+    }
+  }
+}
 `

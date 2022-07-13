@@ -25,32 +25,30 @@ OwnerTestimonials.propTypes = {
 
 export default (props) => (
     <StaticQuery
-      query={graphql`
-        query OnwerTestimonials {
-          allMarkdownRemark(
-            filter: { frontmatter: { templateKey: { eq: "ownerTestimonial" } } } ) {
-            edges {
-              node {
-                id
-                frontmatter {
-                  author
-                  templateKey
-                  quote
-                  location
-                  img {
-                    childImageSharp{
-                      fluid{
-                        src
-                      }
-                    }
-                    publicURL
-                  }
-                }
-              }
+      query={graphql`query OnwerTestimonials {
+  allMarkdownRemark(
+    filter: {frontmatter: {templateKey: {eq: "ownerTestimonial"}}}
+  ) {
+    edges {
+      node {
+        id
+        frontmatter {
+          author
+          templateKey
+          quote
+          location
+          img {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
             }
+            publicURL
           }
         }
-      `}
+      }
+    }
+  }
+}
+`}
       render={(data, count) => <OwnerTestimonials data={data.allMarkdownRemark} count={count}/>}
     />
   )
