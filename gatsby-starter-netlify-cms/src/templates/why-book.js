@@ -8,22 +8,34 @@ import {Container, Col, Row} from 'react-bootstrap'
 import Testimonials from '../components/Testimonials'
 import Carousel from 'react-bootstrap/Carousel'
 import Newsletter from '../components/Newsletter'
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 class CustomSlide extends React.Component {
   render() {
+
+    const slideImage = getImage(this.props.slide.slide.childImageSharp)
+    const bgImage = convertToBgImage(slideImage)
     
     return (
-      <div style={{backgroundImage: `url(${this.props.slide.slide? this.props.slide.slide.childImageSharp.gatsbyImageData.src: null})`,
-      minHeight: "400px",
-      height: "50vh",
-      width:"100vw",
-      margin: "0px auto",
-      overflow: "hidden",
-      position: "relative",
-      backgroundSize:"cover",
-      backgroundPosition:"center",
-      padding: "40px",}}
-      className="slide-image-container">
+        <BackgroundImage
+          className={"slide-image-container"}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1",
+          minHeight: "400px",
+          height: "50vh",
+          width:"100vw",
+          margin: "0px auto",
+          overflow: "hidden",
+          position: "relative",
+          backgroundSize:"cover",
+          backgroundPosition:"center",
+          padding: "40px"}}
+          preserveStackingContext
+        >
           <div className="slide__content">
               <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
               <path className="slide__overlay-path" d="M0,0 150,0 300,405 0,405"></path> 
@@ -33,7 +45,7 @@ class CustomSlide extends React.Component {
               <h4><a href={`/properties/${this.props.slide.id}`}><span className="orangeText hover-highlight">View This Property</span></a></h4>
               </div>
               </div>
-      </div>
+          </BackgroundImage>
     );
   }
 }
@@ -67,6 +79,10 @@ export const WhyBookPageTemplate = ({
   const {t} = useTranslation();
   const {language } = useI18next();
 
+  const heroImage = getImage(image.childImageSharp)
+  const bgImage = convertToBgImage(heroImage)
+
+
   const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
         const slides = document.getElementsByClassName("slide-image-container")
@@ -90,22 +106,21 @@ export const WhyBookPageTemplate = ({
 
   return (
     <div className="content">
-      <div
-        className="full-width-image-container margin-top-0 gradient-bg"
-        style={{
-          backgroundImage: `url(${
-            image.publicURL
-          })`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
+        <BackgroundImage
+          className={"full-width-image-container margin-top-0 "}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1"}}
+          preserveStackingContext
+        >
+          <div className="gradient-bg"></div>
         <h2
           className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
           style={{color: "white"}}>
           {langTitles[language]}
         </h2>
-      </div>
+        </BackgroundImage>
       <section className="newLine"
       style={{
           paddingBottom: "100px",

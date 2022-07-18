@@ -40,7 +40,8 @@ class CustomSlide extends React.Component {
       backgroundSize:"cover",
       backgroundPosition:"center",
       backgroundAttachment: "initial",
-      padding: "40px"}}
+      padding: "40px",
+    zIndex: 1}}
       preserveStackingContext
     >
       <div className="slide__content">
@@ -95,10 +96,10 @@ export const AlgarvePageTemplate = ({
 
   const {language} = useI18next();
 
-  const heroImage = getImage(image.childImageSharp)
-  console.log(heroImage)
-  const bgImage = convertToBgImage(heroImage)
-  console.log(bgImage)
+
+  const heroImage = image.childImageSharp !== null ? convertToBgImage(getImage(image.childImageSharp)) : image.publicURL
+
+  const galleryImage = gallery.staticImg.img.childImageSharp ? convertToBgImage(getImage(gallery.staticImg.img.childImageSharp)) : gallery.staticImg.img.publicUrl 
 
 
     const handleSelect = (selectedIndex, e) => {
@@ -199,20 +200,38 @@ export const AlgarvePageTemplate = ({
 
   return (
     <div className="content newLine">
-        <BackgroundImage
-          className={"full-width-image-container margin-top-0 gradient-bg"}
+      {!image.childImageSharp && image.extension === 'svg' ? 
+      <div
+      className={"full-width-image-container margin-top-0 "}
+      style={{
+        backgroundImage: `url("${heroImage}")`,
+        zIndex:"1", 
+        marginBottom: "0" }}
+    >
+      <div className="gradient-bg"></div>
+      <h2
+    className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
+    style={{color: "white"}}>
+    {langTitles[language]}
+  </h2>
+  </div>
+      :
+      <BackgroundImage
+          className={"full-width-image-container margin-top-0 "}
           Tag="div"
-          {...bgImage}
+          {...heroImage}
           backgroundColor={`#040e18`}
           style={{zIndex:"1", marginBottom: "0"}}
           preserveStackingContext
         >
+          <div className="gradient-bg"></div>
           <h2
-            className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
-            style={{color: "white"}}>
-            {langTitles[language]}
-          </h2>
-        </BackgroundImage>
+        className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
+        style={{color: "white"}}>
+        {langTitles[language]}
+      </h2>
+    </BackgroundImage>
+          }
       <section style={{
           position: "relative"
           }}>
@@ -316,12 +335,14 @@ export const AlgarvePageTemplate = ({
               </div>
             </div>
           </div>
-          <BackgroundImage
-        Tag="div"
-        className={"full-width full-img"}
-        fluid={gallery.staticImg.img.childImageSharp.gatsbyImageData || image}
-        backgroundColor={`#040e18`}
-      >
+        <BackgroundImage
+          className={"full-width full-img"}
+          Tag="div"
+          {...galleryImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1"}}
+          preserveStackingContext
+        >
             <div className="gallery-container">
               <div className="text-container static-text">
               <h3>
@@ -497,8 +518,11 @@ export const algarvePageQuery = graphql`query AlgarvePage($id: String!, $languag
       }
       image {
         childImageSharp {
-          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+          fluid(quality: 92) {
+            ...GatsbyImageSharpFluid
+          }
         }
+        extension
         publicURL
       }
       heading {

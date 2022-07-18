@@ -3,21 +3,34 @@ import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18ne
 import Carousel from 'react-bootstrap/Carousel'
 import { graphql, StaticQuery } from 'gatsby'
 import Row from 'react-bootstrap/Row'
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 class CustomSlide extends React.Component {
     render() {
       
+      const slideImage = getImage(this.props.slide.frontmatter.featuredimage.childImageSharp)
+      const bgImage = convertToBgImage(slideImage)
+      
       return (
-        <div style={{backgroundImage: `url(${this.props.slide.frontmatter.featuredimage.childImageSharp.gatsbyImageData.src})`,
-        minHeight: "400px",
-        height: "70vh",
-        width:"100vw",
-        margin: "0px auto",
-        overflow: "hidden",
-        position: "relative",
-        backgroundSize:"cover",
-        backgroundPosition:"center",
-        padding: "40px"}}>
+          <BackgroundImage
+                  className={""}
+                  Tag="div"
+                  {...bgImage}
+                  backgroundColor={`#040e18`}
+                  style={{zIndex:"1",
+                  minHeight: "400px",
+                  height: "70vh",
+                  width:"100vw",
+                  margin: "0px auto",
+                  overflow: "hidden",
+                  position: "relative",
+                  backgroundSize:"cover",
+                  backgroundPosition:"center",
+                  padding: "40px"}}
+                  preserveStackingContext
+                  >
             <div className="slide__content">
                 <svg className="slide__overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
                 <path className="slide__overlay-path" d="M0,0 150,0 500,405 0,405"></path> 
@@ -27,7 +40,7 @@ class CustomSlide extends React.Component {
                 <p className="slide__text-desc">{this.props.slide.frontmatter.description[this.props.lang]}</p>
                 <a className="slide__text-link" href={this.props.slide.frontmatter.link}>{this.props.slide.frontmatter.visibleLink}</a></div>
                 </div>
-        </div>
+                </BackgroundImage>
       );
     }
   }

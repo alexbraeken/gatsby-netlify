@@ -17,6 +17,8 @@ import Content, { HTMLContent } from '../components/Content'
 import InstagramFeed from '../components/InstagramFeed';
 import BackgroundImage from 'gatsby-background-image'
 import cleanSafe from '../img/badge.webp'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 export const IndexPageTemplate = ({
   image,
@@ -44,6 +46,21 @@ export const IndexPageTemplate = ({
   const [animationPlaying, setAnimationPlaying] = useState(false)
   const [delta, setDelta] = useState({prev: 0, curr: 0})
   const [featuredIds, setFeaturedIds] = useState([])
+
+  const heroImage = getImage(image.childImageSharp)
+  const tripBgImage = getImage(tripImage.childImageSharp)
+  const listBgImage = getImage(listImage.childImageSharp)
+  const trustedBgImage = getImage(trustedImage.childImageSharp)
+  const locationBgImage = getImage(locationImage.childImageSharp)
+  const accommodationsBgImage = getImage(accommodationsImage.childImageSharp)
+
+
+  const heroBgImage = convertToBgImage(heroImage)
+  const tripBg = convertToBgImage(tripBgImage)
+  const listBg = convertToBgImage(listBgImage)
+  const trustedBg = convertToBgImage(trustedBgImage)
+  const locationBg = convertToBgImage(locationBgImage)
+  const accommodationsBg = convertToBgImage(accommodationsBgImage)
 
 
   const logo = useRef(null);
@@ -94,6 +111,9 @@ useEffect(() => {
 const uri = "https://api.hostfully.com/v2/properties?tags=featured&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
 
 useEffect(() => {
+ 
+
+
   fetch(uri, {
     headers:{
       "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
@@ -152,8 +172,10 @@ const handleSectionLeave = () => {
         <BackgroundImage
           Tag="div"
           className={"main-hero"}
-          fluid={image.childImageSharp?.gatsbyImageData || image}
+          {...heroBgImage}
           backgroundColor={`#040e18`}
+          style={{zIndex:"1"}}
+          preserveStackingContext
         >
         </BackgroundImage>
         </div>
@@ -241,8 +263,10 @@ const handleSectionLeave = () => {
         <BackgroundImage
         Tag="div"
         className={"featured-content"}
-        fluid={tripImage.childImageSharp?.gatsbyImageData || tripImage}
+        {...tripBg}
         backgroundColor={`#040e18`}
+        style={{zIndex:"1"}}
+        preserveStackingContext
       ></BackgroundImage>
           <div className="content-text">
             <h3 style={{color: "#fff", fontWeight:"bold"}}><Trans>Plan the trip of your dreams with us!</Trans></h3>
@@ -257,10 +281,12 @@ const handleSectionLeave = () => {
         </Col>
         <Col id="right-section" className="zoom-bg" onMouseEnter={()=>handleSectionHover("right")} onMouseLeave={()=>handleSectionLeave()}>
         <BackgroundImage
-        Tag="div"
-        className={"featured-content"}
-        fluid={listImage.childImageSharp?.gatsbyImageData || listImage}
-        backgroundColor={`#040e18`}
+         Tag="div"
+         className={"featured-content"}
+         {...listBg}
+         backgroundColor={`#040e18`}
+         style={{zIndex:"1"}}
+         preserveStackingContext
       ></BackgroundImage>
           <div className="content-text">
             <h3 style={{color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
@@ -285,9 +311,10 @@ const handleSectionLeave = () => {
         <BackgroundImage
         Tag="div"
         className={"home-card-bg"}
-        fluid={trustedImage.childImageSharp?.gatsbyImageData || trustedImage}
-        backgroundColor={`#040e18`}
-        style={{position: "absolute"}}
+        {...trustedBg}
+         backgroundColor={`#040e18`}
+         style={{zIndex:"1", position: "absolute"}}
+         preserveStackingContext
       ></BackgroundImage>              
                 <Card.Body className="home-card-body">
                 <div className="home-card-title">
@@ -307,9 +334,10 @@ const handleSectionLeave = () => {
         <BackgroundImage
         Tag="div"
         className={"home-card-bg"}
-        fluid={locationImage.childImageSharp?.gatsbyImageData || locationImage}
-        backgroundColor={`#040e18`}
-        style={{position: "absolute"}}
+        {...locationBg}
+         backgroundColor={`#040e18`}
+         style={{zIndex:"1", position: "absolute"}}
+         preserveStackingContext
       ></BackgroundImage>
 
                 <Card.Body className="home-card-body">
@@ -330,9 +358,10 @@ const handleSectionLeave = () => {
         <BackgroundImage
         Tag="div"
         className={"home-card-bg"}
-        fluid={accommodationsImage.childImageSharp?.gatsbyImageData || accommodationsImage}
-        backgroundColor={`#040e18`}
-        style={{position: "absolute"}}
+        {...accommodationsBg}
+         backgroundColor={`#040e18`}
+         style={{zIndex:"1", position: "absolute"}}
+         preserveStackingContext
       ></BackgroundImage>
     
                 <Card.Body className="home-card-body">

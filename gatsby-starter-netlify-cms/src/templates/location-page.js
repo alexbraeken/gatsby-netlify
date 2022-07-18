@@ -10,15 +10,20 @@ import ActivitiesRoll from '../components/ActivitiesRoll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 class CustomSlide extends React.Component {
   render() {
     
+    const heroImage = getImage(this.props.slide.slide? this.props.slide.slide.childImageSharp: null)
+    const bgImage = heroImage ? convertToBgImage(heroImage) : null
+
     return (
       <BackgroundImage
       Tag="div"
       className={"slide-image-container"}
-      fluid={this.props.slide.slide? this.props.slide.slide.childImageSharp.gatsbyImageData: null}
+      {...bgImage}
       backgroundColor={`#040e18`}
       style={{minHeight: "400px",
       height: "50vh",
@@ -29,7 +34,9 @@ class CustomSlide extends React.Component {
       backgroundSize:"cover",
       backgroundPosition:"center",
       backgroundAttachment: "initial",
-      padding: "40px"}}
+      padding: "40px",
+    zIndex: 1}}
+      preserveStackingContext
     >
           <div className="slide__content">
               <svg className="slide__overlay small-overlay" preserveAspectRatio="xMaxYMax slice" viewBox="0 0 720 405"> 
@@ -60,16 +67,18 @@ export const LocationPageTemplate = ({
 
   const {t} = useTranslation();
   const {language } = useI18next();
+
+  const heroImage = image.childImageSharp !== null ? convertToBgImage(getImage(image.childImageSharp)) : image.publicURL
      
   const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
-        setFluidSrc(slides? slides[selectedIndex].slide.childImageSharp.gatsbyImageData : part2.img.childImageSharp.gatsbyImageData)
+        setFluidSrc(slides? convertToBgImage(getImage(slides[selectedIndex].slide.childImageSharp)) : convertToBgImage(getImage(part2.img.childImageSharp)))
       };
 
   
       useEffect(() => {
 
-        setFluidSrc(slides? slides[0].slide.childImageSharp.gatsbyImageData : part2.img.childImageSharp.gatsbyImageData)
+        setFluidSrc(slides? convertToBgImage(getImage(slides[0].slide.childImageSharp)) : convertToBgImage(getImage(part2.img.childImageSharp)))
 
         setTimeout(()=>{
           setLoaded(true)}, 1000
@@ -94,11 +103,14 @@ export const LocationPageTemplate = ({
   return (
     <div className="content newLine">
        <BackgroundImage
-        Tag="div"
-        className={"full-width-image-container margin-top-0 gradient-bg"}
-        fluid={["linear-gradient(to bottom right,rgba(0, 47, 75, 0.5),rgba(255,140,0,0.5))", image.childImageSharp.gatsbyImageData ]}
-        backgroundColor={`#040e18`}
+       className={"full-width-image-container margin-top-0 "}
+       Tag="div"
+       {...heroImage}
+       backgroundColor={`#040e18`}
+       style={{zIndex:"1", marginBottom: "0"}}
+       preserveStackingContext
       >
+        <div className="gradient-bg"></div>
         <h2
           className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
           style={{color: "white"}}>
@@ -202,7 +214,7 @@ export const LocationPageTemplate = ({
               <BackgroundImage
         Tag="div"
         className={""}
-        fluid={fluidSrc}
+        {...fluidSrc}
         backgroundColor={`#040e18`}
         style={{
           filter: "opacity(0.1)",
@@ -213,7 +225,8 @@ export const LocationPageTemplate = ({
           backgroundPosition: "50%",
           top: "0",
           left: "0",
-          transition: "all .3s"
+          transition: "all .3s",
+          zIndex: 1
         }}
       >
         </BackgroundImage>

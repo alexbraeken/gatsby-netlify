@@ -8,6 +8,9 @@ import CarHireCalendar from '../components/CarHireCalendar'
 import Select from 'react-select'
 import { Col, Row } from 'react-bootstrap';
 import CarAlertModal from '../components/CarAlertModal'
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 const carSelectStyle = {
     option: (provided, state) => ({
@@ -75,6 +78,10 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
   const {language} = useI18next()
   
 
+  const heroImage = getImage(hero.childImageSharp)
+  const bgImage = convertToBgImage(heroImage)
+
+
   const PageContent = contentComponent || Content
 
     useEffect(() => {
@@ -101,22 +108,21 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
   return (
     <div className="content">
       {hero &&
-      <div
-        className="full-width-image-container margin-top-0 gradient-bg"
-        style={{
-          backgroundImage: `url(${
-            hero.publicURL
-          })`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
+        <BackgroundImage
+          className={"full-width-image-container margin-top-0 "}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1", marginBottom: "0"}}
+          preserveStackingContext
+        >
+          <div className="gradient-bg"></div>
         <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
           {langTitles[language]}
         </h2>
-      </div> }
+      </BackgroundImage> }
         <div className="container">
           <div className="columns">
             <div className="column is-10 is-offset-1">

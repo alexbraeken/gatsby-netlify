@@ -6,6 +6,9 @@ import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import OwnerTestimonials from '../components/OwnerTestimonials'
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 export const WhyUsPageTemplate = ({
   image,
@@ -26,6 +29,9 @@ export const WhyUsPageTemplate = ({
   const {t} = useTranslation();
   const {language } = useI18next();
 
+  const heroImage = getImage(image.childImageSharp)
+  const bgImage = convertToBgImage(heroImage)
+
   useEffect(() => {
     setTimeout(()=>{
       setLoaded(true)}, 1000
@@ -37,22 +43,21 @@ export const WhyUsPageTemplate = ({
 
   return(
   <div className="content">
-    <div
-      className="full-width-image-container margin-top-0 gradient-bg"
-      style={{
-        backgroundImage: `url(${
-          image.publicURL
-        })`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}
-    >
+       <BackgroundImage
+          className={"full-width-image-container margin-top-0 "}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1"}}
+          preserveStackingContext
+        >
+          <div className="gradient-bg"></div>
       <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
         {langTitles[language]}
       </h2>
-    </div>
+      </BackgroundImage>
     <section className="newLine" style={{
         paddingBottom: "100px",
         position: "relative"}}>

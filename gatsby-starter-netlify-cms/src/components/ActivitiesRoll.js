@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import Slider from "react-slick"
 import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 //Individual Activity Cards
 const ActivityCard = React.memo((props) =>{
@@ -10,21 +13,32 @@ const ActivityCard = React.memo((props) =>{
   const {t} = useTranslation();
   const {language } = useI18next();
 
+    
+  const heroImage = getImage(props.activity.frontmatter.featuredimage.childImageSharp)
+  const bgImage = convertToBgImage(heroImage)
+
+
   return (
     <article className="activity-card">
                 { props.activity.frontmatter.featuredimage ? 
                 (
-            <div className="card__img" style={{
-                backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.gatsbyImageData.src}')`, 
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
+                  <BackgroundImage
+                  className={"card__img"}
+                  Tag="div"
+                  {...bgImage}
+                  backgroundColor={`#040e18`}
+                  style={{zIndex:"1"}}
+                  preserveStackingContext
+                  >&nbsp;</BackgroundImage>) : null }
             { props.activity.frontmatter.featuredimage ? (
-            <div className="card__img--hover" style={{
-              backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.gatsbyImageData.src}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
+            <BackgroundImage
+            className={"card__img--hover"}
+            Tag="div"
+            {...bgImage}
+            backgroundColor={`#040e18`}
+            style={{zIndex:"1", position: "absolute"}}
+            preserveStackingContext
+            >&nbsp;</BackgroundImage>) : null }
             
             <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
             
