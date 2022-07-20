@@ -15,8 +15,10 @@ export const ContentPageTemplate = ({ title, langTitles, content, contentCompone
 
   const {language} = useI18next();
   
-  const heroImage = getImage(hero.childImageSharp)
-  const bgImage = convertToBgImage(heroImage)
+  if(hero){
+    const heroImage = getImage(hero.childImageSharp)
+    const bgImage = convertToBgImage(heroImage)
+  }
 
   const PageContent = contentComponent || Content
 
