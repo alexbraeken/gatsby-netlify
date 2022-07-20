@@ -75,10 +75,10 @@ const PropertyCardComp = (props) => {
     useEffect(() => {
       const imgLoader = new Image()
       
-      imgLoader.src = props.item.picture
+      imgLoader.src = props.item.pictitureReducedCloudUrl || props.item.picture
 
       imgLoader.onload = () => {
-        setBgImg(props.item.picture)
+        setBgImg(props.item.pictitureReducedCloudUrl || props.item.picture)
       }
 
       return () => {

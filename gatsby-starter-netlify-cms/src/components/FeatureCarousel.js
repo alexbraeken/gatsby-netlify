@@ -65,7 +65,7 @@ const FeatureCarousel = (props) => {
                 <Carousel.Item key={index}>
                   <Row className="home-feature">
                   <Col xs={12} md={6} lg={9} className="home-feature-image">
-                <CustomSlide backgroundImage={prop.picture} key={index}/>
+                <CustomSlide backgroundImage={prop.pictitureReducedCloudUrl || prop.picture} key={index}/>
                 <Carousel.Caption style={{width:"100%", left:0, background:"rgba(0,0,0,0.5)", bottom:0}}>
                 <Link to={`/properties/${prop.uid}`}><h3>{prop.name}</h3></Link>
                 <BedBathPax bedrooms={prop.bedrooms} bathrooms={prop.bathrooms} baseGuests={prop.baseGuests} color="rgba(256,256,256)"/>
