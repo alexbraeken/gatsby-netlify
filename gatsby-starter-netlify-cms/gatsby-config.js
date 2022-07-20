@@ -441,7 +441,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `avif`],
+          formats: [`auto`],
           quality: 90,
           placeholder: `dominantColor`,
           tracedSVGOptions: {},
