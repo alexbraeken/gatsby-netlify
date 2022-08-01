@@ -331,7 +331,7 @@ hoverArrow = () => {
     return (
       <>
       <nav
-        className={`navbar ${this.state.navClass} ${this.props.navClass}`}
+        className={`navbar ${this.state.navClass || ''} ${this.props.navClass || ''}`}
         role="navigation"
         aria-label="main-navigation"
         style={this.state.style}     

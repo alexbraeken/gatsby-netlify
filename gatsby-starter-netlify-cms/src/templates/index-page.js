@@ -218,7 +218,7 @@ const handleSectionLeave = () => {
               </div>
             </Col>
             <Col xs={12} md={4}>
-              <PreviewCompatibleImage imageInfo={pitchImage} imgStyle={{borderRadius: "5px", marginLeft: "-150px", zIndex: "-1"}}/>
+              <PreviewCompatibleImage imageInfo={pitchImage} imgStyle={{borderRadius: "5px", marginLeft: "-150px", zIndex: "-1"}} alt={"Smartavillas, Algarve"}/>
             </Col>
           </Row>
         </Container>
