@@ -4325,16 +4325,23 @@ header
 .prop-page-section
   position: relative
   z-index: 0
-  
+
+.footer .prop-section-title
+  font-size: calc(110PX + 30 * (80vw - 320px) / 1080)
 
 .prop-section-title
-  font-size: calc(90PX + 30 * (100vw - 320px) / 1080)
+  font-size: calc(90PX + 30 * (80vw - 320px) / 1080)
   color: $primary
   left: -20px
   top: 0
   opacity: 0.1
   transform: translateY(-52%)
-  
+
+
+@media screen and (min-width: 1600px)
+  .home-section-title, .prop-section-title, .content .home-section-title, .content .prop-section-title, .footer .prop-section-title
+    font-size: 10rem
+
 
 
 @media screen and (max-width: 900px)
@@ -4824,6 +4831,7 @@ p.about-section
     z-index: 1
     border-bottom-right-radius: 40px
     border-bottom-left-radius: 40px
+    box-shadow: 0px 20px 20px -10px black
 
 .footer
   position: sticky
