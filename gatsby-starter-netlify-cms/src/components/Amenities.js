@@ -471,7 +471,7 @@ const Amenities = (props) => {
                                         <Row>
                                             <Col xs={6} md={3}>
                                             <a href={`/properties/${id}`} className="d-block h-100">
-                                                <img className="img-fluid img-thumbnail" src={data.value.picture} alt="" />
+                                                <img className="img-fluid img-thumbnail" src={data.value.pictureThumbCloudURL || data.value.picture} alt="" />
                                             </a>
                                             </Col>
                                             <Col xs={6} md={9}>

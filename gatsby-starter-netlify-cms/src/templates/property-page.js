@@ -725,7 +725,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 </Container>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
-                            <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.picture}/>
+                            <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
                             </div>
                             <Helmet link={[{rel: "canonical", href: `https://www.smartavillas.com/properties/${propId}`}]}>
                                 <title>{propName}</title>

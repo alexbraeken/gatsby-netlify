@@ -2124,6 +2124,7 @@ a.navbar-item, .navbar-item
   text-align: center
   display: flex
   flex-wrap: wrap
+  z-index: 2
 
 .home-card-title
   flex: 1 1 100%
@@ -2143,17 +2144,16 @@ a.navbar-item, .navbar-item
 
 //Gradient background
 .gradient-bg
-  &:before
-      margin-top: -60px
-      content: ''
-      position: absolute
-      top: 0
-      right: 0
-      bottom: 0
-      left: 0
-      background-image: linear-gradient(to bottom right, #002f4b, #FF8C00)
-      opacity: .6
-      z-index: 0
+  margin-top: -60px
+  content: ''
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  background-image: linear-gradient(to bottom right, #002f4b, #FF8C00)
+  opacity: .6
+  z-index: 0
 
 //News Alert
 .newsAlert
@@ -2182,7 +2182,7 @@ a.navbar-item, .navbar-item
   transform: rotateZ(45deg)
   border-radius: 50%
   transition: all 0.5s
-  z-index: 1
+  z-index: 3
   position: relative
   margin: auto
   width: 25px 
@@ -4874,3 +4874,19 @@ p.about-section
   position: relative
   z-index: 1
   background: white
+.car-alert
+  position: fixed
+  width: 100%
+  height: 0
+  bottom: 0
+  left: 0
+  background: $primary
+  overflow: hidden
+  pointer-events: none
+  transition: all 0.3s
+  display: flex
+  justify-content: center
+  z-index: 1
+  &.show
+    height: 30px
+    pointer-events: unset

@@ -31,38 +31,40 @@ const CookieBannerCookieHub = ({ googleTrackingId, cookieHubId }) => {
                     type: "text/javascript", 
                     innerHTML: 
                         `window.addEventListener("load", function() {
-                            window.cookieconsent.initialise({
-                            onInitialise: function(status) {
-                                if (this.hasConsented('required')) {
-                                }
-                                if (this.hasConsented('analytics')) {
-                                    window['ga-disable-`+googleTrackingId+`'] = false;
-                                    gtag('config', gtagId);
-                                }
-                                if (this.hasConsented('marketing')) {
-                                }
-                            },
-                            onAllow: function(category) {
-                                if (category == 'required') {
-                                }
-                                if (category == 'analytics') {
-                                    window['ga-disable-`+googleTrackingId+`'] = false;
-                                    gtag('config', gtagId);
-                                }
-                                if (category == 'marketing') {
-                                }
-                            },
-                            onRevoke: function(category) {
-                                if (category == 'required') {
-                                }
-                                if (category == 'analytics') {
-                                    window['ga-disable-`+googleTrackingId+`'] = true;
-                                }
-                                if (category == 'marketing') {
-                                }
+                            if(window.cookieconsent){
+                                window.cookieconsent?.initialise({
+                                    onInitialise: function(status) {
+                                        if (this.hasConsented('required')) {
+                                        }
+                                        if (this.hasConsented('analytics')) {
+                                            window['ga-disable-`+googleTrackingId+`'] = false;
+                                            gtag('config', gtagId);
+                                        }
+                                        if (this.hasConsented('marketing')) {
+                                        }
+                                    },
+                                    onAllow: function(category) {
+                                        if (category == 'required') {
+                                        }
+                                        if (category == 'analytics') {
+                                            window['ga-disable-`+googleTrackingId+`'] = false;
+                                            gtag('config', gtagId);
+                                        }
+                                        if (category == 'marketing') {
+                                        }
+                                    },
+                                    onRevoke: function(category) {
+                                        if (category == 'required') {
+                                        }
+                                        if (category == 'analytics') {
+                                            window['ga-disable-`+googleTrackingId+`'] = true;
+                                        }
+                                        if (category == 'marketing') {
+                                        }
+                                    }
+                                })
                             }
-                        })
-                    });`
+                        });`
                 }
             ]}
         />

@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
-import hostfully from '../img/Hostfully-Blue-Green-Icon.png'
+import hostfully from '../img/Hostfully logo.webp'
 import logo from '../img/smartavillas logo.png'
 import Container from 'react-bootstrap/Container'
 import Collapse from 'react-bootstrap/Collapse';
@@ -18,6 +18,8 @@ import Masonry from 'react-masonry-component';
 import Loading from './Loading'
 import BedBathPax from './BedBathPax'
 import backArea from '../img/mobile-back-area.svg'
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 if (typeof window !== `undefined`) {
   gsap.registerPlugin(ScrollTrigger)
@@ -34,8 +36,7 @@ const DropdownIndicator = props => {
 
 const PropertiesDropDown = React.memo((props) => {
 
-  const [data, setData] = useState(null)
-  const [options, setOptions] = useState([])
+  const [options, setOptions] = useState(null)
   const [locationsOpen, setLocationsOpen] = useState(false)
   const [typesOpen, setTypesOpen] = useState(false)
 
@@ -63,17 +64,42 @@ const PropertiesDropDown = React.memo((props) => {
       }
     })
   }
-  
+
   useEffect(() => {
-    if(data){
-      let propArray= data.PropNames.map(prop => {
-        return {value: prop.uid, label: prop.name, city: prop.city }
-      })
-      setOptions(propArray)
+
+    if(typeof window !== `undefined`){
+      try{
+        const db = firebase.firestore()
+        let propData = {}
+        const getFireData = async () => {
+          const snapshot = await db
+                                  .collection('/Navbar')
+                                  .doc('Nav')
+                                  .get();
+          Object.keys(snapshot.data()).forEach(key=>{
+            if(key === 'PropNames'){
+              propData.propNames = snapshot.data().PropNames.map(prop => {
+                return {value: prop.uid, label: prop.name, city: prop.city }
+              })
+            }else{
+              propData[key] = snapshot.data()[key]
+            }
+          })
+          setOptions(propData)
+        }
+        getFireData()
+      }catch(e){
+    
+      }
     }
-  }, [data])
+    
+    return () => {
+      setOptions([])
+    }
+  }, [])
   
 
+  
   const CustomOption = props => {
     const { data, innerRef, innerProps } = props;
     return (
@@ -98,67 +124,58 @@ const PropertiesDropDown = React.memo((props) => {
 
 
   return(
-    <>
-  <div className="nav-column">
+      <>
+        <div className="nav-column">
           <a href={`/properties`}>
             <div  className="navbar-item drop-item">
             {t("All Properties")}
             </div>
           </a>
-          <Select 
-          options={options}
+          {options &&
+            <Select 
+          options={options.propNames}
           onChange={(e)=>onInputChange(e.value)}
           closeMenuOnSelect={true}
           components={{ Option: CustomOption}}
           placeholder={t("Enter Property Name...")}
           styles={customStyles}/>
+          }
+        </div>
+        <div className="nav-column">
+          <div className="navbar-item" onClick={()=>setLocationsOpen(!locationsOpen)}>
+            <h4 className="dropdown-title" >{t("Location")}</h4><FontAwesomeIcon className={`expand-chevron ${locationsOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto 0 auto auto"}} />
           </div>
-          <FirestoreDocument path="/Navbar/Nav">
-                      {d => {
-                                return (!d.isLoading && d.value) ?  
-                                <>
-                                {setData(d.value)}
-                                <div className="nav-column">
-                                  <div className="navbar-item" onClick={()=>setLocationsOpen(!locationsOpen)}>
-                                    <h4 className="dropdown-title" >{t("Location")}</h4><FontAwesomeIcon className={`expand-chevron ${locationsOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto 0 auto auto"}} />
-                                  </div>
-                                  <Collapse in ={locationsOpen}>
-                                    <div>
-                                    {d.value.Locations.map((city, index)=>(
-                                      <a href={`/properties?city=${city}`} key={index}>
-                                        <div  className="navbar-item drop-item">
-                                          {city}
-                                        </div>
-                                      </a>
-                                      ))
-                                    }
-                                    </div>
-                                  </Collapse>
-                                  </div>
-                                  <div className="nav-column">
-                                  <div className="navbar-item" onClick={()=>setTypesOpen(!typesOpen)}>
-                                    <h4 className="dropdown-title" >{t("Property Type")}</h4><FontAwesomeIcon className={`expand-chevron ${typesOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto 0 auto auto"}} />
-                                  </div>
-                                  <Collapse in ={typesOpen}>
-                                    <div>
-                                    {d.value.Types.map((type, index)=>(
-                                      <a href={`/properties?type=${type}`} key={index}>
-                                        <div  className="navbar-item drop-item">
-                                          {type[0].toUpperCase() + type.slice(1).toLowerCase()}
-                                        </div>
-                                      </a>
-                                      ))
-                                    }
-                                    </div>
-                                  </Collapse>
-                                  </div>
-                                  </>
-                                  : null 
-                                
-                            }}
-                      
-          </FirestoreDocument>
-          </>
+          <Collapse in ={locationsOpen}>
+            <div>
+            {options && options.Locations.map((city, index)=>(
+              <a href={`/properties?city=${city}`} key={index}>
+                <div  className="navbar-item drop-item">
+                  {city}
+                </div>
+              </a>
+              ))
+            }
+            </div>
+          </Collapse>
+        </div>
+        <div className="nav-column">
+          <div className="navbar-item" onClick={()=>setTypesOpen(!typesOpen)}>
+            <h4 className="dropdown-title" >{t("Property Type")}</h4><FontAwesomeIcon className={`expand-chevron ${typesOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto 0 auto auto"}} />
+          </div>
+          <Collapse in ={typesOpen}>
+            <div>
+            {options &&  options.Types.map((type, index)=>(
+              <a href={`/properties?type=${type}`} key={index}>
+                <div  className="navbar-item drop-item">
+                  {type[0].toUpperCase() + type.slice(1).toLowerCase()}
+                </div>
+              </a>
+              ))
+            }
+            </div>
+          </Collapse>
+        </div>                      
+      </>
           )
 })
 
@@ -205,7 +222,7 @@ const LanguageChange = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return  {featuredProps: state.featuredProps}
+  return  {featuredPropsData: state.featuredPropsData}
 }
 
 const ConnectedFeaturedPropertyComp = (props) => {
@@ -214,14 +231,11 @@ const ConnectedFeaturedPropertyComp = (props) => {
   const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
 
   return(
-  <FirestoreCollection path="/Properties/">
-      {data => {
-          return (!data.isLoading && data.value) ?
-          <>
-          {props.featuredProps && props.featuredProps.length > 0 && 
+        <>
+          {props.featuredPropsData ? 
             <div>
-              {data.value?.map((prop, index)=>{
-                  return (props.featuredProps.indexOf(prop.uid)!== -1) && 
+              {props.featuredPropsData.map((prop, index)=>{
+                  return (
                   <li className="featured-card" key={index}>
                     <Link to={`/properties/${prop.uid}`} target="_blank" rel="noopener noreferrer">
                       <div className="featured-wrap">
@@ -239,15 +253,14 @@ const ConnectedFeaturedPropertyComp = (props) => {
                       </div>
                     </Link>
                   </li>
+                  )
                 })
               }
             </div>
+            : <Loading />
           }
-            </>
-          : <Loading />
-        }
-      }
-    </FirestoreCollection>)
+        </>
+        )
 }
 
 const FeaturedPropertyComp = connect(mapStateToProps)(ConnectedFeaturedPropertyComp)

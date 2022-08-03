@@ -4,6 +4,10 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
+
 
 export const ContentPageTemplate = ({ title, langTitles, content, contentComponent, hero, heroTitle, html }) => {
 
@@ -11,6 +15,8 @@ export const ContentPageTemplate = ({ title, langTitles, content, contentCompone
 
   const {language} = useI18next();
   
+    const bgImage = hero ? convertToBgImage(getImage(hero.childImageSharp)): null
+
 
   const PageContent = contentComponent || Content
 
@@ -26,22 +32,21 @@ export const ContentPageTemplate = ({ title, langTitles, content, contentCompone
   return (
     <div className="content">
       {hero &&
-      <div
-        className="full-width-image-container margin-top-0 gradient-bg"
-        style={{
-          backgroundImage: `url(${
-            hero.publicURL
-          })`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
+        <BackgroundImage
+          className={"full-width-image-container margin-top-0 "}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1", marginBottom: "0"}}
+          preserveStackingContext
+        >
+          <div className="gradient-bg"></div>
         <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
           {langTitles[language]}
         </h2>
-      </div> }
+        </BackgroundImage> }
         <div className="container">
           <div className="columns">
             <div className="column is-10 is-offset-1">
@@ -93,42 +98,41 @@ ContentPage.propTypes = {
 
 export default ContentPage
 
-export const ContentPageQuery = graphql`
-  query ContentPage($id: String!, $language: String!) {
-    pageData: markdownRemark(id: { eq: $id }) {
-      html
-      frontmatter {
-        title 
-        langTitles{
-          en
-          pt
-          fr
-          es
-        }
-        hero {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-          publicURL
-        }
-        html {
-          en
-          pt
-          fr
-          es
-        }
+export const ContentPageQuery = graphql`query ContentPage($id: String!, $language: String!) {
+  pageData: markdownRemark(id: {eq: $id}) {
+    html
+    frontmatter {
+      title
+      langTitles {
+        en
+        pt
+        fr
+        es
       }
-    }
-    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
-      edges {
-        node {
-          ns
-          data
-          language
+      hero {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
+        publicURL
+      }
+      html {
+        en
+        pt
+        fr
+        es
       }
     }
   }
+  locales: allLocale(
+    filter: {ns: {in: ["translation"]}, language: {eq: $language}}
+  ) {
+    edges {
+      node {
+        ns
+        data
+        language
+      }
+    }
+  }
+}
 `

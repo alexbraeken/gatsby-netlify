@@ -11,8 +11,12 @@ import BackgroundImage from 'gatsby-background-image'
 import SubmitButton from '../components/SubmitButton'
 import backArea from '../img/mobile-back-area.svg'
 import StickyBox from "react-sticky-box"
+import convertToBgImage from "../Helpers/images"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
+
 
 gsap.registerPlugin(CSSPlugin)
+
 
 export const MeetTheTeamPageTemplate = ({
   image,
@@ -32,13 +36,19 @@ export const MeetTheTeamPageTemplate = ({
   const [mouse, setMouse] = useState({x: 0, y: 0})
   const [displayTeam, setDisplayTeam] = useState(null)
 
-  const hero = useRef(null)
   const maskImg = useRef(null)
   const ref = useRef()
 
+  const [src, setSrc] = useState('')
 
   const {t} = useTranslation();
   const {language } = useI18next();
+
+  const heroImage = getImage(image.childImageSharp)
+
+
+  const bgImage = convertToBgImage(heroImage)
+  
     
       useEffect(() => {
         setTimeout(()=>{
@@ -162,18 +172,19 @@ export const MeetTheTeamPageTemplate = ({
 
 
   return(
-<>
-        <div
-          className="full-width-image-container margin-top-0"
-          ref={hero}
-          onMouseMove={(e)=>handleMouseMove(e)}
+          <>
+            <BackgroundImage
+            className="full-width-image-container margin-top-0" 
+            onMouseMove={(e)=>handleMouseMove(e)}
           onMouseEnter={()=>setHeroEnter(true)}
           onMouseLeave={()=>setHeroEnter(false)}
           onClick={()=>setClicked(!clicked)}
-          style={{
-            backgroundImage: `url(${ !!image.childImageSharp ? image.childImageSharp.fluid.src : image })`, height: "100vh", margin: "0px -50vw", marginBottom: "0px"
-          }}
-        >
+            {...bgImage}
+            style={{
+              height: "100vh", margin: "0px -50vw", marginBottom: "0px", zIndex:"1"
+            }}
+            preserveStackingContext
+            >
         <div className="mask-container">
           <img src="https://greatpeopleinside.com/se/wp-content/uploads/2019/11/team-building-1030x579.jpg" 
           ref={maskImg}
@@ -190,7 +201,7 @@ export const MeetTheTeamPageTemplate = ({
   zIndex: "3"}}>
             {langTitles[language]}
           </h1>
-        </div>
+          </BackgroundImage>
           <div style={{marginBottom:"50px", minHeight: "100vh", backgroundColor: "#000"}}>
           <section className="team-intro" style={{display: "flex", flexWrap: "wrap", height: "100%", minHeight: "100vh", flexWrap: "wrap",
     position: "relative"}}>
@@ -205,8 +216,10 @@ export const MeetTheTeamPageTemplate = ({
                       <BackgroundImage
                           Tag="div"
                           className={"parallax-bg"}
-                          fluid={secondaryImage.childImageSharp?.fluid || secondaryImage}
+                          {...secondaryImage}
                           backgroundColor={`#040e18`}
+                          style={{zIndex:"1"}}
+                          preserveStackingContext
                         ></BackgroundImage>
                     </div>
                   </div>
@@ -249,8 +262,10 @@ export const MeetTheTeamPageTemplate = ({
                                     <BackgroundImage
                                         Tag="div"
                                         className={"parallax-bg"}
-                                        fluid={teams[team].image.childImageSharp?.fluid || teams[team].image}
+                                        {...teams[team].image}
                                         backgroundColor={`#040e18`}
+                                        style={{zIndex:"1"}}
+                                        preserveStackingContext
                                       ></BackgroundImage>
                                   </div>
                                 </div>
@@ -323,31 +338,39 @@ MeetTheTeamPage.propTypes = {
 
 export default MeetTheTeamPage
 
-export const MeetTheTeamPageQuery = graphql`
-  query MeetTheTeamPage($id: String!, $language: String!) {
-    pageData: markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        title 
-        langTitles{
-          en
-          pt
-          fr
-          es
+export const MeetTheTeamPageQuery = graphql`query MeetTheTeamPage($id: String!, $language: String!) {
+  pageData: markdownRemark(id: {eq: $id}) {
+    frontmatter {
+      title
+      langTitles {
+        en
+        pt
+        fr
+        es
+      }
+      image {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+      }
+      secondaryImage {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
-        secondaryImage {
-          childImageSharp {
-            fluid(maxWidth: 1000, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
+      }
+      heading {
+        en
+        pt
+        fr
+        es
+      }
+      description {
+        en
+        pt
+        fr
+        es
+      }
+      intro {
         heading {
           en
           pt
@@ -360,80 +383,63 @@ export const MeetTheTeamPageQuery = graphql`
           fr
           es
         }
-        intro {
-          heading {
-            en
-            pt
-            fr
-            es
-          }
-          description {
-            en
-            pt
-            fr
-            es
-          }
-        }
-        teams {
-          office {
-            heading
-            image{
-              childImageSharp {
-                fluid(maxWidth: 1000, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            description{
-              en
-              pt
-              fr
-              es
-            }
-          }
-          maintenance {
-            heading
-            image{
-              childImageSharp {
-                fluid(maxWidth: 1000, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            description{
-              en
-              pt
-              fr
-              es
-            }
-          }  
-          housekeeping {
-            heading
-            image{
-              childImageSharp {
-                fluid(maxWidth: 1000, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            description{
-              en
-              pt
-              fr
-              es
-            }
-          }    
-        } 
       }
-    }
-    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
-      edges {
-        node {
-          ns
-          data
-          language
+      teams {
+        office {
+          heading
+          image{
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+          description{
+            en
+            pt
+            fr
+            es
+          }
         }
+        maintenance {
+          heading
+          image{
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+          description{
+            en
+            pt
+            fr
+            es
+          }
+        }  
+        housekeeping {
+          heading
+          image{
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+          description{
+            en
+            pt
+            fr
+            es
+          }
+        }    
+      } 
+    }
+  }
+  locales: allLocale(
+    filter: {ns: {in: ["translation"]}, language: {eq: $language}}
+  ) {
+    edges {
+      node {
+        ns
+        data
+        language
       }
     }
   }
+}
 `

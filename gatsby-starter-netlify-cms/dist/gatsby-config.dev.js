@@ -9,7 +9,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: 'Smartavillas - Holiday Rentals Villas and Apartments in the Eastern Algarve',
-    description: 'Smartavillas.com specialise in helping Property Owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With its spectacular scenery, sandy beaches, good food, friendly people and great golf, we can think of no other reason why you would choose to holiday anywhere else! If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further. We pride ourselves on tailoring our services to meet your needs. We are a small and friendly company that really puts you - the customer - first.',
+    description: 'Smartavillas.com is a property management company which specialises in helping property owners to provide their guests with good quality accommodation - at affordable prices - in the Eastern Algarve, with Tavira being the focal point. With its spectacular scenery, sandy beaches, good food, friendly people and great golf, we can think of no other reason why you would choose to holiday anywhere else! If you are looking for the perfect holiday rental or are Property Owners wishing to offer your holiday home for rental, then look no further. We pride ourselves on tailoring our services to meet your needs. We are a small and friendly company that really puts you - the customer - first.',
     menuLinks: [{
       "name": {
         "en": "Home",
@@ -383,7 +383,22 @@ module.exports = {
       // [optional] - name of key on `window` where serialized state will be stored, default:
       windowKey: '__PRELOADED_STATE__'
     }
-  }, 'gatsby-plugin-sharp', 'gatsby-transformer-sharp', {
+  }, "gatsby-plugin-image", 'gatsby-plugin-sharp', {
+    resolve: "gatsby-plugin-sharp",
+    options: {
+      defaults: {
+        formats: ["auto"],
+        quality: 90,
+        placeholder: "dominantColor",
+        tracedSVGOptions: {},
+        blurredOptions: {},
+        jpgOptions: {},
+        pngOptions: {},
+        webpOptions: {},
+        avifOptions: {}
+      }
+    }
+  }, 'gatsby-transformer-sharp', {
     resolve: 'gatsby-transformer-remark',
     options: {
       plugins: [{
@@ -468,6 +483,20 @@ module.exports = {
     resolve: "gatsby-source-instagram-all",
     options: {
       access_token: process.env.GATSBY_INSTAGRAM_TOKEN
+    }
+  }, {
+    resolve: "gatsby-plugin-firebase",
+    options: {
+      credentials: {
+        apiKey: "AIzaSyAm328dRbonZ0xgqClzsgjsJmxFFJ5xOVE",
+        authDomain: "gatsby-test-286520.firebaseapp.com",
+        databaseURL: "https://gatsby-test-286520.firebaseio.com",
+        projectId: "gatsby-test-286520",
+        storageBucket: "gatsby-test-286520.appspot.com",
+        messagingSenderId: "563210852511",
+        appId: "1:563210852511:web:49d5d7956244ea13602aaa",
+        measurementId: "G-S6HYLDYXK0"
+      }
     }
   }, 'gatsby-plugin-netlify' // make sure to keep it last in the array
   ]

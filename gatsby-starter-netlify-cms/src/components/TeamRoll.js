@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react'
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, StaticQuery, useStaticQuery } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import StickyBox from "react-sticky-box"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
+import { BgImage  } from "gbimage-bridge"
+import convertToBgImage from "../Helpers/images"
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -44,6 +47,7 @@ return(
 const TeamCard = React.memo((props) =>{
 
   const {language} = useI18next();
+  const image = getImage(props.member.node.frontmatter.featuredimage.childImageSharp)
 
 
   useEffect(() => {
@@ -110,7 +114,6 @@ const TeamCard = React.memo((props) =>{
 
 
 class TeamRoll extends React.PureComponent {
-
   render() {
     const { data, team } = this.props
     const { edges: members } = data.allMarkdownRemark
@@ -171,20 +174,24 @@ export default (props) => (
                 }
                 templateKey
                 featuredimage {
-                  childImageSharp{
-                    fluid (maxWidth: 500, quality: 90){
-                      src
-                    }
+                  childImageSharp {
+                    gatsbyImageData(
+                      width: 500
+                      quality: 90
+                      placeholder: BLURRED
+                      layout: CONSTRAINED
+                    )
                   }
-                  publicURL
                 }
                 secondaryImage{
-                  childImageSharp{
-                    fluid (maxWidth: 500, quality: 90){
-                      src
-                    }
+                  childImageSharp {
+                    gatsbyImageData(
+                      width: 500
+                      quality: 90
+                      placeholder: BLURRED
+                      layout: CONSTRAINED
+                    )
                   }
-                  publicURL
                 }
                 jobTitle
                 name

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -62,20 +62,24 @@ class SimpleSlider extends Component {
         ]
       };
       return (
-          <Slider {...settings}>
-          {this.state.slides.allInstagramContent.edges.map((post, index)=> {
-                return index < 24 ?
-                <div key={index}> 
-                    <a href={post.node.permalink} target="_blank" rel="noreferrer" className="insta-post">
-                        <div className="insta-icon">
-                            <FontAwesomeIcon icon={['fab', 'instagram']} />
-                        </div>
-                        <Img fluid={post.node.localImage?.childImageSharp.fluid} imgStyle={{borderRadius: "5px", margin: "10px", transition:"all 0.3s"}} style={{width: "100%"}}  draggable={false}/>
-                    </a>
-                </div> 
-                    : null
-            })}
-          </Slider>
+        <Slider {...settings}>
+        {this.state.slides.allInstagramContent.edges.map((post, index)=> {
+              return index < 24 ?
+              <div key={index}> 
+                  <a href={post.node.permalink} target="_blank" rel="noreferrer" className="insta-post">
+                      <div className="insta-icon">
+                          <FontAwesomeIcon icon={['fab', 'instagram']} />
+                      </div>
+                      <GatsbyImage
+                        image={post.node.localImage?.childImageSharp?.gatsbyImageData}
+                        imgStyle={{borderRadius: "5px", margin: "10px", transition:"all 0.3s"}}
+                        style={{width: "100%"}}
+                        draggable={false} />
+                  </a>
+              </div> 
+                  : null;
+          })}
+        </Slider>
       );
     }
   }
@@ -99,27 +103,24 @@ InstagramFeed.propTypes = {
   }
 
 export default () => {
-  return(
+  return (
     <StaticQuery
-      query={graphql`
-      query InstagramQuery {
-        allInstagramContent {
-          edges {
-            node {
-              localImage {
-                childImageSharp {
-                  fluid(maxWidth: 350, quality: 90) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-             }
-             permalink
+      query={graphql`query InstagramQuery {
+  allInstagramContent {
+    edges {
+      node {
+        localImage {
+          childImageSharp {
+            gatsbyImageData(width: 200, height: 200, layout: FIXED)
           }
         }
+        permalink
       }
     }
-    `}
+  }
+}
+`}
       render={(data, count) => <InstagramFeed data={data} count={count} />}
     />
-  )
+  );
   }

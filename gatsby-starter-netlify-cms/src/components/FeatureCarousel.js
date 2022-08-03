@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import BedBathPax from './BedBathPax'
 import Container from 'react-bootstrap/Container'
@@ -47,10 +47,19 @@ class CustomSlide extends React.Component {
 const FeatureCarousel = (props) => {
 
     const [index, setIndex] = useState(0);
+    const [properties, setProperties] = useState(null)
+    
 
     const {t} = useTranslation(['translation']);
     const {language} = useI18next();
     const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
+
+    useEffect(() => {
+      setProperties(props.properties)
+      return () => {
+        setProperties(null)
+      }
+    }, [props.properties])
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -60,47 +69,51 @@ const FeatureCarousel = (props) => {
     return (
      
       <>
-        <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
-            {props.properties.map((prop, index)=>{
-                return (props.ids.indexOf(prop.uid)!== -1)?
-                <Carousel.Item key={index}>
-                  <Row className="home-feature">
-                  <Col xs={12} md={6} lg={9} className="home-feature-image">
-                <CustomSlide backgroundImage={prop.picture} key={index}/>
-                <Carousel.Caption style={{width:"100%", left:0, background:"rgba(0,0,0,0.5)", bottom:0, background:"linear-gradient(0deg, black, rgba(0,0,0,0))"}}>
-                <Link to={`/properties/${prop.uid}`}><h3>{prop.name}</h3></Link>
-                <BedBathPax bedrooms={prop.bedrooms} bathrooms={prop.bathrooms} baseGuests={prop.baseGuests} color="rgba(256,256,256)"/>
-                </Carousel.Caption>
-                </Col>
-                <Col xs={12} md={6} lg={3} className="home-feature-description">
-                  <div className="home-feature-text">
-                    <Row>
-                      <Container>
-                      <h3 className="text-muted">{t('From')} <span className="feature-text-price">{prop.baseDailyRate}{prop.currencySymbol} / {t('Night')}</span></h3>
-                      <p>
-                      {prop.descriptions ? prop.descriptions[lang] : prop.description}
-                      </p>
-                      </Container>
-                    </Row>
-                    <Row style={{marginTop:"10px"}}>
-                      <Container style={{zIndex:1, width:"auto", display:"flex", justifyContent:"center"}}>
-                        <SubmitButton text={t('View Property')} link={`/properties/${prop.uid}`}/>
-                      </Container>
-                    </Row>
-                  </div>
-                </Col>
-                </Row>
-            </Carousel.Item> : null
-            })}
-        </Carousel>
-        <Helmet>
-          <style>
-            {`.carousel .carousel-control-next, .carousel .carousel-control-prev{
-            width: 9%
-            }`}
-          </style>
-        </Helmet>
+        {properties &&
+        <>
+          <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
+              {Object.keys(properties).map((prop, index)=>{
+                  return (
+                  <Carousel.Item key={index}>
+                    <Row className="home-feature">
+                    <Col xs={12} md={6} lg={9} className="home-feature-image">
+                  <CustomSlide backgroundImage={properties[prop].pictitureReducedCloudUrl || properties[prop].picture} key={index}/>
+                  <Carousel.Caption style={{width:"100%", left:0, background:"rgba(0,0,0,0.5)", bottom:0, background:"linear-gradient(0deg, black, rgba(0,0,0,0))"}}>
+                  <Link to={`/properties/${properties[prop].uid}`}><h3>{properties[prop].name}</h3></Link>
+                  <BedBathPax bedrooms={properties[prop].bedrooms} bathrooms={properties[prop].bathrooms} baseGuests={properties[prop].baseGuests} color="rgba(256,256,256)"/>
+                  </Carousel.Caption>
+                  </Col>
+                  <Col xs={12} md={6} lg={3} className="home-feature-description">
+                    <div className="home-feature-text">
+                      <Row>
+                        <Container>
+                        <h3 className="text-muted">{t('From')} <span className="feature-text-price">{properties[prop].baseDailyRate}{properties[prop].currencySymbol} / {t('Night')}</span></h3>
+                        <p>
+                        {properties[prop].descriptions ? properties[prop].descriptions[lang] : properties[prop].description}
+                        </p>
+                        </Container>
+                      </Row>
+                      <Row style={{marginTop:"10px"}}>
+                        <Container style={{zIndex:1, width:"auto", display:"flex", justifyContent:"center"}}>
+                          <SubmitButton text={t('View Property')} link={`/properties/${properties[prop].uid}`}/>
+                        </Container>
+                      </Row>
+                    </div>
+                  </Col>
+                  </Row>
+              </Carousel.Item>)
+              })}
+          </Carousel>
+          <Helmet>
+            <style>
+              {`.carousel .carousel-control-next, .carousel .carousel-control-prev{
+              width: 9%
+              }`}
+            </style>
+          </Helmet>
         </>
+        }
+      </>
     )
 }
 

@@ -7,6 +7,10 @@ import Content, { HTMLContent } from '../components/Content'
 import CarHireCalendar from '../components/CarHireCalendar'
 import Select from 'react-select'
 import { Col, Row } from 'react-bootstrap';
+import CarAlertModal from '../components/CarAlertModal'
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 const carSelectStyle = {
     option: (provided, state) => ({
@@ -63,12 +67,20 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
   const [loaded, setLoaded] = useState(false)
   const [selectedPricing, setSelectedPricing] = useState(null)
   const [selected, setSelected] = useState(null)
-
+  const [showCarAlert, setShowCarAlert] = useState(true)
+  const handleClose = () => setShowCarAlert(false);
+  const handleShowCarAlert = () => setShowCarAlert(true);
+  
+  
   const car = useRef(null)
 
   const {t} = useTranslation(['translation'])
   const {language} = useI18next()
   
+
+  const heroImage = getImage(hero.childImageSharp)
+  const bgImage = convertToBgImage(heroImage)
+
 
   const PageContent = contentComponent || Content
 
@@ -96,22 +108,21 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
   return (
     <div className="content">
       {hero &&
-      <div
-        className="full-width-image-container margin-top-0 gradient-bg"
-        style={{
-          backgroundImage: `url(${
-            hero.publicURL
-          })`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
+        <BackgroundImage
+          className={"full-width-image-container margin-top-0 "}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1", marginBottom: "0"}}
+          preserveStackingContext
+        >
+          <div className="gradient-bg"></div>
         <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
           {langTitles[language]}
         </h2>
-      </div> }
+      </BackgroundImage> }
         <div className="container">
           <div className="columns">
             <div className="column is-10 is-offset-1">
@@ -122,7 +133,7 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                 <PageContent className="content" content={html[language] && html[language].length > 0 ? html[language] : content} />
                 {true && <Row>
                     <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
-    borderRadius: "4px"}}>
+                      borderRadius: "4px"}}>
                     <h4 style={{marginTop: "0.8em"}}>{t("Get a Quote")}</h4>
                     <Select options={[
                     {value: "A", label: "Class A"}, 
@@ -150,9 +161,14 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
               </div>
             </div>
           </div>
+          <CarAlertModal show={showCarAlert} handleClose={handleClose} />
+          
         </div>
         <section
     className="last"></section>
+        <div className={`car-alert ${showCarAlert ? '' : 'show'}`} style={{}} onClick={()=>{handleShowCarAlert()}}>
+            <h3>{t("No Availabilities of any class vehicles till 31st August 2022")}</h3>
+          </div>
     </div>
   )
 }
@@ -192,164 +208,163 @@ CareHirePage.propTypes = {
 
 export default CareHirePage
 
-export const CareHirePageQuery = graphql`
-  query CareHirePage($id: String!, $language: String!) {
-    pageData: markdownRemark(id: { eq: $id }) {
-      html
-      frontmatter {
-        title 
-        langTitles{
-          en
-          pt
-          fr
-          es
+export const CareHirePageQuery = graphql`query CareHirePage($id: String!, $language: String!) {
+  pageData: markdownRemark(id: {eq: $id}) {
+    html
+    frontmatter {
+      title
+      langTitles {
+        en
+        pt
+        fr
+        es
+      }
+      hero {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
-        hero {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
+        publicURL
+      }
+      carPricing {
+        A {
+          class
+          name {
+            en
+            pt
+            fr
+            es
           }
-          publicURL
+          pricing
         }
-        carPricing {
-            A {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }
-            B {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }
-            C {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }
-            E {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }
-            F {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }  
-            G {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            I {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            J {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            J1 {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            K {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            } 
-            L {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }  
-            M {
-                class
-                name{
-                    en
-                    pt
-                    fr
-                    es
-                }  
-                pricing 
-            }         
-        }   
-        html {
-          en
-          pt
-          fr
-          es
+        B {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        C {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        E {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        F {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        G {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        I {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        J {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        J1 {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        K {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        L {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        M {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
         }
       }
-    }
-    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
-      edges {
-        node {
-          ns
-          data
-          language
-        }
+      html {
+        en
+        pt
+        fr
+        es
       }
     }
   }
+  locales: allLocale(
+    filter: {ns: {in: ["translation"]}, language: {eq: $language}}
+  ) {
+    edges {
+      node {
+        ns
+        data
+        language
+      }
+    }
+  }
+}
 `

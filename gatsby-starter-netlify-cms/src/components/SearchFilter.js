@@ -6,7 +6,8 @@ import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
 import Form from 'react-bootstrap/Form'
 import { gsap } from "gsap"
-
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import SubmitButton from './SubmitButton'
 import Select from 'react-select'
@@ -252,9 +253,32 @@ const SearchFilter = (props) => {
       if(props.active){
         setClicked(true)
       }
-     
+
+      if(typeof window !== `undefined`){
+        try{
+          const db = firebase.firestore()
+          let locationsList = []
+      
+          const getFireData = async () => {
+            const snapshot = await db
+                                    .collection('/Navbar')
+                                    .doc('Nav')
+                                    .get();
+            snapshot.data().Locations.forEach((loc) => {
+              locationsList.push({ value: loc, label: loc })
+            })
+            setLocationArray(locationsList)
+          }
+          
+          getFireData()
+        }catch(e){
+      
+        }
+      }
+
       return () => {
         setDatesWidth("500px")
+        setClicked(false)
       }
     }, [])
 
@@ -287,24 +311,6 @@ const SearchFilter = (props) => {
       uri = encodeURI(uri)
       if(window) window.location.href= uri
     }
-
-    useEffect(() => {
-
-      let locations = []
-      if(locationData?.length > 0){
-        locationData.forEach((location, index) => {
-          locations.push({ value: location, label: location })
-        })
-        setLocationArray(locations)
-      }
-      
-      return () => {
-        setLocationArray([])
-      }
-
-    }, [locationData])
-
-
 
     const showFromMonth = () => {
         const { from, to } = dates;
@@ -398,15 +404,6 @@ const SearchFilter = (props) => {
 
     return (
         <div className={`home-search-container ${props.active ? 'fixed': ''} ${clicked ? '' : 'shrink'}`} ref={searchBar}>
-          <FirestoreDocument path="/Navbar/Nav">
-            {d => {
-                    return (!d.isLoading && d.value) ?  
-                    <>{setLocationData(d.value.Locations)}</> 
-                    : 
-                    null
-                  }
-            }
-          </FirestoreDocument>
           <Select 
           options={locationArray}
           styles={customStyles}

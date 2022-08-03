@@ -2,8 +2,11 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import Slider from "react-slick"
-import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next'
 import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt"
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 //Individual Activity Cards
 const ActivityCard = React.memo((props) =>{
@@ -11,21 +14,32 @@ const ActivityCard = React.memo((props) =>{
   const {t} = useTranslation();
   const {language } = useI18next();
 
-  return(
+    
+  const heroImage = getImage(props.activity.frontmatter.featuredimage.childImageSharp)
+  const bgImage = convertToBgImage(heroImage)
+
+
+  return (
     <article className="activity-card">
                 { props.activity.frontmatter.featuredimage ? 
                 (
-            <div className="card__img" style={{
-                backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`, 
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
+                  <BackgroundImage
+                  className={"card__img"}
+                  Tag="div"
+                  {...bgImage}
+                  backgroundColor={`#040e18`}
+                  style={{zIndex:"1"}}
+                  preserveStackingContext
+                  >&nbsp;</BackgroundImage>) : null }
             { props.activity.frontmatter.featuredimage ? (
-            <div className="card__img--hover" style={{
-              backgroundImage:`url('${props.activity.frontmatter.featuredimage.childImageSharp.fluid.src}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"}}>&nbsp;</div>) : null }
+            <BackgroundImage
+            className={"card__img--hover"}
+            Tag="div"
+            {...bgImage}
+            backgroundColor={`#040e18`}
+            style={{zIndex:"1", position: "absolute"}}
+            preserveStackingContext
+            >&nbsp;</BackgroundImage>) : null }
             {props.activity.frontmatter.gps.lat && props.activity.frontmatter.gps.lng && <div style={{position: "absolute", top:"5px", right:"5px"}}><a href={`https://www.google.com/maps/dir/?api=1&destination=${props.activity.frontmatter.gps.lat},${props.activity.frontmatter.gps.lng}`} target="_blank"><FaMapMarkerAlt className="card-marker"/></a></div>}
             <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
             
@@ -33,7 +47,7 @@ const ActivityCard = React.memo((props) =>{
             <span className="card__details">{props.activity.frontmatter.description[language]}<br />
               <a className="card__link" href={props.activity.frontmatter.link}>{props.activity.frontmatter.visibleLink}</a></span></div>
             </article>
-  )
+  );
 })
 
 //Slider Component
@@ -121,7 +135,7 @@ class ActivitiesRoll extends React.PureComponent {
     if(this.props.handleActivitiesCoords){
       this.state.activities.forEach(({ node: activity }) =>{ 
         
-        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[this.state.language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp.fluid.src})
+        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[this.state.language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp?.gatsbyImageData.src})
       })
       this.props.handleActivitiesCoords(coords)
     }
@@ -249,59 +263,56 @@ export default (props) => {
   const filter = props.filter || null
   const location = props.location || null
   const type = props.type || null
-return(
+return (
   <StaticQuery
-    query={graphql`
-      query ActivitiesRollQuery {
-        allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___title] }
-          filter: { frontmatter: { templateKey: { eq: "activity-post" } } }
-        ) {
-          edges {
-            node {
-              id
-              fields {
-                slug
-              }
-              frontmatter {
-                title 
-                langTitles{
-                  en
-                  pt
-                  fr
-                  es
-                }
-                description{
-                  en
-                  pt
-                  fr
-                  es
-                }
-                tags
-                category
-                link
-                visibleLink
-                gps {
-                  lat
-                  lng
-                }
-                templateKey
-                featuredpost
-                featuredimage {
-                  childImageSharp{
-                    fluid{
-                      src
-                    }
-                  }
-                  publicURL
-                }
-              }
+    query={graphql`query ActivitiesRollQuery {
+  allMarkdownRemark(
+    sort: {order: DESC, fields: [frontmatter___title]}
+    filter: {frontmatter: {templateKey: {eq: "activity-post"}}}
+  ) {
+    edges {
+      node {
+        id
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          langTitles {
+            en
+            pt
+            fr
+            es
+          }
+          description {
+            en
+            pt
+            fr
+            es
+          }
+          tags
+          category
+          link
+          visibleLink
+          gps {
+            lat
+            lng
+          }
+          templateKey
+          featuredpost
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
             }
+            publicURL
           }
         }
       }
-    `}
+    }
+  }
+}
+`}
     render={(data, count) => <ActivitiesRoll useTranslation={useTranslation()} useI18next={useI18next()} data={data} count={count} location={location} filter={filter} type={type} handleActivitiesCoords={props.handleActivitiesCoords}/>}
   />
-)
+);
 }

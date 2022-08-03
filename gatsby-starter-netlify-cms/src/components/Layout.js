@@ -27,9 +27,10 @@ const ConnectedHelmetComp = (props) => {
 
   const [featuredIds, setFeaturedIds] = useState([])
   const uri = "https://api.hostfully.com/v2/properties?tags=featured&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
+  const {t} = useTranslation();
 
 useEffect(() => {
-  if(!props.featuredProps || props.featuredProps?.length < 1){
+  if(!props.featuredProps || props.featuredProps?.length < 1 && typeof window !== `undefined`){
     fetch(uri, {
       headers:{
         "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
@@ -48,7 +49,38 @@ useEffect(() => {
   return () => {
     setFeaturedIds([])
   }
-}, [props])
+}, [])
+
+useEffect(() => {
+  if(featuredIds && featuredIds.length > 0 && featuredIds !== props.featuredIds && typeof window !== `undefined`){
+    try{
+      const db = firebase.firestore()
+      let featuredPropsList = []
+  
+      const getFireData = async () => {
+        const snapshot = await db
+                                .collection('Properties')
+                                .where(firebase.firestore.FieldPath.documentId(), 'in', featuredIds)
+                                .get();
+        snapshot.docs.forEach((doc) => {
+          featuredPropsList.push(doc.data())
+        })
+        props.dispatch({type: 'ADD_FEATURED_DATA', featuredPropsData: featuredPropsList})
+      }
+      
+      getFireData()
+    }catch(e){
+  
+    }
+  
+  }
+
+  return () => {
+    
+  }
+}, [featuredIds])
+
+
 return (
 <Helmet>
         <html lang="en" />
@@ -90,12 +122,25 @@ return (
         <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" 
         rel="stylesheet" 
         />
-                  <script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js"/>
-
-<script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
-        <script type="text/javascript" src="https://platform.hostfully.com/assets/widgets/searchwidget/searchwidget.js" />
-
+        <script type="application/ld+json">
+    {`
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "url": "https://www.smartavillas.com",
+          "name": "Smartavillas.com",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+351 281 027 089",
+            "contactType": "${t("Reservations & Customer Support")}"
+          }
+        }
+      `}
+  </script>      
 <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<script type="text/javascript" src="https://platform.hostfully.com/assets/js/pikaday.js" />
+        
+<script type="text/javascript" src="https://platform.hostfully.com/assets/js/leadCaptureWidget_2.0.js"/>
 
     
       </Helmet>

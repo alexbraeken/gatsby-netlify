@@ -10,6 +10,7 @@ var _redux = require("redux");
 function reducer(state, action) {
   var newObj = state.properties;
   var featuredProps = state.featuredProps;
+  var featuredPropsData = state.featuredPropsData;
   var city = state.city;
   var propType = state.propType;
 
@@ -27,6 +28,8 @@ function reducer(state, action) {
         currSymbol: action.currSymbol
       };
       return {
+        featuredProps: featuredProps,
+        featuredPropsData: featuredPropsData,
         properties: newObj
       };
     }
@@ -36,6 +39,8 @@ function reducer(state, action) {
     if (newObj[action.propId]) {
       delete newObj[action.propId];
       return {
+        featuredProps: featuredProps,
+        featuredPropsData: featuredPropsData,
         properties: newObj
       };
     }
@@ -45,6 +50,15 @@ function reducer(state, action) {
     featuredProps = action.propIds;
     return {
       featuredProps: featuredProps,
+      properties: newObj
+    };
+  }
+
+  if (action.type === 'ADD_FEATURED_DATA') {
+    featuredPropsData = action.featuredPropsData;
+    return {
+      featuredProps: featuredProps,
+      featuredPropsData: featuredPropsData,
       properties: newObj
     };
   }

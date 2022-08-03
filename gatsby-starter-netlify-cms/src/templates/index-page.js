@@ -22,47 +22,50 @@ import AlgarveWireSVG from '../components/AlgarveWireSVG'
 import VacationWireSVG from '../components/VacationWireSVG'
 import smartaLogo from '../img/logo.svg'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
+import cleanSafe from '../img/badge.webp'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
+import firebase from "gatsby-plugin-firebase"
 
+if (typeof window !== `undefined`) {
+  gsap.registerPlugin(ScrollTrigger);
+}
 const mapStateToProps = (state) => {
-  return  {featuredProps: state.featuredProps}
+  return  {featuredPropsData: state.featuredPropsData}
 }
 
 const ConnectedFeatured = (props) => {
-  const [featuredIds, setFeaturedIds] = useState([])
+  const [data, setData] = useState(null)
 
   const {t} = useTranslation();
 
   useEffect(() => {
-    setFeaturedIds(props.featuredProps)
+    setData(props.featuredPropsData)
     return () => {
-      setFeaturedIds([])
+      setData(null)
     }
-  }, [props.featuredProps])
+  }, [props.featuredPropsData])
+
+
 
   return (
-    <FirestoreCollection path="/Properties/">
-      {data => {
-          return (!data.isLoading && data.value) ?
-          <>
-          {featuredIds && featuredIds.length > 0 && 
-            <div>
-              <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('featured')}} /></h2>
-              <FeatureCarousel ids={featuredIds} properties={data.value}/>
-            </div>
-          }
-            </>
-          : 
-          <div style={{minHeight:"70vmin", backgroundColor:"grey", width:"80%"}}>
-            <Loading />
-          </div>
-        }
+    <>
+      {data ? 
+        <div>
+          <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('featured')}} /></h2>
+          <FeatureCarousel properties={data}/>
+        </div>
+        :
+        <div style={{minHeight:"70vmin", backgroundColor:"grey", width:"80%"}}>
+          <Loading />
+        </div>
       }
-    </FirestoreCollection>
+    </>
   )
 }
 
 const FeaturedProperties = connect(mapStateToProps)(ConnectedFeatured)
+
 
 export const IndexPageTemplate = ({
   image,
@@ -90,6 +93,25 @@ export const IndexPageTemplate = ({
 
   const [animationPlaying, setAnimationPlaying] = useState(false)
   const [searchActive, setSearchActive] = useState(false)
+  const [delta, setDelta] = useState({prev: 0, curr: 0})
+  const [featuredIds, setFeaturedIds] = useState([])
+
+  const heroImage = getImage(image.childImageSharp)
+  const pitchImg = getImage(pitchImage.childImageSharp)
+  const tripBgImage = getImage(tripImage.childImageSharp)
+  const listBgImage = getImage(listImage.childImageSharp)
+  const trustedBgImage = getImage(trustedImage.childImageSharp)
+  const locationBgImage = getImage(locationImage.childImageSharp)
+  const accommodationsBgImage = getImage(accommodationsImage.childImageSharp)
+
+  const heroBgImage = convertToBgImage(heroImage)
+  const pitchBgImg = convertToBgImage(pitchImg)
+  const tripBg = convertToBgImage(tripBgImage)
+  const listBg = convertToBgImage(listBgImage)
+  const trustedBg = convertToBgImage(trustedBgImage)
+  const locationBg = convertToBgImage(locationBgImage)
+  const accommodationsBg = convertToBgImage(accommodationsBgImage)
+
 
   const body = useRef(null)
   const logo = useRef(null)
@@ -340,8 +362,10 @@ const toggleActiveSearch = (active) => {
       <BackgroundImage
         Tag="div"
         className={"main-hero"}
-        fluid={image.childImageSharp?.fluid || image}
+        {...heroBgImage}
         backgroundColor={`#040e18`}
+        style={{zIndex:"1"}}
+        preserveStackingContext
       >
       </BackgroundImage>
       </div>
@@ -390,8 +414,10 @@ const toggleActiveSearch = (active) => {
           <BackgroundImage
               Tag="div"
               className={"parallax-bg"}
-              fluid={pitchImage.childImageSharp?.fluid || pitchImage}
+              {...pitchBgImg}
               backgroundColor={`#040e18`}
+              style={{zIndex:"1"}}
+              preserveStackingContext
             ></BackgroundImage>
         </div>
         <PortugalWireSVG />
@@ -431,8 +457,10 @@ const toggleActiveSearch = (active) => {
             <BackgroundImage
                 Tag="div"
                 className={"parallax-bg"}
-                fluid={tripImage.childImageSharp?.fluid || tripImage}
+                {...tripBg}
                 backgroundColor={`#040e18`}
+                style={{zIndex:"1"}}
+                preserveStackingContext
               ></BackgroundImage>
             </div>
             <VacationWireSVG />
@@ -488,8 +516,10 @@ const toggleActiveSearch = (active) => {
           <BackgroundImage
                 Tag="div"
                 className={"parallax-bg"}
-                fluid={listImage.childImageSharp?.fluid || listImage}
+                {...listBg}
                 backgroundColor={`#040e18`}
+                style={{zIndex:"1"}}
+                preserveStackingContext
               ></BackgroundImage>
           </div>
           <AlgarveWireSVG />
@@ -499,7 +529,7 @@ const toggleActiveSearch = (active) => {
           <svg className="clipped-image-container">
             <defs>
             <pattern id="img1" patternUnits="userSpaceOnUse" width="1500" height="1500">
-              <image href={clipPathImage.childImageSharp?.fluid.src} x="100" y="-250" width="1500" height="1500" />
+              <image href={clipPathImage.childImageSharp.fluid.src} x="100" y="-250" width="1500" height="1500" />
             </pattern>
           </defs>
             <circle ref={clipCircle} xmlns="http://www.w3.org/2000/svg" cx="600" cy="450" r="380" stroke="url(#img1)" stroke-width="50" fill="none"/>
@@ -515,9 +545,10 @@ const toggleActiveSearch = (active) => {
                 <BackgroundImage
                 Tag="div"
                 className={"home-card-bg"}
-                fluid={trustedImage.childImageSharp?.fluid || trustedImage}
+                {...trustedBg}
                 backgroundColor={`#040e18`}
-                style={{position: "absolute"}}
+                style={{zIndex:"1", position: "absolute"}}
+                preserveStackingContext
                 ></BackgroundImage>              
                 <Card.Body className="home-card-body">
                   <div className="home-card-title">
@@ -536,9 +567,10 @@ const toggleActiveSearch = (active) => {
                 <BackgroundImage
                 Tag="div"
                 className={"home-card-bg"}
-                fluid={locationImage.childImageSharp?.fluid || locationImage}
+                {...locationBg}
                 backgroundColor={`#040e18`}
-                style={{position: "absolute"}}
+                style={{zIndex:"1", position: "absolute"}}
+                preserveStackingContext
               ></BackgroundImage>
                 <Card.Body className="home-card-body">
                   <div className="home-card-title">
@@ -557,9 +589,10 @@ const toggleActiveSearch = (active) => {
                 <BackgroundImage
                 Tag="div"
                 className={"home-card-bg"}
-                fluid={accommodationsImage.childImageSharp?.fluid || accommodationsImage}
+                {...accommodationsBg}
                 backgroundColor={`#040e18`}
-                style={{position: "absolute"}}
+                style={{zIndex:"1", position: "absolute"}}
+                preserveStackingContext
                 ></BackgroundImage>
                 <Card.Body className="home-card-body">
                   <div className="home-card-title">
@@ -603,27 +636,24 @@ const toggleActiveSearch = (active) => {
         marginLeft: "-50vw",
         left: "50%",
         backgroundColor:"#333333"}}>
-      <Container>
+        <Container>
         <Row>
           <Col xs={12} md={8}>
             <div style={{display: "flex", height: "100%"}}>
               <div style={{margin: "auto", textAlign:"center"}}>
-              <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold", color: "#f5821e"}}><span dangerouslySetInnerHTML={{__html: t('clean & safe')}} /></h2>
-          <br />
-          <p style={{color:"#fff"}}>
-          <span dangerouslySetInnerHTML={{__html: t('clean & safe description')}} />
-          </p>
+                <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold", color: "#f5821e"}}><span dangerouslySetInnerHTML={{__html: t('clean & safe')}} /></h2>
+                <br />
+                <p style={{color:"#fff"}}>
+                  <span dangerouslySetInnerHTML={{__html: t('clean & safe description')}} />
+                </p>
               </div>
-            </div>
-          </Col>
-          <Col xs={12} md={4}>
-            <div style={{display: "flex"}}>
-              <img alt="Clean &amp; Safe Seal" src="https://portugalcleanandsafe.com/assets/badge.png" style={{margin: "auto", maxHeight:"300px", minHeight:"250px"}} />
             </div>
           </Col>
         </Row>
       </Container>
-      <div style={{ 
+      </section>
+      <section style={{
+          paddingBottom: "100px",
           width: "100vw",
           position: "absolute",
           top: "auto",
@@ -641,8 +671,7 @@ const toggleActiveSearch = (active) => {
             }}> 
             <path d="M0 100 C 50 0 75 100 100 75 L 100 100 Z"></path> 
             </svg>
-            </div>
-      </section>
+        </section>
       <Newsletter lang={language}/>
       <Container style={{paddingLeft:"0", paddingRight:"0"}}>
         <FeaturedProperties />
@@ -654,21 +683,21 @@ const toggleActiveSearch = (active) => {
           <div dangerouslySetInnerHTML={{ __html: `<div> ${news[language]} </div>` }} />
         </Container>
       </section>
-      <section style={{paddingTop:"40px", paddingBottom:"40px"}}>
+      <section className="last">
       <Container>
       <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('our feed')}} /></h2>
       <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
       <InstagramFeed />
       </Container>
       </section>
-      <section className="last">
-        <Container>
-        <PageContent className="content" content={content} />
-        </Container>
-      </section>
+      <section>
+          <Container>
+          <PageContent className="content" content={content} />
+          </Container>
+        </section>
     </section>
   </div>
-)} 
+  );} 
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -723,13 +752,12 @@ IndexPage.propTypes = {
 
 export default IndexPage
 
-export const pageQuery = graphql`
-query IndexPageTemplate ($language: String!) {
-  pageData: markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+export const pageQuery = graphql`query IndexPageTemplate($language: String!) {
+  pageData: markdownRemark(frontmatter: {templateKey: {eq: "index-page"}}) {
     html
     frontmatter {
-      title 
-      langTitles{
+      title
+      langTitles {
         en
         pt
         fr
@@ -737,23 +765,21 @@ query IndexPageTemplate ($language: String!) {
       }
       image {
         childImageSharp {
-          fluid(maxWidth: 2000, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(quality: 95, layout: FULL_WIDTH)
         }
       }
       heading {
-          en
-          pt
-          fr
-          es
-        }
+        en
+        pt
+        fr
+        es
+      }
       subheading {
-          en
-          pt
-          fr
-          es
-        }
+        en
+        pt
+        fr
+        es
+      }
       mainpitch {
         title {
           en
@@ -770,62 +796,52 @@ query IndexPageTemplate ($language: String!) {
       }
       pitchImage {
         childImageSharp {
-          fluid(maxWidth: 926, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(width: 926, quality: 100, layout: FULL_WIDTH)
         }
       }
       clipPathImage {
         childImageSharp {
-          fluid(maxWidth: 926, quality: 100) {
-            ...GatsbyImageSharpFluid
+          fluid {
+            src
           }
         }
       }
       tripImage {
         childImageSharp {
-          fluid(maxWidth: 1000, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
       }
       listImage {
         childImageSharp {
-          fluid(maxWidth: 1000, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
       }
       trustedImage {
         childImageSharp {
-          fluid(maxWidth: 500, quality: 92) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(width: 500, quality: 92, layout: CONSTRAINED)
         }
       }
       locationImage {
         childImageSharp {
-          fluid(maxWidth: 500, quality: 92) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(width: 500, quality: 92, layout: CONSTRAINED)
         }
       }
       accommodationsImage {
         childImageSharp {
-          fluid(maxWidth: 500, quality: 92) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(width: 500, quality: 92, layout: CONSTRAINED)
         }
       }
       news {
-          en
-          pt
-          fr
-          es
-        }
+        en
+        pt
+        fr
+        es
+      }
     }
   }
-  locales: allLocale(filter: {ns: {in: ["translation", "index"]},language: {eq: $language}}) {
+  locales: allLocale(
+    filter: {ns: {in: ["translation", "index"]}, language: {eq: $language}}
+  ) {
     edges {
       node {
         ns

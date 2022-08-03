@@ -9,7 +9,12 @@ import OwnerTestimonials from '../components/OwnerTestimonials'
 import { gsap } from "gsap";
 import BackgroundImage from 'gatsby-background-image'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
+
+
 gsap.registerPlugin(ScrollTrigger);
+
 
 export const WhyUsPageTemplate = ({
   image,
@@ -33,6 +38,12 @@ export const WhyUsPageTemplate = ({
 
   const {t} = useTranslation();
   const {language } = useI18next();
+
+  const heroImage = getImage(image.childImageSharp)
+  const bgImage = convertToBgImage(heroImage)
+
+  const part2Bg = getImage(part2Img.childImageSharp)
+  const part2BgImg = convertToBgImage(part2Bg)
 
   useEffect(() => {
 
@@ -132,22 +143,21 @@ export const WhyUsPageTemplate = ({
 
   return(
   <div className="content">
-    <div
-      className="full-width-image-container margin-top-0 gradient-bg"
-      style={{
-        backgroundImage: `url(${
-          image.publicURL
-        })`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}
-    >
+       <BackgroundImage
+          className={"full-width-image-container margin-top-0 "}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1"}}
+          preserveStackingContext
+        >
+          <div className="gradient-bg"></div>
       <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
         {langTitles[language]}
       </h2>
-    </div>
+      </BackgroundImage>
     <section className="newLine" style={{
         paddingBottom: "100px",
         position: "relative"}}>
@@ -212,8 +222,10 @@ export const WhyUsPageTemplate = ({
           <BackgroundImage
               Tag="div"
               className={"parallax-bg"}
-              fluid={part2Img.childImageSharp?.fluid || part2Img}
+              {...part2BgImg}
               backgroundColor={`#040e18`}
+              style={{zIndex:"1"}}
+              preserveStackingContext
             ></BackgroundImage>
         </div>
         </div>
@@ -440,175 +452,162 @@ WhyUsPage.propTypes = {
 
 export default WhyUsPage
 
-export const WhyUsPageQuery = graphql`
-  query WhyUsPage($id: String!, $language: String!) {
-    pageData: markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        title 
-        langTitles{
+export const WhyUsPageQuery = graphql`query WhyUsPage($id: String!, $language: String!) {
+  pageData: markdownRemark(id: {eq: $id}) {
+    frontmatter {
+      title
+      langTitles {
+        en
+        pt
+        fr
+        es
+      }
+      image {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+        }
+        publicURL
+      }
+      part1 {
+        header {
           en
           pt
           fr
           es
         }
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-          publicURL
-        }
-        part1 {
-          header{
-            en
-            pt
-            fr
-            es
-          }
-          text {
-            en
-            pt
-            fr
-            es
-          }
-        }
-        part1Img {
-          childImageSharp {
-            fluid(maxWidth: 1000, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-          publicURL
-        }
-        part2 {
-          header {
-            en
-            pt
-            fr
-            es
-          }
-          text {
-            en
-            pt
-            fr
-            es
-          }
-        }
-        part2Img {
-          childImageSharp {
-            fluid(maxWidth: 1000, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-          publicURL
-        }
-        part3 {
-          header {
-            en
-            pt
-            fr
-            es
-          }
-          col1Header {
-            en
-            pt
-            fr
-            es
-          }
-          col1 {
-            en
-            pt
-            fr
-            es
-          }
-          col1img {
-            childImageSharp {
-              fluid(maxWidth: 500, quality: 100) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-            publicURL
-          }
-          col2Header {
-            en
-            pt
-            fr
-            es
-          }
-          col2 {
-            en
-            pt
-            fr
-            es
-          }
-          col2img {
-            childImageSharp {
-              fluid(maxWidth: 500, quality: 100) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-            publicURL
-          }
-          col3Header {
-            en
-            pt
-            fr
-            es
-          }
-          col3{
-            en
-            pt
-            fr
-            es
-          }
-          col3img {
-            childImageSharp {
-              fluid(maxWidth: 500, quality: 100) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-            publicURL
-          }
-        }
-        part4 {
-          header{
-            en
-            pt
-            fr
-            es
-          }
-          text {
-            en
-            pt
-            fr
-            es
-          }
-        }
-        part4Img {
-          childImageSharp {
-            fluid(maxWidth: 1000, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-          publicURL
-        }
-        testimonialHeader {
+        text {
           en
           pt
           fr
           es
         }
       }
-    }
-    locales: allLocale(filter: {ns: {in: ["translation"]},language: {eq: $language}}) {
-      edges {
-        node {
-          ns
-          data
-          language
+      part1Img {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
+        publicURL
+      }
+      part2 {
+        header {
+          en
+          pt
+          fr
+          es
+        }
+        text {
+          en
+          pt
+          fr
+          es
+        }
+      }
+      part2Img {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+        }
+        publicURL
+      }
+      part3 {
+        header {
+          en
+          pt
+          fr
+          es
+        }
+        col1Header {
+          en
+          pt
+          fr
+          es
+        }
+        col1 {
+          en
+          pt
+          fr
+          es
+        }
+        col1img {
+          childImageSharp {
+            gatsbyImageData(width: 500, quality: 100, layout: CONSTRAINED)
+          }
+          publicURL
+        }
+        col2Header {
+          en
+          pt
+          fr
+          es
+        }
+        col2 {
+          en
+          pt
+          fr
+          es
+        }
+        col2img {
+          childImageSharp {
+            gatsbyImageData(width: 500, quality: 100, layout: CONSTRAINED)
+          }
+          publicURL
+        }
+        col3Header {
+          en
+          pt
+          fr
+          es
+        }
+        col3 {
+          en
+          pt
+          fr
+          es
+        }
+        col3img {
+          childImageSharp {
+            gatsbyImageData(width: 500, quality: 100, layout: CONSTRAINED)
+          }
+          publicURL
+        }
+      }
+      part4 {
+        header {
+          en
+          pt
+          fr
+          es
+        }
+        text {
+          en
+          pt
+          fr
+          es
+        }
+      }
+      part4Img {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+        }
+        publicURL
+      }
+      testimonialHeader {
+        en
+        pt
+        fr
+        es
       }
     }
   }
+  locales: allLocale(
+    filter: {ns: {in: ["translation"]}, language: {eq: $language}}
+  ) {
+    edges {
+      node {
+        ns
+        data
+        language
+      }
+    }
+  }
+}
 `
