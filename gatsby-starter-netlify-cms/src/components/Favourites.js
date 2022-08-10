@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import React, { useState, useEffect } from 'react'
+import {Link} from 'gatsby-plugin-react-i18next';
 import { connect } from "react-redux"
-import {Container, Col, Row, Card} from 'react-bootstrap'
+import {Col, Row, Card} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import PropTypes from "prop-types"

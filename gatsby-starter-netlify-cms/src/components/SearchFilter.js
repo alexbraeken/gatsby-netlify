@@ -1,17 +1,14 @@
 import React, {useState, useRef, useEffect} from 'react'
-import { graphql } from 'gatsby'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import { useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
-import Form from 'react-bootstrap/Form'
 import { gsap } from "gsap"
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import SubmitButton from './SubmitButton'
 import Select from 'react-select'
-import { FirestoreDocument } from '@react-firebase/firestore'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -235,7 +232,6 @@ const SearchFilter = (props) => {
     const [dates, setDates] = useState({from:undefined, to: undefined})
     const [datesWidth, setDatesWidth] = useState("500px")
     const [locationArray, setLocationArray] = useState([])
-    const [locationData, setLocationData] = useState(null)
     const [clicked, setClicked] = useState(false)
 
     const toRef = useRef(null)
@@ -256,17 +252,33 @@ const SearchFilter = (props) => {
 
       if(typeof window !== `undefined`){
         try{
-          const db = firebase.firestore()
           let locationsList = []
       
           const getFireData = async () => {
-            const snapshot = await db
-                                    .collection('/Navbar')
-                                    .doc('Nav')
-                                    .get();
-            snapshot.data().Locations.forEach((loc) => {
-              locationsList.push({ value: loc, label: loc })
-            })
+            const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+            fetch(uri, 
+              {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                  {
+                    source: "db",
+                    col:"Navbar",
+                    doc:"Nav"
+                  })
+                })
+                  .then(response => {
+                      return response.text()
+                  })
+                  .then(data => {
+                    JSON.parse(data).Nav.Locations.forEach((loc) => {
+                      locationsList.push({ value: loc, label: loc })
+                    })
+                  })
+
             setLocationArray(locationsList)
           }
           

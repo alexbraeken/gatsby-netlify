@@ -4,14 +4,11 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Layout from '../components/Layout'
-import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import { gsap } from "gsap";
 import {Container, Col, Row, Card} from 'react-bootstrap'
-import { FirestoreCollection } from "@react-firebase/firestore"
 import Loading from '../components/Loading'
 import FeatureCarousel from '../components/FeatureCarousel'
 import SearchFilter from '../components/SearchFilter'
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import SubmitButton from '../components/SubmitButton'
 import Newsletter from '../components/Newsletter'
 import Content, { HTMLContent } from '../components/Content'
@@ -22,10 +19,8 @@ import AlgarveWireSVG from '../components/AlgarveWireSVG'
 import VacationWireSVG from '../components/VacationWireSVG'
 import smartaLogo from '../img/logo.svg'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import cleanSafe from '../img/badge.webp'
 import convertToBgImage from "../Helpers/images"
 import { getImage } from "gatsby-plugin-image"
-import firebase from "gatsby-plugin-firebase"
 
 if (typeof window !== `undefined`) {
   gsap.registerPlugin(ScrollTrigger);

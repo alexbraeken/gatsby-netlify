@@ -1,9 +1,8 @@
-import React, {useState, useEffect, Component, useCallback} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { graphql } from 'gatsby'
 import 'firebase/firestore'
-import { FirestoreCollection } from "@react-firebase/firestore"
 import { Router, useLocation } from "@reach/router"
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next'
+import { useTranslation, useI18next} from 'gatsby-plugin-react-i18next'
 import PropertyTemplate from "../../templates/property-page"
 import Layout from '../../components/Layout'
 import PropFeatures from '../../components/PropFeatures'
@@ -27,8 +26,7 @@ import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
-import { IoIosArrowBack   } from "@react-icons/all-files/io/IoIosArrowBack";
-import { IoIosArrowForward   } from "@react-icons/all-files/io/IoIosArrowForward";
+
 
 gsap.registerPlugin(gsap);
 
@@ -77,7 +75,40 @@ const ConnectedProperties = React.memo((props) => {
 
 
     useEffect(() => {
+
         props.handlePathChange(window.location.href)
+        let properties = []
+        const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+        const getFireData = async () => {
+          fetch(uri, 
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(
+                {
+                  source: "db",
+                  col:"Properties",
+                  fields:"['name','rank','amenities','type','latitude','longitude','picture','city','currencySybmol','customData','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
+                })
+              })
+                .then(response => {
+                    console.log(response)
+                    return response.text()
+                })
+                .then(data => {
+                    console.log(data)
+                  let propsObj = JSON.parse(data)
+                  Object.keys(propsObj).forEach(prop => {
+                    properties.push(propsObj[prop])
+                  })
+                  setData(properties)
+                })
+        }
+        
+        getFireData()
         return () => {
             setPropertyIds([])
             setAmenitiesList({
@@ -251,12 +282,7 @@ const ConnectedProperties = React.memo((props) => {
 
         return(
             <div>
-                <FirestoreCollection path="/Properties/">
-                    {data => {       
-                        return (!data.isLoading && data.value) ?  
-                        <>
-                        {setData(data.value)}
-
+                    {data ?      
                         <Container style={{width:"100vw", maxWidth:"none", minHeight: "100vh"}} >
                             <Row>
                                 <Col xs={12} md={horizontalExpanded? 6 : 3} id="filter-sidebar" style={{transition:"all 1s"}}>
@@ -265,7 +291,8 @@ const ConnectedProperties = React.memo((props) => {
                                         display: "flex",
                                         justifyContent: "space-between",
                                         height: "6vh",
-                                        minHeight: "55px"}}
+                                        minHeight: "55px",
+                                        width: "inherit"}}
                                         className="fixed-mobile">
                                             <div style={{display:"flex", flexWrap:"nowrap", margin: "auto 10px auto 0"}}>
                                         <Form.Group style={{margin:"10px auto"}}>
@@ -372,23 +399,19 @@ const ConnectedProperties = React.memo((props) => {
                                     </style>
                                 </Helmet> 
                         </Container>
-                        
-                        </> 
                         : 
-                        <>
-                            <Container style={{width:"100vw", maxWidth:"none"}} >
-                            <Row>
-                                <Col xs={12} md={3} id="filter-sidebar">
-                                <div className="placeholder-box blink" style={{height:"100%", minHeight:"90vh"}}></div>
-                                </Col>
-                                <Col>
-                                    <Loading />
-                                </Col> 
-                                </Row>
-                            </Container>
-                        </>
-                    }}
-                </FirestoreCollection>
+                        <Container style={{width:"100vw", maxWidth:"none"}} >
+                        <Row>
+                            <Col xs={12} md={3} id="filter-sidebar">
+                            <div className="placeholder-box blink" style={{height:"100%", minHeight:"90vh"}}></div>
+                            </Col>
+                            <Col>
+                                <Loading />
+                            </Col> 
+                            </Row>
+                        </Container>
+                    }
+
             </div>
         )
 })

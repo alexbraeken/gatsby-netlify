@@ -1,6 +1,6 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useRef} from 'react'
 import logo from '../img/logo.svg'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {Link, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import facebook from '../img/social/facebook.svg'
 import instagram from '../img/social/instagram.svg'
 import SubmitButton from'./SubmitButton'
@@ -10,7 +10,6 @@ const Footer = () =>{
 
 
     const {t} = useTranslation();
-    const {language} = useI18next();
 
     const footer = useRef(null)
 

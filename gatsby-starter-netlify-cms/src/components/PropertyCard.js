@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {Card} from 'react-bootstrap'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
-import Col from 'react-bootstrap/Col'
+import {Link, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { FirestoreDocument } from "@react-firebase/firestore"
 import Loading from '../components/Loading'
 import Amenity from '../components/Amenities'

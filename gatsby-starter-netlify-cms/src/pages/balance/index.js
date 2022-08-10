@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation} from 'gatsby-plugin-react-i18next';
 import queryString from 'query-string';
 import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'

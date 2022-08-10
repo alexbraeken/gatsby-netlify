@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { BsStarFill } from "@react-icons/all-files/bs/BsStarFill";
 import { BsStar } from "@react-icons/all-files/bs/BsStar";
 import Masonry from 'react-masonry-component';
@@ -12,7 +12,6 @@ export default function Reviews(props) {
     const [sortMethod, setSortMethod] = useState(null)
 
     const {t} = useTranslation(['property', 'translation']);
-    const {language} = useI18next();
 
     useEffect(() => {
         setSlides(props.reviews.slice(0, showQuantity))

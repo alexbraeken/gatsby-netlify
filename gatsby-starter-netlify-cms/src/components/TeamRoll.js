@@ -1,14 +1,11 @@
 import React, {useEffect} from 'react'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
-import { graphql, StaticQuery, useStaticQuery } from 'gatsby'
-import BackgroundImage from 'gatsby-background-image'
+import { graphql, StaticQuery } from 'gatsby'
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import StickyBox from "react-sticky-box"
-import { getImage, GatsbyImage } from "gatsby-plugin-image"
-import { BgImage  } from "gbimage-bridge"
-import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,7 +15,7 @@ return(
   <div className={`headshot bottom-left ${props.first? 'first' : ''}`} >
         <figure className="stretched sized" data-stretch={props.member.node.frontmatter.featuredimage.childImageSharp.fluid.src} 
                 style={{position: "relative", background: "none"}}>
-                  <div className="anystretch member-img-container" id={`member-img-${props.id}`} style={{left: "0px", top: "0px", position: "absolute", overflow: "hidden", zIndex: "-999998", margin: "0px", padding: "0px", height: "100%", width: "100%", display: "flex",
+                  <div className="anystretch member-img-container" id={`member-img-${props.id}`} style={{left: "0px", top: "0px", position: "absolute", zIndex: "-999998", margin: "0px", padding: "0px", height: "100%", width: "100%", display: "flex",
     justifyVontent: "center",
     alignItems: "center",
     overflow: "hidden"}}>

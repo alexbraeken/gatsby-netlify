@@ -3,8 +3,6 @@ import {useTranslation, Link} from 'gatsby-plugin-react-i18next';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Container } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import ReactBnbGallery from 'react-bnb-gallery';
 import { Helmet } from 'react-helmet'
 import BedBathPax from '../components/BedBathPax';

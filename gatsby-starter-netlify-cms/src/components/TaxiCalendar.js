@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { Helmet } from 'react-helmet'
 import 'react-day-picker/lib/style.css';
 import TaxiEnquiryModal from './TaxiEnquiryModal.js'
@@ -125,7 +125,6 @@ const FIRST_DAY = {
 const TaxiCalendar = (props) => {
 
     const [selectedDay, setSelectedDay] = useState(null);
-    const [total, setTotal] = useState(0)
     const [showModal, setShowModal] = useState(false)
 
     const {t} = useTranslation(['translation']);

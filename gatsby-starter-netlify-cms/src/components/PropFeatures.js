@@ -1,11 +1,10 @@
 import React,{useState, useEffect, useRef} from 'react'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {Link, useTranslation} from 'gatsby-plugin-react-i18next';
 import {Row, Col, Container, Alert}from 'react-bootstrap'
 import PropertyCard from '../components/PropertyCard'
 import { gsap } from "gsap"
-import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import Loading from '../components/Loading'
-import Select, {components} from 'react-select'
+import Select from 'react-select'
 import BedBathPax from '../components/BedBathPax'
 import DatePicker from '../components/DatePicker'
 import StickyBox from "react-sticky-box"
@@ -15,10 +14,7 @@ import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
-import { IoIosArrowBack   } from "@react-icons/all-files/io/IoIosArrowBack";
-import { IoIosArrowForward   } from "@react-icons/all-files/io/IoIosArrowForward";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Slider from "react-slick";
 
 gsap.registerPlugin(gsap);
 gsap.registerPlugin(ScrollTrigger);

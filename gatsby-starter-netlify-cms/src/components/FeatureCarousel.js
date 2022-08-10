@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import SubmitButton from'./SubmitButton'
 import { Helmet } from 'react-helmet'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {Link, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 class CustomSlide extends React.Component {
 
@@ -31,14 +31,16 @@ class CustomSlide extends React.Component {
     render() {
       
       return (
-        <div style={{backgroundColor: "grey", backgroundImage: `url(${this.state.src})`,
-        minHeight: "70vmin",
-        height: "100%",
-        margin: "0px auto",
-        overflow: "hidden",
-        position: "relative",
-        backgroundSize:"cover",
-        backgroundPosition:"center"}}>
+        <div style={{
+          backgroundColor: "grey", 
+          backgroundImage: `url(${this.state.src})`,
+          minHeight: "70vmin",
+          height: "100%",
+          margin: "0px auto",
+          overflow: "hidden",
+          position: "relative",
+          backgroundSize:"cover",
+          backgroundPosition:"center"}}>
         </div>
       );
     }

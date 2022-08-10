@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Col, Row } from 'react-bootstrap';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation} from 'gatsby-plugin-react-i18next';
 import RangeSlider from '../components/RangeSlider';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'

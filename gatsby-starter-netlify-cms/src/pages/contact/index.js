@@ -3,7 +3,7 @@ import Layout from '../../components/Layout'
 import { Helmet } from 'react-helmet'
 import Newsletter from '../../components/Newsletter'
 import emailjs from 'emailjs-com';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import GoogleMapComponent from '../../components/GoogleMapComponent';
 
 const Contact = class extends React.Component {

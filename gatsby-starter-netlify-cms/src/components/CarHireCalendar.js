@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { Helmet } from 'react-helmet'
 import 'react-day-picker/lib/style.css';
 import CarEnquiryModal from '../components/CarEnquiryModal'
@@ -129,7 +129,6 @@ const CarHireCalendar = (props) => {
         to: undefined,
       });
     const [startMonthYear, setStartMonthYear] = useState({startYear: null, startMonth: null})
-    const [pricingPeriods, setPricingPeriods] = useState({})
     const [total, setTotal] = useState(0)
     const [showModal, setShowModal] = useState(false)
 
@@ -151,9 +150,6 @@ const CarHireCalendar = (props) => {
         }
     }, [props.pricingPeriods])
 
-    useEffect(() => {
-
-    }, [pricingPeriods])
 
 
     const getInitialState = () => {
@@ -300,12 +296,9 @@ const CarHireCalendar = (props) => {
     };
 
     const today = new Date()
-    let nextYear = DateUtils.addMonths(today, 12)
     let limitDate = DateUtils.addMonths(today, 24)
 
     const renderDay = (day, modifiers) => {
-        const dateDay = day.getDate()
-        const dateMonth = day.getMonth()
         const dateYear = day.getFullYear()
 
         Date.prototype.addDays = function(days) {

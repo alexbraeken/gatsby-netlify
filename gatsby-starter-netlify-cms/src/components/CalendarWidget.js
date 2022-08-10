@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { Helmet } from 'react-helmet'
 import { GiLockedDoor } from "@react-icons/all-files/gi/GiLockedDoor";
 import 'react-day-picker/lib/style.css';

@@ -8,7 +8,6 @@ import {
     WhatsappShareButton,
     EmailIcon,
     FacebookIcon,
-    FacebookMessengerIcon,
     PinterestIcon,
     TwitterIcon,
     WhatsappIcon} from "react-share";

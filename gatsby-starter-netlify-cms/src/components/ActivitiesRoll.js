@@ -11,7 +11,6 @@ import { getImage } from "gatsby-plugin-image"
 //Individual Activity Cards
 const ActivityCard = React.memo((props) =>{
 
-  const {t} = useTranslation();
   const {language } = useI18next();
 
     

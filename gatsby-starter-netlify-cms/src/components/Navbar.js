@@ -1,20 +1,16 @@
 import React, {useState, useEffect } from 'react'
 import { connect } from "react-redux"
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {Link, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully logo.webp'
 import logo from '../img/smartavillas logo.png'
-import Container from 'react-bootstrap/Container'
 import Collapse from 'react-bootstrap/Collapse';
-import { FirestoreDocument } from "@react-firebase/firestore";
-import { FirestoreCollection } from "@react-firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import Select, { components } from "react-select";
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import Masonry from 'react-masonry-component';
 import Loading from './Loading'
 import BedBathPax from './BedBathPax'
 import backArea from '../img/mobile-back-area.svg'
@@ -26,13 +22,6 @@ if (typeof window !== `undefined`) {
   gsap.core.globals("ScrollTrigger", ScrollTrigger)
 }
 
-const DropdownIndicator = props => {
-  return (
-    <components.DropdownIndicator {...props}>
-      <FontAwesomeIcon className={`expand-chevron`} icon={faChevronDown} style={{margin:"auto 0 auto auto"}} />
-    </components.DropdownIndicator>
-  );
-};
 
 const PropertiesDropDown = React.memo((props) => {
 
@@ -226,7 +215,6 @@ const mapStateToProps = (state) => {
 }
 
 const ConnectedFeaturedPropertyComp = (props) => {
-  const {t} = useTranslation();
   const {language} = useI18next();
   const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
 
@@ -240,7 +228,7 @@ const ConnectedFeaturedPropertyComp = (props) => {
                     <Link to={`/properties/${prop.uid}`} target="_blank" rel="noopener noreferrer">
                       <div className="featured-wrap">
                         <div className="featured-image-wrap">
-                          <img src={prop.picture} alt="artist headshot" />
+                          <img src={prop.pictitureReducedCloudUrl || prop.picture} alt="artist headshot" />
                         </div>
                         <div className="featured-text-wrap">
                           <BedBathPax bedrooms={prop.bedrooms} bathrooms={prop.bathrooms} baseGuests={prop.baseGuests} color="rgba(256,256,256)"/>

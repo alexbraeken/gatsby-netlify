@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useI18next} from 'gatsby-plugin-react-i18next';
 import Carousel from 'react-bootstrap/Carousel'
 import { graphql, StaticQuery } from 'gatsby'
 import Row from 'react-bootstrap/Row'

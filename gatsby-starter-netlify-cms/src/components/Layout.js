@@ -17,7 +17,6 @@ import 'react-bnb-gallery/dist/style.css'
 import NewsAlert from '../components/newsAlert'
 import CookieBannerCookieHub from '../components/CookieBannerCookieHub'
 import ConnectedFavourites from '../components/Favourites';
-import PropTypes from "prop-types"
 
 const mapStateToProps = (state) => {
     return  {featuredProps: state.featuredProps}
@@ -26,23 +25,26 @@ const mapStateToProps = (state) => {
 const ConnectedHelmetComp = (props) => {
 
   const [featuredIds, setFeaturedIds] = useState([])
-  const uri = "https://api.hostfully.com/v2/properties?tags=featured&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f"
+  const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
   const {t} = useTranslation();
 
 useEffect(() => {
-  if(!props.featuredProps || props.featuredProps?.length < 1 && typeof window !== `undefined`){
-    fetch(uri, {
-      headers:{
-        "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
-      }
-    })
+  if((!props.featuredProps || props.featuredProps?.length < 1) && typeof window !== `undefined`){
+    fetch(uri, 
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({source: 'hf', request: 'v2/properties?tags=featured&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f'})
+      })
           .then(response => {
-              
               return response.text()
           })
           .then(data => {
-            props.dispatch({type: 'ADD_FEATURED', propIds: JSON.parse(data).propertiesUids})
-            setFeaturedIds(JSON.parse(data).propertiesUids)
+            props.dispatch({type: 'ADD_FEATURED', propIds: JSON.parse(data)})
+            setFeaturedIds(JSON.parse(data))
           })
   }
   
@@ -54,18 +56,38 @@ useEffect(() => {
 useEffect(() => {
   if(featuredIds && featuredIds.length > 0 && featuredIds !== props.featuredIds && typeof window !== `undefined`){
     try{
-      const db = firebase.firestore()
       let featuredPropsList = []
-  
+      const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
       const getFireData = async () => {
-        const snapshot = await db
-                                .collection('Properties')
-                                .where(firebase.firestore.FieldPath.documentId(), 'in', featuredIds)
-                                .get();
-        snapshot.docs.forEach((doc) => {
-          featuredPropsList.push(doc.data())
-        })
-        props.dispatch({type: 'ADD_FEATURED_DATA', featuredPropsData: featuredPropsList})
+        fetch(uri, 
+          {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+              {
+                source: "db",
+                col:"Properties",
+                fields:"['name','picture','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
+                where:{
+                    field:"FieldPath.documentId()",
+                    op:"in",
+                    value: JSON.stringify(featuredIds)
+                }
+              })
+            })
+              .then(response => {
+                  return response.text()
+              })
+              .then(data => {
+                let propsObj = JSON.parse(data)
+                Object.keys(propsObj).forEach(prop => {
+                  featuredPropsList.push(propsObj[prop])
+                })
+                props.dispatch({type: 'ADD_FEATURED_DATA', featuredPropsData: featuredPropsList})
+              })
       }
       
       getFireData()
