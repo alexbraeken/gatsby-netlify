@@ -13,7 +13,7 @@ const CarAlertModal = (props) => {
                 <Modal.Title>{t("No Availabilities")}</Modal.Title>
             </Modal.Header> 
             <Modal.Body>
-                {t("No Availabilities of any class vehicles till 31st August 2022")}
+                {t("No Availabilities of any class vehicles till 30th September 2022")}
             </Modal.Body>
         </Modal>
     )
