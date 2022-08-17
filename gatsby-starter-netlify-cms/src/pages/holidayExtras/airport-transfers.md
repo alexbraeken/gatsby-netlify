@@ -50,8 +50,8 @@ html:
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
-<td align='center'>50€</td>
-<td align='center'>60€</td>
+<td align='center'>55€</td>
+<td align='center'>65€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
@@ -160,8 +160,8 @@ html:
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
-<td align='center'>50€</td>
-<td align='center'>60€</td>
+<td align='center'>55€</td>
+<td align='center'>65€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
@@ -270,8 +270,8 @@ html:
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
-<td align='center'>50€</td>
-<td align='center'>60€</td>
+<td align='center'>55€</td>
+<td align='center'>65€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
@@ -380,8 +380,8 @@ html:
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
-<td align='center'>50€</td>
-<td align='center'>60€</td>
+<td align='center'>55€</td>
+<td align='center'>65€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
