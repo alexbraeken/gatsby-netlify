@@ -95,11 +95,9 @@ const ConnectedProperties = React.memo((props) => {
                 })
               })
                 .then(response => {
-                    console.log(response)
                     return response.text()
                 })
                 .then(data => {
-                    console.log(data)
                   let propsObj = JSON.parse(data)
                   Object.keys(propsObj).forEach(prop => {
                     properties.push(propsObj[prop])

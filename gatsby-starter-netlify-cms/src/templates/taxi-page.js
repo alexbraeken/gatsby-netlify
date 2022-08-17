@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
@@ -154,7 +154,6 @@ ContentPageTemplate.propTypes = {
 
 const ContentPage = ({ data }) => {
   const post = data.pageData
-  const {t} = useTranslation(['translation']);
 
   return (
     <Layout propTitle={post.frontmatter.title}>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {Card} from 'react-bootstrap'
 import {Link, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
-import { FirestoreDocument } from "@react-firebase/firestore"
 import Loading from '../components/Loading'
 import Amenity from '../components/Amenities'
 import Share from '../components/Share'
@@ -41,6 +40,9 @@ const PropertyCardComp = (props) => {
     const [hover, setHover] = useState(false)
     const [displayed, setDisplayed] = useState(false)
     const [timerId, setTimerId] = useState(null)
+    const [imgList, setImgList] = useState(null)
+    const [amensList, setAmensList] = useState(null)
+    const [pricingList, setPricingList] = useState(null)
 
     const {t} = useTranslation(['properties', 'translation', 'amenities']);
     const {language} = useI18next();
@@ -184,8 +186,75 @@ const PropertyCardComp = (props) => {
     
     }, [displayed])
     
+  
+      const getFireData = async (body) => {
+        let data = []
+        const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+        let res = await fetch(uri, 
+          {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+            })
+              .then(response => {
+                  return response.text()
+              })
+              .then(res => {
+                let propsObj = JSON.parse(res)
+                Object.keys(propsObj).forEach(prop => {
+                  data = propsObj[prop]
+                })
+                return data
+              })
 
-    
+        return res
+      }
+
+    const getSetPhotos = async (id) => {
+      if(!imgList){
+        let body = {
+          source: "db",
+          col:"Properties",
+          where:{
+            "field":"FieldPath.documentId()",
+            "op":"==",
+            "value":id
+          },
+          fields:"['photos']",
+        }
+        let res = await getFireData(body)
+        setImgList(res.photos)
+      }
+    }
+
+    const getSetAmenities = async (id) => {
+      if(!amensList){
+        let body = {
+          source: "db",
+          col:"amenities",
+          doc:id
+        }
+        let res = await getFireData(body)
+        setAmensList(res)
+      }
+    }
+
+    const getSetPricing = async (id) => {
+      if(!pricingList){
+        let body = {
+          source: "db",
+          col:"PricingPeriods",
+          doc:id
+        }
+        let res = await getFireData(body)
+        setPricingList(res)
+      }
+    }
+
+
 
     const settings = {
       infinite: true,
@@ -261,49 +330,43 @@ const PropertyCardComp = (props) => {
         <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
         }
       {showAmenities && 
-            <div className="card-img-overlay card-amenities" >
-              <FirestoreDocument path={`/amenities/${props.item.uid}`}>
-                {data => {
-                    return (!data.isLoading && data.value) ? 
-                    <div id="amenities">
-                        <h3 style={{textAlign:"center"}}>{t("Amenities")}</h3>
-                        <br />
-                        <div className="amenities-list">
-                        {Object.entries(data.value).map((amen, index) => {
-                            
-                                return (amen[1] && amen[0] !== "__id") ? 
-                                <div key={index} className="amenity">
-                                  <Amenity amenity = {amen[0]} />
-                                </div> : null
-                        })}
-                        <br />
-                        </div>
-                    </div> : <Loading />
-                }}
-            </FirestoreDocument>
+          <div className="card-img-overlay card-amenities" >
+            { amensList ? 
+            <div id="amenities">
+              <h3 style={{textAlign:"center"}}>{t("Amenities")}</h3>
+              <br />
+              <div className="amenities-list">
+              {Object.entries(amensList).map((amen, index) => {
+                  
+                      return (amen[1] && amen[0] !== "__id") ? 
+                      <div key={index} className="amenity">
+                        <Amenity amenity = {amen[0]} />
+                      </div> : null
+              })}
+              <br />
+              </div>
+            </div> : <Loading />
+            }
           </div>
           }
           {showCalendar && 
           <div ref={calendar} className="card-img-overlay calendar-container" style={{height: "fit-content"}}>
-            <FirestoreDocument path={`PricingPeriods/${props.item.uid}`}>
-              {data => {
-              return (!data.isLoading && data.value) ? 
-                <CardCalendar id={props.item.uid} pricingPeriods={data.value}/>
+              {pricingList ? 
+                <CardCalendar id={props.item.uid} pricingPeriods={pricingList}/>
                 :<Loading />
-              }}
-            </FirestoreDocument>
+              }
           </div>
 
           }
           <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></Link>
           <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
   {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-prev card-arrow"
- aria-label="Show Slider" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
+ aria-label="Show Slider" style={{display: "block"}} onClick={() => {getSetPhotos(props.item.uid); setShowSlider(!showSlider)}} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
   {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-next card-arrow"
- aria-label="Show Slider" style={{display: "block"}} onClick={() => setShowSlider(!showSlider)} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowSlider(!showSlider)}}} ></button> }
+ aria-label="Show Slider" style={{display: "block"}} onClick={() => {getSetPhotos(props.item.uid); setShowSlider(!showSlider)}} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowSlider(!showSlider)}}} ></button> }
           <div style={{position: "absolute", top: "0", left:"0", width:"100%", height:"100%"}}>
-          {showSlider && <Slider {...settings}>
-              {props.item.photos.map((photo, index) => {
+          {showSlider && imgList && <Slider {...settings}>
+              {imgList.map((photo, index) => {
                 return (
                   <div key={index}>
                     <div className="prop-card-slider"  style={{backgroundImage:`url(${photo.url})`}}>
@@ -337,17 +400,17 @@ const PropertyCardComp = (props) => {
               </Link>
               <Card.Footer className="prop-card-footer-container" style={{position: "absolute", bottom:0, left:0, color:"#000"}} ref={footer}>
                   <div className="footer-btn-container">
-                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Amenities" onClick={() => setShowAmenities(!showAmenities)} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowAmenities(!showAmenities)}}} style={showAmenities ? {backgroundColor: "#ffad77"}: {}}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Amenities" onClick={() => {getSetAmenities(props.item.uid); setShowAmenities(!showAmenities)}} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowAmenities(!showAmenities)}}} style={showAmenities ? {backgroundColor: "#ffad77"}: {}}>
                       <FontAwesomeIcon icon={faList} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Amenities")}</small>
                     </div>
                   </div>
                   <div className="footer-btn-container">
-                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Gallery" onClick={()=> props.handleGalleryClick(props.item.photos)} onKeyDown={(e)=>{if(e.key === 'Enter'){ props.handleGalleryClick(props.item.photos)}}}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Gallery" onClick={()=> {getSetPhotos(props.item.uid); props.handleGalleryClick(imgList)}} onKeyDown={(e)=>{if(e.key === 'Enter'){ props.handleGalleryClick(props.item.photos)}}}>
                     <FontAwesomeIcon icon={faImages} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Gallery")}</small>
                     </div>
                   </div>
                   <div className="footer-btn-container">
-                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Calendar" onClick={()=>setShowCalendar(!showCalendar)} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowCalendar(!showCalendar)}}} style={showCalendar ? {backgroundColor: "#ffad77"}: {}}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Calendar" onClick={()=>{getSetPricing(props.item.uid); setShowCalendar(!showCalendar)}} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowCalendar(!showCalendar)}}} style={showCalendar ? {backgroundColor: "#ffad77"}: {}}>
                     <FontAwesomeIcon icon={faCalendarAlt} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Calendar")}</small>
                     </div>
                   </div>
