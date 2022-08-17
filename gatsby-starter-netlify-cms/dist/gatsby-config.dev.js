@@ -343,6 +343,12 @@ module.exports = {
       name: "locale"
     }
   }, {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      path: "".concat(__dirname, "/src/jobListings"),
+      name: 'hiring'
+    }
+  }, {
     resolve: "gatsby-plugin-react-i18next",
     options: {
       localeJsonSourceName: "locale",

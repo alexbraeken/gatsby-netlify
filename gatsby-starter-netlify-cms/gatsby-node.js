@@ -66,6 +66,7 @@ exports.createPages = ({ actions, graphql }) => {
       && edge.node.frontmatter.templateKey !== "algarve-slide"
       && edge.node.frontmatter.templateKey !== "activity-post"
       && edge.node.frontmatter.templateKey !== "ownerTestimonial"
+      && edge.node.frontmatter.templateKey !== "job-listing"
       && edge.node.fields){
 
           createPage({

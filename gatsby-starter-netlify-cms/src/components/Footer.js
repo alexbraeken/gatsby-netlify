@@ -76,6 +76,11 @@ const Footer = () =>{
                       </Link>
                     </li>
                     <li>
+                    <Link className="navbar-item" to="/about/hiring">
+                    {t("Hiring")}
+                      </Link>
+                    </li>
+                    <li>
                       <Link className="navbar-item" to="/contact">
                       {t("Contact")}
                       </Link>

@@ -60,7 +60,7 @@ exports.createPages = function (_ref) {
             posts.forEach(function (edge) {
               var id = edge.node.id;
 
-              if (edge.node.frontmatter.templateKey !== "testimonial" && edge.node.frontmatter.templateKey !== "team-member" && edge.node.frontmatter.templateKey !== "algarve-slide" && edge.node.frontmatter.templateKey !== "activity-post" && edge.node.frontmatter.templateKey !== "ownerTestimonial" && edge.node.fields) {
+              if (edge.node.frontmatter.templateKey !== "testimonial" && edge.node.frontmatter.templateKey !== "team-member" && edge.node.frontmatter.templateKey !== "algarve-slide" && edge.node.frontmatter.templateKey !== "activity-post" && edge.node.frontmatter.templateKey !== "ownerTestimonial" && edge.node.frontmatter.templateKey !== "job-listing" && edge.node.fields) {
                 createPage({
                   path: edge.node.fields.slug,
                   tags: edge.node.frontmatter.tags,
