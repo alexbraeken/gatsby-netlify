@@ -91,7 +91,7 @@ const ConnectedProperties = React.memo((props) => {
                 {
                   source: "db",
                   col:"Properties",
-                  fields:"['name','rank','amenities','type','latitude','longitude','picture','city','currencySybmol','customData','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
+                  fields:"['name','rank','amenities','type','latitude','longitude','picture','city','currencySymbol','customData','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
                 })
               })
                 .then(response => {

@@ -21,7 +21,6 @@ export const HiringPageTemplate = ({ langTitles, content, contentComponent, hero
     const PageContent = contentComponent || Content
   
         useEffect(() => {
-          console.log(bgImage)
           setTimeout(()=>{
             setLoaded(true)}, 1000
             )
@@ -116,9 +115,7 @@ export const HiringPageTemplate = ({ langTitles, content, contentComponent, hero
           }
           hero {
             childImageSharp {
-              fluid(maxWidth: 2048, quality: 100) {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
             }
             publicURL
           }

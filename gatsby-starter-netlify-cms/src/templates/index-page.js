@@ -388,13 +388,13 @@ const toggleActiveSearch = (active) => {
     </div>
      
     
-    <section>
+    <section style={{overflowX:"hidden", height: "auto"}}>
       <section className='main-section'>   
       <Container style={{zIndex:"1", margin:"auto"}}>
         <Row style={{height: "100%"}}>
         <h2 className="home-section-title" style={{left: "-200px", top:"-80px"}}>smartavillas.com</h2>
           <Col xs={12} lg={6} className='main-col left'>
-            <div className="intro-para">
+            <div className="intro-para" >
               <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}} className='fade-left'><span style={{color:"#f5821e"}}>Smartavillas</span>.com <Trans>Property Rentals & Management</Trans></h1>
               <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}} className='fade-left'/>
               <h2 className='fade-left'>{t('description')}</h2>

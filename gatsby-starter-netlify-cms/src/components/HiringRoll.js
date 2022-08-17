@@ -14,7 +14,10 @@ class HiringRoll extends React.PureComponent {
               {jobs && jobs.length > 0 ?
               jobs.map((job, index) => {
               return (
-                  <Card className="text-white" style={{backgroundColor:"#333333", maxWidth:"900px"}}>
+                <div style={{position:"relative"}}>
+                  <h2 className="prop-section-title orangeText" style={{top:"-20px", overflow:"visible", zIndex:"0", fontSize:"8rem", opacity:"0.1"}}>{job.node.frontmatter.jobName[this.props.language]}</h2>
+                  <Card className="text-white" style={{backgroundColor:"#333333", maxWidth:"900px", margin: "60px auto", zIndex:"1", boxShadow: "0px 20px 20px -10px black"}}>
+                    
                      <Card.Body>
                       <Card.Title className="orangeText">
                         {job.node.frontmatter.jobName[this.props.language]}
@@ -23,17 +26,21 @@ class HiringRoll extends React.PureComponent {
                         {job.node.frontmatter.location}
                       </Card.Subtitle>
                       <Card.Text>
-                        <span className="orangeText">{this.props.t("Descrpition")}: </span>{job.node.frontmatter.description[this.props.language]}
+                        <span className="orangeText">{this.props.t("Description")}: </span>{job.node.frontmatter.description[this.props.language]}
                       </Card.Text>
                       <Card.Text>
                         <span className="orangeText">{this.props.t("Qualifications")}: </span>{job.node.frontmatter.qualifications[this.props.language]}
                       </Card.Text>
+                      <Card.Text className="mb-2 text-muted">
+                        {job.node.frontmatter.hours}
+                      </Card.Text>
                     </Card.Body>
                   </Card>
+                </div>
               )
               })
             :
-            <h3>We're sorry to say that we're not currently hiring.</h3>
+            <h3>{this.props.t("We're sorry to say there are no job openings at the moment but check back soon!")}</h3>
             } 
 
             </>
