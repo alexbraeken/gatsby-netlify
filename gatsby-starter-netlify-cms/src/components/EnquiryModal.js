@@ -52,7 +52,8 @@ const EnquiryModal = (props) => {
                 backgroundImage:`url('${props.img}')`, 
                 backgroundPosition:"center", 
                 backgroundSize:"cover",
-                margin: "auto 20px auto auto"}}>
+                margin: "auto 20px auto auto",
+                flex:"none"}}>
               </div>
               <div className="orangeText" style={{margin: "auto"}}>
                 Ask us about {props.propName}:

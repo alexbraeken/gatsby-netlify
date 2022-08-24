@@ -3272,6 +3272,7 @@ button.calendar-btn
   display: flex
   justify-content: flex-start
   margin-left: -10px
+  transition: all 0.3s
   & .add-favs
       display: flex
       margin: auto 10px
@@ -3280,9 +3281,16 @@ button.calendar-btn
           margin: auto
           width: 27px
           height: 27px
-  & .share-btn
+      &:hover
+        color: $primary
+  & .share-btn, .subscribe-icon
       position: relative
       margin: auto 10px
+      cursor: pointer
+      width: 27px
+      height: 27px
+      &:hover
+        color: $primary
 
 
 .review-card-container
@@ -3637,6 +3645,7 @@ $white: #FFF
   left: 0 
   width: 100% 
   z-index: 999
+  pointer-events: none
   & .show-favs
       justify-content: center
       display: flex
@@ -3646,6 +3655,7 @@ $white: #FFF
           position: relative
           transition: all 0.3s
           cursor: pointer
+          pointer-events: all
           & .favs-heart
               margin: auto
               height: 40px
@@ -3676,6 +3686,7 @@ $white: #FFF
       max-height: 0
       overflow: hidden
       justify-content: center
+      pointer-events: all
       &.active
         opacity: 1
         max-height: 100vh
@@ -4893,3 +4904,13 @@ p.about-section
   &.show
     height: 30px
     pointer-events: unset
+
+@media only screen and (max-width: 900px)
+  .hide-mobile
+    display: none!important
+
+.colSectionBg
+  opacity: 0
+  transition: all 0.3s
+  &.active
+    opacity: 1

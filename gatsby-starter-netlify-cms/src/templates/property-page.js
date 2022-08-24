@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCart, faCar, faExclamationCircle, faSwimmingPool, faFileContract, faExternalLinkAlt, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import queryString from 'query-string';
 import EnquiryModal from '../components/EnquiryModal';
+import PropertySubscribeModal from '../components/PropertySubscribeModal'
 import { Helmet } from 'react-helmet';
 import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
@@ -50,6 +51,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [propId, setPropId] = useState(null)
    const [show, setShow] = useState(false);
    const [enquiryShow, setEnquiryShow] = useState(false);
+   const [subscribeShow, setSubscribeShow] = useState(false);
    const [showAllAmenities, setShowAllAemnities] = useState(false)
    const [showNotesReadMore, setShowNotesReadMore] = useState(false)
    const [amenitiesLength, setAmenitiesLength] = useState(0)
@@ -172,6 +174,7 @@ export const PropertyPageTemplate = ( props ) =>
                 setPropName(null)
                 setPropSummary(null)
                 setShow(false)
+                setSubscribeShow(false)
                 setShowAllAemnities(false)
                 setShowNotesReadMore(false)
                 setAmenitiesLength(0)
@@ -202,6 +205,9 @@ export const PropertyPageTemplate = ( props ) =>
 
     const handleEnquiryClose = () => setEnquiryShow(false)
     const handleEnquiryShow = () => setEnquiryShow(true)
+
+    const handleSubscribeClose = () => setSubscribeShow(false)
+    const handleSubscribeShow = () => setSubscribeShow(true)
 
 
     const handleShowAmenities = () => {
@@ -282,7 +288,7 @@ export const PropertyPageTemplate = ( props ) =>
                         <div style={{display:"flex", flexWrap:"wrap"}}>
                             {setLoading(false)}
                             <div style={{width:"100%"}}>
-                                <PropCarousel name={propName? propName: ''} baseRate={data.value.baseDailyRate} city={data.value.city} bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} propId={props.id} firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow} dispatch={props.dispatch} inFavs={props.inFavs}/>
+                                <PropCarousel name={propName? propName: ''} baseRate={data.value.baseDailyRate} city={data.value.city} bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} propId={props.id} firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow} dispatch={props.dispatch} inFavs={props.inFavs} handleSubscribeShow={handleSubscribeShow}/>
                                 
                                 <Container style={{paddingTop:"30px"}}>
                                     <section id="prop-summary">
@@ -685,7 +691,6 @@ export const PropertyPageTemplate = ( props ) =>
                                                     </defs>
                                                     </svg>
                                                 </div>
-                                                <br />
                                                 {propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
                                                 <div>
                                                 <center><a href="/about/booking-terms-conditions" target="_blank"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>{t("Booking Terms & Conditions")}</span> <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto"}} /></a></center>
@@ -726,6 +731,7 @@ export const PropertyPageTemplate = ( props ) =>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
                             <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
+                            <PropertySubscribeModal show={subscribeShow} handleClose={handleSubscribeClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
                             </div>
                             <Helmet link={[{rel: "canonical", href: `https://www.smartavillas.com/properties/${propId}`}]}>
                                 <title>{propName}</title>

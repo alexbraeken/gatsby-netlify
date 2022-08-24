@@ -9,6 +9,7 @@ import BedBathPax from '../components/BedBathPax';
 import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
 import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
 import Share from '../components/Share'
+import { RiMailAddLine } from "@react-icons/all-files/ri/RiMailAddLine";
 
 class CustomSlide extends React.Component {
     render() {
@@ -144,6 +145,8 @@ const PropCarousel = (props) => {
                   </div>
                   <br />
                   <Share propImg={props.firstSlide} propName={props.name}/>
+                  <br />
+                  <RiMailAddLine className="subscribe-icon" onClick={()=>{props.handleSubscribeShow()}}/>
                 </div>
                 
               </div>

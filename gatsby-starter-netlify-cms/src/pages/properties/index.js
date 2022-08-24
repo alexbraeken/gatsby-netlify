@@ -305,7 +305,7 @@ const ConnectedProperties = React.memo((props) => {
                                             </Form.Control>
                                         </Form.Group>
                                         </div>
-                                        <div className="expandBtn" role="button" tabindex="0" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>  
+                                        <div className="expandBtn hide-mobile" role="button" tabindex="0" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>  
                                                 <p style={{margin: "auto"}}>{t("Filters")}</p>
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>

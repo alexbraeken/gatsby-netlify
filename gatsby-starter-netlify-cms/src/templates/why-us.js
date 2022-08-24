@@ -11,7 +11,7 @@ import BackgroundImage from 'gatsby-background-image'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import convertToBgImage from "../Helpers/images"
 import { getImage } from "gatsby-plugin-image"
-
+import StickyBox from "react-sticky-box"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,6 +36,7 @@ export const WhyUsPageTemplate = ({
   const parallaxImg = useRef(null)
   const parallaxBg = useRef(null)
 
+
   const {t} = useTranslation();
   const {language } = useI18next();
 
@@ -44,6 +45,13 @@ export const WhyUsPageTemplate = ({
 
   const part2Bg = getImage(part2Img.childImageSharp)
   const part2BgImg = convertToBgImage(part2Bg)
+
+  const Col1Bg = getImage(part3.col1img.childImageSharp)
+  const Col1BgImg = convertToBgImage(Col1Bg)
+  const Col2Bg = getImage(part3.col2img.childImageSharp)
+  const Col2BgImg = convertToBgImage(Col2Bg)
+  const Col3Bg = getImage(part3.col3img.childImageSharp)
+  const Col3BgImg = convertToBgImage(Col3Bg)
 
   useEffect(() => {
 
@@ -55,6 +63,9 @@ export const WhyUsPageTemplate = ({
       let parallaxImg = gsap.utils.toArray('.img-cont');
       let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
       let parallaxToneBg = gsap.utils.toArray('.parallax-tone-bg');
+      let colSections = gsap.utils.toArray(".colSection")
+
+
 
       parallaxCont.forEach((cont, i)=>{
         gsap.to(
@@ -135,9 +146,24 @@ export const WhyUsPageTemplate = ({
       function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
+
+      colSections.forEach((col, i) => {
+        const sectionBg = document.querySelector(`#${col.dataset.bg}`);  
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: col,
+            start: "top center",
+            onToggle: (self)=>{
+              self.isActive ? sectionBg.classList.add("active") : sectionBg.classList.remove("active")
+            }
+          },
+        })
+      })
+
       
     return () => {
       setLoaded(false)
+      ScrollTrigger.getAll().forEach(t => t.kill());
     }
   }, [])
 
@@ -199,11 +225,11 @@ export const WhyUsPageTemplate = ({
             <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
             <defs>
               <linearGradient id="Gradient">
-                <stop offset="0%" stop-color="#ffa600"/>
-                <stop offset="17%" stop-color="#ff8400"/>
-                <stop offset="48%" stop-color="#ff7c00"/>
-                <stop offset="88%" stop-color="#ff6200"/>
-                <stop offset="100%" stop-color="#e92e00"/>
+                <stop offset="0%" stopColor="#ffa600"/>
+                <stop offset="17%" stopColor="#ff8400"/>
+                <stop offset="48%" stopColor="#ff7c00"/>
+                <stop offset="88%" stopColor="#ff6200"/>
+                <stop offset="100%" stopColor="#e92e00"/>
               </linearGradient>
             </defs>
             </svg>
@@ -215,7 +241,8 @@ export const WhyUsPageTemplate = ({
         width: "100vw",
         position: "relative",
         marginLeft: "-50vw",
-        left: "50%"}}>
+        left: "50%",
+        overflow:"hidden"}}>
           <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>Different</h2>
           <div className="section-background">
         <div className='half-image-left grey-in mobile-full-width'>
@@ -325,45 +352,71 @@ export const WhyUsPageTemplate = ({
         paddingBottom: "100px",
         position: "relative"}}>
           <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)"}}>It Works</h2>
-      <Container>
-        <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
-        <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}}/>
-          <Row>
-            <Col xs={12} md={4}>
-              <PreviewCompatibleImage imageInfo={part3.col1img} />
-              <br />
-              <Container className="intro-para" style={{textAlign:"center", paddingBottom: "20px"}}>
-                <h4>{part3.col1Header[language]}</h4>
+      <div style={{width:"100vw", position: "relative"}}>
+        <div className="colSection" data-bg="part3-bg1" style={{position:"relative", backgroundColor:"transparent", height:"100vh", width: "100%", zIndex:"2"}}>
+          <div  style={{width:"300px", height: "auto", position: "absolute", right:"20%", top:"50%", transform:"translateY(-50%)", backgroundColor:"#fff", padding: "50px", borderRadius: "4px", filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9))"}}>
+          <span className="orangeText home-section-title" style={{top:"-150px", fontSize:"12rem"}}>1</span>
+          <h3 className="orangeText">{part3.col1Header[language]}</h3>
                 <hr />
                 <p>
                   {part3.col1[language]}
                 </p>
-              </Container>
-            </Col>
-            <Col xs={12} md={4}>
-              <PreviewCompatibleImage imageInfo={part3.col2img} />
-              <br />
-              <Container className="intro-para" style={{textAlign:"center", paddingBottom: "20px"}}>
-              <h4>{part3.col2Header[language]}</h4>
-              <hr />
-              <p>
-                {part3.col2[language]}
-              </p>
-              </Container>
-            </Col>
-            <Col xs={12} md={4}>
-              <PreviewCompatibleImage imageInfo={part3.col3img} />
-              <br />
-              <Container className="intro-para" style={{textAlign:"center", paddingBottom: "20px"}}>
-              <h4>{part3.col3Header[language]}</h4>
+          </div>
+        </div>
+        <div className="colSection" data-bg="part3-bg2" style={{position:"relative", backgroundColor:"transparent", height:"100vh", width: "100%", zIndex:"2"}}>
+          <div style={{width:"300px", height: "auto", position: "absolute", right:"20%", top:"50%", transform:"translateY(-50%)", backgroundColor:"#fff", padding: "50px", borderRadius: "4px", filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9))"}}>
+          <span className="orangeText home-section-title" style={{top:"-150px", fontSize:"12rem"}}>2</span>
+          <h3 className="orangeText">{part3.col2Header[language]}</h3>
+                <hr />
+                <p>
+                  {part3.col2[language]}
+                </p>
+          </div>
+        </div>
+        <div className="colSection" data-bg="part3-bg3" style={{position:"relative", backgroundColor:"transparent", height:"100vh", width: "100%", zIndex:"2"}}>
+          <div style={{width:"300px", height: "auto", position: "absolute", right:"20%", top:"50%", transform:"translateY(-50%)", backgroundColor:"#fff", padding: "50px", borderRadius: "4px", filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9))"}}>
+          <span className="orangeText home-section-title" style={{top:"-150px", fontSize:"12rem"}}>3</span>
+          <h3 className="orangeText">{part3.col3Header[language]}</h3>
               <hr />
               <p>
                 {part3.col3[language]}
               </p>
-              </Container>
-            </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+        <div style={{position: "absolute", left:"0", top:"0", height:"100%"}}>
+        <StickyBox>
+          <div style={{position:"relative", height:"100vh"}}>
+          <BackgroundImage
+              Tag="div"
+              id="part3-bg1"
+              className={"colSectionBg"}
+              {...Col1BgImg}
+              backgroundColor={`#040e18`}
+              style={{zIndex:"1", width:"100vw", height:"100vh", position: "absolute"}}
+              preserveStackingContext
+            ></BackgroundImage>
+            <BackgroundImage
+              Tag="div"
+              id="part3-bg2"
+              className={"colSectionBg"}
+              {...Col2BgImg}
+              backgroundColor={`#040e18`}
+              style={{zIndex:"1", width:"100vw", height:"100vh", position: "absolute"}}
+              preserveStackingContext
+            ></BackgroundImage>
+            <BackgroundImage
+              Tag="div"
+              id="part3-bg3"
+              className={"colSectionBg"}
+              {...Col3BgImg}
+              backgroundColor={`#040e18`}
+              style={{zIndex:"1", width:"100vw", height:"100vh", position: "absolute"}}
+              preserveStackingContext
+            ></BackgroundImage>
+          </div>
+        </StickyBox>
+        </div>
+      </div>
     </section>
     <section>
       <Container>
@@ -529,7 +582,7 @@ export const WhyUsPageQuery = graphql`query WhyUsPage($id: String!, $language: S
         }
         col1img {
           childImageSharp {
-            gatsbyImageData(width: 500, quality: 100, layout: CONSTRAINED)
+            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
           }
           publicURL
         }
@@ -547,7 +600,7 @@ export const WhyUsPageQuery = graphql`query WhyUsPage($id: String!, $language: S
         }
         col2img {
           childImageSharp {
-            gatsbyImageData(width: 500, quality: 100, layout: CONSTRAINED)
+            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
           }
           publicURL
         }
@@ -565,7 +618,7 @@ export const WhyUsPageQuery = graphql`query WhyUsPage($id: String!, $language: S
         }
         col3img {
           childImageSharp {
-            gatsbyImageData(width: 500, quality: 100, layout: CONSTRAINED)
+            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
           }
           publicURL
         }

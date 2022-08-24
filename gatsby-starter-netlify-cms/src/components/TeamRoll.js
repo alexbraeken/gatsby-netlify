@@ -87,7 +87,9 @@ const TeamCard = React.memo((props) =>{
         )
       }
     })
-
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    }
   }, [])
 
   const handleImageClick = () => {

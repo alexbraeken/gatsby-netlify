@@ -299,15 +299,18 @@ export const IndexPageTemplate = ({
         opacity: 0,
         width: 0,
         scrollTrigger: {
-            trigger: section,
-            scrub: true,
-            once: true,
-            duration:0.5,
-            ease:"Power2.easeOut",
+          trigger: section,
+          start: 'top 90%',
+          once: true,
+          duration:0.5,
+          ease:"Power2.easeOut",
         }
       });
     })
 
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    }
   }, []);
   
 
@@ -388,7 +391,7 @@ const toggleActiveSearch = (active) => {
     </div>
      
     
-    <section style={{overflowX:"hidden", height: "auto"}}>
+    <section>
       <section className='main-section'>   
       <Container style={{zIndex:"1", margin:"auto"}}>
         <Row style={{height: "100%"}}>
@@ -668,9 +671,9 @@ const toggleActiveSearch = (active) => {
             </svg>
         </section>
       <Newsletter lang={language}/>
-      <Container style={{paddingLeft:"0", paddingRight:"0"}}>
+      <section style={{minHeight:"100vh"}}>
         <FeaturedProperties />
-      </Container>
+      </section>
       <section style={{paddingTop:"40px"}}>
         <Container>
         <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: t('news & notes')}} /></h2>

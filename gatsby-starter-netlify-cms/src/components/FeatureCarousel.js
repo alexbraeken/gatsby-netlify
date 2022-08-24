@@ -77,9 +77,9 @@ const FeatureCarousel = (props) => {
               {Object.keys(properties).map((prop, index)=>{
                   return (
                   <Carousel.Item key={index}>
-                    <Row className="home-feature">
+                    <Row className="home-feature" style={{padding:"0"}}>
                     <Col xs={12} md={6} lg={9} className="home-feature-image">
-                  <CustomSlide backgroundImage={properties[prop].pictitureReducedCloudUrl || properties[prop].picture} key={index}/>
+                  <CustomSlide backgroundImage={properties[prop].picture} key={index}/>
                   <Carousel.Caption style={{width:"100%", left:0, background:"rgba(0,0,0,0.5)", bottom:0, background:"linear-gradient(0deg, black, rgba(0,0,0,0))"}}>
                   <Link to={`/properties/${properties[prop].uid}`}><h3>{properties[prop].name}</h3></Link>
                   <BedBathPax bedrooms={properties[prop].bedrooms} bathrooms={properties[prop].bathrooms} baseGuests={properties[prop].baseGuests} color="rgba(256,256,256)"/>
