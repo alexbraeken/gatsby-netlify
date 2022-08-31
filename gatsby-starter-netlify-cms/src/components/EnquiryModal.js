@@ -87,9 +87,7 @@ const EnquiryModal = (props) => {
           <input type="hidden" name={'property_name'} id={'property_name'} value={props.propName}/>
           <input type="hidden" name={'property_id'} id={'property_id'} value={props.propId}/>
           <div className="field">
-            <label className="label" htmlFor={'from_name'}>
-              Your name
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -98,13 +96,15 @@ const EnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'from_name'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'from_name'}>
+              Your name
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'email'}>
-              Email
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -113,22 +113,25 @@ const EnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'email'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'email'}>
+              Email
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'topic'}>
-              Topic
-            </label>
+            
             <div className="control">
               <select
                 className="input"
                 name={'topic'}
                 onChange={(e) => handleChange(e)}
                 id={'topic'}
-                required={false}
+                required={true}
                 style={{appearance:"auto"}}
               >
+                <option disabled selected value="" hidden> </option>
                 <option value="General">General</option>
                 <option value="Facilities">Facilities</option>
                 <option value="Booking Related">Booking Related</option>
@@ -136,12 +139,13 @@ const EnquiryModal = (props) => {
                 <option value="Accessibility">Winter Let</option>
                 <option value="Other">Other</option>
               </select>
+              <label className="label" htmlFor={'topic'}>
+              Topic
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'message'}>
-              Message
-            </label>
+          
             <div className="control">
               <textarea
                 className="textarea"
@@ -149,8 +153,11 @@ const EnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'message'}
                 required={true}
-                placeholder="Ask here!"
+                placeholder=" "
               />
+                <label className="label" htmlFor={'message'}>
+              Message
+            </label>
             </div>
           </div>
           <div className="field">

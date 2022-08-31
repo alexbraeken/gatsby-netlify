@@ -4914,3 +4914,32 @@ p.about-section
   transition: all 0.3s
   &.active
     opacity: 1
+
+.modal-container
+  & .field:not(:first-child)
+      padding-top: 1rem
+      & div.control
+          position: relative
+          & label.label, select:invalid label.label
+              position: absolute
+              z-index: 1
+              height: 2.5rem
+              display: flex
+              align-items: center
+              margin-left: 5px
+              pointer-events: none
+              transition: all 0.3s
+              top: 0
+          & input, & textarea
+              &:focus, &:not(:placeholder-shown), &:-webkit-autofill
+                & + label
+                  top: -2rem
+                  font-size: 0.8rem
+              &:focus + label
+                color: $primary
+          & select
+              &:valid + label
+                top: -2rem
+                font-size: 0.8rem
+              &:focus + label
+                color: $primary

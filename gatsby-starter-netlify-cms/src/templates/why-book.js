@@ -11,6 +11,10 @@ import Newsletter from '../components/Newsletter'
 import BackgroundImage from 'gatsby-background-image'
 import convertToBgImage from "../Helpers/images"
 import { getImage } from "gatsby-plugin-image"
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 class CustomSlide extends React.Component {
   render() {
@@ -26,7 +30,7 @@ class CustomSlide extends React.Component {
           backgroundColor={`#040e18`}
           style={{zIndex:"1",
           minHeight: "400px",
-          height: "50vh",
+          height: "90vh",
           width:"100vw",
           margin: "0px auto",
           overflow: "hidden",
@@ -75,6 +79,9 @@ export const WhyBookPageTemplate = ({
   const [loaded, setLoaded] = useState(false);
 
   const slideContainer = useRef(null)
+  const parallaxCont = useRef(null)
+  const parallaxImg = useRef(null)
+  const parallaxBg = useRef(null)
 
   const {t} = useTranslation();
   const {language } = useI18next();
@@ -82,18 +89,61 @@ export const WhyBookPageTemplate = ({
   const heroImage = getImage(image.childImageSharp)
   const bgImage = convertToBgImage(heroImage)
 
-
   const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
-        const slides = document.getElementsByClassName("slide-image-container")
-        const bgImg = slides[selectedIndex].style.backgroundImage
-        slideContainer.current.style.backgroundImage = bgImg
-      };
+    setIndex(selectedIndex);
+  };
 
   useEffect(() => {
     setTimeout(()=>{
       setLoaded(true)}, 1000
       )
+
+      let parallaxCont = gsap.utils.toArray('.parallax-tone-container');
+      let parallaxImg = gsap.utils.toArray('.img-cont');
+      let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
+      let parallaxToneBg = gsap.utils.toArray('.parallax-tone-bg');
+      let colSections = gsap.utils.toArray(".colSection")
+
+
+
+      parallaxCont.forEach((cont, i)=>{
+        gsap.to(
+          parallaxToneBg[i], 
+          {
+            yPercent: -90,
+            ease: "none",
+            scrollTrigger: {
+              trigger: cont,
+              start: 'top bottom',
+              scrub: true
+            },
+          }
+        )
+        gsap.to(
+          parallaxImg[i], 
+          {
+            yPercent: -50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: cont,
+              start: 'top bottom',
+              scrub: true
+            }
+          }
+        )
+      })
+
+      parallaxBGs.forEach((section) => {
+        gsap.from(section, { 
+          yPercent: -15,
+          ease: "none",
+          scrollTrigger: {
+              trigger: section,
+              scrub: true
+          }
+        });
+      });
+
     return () => {
       setLoaded(false)
     }
@@ -123,55 +173,69 @@ export const WhyBookPageTemplate = ({
         </BackgroundImage>
       <section className="newLine"
       style={{
-          paddingBottom: "100px",
           position: "relative"}}>
+         <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>We Provide</h2>
         <Container>
-          <Row>
-            <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
-              <div className="section intro-para" style={{margin: "auto"}}>
-                <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}</h3>
-                <p>{part1.text[language]}</p>
-              </div>
-          </Col>
-          <Col xs={12} md={6}>
-              <PreviewCompatibleImage imageInfo={part1Img} imgStyle={{borderRadius: "5px", marginLeft: "-150px"}}/>
-          </Col>
-          </Row>
-        </Container>
-      </section>
-      <section 
-      style={{
-          paddingBottom: "100px",
-          paddingTop: "100px",
+        <Row style={{minHeight: "100vh"}}>
+          <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
+        <div className="section intro-para" style={{margin: "auto"}}>
+          <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}</h3>
+          <div dangerouslySetInnerHTML={{ __html: `<div> ${part1.text[language]} </div>` }} />
+        </div>
+        </Col>
+        <Col xs={12} md={6} style={{display:"flex"}}>
+          <div className="parallax-tone-container" ref={parallaxCont}>
+            <div ref={parallaxImg} className="img-cont" >
+              <PreviewCompatibleImage imageInfo={part1Img} className="parallax-tone-img" imgStyle={{borderRadius: "5px"}} />
+            </div>
+            <div className="parallax-tone-bg" ref={parallaxBg}></div>
+          </div>
+        </Col>
+        </Row> 
+      </Container>
+      <div style={{ 
           width: "100vw",
-          position: "relative",
-          marginLeft: "-50vw",
-          left: "50%",
-          backgroundColor:"#f5821e"}}>
-            <div style={{ 
-            width: "100vw",
-            position: "absolute",
-            top: "0",
-            bottom: "auto",
-            right: "0",
-            height: "100px",
-            zIndex: "10",
-            transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
-              <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
-                width: "100%",
-                left: "0",
-                top: "-1px",
-                height: "100%",
-                position: "absolute",
-              }}> 
-              <path d="M0 0 L 100 0 100 100 C 100 100 50 0 0 100  Z"></path> 
-              </svg>
-              </div>
-        <div className="slide-container" ref={slideContainer} style={{backgroundImage:`url("${slides? slides[0].slide.childImageSharp.gatsbyImageData.src : part2.img.childImageSharp.gatsbyImageData.src }")`}}></div>
-        <Container>
-          <Row>
-            {slides ?
-            <Col md={12} lg={6}>
+          position: "absolute",
+          top: "auto",
+          bottom: "0",
+          right: "0",
+          height: "100px",
+          zIndex: "1",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="url(#Gradient)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              bottom: "-1px",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
+            <defs>
+              <linearGradient id="Gradient">
+                <stop offset="0%" stopColor="#ffa600"/>
+                <stop offset="17%" stopColor="#ff8400"/>
+                <stop offset="48%" stopColor="#ff7c00"/>
+                <stop offset="88%" stopColor="#ff6200"/>
+                <stop offset="100%" stopColor="#e92e00"/>
+              </linearGradient>
+            </defs>
+            </svg>
+            </div>
+      </section>
+    <section className="orange-gradient" style={{
+        paddingBottom: "200px",
+        paddingTop: "200px",
+        width: "100vw",
+        position: "relative",
+        marginLeft: "-50vw",
+        left: "50%",
+        overflow:"hidden",
+        minHeight: "100vh",
+        display: "flex"}}>
+          <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>Different</h2>
+          <div className="section-background">
+        <div className='half-image-left grey-in mobile-full-width'>
+        {slides ?
                 <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
                     {slides.map((slide, index) => {
                         return<Carousel.Item key={index}>
@@ -181,32 +245,55 @@ export const WhyBookPageTemplate = ({
                 </Carousel.Item>
                     })}
                 </Carousel>
-            </Col>
             : 
             <>
             {part2.img ?
-              <Col md={12} lg={6}>
                 <PreviewCompatibleImage imageInfo={part2.img} />
-              </Col>
               : 
               null
               }
             </>
             }
-            <Col style={{display:"flex"}}>
+        </div>
+        </div>
+      <Container style={{display:"flex"}}>
+        <Row>
+          <Col xs={12} md={6} style={{display:"flex", overflow:"hidden"}}>
+          </Col>
+          <Col style={{display:"flex"}} xs={12} md={6}>
               <div style={{margin:"auto"}} >
                 <h3 className="has-text-weight-semibold is-size-2" style={{textAlign: "center"}}>{part2.header[language]}</h3>
                 <p style={{color: "#fff"}}>
                   {part2.text[language]}
                 </p>
               </div>
-            </Col>
-          </Row>
-        </Container>
+          </Col>
+        </Row>
+      </Container>
+      <div style={{ 
+          width: "100vw",
+          position: "absolute",
+          top: "auto",
+          bottom: "0",
+          right: "0",
+          height: "100px",
+          zIndex: "1",
+          transform: "translateZ(0)"}} data-front="" data-style="curve_asym" data-position="bottom">
+            <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" style={{
+              width: "100%",
+              left: "0",
+              bottom: "-1px",
+              height: "100%",
+              position: "absolute",
+            }}> 
+            <path d="M0 100 C 50 0 75 100 100 75 L 100 100 Z"></path> 
+            </svg>
+            </div>
     </section>
     {part3 && 
     <section style={{
         paddingBottom: "50px",
+        paddingTop: "50px",
         position: "relative"}}>
       <Container>
         <Row>
@@ -229,8 +316,8 @@ export const WhyBookPageTemplate = ({
         </Row>
       </Container>
     </section>
-    <section>
-      <Newsletter lang={language}/>
+    <section style={{overflow:"hidden"}}>
+        <Newsletter lang={language}/>
     </section>
     <section
     className="last"></section>

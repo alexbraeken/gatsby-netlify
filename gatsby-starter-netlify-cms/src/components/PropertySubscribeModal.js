@@ -83,60 +83,65 @@ const PropertySubscribeModal = (props) => {
               }
             
           </div> :
-        <form
-            name="Subscription"
-            method="post"
-            action="#"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            onSubmit={(e)=>handleSubmit(e)}
-            >
-            <input type="hidden" name="form-name" value="Subscription" />
-            <div hidden>
-                <label>
-                    Don’t fill this out:{' '}
-                    <input name="bot-field" onChange={(e) => handleChange(e)}/>
-                </label>
-            </div>
-            <input type="hidden" name={'property_name'} id={'property_name'} value={props.propName}/>
-            <input type="hidden" name={'property_id'} id={'property_id'} value={props.propId}/>
-            <div className="field">
-                <label className="label" htmlFor={'email'}>
-                Email
-                </label>
-                <div className="control">
-                <input
-                    className="input"
-                    type={'email'}
-                    name={'email'}
-                    id={'email'}
-                    required={true}
-                    onChange={(e) => handleChange(e)}
-                />
+          <div>
+                <form
+                    name="Subscription"
+                    method="post"
+                    action="#"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    onSubmit={(e)=>handleSubmit(e)}
+                    >
+                    <input type="hidden" name="form-name" value="Subscription" />
+                    <div hidden>
+                        <label>
+                            Don’t fill this out:{' '}
+                            <input name="bot-field" onChange={(e) => handleChange(e)}/>
+                        </label>
+                    </div>
+                    <input type="hidden" name={'property_name'} id={'property_name'} value={props.propName}/>
+                    <input type="hidden" name={'property_id'} id={'property_id'} value={props.propId}/>
+                    <div className="field">
+                        
+                        <div className="control">
+                        <input
+                            className="input"
+                            type={'email'}
+                            name={'email'}
+                            id={'email'}
+                            required={true}
+                            onChange={(e) => handleChange(e)}
+                            placeholder=" "
+                        />
+                        <label className="label" htmlFor={'email'}>
+                        Email
+                        </label>
+                        </div>
+                    </div>
+                    <div className="field">
+                    <button className="submit-search-btn"  type="submit" style={{border:"none", backgroundColor:"transparent"}}>
+                    <a>
+                        <svg className="icon-arrow before">
+                            <use xlinkHref="#arrow" />
+                        </svg>
+                        <span className="label">Subscribe</span>
+                        <svg className="icon-arrow after">
+                            <use xlinkHref="#arrow"/>
+                        </svg>
+                    </a>
+                    <svg style={{display: "none"}}>
+                    <defs>
+                        <symbol id="arrow" viewBox="0 0 35 15">
+                            <title>Arrow</title>
+                            <path d="M27.172 5L25 2.828 27.828 0 34.9 7.071l-7.07 7.071L25 11.314 27.314 9H0V5h27.172z "/>
+                        </symbol>
+                    </defs>
+                    </svg>
+                    </button>
                 </div>
+                </form>
+                <small>{t("Receive the latest offers and news about this property. You can unsubscribe anytime. For more details, review our Privacy Policy.")}</small>
             </div>
-            <div className="field">
-            <button className="submit-search-btn"  type="submit" style={{border:"none", backgroundColor:"transparent"}}>
-              <a>
-                  <svg className="icon-arrow before">
-                      <use xlinkHref="#arrow" />
-                  </svg>
-                  <span className="label">Subscribe</span>
-                  <svg className="icon-arrow after">
-                      <use xlinkHref="#arrow"/>
-                  </svg>
-              </a>
-              <svg style={{display: "none"}}>
-              <defs>
-                  <symbol id="arrow" viewBox="0 0 35 15">
-                      <title>Arrow</title>
-                      <path d="M27.172 5L25 2.828 27.828 0 34.9 7.071l-7.07 7.071L25 11.314 27.314 9H0V5h27.172z "/>
-                  </symbol>
-              </defs>
-              </svg>
-            </button>
-          </div>
-        </form>
         }
     </Modal.Body>
 </Modal>

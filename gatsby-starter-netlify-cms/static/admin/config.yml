@@ -71,6 +71,54 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Featured Image", name: "featuredimage", widget: image}
 
+  - name: "testimonials"
+    label: "Guest Testimonials"
+    folder: "gatsby-starter-netlify-cms/src/testimonials"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "testimonial"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Quote", name: "quote", widget: "text"}
+      - {label: "Location", name: "location", widget: "string"}
+      - {label: "Background Image", name: "img", widget: image}
+      
+  - name: "ownerTestimonials"
+    label: "Owner Testimonials"
+    folder: "gatsby-starter-netlify-cms/src/ownerTestimonials"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "ownerTestimonial"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Quote", name: "quote", widget: "text"}
+      - {label: "Location", name: "location", widget: "string"}
+      - {label: "Background Image", name: "img", widget: image}
+
+  - name: "newsAlert"
+    label: "News Alert"
+    folder: "gatsby-starter-netlify-cms/src/newsAlert"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "news-alert"}
+      - {label: "Titles", name: "langTitles", widget: object, fields: [{label: English, name: en, widget: string}, {label: Portuguese, name: pt, widget: string}, {label: French, name: fr, widget: string}, {label: Spanish, name: sp, widget: string}]}
+      - {label: "News", name: "news", widget: object, fields: [{label: English, name: en, widget: string}, {label: Portuguese, name: pt, widget: string}, {label: French, name: fr, widget: string}, {label: Spanish, name: sp, widget: string}]}
+      - {label: "Link", name: "link", widget: "string"}
+
+  - name: "jobListings"
+    label: "Job Listings"
+    folder: "gatsby-starter-netlify-cms/src/jobListings"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "job-listing"}
+      - {label: "Job Name", name: "jobName", widget: object, fields: [{label: English, name: en, widget: string}, {label: Portuguese, name: pt, widget: string}, {label: French, name: fr, widget: string}, {label: Spanish, name: sp, widget: string}]}
+      - {label: "Description", name: "description",  widget: object, fields: [{label: English, name: en, widget: text}, {label: Portuguese, name: pt, widget: text}, {label: French, name: fr, widget: text}, {label: Spanish, name: sp, widget: text}]}
+      - {label: "Location", name: "location", widget: "string"}
+      - {label: "Qualifications", name: "qualifications",  widget: object, fields: [{label: English, name: en, widget: text}, {label: Portuguese, name: pt, widget: text}, {label: French, name: fr, widget: text}, {label: Spanish, name: sp, widget: text}]}
+      - {label: "Hours", name: "hours", widget: "string"}
+
   - name: "pages"
     label: "Pages"
     files:
@@ -80,13 +128,19 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - {label: Title, name: title, widget: string}
+          - {label: Titles, name: langTitles, widget: object, fields: [{label: English, name: en, widget: string}, {label: Portuguese, name: pt, widget: string}, {label: French, name: fr, widget: string}, {label: Spanish, name: sp, widget: string}]}
           - {label: Image, name: image, widget: image}
-          - {label: Heading, name: heading, widget: string}
-          - {label: Subheading, name: subheading, widget: string}
-          - {label: Mainpitch, name: mainpitch, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
-          - {label: Description, name: description, widget: string}
-          - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}]}
-          - {label: Main, name: main, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Image1, name: image1, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image2, name: image2, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image3, name: image3, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}]}
+          - {label: Pitch Image, name: pitchImage, widget: image}
+          - {label: Clip Path Image, name: clipPathImage, widget: image}
+          - {label: Heading, name: heading, widget: object, fields: [{label: English, name: en, widget: string}, {label: Portuguese, name: pt, widget: string}, {label: French, name: fr, widget: string}, {label: Spanish, name: sp, widget: string}]}
+          - {label: Subheading, name: subheading, widget: object, fields: [{label: English, name: en, widget: string}, {label: Portuguese, name: pt, widget: string}, {label: French, name: fr, widget: string}, {label: Spanish, name: sp, widget: string}]}
+          - {label: Mainpitch, name: mainpitch, widget: object, fields: [{label: Title, name: title, widget: object, fields: [{label: English, name: en, widget: string}, {label: Portuguese, name: pt, widget: string}, {label: French, name: fr, widget: string}, {label: Spanish, name: sp, widget: string}]}, {label: Description, name: description, widget: object, fields: [{label: English, name: en, widget: text}, {label: Portuguese, name: pt, widget: text}, {label: French, name: fr, widget: text}, {label: Spanish, name: sp, widget: text}]}]}
+          - {label: News, name: news, widget: object, fields: [{label: English, name: en, widget: markdown}, {label: Portuguese, name: pt, widget: markdown}, {label: French, name: fr, widget: markdown}, {label: Spanish, name: sp, widget: markdown}]}
+          - {label: Image, name: tripImage, widget: image}
+          - {label: Image, name: listImage, widget: image}
+          - {label: Image, name: trustedImage, widget: image}
+          - {label: Image, name: locationImage, widget: image}
+          - {label: Image, name: accommodationsImage, widget: image}
       - file: "gatsby-starter-netlify-cms/src/pages/algarve/index.md"
         label: "The Algarve"
         name: "algarve"

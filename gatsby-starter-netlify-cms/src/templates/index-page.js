@@ -396,8 +396,8 @@ const toggleActiveSearch = (active) => {
       <Container style={{zIndex:"1", margin:"auto"}}>
         <Row style={{height: "100%"}}>
         <h2 className="home-section-title" style={{left: "-200px", top:"-80px"}}>smartavillas.com</h2>
-          <Col xs={12} lg={6} className='main-col left'>
-            <div className="intro-para" >
+          <Col xs={12} lg={6} className='main-col left' style={{overflow:"hidden"}}>
+            <div className="intro-para"  style={{overflow:"hidden"}}>
               <h1 style={{fontSize:"2.5rem", fontWeight:"bold"}} className='fade-left'><span style={{color:"#f5821e"}}>Smartavillas</span>.com <Trans>Property Rentals & Management</Trans></h1>
               <hr style={{width:"50%", height:"4px", backgroundColor:"#f5821e"}} className='fade-left'/>
               <h2 className='fade-left'>{t('description')}</h2>
@@ -450,7 +450,7 @@ const toggleActiveSearch = (active) => {
             </div>
       </section>
       <section className='main-section mobile-reverse orange-gradient'>
-          <div className="section-background">
+          <div className="section-background" style={{overflow:"hidden"}}>
             <div className={"half-image-left grey-in-left"}>
             <BackgroundImage
                 Tag="div"
@@ -469,7 +469,7 @@ const toggleActiveSearch = (active) => {
               <Col xs={12} lg={6}></Col>
               <Col xs={12} lg={6} className='main-col right'>
               <center style={{margin: "auto"}}><h2 className='fade-right' style={{textAlign:"center" , fontSize: "3rem", fontWeight:"bold"}}><Trans>What We</Trans> <span style={{color:"#fff"}}><Trans>Offer!</Trans></span></h2></center>
-                <div className="intro-para">
+                <div className="intro-para" style={{overflow:"hidden"}}>
                   <h3 className='fade-right' style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Plan the trip of your dreams with us!</Trans></h3>
                   <hr className='fade-right' style={{width:"50%", height:"4px", backgroundColor:"#333333"}}/>
                   <p className='fade-right'>
@@ -495,7 +495,7 @@ const toggleActiveSearch = (active) => {
             <Row style={{height: "100%"}}>  
             <h2 className="home-section-title" style={{left: "-100px"}}>{t("manage")}</h2>  
               <Col xs={12} lg={6} className='main-col left'>
-                <div className="intro-para" >
+                <div className="intro-para" style={{overflow:"hidden"}}>
                   <h3 className='fade-left' style={{fontSize:"2.5rem", color: "#fff", fontWeight:"bold"}}><Trans>Property Management Like no other in the Algarve</Trans></h3>
                   <hr className='fade-left' style={{width:"50%", height:"4px", backgroundColor:"#333333"}}/>
                   <p className='fade-left'>

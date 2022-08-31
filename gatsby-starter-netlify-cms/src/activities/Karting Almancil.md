@@ -11,13 +11,13 @@ featuredpost: false
 featuredimage: ../../static/img/karting-almancil.jpg
 description: 
   en: "Location: Kartodromo Almancil, Caminho das Pereiras Almancil
-  Opening season: Varies throughout the year"
+    Opening season: Varies throughout the year"
   pt: "Localização: Kartódromo de Almancil, Caminho das Pereiras Almancil
-   Temporada de abertura: varia ao longo do ano"
+    Temporada de abertura: varia ao longo do ano"
   fr: "Lieu : Kartodromo Almancil, Caminho das Pereiras Almancil
-   Période d'ouverture : Varie tout au long de l'année"
+    Période d'ouverture : Varie tout au long de l'année"
   es: "Ubicación: Kartodromo Almancil, Caminho das Pereiras Almancil
-   Temporada de apertura: varía a lo largo del año."
+    Temporada de apertura: varía a lo largo del año."
 link: http://www.kartingalgarve.com  
 visibleLink: www.kartingalgarve.com
 gps:

@@ -87,9 +87,7 @@ const TaxiEnquiryModal = (props) => {
           <input type="hidden" name={'from'} id={'from'} value={props.date}/>
           <input type="hidden" name={'lang'} id={'lang'} value={language} />
           <div className="field">
-            <label className="label" htmlFor={'from_name'}>
-              {t("Your name")}
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -98,13 +96,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'from_name'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'from_name'}>
+              {t("Your name")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'email'}>
-              {t("Email")}
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -113,13 +113,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'email'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'email'}>
+              {t("Email")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'phone'}>
-              {t("phone")}
-            </label>
+            
             <div className="control">
               <input
                 className="input"
@@ -128,14 +130,16 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'phone'}
                 required={true}
+                placeholder=" "
               />
+              <label className="label" htmlFor={'phone'}>
+              {t("phone")}
+            </label>
             </div>
           </div>
           <h3 className="orangeText">{t("Travel Details")}</h3>
           <div className="field">
-            <label className="label" htmlFor={'flight_number'}>
-              {t("In Flight Number")}
-            </label>
+            
             <div className="control">
               <input
                 className="input"
@@ -144,13 +148,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'flight_number'}
                 required={true}
+                placeholder=" "
               />
+              <label className="label" htmlFor={'flight_number'}>
+              {t("In Flight Number")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'arrival_date'}>
-              {t("Arrival Date")}
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -159,13 +165,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'arrival_date'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'arrival_date'}>
+              {t("Arrival Date")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'departing_from'}>
-              {t("Departing From")}
-            </label>
+          
             <div className="control">
               <input
                 className="input"
@@ -174,13 +182,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'departing_from'}
                 required={true}
+                placeholder=" "
               />
+                <label className="label" htmlFor={'departing_from'}>
+              {t("Departing From")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'time_of_arrival'}>
-              {t("Time of Arrival")}
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -189,13 +199,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'time_of_arrival'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'time_of_arrival'}>
+              {t("Time of Arrival")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'out_flight_number'}>
-              {t("Out Flight Number")}
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -204,13 +216,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'out_flight_number'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'out_flight_number'}>
+              {t("Out Flight Number")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'departure_date'}>
-              {t("Departure Date")}
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -219,13 +233,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'departure_date'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'departure_date'}>
+              {t("Departure Date")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'going_to'}>
-              {t("Going To")}
-            </label>
+          
             <div className="control">
               <input
                 className="input"
@@ -234,13 +250,15 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'going_to'}
                 required={true}
+                placeholder=" "
               />
+                <label className="label" htmlFor={'going_to'}>
+              {t("Going To")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'time_of_departure'}>
-              {t("Time of Departure")}
-            </label>
+          
             <div className="control">
               <input
                 className="input"
@@ -249,14 +267,16 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'time_of_departure'}
                 required={true}
+                placeholder=" "
               />
+                <label className="label" htmlFor={'time_of_departure'}>
+              {t("Time of Departure")}
+            </label>
             </div>
           </div>
          
           <div className="field">
-            <label className="label" htmlFor={'message'}>
-              {t("Questions or extra information")}
-            </label>
+         
             <div className="control">
               <textarea
                 className="textarea"
@@ -264,8 +284,11 @@ const TaxiEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'message'}
                 required={true}
-                placeholder={t("Let us know here!")}
+                placeholder={" "}
               />
+                 <label className="label" htmlFor={'message'}>
+              {t("Questions or extra information")}
+            </label>
             </div>
           </div>
           <div>

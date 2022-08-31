@@ -15,7 +15,7 @@ class HiringRoll extends React.PureComponent {
               jobs.map((job, index) => {
               return (
                 <div style={{position:"relative"}}>
-                  <h2 className="prop-section-title orangeText" style={{top:"-20px", overflow:"visible", zIndex:"0", fontSize:"8rem", opacity:"0.1"}}>{job.node.frontmatter.jobName[this.props.language]}</h2>
+                  <h2 className="prop-section-title orangeText" style={{top:"-20px", zIndex:"0", fontSize:"8rem", opacity:"0.1"}}>{job.node.frontmatter.jobName[this.props.language]}</h2>
                   <Card className="text-white" style={{backgroundColor:"#333333", maxWidth:"900px", margin: "60px auto", zIndex:"1", boxShadow: "0px 20px 20px -10px black"}}>
                     
                      <Card.Body>
