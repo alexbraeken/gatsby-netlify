@@ -117,8 +117,7 @@ const Footer = () =>{
                     </li>
                     <br />
                     <li>
-                      <h4 style={{color:"whitesmoke", fontWeight:"unset"}}>reservas@smartavillas.com</h4>
-                      
+                      <h4 style={{color:"whitesmoke", fontWeight:"unset"}}><a href="mailto:reservas@smartavillas.com" style={{background: "none", padding: "unset", width: "unset", height: "unset", margin: "unset"}}>reservas@smartavillas.com</a></h4>
                     </li>
                     <li>
                       <h4 style={{color:"whitesmoke", fontWeight:"unset"}}>+351 281027089 / +351 913692170</h4>
