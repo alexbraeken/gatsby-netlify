@@ -11,16 +11,22 @@ import { getImage } from "gatsby-plugin-image"
 gsap.registerPlugin(ScrollTrigger);
 
 const TeamPhoto = React.memo((props) =>{
+
+  const featuredImage = getImage(props.member.node.frontmatter.featuredimage.childImageSharp)
+  const secondaryImage = getImage(props.member.node.frontmatter.secondaryImage.childImageSharp)
+
 return(
   <div className={`headshot bottom-left ${props.first? 'first' : ''}`} >
-        <figure className="stretched sized" data-stretch={props.member.node.frontmatter.featuredimage.childImageSharp.fluid.src} 
+        <figure className="stretched sized" data-stretch={featuredImage.src} 
                 style={{position: "relative", background: "none"}}>
                   <div className="anystretch member-img-container" id={`member-img-${props.id}`} style={{left: "0px", top: "0px", position: "absolute", zIndex: "-999998", margin: "0px", padding: "0px", height: "100%", width: "100%", display: "flex",
     justifyVontent: "center",
     alignItems: "center",
     overflow: "hidden"}}>
-                    <img className="member-image primary"   
-                    src={props.member.node.frontmatter.featuredimage.childImageSharp.fluid.src} 
+                    <img className="member-image primary"  
+                    srcset={featuredImage.images.fallback.srcSet}
+                    sizes={featuredImage.images.fallback.sizes}
+                    src={featuredImage.images.fallback.src} 
                     alt={props.member.node.frontmatter.name}
                     style={{position: "absolute", margin: "0px", padding: "0px", border: "none", zIndex: "-999999", left: "50%", top: "50%", transform: "translate(-50%, -50%)", flexShrink: "0",
                     minWidth: "100%",
@@ -28,7 +34,10 @@ return(
                     maxWidth: "unset",
                     maxHeight:"unset"}} />
                     <img className="member-image secondary" 
-                    src={props.member.node.frontmatter.secondaryImage.childImageSharp.fluid.src}   
+                    srcset={secondaryImage.images.fallback.srcSet}
+                    sizes={secondaryImage.images.fallback.sizes}
+                    src={secondaryImage.images.fallback.src} 
+                    alt={props.member.node.frontmatter.name}
                     alt={props.member.node.frontmatter.name}
                     style={{position: "absolute", margin: "0px", padding: "0px", border: "none", zIndex: "-999999", left: "50%", top: "50%", transform: "translate(-50%, -50%)", flexShrink: "0",
                     minWidth: "100%",
@@ -44,7 +53,6 @@ return(
 const TeamCard = React.memo((props) =>{
 
   const {language} = useI18next();
-  const image = getImage(props.member.node.frontmatter.featuredimage.childImageSharp)
 
 
   useEffect(() => {
@@ -113,6 +121,7 @@ const TeamCard = React.memo((props) =>{
 
 
 class TeamRoll extends React.PureComponent {
+  
   render() {
     const { data, team } = this.props
     const { edges: members } = data.allMarkdownRemark

@@ -283,7 +283,7 @@ const PropertyCardComp = (props) => {
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
           }
 
-            <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></Link>
+            <a  href={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></a>
             <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
             <div className="card-slider-glow" style={{backgroundImage: `url(${bgImg})`}}>
 
@@ -294,14 +294,14 @@ const PropertyCardComp = (props) => {
             </div>
             <Card.ImgOverlay style={{position:"absolute", padding:"1rem", width: "100%", height:"unset", backgroundColor:"transparent", left:"0", bottom:"0", top:"auto", padding:0}}>
               <section className="section prop-card-text" style={{background:"linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%)", color: "#fff", marginTop:0, height:"unset", paddingBottom: "3px"}}>
-              <Link to={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}} target="_blank" rel="noopener noreferrer">
+              <a href={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}} target="_blank" rel="noopener noreferrer">
                 <Card.Title style={{textAlign:"center"}}><span className="prop-card-title" style={{fontSize:"1.8rem"}}>{props.item.name}</span></Card.Title>
                 <BedBathPax bedrooms={props.item.bedrooms} bathrooms={props.item.bathrooms} baseGuests={props.item.baseGuests} color="rgba(256,256,256)"/>
                 <div className="prop-card-description-ps">
                   <small style={{float:"left"}}>{props.item.city}</small>
                   <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{displayPrice}{props.item.currencySymbol} </span>/ {t("Night")}</small>
                 </div>
-                </Link>
+                </a>
               </section>
             </Card.ImgOverlay>   
         </Card>
@@ -358,7 +358,7 @@ const PropertyCardComp = (props) => {
           </div>
 
           }
-          <Link  to={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></Link>
+          <a  href={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></a>
           <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
   {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-prev card-arrow"
  aria-label="Show Slider" style={{display: "block"}} onClick={() => {getSetPhotos(props.item.uid); setShowSlider(!showSlider)}} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
@@ -385,7 +385,7 @@ const PropertyCardComp = (props) => {
           </div>
           <Card.ImgOverlay style={{position:"absolute", padding:"1rem", width: "100%", height:"unset", backgroundColor:"transparent", left:"0", bottom:"0", top:"auto", padding:0}}>
             <section className="section prop-card-text" style={{background:"linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%)", color: "#fff", marginTop:0, height:"unset", paddingBottom: "3px"}}>
-            <Link to={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}} target="_blank" rel="noopener noreferrer">
+            <a href={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}} target="_blank" rel="noopener noreferrer">
               <Card.Title style={{textAlign:"center"}}><span className="prop-card-title" style={{fontSize:"1.8rem"}}>{props.item.name}</span></Card.Title>
               <div ref={description} style={{overflow:"hidden"}}>
               <Card.Text style={{fontSize: "0.8rem", padding:"0 0 15px 0"}}>
@@ -397,7 +397,7 @@ const PropertyCardComp = (props) => {
                 <small style={{float:"left"}}>{props.item.city}</small>
                 <small style={{float:"right"}}>{t("From")} <span className="feature-text-price">{displayPrice}{props.item.currencySymbol} </span>/ {t("Night")}</small>
               </div>
-              </Link>
+              </a>
               <Card.Footer className="prop-card-footer-container" style={{position: "absolute", bottom:0, left:0, color:"#000"}} ref={footer}>
                   <div className="footer-btn-container">
                     <div className="footer-btn" role="button" tabIndex="0" aria-label="Amenities" onClick={() => {getSetAmenities(props.item.uid); setShowAmenities(!showAmenities)}} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowAmenities(!showAmenities)}}} style={showAmenities ? {backgroundColor: "#ffad77"}: {}}>

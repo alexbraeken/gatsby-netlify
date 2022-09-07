@@ -45,10 +45,16 @@ export const MeetTheTeamPageTemplate = ({
   const {language } = useI18next();
 
   const heroImage = getImage(image.childImageSharp)
+  const secondaryImg = getImage(secondaryImage.childImageSharp)
 
 
   const bgImage = convertToBgImage(heroImage)
-  
+  const secondaryBgImage = convertToBgImage(secondaryImg)
+
+  const teamImgs = Object.keys(teams).map(team => {
+    let tempImg = getImage(teams[team].image.childImageSharp)
+    return convertToBgImage(tempImg)
+  })
     
       useEffect(() => {
         setTimeout(()=>{
@@ -216,7 +222,7 @@ export const MeetTheTeamPageTemplate = ({
                       <BackgroundImage
                           Tag="div"
                           className={"parallax-bg"}
-                          {...secondaryImage}
+                          {...secondaryBgImage}
                           backgroundColor={`#040e18`}
                           style={{zIndex:"1"}}
                           preserveStackingContext
@@ -262,7 +268,7 @@ export const MeetTheTeamPageTemplate = ({
                                     <BackgroundImage
                                         Tag="div"
                                         className={"parallax-bg"}
-                                        {...teams[team].image}
+                                        {...teamImgs[i]}
                                         backgroundColor={`#040e18`}
                                         style={{zIndex:"1"}}
                                         preserveStackingContext

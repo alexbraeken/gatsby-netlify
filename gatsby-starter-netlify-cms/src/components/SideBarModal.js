@@ -83,7 +83,7 @@ export default function SideBarModal(props) {
                 </div>
                 <Form>
                     <Container>
-                        <h3 style={{textAlign: "center"}}>
+                        <h3 style={{textAlign: "center",fontWeight: "700", textTransform: "lowercase"}}>
                             {t("Filter Search")}
                         </h3>
                         <br />
@@ -96,7 +96,7 @@ export default function SideBarModal(props) {
                                 </div>
                             </Col>
                             <Col xs={12} lg={8}>
-                                <Row style={{flexWrap:"nowrap"}}>
+                                <Row style={{justifyContent:"flex-end"}}>
                                     <div
                                     className="button" 
                                     role="button" tabindex="0"
@@ -141,7 +141,7 @@ export default function SideBarModal(props) {
                                 </div>
                             </Col>
                             <Col xs={12} lg={8}>
-                                <Row style={{flexWrap:"nowrap"}}>
+                                <Row style={{justifyContent:"flex-end"}}>
                                     <div
                                 className="button"
                                 role="button" tabindex="0"   
@@ -178,14 +178,29 @@ export default function SideBarModal(props) {
                     )}
                     </Row>
                     <RangeSlider name={t("Bedrooms")} type="bedrooms" step={1} min={1} max={10} low={props.state.bedrooms[0]} high={props.state.bedrooms[1]} handleSliderChange={props.handleSliderChange}/>  
-                    <RangeSlider name={t("Bathrooms")} type="bathrooms" step={1} min={1} max={10} low={1} high={10} handleSliderChange={props.handleSliderChange}/>       
+                    <RangeSlider name={t("Bathrooms")} type="bathrooms" step={1} min={1} max={10} low={1} high={10} handleSliderChange={props.handleSliderChange}/>   
+                    <RangeSlider name={t("Price Range Per Night")} type="prices" step={50} min={0} max={1000} low={0} high={1000} handleSliderChange={props.handleSliderChange} marks={[
+                        {
+                            value: 0,label: '0',
+                        },
+                        {
+                            value: 250,label: '250',
+                        },
+                        {
+                            value: 500,label: '500',
+                        },
+                        {
+                            value: 750,label: '750',
+                        },
+                        {
+                            value: 1000,label: '1000',
+                        }
+                            ]}/>       
                     <Container fluid className="filter-header">
                         <Row>
-                            <Col xs={12} lg={4} style={{display:"flex"}}>
                                 <div className="label">
                                     <span>{t("Must Haves")}: </span>
                                 </div>
-                            </Col>
                         </Row>
                     </Container>
                     <br />

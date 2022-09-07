@@ -26,6 +26,7 @@ import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
+import { IoIosPricetag   } from "@react-icons/all-files/Io/IoIosPricetag";
 
 
 gsap.registerPlugin(gsap);
@@ -205,6 +206,8 @@ const ConnectedProperties = React.memo((props) => {
                     && (parseInt(item.bedrooms) <= props.state.bedrooms[1])
                     && (props.state.bathrooms[0] <= parseInt(item.bathrooms)) 
                     && (parseInt(item.bathrooms) <= props.state.bathrooms[1])
+                    && (props.state.prices[0] <= parseInt(item.baseDailyRate))
+                    && (parseInt(item.baseDailyRate) <= props.state.prices[1])
                     && (advancedSearch === (propertyIds.indexOf(item.uid) !== -1))
                     && !amenityBool.includes(false)){  
                     list.push(item)
@@ -294,7 +297,7 @@ const ConnectedProperties = React.memo((props) => {
                                         className="fixed-mobile">
                                             <div style={{display:"flex", flexWrap:"nowrap", margin: "auto 10px auto 0"}}>
                                         <Form.Group style={{margin:"10px auto"}}>
-                                            <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm">
+                                            <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm" style={{boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)", cursor: "pointer"}}>
                                                 <option value="">{t("Sort By")}</option>
                                                 <option value="price-min">{t("Daily Rate")}€ &#8594; €€€</option>
                                                 <option value="price-max">{t("Daily Rate")}€€€ &#8594; €</option>
@@ -330,6 +333,10 @@ const ConnectedProperties = React.memo((props) => {
                                     <StickyBox className="filter-sidebar-sticky" >
                                         <div className="filter-tab-container" onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>
                                             <div className="filter-tab" style={{display: "flex", flexDirection: "column"}}>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
+                                                    <IoIosPricetag style={{margin: "auto"}}/>
+                                                    <h4>{props.state.prices[0]}€ - {props.state.prices[1]}€</h4>
+                                                </div>
                                                 <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
                                                     <BsFillHouseFill style={{margin:"auto"}}/>
                                                     <h4>{propList.length}</h4>
@@ -429,6 +436,7 @@ const PropertiesClass = class extends React.Component {
             amenities:[],
             bedrooms: [1, 10],
             bathrooms: [1, 10],
+            prices: [0, 1000],
             filteredSearch: {},
             searchArray: [],
             dataLength: 0,
@@ -570,6 +578,8 @@ const PropertiesClass = class extends React.Component {
 
 
     handleSliderChange(array, type){
+        console.log(type)
+        console.log(array)
         this.setState({
             [`${type}`]: array
         })

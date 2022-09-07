@@ -97,9 +97,9 @@ export default function RangeSlider(props) {
 
   return (
     <div className={classes.root}>
-      <Typography id="range-slider" className="label">
+      <p id="range-slider" className="label">
         {name}
-      </Typography>
+      </p>
       <IOSSlider
         value={value}
         onChange={handleChange}
@@ -107,7 +107,7 @@ export default function RangeSlider(props) {
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         step={step}
-        marks={marks}
+        marks={props.marks || marks}
         min={min}
         max={max}
       />
