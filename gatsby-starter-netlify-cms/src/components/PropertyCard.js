@@ -43,6 +43,7 @@ const PropertyCardComp = (props) => {
     const [imgList, setImgList] = useState(null)
     const [amensList, setAmensList] = useState(null)
     const [pricingList, setPricingList] = useState(null)
+    const [bgKey, setBgKey] = useState('')
 
     const {t} = useTranslation(['properties', 'translation', 'amenities']);
     const {language} = useI18next();
@@ -66,6 +67,21 @@ const PropertyCardComp = (props) => {
             duration:1
         }
       })
+      return () => {
+        setShowAmenities(null)
+        setShowCalendar(null)
+        setDisplayPrice(null)
+        setDateURI(null)
+        setShowSlider(false)
+        setInFavs(false)
+        setBgImg('')
+        setHover(false)
+        setDisplayed(false)
+        setTimerId(null)
+        setImgList(null)
+        setAmensList(null)
+        setPricingList(null)
+      }
     }, [])
 
     useEffect(() => {
@@ -77,6 +93,7 @@ const PropertyCardComp = (props) => {
 
       return () => {
         setDisplayPrice(null)
+        
       }
     }, [props])
 
@@ -100,10 +117,12 @@ const PropertyCardComp = (props) => {
 
       imgLoader.onload = () => {
         setBgImg(props.item.pictitureReducedCloudUrl || props.item.picture)
+        setBgKey(imgLoader.src)
       }
 
       return () => {
         setBgImg('')
+        setBgKey('')
       }
     }, [props.item])
 
@@ -284,8 +303,8 @@ const PropertyCardComp = (props) => {
           }
 
             <a  href={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></a>
-            <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
-            <div className="card-slider-glow" style={{backgroundImage: `url(${bgImg})`}}>
+            <div className="card-slider-container" key={`${bgKey}`} style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
+            <div className="card-slider-glow" key={`${bgKey}-glow`} style={{backgroundImage: `url(${bgImg})`}}>
 
             </div>
               <Card.Text>

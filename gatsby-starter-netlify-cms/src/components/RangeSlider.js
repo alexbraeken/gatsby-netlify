@@ -74,9 +74,7 @@ const marks = [
     }
   ];
 
-function valuetext(value) {
-  return `${value}`;
-}
+
 
 export default function RangeSlider(props) {
   const classes = useStyles();
@@ -94,6 +92,10 @@ export default function RangeSlider(props) {
     setValue(newValue);
     props.handleSliderChange(newValue, props.type)
   };
+
+  function valuetext(value) {
+    return `${value}`
+  }
 
   return (
     <div className={classes.root}>

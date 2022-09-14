@@ -453,6 +453,7 @@ a:hover
       box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02)
       cursor: pointer
       transition: all 0.3s
+      overflow: hidden
   &:hover
     & .footer-btn
         max-width: 500px
@@ -996,6 +997,16 @@ $min-margin: 10px
         border-radius: 0 50px 0 0
         -moz-border-radius: 0 50px 0 0
         -webkit-border-radius: 0 50px 0 0
+      & .filter-tab-amenities
+          display: flex
+          flex-flow: column wrap
+          border-radius: 4px
+          margin: 2px 2px
+          -webkit-box-shadow: inset 5px 0px 11px -3px #000000, inset -5px 0px 11px -3px #000000
+          box-shadow: inset 2px 0px 8px -2px #a5a5a5, inset -2px 0px 8px -2px #a5a5a5
+          padding: 5px
+          &:empty
+            display: none
 
 
 
@@ -1060,6 +1071,7 @@ $min-margin: 10px
   background: #fff
   color: #000
   border-radius: 5px
+
   
 .calendar-container
   z-index: 5
@@ -1071,6 +1083,7 @@ $min-margin: 10px
   box-shadow: 0px 11px 12px -8px black
   transform: translate(-50%, 0px)
   margin-left: 50%
+  font-size: 0.8rem
   
 
 .DayPicker-Weekday
@@ -2409,6 +2422,9 @@ a.navbar-item, .navbar-item
   right: 20px
   z-index: 10
   cursor: pointer
+  transition: all 0.3s
+  &:hover
+    color: $primary
 
 .orangeText
   color: $primary !important

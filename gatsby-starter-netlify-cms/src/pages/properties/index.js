@@ -12,13 +12,14 @@ import Row from 'react-bootstrap/Row'
 import queryString from 'query-string'
 import Loading from '../../components/Loading'
 import SideBarModal from '../../components/SideBarModal'
+import CalendarModal from '../../components/CalendarModal'
 import StickyBox from "react-sticky-box"
 import { Col } from 'react-bootstrap'
 import GoogleMapComponent from '../../components/GoogleMapComponent'
 import ReactBnbGallery from 'react-bnb-gallery'
 import { gsap } from "gsap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faChevronLeft, faUsers, faBed, faShower, faFan, faDog, faWifi, faSwimmingPool, faTree } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faChevronLeft, faUsers, faBed, faShower, faFan, faDog, faWifi, faSwimmingPool, faTree, faCalendarAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { connect } from "react-redux"
 import { Helmet } from 'react-helmet'
 import { BsFillHouseFill } from "@react-icons/all-files/bs/BsFillHouseFill"
@@ -52,6 +53,8 @@ const ConnectedProperties = React.memo((props) => {
     const [cardDisplayNum, setCardDisplayNum] = useState(null)
     const [fetchError, setFetchError] = useState(false)
     const [heroBg, setHeroBg] = useState(null)
+    const [showCalendar, setShowCalendar] = useState(false)
+
     
     const [amenitiesList, setAmenitiesList] = useState({
         hasPool: false,
@@ -250,6 +253,13 @@ const ConnectedProperties = React.memo((props) => {
     };
 
 
+    const handleCalendarClose = () => setShowCalendar(false);
+    const handleShowCalendar = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        setShowCalendar(true)
+    }
+
     const handleSort = useCallback((sort) => {
         setSort(sort)
     }, [])
@@ -299,8 +309,8 @@ const ConnectedProperties = React.memo((props) => {
                                         <Form.Group style={{margin:"10px auto"}}>
                                             <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm" style={{boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)", cursor: "pointer"}}>
                                                 <option value="">{t("Sort By")}</option>
-                                                <option value="price-min">{t("Daily Rate")}€ &#8594; €€€</option>
-                                                <option value="price-max">{t("Daily Rate")}€€€ &#8594; €</option>
+                                                <option value="price-min">{t("Daily Rate")} € &#8594; €€€</option>
+                                                <option value="price-max">{t("Daily Rate")} €€€ &#8594; €</option>
                                                 <option value="bedrooms-min">{t("Bedrooms")} {t("Increasing")}</option>
                                                 <option value="bedrooms-max">{t("Bedrooms")} {t("Decreasing")}</option>
                                                 <option value="a-z">A &#8594; Z</option>
@@ -333,23 +343,35 @@ const ConnectedProperties = React.memo((props) => {
                                     <StickyBox className="filter-sidebar-sticky" >
                                         <div className="filter-tab-container" onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>
                                             <div className="filter-tab" style={{display: "flex", flexDirection: "column"}}>
-                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
-                                                    <IoIosPricetag style={{margin: "auto"}}/>
-                                                    <h4>{props.state.prices[0]}€ - {props.state.prices[1]}€</h4>
+                                                <div className="expandBtn" style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center", margin: "2px 2px", padding: "5px", minHeight:"46px"}} onClick={handleShowCalendar}>
+                                                    <FontAwesomeIcon icon={faCalendarAlt} style={{margin:"auto"}}/> 
+                                                    {props.state.searchArray.from &&
+                                                        <p>{props.state.searchArray.from && 
+                                                        <small>{`${new Date(props.state.searchArray.from).getDate()}/${new Date(props.state.searchArray.from).getMonth()+1}`}</small>
+                                                        }
+                                                        <br />
+                                                        {props.state.searchArray.to && 
+                                                        <small>{`${new Date(props.state.searchArray.to).getDate()}/${new Date(props.state.searchArray.to).getMonth()+1}`}</small>
+                                                        }</p>
+                                                    }
                                                 </div>
-                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
                                                     <BsFillHouseFill style={{margin:"auto"}}/>
-                                                    <h4>{propList.length}</h4>
+                                                    <small>{propList.length}</small>
                                                 </div>
-                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
+                                                    <IoIosPricetag style={{margin: "auto"}}/>
+                                                    <small>{props.state.prices[0]}€ - {props.state.prices[1]}€</small>
+                                                </div>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
                                                     <FontAwesomeIcon icon={faBed} style={{margin: "auto"}} />
-                                                    <h4>{props.state.bedrooms[0]} - {props.state.bedrooms[1]}</h4>
+                                                    <small>{props.state.bedrooms[0]} - {props.state.bedrooms[1]}</small>
                                                 </div>
-                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0"}}>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
                                                     <FontAwesomeIcon icon={faShower} style={{margin: "auto"}}/>
-                                                    <h4>{props.state.bathrooms[0]} - {props.state.bathrooms[1]}</h4>
+                                                    <small>{props.state.bathrooms[0]} - {props.state.bathrooms[1]}</small>
                                                 </div>
-                                                <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column"}}>
+                                                <div className="filter-tab-amenities">
                                                     {Object.keys(amenitiesList).map(amenity => {
                                                         switch(amenity){
                                                         case "hasPool":
@@ -369,7 +391,7 @@ const ConnectedProperties = React.memo((props) => {
                                                         case "hasInternetWifi":
                                                             return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "5px auto"}}/></div> : null
                                                         default:
-                                                        return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><BsCheckCircle style={{margin: "5px auto"}} /></div> : null
+                                                        return null
                                                         }
                                                     })}
                                                 </div>
@@ -385,10 +407,11 @@ const ConnectedProperties = React.memo((props) => {
                                                     state={props.state}
                                                     handleSliderChange={props.handleSliderChange}
                                                     handleSelectDeselectAll={props.handleSelectDeselectAll}/>
+
                                     </StickyBox>
                                     </div>
                                     
-                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg}/>
+                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList}  handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
@@ -416,6 +439,7 @@ const ConnectedProperties = React.memo((props) => {
                             </Row>
                         </Container>
                     }
+            <CalendarModal show={showCalendar} handleClose={handleCalendarClose} dates={{from: props.state.searchArray.from, to: props.state.searchArray.to}} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleClearDates={props.handleClearDates}/>
 
             </div>
         )

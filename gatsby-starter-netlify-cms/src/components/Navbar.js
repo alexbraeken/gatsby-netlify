@@ -58,25 +58,42 @@ const PropertiesDropDown = React.memo((props) => {
 
     if(typeof window !== `undefined`){
       try{
-        const db = firebase.firestore()
+        const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
         let propData = {}
-        const getFireData = async () => {
-          const snapshot = await db
-                                  .collection('/Navbar')
-                                  .doc('Nav')
-                                  .get();
-          Object.keys(snapshot.data()).forEach(key=>{
-            if(key === 'PropNames'){
-              propData.propNames = snapshot.data().PropNames.map(prop => {
-                return {value: prop.uid, label: prop.name, city: prop.city }
+        const getFireData = async () => { 
+          fetch(uri, 
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(
+                {
+                  source: "db",
+                  col:"Navbar",
+                  doc:"Nav"
+                })
               })
-            }else{
-              propData[key] = snapshot.data()[key]
-            }
-          })
-          setOptions(propData)
+                .then(response => {
+                    return response.text()
+                })
+                .then(data => {
+                  let dataObj = JSON.parse(data)
+                  Object.keys(dataObj.Nav).forEach(key=>{
+                    if(key === 'PropNames'){
+                      propData.propNames = dataObj.Nav.PropNames.map(prop => {
+                        return {value: prop.uid, label: prop.name, city: prop.city }
+                      })
+                    }else{
+                      propData[key] = dataObj.Nav[key]
+                    }
+                  })
+                  setOptions(propData)
+                })
         }
         getFireData()
+
       }catch(e){
     
       }
