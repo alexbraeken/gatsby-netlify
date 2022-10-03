@@ -3927,6 +3927,7 @@ header
           padding: 0 calc(25px + 15%)
           color: #fff
           width: 100%
+          pointer-events: none
           & >*
               opacity : 0
               transform: translateX(100%)
@@ -4073,6 +4074,7 @@ header
               &:after
                 width: 100%
     & .rm .r-content
+        pointer-events: all
         & #sublinks-ul
             width: 100%
             line-height: normal
@@ -4370,7 +4372,7 @@ header
   z-index: 0
 
 .footer .prop-section-title
-  font-size: calc(110PX + 30 * (80vw - 320px) / 1080)
+  font-size: calc(90PX + 30 * (50vw - 320px) / 1080)
 
 .prop-section-title
   font-size: calc(90PX + 30 * (80vw - 320px) / 1080)
@@ -4976,3 +4978,50 @@ p.about-section
 
 .right-align
   float: right
+
+.collapse-parent
+  margin: 0
+  margin-bottom: 0
+  transition: all 0.3s
+  display: flex
+  cursor: pointer
+  position: relative
+  &:after
+    content: '';
+    position: absolute;
+    box-shadow: 2px 0px 6px 0px #f5821e;
+    bottom: 0;
+    left: 50%;
+    height: 2px;
+    transform: translateX(-50%);
+    width: 10px;
+    background: #f5821e;
+    transition: all 0.3s;
+  &:hover:after
+    width: 100%
+  & h4
+      margin-bottom: 0
+      margin-top: 5px
+  & .collapse-header
+      padding: 5px
+  & .collapse-icon
+      margin: auto 5px auto auto
+      transition: all 0.3s 
+  &[aria-expanded="true"]
+    margin: 5px
+    &:after
+      width: 100%
+    & h4
+        color: $primary
+    & .collapse-icon
+        transform: rotateZ(45deg)
+        color: $primary
+
+.collapse-body
+  box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02)
+  margin: 5px
+  margin-top: 0
+  border-radius: 4px
+  & p
+      padding: 15px
+

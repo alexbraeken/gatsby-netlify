@@ -80,6 +80,11 @@ const Footer = () =>{
                     {t("Hiring")}
                       </Link>
                     </li>
+                     <li>
+                    <Link className="navbar-item" to="/about/faq">
+                    {t("Frequently Asked Questions")}
+                      </Link>
+                    </li>
                     <li>
                       <Link className="navbar-item" to="/contact">
                       {t("Contact")}
