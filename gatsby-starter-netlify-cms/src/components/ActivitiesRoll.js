@@ -14,7 +14,7 @@ const ActivityCard = React.memo((props) =>{
   const {language } = useI18next();
 
     
-  const heroImage = getImage(props.activity.frontmatter.featuredimage.childImageSharp)
+  const heroImage = props.activity.frontmatter.featuredimage ? getImage(props.activity.frontmatter.featuredimage.childImageSharp) : null
   const bgImage = convertToBgImage(heroImage)
 
 

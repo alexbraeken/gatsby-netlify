@@ -1398,7 +1398,12 @@ $min-margin: 10px
   font-size: 12px
   font-family: 'Raleway', sans-serif
   font-weight: 500
-  display: none
+  opacity: 0
+  max-height: 0
+  height: 100%
+  transition: all 0.4s
+  display: block
+  overflow: hidden
 
 
 .card__link 
@@ -1422,7 +1427,8 @@ $min-margin: 10px
 
 
 .activity-card:hover .card__details 
-  display: block
+  opacity: 1
+  max-height: 1000px
 
 //Algarve Carousel
 .algarve-carousel
