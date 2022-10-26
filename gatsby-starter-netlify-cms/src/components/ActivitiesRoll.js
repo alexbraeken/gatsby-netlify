@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import Slider from "react-slick"
+import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt"
 import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import BackgroundImage from 'gatsby-background-image'
 import convertToBgImage from "../Helpers/images"
@@ -10,10 +11,8 @@ import { getImage } from "gatsby-plugin-image"
 //Individual Activity Cards
 const ActivityCard = React.memo((props) =>{
 
-  const {t} = useTranslation();
   const {language } = useI18next();
 
-    
   const heroImage = props.activity.frontmatter.featuredimage ? getImage(props.activity.frontmatter.featuredimage.childImageSharp) : null
   const bgImage = convertToBgImage(heroImage)
 
@@ -39,7 +38,7 @@ const ActivityCard = React.memo((props) =>{
             style={{zIndex:"1", position: "absolute"}}
             preserveStackingContext
             >&nbsp;</BackgroundImage>) : null }
-            
+            {props.activity.frontmatter.gps.lat && props.activity.frontmatter.gps.lng && <div style={{position: "absolute", top:"5px", right:"5px"}}><a href={`https://www.google.com/maps/dir/?api=1&destination=${props.activity.frontmatter.gps.lat},${props.activity.frontmatter.gps.lng}`} target="_blank"><FaMapMarkerAlt className="card-marker"/></a></div>}
             <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
             
               <h3 className="card__title">{props.activity.frontmatter.langTitles[language]}</h3>
