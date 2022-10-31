@@ -38,11 +38,7 @@ const ActivityCard = React.memo((props) =>{
             style={{zIndex:"1", position: "absolute"}}
             preserveStackingContext
             >&nbsp;</BackgroundImage>) : null }
-<<<<<<< HEAD
-            {props.activity.frontmatter.gps.lat && props.activity.frontmatter.gps.lng && <div style={{position: "absolute", top:"5px", right:"5px"}}><a href={`https://www.google.com/maps/dir/?api=1&destination=${props.activity.frontmatter.gps.lat},${props.activity.frontmatter.gps.lng}`} target="_blank"><FaMapMarkerAlt className="card-marker"/></a></div>}
-=======
             {props.activity.frontmatter.gps.lat && props.activity.frontmatter.gps.lng && <div className="activity-marker" ><a href={`https://www.google.com/maps/dir/?api=1&destination=${props.activity.frontmatter.gps.lat},${props.activity.frontmatter.gps.lng}`} target="_blank"><FaMapMarkerAlt className="card-marker"/></a></div>}
->>>>>>> master
             <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
             
               <h3 className="card__title">{props.activity.frontmatter.langTitles[language]}</h3>

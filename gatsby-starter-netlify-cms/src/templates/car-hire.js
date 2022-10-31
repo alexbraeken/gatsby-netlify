@@ -164,20 +164,13 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
           <CarAlertModal show={showCarAlert} handleClose={handleClose} />
           
         </div>
-<<<<<<< HEAD
         <section
     className="last"></section>
-        <div className={`car-alert ${showCarAlert ? '' : 'show'}`} style={{}} onClick={()=>{handleShowCarAlert()}}>
-            <h3>{t("No Availabilities of any class vehicles till 30th September 2022")}</h3>
-          </div>
-=======
         {false &&
           <div className={`car-alert ${showCarAlert ? '' : 'show'}`} style={{}} onClick={()=>{handleShowCarAlert()}}>
           <h3>{t("No Availabilities of any class vehicles till 30th September 2022")}</h3>
         </div>
-
         }
->>>>>>> master
     </div>
   )
 }

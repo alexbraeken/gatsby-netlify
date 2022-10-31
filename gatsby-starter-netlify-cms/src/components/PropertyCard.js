@@ -295,7 +295,7 @@ const PropertyCardComp = (props) => {
 
 
     return (
-    <div className="prop-card-container" key={props.index} onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={{position: "relative", margin:"20px"}} ref={cardContainer}>
+    <div className="prop-card-container" key={props.index} onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={{position: "relative"}} ref={cardContainer}>
         <div ref={card}>
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}}>
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
