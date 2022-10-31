@@ -13,8 +13,7 @@ const ActivityCard = React.memo((props) =>{
 
   const {language } = useI18next();
 
-    
-  const heroImage = getImage(props.activity.frontmatter.featuredimage.childImageSharp)
+  const heroImage = props.activity.frontmatter.featuredimage ? getImage(props.activity.frontmatter.featuredimage.childImageSharp) : null
   const bgImage = convertToBgImage(heroImage)
 
 
@@ -39,7 +38,11 @@ const ActivityCard = React.memo((props) =>{
             style={{zIndex:"1", position: "absolute"}}
             preserveStackingContext
             >&nbsp;</BackgroundImage>) : null }
+<<<<<<< HEAD
             {props.activity.frontmatter.gps.lat && props.activity.frontmatter.gps.lng && <div style={{position: "absolute", top:"5px", right:"5px"}}><a href={`https://www.google.com/maps/dir/?api=1&destination=${props.activity.frontmatter.gps.lat},${props.activity.frontmatter.gps.lng}`} target="_blank"><FaMapMarkerAlt className="card-marker"/></a></div>}
+=======
+            {props.activity.frontmatter.gps.lat && props.activity.frontmatter.gps.lng && <div className="activity-marker" ><a href={`https://www.google.com/maps/dir/?api=1&destination=${props.activity.frontmatter.gps.lat},${props.activity.frontmatter.gps.lng}`} target="_blank"><FaMapMarkerAlt className="card-marker"/></a></div>}
+>>>>>>> master
             <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
             
               <h3 className="card__title">{props.activity.frontmatter.langTitles[language]}</h3>
@@ -133,8 +136,7 @@ class ActivitiesRoll extends React.PureComponent {
 
     if(this.props.handleActivitiesCoords){
       this.state.activities.forEach(({ node: activity }) =>{ 
-        
-        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[this.state.language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.childImageSharp?.gatsbyImageData.src})
+        coords.push({...activity.frontmatter.gps, name: activity.frontmatter.langTitles[this.state.language], link: activity.frontmatter.link, type: activity.frontmatter.category, img: activity.frontmatter.featuredimage?.publicURL})
       })
       this.props.handleActivitiesCoords(coords)
     }

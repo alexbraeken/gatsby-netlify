@@ -67,7 +67,7 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
   const [loaded, setLoaded] = useState(false)
   const [selectedPricing, setSelectedPricing] = useState(null)
   const [selected, setSelected] = useState(null)
-  const [showCarAlert, setShowCarAlert] = useState(true)
+  const [showCarAlert, setShowCarAlert] = useState(false)
   const handleClose = () => setShowCarAlert(false);
   const handleShowCarAlert = () => setShowCarAlert(true);
   
@@ -164,11 +164,20 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
           <CarAlertModal show={showCarAlert} handleClose={handleClose} />
           
         </div>
+<<<<<<< HEAD
         <section
     className="last"></section>
         <div className={`car-alert ${showCarAlert ? '' : 'show'}`} style={{}} onClick={()=>{handleShowCarAlert()}}>
             <h3>{t("No Availabilities of any class vehicles till 30th September 2022")}</h3>
           </div>
+=======
+        {false &&
+          <div className={`car-alert ${showCarAlert ? '' : 'show'}`} style={{}} onClick={()=>{handleShowCarAlert()}}>
+          <h3>{t("No Availabilities of any class vehicles till 30th September 2022")}</h3>
+        </div>
+
+        }
+>>>>>>> master
     </div>
   )
 }

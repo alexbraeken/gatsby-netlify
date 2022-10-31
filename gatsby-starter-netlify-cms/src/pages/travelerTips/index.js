@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 import AlgarveCarousel from '../../components/AlgarveCarousel';
 import StickyBox from "react-sticky-box";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChild, faHiking, faHorse, faGolfBall, faInfinity, faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { faChild, faHiking, faHorse, faGolfBall, faInfinity, faUtensils, faCocktail, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row } from 'react-bootstrap';
 
 class TravelerTipsIndex extends React.Component {
@@ -73,6 +73,12 @@ class TravelerTipsIndex extends React.Component {
                 </div>
                 <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Restaurant" ? "selected":""}`} onClick={()=>this.handleClick("Restaurant")} onKeyDown={()=>this.handleClick("Restaurant")}>
                     <div class="filter-button-content"><span>{t("Restaurants")}</span><FontAwesomeIcon icon={faUtensils} /> </div>
+                </div>
+                <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Bar" ? "selected":""}`} onClick={()=>this.handleClick("Bar")} onKeyDown={()=>this.handleClick("Bar")}>
+                    <span>{t("Bars")}</span><FontAwesomeIcon icon={faCocktail} /> 
+                </div>
+                 <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Shopping" ? "selected":""}`} onClick={()=>this.handleClick("Shopping")} onKeyDown={()=>this.handleClick("Shopping")}>
+                    <span>{t("Shopping")}</span><FontAwesomeIcon icon={faShoppingBag} /> 
                 </div>
               </div>
             </StickyBox>

@@ -315,7 +315,7 @@ render(){
                 >
                   <div className="map-overlay-view" style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
                   <img src={this.state.overlay.img} style={{maxWidth:"100%",flex:"1 1 100%"}} alt={this.state.overlay.name}/>
-                  <Link to={this.state.overlay.link}><div style={{height: "100%", display:"flex"}}><h4 className="overlay-name">{this.state.overlay.name}</h4></div></Link>
+                  <a href={this.state.overlay.link}><div style={{height: "100%", display:"flex"}}><h4 className="overlay-name">{this.state.overlay.name}</h4></div></a>
                       <div className="map-price"><small className="orangeText">{this.state.overlay.type}</small></div>
                   </div>
                 </OverlayView>
@@ -341,7 +341,10 @@ render(){
                                   clusterer={infoClusterer}
                                   clickable={true} 
                                   title={activity.name}
-                                  onClick={()=>{this.handleInfoClick({lat: activity.lat, lng: activity.lng }, activity.name, activity.type, activity.img, activity.link)}}/>
+                                  onClick={()=>{
+                                    console.log(activity.img)
+                                    this.handleInfoClick({lat: activity.lat, lng: activity.lng }, activity.name, activity.type, activity.img, activity.link)}
+                                  }/>
                       })
                     }
                   </MarkerClusterer>

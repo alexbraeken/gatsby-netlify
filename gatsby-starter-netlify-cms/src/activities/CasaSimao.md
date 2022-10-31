@@ -8,12 +8,12 @@ langTitles:
   es: Casa Simao
 category: Restaurant 
 featuredpost: false
-featuredimage: ../../static/img/casa_simao_logo.png
+featuredimage: "../../static/img/Casa Simao.jpg"
 description: 
-  en: ""
-  pt: ""
-  fr: ""
-  es: ""
+  en: "Family run traditional Portuguese cuisine in the heart of town "
+  pt: "Cozinha tradicional portuguesa familiar no coração da cidade"
+  fr: "Cuisine portugaise traditionnelle familiale au cœur de la ville"
+  es: "Cocina tradicional portuguesa familiar en el corazón de la ciudad."
 link: https://www.tripadvisor.com/Restaurant_Review-g285715-d2639575-Reviews-Casa_Simao-Tavira_Faro_District_Algarve.html
 visibleLink: tripadvisor.com - Casa Simao
 gps:
