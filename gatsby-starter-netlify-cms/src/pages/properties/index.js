@@ -54,6 +54,7 @@ const ConnectedProperties = React.memo((props) => {
     const [fetchError, setFetchError] = useState(false)
     const [heroBg, setHeroBg] = useState(null)
     const [showCalendar, setShowCalendar] = useState(false)
+    const [mapBoundedProperties, setMapBoundedProperties] = useState([])
 
     
     const [amenitiesList, setAmenitiesList] = useState({
@@ -186,11 +187,29 @@ const ConnectedProperties = React.memo((props) => {
     }, [data])
 
     useEffect(() => {
+        
+        filterData(data)
+        
+        return () => {
+            setPropList([])
+        }
+    }, [data, advancedSearch, props.state, sort, propertyIds, amenitiesList])
+
+
+    useEffect(() => {
+        console.log(mapBoundedProperties)
+        filterData(data)
+
+        return () => {
+            setPropList([])
+        }
+    }, [mapBoundedProperties])
+
+    const filterData = (data) => {
         const amenities = []
         Object.keys(amenitiesList).forEach(amenity => {
             return amenitiesList[amenity] ? amenities.push(amenity) : null
         })
-
         const list = []
         if(data){
             data.forEach((item, index) => {
@@ -212,7 +231,8 @@ const ConnectedProperties = React.memo((props) => {
                     && (props.state.prices[0] <= parseInt(item.baseDailyRate))
                     && (parseInt(item.baseDailyRate) <= props.state.prices[1])
                     && (advancedSearch === (propertyIds.indexOf(item.uid) !== -1))
-                    && !amenityBool.includes(false)){  
+                    && !amenityBool.includes(false)
+                    && (mapBoundedProperties.length > 0 ? mapBoundedProperties.includes(item.uid) : true)){  
                     list.push(item)
                 } 
             })
@@ -236,13 +256,11 @@ const ConnectedProperties = React.memo((props) => {
     
             setPropList(list)
         }
-        
-        return () => {
-            setPropList([])
-        }
-    }, [data, advancedSearch, props.state, sort, propertyIds, amenitiesList])
+    }
 
-
+    const handleMapBoundProperties = (propList) => {
+        setMapBoundedProperties(propList)
+    }
     const handleGalleryClick = useCallback((photos) => {
         setShow(true);
         setPhotos(photos);
@@ -325,7 +343,7 @@ const ConnectedProperties = React.memo((props) => {
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
-                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"94vh"} cardDisplayNum={cardDisplayNum}/>
+                                <GoogleMapComponent handleMapBoundProperties={handleMapBoundProperties} boundProps={mapBoundedProperties} isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"94vh"} cardDisplayNum={cardDisplayNum}/>
                                 <div className="expandBtn filterExpand" role="button" tabindex="0" onClick={handleExpand} onKeyDown={(e)=>{if(e.key === 'Enter'){handleExpand()}}} >
                                     {horizontalExpanded ? 
                                     <>

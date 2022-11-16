@@ -13,6 +13,7 @@ import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 const options = {
   gridSize: 50,
+  minClusterSize: 3,
   styles: [
     {
       textColor: 'white',
@@ -78,13 +79,16 @@ export default class renderMap extends React.Component{
     }
     this.onLoad = this.onLoad.bind(this);
     this.markerOnLoad = this.markerOnLoad.bind(this);
+    this.MarkerClustererOnLoad = this.MarkerClustererOnLoad.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
     this.refreshPropList = this.refreshPropList.bind(this);
     this.refreshBounds = this.refreshBounds.bind(this);
+    this.handleBoundsChange = this.handleBoundsChange.bind(this);
     this.checkMobile = this.checkMobile.bind(this);
     this.refreshMarkers = this.refreshMarkers.bind(this);
     this.addMarkerListener = this.addMarkerListener.bind(this);
+    this.addMarkerClustererListener = this.addMarkerClustererListener.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
 }
 checkMobile = () => {
@@ -140,6 +144,18 @@ refreshBounds = (mapInstance) => {
     mapInstance.fitBounds(bounds);
   }
 }
+
+handleBoundsChange = () => {
+  if(this.state.map){
+    let boundedProps = []
+    this.state.markers.forEach(marker=> {
+      if(this.state.map.getBounds().contains(marker.marker.getPosition())){
+        boundedProps.push(marker.id)
+      } 
+    })
+    if(this.props.props.boundProps !== boundedProps)this.props.props.handleMapBoundProperties(boundedProps)
+  }
+}
   
     onLoad = 
        (mapInstance) => {
@@ -151,9 +167,13 @@ refreshBounds = (mapInstance) => {
         if(this.props.props.isMarkerShown && this.props.props.list)this.refreshBounds(mapInstance)
     }
 
-    markerOnLoad = (marker) => {
-      this.setState(prevState=> ({markers: [...prevState.markers, marker]}))
-      this.addMarkerListener(marker)
+    markerOnLoad = (marker, id) => {
+      this.setState(prevState=> ({markers: [...prevState.markers, {marker: marker, id: id}]}))
+      this.addMarkerListener({marker: marker, id: id})
+    }
+
+    MarkerClustererOnLoad = (cluster) => {
+      this.addMarkerClustererListener(cluster)
     }
 
     refreshMarkers = (markers) => {
@@ -163,25 +183,50 @@ refreshBounds = (mapInstance) => {
     }
 
     addMarkerListener = (marker) => {
-      let card = document.getElementById(marker.title)
+      console.log(marker.marker)
+      let card = document.getElementById(marker.marker.title)
       if(card){
         card.addEventListener("mouseenter", ()=> {
-          marker.setIcon(icon3)
-          marker.setAnimation(window.google.maps.Animation.BOUNCE)
+          marker.marker.setIcon(icon3)
+          marker.marker.setAnimation(window.google.maps.Animation.BOUNCE)
         })
         card.addEventListener("focusin", ()=> {
-          marker.setIcon(icon3)
-          marker.setAnimation(window.google.maps.Animation.BOUNCE)
+          marker.marker.setIcon(icon3)
+          marker.marker.setAnimation(window.google.maps.Animation.BOUNCE)
         })
         card.addEventListener("mouseleave", ()=> {
-          marker.setIcon(icon)
-          marker.setAnimation(null)
+          marker.marker.setIcon(icon)
+          marker.marker.setAnimation(null)
         })
         card.addEventListener("focusout", ()=> {
-          marker.setIcon(icon)
-          marker.setAnimation(null)
+          marker.marker.setIcon(icon)
+          marker.marker.setAnimation(null)
         })
       }
+    }
+
+    addMarkerClustererListener = (clusterer) => {
+      clusterer.clusters.forEach(cluster => {
+        cluster.markers.forEach(marker => {
+          console.log(marker)
+          let card = document.getElementById(marker.title)
+          if(card){
+            card.addEventListener("mouseenter", ()=> {
+              if(cluster.clusterIcon.div)cluster.clusterIcon.div.classList.add("bounce-animation")
+            })
+            card.addEventListener("focusin", ()=> {
+              if(cluster.clusterIcon.div)cluster.clusterIcon.div.classList.add("bounce-animation")
+            })
+            card.addEventListener("mouseleave", ()=> {
+              if(cluster.clusterIcon.div)cluster.clusterIcon.div.classList.remove("bounce-animation")
+            })
+            card.addEventListener("focusout", ()=> {
+              if(cluster.clusterIcon.div)cluster.clusterIcon.div.classList.remove("bounce-animation")
+            })
+          }
+        })
+      })
+      
     }
 
     
@@ -273,7 +318,7 @@ render(){
           onLoad={this.onLoad}
           gestureHandling= {this.state.isMobile ? "cooperative" : "greedy" }
           onMouseOut={()=>this.handleMouseOut()}
-          
+          onBoundsChanged={()=>this.handleBoundsChange()}
           center={this.state.center}
         >
           {(this.props.props.isMarkerShown && this.props.props.list)?
@@ -284,6 +329,7 @@ render(){
                   mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                 >
                   <div className="map-overlay-view" style={{backgroundColor:"#fff", borderRadius:"4px", padding:"5px", display:"flex", justifyContent:"center", flexWrap:"wrap", maxWidth:"300px"}}>
+                  <div style={{display: "none"}} className="bounce-animation"></div>
                   <Link to={`/properties/${this.state.overlay.uid}`}>
                     <div className="overlay-view-link">
                       <FontAwesomeIcon icon={faEye} className="overlay-view-icon"/>
@@ -296,10 +342,10 @@ render(){
                   <BedBathPax bedrooms={this.state.overlay.bed} bathrooms={this.state.overlay.bath} baseGuests={this.state.overlay.guests} color="rgba(0,0,0)"/>
                   </div>
                 </OverlayView>}
-              <MarkerClusterer options={options} maxZoom={14}>
+              <MarkerClusterer onClusteringEnd={this.MarkerClustererOnLoad} options={options} maxZoom={14}>
                 {(clusterer)=> 
                   this.state.propList.map((prop, index)=>{
-                    return <Marker onLoad={this.markerOnLoad} position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} id={prop.uid} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.currencySymbol, prop.uid)}/>
+                    return <Marker onLoad={(marker)=>{this.markerOnLoad(marker, prop.uid)}} position={{ lat: prop.latitude, lng: prop.longitude }} key={index} clusterer={clusterer} clickable={true} icon={icon} title={prop.name} id={prop.uid} onClick={()=>this.handleClick({ lat: prop.latitude, lng: prop.longitude }, prop.name, prop.bedrooms, prop.bathrooms, prop.baseGuests, prop.picture, prop.baseDailyRate, prop.currencySymbol, prop.uid)}/>
                   })
                 }
               </MarkerClusterer>
@@ -342,7 +388,6 @@ render(){
                                   clickable={true} 
                                   title={activity.name}
                                   onClick={()=>{
-                                    console.log(activity.img)
                                     this.handleInfoClick({lat: activity.lat, lng: activity.lng }, activity.name, activity.type, activity.img, activity.link)}
                                   }/>
                       })
