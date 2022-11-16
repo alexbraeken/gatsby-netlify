@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTv, faFan, faDog, faHotTub, faWifi, faSwimmingPool, faTree, faCompactDisc, faFireExtinguisher} from '@fortawesome/free-solid-svg-icons';
+import { faTv, faFan, faDog, faHotTub, faWifi, faSwimmingPool, faTree, faCompactDisc, faFireExtinguisher, faConciergeBell} from '@fortawesome/free-solid-svg-icons';
 import { CgSmartHomeWashMachine } from "@react-icons/all-files/cg/CgSmartHomeWashMachine";
 import { GiCookingPot } from "@react-icons/all-files/gi/GiCookingPot";
 import { GiFireplace } from "@react-icons/all-files/gi/GiFireplace";
@@ -52,6 +52,7 @@ import { GiSwipeCard } from "react-icons/gi";
 import { MdDoorbell } from "react-icons/md";
 import { FaDog } from "@react-icons/all-files/fa/FaDog";
 import { FaCat } from "@react-icons/all-files/fa/FaCat";
+import { FaBreadSlice } from "@react-icons/all-files/fa/FaBreadSlice";
 import { MdPets } from "@react-icons/all-files/md/MdPets";
 import { BsFillCameraVideoFill } from "@react-icons/all-files/bs/BsFillCameraVideoFill";
 import { GiVacuumCleaner } from "@react-icons/all-files/gi/GiVacuumCleaner";
@@ -62,6 +63,7 @@ import { FaHelicopter } from "@react-icons/all-files/fa/FaHelicopter";
 import { BsFillDoorOpenFill } from "react-icons/bs";
 import { MdDeck } from "react-icons/md";
 import { CgGym } from "@react-icons/all-files/cg/CgGym";
+import { CgEthernet } from "@react-icons/all-files/cg/CgEthernet";
 import { GiBasketballBasket } from "@react-icons/all-files/gi/GiBasketballBasket";
 import { BiCameraMovie } from "@react-icons/all-files/bi/BiCameraMovie";
 import { GiElevator } from "@react-icons/all-files/gi/GiElevator";
@@ -79,6 +81,7 @@ import { GiLockedDoor } from "@react-icons/all-files/gi/GiLockedDoor";
 import { MdFamilyRestroom } from "react-icons/md";
 import { Ri24HoursFill } from "@react-icons/all-files/ri/Ri24HoursFill";
 import { GrUserWorker } from "@react-icons/all-files/gr/GrUserWorker";
+import { GrBike } from "@react-icons/all-files/gr/GrBike";
 import { FaUmbrellaBeach } from "@react-icons/all-files/fa/FaUmbrellaBeach";
 import { FaSkiing } from "@react-icons/all-files/fa/FaSkiing";
 import { GiBeachBall } from "@react-icons/all-files/gi/GiBeachBall";
@@ -101,6 +104,8 @@ import { MdOutlineCrib } from "react-icons/md";
 import { MdOutlineStairs } from "react-icons/md";
 import { MdOutlinePivotTableChart } from "react-icons/md";
 import { MdDoNotTouch } from "react-icons/md";
+import { MdBakeryDining } from "react-icons/md";
+import { MdNaturePeople } from "react-icons/md";
 import { GiPartyPopper } from "@react-icons/all-files/gi/GiPartyPopper";
 import { AiOutlineLaptop } from "@react-icons/all-files/ai/AiOutlineLaptop";
 import { GiCigarette } from "@react-icons/all-files/gi/GiCigarette";
@@ -110,11 +115,15 @@ import { FiMonitor } from "@react-icons/all-files/fi/FiMonitor";
 import { GiDesk } from "@react-icons/all-files/gi/GiDesk";
 import { GiRoundTable } from "@react-icons/all-files/gi/GiRoundTable";
 import { GiExitDoor } from "@react-icons/all-files/gi/GiExitDoor";
+import { GiPingPongBat } from "@react-icons/all-files/gi/GiPingPongBat";
 import { MdOutlineElectricCar } from "react-icons/md";
 import { GiWoodenFence } from "@react-icons/all-files/gi/GiWoodenFence";
+import { GiFireZone } from "@react-icons/all-files/gi/GiFireZone";
+import { GiThermometerCold } from "@react-icons/all-files/gi/GiThermometerCold";
 import { MdDeliveryDining } from "react-icons/md";
 import { MdOutlineLight } from "react-icons/md";
 import { AiFillPrinter } from "@react-icons/all-files/ai/AiFillPrinter";
+import { GiFlatPlatform } from "@react-icons/all-files/gi/GiFlatPlatform";
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { FirestoreCollection } from "@react-firebase/firestore";
@@ -448,8 +457,76 @@ const Amenities = (props) => {
                 return <div className="amenity-text"><GiGolfFlag/><b> {t(amenity)}</b></div>
             case "isLakeFront":
                 return <div className="amenity-text"><FaWater/><b> {t(amenity)}</b></div>
+            case "hasFreeStreetParking":
+                return <div className="amenity-text"><FaParking/><b> {t(amenity)}</b></div>
+            case "hasHighTouchSurfacesCleaningWithDisinfectants":
+                return <div className="amenity-text"><GiSoap/><b> {t(amenity)}</b></div>
+            case "hasIndoorPoolAllYear":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faSwimmingPool}/><b> {t(amenity)}</b></div>
+            case "hasIndoorPoolSeasonal":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faSwimmingPool}/><b> {t(amenity)}</b></div>
+            case "hasKitchenIsland":
+                return <div className="amenity-text"><MdKitchen/><b> {t(amenity)}</b></div>
+            case "hasPaidOffPremisesParking":
+                return <div className="amenity-text"><FaParking/><b> {t(amenity)}</b></div>
+            case "hasPaidOnPremisesParking":
+                return <div className="amenity-text"><FaParking/><b> {t(amenity)}</b></div>
+            case "hasPoolAllYear":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faSwimmingPool}/><b> {t(amenity)}</b></div>
+            case "hasPoolSeasonal":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faSwimmingPool}/><b> {t(amenity)}</b></div>
+            case "hasSingleLevel":
+                return <div className="amenity-text"><GiFlatPlatform/><b> {t(amenity)}</b></div>
+            case "hasWifiSpeed500":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faWifi}/><b> {t(amenity)}</b></div>
+            case "hasWifiSpeed500":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faWifi}/><b> {t(amenity)}</b></div>
+            case "hasWifiSpeed500":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faWifi}/><b> {t(amenity)}</b></div>
+            case "hasWifiSpeed500":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faWifi}/><b> {t(amenity)}</b></div>
+            case "hasWifiSpeed500":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faWifi}/><b> {t(amenity)}</b></div>
+            case "hasConcierge":
+                return <div className="amenity-text"><FontAwesomeIcon icon={faConciergeBell}/><b> {t(amenity)}</b></div>
+            case "hasSharedWasher":
+                return <div className="amenity-text"><CgBox/><b> {t(amenity)}</b></div>
+            case "hasShardedDryer":
+                return <div className="amenity-text"><GiHeatHaze/><b> {t(amenity)}</b></div>
+            case "hasBakingSheet":
+                return <div className="amenity-text"><MdBakeryDining/><b> {t(amenity)}</b></div>
+            case "hasBarbequeUtensils":
+                return <div className="amenity-text"><GiBarbecue/><b> {t(amenity)}</b></div>
+            case "hasBeachEssentials":
+                return <div className="amenity-text"><FaUmbrellaBeach/><b> {t(amenity)}</b></div>
+            case "hasBikesForRent":
+                return <div className="amenity-text"><GrBike/><b> {t(amenity)}</b></div>
+            case "hasBreadMaker":
+                return <div className="amenity-text"><FaBreadSlice/><b> {t(amenity)}</b></div>
+            case "hasCleaningProducts":
+                return <div className="amenity-text"><GiSoap/><b> {t(amenity)}</b></div>
+            case "hasEthernetConnection":
+                return <div className="amenity-text"><CgEthernet/><b> {t(amenity)}</b></div>
+            case "hasExerciseEquipment":
+                return <div className="amenity-text"><CgGym/><b> {t(amenity)}</b></div>
+            case "hasFirePit":
+                return <div className="amenity-text"><GiFireZone/><b> {t(amenity)}</b></div>
+            case "hasFreezer":
+                return <div className="amenity-text"><GiThermometerCold/><b> {t(amenity)}</b></div>
+            case "hasLaundromatNearby":
+                return <div className="amenity-text"><MdOutlineLocalLaundryService/><b> {t(amenity)}</b></div>
+            case "hasMiniFridge":
+                return <div className="amenity-text"><RiFridgeFill/><b> {t(amenity)}</b></div>
+            case "hasOutdoorKitchen":
+                return <div className="amenity-text"><MdKitchen/><b> {t(amenity)}</b></div>
+            case "hasOutdoorSeating":
+                return <div className="amenity-text"><MdNaturePeople/><b> {t(amenity)}</b></div>
+            case "hasPingPongTable":
+                return <div className="amenity-text"><GiPingPongBat/><b> {t(amenity)}</b></div>
+            case "hasSafe":
+                return <div className="amenity-text"><BsFillSafeFill/><b> {t(amenity)}</b></div>                                                                                                                                                                                                           
             default:
-                return <div className="amenity-text"><BsCheckCircle /><b> {t(amenity)}</b></div>
+                return <div className="amenity-text"><BsCheckCircle /><b> {t(amenity) || amenity.replace('has', '').replace(/[A-Z]/g, ' $&').trim()}</b></div>
         }
     }
 
