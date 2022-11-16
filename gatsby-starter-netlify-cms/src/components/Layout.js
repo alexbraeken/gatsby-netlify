@@ -108,7 +108,6 @@ return (
         <html lang="en" />
         <title>{props.title}</title>
         <meta name="description" content={props.description} />
-
         <link
           rel="apple-touch-icon"
           sizes="180x180"

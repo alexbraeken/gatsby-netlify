@@ -295,7 +295,7 @@ const PropertyCardComp = (props) => {
 
 
     return (
-    <div className="prop-card-container" key={props.index} onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={{position: "relative"}} ref={cardContainer}>
+    <div className="prop-card-container" key={props.index} onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={{position: "relative"}} ref={cardContainer} id={props.item.name}>
         <div ref={card}>
         <Card className="bg-dark text-white prop-card" style={{flexWrap:"wrap", flexDirection: "row"}}>
           {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
@@ -326,7 +326,7 @@ const PropertyCardComp = (props) => {
         </Card>
         </div>
       {displayed && 
-        <Card className="bg-dark text-white prop-card hovered" ref={hovered} style={{flexWrap:"wrap", flexDirection: "row", position:"absolute", left:0, top:0}} id={props.item.name}>
+        <Card className="bg-dark text-white prop-card hovered" ref={hovered} style={{flexWrap:"wrap", flexDirection: "row", position:"absolute", left:0, top:0}}>
         <div className="card-buttons-right">
         {!inFavs ? 
         <div className="favs-heart-container">

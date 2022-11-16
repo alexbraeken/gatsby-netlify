@@ -237,23 +237,23 @@ const CalendarModal = (props) => {
       if(dates.to && dates.from){
         const dateTo = typeof dates.to !== 'string' ?  dates.to.toISOString() : dates.to
         const dateFrom = typeof dates.from !== 'string' ?  dates.from.toISOString() : dates.from
-  
+
         props.handleDateChange({to: dateTo, from: dateFrom})
-  
+        
           const uri = `https://api.hostfully.com/v2/properties?checkInDate=${dateFrom}&checkOutDate=${dateTo}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
           fetch(uri, {
           headers:{
           "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
               }
           })
-                  .then(response => {
-                      
-                      return response.text()
-                  })
-                  .then(data => {
-                  props.handleNewIds(JSON.parse(data).propertiesUids)
-                  props.handleClose()
-                  })
+            .then(response => {
+                
+                return response.text()
+            })
+            .then(data => {
+            props.handleNewIds(JSON.parse(data).propertiesUids)
+            props.handleClose()
+            })
       }
       else{
         setMessage("Select Dates")

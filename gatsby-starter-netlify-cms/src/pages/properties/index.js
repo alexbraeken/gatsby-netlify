@@ -255,8 +255,10 @@ const ConnectedProperties = React.memo((props) => {
 
     const handleCalendarClose = () => setShowCalendar(false);
     const handleShowCalendar = (e) => {
-        e.stopPropagation()
-        e.preventDefault()
+        if(e){
+            e.stopPropagation()
+            e.preventDefault()
+        }
         setShowCalendar(true)
     }
 
@@ -411,7 +413,7 @@ const ConnectedProperties = React.memo((props) => {
                                     </StickyBox>
                                     </div>
                                     
-                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList}  handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg}/>
+                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList}  handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg} handleShowCalendar={handleShowCalendar}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
@@ -602,8 +604,7 @@ const PropertiesClass = class extends React.Component {
 
 
     handleSliderChange(array, type){
-        console.log(type)
-        console.log(array)
+
         this.setState({
             [`${type}`]: array
         })

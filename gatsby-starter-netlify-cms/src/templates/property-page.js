@@ -23,6 +23,7 @@ import { faBuilding, faUmbrellaBeach, faGolfBall, faPlaneDeparture, faShoppingCa
 import queryString from 'query-string';
 import EnquiryModal from '../components/EnquiryModal';
 import PropertySubscribeModal from '../components/PropertySubscribeModal'
+import BedroomsModal from '../components/BedroomsModal'
 import { Helmet } from 'react-helmet';
 import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
@@ -52,6 +53,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [show, setShow] = useState(false);
    const [enquiryShow, setEnquiryShow] = useState(false);
    const [subscribeShow, setSubscribeShow] = useState(false);
+   const [bedroomsShow, setBedroomsShow] = useState(false);
    const [showAllAmenities, setShowAllAemnities] = useState(false)
    const [showNotesReadMore, setShowNotesReadMore] = useState(false)
    const [amenitiesLength, setAmenitiesLength] = useState(0)
@@ -209,6 +211,9 @@ export const PropertyPageTemplate = ( props ) =>
     const handleSubscribeClose = () => setSubscribeShow(false)
     const handleSubscribeShow = () => setSubscribeShow(true)
 
+    const handleBedroomsClose = () => setBedroomsShow(false)
+    const handleBedroomsShow = () => setBedroomsShow(true)
+
 
     const handleShowAmenities = () => {
         setShowAllAemnities(!showAllAmenities)
@@ -349,7 +354,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <br />
                                                         </div>
                                                         <br />
-                                                        <button className="btn" type="" onClick={()=>handleShowAmenities()}>{showAllAmenities?<>{t("Less")}...</>:<p>{t("Show all")} {amenitiesLength-1}...</p>}</button>
+                                                        <button className="btn" type="" onClick={()=>handleShowAmenities()}>{showAllAmenities?<small>{t("Less")}...</small>:<small>{t("Show all")} {amenitiesLength-1}...</small>}</button>
                                                     </div> : <Loading />
                                                 }}
                                             </FirestoreDocument>
@@ -425,7 +430,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {(descriptions.value[lang]?.neighborhood.length>400 || descriptions.value.en_US.neighborhood.length>400) && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.neighborhood.length>400 || descriptions.value.en_US.neighborhood.length>400) && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<small>{t("Less")}...</small>:<small>{t("Read more")}...</small>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -455,7 +460,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {(descriptions.value[lang]?.transit.length>400 || descriptions.value.en_US.transit.length>400) && <button className="btn" type="" onClick={()=>setShowTransitReadMore(!showTransitReadMore)}>{showTransitReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.transit.length>400 || descriptions.value.en_US.transit.length>400) && <button className="btn" type="" onClick={()=>setShowTransitReadMore(!showTransitReadMore)}>{showTransitReadMore?<small>{t("Less")}...</small>:<small>{t("Read more")}...</small>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -526,7 +531,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {(descriptions.value[lang]?.notes.length>400 || descriptions.value.en_US.notes.length>400 ) && <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.notes.length>400 || descriptions.value.en_US.notes.length>400 ) && <button className="btn" type="" onClick={()=>setShowNotesReadMore(!showNotesReadMore)}>{showNotesReadMore?<small>{t("Less")}...</small>:<small>{t("Read more")}...</small>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -553,7 +558,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {(descriptions.value[lang]?.access.length>400 || descriptions.value.en_US.access.length>400 )&& <button className="btn" type="" onClick={()=>setShowAccessReadMore(!showAccessReadMore)}>{showAccessReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.access.length>400 || descriptions.value.en_US.access.length>400 )&& <button className="btn" type="" onClick={()=>setShowAccessReadMore(!showAccessReadMore)}>{showAccessReadMore?<small>{t("Less")}...</small>:<small>{t("Read more")}...</small>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -580,7 +585,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 </div>
                                                                     <br />
                                                                     <br />
-                                                                    {(descriptions.value[lang]?.interaction.length>400 || descriptions.value.en_US.interaction.length>400 ) && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
+                                                                    {(descriptions.value[lang]?.interaction.length>400 || descriptions.value.en_US.interaction.length>400 ) && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<small>{t("Less")}...</small>:<small>{t("Read more")}...</small>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
@@ -655,6 +660,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </div>
                                                 <br />
                                                 <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
+                                                <br />
+                                                <center><button className="btn" type="" onClick={()=>handleBedroomsShow()} onKeyDown={()=> handleBedroomsShow()} tabindex="0"><small >{t("Show Sleeping Arrangement")}</small></button></center>
                                                 <hr />
                                                 {smartaOpinion &&
                                                 <div>
@@ -691,6 +698,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                     </defs>
                                                     </svg>
                                                 </div>
+                                                <br />
                                                 {propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
                                                 <div>
                                                 <center><a href="/about/booking-terms-conditions" target="_blank"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>{t("Booking Terms & Conditions")}</span> <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto"}} /></a></center>
@@ -732,6 +740,7 @@ export const PropertyPageTemplate = ( props ) =>
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
                             <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
                             <PropertySubscribeModal show={subscribeShow} handleClose={handleSubscribeClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
+                            <BedroomsModal show={bedroomsShow} handleClose={handleBedroomsClose} propId={propId}/>
                             </div>
                             <Helmet link={[{rel: "canonical", href: `https://www.smartavillas.com/properties/${propId}`}]}>
                                 <title>{propName}</title>

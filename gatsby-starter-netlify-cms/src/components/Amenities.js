@@ -282,8 +282,6 @@ const Amenities = (props) => {
                 return <div className="amenity-text"><GiElevator/><b> {t(amenity)}</b></div>
             case "hasMassageRoom":
                 return <div className="amenity-text"><MdOutlineRoomPreferences/><b> {t(amenity)}</b></div>
-            case "hasLibrary":
-                return <div className="amenity-text"><IoLibraryOutline/><b> {t(amenity)}</b></div>
             case "hasOffice":
                 return <div className="amenity-text"><GiOfficeChair/><b> {t(amenity)}</b></div>
             case "hasPoolTable":

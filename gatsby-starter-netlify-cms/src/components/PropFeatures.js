@@ -169,8 +169,12 @@ const PropFeatureGrid = React.memo((data) => {
     <div ref={container}>  
     <div style={{position: "absolute", top: "0", height: "100%", left: "50%", transform:"translateX(-50%)", zIndex: "10"}}>
       <StickyBox>
-      <DatePicker from={data.state.searchArray.from ? data.state.searchArray.from[0] : null} to={data.state.searchArray.to ? data.state.searchArray.to[0] : null} 
-        className="top-date-picker" style={{position:"absolute"}} handleDateChange={data.handleDateChange} handleNewIds={data.handleNewIds} handleClearDates={data.handleClearDates}
+      <DatePicker 
+      from={data.state.searchArray.from ? data.state.searchArray.from[0] : null} 
+      to={data.state.searchArray.to ? data.state.searchArray.to[0] : null} 
+        className="top-date-picker" 
+        style={{position:"absolute"}} 
+        handleShowCalendar={data.handleShowCalendar}
         />
       </StickyBox>
     </div>

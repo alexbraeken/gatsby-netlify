@@ -317,8 +317,10 @@ const SearchFilter = (props) => {
           uri+="city="+location.value+"&"
         })
       }
-      if(dates.from)uri+="from="+dates.from.toISOString()+"&"
-      if(dates.to)uri+="to="+dates.to.toISOString()+"&"
+      if(dates.from && dates.to){
+        uri+="from="+dates.from.toISOString()+"&"
+        uri+="to="+dates.to.toISOString()+"&"
+      }
       if(bedrooms.current.state.value)uri+="bedrooms="+bedrooms.current.state.value.value+"&"
       uri = encodeURI(uri)
       if(window) window.location.href= uri

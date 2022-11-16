@@ -631,7 +631,7 @@ const toggleActiveSearch = (active) => {
         paddingBottom: "100px",
         width: "100vw",
         position: "relative",
-        marginLeft: "-50vw",
+        transform: "translateX(-50%)",
         left: "50%",
         backgroundColor:"#333333"}}>
         <Container>

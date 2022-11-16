@@ -93,7 +93,7 @@ export default function Reviews(props) {
             }
             </Masonry>
             {props.reviews.length > showQuantity &&
-            <button className="btn" type="" onClick={()=>setShowQuantity(showQuantity+3)}><p>{t("Show more")}...</p></button>
+            <button className="btn" type="" onClick={()=>setShowQuantity(showQuantity+3)}><small>{t("Show more")}...</small></button>
             }
         </div>
     )

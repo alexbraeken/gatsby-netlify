@@ -1480,8 +1480,9 @@ $min-margin: 10px
 
   & .InputFromTo-to .DayPickerInput
       width: 100%
-  &.scroll-modal
-    overflow-y: scroll
+  
+.scroll-modal
+  overflow-y: scroll
 
 //traveler tips Cards
 .card__img 
@@ -2436,6 +2437,9 @@ a.navbar-item, .navbar-item
 
 .orangeText
   color: $primary !important
+
+.lightOrangeText
+  color: $light-orange !important
 
 .hover-highlight
   position: relative
@@ -4236,7 +4240,7 @@ header
   width: 100vw
   height: 100vh
   position: relative
-  margin-left: -50vw
+  transform: translateX(-50%)
   left: 50%
   display: flex
   flex-direction: column
@@ -5033,3 +5037,18 @@ p.about-section
   & p
       padding: 15px
 
+.room-name
+  margin-left: 10px
+  font-size: 1.3rem
+
+.bed-info-container
+  border: 1px solid #e9ecef
+  border-radius: 20px
+  padding: 20px
+  margin-left: 10px
+  & .bed-num
+      font-weight: bold
+      font-size: 2rem
+      & svg
+          height: 3rem
+          width: auto
