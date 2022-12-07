@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully logo.webp'
 import logo from '../img/smartavillas logo.png'
+import christmasLogo from '../img/christmas smartavillas logo.png'
 import Container from 'react-bootstrap/Container'
 import { FirestoreDocument } from "@react-firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -339,7 +340,7 @@ hoverArrow = () => {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Smarta" />
+              <img src={christmasLogo} alt="Smarta" />
             </Link>
             {/* Hamburger menu */}
             <div

@@ -333,6 +333,12 @@ module.exports = {
   }, {
     resolve: 'gatsby-source-filesystem',
     options: {
+      path: "".concat(__dirname, "/src/heroBanner"),
+      name: 'heroBanner'
+    }
+  }, {
+    resolve: 'gatsby-source-filesystem',
+    options: {
       path: "".concat(__dirname, "/static/img"),
       name: 'images'
     }
