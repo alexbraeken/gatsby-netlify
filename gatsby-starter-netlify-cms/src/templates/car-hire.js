@@ -145,6 +145,7 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                     {value: "I", label: "Class I"},
                     {value: "J", label: "Class J"},
                     {value: "J1", label: "Class J1"},
+                    {value: "J2", label: "Class J2"},
                     {value: "K", label: "Class K"},
                     {value: "L", label: "Class L"},
                     {value: "M", label: "Class M"}]}
@@ -308,6 +309,16 @@ export const CareHirePageQuery = graphql`query CareHirePage($id: String!, $langu
           pricing
         }
         J1 {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        J2 {
           class
           name {
             en
