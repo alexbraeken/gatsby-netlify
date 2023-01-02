@@ -340,7 +340,7 @@ hoverArrow = () => {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
-              <img src={christmasLogo} alt="Smarta" />
+              <img src={logo} alt="Smarta" />
             </Link>
             {/* Hamburger menu */}
             <div

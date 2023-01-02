@@ -3,7 +3,6 @@ import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18ne
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import { FaHollyBerry } from "@react-icons/all-files/fa/FaHollyBerry";
 
 class HeroBanner extends React.PureComponent {
 
@@ -17,22 +16,22 @@ class HeroBanner extends React.PureComponent {
         <Helmet>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-            <link href="https://fonts.googleapis.com/css2?family=Festive&family=Playfair+Display:ital@0;1&family=Milonga&display=swap" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Prosto+One&display=swap" rel="stylesheet" />
             <style>
                 {`
-                @import url('https://fonts.googleapis.com/css2?family=Festive&family=Playfair+Display:ital@0;1&family=Milonga&display=swap');
+                  @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Prosto+One&display=swap');
                 `}
             </style>
             <style>
                 {`
                 .festive-header h3{
-                    font-family: 'Festive', cursive;
+                    font-family: 'Prosto One', cursive;
                 }
                 .festive-body{
-                    font-family: 'Milonga', cursive;
+                    font-family: 'PT Sans', sans-serif;
                 }
                 .festive-body p{
-                    font: italic 40px 'Playfair Display', serif;
+                    font: italic 2rem 'PT Sans', sans-serif;
                 }
                 `}
             </style>
@@ -40,13 +39,7 @@ class HeroBanner extends React.PureComponent {
         { news[0] && 
         <div style={{position: "relative"}}>   
             <div className="festive-header">
-                <div className="festive-svg left" >
-                    <FaHollyBerry />
-                </div>
                 <h3>{news[0].node.frontmatter.langTitles[language]}</h3>
-                <div className="festive-svg right" >
-                    <FaHollyBerry />
-                </div>
             </div>
             <div className="festive-body">
                 <h4>{news[0].node.frontmatter.newsHeader[language]}</h4>

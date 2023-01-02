@@ -1646,13 +1646,6 @@ lang=EN-US style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic'
 a cancellation is necessary less than 14 days before arrival, and where the
 full balance has been paid, regrettably no refund will be possible</span></p>
 
-<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang=EN-US
-style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic',sans-serif'>3.<span
-style='font:7.0pt 'Times New Roman''>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
-lang=EN-US style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic',sans-serif'>However,
-if as a result of the global pandemic, you are prevented from travelling to Portugal
-then the COVID-19 Deferment Policy will apply. </span></p>
 
 <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
 line-height:normal'><b><span style='font-size:18.0pt;font-family:'Century Gothic',sans-serif;
@@ -1661,84 +1654,6 @@ color:#222222'>&nbsp;</span></b></p>
 <p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
 line-height:normal'><b><span style='font-size:18.0pt;font-family:'Century Gothic',sans-serif;
 color:#222222;'>&nbsp;</span></b></p>
-
-<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
-
-<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
-line-height:normal;border:none;padding:0cm'><b><span style='font-size:18.0pt;
-font-family:'Century Gothic',sans-serif;color:#222222'>COVID-19 DEFERMENT POLICY</span></b></p>
-
-</div>
-
-<p class=MsoNormal style='margin-bottom:0cm;text-align:justify;line-height:
-normal'><span style='font-size:10.0pt;font-family:'Century Gothic',sans-serif;
-color:#222222'>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;text-align:justify'><span
-style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic',sans-serif;
-color:#222222'>We realise that there are presently restrictions and uncertainties
-around travel arrangements. The Smartavillas team respects your welfare and
-aims to assist where possible. If you are prevented from travelling to Portugal
-because of a government advice such as a country lock-down or travel
-suspension, we advise you to contact your travel insurance provider in the
-first instance. </span></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;text-align:justify;background:white'><span
-style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic',sans-serif;
-color:#333333'>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;text-align:justify;background:white'><span
-style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic',sans-serif;
-color:#333333'>We will offer a holiday rental voucher </span><span
-style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic',sans-serif;
-color:#222222'>of equal value to the payment made. This will allow you to defer
-and change the dates of your booking.</span></p>
-
-<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify'><span style='font-size:10.0pt;
-line-height:115%;font-family:'Century Gothic',sans-serif;color:#222222'>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;text-align:justify'><span
-style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic',sans-serif;
-color:#222222'>The conditions are as follows:</span></p>
-
-<p class=MsoNormal style='margin-bottom:0cm;text-align:justify'><span
-style='font-size:10.0pt;line-height:115%;font-family:'Century Gothic',sans-serif;
-color:#222222'>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span
-style='font-size:10.0pt;line-height:107%;font-family:'Century Gothic',sans-serif;
-color:#222222'>a)<span style='font:7.0pt 'Times New Roman''>&nbsp;&nbsp;&nbsp; </span></span><span
-style='font-size:10.0pt;line-height:107%;font-family:'Century Gothic',sans-serif;
-color:#222222'>The travel voucher must be used by 31 December 2022.</span></p>
-
-<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span
-style='font-size:10.0pt;line-height:107%;font-family:'Century Gothic',sans-serif;
-color:#222222'>b)<span style='font:7.0pt 'Times New Roman''>&nbsp;&nbsp;&nbsp; </span></span><span
-style='font-size:10.0pt;line-height:107%;font-family:'Century Gothic',sans-serif;
-color:#222222'>Any monies paid to date will be held and transferred to the value
-of the new booking.</span></p>
-
-<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span
-style='font-size:10.0pt;line-height:107%;font-family:'Century Gothic',sans-serif;
-color:#222222'>c)<span style='font:7.0pt 'Times New Roman''>&nbsp;&nbsp;&nbsp; </span></span><span
-style='font-size:10.0pt;line-height:107%;font-family:'Century Gothic',sans-serif;
-color:#222222'>Any deferred dates would be subject to availability and possible
-additional costs for a different seasonal rate. </span></p>
-
-<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span
-style='font-size:10.0pt;line-height:107%;font-family:'Century Gothic',sans-serif;
-color:#222222'>d)<span style='font:7.0pt 'Times New Roman''>&nbsp;&nbsp;&nbsp; </span></span><span
-style='font-size:10.0pt;line-height:107%;font-family:'Century Gothic',sans-serif;
-color:#222222'>An amendment fee of 25€ will be applied.</span></p>
-
-<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify'><span style='font-size:10.0pt;
-line-height:115%;font-family:'Century Gothic',sans-serif;color:#222222'>&nbsp;</span></p>
 
 </div>"
     pt: "
@@ -2710,57 +2625,14 @@ font-family:&quot;Century Gothic&quot;,sans-serif'><font style='vertical-align: 
 margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>1. </font></font><span style='font:7.0pt &quot;Times New Roman&quot;'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>O depósito de reserva de 30% não é reembolsável</font></font></span></p>
 <p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
 margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>2. </font></font><span style='font:7.0pt &quot;Times New Roman&quot;'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Se o cancelamento for necessário menos de 14 dias antes da chegada, e quando o saldo total tiver sido pago, infelizmente nenhum reembolso será possível</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>3. </font></font><span style='font:7.0pt &quot;Times New Roman&quot;'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>No entanto, se como resultado da pandemia global, não puder viajar para Portugal, será aplicada a Política de diferimento do COVID-19.</font></font></span></p>
+
 <p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center;
 line-height:normal'><b><span style='font-size:18.0pt;font-family:&quot;Century Gothic&quot;,sans-serif;
 color:#222222'>&nbsp;</span></b></p>
 <p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center;
 line-height:normal'><b><span style='font-size:18.0pt;font-family:&quot;Century Gothic&quot;,sans-serif;
 color:#222222;'>&nbsp;</span></b></p>
-<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
-<p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center;
-line-height:normal;border:none;padding:0cm'><b><span style='font-size:18.0pt;
-font-family:&quot;Century Gothic&quot;,sans-serif;color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>POLÍTICA DE DEFERMENTO COVID-19</font></font></span></b></p>
-</div>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;line-height:
-normal'><span style='font-size:10.0pt;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Percebemos que atualmente existem restrições e incertezas quanto aos preparativos para viagens. </font><font style='vertical-align: inherit;'>A equipe Smartavillas respeita o seu bem-estar e tem como objetivo atender sempre que possível. </font><font style='vertical-align: inherit;'>Se você for impedido de viajar para Portugal por causa de um conselho governamental, como um bloqueio de país ou suspensão de viagem, recomendamos que você entre em contato com o seu provedor de seguro de viagem em primeira instância.</font></font></span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;background:white'><span style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#333333'>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;background:white'><span style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#333333'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Ofereceremos um voucher </font></font></span><font style='vertical-align: inherit;'><span style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'>de </font></span><span style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#333333'><font style='vertical-align: inherit;'>aluguer de férias </font></span></font><span style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>de igual valor ao pagamento efectuado. </font><font style='vertical-align: inherit;'>Isso permitirá que você adie e altere as datas de sua reserva.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify'><span style='font-size:10.0pt;
-line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;color:#222222'>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>As condições são as seguintes:</font></font></span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>a) </font></font><span style='font:7.0pt &quot;Times New Roman&quot;'>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>O voucher de viagem deve ser usado até 31 de dezembro de 2022.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>b) </font></font><span style='font:7.0pt &quot;Times New Roman&quot;'>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Quaisquer valores pagos até a data serão retidos e transferidos para o valor da nova reserva.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>c) </font></font><span style='font:7.0pt &quot;Times New Roman&quot;'>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Quaisquer datas diferidas estarão sujeitas à disponibilidade e possíveis custos adicionais para uma taxa sazonal diferente.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>d) </font></font><span style='font:7.0pt &quot;Times New Roman&quot;'>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:&quot;Century Gothic&quot;,sans-serif;
-color:#222222'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Será aplicada uma taxa de alteração de 25 €.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
-margin-left:18.0pt;text-align:justify'><span style='font-size:10.0pt;
-line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;color:#222222'>&nbsp;</span></p>
+
 </div>"
     fr: "<div class='content'><style> <!-- /* Style Definitions */ p.MsoNormal, li.MsoNormal, div.MsoNormal {margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:11.0pt; font-family:'Calibri',sans-serif;} p.MsoCommentText, li.MsoCommentText, div.MsoCommentText {mso-style-link:'Comment Text Char'; margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:10.0pt; font-family:'Calibri',sans-serif;} p.MsoHeader, li.MsoHeader, div.MsoHeader {mso-style-link:'Header Char'; margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:11.0pt; font-family:'Calibri',sans-serif;} p.MsoFooter, li.MsoFooter, div.MsoFooter {mso-style-link:'Footer Char'; margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:11.0pt; font-family:'Calibri',sans-serif;} p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject {mso-style-link:'Comment Subject Char'; margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:10.0pt; font-family:'Calibri',sans-serif; font-weight:bold;} p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {mso-style-link:'Balloon Text Char'; margin:0cm; font-size:8.0pt; font-family:'Tahoma',sans-serif;} p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph {margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:36.0pt; line-height:115%; font-size:11.0pt; font-family:'Calibri',sans-serif;} span.HeaderChar {mso-style-name:'Header Char'; mso-style-link:Header;} span.FooterChar {mso-style-name:'Footer Char'; mso-style-link:Footer;} span.BalloonTextChar {mso-style-name:'Balloon Text Char'; mso-style-link:'Balloon Text'; font-family:'Tahoma',sans-serif;} span.CommentTextChar {mso-style-name:'Comment Text Char'; mso-style-link:'Comment Text';} span.CommentSubjectChar {mso-style-name:'Comment Subject Char'; mso-style-link:'Comment Subject'; font-weight:bold;} .MsoChpDefault {font-family:'Calibri',sans-serif;} /* Page Definitions */ @page WordSection1 {size:612.0pt 792.0pt; margin:14.2pt 72.0pt 14.2pt 72.0pt; border:solid windowtext 1.0pt; padding:24.0pt 24.0pt 24.0pt 24.0pt;} div.WordSection1 {page:WordSection1;} /* List Definitions */ ol {margin-bottom:0cm;} ul {margin-bottom:0cm;} --> </style>
 <div class='WordSection1'>
@@ -2950,24 +2822,10 @@ line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;color:#222222
 <p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''>&nbsp;</span></p>
 <p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>1. </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>L'acompte de 30% n'est pas remboursable</font></font></span></p>
 <p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>2. </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Si une annulation est nécessaire moins de 14 jours avant l'arrivée, et si le solde total a été payé, aucun remboursement ne sera malheureusement possible</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>3. </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Cependant, si en raison de la pandémie mondiale, vous ne pouvez pas vous rendre au Portugal, la politique de report COVID-19 s'appliquera.</font></font></span></p>
+
 <p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center; line-height:normal'><b><span style='font-size:18.0pt;font-family:' century='' gothic',sans-serif;='' color:#222222'=''>&nbsp;</span></b></p>
 <p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center; line-height:normal'><b><span style='font-size:18.0pt;font-family:' century='' gothic',sans-serif;='' color:#222222;'=''>&nbsp;</span></b></p>
-<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
-<p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center; line-height:normal;border:none;padding:0cm'><b><span style='font-size:18.0pt; font-family:' century='' gothic',sans-serif;color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>POLITIQUE DE REPORT COVID-19</font></font></span></b></p>
-</div>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;line-height: normal'><span style='font-size:10.0pt;font-family:' century='' gothic',sans-serif;='' color:#222222'=''>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Nous sommes conscients qu'il existe actuellement des restrictions et des incertitudes concernant les préparatifs de voyage. </font><font style='vertical-align: inherit;'>L'équipe Smartavillas respecte votre bien-être et vise à vous aider dans la mesure du possible. </font><font style='vertical-align: inherit;'>Si vous êtes empêché de voyager au Portugal en raison d'un conseil gouvernemental tel qu'un verrouillage du pays ou une suspension de voyage, nous vous conseillons de contacter votre fournisseur d'assurance voyage en premier lieu.</font></font></span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;background:white'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#333333'=''>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;background:white'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#333333'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Nous vous offrirons un bon </font></font></span><font style='vertical-align: inherit;'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'>de </font></span><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#333333'=''><font style='vertical-align: inherit;'>location vacances </font></span></font><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>d'une valeur égale au paiement effectué. </font><font style='vertical-align: inherit;'>Cela vous permettra de différer et de modifier les dates de votre réservation.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify'><span style='font-size:10.0pt; line-height:115%;font-family:' century='' gothic',sans-serif;color:#222222'=''>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Les conditions sont les suivantes :</font></font></span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>a) </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Le bon de voyage doit être utilisé avant le 31 décembre 2022.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>b) </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Toutes les sommes versées à ce jour seront retenues et transférées à la valeur de la nouvelle réservation.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>c) </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Toute date reportée serait soumise à la disponibilité et à d'éventuels frais supplémentaires pour un tarif saisonnier différent.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>d) Des </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>frais de modification de 25€ seront appliqués.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify'><span style='font-size:10.0pt; line-height:115%;font-family:' century='' gothic',sans-serif;color:#222222'=''>&nbsp;</span></p>
+
 </div></div>"
     es: "
     <div class='content'><style> <!-- /* Style Definitions */ p.MsoNormal, li.MsoNormal, div.MsoNormal {margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:11.0pt; font-family:'Calibri',sans-serif;} p.MsoCommentText, li.MsoCommentText, div.MsoCommentText {mso-style-link:'Comment Text Char'; margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:10.0pt; font-family:'Calibri',sans-serif;} p.MsoHeader, li.MsoHeader, div.MsoHeader {mso-style-link:'Header Char'; margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:11.0pt; font-family:'Calibri',sans-serif;} p.MsoFooter, li.MsoFooter, div.MsoFooter {mso-style-link:'Footer Char'; margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:11.0pt; font-family:'Calibri',sans-serif;} p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject {mso-style-link:'Comment Subject Char'; margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:0cm; line-height:115%; font-size:10.0pt; font-family:'Calibri',sans-serif; font-weight:bold;} p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {mso-style-link:'Balloon Text Char'; margin:0cm; font-size:8.0pt; font-family:'Tahoma',sans-serif;} p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph {margin-top:0cm; margin-right:0cm; margin-bottom:10.0pt; margin-left:36.0pt; line-height:115%; font-size:11.0pt; font-family:'Calibri',sans-serif;} span.HeaderChar {mso-style-name:'Header Char'; mso-style-link:Header;} span.FooterChar {mso-style-name:'Footer Char'; mso-style-link:Footer;} span.BalloonTextChar {mso-style-name:'Balloon Text Char'; mso-style-link:'Balloon Text'; font-family:'Tahoma',sans-serif;} span.CommentTextChar {mso-style-name:'Comment Text Char'; mso-style-link:'Comment Text';} span.CommentSubjectChar {mso-style-name:'Comment Subject Char'; mso-style-link:'Comment Subject'; font-weight:bold;} .MsoChpDefault {font-family:'Calibri',sans-serif;} /* Page Definitions */ @page WordSection1 {size:612.0pt 792.0pt; margin:14.2pt 72.0pt 14.2pt 72.0pt; border:solid windowtext 1.0pt; padding:24.0pt 24.0pt 24.0pt 24.0pt;} div.WordSection1 {page:WordSection1;} /* List Definitions */ ol {margin-bottom:0cm;} ul {margin-bottom:0cm;} --> </style>
@@ -3158,23 +3016,9 @@ line-height:115%;font-family:&quot;Century Gothic&quot;,sans-serif;color:#222222
 <p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''>&nbsp;</span></p>
 <p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>1. </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>El depósito de reserva del 30% no es reembolsable</font></font></span></p>
 <p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>2. </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Si es necesaria una cancelación menos de 14 días antes de la llegada, y cuando se ha pagado el saldo total, lamentablemente no será posible ningún reembolso.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt'><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>3. </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang='EN-US' style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Sin embargo, si como resultado de la pandemia global, no puede viajar a Portugal, se aplicará la Política de Aplazamiento por COVID-19.</font></font></span></p>
+
 <p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center; line-height:normal'><b><span style='font-size:18.0pt;font-family:' century='' gothic',sans-serif;='' color:#222222'=''>&nbsp;</span></b></p>
 <p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center; line-height:normal'><b><span style='font-size:18.0pt;font-family:' century='' gothic',sans-serif;='' color:#222222;'=''>&nbsp;</span></b></p>
-<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
-<p class='MsoNormal' align='center' style='margin-bottom:0cm;text-align:center; line-height:normal;border:none;padding:0cm'><b><span style='font-size:18.0pt; font-family:' century='' gothic',sans-serif;color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>POLÍTICA DE APLAZAMIENTO DE COVID-19</font></font></span></b></p>
-</div>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;line-height: normal'><span style='font-size:10.0pt;font-family:' century='' gothic',sans-serif;='' color:#222222'=''>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Somos conscientes de que actualmente existen restricciones e incertidumbres en torno a los arreglos de viaje. </font><font style='vertical-align: inherit;'>El equipo de Smartavillas respeta su bienestar y tiene como objetivo ayudarlo en lo posible. </font><font style='vertical-align: inherit;'>Si no puede viajar a Portugal debido a un consejo del gobierno, como el bloqueo del país o la suspensión de viajes, le recomendamos que se comunique con su proveedor de seguros de viaje en primera instancia.</font></font></span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;background:white'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#333333'=''>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify;background:white'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#333333'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Le ofreceremos un bono </font></font></span><font style='vertical-align: inherit;'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'>de </font></span><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#333333'=''><font style='vertical-align: inherit;'>alquiler vacacional </font></span></font><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>de igual valor al pago realizado. </font><font style='vertical-align: inherit;'>Esto le permitirá aplazar y cambiar las fechas de su reserva.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify'><span style='font-size:10.0pt; line-height:115%;font-family:' century='' gothic',sans-serif;color:#222222'=''>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Las condiciones son las siguientes:</font></font></span></p>
-<p class='MsoNormal' style='margin-bottom:0cm;text-align:justify'><span style='font-size:10.0pt;line-height:115%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''>&nbsp;</span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>a) </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>El bono de viaje debe utilizarse antes del 31 de diciembre de 2022.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>b) </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Cualquier dinero pagado hasta la fecha será retenido y transferido al valor de la nueva reserva.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>c) </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Cualquier fecha diferida estaría sujeta a disponibilidad y posibles costos adicionales por una tarifa de temporada diferente.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>d) </font></font><span style='font:7.0pt ' times='' new='' roman''=''>&nbsp;&nbsp;&nbsp; </span></span><span style='font-size:10.0pt;line-height:107%;font-family:' century='' gothic',sans-serif;='' color:#222222'=''><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>Se aplicará una tasa de modificación de 25€.</font></font></span></p>
-<p class='MsoNormal' style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm; margin-left:18.0pt;text-align:justify'><span style='font-size:10.0pt; line-height:115%;font-family:' century='' gothic',sans-serif;color:#222222'=''>&nbsp;</span></p>
+
 </div></div>"
 ---
