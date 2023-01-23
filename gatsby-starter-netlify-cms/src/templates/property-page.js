@@ -69,6 +69,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [sections, setSections] = useState(null)
    const [loading, setLoading] = useState(true)
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
+   const [pricePeriods, setPricePeriods] = useState(null)
 
 
    const {t} = useTranslation(['property', 'translation']);
@@ -153,17 +154,18 @@ export const PropertyPageTemplate = ( props ) =>
                     }  
                     })
 
-                    fetch(reviewsUri, {
-                        headers:{
-                        "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
-                            }
-                        })
-                        .then(response => {
-                            return response.text()
-                        })
-                        .then(data => {
-                            setReviews(JSON.parse(data))
-                        })
+            fetch(reviewsUri, {
+                headers:{
+                "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
+                    }
+                })
+                .then(response => {
+                    return response.text()
+                })
+                .then(data => {
+                    setReviews(JSON.parse(data))
+                })
+            getPricingPeriods(props.id)
 
             return () => {
                 setSmartaOpinion(null)
@@ -186,6 +188,7 @@ export const PropertyPageTemplate = ( props ) =>
                 setSections(null)
                 setLoading(true)
                 setDescriptionsLoading(true)
+                setPricePeriods(null)
             }
         }
     }, [props.id, props.path])
@@ -203,6 +206,16 @@ export const PropertyPageTemplate = ( props ) =>
     const handleEnquiryClose = () => setEnquiryShow(false)
     const handleEnquiryShow = () => setEnquiryShow(true)
 
+    const getPricingPeriods = (id) => {
+        let url = `https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/pricing_period/${id}`
+        fetch(url).then(response => {return response.text()}).then(data => {
+            let priceObject = {}
+            JSON.parse(data).forEach(pricing => {
+                priceObject[pricing.from] = pricing
+            })
+            setPricePeriods(priceObject)
+        })
+    }
 
     const handleShowAmenities = () => {
         setShowAllAemnities(!showAllAmenities)
@@ -404,14 +417,11 @@ export const PropertyPageTemplate = ( props ) =>
                                             <div id="calendar" data-title={t("Calendar")} className="prop-page-section">
                                                 <h2>{t("Calendar")}</h2>
                                                 <br />
-                                                <FirestoreDocument path={`PricingPeriods/${props.id}`}>
-                                                    {pricePeriods => {
-                                                    return (!pricePeriods.isLoading && pricePeriods.value) ? 
-                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods.value} minDays={data.value.minimumStay} currSymbol={data.value.currencySymbol}/>
+                                                    {pricePeriods ? 
+                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods} minDays={data.value.minimumStay} currSymbol={data.value.currencySymbol}/>
                                                         :
                                                         <Loading />
-                                                    }}
-                                                </FirestoreDocument>
+                                                    }
                                             </div>
                                         </Col>
                                     </Row>

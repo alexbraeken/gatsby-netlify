@@ -793,7 +793,8 @@ $min-margin: 10px
   border-radius: 5px
   margin-top: 90px
   padding-top: 15px
-  padding-bottom: 15px
+  padding-bottom: 20px
+  height: max-content
   & .button
       background: #fff
       position: relative
@@ -812,6 +813,8 @@ $min-margin: 10px
       &:hover 
         opacity: 0.3
         box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2)
+  & .row
+      flex-direction: column
 
 @media only screen and (max-width: 900px)
   .filter-container
