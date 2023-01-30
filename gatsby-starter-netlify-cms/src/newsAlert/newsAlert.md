@@ -2,7 +2,7 @@
 templateKey: news-alert
 title: "New Year Special"
 langTitles:
-    en: "Christmas Greetings"
+    en: "New Year Special"
     pt: "Especial de ano novo"
     fr: "Spécial Nouvel An"
     es: "Especial de Año Nuevo"

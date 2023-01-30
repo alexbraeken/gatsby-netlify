@@ -30,6 +30,8 @@ import { connect } from "react-redux"
 import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
 import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
 import Share from '../components/Share'
+import WinterLetInfoModal from '../components/WinterLetInfoModal'
+import { BsSnow } from "react-icons/bs";
 
 const mapStateToProps = (state) => {
     let newObj = {}
@@ -70,6 +72,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [loading, setLoading] = useState(true)
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
    const [pricePeriods, setPricePeriods] = useState(null)
+   const [showWinterLetInfo, setShowWinterLetInfo] = useState(false)
 
 
    const {t} = useTranslation(['property', 'translation']);
@@ -189,6 +192,7 @@ export const PropertyPageTemplate = ( props ) =>
                 setLoading(true)
                 setDescriptionsLoading(true)
                 setPricePeriods(null)
+                setShowWinterLetInfo(false)
             }
         }
     }, [props.id, props.path])
@@ -205,6 +209,10 @@ export const PropertyPageTemplate = ( props ) =>
 
     const handleEnquiryClose = () => setEnquiryShow(false)
     const handleEnquiryShow = () => setEnquiryShow(true)
+    
+    const handleWinterLetInfoShow = () => setShowWinterLetInfo(true)
+    const handleWinterLetInfoClose = () => setShowWinterLetInfo(false)
+
 
     const getPricingPeriods = (id) => {
         let url = `https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/pricing_period/${id}`
@@ -220,6 +228,8 @@ export const PropertyPageTemplate = ( props ) =>
     const handleShowAmenities = () => {
         setShowAllAemnities(!showAllAmenities)
     }
+
+    
 
     const handleAmenitiesLength = (length) => {
         setAmenitiesLength(length)
@@ -297,9 +307,17 @@ export const PropertyPageTemplate = ( props ) =>
                             <div style={{width:"100%"}}>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <div className="prdtitlesolo productNameTitle">
-                                {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-                                    <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
-                                }
+                                <Container style={{position:"absolute", top: 0, left: 0, width: "100%", height: "100%"}}>
+                                    <Row style={{hieght:"100%"}}>
+                                        <Col xs={12} md={11}>
+                                            <Row>  
+                                            {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                                            <div className="prop-ribbon" onClick={()=>handleWinterLetInfoShow()}><div><p>{t("Also Winter Let")}</p><BsSnow /></div></div>
+                                        }
+                                            </Row>
+                                        </Col>
+                                    </Row>
+                                </Container>
                                 <Container>
                                     <Row>
                                     <Col xs={12} md={11}>
@@ -317,15 +335,18 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </Row>
                                                 <hr style={{width:"100px", margin:"5px 0 5px -15px"}}/>
                                                 <Row>
-                                                    <div className="flag under" style={{marginRight:"10px"}}>
-                                                <span className="prc">{t("From")} {data.value.baseDailyRate}{data.value.currencySymbol}</span>
-                                                        <span className="mth"> / {t("Night")}</span>
+                                                    <div className="flag under" style={{marginRight:"10px", display: "flex"}}>
+                                                        <span className="prc" style={{margin: "auto"}}>{t("From")} {data.value.baseDailyRate}{data.value.currencySymbol}</span>
+                                                        <span className="mth" style={{margin: "auto"}}> / {t("Night")}</span>
                                                     </div>
                                                 
                                                 <span className="titleTags">
                                                     <span className="titleTag"><Link to={`/properties?city=${data.value.city}`}>{data.value.city}</Link></span >
                                                     <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
                                                 </span>
+                                                {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                                                <button className="btn winter-let" type="" onClick={()=>handleWinterLetInfoShow()} ><BsSnow /><span style={{marginLeft:"5px"}}>{t("Winter Let Info")}</span></button>
+            }
                                                 </Row>
                                             </Col>
                                         </h1>
@@ -333,6 +354,7 @@ export const PropertyPageTemplate = ( props ) =>
                                             
                                         </div>
                                         </Row>
+                                        
                                     </Col>
                                     <Col xs={12} md={1} style={{display: "flex", maxWidth: "90px", margin: "auto 0 auto auto"}}>
                                         <div className="add-favs">
@@ -774,6 +796,9 @@ export const PropertyPageTemplate = ( props ) =>
                             <br />
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
                             <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
+                            {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                                <WinterLetInfoModal show={showWinterLetInfo} handleClose={handleWinterLetInfoClose} price={data.value.customData?.Winter_Let_Price} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
+                            }
                             </div>
                             <Helmet link={[{rel: "canonical", href: `https://www.smartavillas.com/properties/${propId}`}]}>
                                 <title>{propName}</title>
