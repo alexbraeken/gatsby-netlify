@@ -173,6 +173,8 @@ $menu-label-color: $white-ter
     text-align: center
     max-width: 70%
     margin: 0 0 1em
+  .wrap-on-mobile
+    flex-wrap: wrap
 
 
 @import url(https://fonts.googleapis.com/css2?family=Didact+Gothic)
@@ -1187,55 +1189,58 @@ $min-margin: 10px
   border-top: 3px solid #1E5799
 
 //prop page ribbon
-.prdtitlesolo
-  & .prop-ribbon 
-      position: absolute
-      right: 0
-      top: 100%
-      z-index: 1
-      overflow: hidden
-      width: 75px
-      text-align: right
+.prop-ribbon 
+  position: absolute
+  right: 320px
+  top: 0
+  z-index: 1
+  overflow: hidden
+  width: 75px
+  text-align: right
+  border-radius: 0px 0px 30px 30px
+  height: 110px
+  cursor: pointer
+  transition: all 0.5s
+  & div 
+      font-size: 9px
+      font-weight: bold
+      color: #FFF
+      text-transform: uppercase
+      text-align: center
+      line-height: 20px
+      display: block
+      background: linear-gradient(#2989D8 0%, #1E5799 100%)
+      box-shadow: 0 3px 10px -5px black
       border-radius: 0px 0px 30px 30px
-      height: 110px
-      cursor: pointer
+      position: absolute
+      padding: 3px
+      object-fit: cover
+      width: 100%
+      height: 80px
       transition: all 0.5s
-      & div 
-          font-size: 9px
-          font-weight: bold
-          color: #FFF
-          text-transform: uppercase
-          text-align: center
-          line-height: 20px
-          display: block
-          background: linear-gradient(#2989D8 0%, #1E5799 100%)
-          box-shadow: 0 3px 10px -5px black
-          border-radius: 0px 0px 30px 30px
-          position: absolute
-          padding: 3px
-          object-fit: cover
-          width: 100%
-          height: 80px
+      & svg
+          opacity: 0
           transition: all 0.5s
-          & svg
-              opacity: 0
-              transition: all 0.5s
-              position: absolute
-              width: 18px
-              height: 18px
-              left: 50%
-              transform: translateX(-50%)
-              bottom: 30px
-          & p
-              margin: auto
-      &:hover
+          position: absolute
+          width: 18px
+          height: 18px
+          left: 50%
+          transform: translateX(-50%)
+          bottom: 30px
+      & p
+          margin: auto
+  &:hover
+    border-radius: 0px 0px 80px 80px
+    height: 170px
+    & div
         border-radius: 0px 0px 80px 80px
-        height: 170px
-        & div
-            border-radius: 0px 0px 80px 80px
-            height: 130px
-            & svg
-                opacity: 1
+        height: 130px
+        & svg
+            opacity: 1
+
++mobile
+  .prop-ribbon
+    right: 5px
 
 //featured
 
@@ -4947,6 +4952,7 @@ p.about-section
             & .prop-stats
                 font-size: calc(13px + (23 * (100vw - 320px)) / 1080)
                 width: calc(100% - 10em)
+                padding: 0 0 10px 0
     & .prop-carousel-slider
         width: 100% 
 
@@ -5237,3 +5243,6 @@ p.about-section
 +mobile
   .winter-let
     margin-top: 5px
+
+
+

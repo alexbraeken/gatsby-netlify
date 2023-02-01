@@ -198,8 +198,8 @@ const CarEnquiryModal = (props) => {
           />
         </div>
       </div>
-      <div style={{display: "flex"}}>
-        <button className="submit-search-btn"  type="submit" style={{border:"none", backgroundColor:"transparent", marginLeft: "0",
+      <div className="wrap-on-mobile" style={{display: "flex"}}>
+        <button className="submit-search-btn"  type="submit" style={{border:"none", backgroundColor:"transparent", marginLeft: "0", marginTop:"5px",
           paddingLeft: "0"}}>
           <a>
               <svg className="icon-arrow before">
@@ -219,7 +219,7 @@ const CarEnquiryModal = (props) => {
           </defs>
           </svg>
         </button>
-        <button className="submit-search-btn"  onClick={()=>props.handlebook()} style={{border:"none", backgroundColor:"transparent", marginLeft: "0",
+        <button className="submit-search-btn"  onClick={()=>props.handlebook()} style={{border:"none", backgroundColor:"transparent", marginLeft: "0", marginTop:"5px",
           paddingLeft: "0"}}>
           <a>
               <svg className="icon-arrow before">

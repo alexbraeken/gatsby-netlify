@@ -319,6 +319,9 @@ export const PropertyPageTemplate = ( props ) =>
                                 <PropCarousel name={propName? propName: ''} baseRate={data.value.baseDailyRate} city={data.value.city} bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} propId={props.id} firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow} dispatch={props.dispatch} inFavs={props.inFavs} handleSubscribeShow={handleSubscribeShow}/>
                                 
                                 <Container style={{paddingTop:"30px"}}>
+                                {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                                            <div className="prop-ribbon" onClick={()=>handleWinterLetInfoShow()}><div><p>{t("Also Winter Let")}</p><BsSnow /></div></div>
+                                        }
                                     <section id="prop-summary">
                                     <div id="prop-nav">
                                         {sections && sections.length > 0 && sections.map((section, index) => {
