@@ -28,7 +28,7 @@ part1:
         es: "<p> Nos enorgullecemos de comprender el mercado. Sabemos lo que sus clientes esperarán al alquilar una propiedad y trabajaremos con usted para asegurarnos de que su propiedad cumpla con estas expectativas con un simple objetivo en mente: que sus huéspedes tengan un ¡Fantásticas vacaciones y deseo regresar! Nuestros servicios de alquiler incluyen fotografía profesional, publicidad en Internet, altos estándares de higiene y limpieza y un servicio de lavandería profesional. Apreciamos que su propiedad sea una inversión preciada, y reconocemos que puede tener diferentes requisitos y por eso nos complace considerar cualquier término comercial que se adapte a usted, desde un simple servicio de limpieza hasta un servicio completo de administración de propiedades.
     
         Somos flexibles en nuestro enfoque y ofrecemos un paquete de alquiler 'todo incluido' o puede crear su propio paquete de alquiler 'a medida'. Ningún trabajo es demasiado pequeño o grande. Estaremos encantados de conocerle y ver su propiedad para analizar cómo podemos ayudarle a optimizar el potencial de alquiler y mantener su inversión en óptimas condiciones. <a href ='/contact' style = 'color: #f5821e; text-decoration: underline;'> Envíenos un correo electrónico </a> para reservar una cita ahora </p> " 
-part1Img: ../../../static/img/Creat_Prefect_2.jpg
+part1Img: ../../../static/img/Smarta-12235.jpg
 part2: 
     header: 
         en: "WHAT MAKES US DIFFERENT"

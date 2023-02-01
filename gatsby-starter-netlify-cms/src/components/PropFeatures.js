@@ -9,12 +9,13 @@ import BedBathPax from '../components/BedBathPax'
 import DatePicker from '../components/DatePicker'
 import StickyBox from "react-sticky-box"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFan, faDog, faWifi, faSwimmingPool, faTree} from '@fortawesome/free-solid-svg-icons';
+import { faFan, faDog, faWifi, faSwimmingPool, faTree, faBadgePercent} from '@fortawesome/free-solid-svg-icons';
 import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { BsPercent  } from "react-icons/bs";
 
 gsap.registerPlugin(gsap);
 gsap.registerPlugin(ScrollTrigger);
@@ -202,7 +203,7 @@ const PropFeatureGrid = React.memo((data) => {
         {data.propList?.length > 0 ? 
           <div>
             <span className="text-muted">{data.propList.length} {t("Properties")}:</span>
-            {data.amenitiesList && 
+            {(data.amenitiesList || data.winterLets) && 
               <>
                 <br />
                 <div style={{display: "flex", flexWrap: "nowrap"}}>
@@ -228,6 +229,7 @@ const PropFeatureGrid = React.memo((data) => {
                     return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><BsCheckCircle style={{margin: "auto 5px"}} /><span className="tooltiptext amenity-tooltip" >{amenity}</span></div> : null
                     }
                   })}
+                  {data.winterLets ? <div className="icon-info amenity-icon"><BsPercent style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Winter Let Discount")}</span></div> : null}
                 </div>
               </>
             }

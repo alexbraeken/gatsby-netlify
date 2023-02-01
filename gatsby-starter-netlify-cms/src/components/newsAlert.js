@@ -2,9 +2,15 @@ import React from 'react'
 import {useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
-
+import { MdContentCopy } from "react-icons/md";
 
 class NewsAlert extends React.PureComponent {
+
+  copyToClipboard = (el) => {
+    console.log(el.target)
+    let copyText = el.target.getAttribute("data-copyText")
+    navigator.clipboard.writeText(copyText);
+  }
 
   render() {
     const { data } = this.props
@@ -15,11 +21,22 @@ class NewsAlert extends React.PureComponent {
         <>
         { news[0] && 
       <div className="newsAlert">
-          <a href={`${news[0].node.frontmatter.link}`} style={{position:"absolute", width:"100%", height:"100%"}} role="button"
-   aria-label="News Alert"></a>
+          {news[0].node.frontmatter.link && 
+          <a href={news[0].node.frontmatter.link} 
+          style={{position:"absolute", width:"100%", height:"100%"}} role="button"
+          aria-label="News Alert"></a>
+          }
+          {news[0].node.frontmatter.copyText &&
+           <span onClick={this.copyToClipboard.bind(this)} data-copyText={news[0].node.frontmatter.copyText}
+           style={{position:"absolute", width:"100%", height:"100%"}} role="button"
+           aria-label="Copy Text"></span>
+          }
           <div>
             <small style={{fontWeight:"bold"}}>{news[0].node.frontmatter.langTitles[language]}: </small> 
             <small className="newsAlert-news">{news[0].node.frontmatter.news[language]}</small>
+            {news[0].node.frontmatter.copyText && 
+            <span id="copyClipboard" style={{marginLeft: "10px"}}><MdContentCopy /></span>
+            }
           </div>  
       </div>}
       </>
@@ -58,6 +75,7 @@ export default (props) => (
                   es
                 }
                 link
+                copyText
               }
             }
           }

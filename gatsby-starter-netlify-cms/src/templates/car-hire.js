@@ -11,6 +11,7 @@ import CarAlertModal from '../components/CarAlertModal'
 import BackgroundImage from 'gatsby-background-image'
 import convertToBgImage from "../Helpers/images"
 import { getImage } from "gatsby-plugin-image"
+import queryString from 'query-string'
 
 const carSelectStyle = {
     option: (provided, state) => ({
@@ -62,12 +63,15 @@ const carSelectStyle = {
     }
   }
 
-export const CarHirePageTemplate = ({ title, langTitles, content, contentComponent, hero, carPricing, heroTitle, html }) => {
+export const CarHirePageTemplate = ({ title, langTitles, content, contentComponent, hero, carPricing, heroTitle, html, location  }) => {
 
   const [loaded, setLoaded] = useState(false)
   const [selectedPricing, setSelectedPricing] = useState(null)
   const [selected, setSelected] = useState(null)
+  const [dates, setDates] = useState(null)
+  const [preference, setPreference] = useState(null)
   const [showCarAlert, setShowCarAlert] = useState(false)
+  const [estimate, setEstimate] = useState(null)
   const handleClose = () => setShowCarAlert(false);
   const handleShowCarAlert = () => setShowCarAlert(true);
   
@@ -88,6 +92,13 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
     setTimeout(()=>{
         setLoaded(true)}, 1000
         )
+        console.log(queryString.parse(location.search))
+        let {carClass, date1, date2, preference, est} = queryString.parse(location.search)
+        setSelected(carClass)
+        if(date1 && date2)setDates({date1: date1, date2:date2})
+        setPreference(preference)
+        setEstimate(est)
+
     return () => {
         setLoaded(false)
     }
@@ -145,6 +156,7 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                     {value: "I", label: "Class I"},
                     {value: "J", label: "Class J"},
                     {value: "J1", label: "Class J1"},
+                    {value: "J2", label: "Class J2"},
                     {value: "K", label: "Class K"},
                     {value: "L", label: "Class L"},
                     {value: "M", label: "Class M"}]}
@@ -154,7 +166,7 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
                     placeholder={t("Select Car")}
                     onChange={(e)=>setSelected(e.value)}/>
                     {selectedPricing && <p>{t("Includes")}: {selected && carPricing[selected]?.name[language]}</p>}
-                    {selectedPricing && <CarHireCalendar pricingPeriods={selectedPricing} carClass={selected ? `Class ${selected}`: null} includes={selected && carPricing[selected]?.name[language]}/>}
+                    {selectedPricing && <CarHireCalendar pricingPeriods={selectedPricing} carClass={selected ? selected: null} includes={selected && carPricing[selected]?.name[language]} dates={dates} preference={preference} est={estimate}/>}
                     </Col>
                 </Row>}
                
@@ -185,7 +197,7 @@ CarHirePageTemplate.propTypes = {
   html: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string])
 }
 
-const CareHirePage = ({ data }) => {
+const CareHirePage = ({ data, location }) => {
   const post = data.pageData
   const {t} = useTranslation(['translation']);
 
@@ -199,6 +211,7 @@ const CareHirePage = ({ data }) => {
         carPricing={post.frontmatter.carPricing}
         content={post.html}
         html={post.frontmatter.html}
+        location={location}
       />
     </Layout>
   )
@@ -309,6 +322,16 @@ export const CareHirePageQuery = graphql`query CareHirePage($id: String!, $langu
           pricing
         }
         J1 {
+          class
+          name {
+            en
+            pt
+            fr
+            es
+          }
+          pricing
+        }
+        J2 {
           class
           name {
             en

@@ -43,7 +43,7 @@ const ConnectedProperties = React.memo((props) => {
     const [photos, setPhotos] =useState([])
     const [sort, setSort] = useState("")
     const [data, setData] = useState(null);
-    const [winterLets, setWinterLets] = useState([])
+    const [winterLets, setWinterLets] = useState(false)
     const [advancedSearch, setAdvancedSearch] = useState(false)
     const [propertyIds, setPropertyIds] = useState([])
     const [propList, setPropList] = useState([])
@@ -129,8 +129,7 @@ const ConnectedProperties = React.memo((props) => {
             setPhotos([])
             setSort("")
             setData(null);
-            setWinterLets([])
-            
+            setWinterLets(false)
             setDates(null)
             setHorizontalExpanded(false)
             setFilterExpanded(true)
@@ -232,7 +231,8 @@ const ConnectedProperties = React.memo((props) => {
                     && (parseInt(item.baseDailyRate) <= props.state.prices[1])
                     && (advancedSearch === (propertyIds.indexOf(item.uid) !== -1))
                     && !amenityBool.includes(false)
-                    && (mapBoundedProperties.length > 0 ? mapBoundedProperties.includes(item.uid) : true)){  
+                    && (mapBoundedProperties.length > 0 ? mapBoundedProperties.includes(item.uid) : true) 
+                    && (winterLets ? !!item.customData.Winter_Let_Price === winterLets : true)){  
                     list.push(item)
                 } 
             })
@@ -257,6 +257,7 @@ const ConnectedProperties = React.memo((props) => {
             setPropList(list)
         }
     }
+
 
     const handleMapBoundProperties = (propList) => {
         setMapBoundedProperties(propList)
@@ -307,6 +308,11 @@ const ConnectedProperties = React.memo((props) => {
 
     const handleDisplayNumChange = (displayNum) => {
         setCardDisplayNum(displayNum)
+    }
+
+    const handleWinterLets = (e) => {
+        console.log(e)
+        setWinterLets(e)
     }
 
 
@@ -426,12 +432,16 @@ const ConnectedProperties = React.memo((props) => {
                                                     handleAmenityChange= {handleAmenityChange}
                                                     state={props.state}
                                                     handleSliderChange={props.handleSliderChange}
-                                                    handleSelectDeselectAll={props.handleSelectDeselectAll}/>
+                                                    handleSelectDeselectAll={props.handleSelectDeselectAll}
+                                                    show={showSidebarModal} 
+                                                    handleWinterLets = {handleWinterLets}
+                                                    winterLets={winterLets}
+                                                    />
 
                                     </StickyBox>
                                     </div>
                                     
-                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList}  handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg} handleShowCalendar={handleShowCalendar}/>
+                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList}  handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg} handleShowCalendar={handleShowCalendar} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleClearDates={props.handleClearDates}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery

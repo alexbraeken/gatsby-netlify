@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
 import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { Helmet } from 'react-helmet'
@@ -130,7 +130,9 @@ const CarHireCalendar = (props) => {
       });
     const [startMonthYear, setStartMonthYear] = useState({startYear: null, startMonth: null})
     const [total, setTotal] = useState(0)
+    const [quoteRequest, setQuoteRequest] = useState(true)
     const [showModal, setShowModal] = useState(false)
+    const didMount = useRef(false)
 
     const {t} = useTranslation(['translation']);
     const { language } = useI18next()
@@ -150,6 +152,23 @@ const CarHireCalendar = (props) => {
         }
     }, [props.pricingPeriods])
 
+    useEffect(() => {
+      if(props.est){
+        setTotal(props.est)
+        console.log(props.est)
+      }
+      return () => {
+        setTotal(0)
+    }
+    }, [])
+
+    useEffect(() => {
+      if(props.dates){
+        setRange({from: new Date(props.dates.date1), to:new Date(props.dates.date2), enteredTo: new Date(props.dates.date2)})
+        setQuoteRequest(false)
+        setShowModal(true)
+      }
+    }, [props.dates])
 
 
     const getInitialState = () => {
@@ -199,19 +218,18 @@ const CarHireCalendar = (props) => {
     }
 
     useEffect(() => {
-        
-        let count = 0;
+      if (didMount.current){
         let selected = document.getElementsByClassName("DayPicker-Day--selected")
         if(selected.length > 0){
+          let count = 0;
           [...selected].forEach((el, i) => {
             if(el.firstChild && i < selected.length - 1)count += parseInt(el.firstChild.getAttribute("data-price"))
           })
+          setTotal(count)
         }
-        setTotal(count)
-
-        return () => {
-            setTotal(0)
-        }
+      }else{
+        didMount.current = true
+      }
     }, [range])
 
     const handleDayMouseEnter = (day) => {
@@ -232,10 +250,28 @@ const CarHireCalendar = (props) => {
       }
 
     const handleBook = () => {
+      console.log("book")
+        setQuoteRequest(false)
         setShowModal(true)
     }
 
+    const handleQuote = () => {
+      console.log("quote")
+
+      setQuoteRequest(true)
+      setShowModal(true)
+    }
+
+    const handleAvailability = () => {
+      console.log("availability")
+
+      setQuoteRequest(true)
+      setShowModal(true)
+    }
+
     const handleClose = () => {
+      console.log("close")
+        setQuoteRequest(true)
         setShowModal(false)
     }
 
@@ -368,10 +404,15 @@ const CarHireCalendar = (props) => {
           </div>
           {from && to && (
             <div style={{display: "flex", flexWrap:"nowrap", minWidth:"200px"}}>
-              <button className="calendar-btn main" onClick={handleBook}>
+              <button className="calendar-btn main" onClick={handleQuote}>
               {t("Get a Quote")}
               </button>
-              
+              <button className="calendar-btn main" onClick={handleAvailability}>
+              {t("Check Availability")}
+              </button>
+              <button className="calendar-btn main" onClick={handleBook}>
+              {t("Request Booking")}
+              </button>
               <button className="calendar-btn clear" onClick={handleResetClick}>
               {t("Clear")}
               </button>
@@ -397,7 +438,7 @@ const CarHireCalendar = (props) => {
             locale={language} 
             localeUtils={localeUtils}
             />
-            <CarEnquiryModal show={showModal} handleClose={handleClose} carClass={props.carClass} price={total} from={from?.toLocaleDateString()} to={to?.toLocaleDateString()} includes={props.includes}/>
+            <CarEnquiryModal show={showModal} handlebook={handleBook} quoteRequest={quoteRequest} handleClose={handleClose} carClass={props.carClass} price={total} from={from} to={to} includes={props.includes} preference={props.preference}/>
 
       <Helmet>
       <style>{`

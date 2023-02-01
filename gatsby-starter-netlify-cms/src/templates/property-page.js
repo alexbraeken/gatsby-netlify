@@ -32,6 +32,8 @@ import { connect } from "react-redux"
 import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
 import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
 import Share from '../components/Share'
+import WinterLetInfoModal from '../components/WinterLetInfoModal'
+import { BsSnow } from "react-icons/bs";
 
 const mapStateToProps = (state) => {
     let newObj = {}
@@ -73,6 +75,8 @@ export const PropertyPageTemplate = ( props ) =>
    const [sections, setSections] = useState(null)
    const [loading, setLoading] = useState(true)
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
+   const [pricePeriods, setPricePeriods] = useState(null)
+   const [showWinterLetInfo, setShowWinterLetInfo] = useState(false)
 
 
    const {t} = useTranslation(['property', 'translation']);
@@ -157,17 +161,18 @@ export const PropertyPageTemplate = ( props ) =>
                     }  
                     })
 
-                    fetch(reviewsUri, {
-                        headers:{
-                        "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
-                            }
-                        })
-                        .then(response => {
-                            return response.text()
-                        })
-                        .then(data => {
-                            setReviews(JSON.parse(data))
-                        })
+            fetch(reviewsUri, {
+                headers:{
+                "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
+                    }
+                })
+                .then(response => {
+                    return response.text()
+                })
+                .then(data => {
+                    setReviews(JSON.parse(data))
+                })
+            getPricingPeriods(props.id)
 
             return () => {
                 setSmartaOpinion(null)
@@ -191,6 +196,8 @@ export const PropertyPageTemplate = ( props ) =>
                 setSections(null)
                 setLoading(true)
                 setDescriptionsLoading(true)
+                setPricePeriods(null)
+                setShowWinterLetInfo(false)
             }
         }
     }, [props.id, props.path])
@@ -207,6 +214,9 @@ export const PropertyPageTemplate = ( props ) =>
 
     const handleEnquiryClose = () => setEnquiryShow(false)
     const handleEnquiryShow = () => setEnquiryShow(true)
+    
+    const handleWinterLetInfoShow = () => setShowWinterLetInfo(true)
+    const handleWinterLetInfoClose = () => setShowWinterLetInfo(false)
 
     const handleSubscribeClose = () => setSubscribeShow(false)
     const handleSubscribeShow = () => setSubscribeShow(true)
@@ -215,9 +225,22 @@ export const PropertyPageTemplate = ( props ) =>
     const handleBedroomsShow = () => setBedroomsShow(true)
 
 
+    const getPricingPeriods = (id) => {
+        let url = `https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/pricing_period/${id}`
+        fetch(url).then(response => {return response.text()}).then(data => {
+            let priceObject = {}
+            JSON.parse(data).forEach(pricing => {
+                priceObject[pricing.from] = pricing
+            })
+            setPricePeriods(priceObject)
+        })
+    }
+
     const handleShowAmenities = () => {
         setShowAllAemnities(!showAllAmenities)
     }
+
+    
 
     const handleAmenitiesLength = (length) => {
         setAmenitiesLength(length)
@@ -367,14 +390,11 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <h2 className="prop-section-title">{t("Calendar")}</h2>
                                                 <h2>{t("Calendar")}</h2>
                                                 <br />
-                                                <FirestoreDocument path={`PricingPeriods/${props.id}`}>
-                                                    {pricePeriods => {
-                                                    return (!pricePeriods.isLoading && pricePeriods.value) ? 
-                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods.value} minDays={data.value.minimumStay} currSymbol={data.value.currencySymbol}/>
+                                                    {pricePeriods ? 
+                                                        <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods} minDays={data.value.minimumStay} currSymbol={data.value.currencySymbol}/>
                                                         :
                                                         <Loading />
-                                                    }}
-                                                </FirestoreDocument>
+                                                    }
                                             </div>
                                         </Col>
                                     </Row>
@@ -741,6 +761,9 @@ export const PropertyPageTemplate = ( props ) =>
                             <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
                             <PropertySubscribeModal show={subscribeShow} handleClose={handleSubscribeClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
                             <BedroomsModal show={bedroomsShow} handleClose={handleBedroomsClose} propId={propId} img={data.value.pictureThumbCloudURL || data.value.picture}/>
+                            {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                                <WinterLetInfoModal show={showWinterLetInfo} handleClose={handleWinterLetInfoClose} price={data.value.customData?.Winter_Let_Price} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
+                            }
                             </div>
                             <Helmet link={[{rel: "canonical", href: `https://www.smartavillas.com/properties/${propId}`}]}>
                                 <title>{propName}</title>

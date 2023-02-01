@@ -146,7 +146,7 @@ refreshBounds = (mapInstance) => {
 }
 
 handleBoundsChange = () => {
-  if(this.state.map){
+  if(this.state.map && !(this.props.props.lat && this.props.props.lng)){
     let boundedProps = []
     this.state.markers.forEach(marker=> {
       if(this.state.map.getBounds().contains(marker.marker.getPosition())){
