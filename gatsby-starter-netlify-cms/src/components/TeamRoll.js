@@ -7,9 +7,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import StickyBox from "react-sticky-box"
 import { getImage } from "gatsby-plugin-image"
 
-
-gsap.registerPlugin(ScrollTrigger);
-
+if (typeof window !== `undefined`) {
+  gsap.registerPlugin(gsap);
+  gsap.registerPlugin(ScrollTrigger);
+}
 const TeamPhoto = React.memo((props) =>{
 
   const featuredImage = getImage(props.member.node.frontmatter.featuredimage.childImageSharp)

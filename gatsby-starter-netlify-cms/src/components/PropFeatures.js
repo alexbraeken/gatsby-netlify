@@ -17,9 +17,11 @@ import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BsPercent  } from "react-icons/bs";
 
-gsap.registerPlugin(gsap);
-gsap.registerPlugin(ScrollTrigger);
 
+if (typeof window !== `undefined`) {
+  gsap.registerPlugin(gsap);
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 
 const PropFeatureGrid = React.memo((data) => {

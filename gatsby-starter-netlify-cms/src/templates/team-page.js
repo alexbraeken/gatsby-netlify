@@ -14,9 +14,9 @@ import StickyBox from "react-sticky-box"
 import convertToBgImage from "../Helpers/images"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
-
-gsap.registerPlugin(CSSPlugin)
-
+if (typeof window !== `undefined`) {
+  gsap.registerPlugin(CSSPlugin)
+}
 
 export const MeetTheTeamPageTemplate = ({
   image,

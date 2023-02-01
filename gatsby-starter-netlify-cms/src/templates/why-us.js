@@ -13,8 +13,9 @@ import convertToBgImage from "../Helpers/images"
 import { getImage } from "gatsby-plugin-image"
 import StickyBox from "react-sticky-box"
 
-gsap.registerPlugin(ScrollTrigger);
-
+if (typeof window !== `undefined`) {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export const WhyUsPageTemplate = ({
   image,

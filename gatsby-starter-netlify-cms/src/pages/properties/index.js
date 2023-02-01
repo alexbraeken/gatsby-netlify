@@ -29,9 +29,9 @@ import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
 import { IoIosPricetag   } from "@react-icons/all-files/Io/IoIosPricetag";
 
-
-gsap.registerPlugin(gsap);
-
+if (typeof window !== `undefined`) {
+    gsap.registerPlugin(gsap);
+}
 const mapStateToProps = (state) => {
     return  {featuredProps: state.featuredProps}
   }

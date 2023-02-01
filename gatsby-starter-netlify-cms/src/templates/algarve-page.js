@@ -22,9 +22,9 @@ class CustomSlide extends React.Component {
 
     const heroImage = getImage(this.props.slide.slide? this.props.slide.slide.childImageSharp: null)
     const bgImage = heroImage ? convertToBgImage(heroImage) : null
-
-    gsap.registerPlugin(ScrollTrigger); 
-    
+    if (typeof window !== `undefined`) {
+      gsap.registerPlugin(ScrollTrigger); 
+    }
     return (
       <BackgroundImage
       Tag="div"

@@ -14,8 +14,9 @@ import { getImage } from "gatsby-plugin-image"
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
+if (typeof window !== `undefined`) {
+  gsap.registerPlugin(ScrollTrigger);
+}
 class CustomSlide extends React.Component {
   render() {
 
