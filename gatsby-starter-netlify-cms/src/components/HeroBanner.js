@@ -12,6 +12,8 @@ class HeroBanner extends React.PureComponent {
     const language = this.props.useI18next.language
 
     return (
+      <>
+      {news[0].node.frontmatter.active &&
         <div style={{width:"100%"}}>
         <Helmet>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,6 +51,9 @@ class HeroBanner extends React.PureComponent {
         </div>
         }
       </div>
+      }
+        
+      </>
     )
   }
 }

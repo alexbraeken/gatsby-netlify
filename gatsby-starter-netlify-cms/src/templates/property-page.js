@@ -308,7 +308,7 @@ export const PropertyPageTemplate = ( props ) =>
                                 <PropCarousel firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow}/>
                                 <div className="prdtitlesolo productNameTitle">
                                 <Container style={{position:"absolute", top: 0, left: 0, width: "100%", height: "100%"}}>
-                                    <Row style={{hieght:"100%"}}>
+                                    <Row style={{height:"100%"}}>
                                         <Col xs={12} md={11}>
                                             <Row>  
                                             {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
@@ -344,9 +344,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                     <span className="titleTag"><Link to={`/properties?city=${data.value.city}`}>{data.value.city}</Link></span >
                                                     <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
                                                 </span>
-                                                {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-                                                <button className="btn winter-let" type="" onClick={()=>handleWinterLetInfoShow()} ><BsSnow /><span style={{marginLeft:"5px"}}>{t("Winter Let Info")}</span></button>
-            }
+                                                
                                                 </Row>
                                             </Col>
                                         </h1>

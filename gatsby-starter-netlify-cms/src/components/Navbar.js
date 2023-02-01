@@ -229,7 +229,8 @@ const Navbar = class extends React.Component {
     const { language } = this.props.useI18next;
     const padding =  isTabletOrMobile ? "10px" : `90px`
     const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches 
-    const top = document.getElementsByClassName("newsAlert")?.[0].getBoundingClientRect().height || 0
+    const newsAlert = document.getElementsByClassName("newsAlert")
+    const top = newsAlert[0] ? newsAlert[0].getBoundingClientRect().height : 0
 
 
     this.setState({

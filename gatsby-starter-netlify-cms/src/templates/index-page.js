@@ -216,9 +216,6 @@ const handleSectionLeave = () => {
             </div>
           </div>
           <SearchFilter className="search-filter" />
-          <div style={{width: "100%", textAlign:"center", zIndex: "1", marginBottom: "-50px", marginTop:"50px", paddingBottom: "50px", paddingTop: "50px", backgroundColor: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(11px) grayscale(.4)"}}>
-            <HeroBanner />
-          </div>
       </div>
        
       
