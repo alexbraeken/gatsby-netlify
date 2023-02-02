@@ -312,7 +312,7 @@ export const PropertyPageTemplate = ( props ) =>
                                         <Col xs={12} md={11}>
                                             <Row>  
                                             {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-                                            <div className="prop-ribbon" onClick={()=>handleWinterLetInfoShow()}><div><p>{t("Also Winter Let")}</p><BsSnow /></div></div>
+                                            <div className="prop-ribbon" onClick={()=>handleWinterLetInfoShow()}><div><p>{t("Winter Let")}</p><BsSnow /></div></div>
                                         }
                                             </Row>
                                         </Col>
