@@ -19,7 +19,7 @@ import GoogleMapComponent from '../../components/GoogleMapComponent'
 import ReactBnbGallery from 'react-bnb-gallery'
 import { gsap } from "gsap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faChevronLeft, faUsers, faBed, faShower, faFan, faDog, faWifi, faSwimmingPool, faTree, faCalendarAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faChevronLeft, faUsers, faBed, faShower, faFan, faDog, faWifi, faSwimmingPool, faTree, faCalendarAlt, faArrowRight, faTag } from '@fortawesome/free-solid-svg-icons'
 import { connect } from "react-redux"
 import { Helmet } from 'react-helmet'
 import { BsFillHouseFill } from "@react-icons/all-files/bs/BsFillHouseFill"
@@ -386,7 +386,7 @@ const ConnectedProperties = React.memo((props) => {
                                                     <small>{propList.length}</small>
                                                 </div>
                                                 <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
-                                                    <IoIosPricetag style={{margin: "auto"}}/>
+                                                    <FontAwesomeIcon icon={faTag} style={{margin: "auto"}}/>
                                                     <small>{props.state.prices[0]}€ - {props.state.prices[1]}€</small>
                                                 </div>
                                                 <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
