@@ -27,7 +27,6 @@ import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
-import { IoIosPricetag   } from "@react-icons/all-files/Io/IoIosPricetag";
 
 if (typeof window !== `undefined`) {
     gsap.registerPlugin(gsap);
