@@ -6,6 +6,7 @@ import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import {Container, Col, Row} from 'react-bootstrap'
 import OwnerTestimonials from '../components/OwnerTestimonials'
+import PropertySubmitForm from '../components/PropertySubmitForm'
 import { gsap } from "gsap";
 import BackgroundImage from 'gatsby-background-image'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -206,6 +207,16 @@ export const WhyUsPageTemplate = ({
           </div>
         </Col>
         </Row> 
+        <Row style={{flexDirection:"column", position:"relative"}}>
+        <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>Potential</h2>
+          <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Your property earning potential")}</h3>
+          <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
+            borderRadius: "4px"}}>
+              <div className="form-container"> 
+                <PropertySubmitForm />
+              </div>
+          </Col>
+          </Row>
       </Container>
       <div style={{ 
           width: "100vw",
