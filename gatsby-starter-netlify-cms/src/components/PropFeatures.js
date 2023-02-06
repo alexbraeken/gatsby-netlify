@@ -170,7 +170,7 @@ const PropFeatureGrid = React.memo((data) => {
 
   return(
     <div ref={container}>  
-    <div style={{position: "absolute", top: "0", height: "100%", left: "50%", transform:"translateX(-50%)", zIndex: "10"}}>
+    <div className="stick-container">
       <StickyBox>
       <DatePicker 
       from={data.state.searchArray.from ? data.state.searchArray.from[0] : null} 

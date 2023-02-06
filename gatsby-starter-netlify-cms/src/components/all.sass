@@ -354,12 +354,15 @@ a:hover
 //Property Cards
 
 .prop-card-container
-  margin: 10px 5px
   min-width: 333px
   max-width: 400px
   flex: 1 1
   z-index: 1
   margin: 35px
+
++mobile
+  .prop-card-container
+      margin: 30px 5px
 
 .prop-card
   max-width: 1000px
@@ -3533,7 +3536,7 @@ $yellow: #FECEAB
 $white: #FFF
 
 @mixin mobile
-  @media screen and (max-width: 1000px)
+  @media screen and (max-width: 900px)
     @content
 
 .languages
@@ -4956,10 +4959,14 @@ p.about-section
     & .prop-carousel-slider
         width: 100% 
 
+.center-mobile-left
+  left: 50%
 
-@media (max-width: 991px)
++mobile
   .mobile-full-width
     width: 100%
+  .center-mobile-left
+    left: 0
 
 .black-bg
   background-color: #333333
@@ -5244,5 +5251,14 @@ p.about-section
   .winter-let
     margin-top: 5px
 
+.stick-container
+  position: absolute
+  top: 0
+  height: 100%
+  left: 50%
+  transform:translateX(-50%)
+  zIndex: 10
 
-
++mobile
+  .stick-container
+    display: none
