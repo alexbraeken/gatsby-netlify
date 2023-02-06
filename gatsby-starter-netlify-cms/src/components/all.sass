@@ -630,15 +630,17 @@ a:hover
   width: 100%
   flex-direction: row
   flex-wrap: wrap
-  max-width: 70%
+  max-width: 60%
   & a
       flex: 1 1 15%
       padding: 0 5px
       max-width: 150px
 
 +mobile
-  #prop-nav a
-    flex: 1 1 35%
+  #prop-nav 
+    max-width: 70%
+    & a
+        flex: 1 1 35%
 
 
 //Back to top
