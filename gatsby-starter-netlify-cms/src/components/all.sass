@@ -757,6 +757,7 @@ a:hover
   width: 40vw
   z-index: 0
   margin: auto
+  overflow: hidden
 
 #logo-shadow
   margin: auto
@@ -4886,6 +4887,14 @@ p.about-section
   &:hover
     z-index: 2
 
+
+.prop-features-container
+  transition: all 1s
+  position: relative
+  z-index: 1
+  padding-left: 0
+
+
 .prop-features-header
   width: calc(100% + 30px)
   height: 80vh
@@ -4893,7 +4902,9 @@ p.about-section
   position: relative
   margin-left: -15px
 
-@media (max-width: 991px)
++mobile
+  .prop-features-container
+    padding: 0
   .prop-features-header
     height: 50vh
 
@@ -5256,7 +5267,7 @@ p.about-section
   top: 0
   height: 100%
   left: 50%
-  transform:translateX(-50%)
+  transform: translateX(-50%)
   zIndex: 10
 
 +mobile

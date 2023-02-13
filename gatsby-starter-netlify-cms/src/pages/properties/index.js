@@ -363,7 +363,7 @@ const ConnectedProperties = React.memo((props) => {
                                 </div>
                                 </StickyBox>
                                 </Col>
-                                <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s", position: "relative", zIndex: "1", paddingLeft:"0"}}>
+                                <Col xs={12} md={horizontalExpanded? 6 : 9} className="prop-features-container">
                                     <div style={{position:"absolute", height:"100%", width: "100%", pointerEvents:"none"}}>
                                     <StickyBox className="filter-sidebar-sticky" >
                                         <div className="filter-tab-container" onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>
