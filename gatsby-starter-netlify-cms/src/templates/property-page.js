@@ -122,41 +122,80 @@ export const PropertyPageTemplate = ( props ) =>
                         return response.text()
                     })
                     .then(data => {
-                    if(JSON.parse(data).length>0){
-                        if(JSON.parse(data)[1].text!== undefined){
-                            setPoolDimensions(JSON.parse(data)[1].text)
-                        }
-                        if(JSON.parse(data)[8].text!== undefined){
-                            setDamageWaiver(JSON.parse(data)[8].text)
-                        }
-                        if(JSON.parse(data)[11]?.text!== undefined){
-                            setMatterportURL(JSON.parse(data)[11].text)
-                        }
-                        if(JSON.parse(data)[2] ||JSON.parse(data)[3] || JSON.parse(data)[4] || JSON.parse(data)[5] || JSON.parse(data)[6] || JSON.parse(data)[9]){
+                    let results = JSON.parse(data)
+                    if(results.length>0){
+                        
+                        let distances = {}
+                        let langOpinions = {}
+                        results.forEach(customData => {
+                            switch(customData.customDataField.name){
+                                case "Pool Dimensions":
+                                    setPoolDimensions(customData.text)
+                                    break;
+                                case "Damages_Security_Deposit":
+                                    setDamageWaiver(customData.text)
+                                    break;
+                                case "Matterport_URL":
+                                    setMatterportURL(customData.text)
+                                    break;
+                                case "Matterport_URL":
+                                    setMatterportURL(customData.text)
+                                    break;
+                                case "Airport_distance":
+                                    distances.Airport_distance = customData.text
+                                    break;
+                                case "Market_Distance":
+                                    distances.Market_Distance = customData.text
+                                    break;
+                                case "Beach_distance":
+                                    distances.Beach_distance = customData.text
+                                    break;
+                                case "Golf_distance":
+                                    distances.Golf_distance = customData.text
+                                    break;
+                                case "Town_distance":
+                                    distances.Town_distance = customData.text 
+                                    break;  
+                                case "Car_Recommendation":
+                                    distances.Car_Recommendation = customData.text  
+                                    break;
+                                case "Smarta_Opinion_fr":
+                                    langOpinions.Smarta_Opinion_fr = customData.text 
+                                    break;
+                                case "Smarta_Opinion_es":
+                                    langOpinions.Smarta_Opinion_es = customData.text 
+                                    break;
+                                case "Smartavillas_Opinion":
+                                    langOpinions.Smartavillas_Opinion = customData.text 
+                                    break;
+                                case "Smarta_Opinion_pt":
+                                    langOpinions.Smarta_Opinion_pt = customData.text 
+                                    break;
+                            }
+                        })
+
+                        if(Object.keys(distances).length > 0){
                             setTravelDistances({
                                 display: true,
-                                Town: (JSON.parse(data)[2] && JSON.parse(data)[2].text!== undefined) ? JSON.parse(data)[2].text : null,
-                                Beach:  (JSON.parse(data)[3] && JSON.parse(data)[3].text!== undefined) ? JSON.parse(data)[3].text : null,
-                                Golf: (JSON.parse(data)[4] && JSON.parse(data)[4].text!== undefined) ? JSON.parse(data)[4].text : null,
-                                Airport: (JSON.parse(data)[5] && JSON.parse(data)[5].text!== undefined) ? JSON.parse(data)[5].text : null,
-                                Market: (JSON.parse(data)[6] && JSON.parse(data)[6].text!== undefined) ? JSON.parse(data)[6].text : null,
-                                Car: (JSON.parse(data)[9] && JSON.parse(data)[9].text!== undefined) ? JSON.parse(data)[9].text : null,
+                                Town: distances.Town_distance || null,
+                                Beach:  distances.Beach_distance || null,
+                                Golf: distances.Golf_distance || null,
+                                Airport: distances.Airport_distance || null,
+                                Market: distances.Market_Distance || null,
+                                Car: distances.Car_Recommendation || null
                             })
                         }
-
-                        switch(language){
-                            case "pt":
-                                if(JSON.parse(data)[12] && JSON.parse(data)[12].text!== undefined){
-                                    setSmartaOpinion(JSON.parse(data)[12].text)
-                                }
-                                else if(JSON.parse(data)[0].text!== undefined){
-                                    setSmartaOpinion(JSON.parse(data)[0].text)
-                                }
-                                break;
-                            default:
-                                if(JSON.parse(data)[0].text!== undefined){
-                                    setSmartaOpinion(JSON.parse(data)[0].text)
-                                }
+                        if(Object.keys(langOpinions).length> 0){
+                            switch(language){
+                                case "pt":
+                                    setSmartaOpinion(langOpinions.Smarta_Opinion_pt || langOpinions.Smartavillas_Opinion)
+                                case "es":
+                                    setSmartaOpinion(langOpinions.Smarta_Opinion_es || langOpinions.Smartavillas_Opinion)
+                                case "fr":
+                                    setSmartaOpinion(langOpinions.Smarta_Opinion_fr || langOpinions.Smartavillas_Opinion)
+                                default:
+                                    setSmartaOpinion(langOpinions.Smartavillas_Opinion)
+                            }
                         }
                     }  
                     })
@@ -227,13 +266,17 @@ export const PropertyPageTemplate = ( props ) =>
 
     const getPricingPeriods = (id) => {
         let url = `https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/pricing_period/${id}`
-        fetch(url).then(response => {return response.text()}).then(data => {
+        try{
+            fetch(url).then(response => {return response.text()}).then(data => {
             let priceObject = {}
             JSON.parse(data).forEach(pricing => {
                 priceObject[pricing.from] = pricing
             })
             setPricePeriods(priceObject)
         })
+    }catch(e){
+        console.log("Pricing Periods API Error")
+    }
     }
 
     const handleShowAmenities = () => {
@@ -320,16 +363,16 @@ export const PropertyPageTemplate = ( props ) =>
                                 
                                 <Container style={{paddingTop:"30px"}}>
                                 {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
-                                            <div className="prop-ribbon" onClick={()=>handleWinterLetInfoShow()}><div><p>{t("Also Winter Let")}</p><BsSnow /></div></div>
+                                            <div className="prop-ribbon" onClick={()=>handleWinterLetInfoShow()}><div><p>{t("Winter Let")}</p><BsSnow /></div></div>
                                         }
                                     <section id="prop-summary">
                                     <div id="prop-nav">
                                         {sections && sections.length > 0 && sections.map((section, index) => {
                                             return(
-                                            <>
-                                                <a href={`#${section.id}`}><b>{section.dataset.title}</b></a>
-                                                {index !== sections.length-1 ? <> | </> : null }
-                                            </>
+                                                <a href={`#${section.id}`}>
+                                                    <span> | </span>
+                                                    <b>{section.dataset.title}</b>
+                                                </a>
                                             )
                                             
                                         })

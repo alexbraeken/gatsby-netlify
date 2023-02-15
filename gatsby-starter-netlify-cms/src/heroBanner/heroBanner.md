@@ -1,5 +1,6 @@
 ---
 templateKey: hero-banner
+active: false
 title: "New Year Special"
 langTitles:
     en: "10% OFF"

@@ -45,7 +45,7 @@ teams:
             es: "The operational heart of Smartavillas tying it all together. The office team keeps the well-oiled machine running by taking the bookings, coordinating with the other teams, communicating with guests and other business and making sure the everyone gets what they need at the right time."
     maintenance:
         heading: "Maintenance Team"
-        image: ../../../static/img/Maintenance_meet.JPG
+        image: ../../../static/img/Creat_Prefect_2.jpg
         description: 
             en: "The maintenance team keeps our wheels turning, both literally and figuratively. Going out to properties far and wide to handle all manner of tasks to make sure both owners and guests know their holiday home will be in tip-top shape."
             pt: "The maintenance team keeps our wheels turning, both literally and figuratively. Going out to properties far and wide to handle all manner of tasks to make sure both owners and guests know their holiday home will be in tip-top shape."

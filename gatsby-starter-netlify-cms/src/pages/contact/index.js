@@ -63,7 +63,7 @@ const Contact = class extends React.Component {
           "name": "Smartavillas.com",
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+351 281 027 089",
+            "telephone": "${process.env.GATSBY_LANDLINE}",
             "contactType": ${t("Reservations & Customer Support")}
           }
         }
@@ -178,7 +178,7 @@ const Contact = class extends React.Component {
               <h3 className="orangeText" style={{color: "#f5821e"}}>Smartavillas.com {t("Algarve Holiday Rentals")}</h3>
               <ul style={{listStyle:"none", color: "#fff"}}>
                 <li>
-                <b style={{color: "#f5821e"}}>{t("Phone")}:</b> +351 281027089 / +351 913692170
+                <b>{t("Phone")}:</b> {process.env.GATSBY_LANDLINE} / {process.env.GATSBY_MOBILE_NUMBER} ({t("National landline and mobile call")}) 
                 </li>
                 <li>
                 <b style={{color: "#f5821e"}}>{t("email")}:</b> <a href="mailto:reservas@smartavillas.com">reservas@smartavillas.com</a>

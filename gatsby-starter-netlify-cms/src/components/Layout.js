@@ -193,7 +193,7 @@ useEffect(() => {
     <div>
       <HelmetComp title={title} description={description}/>
       <FirestoreProvider {...config} firebase={firebase}>
-      <NewsAlert/>
+      
       <Navbar key={path} navClass={navClass}/>
       <div className="layout-children">{children}</div>
       <BackToTop />

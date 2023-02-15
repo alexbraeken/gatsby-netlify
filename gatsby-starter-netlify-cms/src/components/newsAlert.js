@@ -7,7 +7,6 @@ import { MdContentCopy } from "react-icons/md";
 class NewsAlert extends React.PureComponent {
 
   copyToClipboard = (el) => {
-    console.log(el.target)
     let copyText = el.target.getAttribute("data-copyText")
     navigator.clipboard.writeText(copyText);
   }
@@ -19,7 +18,7 @@ class NewsAlert extends React.PureComponent {
 
     return (
         <>
-        { news[0] && 
+        { news[0] && news[0].node.frontmatter.active &&
       <div className="newsAlert">
           {news[0].node.frontmatter.link && 
           <a href={news[0].node.frontmatter.link} 
@@ -61,6 +60,7 @@ export default (props) => (
           edges {
             node {
               frontmatter {
+                active
                 title 
                 langTitles{
                   en

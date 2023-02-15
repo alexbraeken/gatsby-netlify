@@ -137,9 +137,10 @@ const PropFeatureGrid = React.memo((data) => {
     return (
       <Link to={`/properties/${data.value}`}>
       <div ref={innerRef} {...innerProps} className="nav-name-search">
-        <div style={{flex:"1 1 30%"}}>
+        <div className="nav-prop-name" style={{flex:"1 1 30%"}}>
         <div>{data.label}</div>
-        <div style={{
+        <div className="dropdown-option-img"
+        style={{
                 height:"30px", 
                 width:"30px", 
                 borderRadius:"50%", 
@@ -149,7 +150,7 @@ const PropFeatureGrid = React.memo((data) => {
                 margin: "auto 20px auto 10px"}}>
         </div>
         </div>
-        <div style={{float:"right", margin: "auto"}}>
+        <div className="nav-prop-location-container" style={{float:"right", margin: "auto"}}>
         <BedBathPax bedrooms={data.bedrooms} bathrooms={data.bathrooms} baseGuests={data.guests} color="rgba(0,0,0)"/>
           <div style={{ marginLeft: "auto auto auto 10px", color: "#ccc" }}>
             {data.city}
@@ -170,17 +171,6 @@ const PropFeatureGrid = React.memo((data) => {
 
   return(
     <div ref={container}>  
-    <div className="stick-container">
-      <StickyBox>
-      <DatePicker 
-      from={data.state.searchArray.from ? data.state.searchArray.from[0] : null} 
-      to={data.state.searchArray.to ? data.state.searchArray.to[0] : null} 
-        className="top-date-picker" 
-        style={{position:"absolute"}} 
-        handleShowCalendar={data.handleShowCalendar}
-        />
-      </StickyBox>
-    </div>
     { data.heroBg &&
     <div 
     className="prop-features-header">
@@ -192,7 +182,7 @@ const PropFeatureGrid = React.memo((data) => {
         <div className="bg" key={bgImg} style={{position: "absolute", left: "0", top:"0", width:"100%", height:"120%",  backgroundImage:`url(${bgImg})`, backgroundPosition:"center", backgroundSize:"cover", }}>
         </div>
       </div>
-      <div style={{position: "absolute", left: "60px", top:"90%", transform:"translateY(-50%)", width:"100%"}}>
+      <div style={{position: "absolute", left: "60px", top:"90%", transform:"translateY(-50%)", width:"100%", maxWidth: "calc(100vw - 60px)"}}>
             <h3 className='home-section-title orangeText' style={{top: "-262px", opacity: "0.7", color:"#f5821e"}}>Featured</h3>
             <h2 className='home-section-title hero-feature-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1, pointerEvents: "unset"}}><Link to={`/properties/${data.heroBg.uid}`} target="_blank" rel="noopener noreferrer" key={bgName}>{bgName}</Link></h2>
         </div>
@@ -200,7 +190,7 @@ const PropFeatureGrid = React.memo((data) => {
     
     }
     <Container style={{padding:"50px 0"}}>
-      <Row style={{paddingTop: "50px"}}>
+      <Row className="prop-dropdown-row">
       <Col xs={12} md={3} style={{margin: "auto 20px", display:"flex", padding: "5px"}}>
         {data.propList?.length > 0 ? 
           <div>

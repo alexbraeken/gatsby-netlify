@@ -18,6 +18,11 @@ if (typeof window !== `undefined`) {
   gsap.registerPlugin(CSSPlugin)
 }
 
+/*
+  <div onClick={()=>showTeam(team)} style={{flex: "1 1 100%"}}>
+    <SubmitButton text={t('Who We Are')} />
+  </div>
+*/
 export const MeetTheTeamPageTemplate = ({
   image,
   secondaryImage,
@@ -280,10 +285,6 @@ export const MeetTheTeamPageTemplate = ({
                                   <p className="about-section" >
                                     {teams[team].description[language]}
                                   </p>
-                                  <br />
-                                    <div onClick={()=>showTeam(team)} style={{flex: "1 1 100%"}}>
-                                      <SubmitButton text={t('Who We Are')} />
-                                    </div>
                                 </div>
                               </div>
                               }

@@ -65,11 +65,6 @@ const Footer = () =>{
                       {t("Sustainability")}
                       </Link>
                     </li>
-                    <li>
-                    <Link className="navbar-item" to="/about/Covid-faq">
-                    {t("COVID-19 FAQ")}
-                      </Link>
-                    </li>
                      <li>
                     <Link className="navbar-item" to="/about/sustainability">
                     {t("Sustainability")}
@@ -78,11 +73,6 @@ const Footer = () =>{
                     <li>
                     <Link className="navbar-item" to="/about/hiring">
                     {t("Hiring")}
-                      </Link>
-                    </li>
-                     <li>
-                    <Link className="navbar-item" to="/about/faq">
-                    {t("Frequently Asked Questions")}
                       </Link>
                     </li>
                     <li>
@@ -106,6 +96,14 @@ const Footer = () =>{
                       target="_blank"
                       >
                         Smartamoves
+                      </a>
+                    </li>
+                    <li>
+                      <a className="navbar-item"
+                      href="https://www.livroreclamacoes.pt/Inicio/"
+                      target="_blank"
+                      >
+                        Livro de Reclamações
                       </a>
                     </li>
                   </ul>

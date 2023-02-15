@@ -484,7 +484,7 @@ const toggleActiveSearch = (active) => {
             <VacationWireSVG />
           </div>
           <Container style={{zIndex:"1", margin:"auto"}}>
-            <Row style={{height: "100%"}}>
+            <Row style={{height: "100%", overflow: "hidden"}}>
             <h2 className="home-section-title center-mobile-left">{t("book")}</h2>
               <Col xs={12} lg={6}></Col>
               <Col xs={12} lg={6} className='main-col right'>

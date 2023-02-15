@@ -53,7 +53,7 @@ const EnquiryModal = (props) => {
                 backgroundPosition:"center", 
                 backgroundSize:"cover",
                 margin: "auto 20px auto auto",
-                flex:"none"}}>
+                flex: "0 0 50px"}}>
               </div>
               <div className="orangeText" style={{margin: "auto"}}>
                 Ask us about {props.propName}:

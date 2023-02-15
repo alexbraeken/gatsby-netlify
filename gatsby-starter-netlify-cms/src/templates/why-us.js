@@ -13,6 +13,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import convertToBgImage from "../Helpers/images"
 import { getImage } from "gatsby-plugin-image"
 import StickyBox from "react-sticky-box"
+import { AiOutlineCheck } from "@react-icons/all-files/ai/AiOutlineCheck";
+import { AiOutlineInfoCircle } from "@react-icons/all-files/ai/AiOutlineInfoCircle";
+
+
 
 if (typeof window !== `undefined`) {
   gsap.registerPlugin(ScrollTrigger);
@@ -208,15 +212,133 @@ export const WhyUsPageTemplate = ({
         </Col>
         </Row> 
         <Row style={{flexDirection:"column", position:"relative"}}>
-        <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>Potential</h2>
+        <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>Packages</h2>
+          <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Our Management Packages")}</h3>
+          <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
+            borderRadius: "4px",
+            backgroundColor:"white"}}>
+            <div className="package-table">
+              <div className="table-cell"></div>
+              <div className="table-cell silver">
+                <h3>Silver</h3>
+              </div>
+              <div className="table-cell gold">
+                <h3>Gold</h3>
+              </div>
+              <div className="table-cell platinum">
+                <h3>Platinum</h3>
+              </div>
+              <div className="table-cell cell-feature">Property Care Package <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Property Care Package includes the cleaning and maintenance of properties before and after bookings</span></div></div>
+              <div className="table-cell">
+                <AiOutlineCheck />
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell cell-feature">Booking Management <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Booking Management includes the processing of bookings, payments and guest conierge services</span></div></div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell cell-feature">In Person Checkin <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> In Person Checkin includes in person and greeting and home tour at guest arrival</span></div></div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell cell-feature">Channel Advertising <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Channel Advertising includes setting up and advertising property on Online Travel Agency channels such as AirBnB, Booking.com, VRBO etc.</span></div></div>
+              <div className="table-cell">
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell cell-feature">Legal Documentation <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Legal Documentation includes setting up tax regularisation and all legal necessities.</span></div></div>
+              <div className="table-cell">
+
+              </div>
+              <div className="table-cell">
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell cell-feature">Arrange Alojamento Local <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Arranging Alojamento Local includes documentation, guidance and all necessary steps to assure property is licensed for rentals.</span></div></div>
+              <div className="table-cell">
+
+              </div>
+              <div className="table-cell">
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell cell-feature">Cleaning Service <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Cleaning Service include all cleaning products, displacement and quality assurance.</span></div></div>
+              <div className="table-cell">
+
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell cell-feature">24/7 support <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> 24/7 support for both guests and owners.</span></div></div>
+              <div className="table-cell">
+
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+              <div className="table-cell">
+              <AiOutlineCheck />
+                
+              </div>
+            </div>
+          </Col>
+          </Row>
+        <Row style={{flexDirection:"column", position:"relative"}}>
+        <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>Potential</h2>
           <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Your property earning potential")}</h3>
           <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
-            borderRadius: "4px"}}>
+            borderRadius: "4px",
+            backgroundColor:"white",
+            paddingBottom:"2rem"}}>
               <div className="form-container"> 
                 <PropertySubmitForm />
               </div>
           </Col>
-          </Row>
+        </Row>
       </Container>
       <div style={{ 
           width: "100vw",
@@ -235,15 +357,15 @@ export const WhyUsPageTemplate = ({
               position: "absolute",
             }}> 
             <path d="M0 100 C 20 0 50 0 100 100 Z"></path> 
-            <defs>
-              <linearGradient id="Gradient">
-                <stop offset="0%" stopColor="#ffa600"/>
-                <stop offset="17%" stopColor="#ff8400"/>
-                <stop offset="48%" stopColor="#ff7c00"/>
-                <stop offset="88%" stopColor="#ff6200"/>
-                <stop offset="100%" stopColor="#e92e00"/>
-              </linearGradient>
-            </defs>
+              <defs>
+                <linearGradient id="Gradient">
+                  <stop offset="0%" stopColor="#ffa600"/>
+                  <stop offset="17%" stopColor="#ff8400"/>
+                  <stop offset="48%" stopColor="#ff7c00"/>
+                  <stop offset="88%" stopColor="#ff6200"/>
+                  <stop offset="100%" stopColor="#e92e00"/>
+                </linearGradient>
+              </defs>
             </svg>
             </div>
     </section>
@@ -281,9 +403,9 @@ export const WhyUsPageTemplate = ({
     filter: "drop-shadow(2px 4px 6px black)"}}>
 
                 </div>
-                <strong style={{fontSize: "calc(100px + 5vw)",
+                <strong style={{fontSize: "calc(50px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={160}>160</span>+</strong><p style={{fontSize: "calc(30px + 1vw)",
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={160}>160</span>+</strong><p style={{fontSize: "calc(20px + 1vw)",
     margin: "auto 0",
     textAlign: "center", color:"#fff", position: "absolute",
     right: "0",
@@ -296,9 +418,9 @@ export const WhyUsPageTemplate = ({
     filter: "drop-shadow(2px 4px 6px black)"}}>
 
 </div>
-                <strong style={{fontSize: "calc(100px + 5vw)",
+                <strong style={{fontSize: "calc(50px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={13}>13</span>+</strong><p style={{fontSize: "calc(30px + 1vw)",
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={13}>13</span>+</strong><p style={{fontSize: "calc(20px + 1vw)",
     margin: "auto 0",
     textAlign: "center", color:"#fff", position: "absolute",
     right: "0",
@@ -311,9 +433,9 @@ export const WhyUsPageTemplate = ({
     filter: "drop-shadow(2px 4px 6px black)"}}>
 
 </div>
-                <strong style={{fontSize: "calc(100px + 5vw)",
+                <strong style={{fontSize: "calc(50px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={20}>20</span>+</strong><p style={{fontSize: "calc(30px + 1vw)",
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={20}>20</span>+</strong><p style={{fontSize: "calc(20px + 1vw)",
     margin: "auto 0",
     textAlign: "center", color:"#fff", position: "absolute",
     right: "0",
@@ -326,9 +448,9 @@ export const WhyUsPageTemplate = ({
     filter: "drop-shadow(2px 4px 6px black)"}}>
 
 </div>
-                <strong style={{fontSize: "calc(100px + 5vw)",
+                <strong style={{fontSize: "calc(50px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={80}>80</span>%</strong><p style={{fontSize: "calc(30px + 1vw)",
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={80}>80</span>%</strong><p style={{fontSize: "calc(20px + 1vw)",
     margin: "auto 0",
     textAlign: "center", color:"#fff", position: "absolute",
     right: "0",
