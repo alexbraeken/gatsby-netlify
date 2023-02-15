@@ -95,6 +95,14 @@ const Footer = class extends React.Component {
                         Smartamoves
                       </a>
                     </li>
+                    <li>
+                      <a className="navbar-item"
+                      href="https://www.livroreclamacoes.pt/Inicio/"
+                      target="_blank"
+                      >
+                        Livro de Reclamações
+                      </a>
+                    </li>
                   </ul>
                 </section>
               </div>
