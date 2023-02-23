@@ -181,7 +181,7 @@ export const WhyBookPageTemplate = ({
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
         <div className="section intro-para" style={{margin: "auto"}}>
           <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}</h3>
-          <div dangerouslySetInnerHTML={{ __html: `<div> ${part1.text[language]} </div>` }} />
+          <div dangerouslySetInnerHTML={{ __html: `<div class="intro-para"><p> ${part1.text[language]} </p></div>` }} />
         </div>
         </Col>
         <Col xs={12} md={6} style={{display:"flex"}}>
@@ -262,7 +262,7 @@ export const WhyBookPageTemplate = ({
           <Col xs={12} md={6} style={{display:"flex", overflow:"hidden"}}>
           </Col>
           <Col style={{display:"flex"}} xs={12} md={6}>
-              <div style={{margin:"auto"}} >
+              <div style={{margin:"auto"}} className="intro-para">
                 <h3 className="has-text-weight-semibold is-size-2" style={{textAlign: "center"}}>{part2.header[language]}</h3>
                 <p style={{color: "#fff"}}>
                   {part2.text[language]}
@@ -298,10 +298,12 @@ export const WhyBookPageTemplate = ({
         position: "relative"}}>
       <Container>
         <Row>
-        <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
-          <p>
-            {part3.text[language]}
-          </p>
+          <div className="intro-para">
+            <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
+            <p>
+              {part3.text[language]}
+            </p>
+          </div>
         </Row>
       </Container>
     </section>

@@ -289,7 +289,7 @@ const TaxiCalendar = (props) => {
               selected: 'day-selected',
             }}
             />
-            <TaxiEnquiryModal show={showModal} handleClose={handleClose} price={props.price} date={selectedDay?.toLocaleDateString()} />
+            <TaxiEnquiryModal show={showModal} handleClose={handleClose} price={props.price} pickUp={props.pickUp} destination={props.destination} date={selectedDay?.toLocaleDateString()} />
 
       <Helmet>
       <style>{`

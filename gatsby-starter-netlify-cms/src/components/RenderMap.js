@@ -183,7 +183,6 @@ handleBoundsChange = () => {
     }
 
     addMarkerListener = (marker) => {
-      console.log(marker.marker)
       let card = document.getElementById(marker.marker.title)
       if(card){
         card.addEventListener("mouseenter", ()=> {
@@ -208,7 +207,6 @@ handleBoundsChange = () => {
     addMarkerClustererListener = (clusterer) => {
       clusterer.clusters.forEach(cluster => {
         cluster.markers.forEach(marker => {
-          console.log(marker)
           let card = document.getElementById(marker.title)
           if(card){
             card.addEventListener("mouseenter", ()=> {

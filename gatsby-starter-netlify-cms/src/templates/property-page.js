@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { FirestoreDocument } from "@react-firebase/firestore";
 import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -14,7 +13,6 @@ import CalendarWidget from '../components/CalendarWidget';
 import StickyBox from "react-sticky-box";
 import GalleryModal from '../components/GalleryModal';
 import Amenity from '../components/Amenities';
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import logo from '../img/logo.svg';
 import BedBathPax from '../components/BedBathPax';
 import ActivitiesRoll from '../components/ActivitiesRoll';
@@ -29,11 +27,9 @@ import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
 import { BsStarFill } from "@react-icons/all-files/bs/BsStarFill";
 import { connect } from "react-redux"
-import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
-import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
-import Share from '../components/Share'
 import WinterLetInfoModal from '../components/WinterLetInfoModal'
 import { BsSnow } from "react-icons/bs";
+import { fetchAndSetAll } from "../Helpers/fetch-helpers";
 
 const mapStateToProps = (state) => {
     let newObj = {}
@@ -47,6 +43,7 @@ const mapStateToProps = (state) => {
 
 export const PropertyPageTemplate = ( props ) =>
 {
+    const [data, setData] = useState({value: null})
    const [bookDates, setBookDates] = useState({from:new Date(),
     to: null})
    const [propName, setPropName] = useState(null)
@@ -58,7 +55,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [bedroomsShow, setBedroomsShow] = useState(false);
    const [showAllAmenities, setShowAllAemnities] = useState(false)
    const [showNotesReadMore, setShowNotesReadMore] = useState(false)
-   const [amenitiesLength, setAmenitiesLength] = useState(0)
+   const [amenities, setAmenities] = useState(null)
    const [smartaOpinion, setSmartaOpinion] = useState(null)
    const [poolDimensions, setPoolDimensions] = useState(null)
    const [damageWaiver, setDamageWaiver] = useState(null)
@@ -74,6 +71,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [avgRating, setAvgRating] = useState(null)
    const [sections, setSections] = useState(null)
    const [loading, setLoading] = useState(true)
+   const [descriptions, setDescriptions] = useState(null)
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
    const [pricePeriods, setPricePeriods] = useState(null)
    const [showWinterLetInfo, setShowWinterLetInfo] = useState(false)
@@ -109,22 +107,74 @@ export const PropertyPageTemplate = ( props ) =>
 
         setPropId(props.id)
         if(props.id){
-            const customDataUri = `https://api.hostfully.com/v2/customdata?propertyUid=${props.id}`
-            const reviewsUri = `https://api.hostfully.com/v2/reviews?propertyUid=${props.id}`
+            getSetPropData()
+            getPricingPeriods(props.id)
 
-            fetch(customDataUri, {
-            headers:{
-            "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
-                }
-            })
-                    .then(response => {
-                        
-                        return response.text()
-                    })
-                    .then(data => {
-                    let results = JSON.parse(data)
+            return () => {
+                setData({value: null})
+                setAmenities(null)
+                setSmartaOpinion(null)
+                setBookDates({from:new Date(),
+                    to: null})
+                setPropName(null)
+                setPropSummary(null)
+                setShow(false)
+                setSubscribeShow(false)
+                setShowAllAemnities(false)
+                setShowNotesReadMore(false)
+                setPoolDimensions(null)
+                setDamageWaiver(null)
+                setMatterportURL(null)
+                setWaiverOpen(false)
+                setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
+                setShowInteractionReadMore(false)
+                setShowNeighborhoodReadMore(false)
+                setShowTransitReadMore(false)
+                setSections(null)
+                setLoading(true)
+                setDescriptions(null)
+                setDescriptionsLoading(true)
+                setPricePeriods(null)
+                setShowWinterLetInfo(false)
+            }
+        }
+    }, [props.id, props.path])
+
+
+    useEffect(() => {
+        return () => {
+            setActivitiesCoords(null)
+        }
+    }, [activitiesCoords])
+
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleEnquiryClose = () => setEnquiryShow(false)
+    const handleEnquiryShow = () => setEnquiryShow(true)
+    
+    const handleWinterLetInfoShow = () => setShowWinterLetInfo(true)
+    const handleWinterLetInfoClose = () => setShowWinterLetInfo(false)
+
+    const handleSubscribeClose = () => setSubscribeShow(false)
+    const handleSubscribeShow = () => setSubscribeShow(true)
+
+    const handleBedroomsClose = () => setBedroomsShow(false)
+    const handleBedroomsShow = () => setBedroomsShow(true)
+
+    const getSetPropData = () => {
+        const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+            fetchAndSetAll([
+                {
+                  url: uri,
+                  setter: data => {
+                      console.log(data)
+                    let results = data.json()
+                        console.log(results)
+
                     if(results.length>0){
-                        
                         let distances = {}
                         let langOpinions = {}
                         results.forEach(customData => {
@@ -198,70 +248,115 @@ export const PropertyPageTemplate = ( props ) =>
                             }
                         }
                     }  
+                    },
+                  init: {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        source: 'hf', 
+                        customData: true,
+                        request: `v2/customdata?propertyUid=${props.id}`
                     })
-
-            fetch(reviewsUri, {
-                headers:{
-                "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
                     }
-                })
-                .then(response => {
-                    return response.text()
-                })
-                .then(data => {
-                    setReviews(JSON.parse(data))
-                })
-            getPricingPeriods(props.id)
+                },
+                {
+                    url: uri,
+                    setter: data => {
+                        let results = data.json()
+                        if(results.length>0){
+                            setReviews(results)
+                        }
+                    },
+                    init: {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            source: 'hf', 
+                            reviews: true,
+                            request: `v2/reviews?propertyUid=${props.id}`
+                        })
+                    }
+                },
+                {
+                    url: uri,
+                    setter: data => {
+                        let dataObj = data.json()
+                        dataObj.then(
+                            el=>{
+                                setData({value: el[props.id]})
+                        })
+                    },
+                    init: {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(
+                          {
+                            source: "db",
+                            col: "Properties",
+                            doc: props.id
+                          })
+                        }
+                },
+                {
+                    url: uri,
+                    setter: data => {
+                        let dataObj = data.json()
+                        dataObj.then(
+                            el=>{
+                                setAmenities(sortAmenities(Object.entries(el[props.id])))
+                        })
+                    },
+                    init: {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(
+                          {
+                            source: "db",
+                            col: "amenities",
+                            doc: props.id
+                          })
+                        }
+                },
+                {
+                    url: uri,
+                    setter: data => {
+                        let dataObj = data.json()
+                        dataObj.then(
+                            el=>{
+                                setDescriptions({value: el[props.id]})
+                                setPropName(el[props.id][lang]?.name || el[props.id].en_US.name)
+                                setPropSummary(el[props.id][lang]?.summary || el[props.id].en_US.summary)
+                        })
+                    },
+                    init: {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(
+                          {
+                            source: "db",
+                            col: "Descriptions",
+                            doc: props.id
+                          })
+                        }
+                },
+              ]).catch(console.error);
 
-            return () => {
-                setSmartaOpinion(null)
-                setBookDates({from:new Date(),
-                    to: null})
-                setPropName(null)
-                setPropSummary(null)
-                setShow(false)
-                setSubscribeShow(false)
-                setShowAllAemnities(false)
-                setShowNotesReadMore(false)
-                setAmenitiesLength(0)
-                setPoolDimensions(null)
-                setDamageWaiver(null)
-                setMatterportURL(null)
-                setWaiverOpen(false)
-                setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
-                setShowInteractionReadMore(false)
-                setShowNeighborhoodReadMore(false)
-                setShowTransitReadMore(false)
-                setSections(null)
-                setLoading(true)
-                setDescriptionsLoading(true)
-                setPricePeriods(null)
-                setShowWinterLetInfo(false)
-            }
-        }
-    }, [props.id, props.path])
-
-
-    useEffect(() => {
-        return () => {
-            setActivitiesCoords(null)
-        }
-    }, [activitiesCoords])
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    const handleEnquiryClose = () => setEnquiryShow(false)
-    const handleEnquiryShow = () => setEnquiryShow(true)
-    
-    const handleWinterLetInfoShow = () => setShowWinterLetInfo(true)
-    const handleWinterLetInfoClose = () => setShowWinterLetInfo(false)
-
-    const handleSubscribeClose = () => setSubscribeShow(false)
-    const handleSubscribeShow = () => setSubscribeShow(true)
-
-    const handleBedroomsClose = () => setBedroomsShow(false)
-    const handleBedroomsShow = () => setBedroomsShow(true)
+    }
 
 
     const getPricingPeriods = (id) => {
@@ -285,10 +380,6 @@ export const PropertyPageTemplate = ( props ) =>
 
     
 
-    const handleAmenitiesLength = (length) => {
-        setAmenitiesLength(length)
-    }
-
     const onDateChange = (range) => {
         setBookDates({
             from:range.from,
@@ -296,22 +387,15 @@ export const PropertyPageTemplate = ( props ) =>
         })
     }
 
-    const handleName = (name) =>{
-        setPropName(name)
-    }
-
-    const handleSummary = (summary) => {
-        setPropSummary(summary)
-    }
 
     const handleActivitiesCoords = (coords) => {
         setActivitiesCoords(coords)
     }
 
-   const sortAmenities = (amenities) => {
+   const sortAmenities = (amenitiesList) => {
 
     let list= [];
-    amenities.forEach((amenity, index)=> {
+    amenitiesList.forEach((amenity, index)=> {
         if(amenity[1]){
             list.push(amenity)
         }
@@ -353,23 +437,21 @@ export const PropertyPageTemplate = ( props ) =>
 
     return (
         <>
-        <FirestoreDocument path={`/Properties/${props.id}`}>
-            {data => {
-                return (!data.isLoading && data.value) ? 
+        <div>
                         <div style={{display:"flex", flexWrap:"wrap"}}>
-                            {setLoading(false)}
                             <div style={{width:"100%"}}>
+                            {data.value &&
                                 <PropCarousel name={propName? propName: ''} baseRate={data.value.baseDailyRate} city={data.value.city} bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} propId={props.id} firstSlide={data.value.picture} photos={data.value.photos} handleShow={handleShow} dispatch={props.dispatch} inFavs={props.inFavs} handleSubscribeShow={handleSubscribeShow}/>
-                                
+                            }
                                 <Container style={{paddingTop:"30px"}}>
-                                {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                                {data.value?.customData?.Winter_Let_Price && data.value?.customData?.Winter_Let_Price.length > 0 &&
                                             <div className="prop-ribbon" onClick={()=>handleWinterLetInfoShow()}><div><p>{t("Winter Let")}</p><BsSnow /></div></div>
                                         }
                                     <section id="prop-summary">
                                     <div id="prop-nav">
                                         {sections && sections.length > 0 && sections.map((section, index) => {
                                             return(
-                                                <a href={`#${section.id}`}>
+                                                <a href={`#${section.id}`} className="hover-primary">
                                                     <span> | </span>
                                                     <b>{section.dataset.title}</b>
                                                 </a>
@@ -400,21 +482,18 @@ export const PropertyPageTemplate = ( props ) =>
                                         <Col >
                                             <br/>
                                             <hr />
-                                            <FirestoreDocument path={`/amenities/${props.id}`}>
-                                                {amens => {
-                                                    return (!amens.isLoading && amens.value) ? 
+                                                {amenities ? 
                                                     <div id="amenities" data-title={t("Amenities")} className="prop-page-section" >
                                                         <h2 className="prop-section-title">{t("Amenities")}</h2>
                                                         <h2>{t("Amenities")}</h2>
                                                         <br />
                                                         <div className="amenities-list">
-                                                        {sortAmenities(Object.entries(amens.value)).map((amen, index) => {
+                                                        {amenities.map((amen, index) => {
                                                             if(showAllAmenities){
                                                                 return (amen[1] && amen[0] !== "__id" && amen[0] !== "length") ? 
                                                                 <div key={index} className="amenity">
                                                                     <Amenity amenity = {amen[0]} /></div> : null ;
-                                                            }else{
-                                                                if(amen[0])handleAmenitiesLength(amen[1]);
+                                                            }else{ 
                                                                 return (amen[1] && amen[0] !== "__id" && amen[0] !== "length" && index < 10) ? 
                                                                 <div key={index} className="amenity">
                                                                     <Amenity amenity = {amen[0]} /></div> : null ;
@@ -423,10 +502,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <br />
                                                         </div>
                                                         <br />
-                                                        <button className="btn" type="" onClick={()=>handleShowAmenities()}>{showAllAmenities?<small>{t("Less")}...</small>:<small>{t("Show all")} {amenitiesLength-1}...</small>}</button>
+                                                        <button className="btn" type="" onClick={()=>handleShowAmenities()}>{showAllAmenities?<small>{t("Less")}...</small>:<small>{t("Show all")} {amenities.length-1}...</small>}</button>
                                                     </div> : <Loading />
-                                                }}
-                                            </FirestoreDocument>
+                                                }
                                         </Col>
                                     </Row>
                                     <Row>
@@ -436,7 +514,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <h2 className="prop-section-title">{t("Calendar")}</h2>
                                                 <h2>{t("Calendar")}</h2>
                                                 <br />
-                                                    {pricePeriods ? 
+                                                {data.value && pricePeriods  ? 
                                                         <CalendarWidget id={props.id} onChange={onDateChange} dates={bookDates} pricingPeriods={pricePeriods} minDays={data.value.minimumStay} currSymbol={data.value.currencySymbol}/>
                                                         :
                                                         <Loading />
@@ -445,13 +523,9 @@ export const PropertyPageTemplate = ( props ) =>
                                         </Col>
                                     </Row>
                                     
-                                    <FirestoreDocument path={`/Descriptions/${props.id}`}>
-                                            {descriptions => {
-                                                    return (!descriptions.isLoading && descriptions.value) ? 
+                                            {descriptions ? 
                                                     <>
-                                                    {setDescriptionsLoading(false)}
-                                                    {handleName(descriptions.value[lang]?.name || descriptions.value.en_US.name)}
-                                                    {handleSummary(descriptions.value[lang]?.summary || descriptions.value.en_US.summary)}
+
                                                     {(descriptions.value[lang]?.space || descriptions.value.en_US.space) ?
                                                     <Row>
                                                         <Col xs={12} md={9}>
@@ -671,8 +745,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                             </div>
                                                         </Col>
                                                     </Row> 
-                                                }}
-                                    </FirestoreDocument>
+                                                }
 
                                     </Col>
                                         <Col xs={12} md={3} style={{display: "flex", alignItems: "flex-start", minWidth: "320px"}}>
@@ -681,10 +754,14 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <Tabs defaultActiveKey="propSpecs" id="keyDetails">
                                                     <Tab eventKey="propSpecs" title={t("Property Specs.")} tabClassName="orangeText">
                                                     <ul>
+                                                    {data.value &&
+                                                    <>
                                                         <li>{t("Licence")}: <span style={{float: "right"}}>{data.value.rentalLicenseNumber}</span></li>
                                                         <li>{t("Type")}: <span style={{float: "right"}}>{data.value.type}</span></li>
                                                         <li>{t("Size")}: <span style={{float: "right"}}>{data.value.areaSize} m<sup>2</sup></span></li>
                                                         <li>{t("Location")}: <span style={{float: "right"}}>{data.value.city}</span></li>
+                                                    </>
+                                                    }
                                                         {poolDimensions && 
                                                         <li><FontAwesomeIcon icon={faSwimmingPool} style={{margin:"auto"}}/> {t("Pool Size")}: <span style={{float: "right"}}>{poolDimensions}</span></li>}
                                                     </ul>
@@ -713,7 +790,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                             </ul>
                                                         </div>
                                                     </Tab>
-                                                    {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                                                    {data.value?.customData?.Winter_Let_Price && data.value?.customData?.Winter_Let_Price.length > 0 &&
                                                     <Tab eventKey="winterLets" title={t("Winter Let Details")} tabClassName="orangeText">
                                                         <p>{t("Winter Let Discount Paragraph pre price")}<b>{data.value.customData?.Winter_Let_Price}</b>{t("Winter Let Discount Paragraph post price")}
                                                             <br />
@@ -725,7 +802,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                 </Tabs>
                                                 </div>
                                                 <br />
+                                                {data.value &&
                                                 <BedBathPax bedrooms={data.value.bedrooms} bathrooms={data.value.bathrooms} baseGuests={data.value.baseGuests} color="rgba(0,0,0)"/>
+                                                }
                                                 <br />
                                                 <center><button className="btn" type="" onClick={()=>handleBedroomsShow()} onKeyDown={()=> handleBedroomsShow()} tabindex="0"><small >{t("Show Sleeping Arrangement")}</small></button></center>
                                                 <hr />
@@ -795,32 +874,41 @@ export const PropertyPageTemplate = ( props ) =>
                                         <h2>{t("Location")}</h2>
                                         <br />
                                         </Container>
+                                        {data.value &&
                                         <GoogleMapComponent isMarkerShown="true" lat={data.value.latitude} lng={data.value.longitude} height={"500px"} activities={true} activityCoords={activitiesCoords}/>
+                                        }
                                     </div>
                                     <hr />
                                     <Container style={{textAlign: "center"}}>
+                                    {data.value &&
                                         <ActivitiesRoll location={data.value.city} property={true} handleActivitiesCoords={handleActivitiesCoords}/>
+                                    }
                                     </Container>
                                 </Container>
                             <br />
+                            {data.value &&
+                            <>
                             <GalleryModal show={show} handleClose={handleClose} photos={data.value.photos}/>  
                             <EnquiryModal show={enquiryShow} handleClose={handleEnquiryClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
                             <PropertySubscribeModal show={subscribeShow} handleClose={handleSubscribeClose} propId={propId} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
                             <BedroomsModal show={bedroomsShow} handleClose={handleBedroomsClose} propId={propId} img={data.value.pictureThumbCloudURL || data.value.picture}/>
-                            {data.value.customData?.Winter_Let_Price && data.value.customData?.Winter_Let_Price.length > 0 &&
+                            </>
+                            }
+                            {data.value?.customData?.Winter_Let_Price && data.value?.customData?.Winter_Let_Price.length > 0 &&
                                 <WinterLetInfoModal show={showWinterLetInfo} handleClose={handleWinterLetInfoClose} price={data.value.customData?.Winter_Let_Price} propName={data.value.name} img={data.value.pictureThumbCloudURL || data.value.picture}/>
                             }
                             </div>
                             <Helmet link={[{rel: "canonical", href: `https://www.smartavillas.com/properties/${propId}`}]}>
                                 <title>{propName}</title>
+                                {data.value &&
                                 <meta name="description" content={data.value.description} />
+                                }
                             </Helmet>                 
                             <section
     className="last"></section>
-                        </div> : <></>
-            }}
+                        </div>
             
-        </FirestoreDocument>
+        </div>
 </>
 )
 }

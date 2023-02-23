@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import 'react-day-picker/lib/style.css'
 import { Modal } from 'react-bootstrap'
 import emailjs from 'emailjs-com';
@@ -8,18 +8,41 @@ import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 //Enquiry modal on property page
 const TaxiEnquiryModal = (props) => {
 
-    const [info, setInfo] = useState(null)
+    const [info, setInfo] = useState()
     const [sent, setSent] = useState(false)
+    const [inflight, setInflight] = useState(true)
+    const [arrivalGroup, setArrivalGroup] = useState(null)
+    const [departureGroup, setDepartureGroup] = useState(null)
 
     const {t} = useTranslation(['translation']);
     const { language } = useI18next()
+
+
+    useEffect(() => {
+      if(props.show){
+        console.log(props.price)
+        setArrivalGroup(
+          Array.from(document.querySelectorAll('.arrival'))
+        )
+        setDepartureGroup(
+          Array.from(document.querySelectorAll('.departure'))
+        )
+      }
+      
+      return () => {
+        setArrivalGroup(null)
+        setDepartureGroup(null)
+      }
+    }, [props.show])
+
 
     const sendEnquiry = (formInfo) => {
       if (sent) {
         return false;
       }
     
-      emailjs.sendForm(process.env.GATSBY_EMAILJS_SERVICE_KEY, process.env.GATSBY_EMAILJS_TEMPLATE_KEY_CAR_HIRE, formInfo, process.env.GATSBY_EMAILJS_USER)
+      
+      emailjs.sendForm(process.env.GATSBY_EMAILJS_SERVICE_KEY, process.env.GATSBY_EMAILJS_TEMPLATE_KEY_AIRPORT_TRANSFER, formInfo, process.env.GATSBY_EMAILJS_USER)
       .then((result)=> {
         return true;
       }, (error)=> {
@@ -40,8 +63,46 @@ const TaxiEnquiryModal = (props) => {
         }
       }
 
-      const handleChange = (e) => {
+      const handleChange = (e, type) => {
           setInfo({ [e.target.name]: e.target.value })
+          if(inflight){
+            if(type === "arrival"){
+              if(e.target.value.length === 0){
+                let check = false
+                arrivalGroup.filter(i => i !== e.target).forEach(i => {
+                    if(i.value.length !== 0)check = true
+                });
+                if(!check){
+                  departureGroup.filter(i => i !== e.target).forEach(i => {
+                      if(i.value.length !== 0)setInflight(false)
+                  });
+                }
+              }
+            }else{
+              if(type === "departure"){
+                if(e.target.value.length > 0){
+                  let check = false
+                  arrivalGroup.filter(i => i !== e.target).forEach(i => {
+                      if(i.value.length !== 0)check = true
+                  });
+                  if(!check)setInflight(false)
+                }
+              }
+            }
+          }else{
+            if(type === "departure"){
+              if(e.target.value.length === 0){
+                let check = false
+                departureGroup.filter(i => i !== e.target).forEach(i => {
+                    if(i.value.length !== 0){
+                      check = true
+                    }
+                })
+                if(!check)setInflight(true)
+              }
+            }
+          }
+        
       }
 
 
@@ -63,7 +124,7 @@ const TaxiEnquiryModal = (props) => {
             <h3 style={{margin:"auto", textAlign:"center"}}>{t("Thank you for getting in touch! We'll get back to you as soon as possible.")}</h3>
           </div> :
           <form
-          name="CarInquiry"
+          name="AirportTransfer"
           method="post"
           action="#"
           data-netlify="true"
@@ -85,6 +146,8 @@ const TaxiEnquiryModal = (props) => {
           </div>
           <input type="hidden" name={'price'} id={'price'} value={props.price}/>
           <input type="hidden" name={'from'} id={'from'} value={props.date}/>
+          <input type="hidden" name={'pickUp'} id={'pickUp'} value={props.pickUp}/>
+          <input type="hidden" name={'destination'} id={'destination'} value={props.destination}/>
           <input type="hidden" name={'lang'} id={'lang'} value={language} />
           <div className="field">
            
@@ -137,144 +200,152 @@ const TaxiEnquiryModal = (props) => {
             </label>
             </div>
           </div>
-          <h3 className="orangeText">{t("Travel Details")}</h3>
-          <div className="field">
+          {props.pickUp === "airport" &&
+          <>
+            <h3 className="orangeText">{t("Travel Details")}</h3>
+            <div className="field">
+              
+              <div className="control">
+                <input
+                  className="input arrival"
+                  type={'text'}
+                  name={'flight_number'}
+                  onChange={(e) => handleChange(e, "arrival")}
+                  id={'flight_number'}
+                  required={inflight ? true : false}
+                  placeholder=" "
+                />
+                <label className="label" htmlFor={'flight_number'}>
+                {t("In Flight Number")}
+              </label>
+              </div>
+            </div>
+            <div className="field">
             
-            <div className="control">
-              <input
-                className="input"
-                type={'text'}
-                name={'flight_number'}
-                onChange={(e) => handleChange(e)}
-                id={'flight_number'}
-                required={true}
-                placeholder=" "
-              />
-              <label className="label" htmlFor={'flight_number'}>
-              {t("In Flight Number")}
-            </label>
+              <div className="control">
+                <input
+                  className="input arrival"
+                  type={'date'}
+                  name={'arrival_date'}
+                  onChange={(e) => handleChange(e, "arrival")}
+                  id={'arrival_date'}
+                  required={inflight ? true : false}
+                  placeholder=" "
+                />
+                <label className="label" htmlFor={'arrival_date'}>
+                {t("Arrival Date")}
+              </label>
+              </div>
             </div>
-          </div>
-          <div className="field">
-           
-            <div className="control">
-              <input
-                className="input"
-                type={'date'}
-                name={'arrival_date'}
-                onChange={(e) => handleChange(e)}
-                id={'arrival_date'}
-                required={true}
-                placeholder=" "
-              />
-               <label className="label" htmlFor={'arrival_date'}>
-              {t("Arrival Date")}
-            </label>
+            <div className="field">
+            
+              <div className="control">
+                <input
+                  className="input arrival"
+                  type={'text'}
+                  name={'departing_from'}
+                  onChange={(e) => handleChange(e, "arrival")}
+                  id={'departing_from'}
+                  required={inflight ? true : false}
+                  placeholder=" "
+                />
+                  <label className="label" htmlFor={'departing_from'}>
+                {t("Departing From")}
+              </label>
+              </div>
             </div>
-          </div>
-          <div className="field">
-          
-            <div className="control">
-              <input
-                className="input"
-                type={'text'}
-                name={'departing_from'}
-                onChange={(e) => handleChange(e)}
-                id={'departing_from'}
-                required={true}
-                placeholder=" "
-              />
-                <label className="label" htmlFor={'departing_from'}>
-              {t("Departing From")}
-            </label>
+            <div className="field">
+            
+              <div className="control">
+                <input
+                  className="input arrival"
+                  type={'text'}
+                  name={'time_of_arrival'}
+                  onChange={(e) => handleChange(e, "arrival")}
+                  id={'time_of_arrival'}
+                  required={inflight ? true : false}
+                  placeholder=" "
+                />
+                <label className="label" htmlFor={'time_of_arrival'}>
+                {t("Time of Arrival")}
+              </label>
+              </div>
             </div>
-          </div>
-          <div className="field">
-           
-            <div className="control">
-              <input
-                className="input"
-                type={'text'}
-                name={'time_of_arrival'}
-                onChange={(e) => handleChange(e)}
-                id={'time_of_arrival'}
-                required={true}
-                placeholder=" "
-              />
-               <label className="label" htmlFor={'time_of_arrival'}>
-              {t("Time of Arrival")}
-            </label>
+            </>
+            }
+            {props.destination === "airport"  &&
+            <>
+            <h3 className="orangeText">{t("Travel Details")}</h3>
+            <div className="field">
+            
+              <div className="control">
+                <input
+                  className="input departure"
+                  type={'text'}
+                  name={'out_flight_number'}
+                  onChange={(e) => handleChange(e, "departure")}
+                  id={'out_flight_number'}
+                  required={inflight ? false : true}
+                  placeholder=" "
+                />
+                <label className="label" htmlFor={'out_flight_number'}>
+                {t("Out Flight Number")}
+              </label>
+              </div>
             </div>
-          </div>
-          <div className="field">
-           
-            <div className="control">
-              <input
-                className="input"
-                type={'text'}
-                name={'out_flight_number'}
-                onChange={(e) => handleChange(e)}
-                id={'out_flight_number'}
-                required={true}
-                placeholder=" "
-              />
-               <label className="label" htmlFor={'out_flight_number'}>
-              {t("Out Flight Number")}
-            </label>
+            <div className="field">
+            
+              <div className="control">
+                <input
+                  className="input departure"
+                  type={'date'}
+                  name={'departure_date'}
+                  onChange={(e) => handleChange(e, "departure")}
+                  id={'departure_date'}
+                  required={inflight ? false : true}
+                  placeholder=" "
+                />
+                <label className="label" htmlFor={'departure_date'}>
+                {t("Departure Date")}
+              </label>
+              </div>
             </div>
-          </div>
-          <div className="field">
-           
-            <div className="control">
-              <input
-                className="input"
-                type={'date'}
-                name={'departure_date'}
-                onChange={(e) => handleChange(e)}
-                id={'departure_date'}
-                required={true}
-                placeholder=" "
-              />
-               <label className="label" htmlFor={'departure_date'}>
-              {t("Departure Date")}
-            </label>
+            <div className="field">
+            
+              <div className="control">
+                <input
+                  className="input departure"
+                  type={'text'}
+                  name={'going_to'}
+                  onChange={(e) => handleChange(e, "departure")}
+                  id={'going_to'}
+                  required={inflight ? false : true}
+                  placeholder=" "
+                />
+                  <label className="label" htmlFor={'going_to'}>
+                {t("Going To")}
+              </label>
+              </div>
             </div>
-          </div>
-          <div className="field">
-          
-            <div className="control">
-              <input
-                className="input"
-                type={'text'}
-                name={'going_to'}
-                onChange={(e) => handleChange(e)}
-                id={'going_to'}
-                required={true}
-                placeholder=" "
-              />
-                <label className="label" htmlFor={'going_to'}>
-              {t("Going To")}
-            </label>
+            <div className="field">
+            
+              <div className="control">
+                <input
+                  className="input departure"
+                  type={'text'}
+                  name={'time_of_departure'}
+                  onChange={(e) => handleChange(e, "departure")}
+                  id={'time_of_departure'}
+                  required={inflight ? false : true}
+                  placeholder=" "
+                />
+                  <label className="label" htmlFor={'time_of_departure'}>
+                {t("Time of Departure")}
+              </label>
+              </div>
             </div>
-          </div>
-          <div className="field">
-          
-            <div className="control">
-              <input
-                className="input"
-                type={'text'}
-                name={'time_of_departure'}
-                onChange={(e) => handleChange(e)}
-                id={'time_of_departure'}
-                required={true}
-                placeholder=" "
-              />
-                <label className="label" htmlFor={'time_of_departure'}>
-              {t("Time of Departure")}
-            </label>
-            </div>
-          </div>
-         
+          </>
+          }
           <div className="field">
          
             <div className="control">
@@ -283,7 +354,7 @@ const TaxiEnquiryModal = (props) => {
                 name={'message'}
                 onChange={(e) => handleChange(e)}
                 id={'message'}
-                required={true}
+                required={false}
                 placeholder={" "}
               />
                  <label className="label" htmlFor={'message'}>

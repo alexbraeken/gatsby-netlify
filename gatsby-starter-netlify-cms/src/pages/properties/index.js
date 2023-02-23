@@ -26,12 +26,12 @@ import { BsFillHouseFill } from "@react-icons/all-files/bs/BsFillHouseFill"
 import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
 import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
 import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
-import { BsCheckCircle   } from "@react-icons/all-files/bs/BsCheckCircle";
 
 if (typeof window !== `undefined`) {
     gsap.registerPlugin(gsap);
 }
 const mapStateToProps = (state) => {
+
     return  {featuredProps: state.featuredProps}
   }
 
@@ -84,30 +84,32 @@ const ConnectedProperties = React.memo((props) => {
         let properties = []
         const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
         const getFireData = async () => {
-          fetch(uri, 
-            {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(
-                {
-                  source: "db",
-                  col:"Properties",
-                  fields:"['name','rank','amenities','type','latitude','longitude','picture','city','currencySymbol','customData','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
-                })
-              })
-                .then(response => {
-                    return response.text()
-                })
-                .then(data => {
-                  let propsObj = JSON.parse(data)
-                  Object.keys(propsObj).forEach(prop => {
-                    properties.push(propsObj[prop])
-                  })
-                  setData(properties)
-                })
+            if(typeof window !== `undefined`){
+                fetch(uri, 
+                    {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                        source: "db",
+                        col:"Properties",
+                        fields:"['name','rank','amenities','type','latitude','longitude','picture','city','currencySymbol','customData','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
+                        })
+                    })
+                        .then(response => {
+                            return response.text()
+                        })
+                        .then(data => {
+                        let propsObj = JSON.parse(data)
+                        Object.keys(propsObj).forEach(prop => {
+                            properties.push(propsObj[prop])
+                        })
+                        setData(properties)
+                        })
+            }
         }
         
         getFireData()
@@ -140,22 +142,33 @@ const ConnectedProperties = React.memo((props) => {
     useEffect(() => {
         if(props.state.searchArray.from?.[0] && props.state.searchArray.to[0]){
             try{
-            const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
-            fetch(uri, {
-            headers:{
-            "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
+                let properties = []
+                const url = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+                const getFireData = async () => {
+                    if(typeof window !== `undefined`){
+                        fetch(url, 
+                            {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(
+                                {
+                                source: "hf",
+                                request:`v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`,
+                                })
+                            })
+                                .then(response => {
+                                    return response.text()
+                                })
+                                .then(data => {
+                                    setPropertyIds(JSON.parse(data))
+                                })
+                    }
                 }
-            })
-                .then(response => {
-                    
-                    return response.text()
-                })
-                .then(data => {
-                setPropertyIds(JSON.parse(data).propertiesUids)
-                })
-                .catch((error) => {
-                    setFetchError(true)
-                });
+                
+            getFireData()
             setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})
             setAdvancedSearch(true)    
         }
@@ -195,7 +208,6 @@ const ConnectedProperties = React.memo((props) => {
 
 
     useEffect(() => {
-        console.log(mapBoundedProperties)
         filterData(data)
 
         return () => {
@@ -310,7 +322,6 @@ const ConnectedProperties = React.memo((props) => {
     }
 
     const handleWinterLets = (e) => {
-        console.log(e)
         setWinterLets(e)
     }
 

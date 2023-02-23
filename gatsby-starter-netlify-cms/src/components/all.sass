@@ -2410,6 +2410,11 @@ a.navbar-item, .navbar-item
   margin: auto
   & p
       font-size: 1.2rem
+      &::first-letter
+        font-size: 4rem
+        float: left
+        line-height: 0.9
+        margin: 0 0.3rem 0 0
 
 .slick-slider
   cursor: grab
@@ -2564,7 +2569,10 @@ a.navbar-item, .navbar-item
     z-index: -1
   &:hover:before
     width: 110%
-    
+
+.hover-primary:hover
+  & b
+      color: $primary  
 
 .content-header
   box-shadow: -4px 0 0 $primary

@@ -6,6 +6,9 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import TaxiCalendar from '../components/TaxiCalendar'
 import Select from 'react-select'
+import BackgroundImage from 'gatsby-background-image'
+import convertToBgImage from "../Helpers/images"
+import { getImage } from "gatsby-plugin-image"
 
 const personsSelectStyle = {
   option: (provided, state) => ({
@@ -63,11 +66,16 @@ export const ContentPageTemplate = ({ title, langTitles, content, contentCompone
   const [loaded, setLoaded] = useState(false);
   const [selected, setSelected] = useState(null)
   const [destination, setDestination] = useState(null)
+  const [pickUp, setPickUp] = useState(null)
 
 
   const {language} = useI18next();
   const {t} = useTranslation(['translation'])
   
+
+  const heroImage = getImage(hero.childImageSharp)
+  const bgImage = convertToBgImage(heroImage)
+
 
   const PageContent = contentComponent || Content
 
@@ -83,22 +91,21 @@ export const ContentPageTemplate = ({ title, langTitles, content, contentCompone
   return (
     <div className="content">
       {hero &&
-      <div
-        className="full-width-image-container margin-top-0 gradient-bg"
-        style={{
-          backgroundImage: `url(${
-            hero.publicURL
-          })`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
+        <BackgroundImage
+          className={"full-width-image-container margin-top-0 "}
+          Tag="div"
+          {...bgImage}
+          backgroundColor={`#040e18`}
+          style={{zIndex:"1", marginBottom: "0"}}
+          preserveStackingContext
+        >
+          <div className="gradient-bg"></div>
         <h2
         className={`has-text-weight-bold is-size-1 content-header ${loaded? "loaded" : ""}`}
         style={{color: "white"}}>
           {langTitles[language]}
         </h2>
-      </div> }
+      </BackgroundImage> }
         <div className="container">
           <div className="columns">
             <div className="column is-10 is-offset-1">
@@ -120,15 +127,31 @@ export const ContentPageTemplate = ({ title, langTitles, content, contentCompone
                     closeMenuOnSelect={true}
                     placeholder={t("Select persons")}
                     onChange={(e)=>setSelected(e.value)}/>
-                <Select options={destinations.map(el=>{
+                <Select options={[...destinations.airport.map(el=>{
                   return {value: el, label: el}
-                })}
+                  }), {value: "airport", label: `${t("Faro Airport")}`}]}
+                  styles={personsSelectStyle}
+                  closeMenuOnSelect={true}
+                  placeholder={t("Select Pick up")}
+                  onChange={(e)=>{
+                    setDestination(null)
+                    setPickUp(e.value)}
+                    }/>
+                  {pickUp &&
+                  <Select options={pickUp === "airport" ? destinations.airport.map(el=>{
+                        return {value: el, label: el}
+                      })
+                      :
+                      [{value: "airport", label: `${t("Faro Airport")}`}, 
+                      pickUp === "Tavira" || pickUp === "Cabanas" || pickUp === "Manta Rota" ? {value: "aquashow", label: `${t("Aqua Show")}`} : {value: "", label: ""}]
+                    }
                     styles={personsSelectStyle}
                     closeMenuOnSelect={true}
                     placeholder={t("Select destination")}
                     onChange={(e)=>setDestination(e.value)}/>
+                  }
                 </div>
-                {selected && destination && <TaxiCalendar price={prices[selected][destinations.indexOf(destination)]}/>}
+                {selected && pickUp && destination && <TaxiCalendar price={prices[selected][destination === "aquashow" ? "aquashow" : "airport"][destinations[destination === "aquashow" ? "aquashow" : "airport"].indexOf(pickUp === "airport" ? destination : pickUp)]} destination={destination} pickUp={pickUp}/>}
                 </div>
 
               </div>
@@ -191,16 +214,23 @@ export const ContentPageQuery = graphql`
         }
         hero {
           childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
           }
           publicURL
         }
-        destinations
+        destinations {
+          airport
+          aquashow
+        }
         prices {
-          oneToFourPrices
-          fiveToEightPrices
+          oneToFourPrices {
+            airport
+            aquashow
+          }
+          fiveToEightPrices {
+            airport
+            aquashow
+          }
         }
         html {
           en

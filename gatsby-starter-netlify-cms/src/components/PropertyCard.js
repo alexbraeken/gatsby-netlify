@@ -312,7 +312,7 @@ const PropertyCardComp = (props) => {
               </Card.Text>
             </div>
             <Card.ImgOverlay style={{position:"absolute", padding:"1rem", width: "100%", height:"unset", backgroundColor:"transparent", left:"0", bottom:"0", top:"auto", padding:0}}>
-              <section className="section prop-card-text" style={{background:"linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%)", color: "#fff", marginTop:0, height:"unset", paddingBottom: "3px"}}>
+              <section className="section prop-card-text" style={{background:"linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%)", color: "#fff", marginTop:0, height:"unset", paddingBottom: "3px", paddingTop: 0}}>
               <a href={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}} target="_blank" rel="noopener noreferrer">
                 <Card.Title style={{textAlign:"center", marginBotton: "2rem"}}><span className="prop-card-title" style={{fontSize:"1.8rem"}}>{props.item.name}</span></Card.Title>
                 <BedBathPax bedrooms={props.item.bedrooms} bathrooms={props.item.bathrooms} baseGuests={props.item.baseGuests} color="rgba(256,256,256)"/>
@@ -403,7 +403,7 @@ const PropertyCardComp = (props) => {
             </Card.Text>
           </div>
           <Card.ImgOverlay style={{position:"absolute", padding:"1rem", width: "100%", height:"unset", backgroundColor:"transparent", left:"0", bottom:"0", top:"auto", padding:0}}>
-            <section className="section prop-card-text" style={{background:"linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%)", color: "#fff", marginTop:0, height:"unset", paddingBottom: "3px"}}>
+            <section className="section prop-card-text" style={{background:"linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%)", color: "#fff", marginTop:0, height:"unset", paddingBottom: "3px", paddingTop: 0}}>
             <a href={`/properties/${props.item.uid}`+dateURI}  style={{position:"relative", zIndex:"2", width: "100%", display:"block", height:"100%"}} target="_blank" rel="noopener noreferrer">
               <Card.Title style={{textAlign:"center", marginBotton: "2rem"}}><span className="prop-card-title" style={{fontSize:"1.8rem"}}>{props.item.name}</span></Card.Title>
               <div ref={description} style={{overflow:"hidden"}}>

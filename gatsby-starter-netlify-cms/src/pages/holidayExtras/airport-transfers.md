@@ -9,10 +9,16 @@ langTitles:
     fr: Transferts aéroport privés
     es: Traslados privados al aeropuerto
 hero: ../../../static/img/airport-transfer.jpg
-destinations: ['Tavira', 'Cabanas', 'Vila Nova de Cacela', 'Manta Rota', 'Altura', 'Castro Marim', 'Fuseta']
+destinations: 
+    airport: ['Tavira', 'Cabanas', 'Vila Nova de Cacela', 'Manta Rota', 'Altura', 'Castro Marim', 'Fuseta']
+    aquashow: ['Tavira', 'Cabanas', 'Manta Rota']
 prices:
-    oneToFourPrices: ['50', '50', '60', '60', '60', '70', '45']
-    fiveToEightPrices: ['60', '60', '70', '70', '70', '75', '50']
+    oneToFourPrices: 
+        airport: ['55', '55', '65', '65', '65', '70', '45']
+        aquashow: ['60', '65', '70']
+    fiveToEightPrices: 
+        airport: ['65', '65', '75', '75', '75', '80', '50']
+        aquashow: ['70', '75', '75']
 html:
     en: "<h2 style='text-align: center; font-size: 3rem; font-weight: bold'>Airport transfers to and from <span style='color: #f5821e'>Faro Airport</span></h2>
 <hr style='width: 50%; height: 4px; background-color: #f5821e; margin: 1.5rem auto'/>
