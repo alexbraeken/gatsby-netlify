@@ -65,11 +65,6 @@ const Footer = () =>{
                       {t("Sustainability")}
                       </Link>
                     </li>
-                     <li>
-                    <Link className="navbar-item" to="/about/sustainability">
-                    {t("Sustainability")}
-                      </Link>
-                    </li>
                     <li>
                     <Link className="navbar-item" to="/about/hiring">
                     {t("Hiring")}

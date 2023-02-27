@@ -75,6 +75,7 @@ export const PropertyPageTemplate = ( props ) =>
    const [descriptionsLoading, setDescriptionsLoading] = useState(true)
    const [pricePeriods, setPricePeriods] = useState(null)
    const [showWinterLetInfo, setShowWinterLetInfo] = useState(false)
+   const [fetchResults, setFetchResults] = useState(null)
 
 
    const {t} = useTranslation(['property', 'translation']);
@@ -86,7 +87,7 @@ export const PropertyPageTemplate = ( props ) =>
        return () => {
            setSections(null)
        }
-   }, [loading, descriptionsLoading, reviews])
+   }, [loading, descriptionsLoading, reviews, data])
 
    useEffect(() => {
        if(reviews && reviews.length > 0){
@@ -147,6 +148,86 @@ export const PropertyPageTemplate = ( props ) =>
         }
     }, [activitiesCoords])
 
+    useEffect(() => {
+        console.log(fetchResults)
+        if(fetchResults && fetchResults.length>0){
+            console.log("fetched")
+            let distances = {}
+            let langOpinions = {}
+            fetchResults.forEach(customData => {
+                console.log(customData.customDataField.name)
+                switch(customData.customDataField.name){
+                    case "Pool Dimensions":
+                        setPoolDimensions(customData.text)
+                        break;
+                    case "Damages_Security_Deposit":
+                        setDamageWaiver(customData.text)
+                        break;
+                    case "Matterport_URL":
+                        setMatterportURL(customData.text)
+                        break;
+                    case "Matterport_URL":
+                        setMatterportURL(customData.text)
+                        break;
+                    case "Airport_distance":
+                        distances.Airport_distance = customData.text
+                        break;
+                    case "Market_Distance":
+                        distances.Market_Distance = customData.text
+                        break;
+                    case "Beach_distance":
+                        distances.Beach_distance = customData.text
+                        break;
+                    case "Golf_distance":
+                        distances.Golf_distance = customData.text
+                        break;
+                    case "Town_distance":
+                        distances.Town_distance = customData.text 
+                        break;  
+                    case "Car_Recommendation":
+                        distances.Car_Recommendation = customData.text  
+                        break;
+                    case "Smarta_Opinion_fr":
+                        langOpinions.Smarta_Opinion_fr = customData.text 
+                        break;
+                    case "Smarta_Opinion_es":
+                        langOpinions.Smarta_Opinion_es = customData.text 
+                        break;
+                    case "Smartavillas_Opinion":
+                        langOpinions.Smartavillas_Opinion = customData.text 
+                        break;
+                    case "Smarta_Opinion_pt":
+                        langOpinions.Smarta_Opinion_pt = customData.text 
+                        break;
+                }
+            })
+
+            if(Object.keys(distances).length > 0){
+                setTravelDistances({
+                    display: true,
+                    Town: distances.Town_distance || null,
+                    Beach:  distances.Beach_distance || null,
+                    Golf: distances.Golf_distance || null,
+                    Airport: distances.Airport_distance || null,
+                    Market: distances.Market_Distance || null,
+                    Car: distances.Car_Recommendation || null
+                })
+            }
+            if(Object.keys(langOpinions).length> 0){
+                switch(language){
+                    case "pt":
+                        setSmartaOpinion(langOpinions.Smarta_Opinion_pt || langOpinions.Smartavillas_Opinion)
+                    case "es":
+                        setSmartaOpinion(langOpinions.Smarta_Opinion_es || langOpinions.Smartavillas_Opinion)
+                    case "fr":
+                        setSmartaOpinion(langOpinions.Smarta_Opinion_fr || langOpinions.Smartavillas_Opinion)
+                    default:
+                        setSmartaOpinion(langOpinions.Smartavillas_Opinion)
+                }
+            }
+        }
+    }, [fetchResults])
+
 
 
     const handleClose = () => setShow(false);
@@ -169,85 +250,11 @@ export const PropertyPageTemplate = ( props ) =>
             fetchAndSetAll([
                 {
                   url: uri,
-                  setter: data => {
+                  setter: async data => {
                       console.log(data)
-                    let results = data.json()
+                    let results = await data.json()
                         console.log(results)
-
-                    if(results.length>0){
-                        let distances = {}
-                        let langOpinions = {}
-                        results.forEach(customData => {
-                            switch(customData.customDataField.name){
-                                case "Pool Dimensions":
-                                    setPoolDimensions(customData.text)
-                                    break;
-                                case "Damages_Security_Deposit":
-                                    setDamageWaiver(customData.text)
-                                    break;
-                                case "Matterport_URL":
-                                    setMatterportURL(customData.text)
-                                    break;
-                                case "Matterport_URL":
-                                    setMatterportURL(customData.text)
-                                    break;
-                                case "Airport_distance":
-                                    distances.Airport_distance = customData.text
-                                    break;
-                                case "Market_Distance":
-                                    distances.Market_Distance = customData.text
-                                    break;
-                                case "Beach_distance":
-                                    distances.Beach_distance = customData.text
-                                    break;
-                                case "Golf_distance":
-                                    distances.Golf_distance = customData.text
-                                    break;
-                                case "Town_distance":
-                                    distances.Town_distance = customData.text 
-                                    break;  
-                                case "Car_Recommendation":
-                                    distances.Car_Recommendation = customData.text  
-                                    break;
-                                case "Smarta_Opinion_fr":
-                                    langOpinions.Smarta_Opinion_fr = customData.text 
-                                    break;
-                                case "Smarta_Opinion_es":
-                                    langOpinions.Smarta_Opinion_es = customData.text 
-                                    break;
-                                case "Smartavillas_Opinion":
-                                    langOpinions.Smartavillas_Opinion = customData.text 
-                                    break;
-                                case "Smarta_Opinion_pt":
-                                    langOpinions.Smarta_Opinion_pt = customData.text 
-                                    break;
-                            }
-                        })
-
-                        if(Object.keys(distances).length > 0){
-                            setTravelDistances({
-                                display: true,
-                                Town: distances.Town_distance || null,
-                                Beach:  distances.Beach_distance || null,
-                                Golf: distances.Golf_distance || null,
-                                Airport: distances.Airport_distance || null,
-                                Market: distances.Market_Distance || null,
-                                Car: distances.Car_Recommendation || null
-                            })
-                        }
-                        if(Object.keys(langOpinions).length> 0){
-                            switch(language){
-                                case "pt":
-                                    setSmartaOpinion(langOpinions.Smarta_Opinion_pt || langOpinions.Smartavillas_Opinion)
-                                case "es":
-                                    setSmartaOpinion(langOpinions.Smarta_Opinion_es || langOpinions.Smartavillas_Opinion)
-                                case "fr":
-                                    setSmartaOpinion(langOpinions.Smarta_Opinion_fr || langOpinions.Smartavillas_Opinion)
-                                default:
-                                    setSmartaOpinion(langOpinions.Smartavillas_Opinion)
-                            }
-                        }
-                    }  
+                        setFetchResults(results)
                     },
                   init: {
                     method: 'POST',
@@ -264,8 +271,8 @@ export const PropertyPageTemplate = ( props ) =>
                 },
                 {
                     url: uri,
-                    setter: data => {
-                        let results = data.json()
+                    setter: async data => {
+                        let results = await data.json()
                         if(results.length>0){
                             setReviews(results)
                         }
@@ -285,12 +292,10 @@ export const PropertyPageTemplate = ( props ) =>
                 },
                 {
                     url: uri,
-                    setter: data => {
-                        let dataObj = data.json()
-                        dataObj.then(
-                            el=>{
-                                setData({value: el[props.id]})
-                        })
+                    setter: async data => {
+                        let dataObj = await data.json()
+                        setData({value: dataObj[props.id]})
+
                     },
                     init: {
                         method: 'POST',

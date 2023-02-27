@@ -65,43 +65,7 @@ const TaxiEnquiryModal = (props) => {
 
       const handleChange = (e, type) => {
           setInfo({ [e.target.name]: e.target.value })
-          if(inflight){
-            if(type === "arrival"){
-              if(e.target.value.length === 0){
-                let check = false
-                arrivalGroup.filter(i => i !== e.target).forEach(i => {
-                    if(i.value.length !== 0)check = true
-                });
-                if(!check){
-                  departureGroup.filter(i => i !== e.target).forEach(i => {
-                      if(i.value.length !== 0)setInflight(false)
-                  });
-                }
-              }
-            }else{
-              if(type === "departure"){
-                if(e.target.value.length > 0){
-                  let check = false
-                  arrivalGroup.filter(i => i !== e.target).forEach(i => {
-                      if(i.value.length !== 0)check = true
-                  });
-                  if(!check)setInflight(false)
-                }
-              }
-            }
-          }else{
-            if(type === "departure"){
-              if(e.target.value.length === 0){
-                let check = false
-                departureGroup.filter(i => i !== e.target).forEach(i => {
-                    if(i.value.length !== 0){
-                      check = true
-                    }
-                })
-                if(!check)setInflight(true)
-              }
-            }
-          }
+         
         
       }
 
