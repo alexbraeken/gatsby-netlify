@@ -72,7 +72,6 @@ export const PropertyPageTemplate = ( props ) =>
    const [sections, setSections] = useState(null)
    const [loading, setLoading] = useState(true)
    const [descriptions, setDescriptions] = useState(null)
-   const [descriptionsLoading, setDescriptionsLoading] = useState(true)
    const [pricePeriods, setPricePeriods] = useState(null)
    const [showWinterLetInfo, setShowWinterLetInfo] = useState(false)
    const [fetchResults, setFetchResults] = useState(null)
@@ -87,7 +86,7 @@ export const PropertyPageTemplate = ( props ) =>
        return () => {
            setSections(null)
        }
-   }, [loading, descriptionsLoading, reviews, data])
+   }, [loading, reviews, data])
 
    useEffect(() => {
        if(reviews && reviews.length > 0){
@@ -134,7 +133,6 @@ export const PropertyPageTemplate = ( props ) =>
                 setSections(null)
                 setLoading(true)
                 setDescriptions(null)
-                setDescriptionsLoading(true)
                 setPricePeriods(null)
                 setShowWinterLetInfo(false)
             }
@@ -149,7 +147,6 @@ export const PropertyPageTemplate = ( props ) =>
     }, [activitiesCoords])
 
     useEffect(() => {
-        console.log(fetchResults)
         if(fetchResults && fetchResults.length>0){
             console.log("fetched")
             let distances = {}
