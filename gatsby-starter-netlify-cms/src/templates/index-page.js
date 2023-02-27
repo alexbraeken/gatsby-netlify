@@ -464,7 +464,9 @@ const handleSectionLeave = () => {
               </svg>
               </div>
         </section>
-        <Newsletter lang={language}/>
+        <div id="newsletter-signup">
+          <Newsletter lang={language}/>
+        </div>
         <Container style={{paddingLeft:"0", paddingRight:"0"}}>
                     <FirestoreCollection path="/Properties/">
                       {data => {
