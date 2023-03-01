@@ -2,13 +2,17 @@ import React, {useState} from 'react'
 import 'react-day-picker/lib/style.css'
 import { Modal } from 'react-bootstrap'
 import emailjs from 'emailjs-com';
-
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 //Enquiry modal on property page
 const EnquiryModal = (props) => {
 
     const [info, setInfo] = useState(null)
     const [sent, setSent] = useState(false)
+
+
+    const {t} = useTranslation(['translation']);
+    const { language } = useI18next()
 
     const sendEnquiry = (formInfo) => {
       if (sent) {
@@ -56,7 +60,7 @@ const EnquiryModal = (props) => {
                 flex: "0 0 50px"}}>
               </div>
               <div className="orangeText" style={{margin: "auto"}}>
-                Ask us about {props.propName}:
+                {t("Ask us about")} {props.propName}:
               </div>
               <div className="modal close modal-content modal-header enquiry-modal" style={{display: "none"}}>
               </div>
@@ -66,7 +70,7 @@ const EnquiryModal = (props) => {
         <br />
         {sent ? 
           <div style={{display:"flex"}}>
-            <h4 style={{margin:"auto", textAlign:"center"}}>Thank you for getting in touch! We'll get back to you as soon as possible.</h4>
+            <h4 style={{margin:"auto", textAlign:"center"}}>{t("Thank you for getting in touch! We'll get back to you as soon as possible.")}</h4>
           </div> :
           <form
           name="Inquiry"
@@ -99,7 +103,7 @@ const EnquiryModal = (props) => {
                 placeholder=" "
               />
                <label className="label" htmlFor={'from_name'}>
-              Your name
+               {t("Your name")}
             </label>
             </div>
           </div>
@@ -116,7 +120,7 @@ const EnquiryModal = (props) => {
                 placeholder=" "
               />
                <label className="label" htmlFor={'email'}>
-              Email
+              {t("Email")}
             </label>
             </div>
           </div>
@@ -132,15 +136,15 @@ const EnquiryModal = (props) => {
                 style={{appearance:"auto"}}
               >
                 <option disabled selected value="" hidden> </option>
-                <option value="General">General</option>
-                <option value="Facilities">Facilities</option>
-                <option value="Booking Related">Booking Related</option>
-                <option value="Accessibility">Accessibility</option>
-                <option value="Accessibility">Winter Let</option>
-                <option value="Other">Other</option>
+                <option value="General">{t("General")}</option>
+                <option value="Facilities">{t("Facilities")}</option>
+                <option value="Booking Related">{t("Booking Related")}</option>
+                <option value="Accessibility">{t("Accessibility")}</option>
+                <option value="Accessibility">{t("Winter Let")}</option>
+                <option value="Other">{t("Other")}</option>
               </select>
               <label className="label" htmlFor={'topic'}>
-              Topic
+              {t("Topic")}
             </label>
             </div>
           </div>
@@ -156,7 +160,7 @@ const EnquiryModal = (props) => {
                 placeholder=" "
               />
                 <label className="label" htmlFor={'message'}>
-              Message
+                {t("Message")}
             </label>
             </div>
           </div>
@@ -166,7 +170,7 @@ const EnquiryModal = (props) => {
                   <svg className="icon-arrow before">
                       <use xlinkHref="#arrow" />
                   </svg>
-                  <span className="label">Enquire</span>
+                  <span className="label">{t("Enquire")}</span>
                   <svg className="icon-arrow after">
                       <use xlinkHref="#arrow"/>
                   </svg>

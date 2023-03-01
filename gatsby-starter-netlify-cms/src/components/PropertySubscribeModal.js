@@ -78,7 +78,7 @@ const PropertySubscribeModal = (props) => {
               {error ? 
     <h4 style={{margin:"auto", textAlign:"center"}}>We had some trouble processing your request. Please try again later.</h4>          
 :
-<h4 style={{margin:"auto", textAlign:"center"}}>Thank you for subscribing! Please check your email to confirm and start receiving the latest news and promotions about this property.</h4>
+<h4 style={{margin:"auto", textAlign:"center"}}>{t("Thank you for subscribing! Please check your email to confirm and start receiving the latest news and promotions about this property.")}</h4>
 
               }
             
@@ -124,7 +124,7 @@ const PropertySubscribeModal = (props) => {
                         <svg className="icon-arrow before">
                             <use xlinkHref="#arrow" />
                         </svg>
-                        <span className="label">Subscribe</span>
+                        <span className="label">{t("Subscribe")}</span>
                         <svg className="icon-arrow after">
                             <use xlinkHref="#arrow"/>
                         </svg>

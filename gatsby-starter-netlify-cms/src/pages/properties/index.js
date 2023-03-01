@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import { graphql } from 'gatsby'
-import 'firebase/firestore'
 import { Router, useLocation } from "@reach/router"
 import { useTranslation, useI18next} from 'gatsby-plugin-react-i18next'
 import PropertyTemplate from "../../templates/property-page"
@@ -354,13 +353,13 @@ const ConnectedProperties = React.memo((props) => {
                                             </Form.Control>
                                         </Form.Group>
                                         </div>
-                                        <div className="expandBtn hide-mobile" role="button" tabindex="0" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>  
+                                        <div className="expandBtn hide-mobile" role="button" tabIndex="0" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>  
                                                 <p style={{margin: "auto"}}>{t("Filters")}</p>
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
                                 <GoogleMapComponent handleMapBoundProperties={handleMapBoundProperties} boundProps={mapBoundedProperties} isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"94vh"} cardDisplayNum={cardDisplayNum}/>
-                                <div className="expandBtn filterExpand" role="button" tabindex="0" onClick={handleExpand} onKeyDown={(e)=>{if(e.key === 'Enter'){handleExpand()}}} >
+                                <div className="expandBtn filterExpand" role="button" tabIndex="0" onClick={handleExpand} onKeyDown={(e)=>{if(e.key === 'Enter'){handleExpand()}}} >
                                     {horizontalExpanded ? 
                                     <>
                                         <p>{t("Shrink")}</p>
@@ -408,24 +407,24 @@ const ConnectedProperties = React.memo((props) => {
                                                     <small>{props.state.bathrooms[0]} - {props.state.bathrooms[1]}</small>
                                                 </div>
                                                 <div className="filter-tab-amenities">
-                                                    {Object.keys(amenitiesList).map(amenity => {
+                                                    {Object.keys(amenitiesList).map((amenity, i) => {
                                                         switch(amenity){
                                                         case "hasPool":
-                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "5px auto"}}/></div> : null
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "5px auto"}}/></div> : null
                                                         case "isWheelchairAccessible":
-                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FaWheelchair style={{margin: "5px auto"}}/></div> : null
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FaWheelchair style={{margin: "5px auto"}}/></div> : null
                                                         case "allowsPets":
-                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faDog} style={{margin: "5px auto"}}/></div> : null
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faDog} style={{margin: "5px auto"}}/></div> : null
                                                         case "hasAirConditioning":
-                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faFan} style={{margin: "5px auto"}}/></div> : null
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faFan} style={{margin: "5px auto"}}/></div> : null
                                                         case "hasBarbecue":
-                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GiBarbecue style={{margin: "5px auto"}}/></div> : null
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><GiBarbecue style={{margin: "5px auto"}}/></div> : null
                                                         case "hasElevator":
-                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GrElevator style={{margin: "5px auto"}}/></div> : null
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><GrElevator style={{margin: "5px auto"}}/></div> : null
                                                         case "hasGarden":
-                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faTree} style={{margin: "5px auto"}}/></div> : null
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faTree} style={{margin: "5px auto"}}/></div> : null
                                                         case "hasInternetWifi":
-                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "5px auto"}}/></div> : null
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faWifi} style={{margin: "5px auto"}}/></div> : null
                                                         default:
                                                         return null
                                                         }

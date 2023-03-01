@@ -21,7 +21,6 @@ const AlgarveWireSVG = (props) => {
                     scrub: 0, 
                 },
                 strokeDashoffset: 0,
-                once: true,
             });
             gsap.to(circle, {
                 scrollTrigger:{
@@ -31,7 +30,6 @@ const AlgarveWireSVG = (props) => {
                     scrub: 0, 
                 },
                 attr: {r: "30"},
-                once: true, 
             })
         }
     }, []);

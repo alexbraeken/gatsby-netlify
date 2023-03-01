@@ -6,10 +6,6 @@ import Navbar from '../components/Navbar'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
 import {useTranslation, useI18next, Link} from 'gatsby-plugin-react-i18next';
-import * as firebase from 'firebase';
-import 'firebase/firestore';
-import { FirestoreProvider } from "@react-firebase/firestore";
-import { config } from "../firebase-config";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './all.sass';
 import BackToTop from '../components/BackToTop';
@@ -192,15 +188,11 @@ useEffect(() => {
   return (
     <div>
       <HelmetComp title={title} description={description}/>
-      <FirestoreProvider {...config} firebase={firebase}>
-      
       <Navbar key={path} navClass={navClass}/>
       <div className="layout-children">{children}</div>
       <BackToTop />
       <Footer useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>
       <ConnectedFavourites useTranslation={useTranslation(["translation"])} useI18next={useI18next()}/>
-      <CookieBannerCookieHub googleTrackingId={process.env.GATSBY_GOOGLE_TRACKING_ID} cookieHubId={process.env.GATSBY_COOKIEHUB_ID} />
-      </FirestoreProvider>
     </div>
   )
 }

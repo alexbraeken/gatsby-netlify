@@ -109,7 +109,7 @@ const PropFeatureGrid = React.memo((data) => {
         tl.to(paraHero.bg, {y: oh*0.2, ease: "none"}, 0)
       })
     }
-     
+
   }, [bgImg])
 
   useEffect(() => {
@@ -179,11 +179,11 @@ const PropFeatureGrid = React.memo((data) => {
         height: "100%",
         position:"relative",
         overflow: "hidden"}} ref={heroContainer}>
-        <div className="bg" key={bgImg} style={{position: "absolute", left: "0", top:"0", width:"100%", height:"120%",  backgroundImage:`url(${bgImg})`, backgroundPosition:"center", backgroundSize:"cover", }}>
+        <div className="bg" key={bgImg} style={{position: "absolute", left: "0", bottom:"0", width:"100%", height:"120%",  backgroundImage:`url(${bgImg})`, backgroundPosition:"center", backgroundSize:"cover", }}>
         </div>
       </div>
       <div style={{position: "absolute", left: "60px", top:"90%", transform:"translateY(-50%)", width:"100%", maxWidth: "calc(100vw - 60px)"}}>
-            <h3 className='home-section-title orangeText' style={{top: "-262px", opacity: "0.7", color:"#f5821e"}}>Featured</h3>
+            <h3 className='home-section-title orangeText' style={{top: "-262px", opacity: "0.7", color:"#f5821e"}}>{t("featured")}</h3>
             <h2 className='home-section-title hero-feature-title' style={{filter: "drop-shadow(2px 2px 15px black)", opacity:1, pointerEvents: "unset"}}><Link to={`/properties/${data.heroBg.uid}`} target="_blank" rel="noopener noreferrer" key={bgName}>{bgName}</Link></h2>
         </div>
     </div>
@@ -202,21 +202,21 @@ const PropFeatureGrid = React.memo((data) => {
                   {Object.keys(data.amenitiesList).map(amenity => {
                     switch(amenity){
                       case "hasPool":
-                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Pool</span></div> : null
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Pool")}</span></div> : null
                       case "isWheelchairAccessible":
-                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FaWheelchair style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wheelchair Accessible</span></div> : null
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FaWheelchair style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Wheelchair Accessible")}</span></div> : null
                       case "allowsPets":
-                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faDog} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Allows Pets</span></div> : null
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faDog} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Allows Pets")}</span></div> : null
                       case "hasAirConditioning":
-                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faFan} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Air Conditioning</span></div> : null
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faFan} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Air Conditioning")}</span></div> : null
                       case "hasBarbecue":
-                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GiBarbecue style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Barbecue</span></div> : null
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GiBarbecue style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Barbecue")}</span></div> : null
                       case "hasElevator":
-                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GrElevator style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Elevator</span></div> : null
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><GrElevator style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Elevator")}</span></div> : null
                       case "hasGarden":
-                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faTree} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Garden</span></div> : null
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faTree} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Garden")}</span></div> : null
                       case "hasInternetWifi":
-                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >Wifi</span></div> : null
+                        return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><FontAwesomeIcon icon={faWifi} style={{margin: "auto 5px"}}/><span className="tooltiptext amenity-tooltip" >{t("Wi-Fi")}</span></div> : null
                       default:
                     return data.amenitiesList[amenity] ? <div className="icon-info amenity-icon"><BsCheckCircle style={{margin: "auto 5px"}} /><span className="tooltiptext amenity-tooltip" >{amenity}</span></div> : null
                     }

@@ -75,10 +75,10 @@ class TravelerTipsIndex extends React.Component {
                     <div class="filter-button-content"><span>{t("Restaurants")}</span><FontAwesomeIcon icon={faUtensils} /> </div>
                 </div>
                 <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Bar" ? "selected":""}`} onClick={()=>this.handleClick("Bar")} onKeyDown={()=>this.handleClick("Bar")}>
-                    <span>{t("Bars")}</span><FontAwesomeIcon icon={faCocktail} /> 
+                    <div class="filter-button-content"><span>{t("Bars")}</span><FontAwesomeIcon icon={faCocktail} /> </div>
                 </div>
                  <div role="button" tabindex="0" className={`filter-button ${this.state.activityFilter === "Shopping" ? "selected":""}`} onClick={()=>this.handleClick("Shopping")} onKeyDown={()=>this.handleClick("Shopping")}>
-                    <span>{t("Shopping")}</span><FontAwesomeIcon icon={faShoppingBag} /> 
+                    <div class="filter-button-content"><span>{t("Shopping")}</span><FontAwesomeIcon icon={faShoppingBag} /> </div>
                 </div>
               </div>
             </StickyBox>

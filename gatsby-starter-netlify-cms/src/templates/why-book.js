@@ -13,6 +13,10 @@ import convertToBgImage from "../Helpers/images"
 import { getImage } from "gatsby-plugin-image"
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import cancellation from '../../static/img/time-reload-svgrepo-com.svg'
+import cots from '../../static/img/cot-svgrepo-com.svg'
+import concierge from '../../static/img/concierge-svgrepo-com.svg'
+
 
 if (typeof window !== `undefined`) {
   gsap.registerPlugin(ScrollTrigger);
@@ -84,6 +88,7 @@ export const WhyBookPageTemplate = ({
   const parallaxImg = useRef(null)
   const parallaxBg = useRef(null)
 
+
   const {t} = useTranslation();
   const {language } = useI18next();
 
@@ -99,12 +104,12 @@ export const WhyBookPageTemplate = ({
       setLoaded(true)}, 1000
       )
 
-      let parallaxCont = gsap.utils.toArray('.parallax-tone-container');
-      let parallaxImg = gsap.utils.toArray('.img-cont');
+      let parallaxCont = gsap.utils.toArray('.parallax-tone-container')
+      let parallaxImg = gsap.utils.toArray('.img-cont')
       let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
-      let parallaxToneBg = gsap.utils.toArray('.parallax-tone-bg');
+      let parallaxToneBg = gsap.utils.toArray('.parallax-tone-bg')
       let colSections = gsap.utils.toArray(".colSection")
-
+      let perkImgs = gsap.utils.toArray(".perk-img-container")
 
 
       parallaxCont.forEach((cont, i)=>{
@@ -145,6 +150,20 @@ export const WhyBookPageTemplate = ({
         });
       });
 
+      perkImgs.forEach(perk => {
+        gsap.from(perk, {
+          yPercent: -100,
+          opacity: 0,
+          scrollTrigger: {
+            trigger: perk,
+            start: 'top 50%',
+            once: true,
+            duration:0.3,
+            ease:"Power2.easeOut"
+          }
+        })
+      })
+
     return () => {
       setLoaded(false)
     }
@@ -174,8 +193,9 @@ export const WhyBookPageTemplate = ({
         </BackgroundImage>
       <section className="newLine"
       style={{
-          position: "relative"}}>
-         <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>We Provide</h2>
+          position: "relative",
+          paddingBottom: "150px"}}>
+         <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("We Provide")}</h2>
         <Container>
         <Row style={{minHeight: "100vh"}}>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
@@ -193,6 +213,67 @@ export const WhyBookPageTemplate = ({
           </div>
         </Col>
         </Row> 
+        <Row style={{flexDirection:"column", position:"relative"}}>
+        <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Perks")}</h2>
+          <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("BOOKING PERKS")}</h3>
+          <Col className="booking-perks-col">
+              <div className="perk-container ">
+                <div className="perk-img-container" >
+                <div className="perk-img-shadow left">
+                  <img
+                    src={cancellation}
+                    alt="Smarta"
+                    style={{transform: "translate(-13px, -9px)"}}
+                  />
+                </div>
+                </div>
+                <div className="perk-text-container" >
+                  <div className="perk-text">
+                    <h3>Free Cancellation</h3>
+                    <p>
+                      Change your mind until 14 days before your arrival and get a full refund on your booking.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="perk-container reverse" >
+                <div className="perk-text-container" >
+                  <div className="perk-text">
+                    <h3>Free Cots and High Chairs</h3>
+                    <p>
+                      If you're travelling with an infant or small child and would like a cot or high chair, we will gladly provide one.
+                    </p>
+                  </div>
+                </div>
+                <div className="perk-img-container" >
+                <div className="perk-img-shadow right">
+                <img
+                  src={cots}
+                  alt="Smarta"
+                />
+                </div>
+                </div>
+              </div>
+              <div className="perk-container" >
+                <div className="perk-img-container" >
+                <div className="perk-img-shadow left" >
+                <img
+                  src={concierge}
+                  alt="Smarta"
+                />
+                </div>
+                </div>
+                <div className="perk-text-container" >
+                  <div className="perk-text" >
+                    <h3>Free Concierge Service</h3>
+                    <p>
+                      Smartavillas will deliver a round the clock conierge service to meet your every need.
+                    </p>
+                  </div>
+                </div>
+              </div>
+          </Col>
+        </Row>
       </Container>
       <div style={{ 
           width: "100vw",
@@ -232,8 +313,9 @@ export const WhyBookPageTemplate = ({
         left: "50%",
         overflow:"hidden",
         minHeight: "100vh",
+        flexWrap: "wrap",
         display: "flex"}}>
-          <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>Different</h2>
+          <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>{t("Different")}</h2>
           <div className="section-background">
         <div className='half-image-left grey-in mobile-full-width'>
         {slides ?

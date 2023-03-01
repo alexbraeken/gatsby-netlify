@@ -4,8 +4,6 @@ import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
 import { gsap } from "gsap"
-import * as firebase from 'firebase';
-import 'firebase/firestore';
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import SubmitButton from './SubmitButton'
 import Select from 'react-select'

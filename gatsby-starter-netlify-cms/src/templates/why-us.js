@@ -193,7 +193,7 @@ export const WhyUsPageTemplate = ({
     <section className="newLine" style={{
         paddingBottom: "100px",
         position: "relative"}}>
-          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>We Create</h2>
+          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("We Create")}</h2>
       <Container>
         <Row style={{minHeight: "100vh"}}>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
@@ -212,7 +212,7 @@ export const WhyUsPageTemplate = ({
         </Col>
         </Row> 
         <Row style={{flexDirection:"column", position:"relative"}}>
-        <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>Packages</h2>
+        <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Packages")}</h2>
           <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Our Management Packages")}</h3>
           <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
             borderRadius: "4px",
@@ -328,7 +328,7 @@ export const WhyUsPageTemplate = ({
           </Col>
           </Row>
         <Row style={{flexDirection:"column", position:"relative"}}>
-        <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>Potential</h2>
+        <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Potential")}</h2>
           <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Your property earning potential")}</h3>
           <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
             borderRadius: "4px",
@@ -377,7 +377,7 @@ export const WhyUsPageTemplate = ({
         marginLeft: "-50vw",
         left: "50%",
         overflow:"hidden"}}>
-          <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>Different</h2>
+          <h2 className="home-section-title" style={{transform: "translateX(50%)", top: "-50px", color: "rgba(0, 0, 0, 0.5)"}}>{t("Different")}</h2>
           <div className="section-background">
         <div className='half-image-left grey-in mobile-full-width'>
           <BackgroundImage
@@ -485,7 +485,7 @@ export const WhyUsPageTemplate = ({
       paddingTop: "200px",
         paddingBottom: "100px",
         position: "relative"}}>
-          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)"}}>It Works</h2>
+          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)"}}>{t("It Works")}</h2>
       <div style={{width:"100vw", position: "relative"}}>
         <div className="colSection" data-bg="part3-bg1" style={{position:"relative", backgroundColor:"transparent", height:"100vh", width: "100%", zIndex:"2"}}>
           <div  style={{width:"300px", height: "auto", position: "absolute", right:"20%", top:"50%", transform:"translateY(-50%)", backgroundColor:"#fff", padding: "50px", borderRadius: "4px", filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9))"}}>

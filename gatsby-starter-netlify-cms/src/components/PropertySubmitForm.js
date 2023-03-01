@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import 'react-day-picker/lib/style.css'
 import emailjs from 'emailjs-com';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 
 //Property submission form
@@ -8,6 +9,11 @@ const PropertySubmitForm = (props) => {
 
     const [info, setInfo] = useState(null)
     const [sent, setSent] = useState(false)
+
+
+    const {t} = useTranslation(['translation']);
+    const { language } = useI18next()
+
 
     const sendEnquiry = (formInfo) => {
       if (sent) {
@@ -44,7 +50,7 @@ const PropertySubmitForm = (props) => {
     <>
         {sent ? 
           <div style={{display:"flex"}}>
-            <h4 style={{margin:"auto", textAlign:"center"}}>Thank you for getting in touch! We'll get back to you as soon as possible.</h4>
+            <h4 style={{margin:"auto", textAlign:"center"}}>{t("Thank you for getting in touch! We'll get back to you as soon as possible.")}</h4>
           </div> :
           <form
           name="Inquiry"
@@ -77,7 +83,7 @@ const PropertySubmitForm = (props) => {
                 placeholder=" "
               />
                <label className="label" htmlFor={'from_name'}>
-              Your name
+              {t("Your name")}
             </label>
             </div>
           </div>
@@ -111,7 +117,7 @@ const PropertySubmitForm = (props) => {
                 placeholder=" "
               />
                <label className="label" htmlFor={'email'}>
-              Post-code
+               {t("Post-code")}
             </label>
             </div>
           </div>
@@ -128,7 +134,7 @@ const PropertySubmitForm = (props) => {
                placeholder=" "
              />
               <label className="label" htmlFor={'email'}>
-             Rooms
+              {t("Bedrooms")}
            </label>
            </div>
          </div>
@@ -144,7 +150,7 @@ const PropertySubmitForm = (props) => {
                 placeholder=" "
               />
                 <label className="label" htmlFor={'message'}>
-              Message
+                {t("Message")}
             </label>
             </div>
           </div>
@@ -154,7 +160,7 @@ const PropertySubmitForm = (props) => {
                   <svg className="icon-arrow before">
                       <use xlinkHref="#arrow" />
                   </svg>
-                  <span className="label">Submit</span>
+                  <span className="label">{t("Submit")}</span>
                   <svg className="icon-arrow after">
                       <use xlinkHref="#arrow"/>
                   </svg>

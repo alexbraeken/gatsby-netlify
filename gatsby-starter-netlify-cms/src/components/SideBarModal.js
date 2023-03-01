@@ -75,7 +75,7 @@ export default function SideBarModal(props) {
 
     return (
         <div className={`sidebar-modal-container ${show ? "active" : ""}`}>
-        {show && <div className="sidebar-overlay" role="button" tabindex="0" onClick={props.close} onKeyDown={(e)=>{if(e.key === 'Enter'){props.close()}}} aria-label="close"></div>}
+        {show && <div className="sidebar-overlay" role="button" tabIndex="0" onClick={props.close} onKeyDown={(e)=>{if(e.key === 'Enter'){props.close()}}} aria-label="close"></div>}
             <Col className={`sidebar-modal ${show ? "active" : ""}`} xs={12} md={3}>
             <Container className="justify-content-md-center filter-container" style={modalStyle}>
                 <div className="close-modal">
@@ -84,7 +84,7 @@ export default function SideBarModal(props) {
                 <Form>
                     <Container>
                         <h3 style={{textAlign: "center",fontWeight: "700", textTransform: "lowercase", fontSize:"calc(15PX + 15 * (100vw - 320px) / 1080)", pointerEvents:"none"}}>
-                            {t("Filter")}
+                            {t("Filters")}
                         </h3>
                         <br />
                     <Row>
@@ -100,13 +100,13 @@ export default function SideBarModal(props) {
                                     <div
                                     className="button"
                                     style={{flex:"1 1"}} 
-                                    role="button" tabindex="0"
+                                    role="button" tabIndex="0"
                                     onClick={()=>props.handleSelectDeselectAll("city", false)}
                                     onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("city", false)}}}>{t("Deselect All")}</div>
                                     <div
                                     className="button" 
                                     style={{flex:"1 1"}}
-                                    role="button" tabindex="0" 
+                                    role="button" tabIndex="0" 
                                     onClick={()=>props.handleSelectDeselectAll("city", true)}
                                     onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("city", true)}}}>{t("Select All")}</div>
                                 </Row>
@@ -147,13 +147,13 @@ export default function SideBarModal(props) {
                                     <div
                                 className="button"
                                 style={{flex:"1 1"}}
-                                role="button" tabindex="0"   
+                                role="button" tabIndex="0"   
                                     onClick={()=>props.handleSelectDeselectAll("type", false)}
                                     onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("type", false)}}}>{t("Deselect All")}</div>
                                     <div
                                 className="button"
                                 style={{flex:"1 1"}}
-                                role="button" tabindex="0" 
+                                role="button" tabIndex="0" 
                                     onClick={()=>props.handleSelectDeselectAll("type", true)}
                                     onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleSelectDeselectAll("type", true)}}}>{t("Select All")}</div>
                                 </Row>

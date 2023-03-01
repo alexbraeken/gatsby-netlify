@@ -263,7 +263,6 @@ export const IndexPageTemplate = ({
           r: 150,
         },
         strokeWidth: 450,
-        once: true,
       }
     )
 
@@ -276,7 +275,6 @@ export const IndexPageTemplate = ({
         },
         strokeWidth: 50,
         opacity: 0.6,
-        once: true,
         delay: 0.5
       }
     )
@@ -313,20 +311,6 @@ export const IndexPageTemplate = ({
         }
       });
     });
-
-    seciontTitles.forEach((section) => {
-      gsap.from(section, { 
-        opacity: 0,
-        width: 0,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 90%',
-          once: true,
-          duration:0.5,
-          ease:"Power2.easeOut",
-        }
-      });
-    })
 
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
@@ -504,7 +488,7 @@ const toggleActiveSearch = (active) => {
           </Container>
       </section>
       <section className='main-section orange-gradient'>
-        <div class="parallax-scroll bg-logo">
+        <div className="parallax-scroll bg-logo">
           <img
               src={smartaLogo}
               alt="Smartavillas logo"
@@ -553,7 +537,7 @@ const toggleActiveSearch = (active) => {
             <circle ref={clipCircle} xmlns="http://www.w3.org/2000/svg" cx="600" cy="450" r="380" stroke="url(#img1)" stroke-width="50" fill="none"/>
           </svg>
           <Container style={{zIndex:"2", paddingTop: "30px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
-          <h2 className="home-section-title" style={{left: "40%", transform: "translateX(-50%)", top: "-67px", zIndex:"-1"}}>About</h2>
+          <h2 className="home-section-title" style={{left: "40%", transform: "translateX(-50%)", top: "-67px", zIndex:"-1"}}>{t("About")}</h2>
           <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><Trans>At Home in the</Trans> <span style={{color:"#fff"}}>Algarve</span></h2>
           <br />
           <Row style={{justifyContent:"center", position: "relative"}}>

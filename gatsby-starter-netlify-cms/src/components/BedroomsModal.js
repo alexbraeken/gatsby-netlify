@@ -45,10 +45,10 @@ const RoomComp = ({room}) => {
             <div>
                 <h4 className="lightOrangeText room-name" style={{fontWeight:"bold"}}>{room.name}</h4>
                     <div style={{display:"flex", flexWrap:"wrap"}}>
-                    {Object.keys(room).map((roomKey)=>{
+                    {Object.keys(room).map((roomKey, i)=>{
                         if(roomKey!=="name" && roomKey!=="roomNumber" && !roomKey.includes("Private") && room[roomKey] > 0){
                             return (
-                                <div style={{}} className="bed-info-container">
+                                <div style={{}} className="bed-info-container" key={`room-${i}`}>
                                     <p className="bed-name">{roomKey.charAt(0).toUpperCase() + roomKey.slice(1).replace(/[A-Z]/g, ' $&').replace("Count", '').trim()}</p>
                                     <p className="bed-num" style={{fontWeight:"bold"}}>{room[roomKey]}{determineBedType(roomKey)}</p>
                                 </div>

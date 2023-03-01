@@ -119,7 +119,12 @@ const PropCarousel = (props) => {
             className="prop-details"
             style={{
               }}>
-              <h2 style={{}}>{props.name}</h2>
+              {props.name ? 
+                <h2 style={{}}>{props.name}</h2> 
+                : 
+                <div className="placeholder-box blink" style={{height:"200px"}}>
+                </div>
+              }
               <br />
               <div className="prop-stats" style={{}}>
                 <div>

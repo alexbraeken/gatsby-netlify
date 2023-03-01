@@ -8,7 +8,6 @@ const VacationWireSVG = (props) => {
         let path = svg.current
         if(path){
             let pathLength = path.getTotalLength()
-            console.log(pathLength)
             path.style.strokeDasharray = pathLength + ' ' + pathLength;
             path.style.strokeDashoffset = pathLength
 
@@ -20,7 +19,6 @@ const VacationWireSVG = (props) => {
                     scrub: 0, 
                 },
                 strokeDashoffset: 0,
-                once: true,
             });
         }
     }, []);

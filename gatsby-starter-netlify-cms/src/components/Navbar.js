@@ -14,8 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Loading from './Loading'
 import BedBathPax from './BedBathPax'
 import backArea from '../img/mobile-back-area.svg'
-import * as firebase from 'firebase';
-import 'firebase/firestore';
+
 
 if (typeof window !== `undefined`) {
   gsap.registerPlugin(ScrollTrigger)

@@ -86,7 +86,7 @@ export const PropertyPageTemplate = ( props ) =>
        return () => {
            setSections(null)
        }
-   }, [loading, reviews, data])
+   }, [loading, reviews, data, descriptions, amenities])
 
    useEffect(() => {
        if(reviews && reviews.length > 0){
@@ -139,7 +139,6 @@ export const PropertyPageTemplate = ( props ) =>
         }
     }, [props.id, props.path])
 
-
     useEffect(() => {
         return () => {
             setActivitiesCoords(null)
@@ -148,11 +147,9 @@ export const PropertyPageTemplate = ( props ) =>
 
     useEffect(() => {
         if(fetchResults && fetchResults.length>0){
-            console.log("fetched")
             let distances = {}
             let langOpinions = {}
             fetchResults.forEach(customData => {
-                console.log(customData.customDataField.name)
                 switch(customData.customDataField.name){
                     case "Pool Dimensions":
                         setPoolDimensions(customData.text)
@@ -214,17 +211,19 @@ export const PropertyPageTemplate = ( props ) =>
                 switch(language){
                     case "pt":
                         setSmartaOpinion(langOpinions.Smarta_Opinion_pt || langOpinions.Smartavillas_Opinion)
+                        break;
                     case "es":
                         setSmartaOpinion(langOpinions.Smarta_Opinion_es || langOpinions.Smartavillas_Opinion)
+                        break;
                     case "fr":
                         setSmartaOpinion(langOpinions.Smarta_Opinion_fr || langOpinions.Smartavillas_Opinion)
+                        break;
                     default:
                         setSmartaOpinion(langOpinions.Smartavillas_Opinion)
                 }
             }
         }
     }, [fetchResults])
-
 
 
     const handleClose = () => setShow(false);
@@ -248,9 +247,7 @@ export const PropertyPageTemplate = ( props ) =>
                 {
                   url: uri,
                   setter: async data => {
-                      console.log(data)
                     let results = await data.json()
-                        console.log(results)
                         setFetchResults(results)
                     },
                   init: {
