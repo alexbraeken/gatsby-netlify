@@ -16,6 +16,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import cancellation from '../../static/img/time-reload-svgrepo-com.svg'
 import cots from '../../static/img/cot-svgrepo-com.svg'
 import concierge from '../../static/img/concierge-svgrepo-com.svg'
+import basket from '../../static/img/basket-picnic-svgrepo-com.svg'
 
 
 if (typeof window !== `undefined`) {
@@ -193,8 +194,7 @@ export const WhyBookPageTemplate = ({
         </BackgroundImage>
       <section className="newLine"
       style={{
-          position: "relative",
-          paddingBottom: "150px"}}>
+          position: "relative"}}>
          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("We Provide")}</h2>
         <Container>
         <Row style={{minHeight: "100vh"}}>
@@ -213,8 +213,16 @@ export const WhyBookPageTemplate = ({
           </div>
         </Col>
         </Row> 
-        <Row style={{flexDirection:"column", position:"relative"}}>
+        </Container>
+        </section>
+        <section className="newLine"
+      style={{
+          position: "relative",
+          paddingTop: "150px",
+          paddingBottom: "150px"}}>
         <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Perks")}</h2>
+        <Container>
+        <Row style={{flexDirection:"column", position:"relative"}}>
           <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("BOOKING PERKS")}</h3>
           <Col className="booking-perks-col">
               <div className="perk-container ">
@@ -222,7 +230,7 @@ export const WhyBookPageTemplate = ({
                 <div className="perk-img-shadow left">
                   <img
                     src={cancellation}
-                    alt="Smarta"
+                    alt="cancellation"
                     style={{transform: "translate(-13px, -9px)"}}
                   />
                 </div>
@@ -231,7 +239,7 @@ export const WhyBookPageTemplate = ({
                   <div className="perk-text">
                     <h3>Free Cancellation</h3>
                     <p>
-                      Change your mind until 14 days before your arrival and get a full refund on your booking.
+                      Change your mind within 48 hours and get a full refund on your booking.
                     </p>
                   </div>
                 </div>
@@ -249,7 +257,7 @@ export const WhyBookPageTemplate = ({
                 <div className="perk-img-shadow right">
                 <img
                   src={cots}
-                  alt="Smarta"
+                  alt="cots"
                 />
                 </div>
                 </div>
@@ -259,7 +267,7 @@ export const WhyBookPageTemplate = ({
                 <div className="perk-img-shadow left" >
                 <img
                   src={concierge}
-                  alt="Smarta"
+                  alt="concierge"
                 />
                 </div>
                 </div>
@@ -270,6 +278,24 @@ export const WhyBookPageTemplate = ({
                       Smartavillas will deliver a round the clock conierge service to meet your every need.
                     </p>
                   </div>
+                </div>
+              </div>
+              <div className="perk-container reverse" >
+                <div className="perk-text-container" >
+                  <div className="perk-text">
+                    <h3>Welcome Packs</h3>
+                    <p>
+                      Upon your arrival, receive a complimentary starter pack which includes bathroom items like handsoaps, dishwasher tablets, washing machine pods, kitchen cloth and sponge, washing up liquid, water, orange juice, milk, and a great selection of biscuits.
+                    </p>
+                  </div>
+                </div>
+                <div className="perk-img-container" >
+                <div className="perk-img-shadow right">
+                <img
+                  src={basket}
+                  alt="basket"
+                />
+                </div>
                 </div>
               </div>
           </Col>
