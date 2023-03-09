@@ -57,7 +57,9 @@ export const PropertyPageTemplate = ( props ) =>
    const [amenitiesLength, setAmenitiesLength] = useState(0)
    const [smartaOpinion, setSmartaOpinion] = useState(null)
    const [poolDimensions, setPoolDimensions] = useState(null)
+   const [damageWaiverText, setDamageWaiverText] = useState(null)
    const [damageWaiver, setDamageWaiver] = useState(null)
+   const [securityDeposit, setSecurityDeposit] = useState(null)
    const [matterportURL, setMatterportURL] = useState(null)
    const [waiverOpen, setWaiverOpen] = useState(false)
    const [travelDistances, setTravelDistances] = useState({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
@@ -129,10 +131,13 @@ export const PropertyPageTemplate = ( props ) =>
                                     setPoolDimensions(customData.text)
                                     break;
                                 case "Damages_Security_Deposit":
+                                    setDamageWaiverText(customData.text)
+                                    break;
+                                case "Damage_Waiver":
                                     setDamageWaiver(customData.text)
                                     break;
-                                case "Matterport_URL":
-                                    setMatterportURL(customData.text)
+                                case "Security_Deposit":
+                                    setSecurityDeposit(customData.text)
                                     break;
                                 case "Matterport_URL":
                                     setMatterportURL(customData.text)
@@ -220,7 +225,7 @@ export const PropertyPageTemplate = ( props ) =>
                 setShowNotesReadMore(false)
                 setAmenitiesLength(0)
                 setPoolDimensions(null)
-                setDamageWaiver(null)
+                setDamageWaiverText(null)
                 setMatterportURL(null)
                 setWaiverOpen(false)
                 setTravelDistances({display: false, Town: null, Beach:null, Golf:null, Airport:null, Car:null})
@@ -802,14 +807,14 @@ export const PropertyPageTemplate = ( props ) =>
                                                 <center><a href="/about/booking-terms-conditions" target="_blank"><FontAwesomeIcon icon={faFileContract} style={{margin:"auto"}} /> <span style={{textDecoration:"underline", cursor:"pointer"}}>{t("Booking Terms & Conditions")}</span> <FontAwesomeIcon icon={faExternalLinkAlt} style={{margin:"auto"}} /></a></center>
                                                 </div>
                                                 }
-                                                {damageWaiver && propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
+                                                {damageWaiverText && propId !== "590fc0c2-b40c-4cf4-b2e2-d67a8c3ae9d4" &&
                                                 <div style={{paddingBottom:"20px"}}> 
                                                     <br />
                                                     <center><FontAwesomeIcon icon={faExclamationCircle} style={{margin:"auto"}} /> <span role="button" tabindex="0" aria-label="Damage Waiver" style={{textDecoration:"underline", cursor:"pointer"}} onClick={()=>setWaiverOpen(!waiverOpen)} onKeyDown={(e)=>{if(e.key==="Enter"){setWaiverOpen(!waiverOpen)}}}>{t("Security Deposit/Damage Waivers")}</span> <FontAwesomeIcon className={`expand-chevron ${waiverOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto"}} /></center>
                                                     <Collapse in ={waiverOpen}>
                                                         <div>
                                                             <p>
-                                                                {damageWaiver}
+                                                            <span dangerouslySetInnerHTML={{__html: t("Important: We are committed to protecting our properties which is why we've partnered with Know Your Guest, the leading vacation rental guest-screening provider. <br /> Please note that before your booking begins, you will need to verify your details through Know Your Guest. You will also be given the choice between paying a refundable deposit or buying a non-refundable damage waiver. We suggest you buy the damage waiver as this protects you in case you cause accidental damage during a booking.")}} />
                                                             </p>
                                                         </div>
                                                     </Collapse>

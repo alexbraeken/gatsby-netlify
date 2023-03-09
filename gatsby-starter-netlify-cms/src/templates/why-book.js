@@ -68,6 +68,8 @@ export const WhyBookPageTemplate = ({
   sliderImgPropId3,
   part3,
   part3Img,
+  part4,
+  part4Img,
   testimonialHeader
 }) => {
 
@@ -229,10 +231,33 @@ export const WhyBookPageTemplate = ({
           position: "relative"}}>
         <Container>
           <Row>
-          <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
-            <p>
-              {part3.text[language]}
-            </p>
+            <Col>
+              <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
+              <p>
+                {part3.text[language]}
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      }
+      {part4 && 
+      <section style={{
+          paddingBottom: "50px",
+          position: "relative"}}>
+        <Container>
+          <Row>
+            <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", paddingTop: "50px", paddingBottom: "50px", zIndex: "1"}}>
+              <h3 className="has-text-weight-semibold is-size-2">{part4.header[language]}</h3>
+              <p>
+                {part4.text[language]}
+              </p>
+            </Col>
+            <Col xs={12} md={6} style={{display: "flex"}}>
+              <div style={{width: "100%", margin: "auto 20px", textAlign:"center"}}>
+                <img src= {part4Img.publicURL} style={{width: "90%", maxWidth:"350px"}}/>
+              </div>
+          </Col>
           </Row>
         </Container>
       </section>
@@ -270,6 +295,8 @@ WhyBookPageTemplate.propTypes = {
   sliderImgPropId3: PropTypes.string,
   part3Img:PropTypes.object,
   part3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  part4Img:PropTypes.object,
+  part4: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   testimonialHeader: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }
 
@@ -297,6 +324,8 @@ const WhyBookPage = ({ data }) => {
         sliderImgPropId3={post.frontmatter.sliderImgPropId3}
         part3Img={post.frontmatter.part3Img}
         part3={post.frontmatter.part3}
+        part4Img={post.frontmatter.part4Img}
+        part4={post.frontmatter.part4}
         testimonialHeader={post.frontmatter.testimonialHeader}
       />
     </Layout>
@@ -400,6 +429,26 @@ export const WhyBookPageQuery = graphql`query WhyBookPage($id: String!, $languag
         publicURL
       }
       part3 {
+        header {
+          en
+          pt
+          fr
+          es
+        }
+        text {
+          en
+          pt
+          fr
+          es
+        }
+      }
+      part4Img {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+        }
+        publicURL
+      }
+      part4 {
         header {
           en
           pt
