@@ -761,6 +761,22 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </p>
                                                     </Tab>
                                                     }
+                                                    {damageWaiver && securityDeposit &&
+                                                    <Tab eventKey="securityDeposits" title={t("Deposits & Waivers")} tabClassName="orangeText">
+                                                        <p>
+                                                            <b>{t("Options")}</b>
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                {t("Security Deposit")}: <span style={{float: "right"}}>{securityDeposit}€</span>
+                                                            </li>
+                                                            <li>
+                                                                {t("Damage Waiver")}: <span style={{float: "right"}}>{damageWaiver}€</span>
+                                                            </li>
+                                                        </ul>
+                                                    </Tab>
+                                                    }
+                                                    
                                                 </Tabs>
                                                 </div>
                                                 <br />
