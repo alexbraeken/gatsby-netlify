@@ -126,53 +126,56 @@ export const PropertyPageTemplate = ( props ) =>
                         let distances = {}
                         let langOpinions = {}
                         results.forEach(customData => {
-                            switch(customData.customDataField.name){
-                                case "Pool Dimensions":
-                                    setPoolDimensions(customData.text)
-                                    break;
-                                case "Damages_Security_Deposit":
-                                    setDamageWaiverText(customData.text)
-                                    break;
-                                case "Damage_Waiver":
-                                    setDamageWaiver(customData.text)
-                                    break;
-                                case "Security_Deposit":
-                                    setSecurityDeposit(customData.text)
-                                    break;
-                                case "Matterport_URL":
-                                    setMatterportURL(customData.text)
-                                    break;
-                                case "Airport_distance":
-                                    distances.Airport_distance = customData.text
-                                    break;
-                                case "Market_Distance":
-                                    distances.Market_Distance = customData.text
-                                    break;
-                                case "Beach_distance":
-                                    distances.Beach_distance = customData.text
-                                    break;
-                                case "Golf_distance":
-                                    distances.Golf_distance = customData.text
-                                    break;
-                                case "Town_distance":
-                                    distances.Town_distance = customData.text 
-                                    break;  
-                                case "Car_Recommendation":
-                                    distances.Car_Recommendation = customData.text  
-                                    break;
-                                case "Smarta_Opinion_fr":
-                                    langOpinions.Smarta_Opinion_fr = customData.text 
-                                    break;
-                                case "Smarta_Opinion_es":
-                                    langOpinions.Smarta_Opinion_es = customData.text 
-                                    break;
-                                case "Smartavillas_Opinion":
-                                    langOpinions.Smartavillas_Opinion = customData.text 
-                                    break;
-                                case "Smarta_Opinion_pt":
-                                    langOpinions.Smarta_Opinion_pt = customData.text 
-                                    break;
+                            if(customData.text !== "null"){
+                                switch(customData.customDataField.name){
+                                    case "Pool Dimensions":
+                                        setPoolDimensions(customData.text)
+                                        break;
+                                    case "Damages_Security_Deposit":
+                                        setDamageWaiverText(customData.text)
+                                        break;
+                                    case "Damage_Waiver":
+                                        setDamageWaiver(customData.text)
+                                        break;
+                                    case "Security_Deposit":
+                                        setSecurityDeposit(customData.text)
+                                        break;
+                                    case "Matterport_URL":
+                                        setMatterportURL(customData.text)
+                                        break;
+                                    case "Airport_distance":
+                                        distances.Airport_distance = customData.text
+                                        break;
+                                    case "Market_Distance":
+                                        distances.Market_Distance = customData.text
+                                        break;
+                                    case "Beach_distance":
+                                        distances.Beach_distance = customData.text
+                                        break;
+                                    case "Golf_distance":
+                                        distances.Golf_distance = customData.text
+                                        break;
+                                    case "Town_distance":
+                                        distances.Town_distance = customData.text 
+                                        break;  
+                                    case "Car_Recommendation":
+                                        distances.Car_Recommendation = customData.text  
+                                        break;
+                                    case "Smarta_Opinion_fr":
+                                        langOpinions.Smarta_Opinion_fr = customData.text 
+                                        break;
+                                    case "Smarta_Opinion_es":
+                                        langOpinions.Smarta_Opinion_es = customData.text 
+                                        break;
+                                    case "Smartavillas_Opinion":
+                                        langOpinions.Smartavillas_Opinion = customData.text 
+                                        break;
+                                    case "Smarta_Opinion_pt":
+                                        langOpinions.Smarta_Opinion_pt = customData.text 
+                                        break;
+                                }
                             }
+                            
                         })
 
                         if(Object.keys(distances).length > 0){
@@ -501,7 +504,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                     {setDescriptionsLoading(false)}
                                                     {handleName(descriptions.value[lang]?.name || descriptions.value.en_US.name)}
                                                     {handleSummary(descriptions.value[lang]?.summary || descriptions.value.en_US.summary)}
-                                                    {(descriptions.value[lang]?.space || descriptions.value.en_US.space) ?
+                                                    {((descriptions.value[lang]?.space || descriptions.value.en_US.space)) &&
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
@@ -517,15 +520,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 </div>
                                                         </Col>
                                                     </Row>
-                                                    :
-                                                    <Row>
-                                                        <Col>       
-                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>
                                                     }
-                                                    { (descriptions.value[lang]?.neighborhood || descriptions.value.en_US.neighborhood) ? 
+                                                    { ((descriptions.value[lang]?.neighborhood || descriptions.value.en_US.neighborhood)) && 
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
@@ -548,16 +544,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 </div>
                                                         </Col>
                                                     </Row>
-                                                    :
-                                                    <Row>
-                                                        <Col>       
-                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>
                                                     }
                                                     <br />
-                                                    { (descriptions.value[lang]?.transit || descriptions.value.en_US.transit) ? 
+                                                    { ((descriptions.value[lang]?.transit || descriptions.value.en_US.transit)) && 
                                                     <Row>
                                                         <hr />
                                                         <Col xs={12} md={travelDistances.display? 5 : 9}>
@@ -605,13 +594,6 @@ export const PropertyPageTemplate = ( props ) =>
                                                         }
                                                         
                                                     </Row>
-                                                    :
-                                                    <Row>
-                                                        <Col>       
-                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>
                                                     }
                                                     {reviews && reviews.length>0 && 
                                                     <Row>
@@ -625,7 +607,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </Col>
                                                     </Row>
                                                     }
-                                                    {(descriptions.value[lang]?.notes || descriptions.value.en_US.notes) ? 
+                                                    {((descriptions.value[lang]?.notes || descriptions.value.en_US.notes)) &&
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
@@ -643,15 +625,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 </div>
                                                         </Col>
                                                     </Row>
-                                                    :
-                                                    <Row>
-                                                        <Col>       
-                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>
                                                     }
-                                                    {(descriptions.value[lang]?.access || descriptions.value.en_US.access) ? 
+                                                    {((descriptions.value[lang]?.access || descriptions.value.en_US.access)) &&
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
@@ -669,15 +644,8 @@ export const PropertyPageTemplate = ( props ) =>
                                                                 </div>
                                                         </Col>
                                                     </Row>
-                                                    :
-                                                    <Row>
-                                                        <Col>       
-                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>
                                                     }
-                                                    {(descriptions.value[lang]?.interaction || descriptions.value.en_US.interaction ) ? 
+                                                    {((descriptions.value[lang]?.interaction || descriptions.value.en_US.interaction )) &&
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
@@ -693,13 +661,6 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     {(descriptions.value[lang]?.interaction.length>400 || descriptions.value.en_US.interaction.length>400 ) && <button className="btn" type="" onClick={()=>setShowInteractionReadMore(!showInteractionReadMore)}>{showInteractionReadMore?<>Less...</>:<p>{t("Read more")}...</p>}</button>}
                                                                     <br />
                                                                 </div>
-                                                        </Col>
-                                                    </Row>
-                                                    :
-                                                    <Row>
-                                                        <Col>       
-                                                            <div className="placeholder-box blink" style={{height:"400px"}}>
-                                                            </div>
                                                         </Col>
                                                     </Row>
                                                     }
