@@ -124,7 +124,7 @@ const PropertyCardComp = (props) => {
           </div>
           </div>
         
-          {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 &&
+          {props.item.customData?.Winter_Let_Price && props.item.customData?.Winter_Let_Price.length > 0 && props.item.customData?.Winter_Let_Price !== "null" &&
           <div className="ribbon"><span>{t("Also Winter Let")}</span></div>
           }
         {showAmenities && 
