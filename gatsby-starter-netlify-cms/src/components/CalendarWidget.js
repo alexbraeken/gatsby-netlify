@@ -132,6 +132,7 @@ const CalendarWidget = (props) => {
       });
     const [minStayAlert, setMinStayAlert] = useState(false)
     const [startMonthYear, setStartMonthYear] = useState({startYear: null, startMonth: null})
+    const [minStay, setMinStay] = useState(null)
 
     const {t} = useTranslation(['calendar', 'translation']);
     const { language } = useI18next()
@@ -175,6 +176,7 @@ const CalendarWidget = (props) => {
         })
         return function cleanup(){
             setRange(getInitialState)
+            setMinStay(null)
             setDisabledDays([new Date(), new Date()])
             setDisabledCheckinDays([])
         }
@@ -203,8 +205,10 @@ const CalendarWidget = (props) => {
       return !from || isBeforeFirstDay || isRangeSelected;
     }
     
-    const handleDayClick = (day, modifiers = {}) => {
+    const handleDayClick = (day, modifiers = {}, e) => {
       const { from, to } = range;
+      const minimumStay = minStay && Number.isInteger(minStay) ? minStay : parseInt(document.getElementById(day).getAttribute('data-minStay'))
+
 
       if(modifiers.disabledDays || (modifiers.checkinDisallowed && isSelectingFirstDay(from, to, day))){
         return;
@@ -222,31 +226,32 @@ const CalendarWidget = (props) => {
         return;
       }
       if (isSelectingFirstDay(from, to, day)) {
-        if(day)
-        setRange({
-          from: day,
-          to: null,
-          enteredTo: null,
-        });
+        if(day){
+          setMinStay(minimumStay)
+          setRange({
+            from: day,
+            to: null,
+            enteredTo: null,
+          });
+        }
       } else {
         if(day.valueOf() === from.valueOf()){
           handleResetClick();
           return;
         }
-        if(props.minDays){
+        if(minimumStay){
           let minDate = new Date(from.valueOf())
-          minDate.setDate(minDate.getDate() + props.minDays)
+          minDate.setDate(minDate.getDate() + minimumStay)
           if(day < minDate){
             triggerMinStayAlert()
             return
           }
+          setRange({
+            from: from,
+            to: day,
+            enteredTo: day,
+          });
         }
-  
-        setRange({
-          from: from,
-          to: day,
-          enteredTo: day,
-        });
       }
     }
 
@@ -254,9 +259,9 @@ const CalendarWidget = (props) => {
       const { from, to } = range
 
       let minDate
-      if(from && props.minDays){
+      if(from && minStay){
         minDate = new Date(from.valueOf())
-        minDate.setDate(minDate.getDate() + props.minDays)
+        minDate.setDate(minDate.getDate() + minStay)
       }
 
       if (!isSelectingFirstDay(from, to, day)) {
@@ -282,6 +287,7 @@ const CalendarWidget = (props) => {
     }
 
     const handleResetClick =() => {
+        setMinStay(null)
         setRange(getInitialState());
       }
 
@@ -394,16 +400,16 @@ const CalendarWidget = (props) => {
           margin: 'auto',
         };
         return (
-          <div style={cellStyle}>
-            <div className={`cell-date`} style={dateStyle}>{day.getDate()}</div>
+          <div style={cellStyle} id={day} data-minStay={props.pricingPeriods?.[date] && props.pricingPeriods[date].minimumStay}>
+            <div className={`cell-date`} style={dateStyle} >{day.getDate()}</div>
             {modifiers.checkinDisallowed &&
-              <div className="icon-info" style={checkinIcon}>
+              <div className="icon-info" style={checkinIcon} >
                <GiLockedDoor />
                <span className="tooltiptext">{t("No Checkin Allowed")}</span>
               </div>
             }
             {props.pricingPeriods?.[date] &&
-                <div style={priceStyle}>
+                <div style={priceStyle} >
                   {props.pricingPeriods[date]? props.pricingPeriods[date].amount : props.pricingPeriods[earlier].amount}{props.currSymbol}
                 </div>
                 }
@@ -434,7 +440,7 @@ const CalendarWidget = (props) => {
               </button>
             </div>
           )}
-          <span className={`min-warning ${minStayAlert? 'visible': ''}`} style={{minWidth:"100%"}}>{t("Min stay")}: {props.minDays} {t("Nights")}</span>
+          <span className={`min-warning ${minStayAlert && minStay ? 'visible': ''}`} style={{minWidth:"100%"}}>{t("Min stay")}: {minStay} {t("Nights")}</span>
 
         </div>
             <DayPicker

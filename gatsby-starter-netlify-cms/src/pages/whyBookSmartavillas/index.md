@@ -53,6 +53,30 @@ part3:
         fr: "Chez Smartavillas, il ne s'agit pas seulement d'hébergement. Pour nous, il s'agit de l'ensemble du package... nous croyons en la fourniture d'une expérience. Nous pouvons organiser la location de voitures, les transferts aéroport, les excursions d'une journée, les réservations de restaurants, les gâteaux d'anniversaire, le champagne et les fleurs... pour n'en citer que quelques-uns ! Et pourquoi ne pas vous laisser tenter par notre superbe gamme de paniers shopping ou un repas frais et savoureux de notre nouveau menu de plats cuisinés au four qui peut être prêt et attendre votre arrivée. Nous accueillons toutes les demandes spéciales pour vous aider à créer des souvenirs de vacances spéciaux…"
         es: "En Smartavillas, no se trata solo del alojamiento. Para nosotros, se trata de todo el paquete ... creemos en brindar una experiencia. Podemos organizar alquiler de coches, traslados al aeropuerto, excursiones de un día, reservas en restaurantes, tartas de cumpleaños, champán y flores ... ¡por nombrar solo algunos! Y por qué no disfrutar de nuestra brillante variedad de paquetes de compras o de una comida fresca y sabrosa de nuestro nuevo menú de comida lista para el horno que puede estar lista y esperando su llegada. Damos la bienvenida a cualquier solicitud especial para ayudarlo a crear recuerdos especiales de vacaciones ..."
 part3Img: ../../../static/img/food_pack.jpg
+part4: 
+    header: 
+        en: "PEACE OF MIND"
+        pt: "PAZ DE ESPÍRITO"
+        fr: "TRANQUILLITÉ D'ESPRIT"
+        es: "TRANQUILIDAD DE ESPÍRITU"
+    text: 
+        en: "Smartavillasis committed to our owners that their homes are protected during bookings. That is why we've partnered with Know Your Guest.
+        Know Your Guest is the leading vacation rental guest-screening provider. We use them to independently verify our
+        guests as well as collect a deposit or allow you to buy a damage waiver. We suggest you buy the damage waiver
+        as this protects you in case you cause accidental damage during a booking."
+        pt: "A Smartavillasis comprometeu-se com os seus proprietários a proteger as suas casas durante as reservas. É por isso que fizemos uma parceria com o Know Your Guest.
+         Know Your Guest é o principal fornecedor de triagem de hóspedes para aluguel por temporada. Nós os usamos para verificar independentemente nossa
+         convidados, bem como cobrar um depósito ou permitir que você compre um termo de responsabilidade. Sugerimos que você compre o termo de responsabilidade
+         pois isso protege você caso cause danos acidentais durante uma reserva."
+        fr: "Smartavillas s'engage auprès de nos propriétaires à ce que leurs maisons soient protégées lors des réservations. C'est pourquoi nous nous sommes associés à Know Your Guest.
+         Know Your Guest est le principal fournisseur de sélection des clients pour les locations de vacances. Nous les utilisons pour vérifier de manière indépendante nos
+         invités ainsi que de percevoir une caution ou vous permettre d'acheter une assurance dommages. Nous vous suggérons d'acheter l'assurance dommages
+         car cela vous protège en cas de dommages accidentels lors d'une réservation."
+        es: "Smartavillas se compromete con nuestros propietarios a que sus viviendas estén protegidas durante las reservas. Es por eso que nos hemos asociado con Know Your Guest.
+         Know Your Guest es el proveedor líder de evaluación de huéspedes de alquileres vacacionales. Los usamos para verificar de forma independiente nuestros
+         huéspedes, además de cobrar un depósito o permitirle comprar una exención de responsabilidad por daños. Le sugerimos que compre la exención de daños
+         ya que esto lo protege en caso de que cause daños accidentales durante una reserva."
+part4Img: ../../../static/img/superhog_logo_black.svg
 testimonialHeader: 
     en: "Here´s what our guests have to say"
     pt: "Aqui está o que os clientes têm a dizer"
