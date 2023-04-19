@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next';
 import { Helmet } from 'react-helmet'
 import { GiLockedDoor } from "@react-icons/all-files/gi/GiLockedDoor";
 import 'react-day-picker/lib/style.css';
+import { parse } from 'date-fns';
 
 const LANGUAGES = ['en', 'pt', 'fr', 'es']
 
@@ -118,7 +119,9 @@ const FIRST_DAY = {
 };
 
 
-
+/*
+new Intl.DateTimeFormat('en-GB', {timeZone: 'UTC' }).format(new Date (date))
+*/
 
 
 //Calendar Widget in Property page
@@ -164,10 +167,10 @@ const CalendarWidget = (props) => {
             let disabledCheckins = []
             array.checkIn.forEach(date =>{
                 if(date.reason === "rule"){
-                  disabledCheckins.push(new Date (date.date))
+                  disabledCheckins.push(parseLocalDate(date.date))
                 }
                 else {
-                  disabledDates.push(new Date (date.date))
+                  disabledDates.push(parseLocalDate(date.date))
                 }
             })
             setDisabledDays(disabledDates)
@@ -181,6 +184,7 @@ const CalendarWidget = (props) => {
             setDisabledCheckinDays([])
         }
     }, [])
+
 
     useEffect(() => {
       props.onChange(range)
@@ -207,7 +211,7 @@ const CalendarWidget = (props) => {
     
     const handleDayClick = (day, modifiers = {}, e) => {
       const { from, to } = range;
-      const minimumStay = minStay && Number.isInteger(minStay) ? minStay : parseInt(document.getElementById(day).getAttribute('data-minStay'))
+      const minimumStay = minStay && Number.isInteger(minStay) ? minStay : parseInt(document.getElementById(day).getAttribute('data-minstay'))
 
 
       if(modifiers.disabledDays || (modifiers.checkinDisallowed && isSelectingFirstDay(from, to, day))){
@@ -299,6 +303,13 @@ const CalendarWidget = (props) => {
       nameField[0].focus()
     }
 
+
+    const parseLocalDate = (dateString) => {
+      // Convert local date string to UTC before storing
+      const zonedDate = parse(dateString, 'yyyy-MM-dd', new Date());
+      return zonedDate;
+    };
+
     const from = range.from;
     const to = range.to;
     const enteredTo = range.enteredTo
@@ -363,9 +374,16 @@ const CalendarWidget = (props) => {
     let limitDate = DateUtils.addMonths(today, 30)
 
     const renderDay = (day, modifiers) => {
+      
+        const dateDay = day.getUTCDate() || day.getDate() 
+        const dateMonth = day.getUTCMonth() || day.getMonth()
+        const dateYear = day.getUTCFullYear() || day.getFullYear()
+        
+      /*
         const dateDay = day.getDate()
         const dateMonth = day.getMonth()
         const dateYear = day.getFullYear()
+      */
         let date= `${dateYear}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
         let earlier = `${dateYear-1}-${dateMonth+1 > 9 ? dateMonth+1 : `0${dateMonth+1}`}-${dateDay > 9 ? dateDay : `0${dateDay}`}`
 
@@ -400,7 +418,7 @@ const CalendarWidget = (props) => {
           margin: 'auto',
         };
         return (
-          <div style={cellStyle} id={day} data-minStay={props.pricingPeriods?.[date] && props.pricingPeriods[date].minimumStay}>
+          <div style={cellStyle} id={day} data-minstay={props.pricingPeriods?.[date] && props.pricingPeriods[date].minimumStay}>
             <div className={`cell-date`} style={dateStyle} >{day.getDate()}</div>
             {modifiers.checkinDisallowed &&
               <div className="icon-info" style={checkinIcon} >
