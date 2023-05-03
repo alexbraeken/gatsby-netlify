@@ -1510,7 +1510,14 @@ $min-margin: 10px
 
 @media (max-width: 991px)
   .home-search-container
+    max-width: 80%
     flex-wrap: wrap
+    & > *:not(.submitBtn):not(.expand-search)
+          max-width: 90%
+    &.shrink
+      & .expand-search
+          max-width: 90%
+
 
 //Top Date Picker
 .top-date-picker
@@ -1914,6 +1921,12 @@ $min-margin: 10px
   max-width: 1300px
   flex-direction: row
   flex-wrap: nowrap
+
+@media only screen and (max-width: 900px)
+  .container
+    max-width: 95%
+  .navbar .container
+    max-width: 95%
 
 .dropdown-submenu
   position: absolute
@@ -5087,7 +5100,7 @@ p.about-section
   .hide-mobile
     display: none!important
 
-.colSectionBg
+.colSectionBg, .stickyImg
   opacity: 0
   transition: all 0.3s
   &.active

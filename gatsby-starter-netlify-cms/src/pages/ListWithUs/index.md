@@ -20,8 +20,15 @@ part1:
         pt: "<p> Criar a propriedade perfeita para aluguel por temporada faz parte de nossa missão e, como especialistas locais especializados em aluguel e gerenciamento de propriedades, oferecemos aos nossos proprietários uma visão local, atenção aos detalhes e uma abordagem dedicada e flexível para atender a todas as necessidades. Oferecendo pacotes de aluguel com tudo incluído, ou sob medida, temos todos os aspectos cobertos, seja gerenciamento de canais de marketing, fotografia profissional, limpeza, manutenção de propriedades ou imóveis. Então porque não <a href='/contact' style='color: #f5821e; text-decoration: underline;'>Envie-nos um e-mail</a> agora para marcar sua consulta e discutir suas necessidades."
         fr: "<p> Créer la location de vacances parfaite fait partie de notre mission et en tant qu'experts locaux spécialisés dans la location et la gestion de propriétés, nous offrons à nos propriétaires une vision locale, une attention aux détails et une approche dédiée et flexible pour répondre à tous les besoins. Proposant des forfaits de location tout compris ou sur mesure, nous couvrons tous les aspects, qu'il s'agisse de la gestion des canaux de marketing, de la photographie professionnelle, de l'entretien ménager, de l'entretien de la propriété ou de l'immobilier. Alors pourquoi pas <a href='/contact' style='color: #f5821e; text-decoration: underline;'>Écrivez-nous</a> dès maintenant pour prendre rendez-vous et discuter de vos besoins.</p>"
         es: "<p> Crear la propiedad de alquiler vacacional perfecta es parte de nuestra misión y, como expertos locales que se especializan en el alquiler y la gestión de propiedades, ofrecemos a nuestros propietarios información local, atención a los detalles y un enfoque dedicado y flexible para satisfacer todas las necesidades. Ofreciendo paquetes de alquiler con todo incluido, o hechos a medida, cubrimos todos los aspectos, ya sea gestión de canales de marketing, fotografía profesional, limpieza, mantenimiento de propiedades o bienes raíces. Entonces, ¿por qué no <a href='/contact' style='color: #f5821e; text-decoration: underline;'>Envíenos un correo electrónico</a> ahora para reservar su cita y analizar sus necesidades.</p> " 
-part1Img: ../../../static/img/Smarta-12235.jpg
-part2: 
+part1Img: ../../../static/img/office-team.jpg
+part2:
+    scrollImgs:
+        scrollImg1: ../../../static/img/digital.png
+        scrollImg2: ../../../static/img/agreement.png
+        scrollImg3: ../../../static/img/tools.png
+        scrollImg4: ../../../static/img/swimming-pool.png
+        scrollImg5: ../../../static/img/camera (1).png
+        scrollImg6: ../../../static/img/house.png
     header: 
         en: "WHAT MAKES US DIFFERENT"
         pt: "O QUE NOS DIFERENCIA"

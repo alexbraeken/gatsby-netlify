@@ -51,6 +51,8 @@ export const WhyUsPageTemplate = ({
 
   const part2Bg = getImage(part2Img.childImageSharp)
   const part2BgImg = convertToBgImage(part2Bg)
+  
+  const part2ScrollImgs = Object.keys(part2.scrollImgs).map(img => { return part2.scrollImgs[img] })
 
   const Col1Bg = getImage(part3.col1img.childImageSharp)
   const Col1BgImg = convertToBgImage(Col1Bg)
@@ -70,7 +72,7 @@ export const WhyUsPageTemplate = ({
       let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
       let parallaxToneBg = gsap.utils.toArray('.parallax-tone-bg');
       let colSections = gsap.utils.toArray(".colSection")
-
+      let stickyImgSections = gsap.utils.toArray(".stickyImgSection")
 
 
       parallaxCont.forEach((cont, i)=>{
@@ -166,6 +168,21 @@ export const WhyUsPageTemplate = ({
         })
       })
 
+      stickyImgSections.forEach((img, i)=>{
+        const sectionImg = document.querySelector(`#${img.dataset.img}`);  
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: img,
+            start: "top center",
+            onToggle: (self)=>{
+              self.isActive ? sectionImg.classList.add("active") : sectionImg.classList.remove("active")
+            }
+          },
+        })
+      })
+
+
+
       
     return () => {
       setLoaded(false)
@@ -211,122 +228,82 @@ export const WhyUsPageTemplate = ({
           </div>
         </Col>
         </Row> 
-        <Row style={{flexDirection:"column", position:"relative"}}>
-        <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Packages")}</h2>
-          <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Our Management Packages")}</h3>
-          <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
-            borderRadius: "4px",
-            backgroundColor:"white"}}>
-            <div className="package-table">
-              <div className="table-cell"></div>
-              <div className="table-cell silver">
-                <h3>Silver</h3>
+      </Container>
+      </section>
+      <section className="newLine" style={{
+        paddingBottom: "100px",
+        position: "relative"}}>
+          <div style={{position:"absolute", height:"100%", width:"100%", left:0, top:0, display:"flex"}}>
+            <Col xs={12} md={6}>
+            </Col>
+            <Col xs={12} md={6} style={{height:"100%", padding:0}}>
+              <div className="orange-gradient" style={{width:"100%", height:"100%", borderBottomLeftRadius:"40px", borderTopLeftRadius:"40px"}}></div>
+            </Col>
+          </div>
+      <Container>
+        <Row>
+          <Col xs={0} md={6}>
+            <StickyBox>
+              <div style={{height:"100vh", display:"flex"}}>
+                {part2ScrollImgs.map((img, i) => 
+                  <div className="img-cont stickyImg" id={`services-${i}`} style={{margin:"auto", position: "absolute", left:"50%", top:"50%", transform:"translate(-50%, -50%)", width:"100%", maxWidth:"400px"}}>
+                    <PreviewCompatibleImage imageInfo={img} className="parallax-tone-img" />
+                  </div>
+                  )}
               </div>
-              <div className="table-cell gold">
-                <h3>Gold</h3>
-              </div>
-              <div className="table-cell platinum">
-                <h3>Platinum</h3>
-              </div>
-              <div className="table-cell cell-feature">Property Care Package <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Property Care Package includes the cleaning and maintenance of properties before and after bookings</span></div></div>
-              <div className="table-cell">
-                <AiOutlineCheck />
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell cell-feature">Booking Management <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Booking Management includes the processing of bookings, payments and guest conierge services</span></div></div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell cell-feature">In Person Checkin <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> In Person Checkin includes in person and greeting and home tour at guest arrival</span></div></div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell cell-feature">Channel Advertising <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Channel Advertising includes setting up and advertising property on Online Travel Agency channels such as AirBnB, Booking.com, VRBO etc.</span></div></div>
-              <div className="table-cell">
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell cell-feature">Legal Documentation <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Legal Documentation includes setting up tax regularisation and all legal necessities.</span></div></div>
-              <div className="table-cell">
-
-              </div>
-              <div className="table-cell">
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell cell-feature">Arrange Alojamento Local <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Arranging Alojamento Local includes documentation, guidance and all necessary steps to assure property is licensed for rentals.</span></div></div>
-              <div className="table-cell">
-
-              </div>
-              <div className="table-cell">
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell cell-feature">Cleaning Service <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> Cleaning Service include all cleaning products, displacement and quality assurance.</span></div></div>
-              <div className="table-cell">
-
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell cell-feature">24/7 support <br /><div className="table-tooltip-icon"><AiOutlineInfoCircle /> <span className="tooltiptext"> 24/7 support for both guests and owners.</span></div></div>
-              <div className="table-cell">
-
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
-              </div>
-              <div className="table-cell">
-              <AiOutlineCheck />
-                
+            </StickyBox> 
+          </Col>
+          <Col xs={12} md={6}>
+            <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Why?")}</h2>
+          <div>
+            <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Why Work With Us")}</h3>
+            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
+              <div style={{margin:"auto"}} data-img="services-0" className="stickyImgSection">
+                <h3>Local Knowledge</h3>
+                <p>Local knowledge with a dedicated & multi-lingual and experienced team</p>
               </div>
             </div>
+            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
+              <div style={{margin:"auto"}} data-img="services-1" className="stickyImgSection">
+                <h3>Packages</h3>
+                <p>Service packages to suit your needs</p>
+              </div>
+            </div>
+            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
+              <div style={{margin:"auto"}} data-img="services-2" className="stickyImgSection">
+                <h3>Customer Focus</h3>
+                <p>
+                  Customer focus is our mantra
+                </p>
+              </div>
+            </div>
+            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
+              <div style={{margin:"auto"}} data-img="services-3" className="stickyImgSection">
+                <h3>Leading Tech</h3>
+                <p>Industry leading tech to maximise your rental value</p>
+              </div>
+            </div>
+            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
+              <div style={{margin:"auto"}} data-img="services-4" className="stickyImgSection">
+                <h3>Leading Tech</h3>
+                <p>Industry leading tech to maximise your rental value</p>
+              </div>
+            </div>
+            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
+              <div style={{margin:"auto"}} data-img="services-5" className="stickyImgSection">
+                <h3>Leading Tech</h3>
+                <p>Industry leading tech to maximise your rental value</p>
+              </div>
+            </div>
+          </div>
           </Col>
-          </Row>
+        </Row>
+        </Container>
+         </section>
+      <section className="newLine" style={{
+        paddingBottom: "100px",
+        position: "relative"}}>
+        <Container>
         <Row style={{flexDirection:"column", position:"relative"}}>
         <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Potential")}</h2>
           <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Your property earning potential")}</h3>
@@ -687,6 +664,44 @@ export const WhyUsPageQuery = graphql`query WhyUsPage($id: String!, $language: S
           pt
           fr
           es
+        }
+        scrollImgs {
+          scrollImg1 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+            publicURL
+          }
+          scrollImg2 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+            publicURL
+          }
+          scrollImg3 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+            publicURL
+          }
+          scrollImg4 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+            publicURL
+          }
+          scrollImg5 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+            publicURL
+          }
+          scrollImg6 {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+            publicURL
+          }
         }
       }
       part2Img {
