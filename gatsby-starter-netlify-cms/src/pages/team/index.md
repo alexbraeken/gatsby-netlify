@@ -9,7 +9,7 @@ langTitles:
     fr: "Qui sommes nous?"
     es: "Quienes somos nosotros"
 image: ../../../static/img/team-drone.jpg
-secondaryImage: ../../../static/img/R17_-_1280_1.jpg
+secondaryImage: ../../../static/img/Rachel Robinson Profile.JPG
 heading: 
     en: "The Team"
     pt: "A Equipa"
@@ -37,7 +37,7 @@ intro:
 teams:
     office:
         heading: "Office Team"
-        image: ../../../static/img/Smarta-12209.jpg
+        image: ../../../static/img/new office team.jpg
         description: 
             en: "The operational heart of Smartavillas tying it all together. The office team keeps the well-oiled machine running by taking the bookings, coordinating with the other teams, communicating with guests and other business and making sure the everyone gets what they need at the right time."
             pt: "O coração operacional de Smartavillas amarrando tudo junto. A equipe do escritório mantém a máquina funcionando bem, fazendo as reservas, coordenando com as outras equipes, comunicando-se com os hóspedes e outros negócios e garantindo que todos recebam o que precisam no momento certo."
