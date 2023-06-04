@@ -52,7 +52,9 @@ export const WhyUsPageTemplate = ({
   const part2Bg = getImage(part2Img.childImageSharp)
   const part2BgImg = convertToBgImage(part2Bg)
   
-  const part2ScrollImgs = Object.keys(part2.scrollImgs).map(img => { return part2.scrollImgs[img] })
+  const part2ScrollImgs = Object.keys(part2.scrollImgs).map(img => { 
+    return part2.scrollImgs[img] 
+  })
 
   const Col1Bg = getImage(part3.col1img.childImageSharp)
   const Col1BgImg = convertToBgImage(Col1Bg)
@@ -253,6 +255,7 @@ export const WhyUsPageTemplate = ({
                     left:"50%",
                     top:"50%",
                     transform:"translate(-50%,-50%)",
+                    backgroundColor:"white",
                     width:"100%",
                     maxWidth:"400px",
                     border: "0.1rem solid rgb(60 43 43 / 20%)",
@@ -272,42 +275,43 @@ export const WhyUsPageTemplate = ({
             <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Our Services")}</h3>
             <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
               <div data-img="services-0" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff", color:"#fff"}}>Marketing</h3>
-                <p>Fully digitalized marketing, using the latest channel management technology.</p>
-              </div>
-            </div>
-            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
-              <div data-img="services-3" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>Maintenance</h3>
-                <p>General property maintenance to ensure a top quality holiday experience for guests and peace of mind for owners.</p>
-              </div>
-            </div>
-            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
-              <div data-img="services-4" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>Pools & Gardens</h3>
-                <p>Manicuring lawns, triming hedges, cleaning and checking pool chemical levels are just a few of the ways we keep all properties at their most presentable and enjoyable at all times.</p>
+                <h3 style={{fontSize:"4rem", color:"#fff", color:"#fff"}}>{t("Marketing")}</h3>
+                <p>{t("Fully digitalized marketing, using the latest channel management technology.")}</p>
               </div>
             </div>
             <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
               <div data-img="services-1" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>Photography</h3>
-                <p>Professional photography and drone shots, including lighting, scene and ambiance setting and editing.</p>
+                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Housekeeping & Laundry")}</h3>
+                <p>{t("Our cleaning teams provide the industry leading services to keep all properties as if new and allow every guest and owner to experience the property in complete comfort and safety.")}</p>
               </div>
             </div>
             <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
               <div data-img="services-2" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>Legal & Administrative Services</h3>
-                <p>
-                  Acquiring rental licenses, rental tax regularization and accountancy guidance are all available.
-                </p>
+                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Maintenance")}</h3>
+                <p>{t("General property maintenance to ensure a top quality holiday experience for guests and peace of mind for owners.")}</p>
+              </div>
+            </div>
+            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
+              <div data-img="services-3" className="stickyImgSection intro-para">
+                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Pools & Gardens")}</h3>
+                <p>{t("Manicuring lawns, triming hedges, cleaning and checking pool chemical levels are just a few of the ways we keep all properties at their most presentable and enjoyable at all times.")}</p>
+              </div>
+            </div>
+            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
+              <div data-img="services-4" className="stickyImgSection intro-para">
+                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Photography")}</h3>
+                <p>{t("Professional photography and drone shots, including lighting, scene and ambiance setting and editing.")}</p>
               </div>
             </div>
             <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
               <div data-img="services-5" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>Housekeeping & Laundry</h3>
-                <p>Our cleaning teams provide the industry leading services to keep all properties as if new and allow every guest and owner to experience the property in complete comfort and safety.</p>
+                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Legal & Administrative Services")}</h3>
+                <p>
+                 {t(" Acquiring rental licenses, rental tax regularization and accountancy guidance are all available.")}
+                </p>
               </div>
             </div>
+            
           </div>
           </Col>
         </Row>
@@ -316,8 +320,8 @@ export const WhyUsPageTemplate = ({
       <section className="newLine" style={{
         padding: "100px 0",
         position: "relative"}}>
-        <Container style={{minHeight:"100vh"}}>
-        <Row style={{flexDirection:"column", position:"relative"}}>
+        <Container style={{minHeight:"100vh", display:"flex", flexDirection:"column"}}>
+        <Row style={{flexDirection:"column", position:"relative", margin:"auto", width:"100%"}}>
         <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Potential")}</h2>
           <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Your property earning potential")}</h3>
           <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
@@ -387,7 +391,7 @@ export const WhyUsPageTemplate = ({
           <Col style={{display:"flex"}} xs={12} md={6}>
           <div style={{margin: "auto"}} className="why-list">
             <h3 className="has-text-weight-semibold is-size-2" style={{color: "#fff"}}>{part2.header[language]}</h3>
-              <div style={{margin:"80px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
+              <div style={{margin:"100px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
                 <div className="counter-bg" style={{position: "absolute", left:"-5%", top:0, width:0, height: "115%", backgroundColor:"#363636", zIndex:"1", borderTopRightRadius: "25px",
     borderBottomRightRadius: "25px",
     filter: "drop-shadow(2px 4px 6px black)"}}>
@@ -395,14 +399,10 @@ export const WhyUsPageTemplate = ({
                 </div>
                 <strong style={{fontSize: "calc(50px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={150}>150</span>+</strong><p style={{fontSize: "calc(20px + 1vw)",
-    margin: "auto 0",
-    textAlign: "center", color:"#fff", position: "absolute",
-    right: "0",
-    top: "50%",
-    transform: "translateY(-50%)", filter: "drop-shadow(2px 4px 6px black)", zIndex:"2"}}>Properties<br />managed</p>
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={150}>150</span>+</strong>
+    <p className="highlight-feature-text">{t("Properties Managed")}</p>
               </div>
-              <div style={{margin:"80px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
+              <div style={{margin:"100px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
               <div className="counter-bg" style={{position: "absolute", left:"-5%", top:0, width:0, height: "115%", backgroundColor:"#363636", zIndex:"1", borderTopRightRadius: "25px",
     borderBottomRightRadius: "25px",
     filter: "drop-shadow(2px 4px 6px black)"}}>
@@ -410,14 +410,10 @@ export const WhyUsPageTemplate = ({
 </div>
                 <strong style={{fontSize: "calc(50px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={15}>15</span>+</strong><p style={{fontSize: "calc(20px + 1vw)",
-    margin: "auto 0",
-    textAlign: "center", color:"#fff", position: "absolute",
-    right: "0",
-    top: "50%",
-    transform: "translateY(-50%)", filter: "drop-shadow(2px 4px 6px black)", zIndex:"2"}}>Years<br />experience</p>
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={15}>15</span>+</strong>
+    <p className="highlight-feature-text" >{t("Years Experience")}</p>
               </div>
-              <div style={{margin:"80px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
+              <div style={{margin:"100px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
               <div className="counter-bg" style={{position: "absolute", left:"-5%", top:0, width:0, height: "115%", backgroundColor:"#363636", zIndex:"1", borderTopRightRadius: "25px",
     borderBottomRightRadius: "25px",
     filter: "drop-shadow(2px 4px 6px black)"}}>
@@ -425,27 +421,8 @@ export const WhyUsPageTemplate = ({
 </div>
                 <strong style={{fontSize: "calc(50px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={20}>20</span>+</strong><p style={{fontSize: "calc(20px + 1vw)",
-    margin: "auto 0",
-    textAlign: "center", color:"#fff", position: "absolute",
-    right: "0",
-    top: "50%",
-    transform: "translateY(-50%)", filter: "drop-shadow(2px 4px 6px black)", zIndex:"2"}}>Dedicated<br />Team<br />members</p>
-              </div>
-              <div style={{margin:"80px auto", display:"flex", flexWrap:"nowrap", justifyContent: "space-between", width:"100%", position: "relative"}}>
-              <div className="counter-bg" style={{position: "absolute", left:"-5%", top:0, width:0, height: "115%", backgroundColor:"#363636", zIndex:"1", borderTopRightRadius: "25px",
-    borderBottomRightRadius: "25px",
-    filter: "drop-shadow(2px 4px 6px black)"}}>
-
-</div>
-                <strong style={{fontSize: "calc(50px + 5vw)",
-    lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={70}>70</span>%</strong><p style={{fontSize: "calc(20px + 1vw)",
-    margin: "auto 0",
-    textAlign: "center", color:"#fff", position: "absolute",
-    right: "0",
-    top: "50%",
-    transform: "translateY(-50%)", filter: "drop-shadow(2px 4px 6px black)", zIndex:"2"}}>Occupancy<br />rate</p>
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={20}>20</span>+</strong>
+    <p className="highlight-feature-text">{t("Dedicated Team Members")}</p>
               </div>
             </div>
           </Col>

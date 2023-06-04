@@ -24,11 +24,11 @@ part1Img: ../../../static/img/office-team.jpg
 part2:
     scrollImgs:
         scrollImg1: ../../../static/img/digital.png
-        scrollImg2: ../../../static/img/agreement.png
+        scrollImg2: ../../../static/img/house.png
         scrollImg3: ../../../static/img/tools.png
         scrollImg4: ../../../static/img/swimming-pool.png
         scrollImg5: ../../../static/img/camera (1).png
-        scrollImg6: ../../../static/img/house.png
+        scrollImg6: ../../../static/img/agreement.png
     header: 
         en: "WHAT MAKES US DIFFERENT"
         pt: "O QUE NOS DIFERENCIA"
@@ -116,7 +116,7 @@ part3:
         pt: "Visite o nosso escritório para discutir as suas exigências. Oferecemos pacotes variados de marketing, cuidados da propriedade e serviços gerais que se adaptam às suas necessidades. "
         fr: "Visitez notre bureau pour discuter de vos besoins. Nous offrons divers forfaits de marketing, d'entretien de la propriété et de services généraux pour répondre à vos besoins."
         es: "Visite nuestra oficina para hablar de sus preferencias. Ofrecemos varios planes de marketing, cuidado de la propiedad y servicios generales que se adaptan a sus necesidades."
-    col1img: ../../../static/img/Talk_to_Us.jpg
+    col1img: ../../../static/img/talk with us 2.jpg
     col2Header: 
         en: "Let's Visit Together"
         pt: "Visitemos juntos"
@@ -127,7 +127,7 @@ part3:
         pt: "A visita à propriedade é um requisito essencial da nossa empresa para podermos guiá-lo da melhor forma."
         fr: "Une visite de la propriété est un must pour satisfaire nos exigences standard et pour vous guider dans toutes vos questions."
         es: "Una visita a la propiedad es imprescindible para satisfacer nuestros requisitos estándar y para ayudarle a resolver cualquier duda."
-    col2img: ../../../static/img/Lets_Visit2.jpg
+    col2img: ../../../static/img/visit 2.jpg
     col3Header: 
         en: "Agree & Sign the paperwork!"
         pt: "Concorde e assine o Contrato"
@@ -138,7 +138,7 @@ part3:
         pt: "Uma vez decidido sobre o pacote certo, basta preencher alguns formulários, assinar o acordo e iremos começar!"
         fr: "Une fois que vous avez choisi le bon forfait, remplissez simplement quelques formulaires, signez l'accord et c'est parti !"
         es: "Una vez decidido el paquete adecuado, sólo hay que completar unos cuantos formularios, firmar el acuerdo y ya está."
-    col3img: ../../../static/img/Agree_&_Sign2.jpg
+    col3img: ../../../static/img/sign 2.jpg
 part4: 
     header: 
         en: "CUTTING EDGE TECHNOLOGY WITH A CLASSIC CUSTOMER FOCUSED APPROACH"

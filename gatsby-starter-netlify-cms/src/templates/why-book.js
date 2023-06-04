@@ -89,6 +89,7 @@ export const WhyBookPageTemplate = ({
   const slideContainer = useRef(null)
   const parallaxCont = useRef(null)
   const parallaxImg = useRef(null)
+  const parallaxImg2 = useRef(null)
   const parallaxBg = useRef(null)
 
 
@@ -108,7 +109,7 @@ export const WhyBookPageTemplate = ({
       )
 
       let parallaxCont = gsap.utils.toArray('.parallax-tone-container')
-      let parallaxImg = gsap.utils.toArray('.img-cont')
+      let parallaxImgs = gsap.utils.toArray('.img-cont')
       let parallaxBGs = gsap.utils.toArray('.parallax-bg')  
       let parallaxToneBg = gsap.utils.toArray('.parallax-tone-bg')
       let colSections = gsap.utils.toArray(".colSection")
@@ -129,7 +130,7 @@ export const WhyBookPageTemplate = ({
           }
         )
         gsap.to(
-          parallaxImg[i], 
+          parallaxImgs[i], 
           {
             yPercent: -50,
             ease: "none",
@@ -239,9 +240,9 @@ export const WhyBookPageTemplate = ({
                 </div>
                 <div className="perk-text-container" >
                   <div className="perk-text">
-                    <h3>Free Cancellation</h3>
+                    <h3>{t("Free Cancellation")}</h3>
                     <p>
-                      Change your mind within 48 hours and get a full refund on your booking.
+                      {t("Change your mind within 48 hours and get a full refund on your booking.")}
                     </p>
                   </div>
                 </div>
@@ -249,9 +250,9 @@ export const WhyBookPageTemplate = ({
               <div className="perk-container reverse" >
                 <div className="perk-text-container" >
                   <div className="perk-text">
-                    <h3>Free Cots and High Chairs</h3>
+                    <h3>{t("Free Cots and High Chairs")}</h3>
                     <p>
-                      If you're travelling with an infant or small child and would like a cot or high chair, we will gladly provide one.
+                      {t("If you're travelling with an infant or small child and would like a cot or high chair, we will gladly provide one.")}
                     </p>
                   </div>
                 </div>
@@ -275,9 +276,9 @@ export const WhyBookPageTemplate = ({
                 </div>
                 <div className="perk-text-container" >
                   <div className="perk-text" >
-                    <h3>Free Concierge Service</h3>
+                    <h3>{t("Free Concierge Service")}</h3>
                     <p>
-                      Smartavillas will deliver a round the clock conierge service to meet your every need.
+                      {t("Smartavillas will deliver a round the clock conierge service to meet your every need.")}
                     </p>
                   </div>
                 </div>
@@ -285,9 +286,9 @@ export const WhyBookPageTemplate = ({
               <div className="perk-container reverse" >
                 <div className="perk-text-container" >
                   <div className="perk-text">
-                    <h3>Welcome Packs</h3>
+                    <h3>{t("Welcome Packs")}</h3>
                     <p>
-                      Upon your arrival, receive a complimentary starter pack which includes bathroom items like handsoaps, dishwasher tablets, washing machine pods, kitchen cloth and sponge, washing up liquid, water, orange juice, milk, and a great selection of biscuits.
+                      {t("Upon your arrival, receive a complimentary starter pack which includes bathroom items like handsoaps, dishwasher tablets, washing machine pods, kitchen cloth and sponge, washing up liquid, water, orange juice, milk, and a great selection of biscuits.")}
                     </p>
                   </div>
                 </div>
@@ -403,24 +404,34 @@ export const WhyBookPageTemplate = ({
     </section>
     {part3 && 
     <section style={{
-        paddingBottom: "50px",
+        paddingBottom: "100px",
         paddingTop: "50px",
         position: "relative"}}>
       <Container>
         <Row>
-          <div className="intro-para">
-            <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
-            <p>
-              {part3.text[language]}
-            </p>
+        <Col xs={12} md={6} style={{display:"flex"}}>
+          <div className="parallax-tone-container" ref={parallaxCont}>
+            <div ref={parallaxImg2} className="img-cont" >
+              <PreviewCompatibleImage imageInfo={part3Img} className="parallax-tone-img" imgStyle={{borderRadius: "5px"}} />
+            </div>
+            <div className="parallax-tone-bg" ref={parallaxBg}></div>
           </div>
+        </Col>
+          <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", paddingTop: "50px", paddingBottom: "50px", zIndex: "1"}}>
+            <div className="intro-para">
+              <h3 className="has-text-weight-semibold is-size-2">{part3.header[language]}</h3>
+              <p>
+                {part3.text[language]}
+              </p>
+            </div>
+          </Col>
         </Row>
       </Container>
     </section>
     }
     {part4 && 
       <section style={{
-          paddingBottom: "50px",
+          paddingBottom: "100px",
           paddingTop: "50px",
           position: "relative"}}>
         <Container>
