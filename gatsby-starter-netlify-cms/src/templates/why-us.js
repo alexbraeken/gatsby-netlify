@@ -215,7 +215,7 @@ export const WhyUsPageTemplate = ({
         position: "relative"}}>
           <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("We Create")}</h2>
       <Container>
-        <Row style={{minHeight: "100vh"}}>
+        <Row style={{minHeight: "80vh"}}>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
         <div className="section intro-para" style={{margin: "auto"}}>
           <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}</h3>
@@ -237,7 +237,7 @@ export const WhyUsPageTemplate = ({
         paddingBottom: "100px",
         position: "relative"}}>
           <div style={{position:"absolute", height:"100%", width:"100%", left:0, top:0, display:"flex"}}>
-            <Col xs={12} md={6}>
+            <Col md={6} className="d-none d-sm-block">
             </Col>
             <Col xs={12} md={6} style={{height:"100%", padding:0}}>
               <div className="orange-gradient" style={{width:"100%", height:"100%", borderBottomLeftRadius:"40px", borderTopLeftRadius:"40px"}}></div>
@@ -245,7 +245,7 @@ export const WhyUsPageTemplate = ({
           </div>
       <Container>
         <Row>
-          <Col xs={0} md={6}>
+          <Col md={6} className="d-none d-sm-block">
             <StickyBox>
               <div style={{height:"100vh", display:"flex"}}>
                 {part2ScrollImgs.map((img, i) => 
@@ -271,46 +271,49 @@ export const WhyUsPageTemplate = ({
           </Col>
           <Col xs={12} md={6}>
             <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Why?")}</h2>
-          <div style={{padding:"50px 0"}}>
+          <div className="services-featured">
             <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Our Services")}</h3>
-            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
-              <div data-img="services-0" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff", color:"#fff"}}>{t("Marketing")}</h3>
-                <p>{t("Fully digitalized marketing, using the latest channel management technology.")}</p>
+            <div className="services-container" >
+              <div className="service-container">
+                <div data-img="services-0" className="stickyImgSection intro-para">
+                  <h3>{t("Marketing")}</h3>
+                  <p>{t("Fully digitalized marketing, using the latest channel management technology.")}</p>
+                </div>
+              </div>
+              <div className="service-container">
+                <div data-img="services-1" className="stickyImgSection intro-para">
+                  <h3>{t("Housekeeping & Laundry")}</h3>
+                  <p>{t("Our cleaning teams provide the industry leading services to keep all properties as if new and allow every guest and owner to experience the property in complete comfort and safety.")}</p>
+                </div>
+              </div>
+              <div className="service-container">
+                <div data-img="services-2" className="stickyImgSection intro-para">
+                  <h3>{t("Maintenance")}</h3>
+                  <p>{t("General property maintenance to ensure a top quality holiday experience for guests and peace of mind for owners.")}</p>
+                </div>
+              </div>
+              <div className="service-container">
+                <div data-img="services-3" className="stickyImgSection intro-para">
+                  <h3>{t("Pools & Gardens")}</h3>
+                  <p>{t("Manicuring lawns, triming hedges, cleaning and checking pool chemical levels are just a few of the ways we keep all properties at their most presentable and enjoyable at all times.")}</p>
+                </div>
+              </div>
+              <div className="service-container">
+                <div data-img="services-4" className="stickyImgSection intro-para">
+                  <h3>{t("Photography")}</h3>
+                  <p>{t("Professional photography and drone shots, including lighting, scene and ambiance setting and editing.")}</p>
+                </div>
+              </div>
+              <div className="service-container">
+                <div data-img="services-5" className="stickyImgSection intro-para">
+                  <h3>{t("Legal & Administrative Services")}</h3>
+                  <p>
+                  {t(" Acquiring rental licenses, rental tax regularization and accountancy guidance are all available.")}
+                  </p>
+                </div>
               </div>
             </div>
-            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
-              <div data-img="services-1" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Housekeeping & Laundry")}</h3>
-                <p>{t("Our cleaning teams provide the industry leading services to keep all properties as if new and allow every guest and owner to experience the property in complete comfort and safety.")}</p>
-              </div>
-            </div>
-            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
-              <div data-img="services-2" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Maintenance")}</h3>
-                <p>{t("General property maintenance to ensure a top quality holiday experience for guests and peace of mind for owners.")}</p>
-              </div>
-            </div>
-            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
-              <div data-img="services-3" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Pools & Gardens")}</h3>
-                <p>{t("Manicuring lawns, triming hedges, cleaning and checking pool chemical levels are just a few of the ways we keep all properties at their most presentable and enjoyable at all times.")}</p>
-              </div>
-            </div>
-            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
-              <div data-img="services-4" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Photography")}</h3>
-                <p>{t("Professional photography and drone shots, including lighting, scene and ambiance setting and editing.")}</p>
-              </div>
-            </div>
-            <div style={{height:"600px", padding:"40px", display:"flex", flexDirection:"column"}}>
-              <div data-img="services-5" className="stickyImgSection intro-para">
-                <h3 style={{fontSize:"4rem", color:"#fff"}}>{t("Legal & Administrative Services")}</h3>
-                <p>
-                 {t(" Acquiring rental licenses, rental tax regularization and accountancy guidance are all available.")}
-                </p>
-              </div>
-            </div>
+            
             
           </div>
           </Col>
@@ -320,7 +323,7 @@ export const WhyUsPageTemplate = ({
       <section className="newLine" style={{
         padding: "100px 0",
         position: "relative"}}>
-        <Container style={{minHeight:"100vh", display:"flex", flexDirection:"column"}}>
+        <Container style={{minHeight:"80vh", display:"flex", flexDirection:"column"}}>
         <Row style={{flexDirection:"column", position:"relative", margin:"auto", width:"100%"}}>
         <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Potential")}</h2>
           <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Your property earning potential")}</h3>

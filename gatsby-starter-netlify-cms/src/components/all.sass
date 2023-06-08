@@ -4815,7 +4815,7 @@ p.about-section
       width: 100%
       margin: auto
   & .parallax-tone-img
-      transform: translateY(180px)
+      transform: translateY(100px)
       z-index: 1
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9))
   & .parallax-tone-bg
@@ -5482,3 +5482,27 @@ p.about-section
   display: table-caption
   display: -ms-grid
   -ms-grid-columns: min-content
+
+.services-featured
+  padding: 50px 0
+  & .services-container
+      display: flex
+      flex-wrap: wrap
+      & .service-container
+          padding: 80px 40px
+          display: flex
+          max-width: 100%
+          flex-direction: column
+          & .intro-para
+              h3
+                font-size: 4rem
+                color: #fff
+
++mobile
+  .services-featured
+    & .services-container
+        & .service-container
+            padding: 40px 20px
+            & .intro-para
+              h3
+                font-size: 2.5rem

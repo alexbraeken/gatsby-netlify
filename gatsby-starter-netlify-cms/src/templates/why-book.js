@@ -17,6 +17,7 @@ import cancellation from '../../static/img/time-reload-svgrepo-com.svg'
 import cots from '../../static/img/cot-svgrepo-com.svg'
 import concierge from '../../static/img/concierge-svgrepo-com.svg'
 import basket from '../../static/img/basket-picnic-svgrepo-com.svg'
+import catering from '../../static/img/catering-buffet.svg'
 
 
 if (typeof window !== `undefined`) {
@@ -200,7 +201,7 @@ export const WhyBookPageTemplate = ({
           position: "relative"}}>
          <h2 className="home-section-title" style={{left: "50%", transform: "translateX(-50%)", top: "-50px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("We Provide")}</h2>
         <Container>
-        <Row style={{minHeight: "100vh"}}>
+        <Row style={{minHeight: "80vh"}}>
           <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
         <div className="section intro-para" style={{margin: "auto"}}>
           <h3 className="has-text-weight-semibold is-size-2">{part1.header[language]}</h3>
@@ -278,7 +279,7 @@ export const WhyBookPageTemplate = ({
                   <div className="perk-text" >
                     <h3>{t("Free Concierge Service")}</h3>
                     <p>
-                      {t("Smartavillas will deliver a round the clock conierge service to meet your every need.")}
+                      {t("Smartavillas concierge text.")}
                     </p>
                   </div>
                 </div>
@@ -293,12 +294,30 @@ export const WhyBookPageTemplate = ({
                   </div>
                 </div>
                 <div className="perk-img-container" >
-                <div className="perk-img-shadow right">
+                  <div className="perk-img-shadow right">
+                  <img
+                    src={basket}
+                    alt="basket"
+                  />
+                  </div>
+                </div>
+              </div>
+              <div className="perk-container" >
+                <div className="perk-img-container" >
+                <div className="perk-img-shadow left" >
                 <img
-                  src={basket}
-                  alt="basket"
+                  src={catering}
+                  alt="catering"
                 />
                 </div>
+                </div>
+                <div className="perk-text-container" >
+                  <div className="perk-text" >
+                    <h3>{t("Catering Services")}</h3>
+                    <p>
+                      {t("Smartavillas catering text.")}
+                    </p>
+                  </div>
                 </div>
               </div>
           </Col>
@@ -410,7 +429,7 @@ export const WhyBookPageTemplate = ({
       <Container>
         <Row>
         <Col xs={12} md={6} style={{display:"flex"}}>
-          <div className="parallax-tone-container" ref={parallaxCont}>
+          <div className="parallax-tone-container" ref={parallaxCont} style={{maxWidth:"450px", margin:"auto"}}>
             <div ref={parallaxImg2} className="img-cont" >
               <PreviewCompatibleImage imageInfo={part3Img} className="parallax-tone-img" imgStyle={{borderRadius: "5px"}} />
             </div>
