@@ -66,7 +66,7 @@ useEffect(() => {
               {
                 source: "db",
                 col:"Properties",
-                fields:"['name','picture','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
+                fields:"['name','picture','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','currencySymbol','shortDescription','shortDescriptions']",
                 where:{
                     field:"FieldPath.documentId()",
                     op:"in",

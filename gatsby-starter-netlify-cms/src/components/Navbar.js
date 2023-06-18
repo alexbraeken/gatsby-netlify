@@ -43,13 +43,18 @@ const PropertiesDropDown = React.memo((props) => {
       borderLeft: "none",
       borderRight: "none",
       borderRadius: 0,
-      boxShadow: 'none'
+      boxShadow: 'none',
+      color: "white"
     }),
     dropdownIndicator: (provided) => ({
       ...provided,
       "svg": {
         fill: "#f5821e"
       }
+    }),
+    input: (provided) => ({
+      ...provided,
+      color:"white"
     })
   }
 

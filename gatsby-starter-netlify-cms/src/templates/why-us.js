@@ -236,6 +236,24 @@ export const WhyUsPageTemplate = ({
       <section className="newLine" style={{
         paddingBottom: "100px",
         position: "relative"}}>
+        <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Potential")}</h2>
+      <Container style={{minHeight:"80vh", display:"flex", flexDirection:"column"}}>
+        <Row style={{flexDirection:"column", position:"relative", margin:"auto", width:"100%"}}>
+          <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Your property earning potential")}</h3>
+          <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
+            borderRadius: "4px",
+            backgroundColor:"white",
+            paddingBottom:"2rem"}}>
+              <div className="form-container"> 
+                <PropertySubmitForm />
+              </div>
+          </Col>
+        </Row>
+      </Container>
+      </section>
+      <section className="newLine" style={{
+        paddingBottom: "100px",
+        position: "relative"}}>
           <div style={{position:"absolute", height:"100%", width:"100%", left:0, top:0, display:"flex"}}>
             <Col md={6} className="d-none d-sm-block">
             </Col>
@@ -323,20 +341,6 @@ export const WhyUsPageTemplate = ({
       <section className="newLine" style={{
         padding: "100px 0",
         position: "relative"}}>
-        <Container style={{minHeight:"80vh", display:"flex", flexDirection:"column"}}>
-        <Row style={{flexDirection:"column", position:"relative", margin:"auto", width:"100%"}}>
-        <h2 className="home-section-title" style={{left: "50%", top:"-50%", transform: "translateX(-50%)", top: "-100px", color: "rgba(245, 130, 30, 0.5)", padding: "0 3%"}}>{t("Potential")}</h2>
-          <h3 className="has-text-weight-semibold is-size-2" style={{textAlign:"center"}}>{t("Your property earning potential")}</h3>
-          <Col style={{maxWidth: "800px", margin: "auto", boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)",
-            borderRadius: "4px",
-            backgroundColor:"white",
-            paddingBottom:"2rem"}}>
-              <div className="form-container"> 
-                <PropertySubmitForm />
-              </div>
-          </Col>
-        </Row>
-      </Container>
       <div style={{ 
           width: "100vw",
           position: "absolute",
@@ -424,7 +428,7 @@ export const WhyUsPageTemplate = ({
 </div>
                 <strong style={{fontSize: "calc(50px + 5vw)",
     lineHeight: ".7",
-    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={20}>20</span>+</strong>
+    fontWeight: "400", color:"#ff8c26", mixBlendMode:"difference", pointerEvents:"none", zIndex:"2"}} ><span className="strong-num" data-value={30}>30</span>+</strong>
     <p className="highlight-feature-text">{t("Dedicated Team Members")}</p>
               </div>
             </div>

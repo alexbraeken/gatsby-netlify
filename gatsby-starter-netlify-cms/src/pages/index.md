@@ -66,7 +66,7 @@ news:
       También nos impulsa a asegurarnos de que todos nuestros huéspedes tengan tanta información clara y valiosa como sea posible, que puede encontrar en nuestras preguntas frecuentes. </p>
 tripImage: "../../static/img/hero-family.webp"
 listImage: "../../static/img/Tavira_-_R_Bridge_by_Night.webp"
-trustedImage: "../../static/img/team.jpeg"
+trustedImage: "../../static/img/team-drone.jpg"
 locationImage: "../../static/img/tavira_island.jpg"
 accommodationsImage: "../../static/img/lux_villa.jpeg"
 ---
