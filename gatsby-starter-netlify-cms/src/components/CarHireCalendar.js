@@ -155,7 +155,6 @@ const CarHireCalendar = (props) => {
     useEffect(() => {
       if(props.est){
         setTotal(props.est)
-        console.log(props.est)
       }
       return () => {
         setTotal(0)
@@ -250,27 +249,23 @@ const CarHireCalendar = (props) => {
       }
 
     const handleBook = () => {
-      console.log("book")
         setQuoteRequest(false)
         setShowModal(true)
     }
 
     const handleQuote = () => {
-      console.log("quote")
 
       setQuoteRequest(true)
       setShowModal(true)
     }
 
     const handleAvailability = () => {
-      console.log("availability")
 
       setQuoteRequest(true)
       setShowModal(true)
     }
 
     const handleClose = () => {
-      console.log("close")
         setQuoteRequest(true)
         setShowModal(false)
     }

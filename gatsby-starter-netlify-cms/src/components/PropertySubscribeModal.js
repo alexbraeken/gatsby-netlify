@@ -39,7 +39,6 @@ const PropertySubscribeModal = (props) => {
 
         let subscriptionResult = sendSubscription(info);
         if(!subscriptionResult){
-            console.log(info)
             setSent(true)
         }
 

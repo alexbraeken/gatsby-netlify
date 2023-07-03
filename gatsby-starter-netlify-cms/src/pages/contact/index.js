@@ -39,7 +39,6 @@ const Contact = class extends React.Component {
       const form = e.target
 
       let enquiryResult = this.sendEnquiry(form);
-      console.log(enquiryResult)
 
       if(!enquiryResult){
         this.setState({sent: !this.state.sent})

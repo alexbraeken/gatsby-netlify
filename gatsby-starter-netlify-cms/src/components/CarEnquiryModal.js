@@ -16,23 +16,17 @@ const CarEnquiryModal = (props) => {
     const { language } = useI18next()
 
     useEffect(() => {
-      console.log(props)
       return () => {
         setQuoteRequest(true)
       }
     }, [])
 
     useEffect(() => {
-      console.log(props.quoteRequest)
       setQuoteRequest(props.quoteRequest)
       return () => {
         setQuoteRequest(true)
       }
     }, [props.quoteRequest])
-
-    useEffect(() => {
-      console.log(quoteRequest)
-    }, [quoteRequest])
 
 
     const sendEnquiry = (formInfo) => {

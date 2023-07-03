@@ -442,7 +442,6 @@ const ConnectedProperties = React.memo((props) => {
                                                     state={props.state}
                                                     handleSliderChange={props.handleSliderChange}
                                                     handleSelectDeselectAll={props.handleSelectDeselectAll}
-                                                    show={showSidebarModal} 
                                                     handleWinterLets = {handleWinterLets}
                                                     winterLets={winterLets}
                                                     />

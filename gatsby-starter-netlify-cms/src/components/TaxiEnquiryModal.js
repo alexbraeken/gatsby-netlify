@@ -20,7 +20,6 @@ const TaxiEnquiryModal = (props) => {
 
     useEffect(() => {
       if(props.show){
-        console.log(props.price)
         setArrivalGroup(
           Array.from(document.querySelectorAll('.arrival'))
         )

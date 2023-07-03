@@ -92,7 +92,6 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
     setTimeout(()=>{
         setLoaded(true)}, 1000
         )
-        console.log(queryString.parse(location.search))
         let {carClass, date1, date2, preference, est} = queryString.parse(location.search)
         setSelected(carClass)
         if(date1 && date2)setDates({date1: date1, date2:date2})
