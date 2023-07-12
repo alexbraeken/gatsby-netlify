@@ -729,12 +729,15 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </p>
                                                         <ul>
                                                             <li>
-                                                                {t("Security Deposit")}: <span style={{float: "right"}}>{securityDeposit}€</span>
+                                                                {t("Security Deposit")}: <span style={{float: "right"}}>{securityDeposit}€ *</span>
                                                             </li>
                                                             <li>
                                                                 {t("Damage Waiver")}: <span style={{float: "right"}}>{damageWaiver}€</span>
                                                             </li>
                                                         </ul>
+                                                        <p>
+                                                            <small>*{t("Does not include 2% non-refundable fee (5€ minimum).")}</small>
+                                                        </p>
                                                     </Tab>
                                                     }
                                                     
@@ -792,6 +795,9 @@ export const PropertyPageTemplate = ( props ) =>
                                                         <div>
                                                             <p>
                                                             <span dangerouslySetInnerHTML={{__html: t("Important: We are committed to protecting our properties which is why we've partnered with Know Your Guest, the leading vacation rental guest-screening provider. <br /> Please note that before your booking begins, you will need to verify your details through Know Your Guest. You will also be given the choice between paying a refundable deposit or buying a non-refundable damage waiver. We suggest you buy the damage waiver as this protects you in case you cause accidental damage during a booking.")}} />
+                                                            </p>
+                                                            <p>
+                                                                <small>*{t("Does not include 2% non-refundable fee (5€ minimum).")}</small>
                                                             </p>
                                                         </div>
                                                     </Collapse>
