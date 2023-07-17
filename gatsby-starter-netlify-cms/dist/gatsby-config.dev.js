@@ -240,6 +240,15 @@ module.exports = {
       },
       "link": "/contact",
       "subNav": null
+    },, {
+      "name": {
+        "en": "Owner Login",
+        "pt": "Login do Proprietário",
+        "fr": "Login propriétaire",
+        "es": "Login de Propietario"
+      },
+      "link": "https://platform.hostfully.com/login.jsp",
+      "subNav": null
     }],
     siteUrl: "https://www.smartavillas.com"
   },
@@ -353,6 +362,12 @@ module.exports = {
     options: {
       path: "".concat(__dirname, "/src/jobListings"),
       name: 'hiring'
+    }
+  }, {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      path: "".concat(__dirname, "/src/FAQuestions"),
+      name: 'FAQuestion'
     }
   }, {
     resolve: "gatsby-plugin-react-i18next",

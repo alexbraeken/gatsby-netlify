@@ -149,7 +149,7 @@ const PropCarousel = (props) => {
                       }
                   </div>
                   <br />
-                  <Share propImg={props.firstSlide} propName={props.name}/>
+                  <Share propImg={props.firstSlide} propName={props.name} target={`${window.location.href}`}/>
                   <br />
                   <RiMailAddLine className="subscribe-icon" onClick={()=>{props.handleSubscribeShow()}}/>
                 </div>

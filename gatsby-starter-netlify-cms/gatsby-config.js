@@ -266,7 +266,17 @@ module.exports = {
         },
         "link": "/contact",
         "subNav": null
-      },
+      },,
+      {
+        "name": {
+          "en": "Owner Login",
+          "pt": "Login do Proprietário",
+          "fr": "Login propriétaire",
+          "es": "Login de Propietario"
+        },
+        "link": "https://platform.hostfully.com/login.jsp",
+        "subNav": null
+      }
     ],
     siteUrl: `https://www.smartavillas.com`,
     },

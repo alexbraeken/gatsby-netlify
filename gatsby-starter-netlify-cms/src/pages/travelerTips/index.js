@@ -50,7 +50,7 @@ class TravelerTipsIndex extends React.Component {
         <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}>{t("Activities")} <span style={{color:"#f5821e"}}>{t("Nearby")}</span></h2>
         <Row>
           <Col xs={3} md={2} style={{zIndex: 2}}>
-            <StickyBox>
+            <StickyBox style={{padding: "3rem 0"}}>
               <div className="activities-filter">
                 <div role="button" tabindex="0" className={`filter-button ${!this.state.activityFilter? "selected":""}`} onClick={()=>this.handleClick(null)} onKeyDown={()=>this.handleClick(null)}>
                   <div class="filter-button-content">

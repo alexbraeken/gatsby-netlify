@@ -22,19 +22,19 @@ const Share = (props) => {
     <div className={`share-btn`} >
         <AiOutlineShareAlt />
         <div className="share expand-btn" >
-            <EmailShareButton url={encodeURI(props.target)}>
+            <EmailShareButton url={encodeURI(props.target)} seperator={' '}>
                 <EmailIcon size={34} round={true}/>
             </EmailShareButton>
-            <FacebookShareButton url={encodeURI(props.target)} title={String(props.propName)} quote={`Check out ${props.propName}`} hashtag={"#Smartavillas"}>
+            <FacebookShareButton url={encodeURI(props.target)} title={String(props.propName)} quote={`Check out ${props.propName}`} hashtag={"#Smartavillas"} seperator={' '}>
                 <FacebookIcon size={34} round={true}/>
             </FacebookShareButton>
-            <PinterestShareButton url={encodeURI(props.target)} media={String(props.propImg)} description={`Loving ${props.propName} from Smartavillas`}>
+            <PinterestShareButton url={encodeURI(props.target)} media={String(props.propImg)} description={`Loving ${props.propName} from Smartavillas`} seperator={' '}>
                 <PinterestIcon size={34} round={true}/>
             </PinterestShareButton>
-            <TwitterShareButton url={encodeURI(props.target)} title={`${t("Check out Smartavillas property")} ${String(props.propName)}`} hashtags={["Smartavillas", "Algarve", "Portugal"]} related={["https://twitter.com/smartavillas"]}>
+            <TwitterShareButton url={encodeURI(props.target)} title={`${t("Check out Smartavillas property")} ${String(props.propName)}`} hashtags={["Smartavillas", "Algarve", "Portugal"]} related={["https://twitter.com/smartavillas"]} seperator={' '}>
                 <TwitterIcon size={34} round={true}/>
             </TwitterShareButton>
-            <WhatsappShareButton url={encodeURI(props.target)} title={`${t("Check out Smartavillas property")} ${String(props.propName)}`}>
+            <WhatsappShareButton url={encodeURI(props.target)} title={`${t("Check out Smartavillas property")} ${String(props.propName)}`} seperator={' '}>
                 <WhatsappIcon size={34} round={true}/>
             </WhatsappShareButton>
         </div>
