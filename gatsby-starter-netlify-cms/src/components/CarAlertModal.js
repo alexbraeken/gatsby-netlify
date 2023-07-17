@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal} from 'react-bootstrap'
-import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation} from 'gatsby-plugin-react-i18next';
 
 const CarAlertModal = (props) => {
     

@@ -43,7 +43,7 @@ class PropertiesFilter extends Component {
                             </div>
                         </Col>
                         <Col xs={12} lg={8}>
-                            <Row style={{flexWrap:"nowrap"}}>
+                            <Row style={{justifyContent:"flex-end"}}>
                                 <div
                                 className="button" 
                                 onClick={()=>this.props.handleSelectDeselectAll("city", false)}>Deselect All</div>
@@ -84,7 +84,7 @@ class PropertiesFilter extends Component {
                             </div>
                         </Col>
                         <Col xs={12} lg={8}>
-                            <Row style={{flexWrap:"nowrap"}}>
+                            <Row style={{justifyContent:"flex-end"}}>
                                 <div
                             className="button"  
                                 onClick={()=>this.props.handleSelectDeselectAll("type", false)}>Deselect All</div>

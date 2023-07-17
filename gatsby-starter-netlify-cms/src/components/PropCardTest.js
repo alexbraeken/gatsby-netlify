@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import {Card} from 'react-bootstrap'
 import { Link } from "@reach/router";
 import Col from 'react-bootstrap/Col'
-import { FirestoreDocument } from "@react-firebase/firestore";
 import Loading from '../components/Loading'
 import Amenity from '../components/Amenities';
 import CardCalendar from '../components/CardCalendar'

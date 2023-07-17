@@ -3,8 +3,9 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { gsap } from "gsap";
 
-gsap.registerPlugin(gsap);
-
+if (typeof window !== `undefined`) {
+  gsap.registerPlugin(gsap);
+}
 
 //Property Card Calendar on properties list
 const CardCalendar = (props) => {

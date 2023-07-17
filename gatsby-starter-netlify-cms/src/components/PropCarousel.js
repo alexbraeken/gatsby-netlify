@@ -1,12 +1,15 @@
 import React, {useState} from 'react'
-import {useTranslation} from 'gatsby-plugin-react-i18next';
+import {useTranslation, Link} from 'gatsby-plugin-react-i18next';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Container } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import ReactBnbGallery from 'react-bnb-gallery';
 import { Helmet } from 'react-helmet'
+import BedBathPax from '../components/BedBathPax';
+import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
+import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
+import Share from '../components/Share'
+import { RiMailAddLine } from "@react-icons/all-files/ri/RiMailAddLine";
 
 class CustomSlide extends React.Component {
     render() {
@@ -17,7 +20,7 @@ class CustomSlide extends React.Component {
         margin: "0px auto",
         overflow: "hidden",
         position: "relative",
-        backgroundSize:"cover",
+        backgroundSize:"contain",
         backgroundPosition:"center",
         backgroundRepeat: "no-repeat"}} 
         key={this.props.key? this.props.key : 0}>
@@ -65,8 +68,8 @@ const PropCarousel = (props) => {
   const {t} = useTranslation(['translation']);
 
   const settings = {
-    afterChange: function(i) {
-      setNextImgIndex(i)
+    beforeChange: function(oldIndex, newIndex) {
+      setNextImgIndex(newIndex)
     },
     dots: false,
     infinite: true,
@@ -95,35 +98,83 @@ const PropCarousel = (props) => {
           photos={props.photos.map((photo,index)=>{return({photo: photo.url, caption: photo.description})})}
           onClose={() => setIsOpen(false)}
         />
-        <Slider {...settings} style={{position:"relative"}}>
-            {props.photos ? props.photos.map((photo, index)=>(
-                <CustomSlide backgroundImage={photo.url} key={index}/>
-            )): <CustomSlide backgroundImage={props.firstSlide} />}
-        </Slider>
-        {props.photos ? 
-          <div style={{position:"absolute",height:"100%",width:"100%"}}>
-            <Container>
-              <Button onClick={() => setIsOpen(true)}
+        <div className="prop-carousel-container" style={{}}>
+          <div 
+          className="bg-blur"
+          style={{
+            
+            backgroundImage:`url('${props.photos[nextImgIndex].url}'`,
+            }}>
+
+          </div>
+          <div 
+          className="bg-gradient"
+          style={{
+            }}>
+          </div>
+          <div 
+          className="prop-details-container"
+          style={{}}>
+            <div 
+            className="prop-details"
+            style={{
+              }}>
+              {props.name ? 
+                <h2 style={{}}>{props.name}</h2> 
+                : 
+                <div className="placeholder-box blink" style={{height:"200px"}}>
+                </div>
+              }
+              <br />
+              <div className="prop-stats" style={{}}>
+                <div>
+                  <span className="prc">{t("From")} {props.baseRate} €</span>
+                  <span className="mth"> / {t("Night")}</span>
+                </div>
+                <br />
+                <BedBathPax bedrooms={props.bedrooms} bathrooms={props.bathrooms} baseGuests={props.baseGuests} color="rgba(256,256,256)"/>
+                <br />
+                <small><Link to={`/properties?city=${props.city}`} className="prop-city-link">{props.city}</Link></small>
+                <br />
+                <div className='socials-container'>
+                  <div className="add-favs">
+                      {props.inFavs ? 
+                      <AiFillHeart onClick={()=>{
+                        props.dispatch({type: 'REMOVE_PROPERTY', propId: props.propId})
+                      }}/> 
+                      :
+                      <AiOutlineHeart onClick={()=>{
+                          props.dispatch({ type: 'ADD_PROPERTY', propName: props.name, propId: props.propId, propImg: props.firstSlide, bedrooms: props.bedrooms, bathrooms:props.bathrooms, baseGuests: props.baseGuests, city: props.city, rate: props.baseRate })
+                          }}/>
+                      }
+                  </div>
+                  <br />
+                  <Share propImg={props.firstSlide} propName={props.name}/>
+                  <br />
+                  <RiMailAddLine className="subscribe-icon" onClick={()=>{props.handleSubscribeShow()}}/>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <Slider {...settings} className="prop-carousel-slider" style={{}}>
+              {props.photos ? props.photos.map((photo, index)=>(
+                  <CustomSlide backgroundImage={photo.url} key={index}/>
+              )): <CustomSlide backgroundImage={props.firstSlide} />}
+          </Slider>
+          {props.photos ?
+          <div className="gallery-btn-container">
+            <div className="gallery-btn" onClick={() => setIsOpen(true)}
               style={{
-                position:"absolute", 
-                bottom:"2rem", 
-                right:"0", 
-                backgroundColor:"#000", 
                 backgroundImage:`url('${(nextImgIndex+1) === props.photos.length ? props.photos[0].url : props.photos[nextImgIndex+1].url}')`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundBlendMode: "luminosity",
-                width: "5em",
-                height: "2em",
-                maxWidth: "400px",
-                maxHeight: "200px",
-                minWidth:"100px",
-                minHeight: "50px",
-              fontSize: "1.5em"}}>{t("Gallery")}</Button>
-            </Container>
-          </div> : null }
+                }}>
+                  <span>{t("Gallery")}</span>
+              </div>
+          </div>
+            : null }
+        </div>
         </>
-      );
+      )
 }
 
 export default PropCarousel

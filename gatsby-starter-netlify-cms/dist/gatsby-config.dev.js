@@ -349,6 +349,12 @@ module.exports = {
       name: "locale"
     }
   }, {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      path: "".concat(__dirname, "/src/jobListings"),
+      name: 'hiring'
+    }
+  }, {
     resolve: "gatsby-plugin-react-i18next",
     options: {
       localeJsonSourceName: "locale",
@@ -489,6 +495,20 @@ module.exports = {
     resolve: "gatsby-source-instagram-all",
     options: {
       access_token: process.env.GATSBY_INSTAGRAM_TOKEN
+    }
+  }, {
+    resolve: "gatsby-plugin-firebase",
+    options: {
+      credentials: {
+        apiKey: "AIzaSyAm328dRbonZ0xgqClzsgjsJmxFFJ5xOVE",
+        authDomain: "gatsby-test-286520.firebaseapp.com",
+        databaseURL: "https://gatsby-test-286520.firebaseio.com",
+        projectId: "gatsby-test-286520",
+        storageBucket: "gatsby-test-286520.appspot.com",
+        messagingSenderId: "563210852511",
+        appId: "1:563210852511:web:49d5d7956244ea13602aaa",
+        measurementId: "G-S6HYLDYXK0"
+      }
     }
   }, 'gatsby-plugin-netlify' // make sure to keep it last in the array
   ]

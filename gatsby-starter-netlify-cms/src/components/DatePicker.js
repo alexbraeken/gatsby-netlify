@@ -9,11 +9,6 @@ import { faSearch, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 //Date picker to open calendar modal component to change/clear dates on properties page
 const DatePicker = (props) => {
 
-    const [showCalendar, setShowCalendar] = useState(false)
-
-    const handleClose = () => setShowCalendar(false);
-    const handleShowCalendar = () => setShowCalendar(true);
-      
     const {t} = useTranslation(['properties', 'translation', 'calendar']);
 
     return (
@@ -30,7 +25,7 @@ const DatePicker = (props) => {
             </svg>
                 <Container>
                     <Row>
-                <div role="button" tabindex="0" aira-label="Pick Dates" className="top-date-picker-text" onClick={handleShowCalendar} onKeyDown={(e)=>{if(e.key === 'Enter'){handleShowCalendar()}}}>
+                <div role="button" tabindex="0" aira-label="Pick Dates" className="top-date-picker-text" onClick={()=>props.handleShowCalendar()} onKeyDown={(e)=>{if(e.key === 'Enter'){props.handleShowCalendar(e)}}}>
         {props.from ?
             <small>{props.from && new Date(props.from).toLocaleDateString()}<FontAwesomeIcon icon={faArrowRight} style={{margin:"auto 5px", padding: "2px 0"}} className="search-icon"/>  {props.to && new Date(props.to).toLocaleDateString()}</small>
             :
@@ -40,7 +35,6 @@ const DatePicker = (props) => {
                 </div>
                 </Row>
             </Container>
-            <CalendarModal show={showCalendar} handleClose={handleClose} dates={{from: props.from, to: props.to}} handleDateChange={props.handleDateChange} handleNewIds={props.handleNewIds} handleClearDates={props.handleClearDates}/>
             </div>
         </div>
     )

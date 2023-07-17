@@ -1,16 +1,14 @@
 import React, {useState, useRef, useEffect} from 'react'
-import { graphql } from 'gatsby'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import { useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 import { Helmet } from 'react-helmet'
-import Form from 'react-bootstrap/Form'
 import { gsap } from "gsap"
-
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import SubmitButton from './SubmitButton'
 import Select from 'react-select'
-import { FirestoreDocument } from '@react-firebase/firestore'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 const customStyles = {
   option: (provided, state) => ({
@@ -26,8 +24,9 @@ const customStyles = {
   }),
   menu: () => ({
     position: "absolute",
-    top: "55px",
+    top: "70px",
     left: "0",
+    borderRadius: "4px",
     zIndex: "20",
     width: "100%"
 
@@ -38,7 +37,13 @@ const customStyles = {
     backgroundColor: "#fff",
     margin: "auto",
     display: "flex",
-    borderRadius: "4px"
+    borderRadius: "40px",
+    cursor: "pointer",
+    transition: "all 0.3s",
+    border: "1px solid transparent",
+    '&:hover': {
+      border: "1px solid #f5821e",
+    }
   }),
   multiValue: (styles) => {
     return {
@@ -86,7 +91,13 @@ const bedroomSelectStyle = {
     backgroundColor: "#fff",
     margin: "auto",
     display: "flex",
-    borderRadius: "4px"
+    borderRadius: "40px",
+    cursor: "pointer",
+    transition: "all 0.3s",
+    border: "1px solid transparent",
+    '&:hover': {
+      border: "1px solid #f5821e"
+    }
   }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
@@ -218,8 +229,8 @@ const SearchFilter = (props) => {
 
     const [dates, setDates] = useState({from:undefined, to: undefined})
     const [datesWidth, setDatesWidth] = useState("500px")
-    const [locationArray, setLocationArray] = useState([]);
-    const [locationData, setLocationData] = useState(null);
+    const [locationArray, setLocationArray] = useState([])
+    const [clicked, setClicked] = useState(false)
 
     const toRef = useRef(null)
     const searchBar = useRef(null)
@@ -232,15 +243,61 @@ const SearchFilter = (props) => {
   
     useEffect(() => {
       setDatesWidth(fromToContainer.current.clientWidth)
+
+      if(props.active){
+        setClicked(true)
+      }
+
+      if(typeof window !== `undefined`){
+        try{
+          let locationsList = []
+      
+          const getFireData = async () => {
+            const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+            fetch(uri, 
+              {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                  {
+                    source: "db",
+                    col:"Navbar",
+                    doc:"Nav"
+                  })
+                })
+                  .then(response => {
+                      return response.text()
+                  })
+                  .then(data => {
+                    JSON.parse(data).Nav.Locations.forEach((loc) => {
+                      locationsList.push({ value: loc, label: loc })
+                    })
+                  })
+
+            setLocationArray(locationsList)
+          }
+          
+          getFireData()
+        }catch(e){
+      
+        }
+      }
+
       return () => {
         setDatesWidth("500px")
+        setClicked(false)
       }
     }, [])
 
 
 
     useEffect(() => {
-        gsap.fromTo(searchBar.current, 1, {opacity:0, y: -200}, {opacity: 1, y: 0, ease:"power4.out", delay: 4})
+
+        gsap.fromTo(searchBar.current, 1, {opacity:0, x:"-50%", y: 200}, {opacity:1, x:"-50%", y: 0, ease:"power4.out", delay: 4})
+        
         return () => {
         }
     }, [searchBar])
@@ -258,30 +315,14 @@ const SearchFilter = (props) => {
           uri+="city="+location.value+"&"
         })
       }
-      if(dates.from)uri+="from="+dates.from.toISOString()+"&"
-      if(dates.to)uri+="to="+dates.to.toISOString()+"&"
+      if(dates.from && dates.to){
+        uri+="from="+dates.from.toISOString()+"&"
+        uri+="to="+dates.to.toISOString()+"&"
+      }
       if(bedrooms.current.state.value)uri+="bedrooms="+bedrooms.current.state.value.value+"&"
       uri = encodeURI(uri)
       if(window) window.location.href= uri
     }
-
-    useEffect(() => {
-
-      let locations = []
-      if(locationData?.length > 0){
-        locationData.forEach((location, index) => {
-          locations.push({ value: location, label: location })
-        })
-        setLocationArray(locations)
-      }
-      
-      return () => {
-        setLocationArray([])
-      }
-
-    }, [locationData])
-
-
 
     const showFromMonth = () => {
         const { from, to } = dates;
@@ -304,12 +345,23 @@ const SearchFilter = (props) => {
         showFromMonth()
     }, [dates.to])
 
+
+    useEffect(() => {
+      if(props.active){
+        setClicked(false)
+      }else{
+        if(!clicked)setClicked(true)
+      }
+    }, [props.active])
+    
+
     const handleToChange = (to) => {
         if(dates.from)
         setDates({ from: dates.from, to: to });
         else
         setDates({from:undefined, to:to})
       }
+
 
     const { from, to } = dates;
     const modifiers = { start: from, end: to };
@@ -363,16 +415,7 @@ const SearchFilter = (props) => {
     };
 
     return (
-        <div className="home-search-container" ref={searchBar}>
-          <FirestoreDocument path="/Navbar/Nav">
-            {d => {
-                    return (!d.isLoading && d.value) ?  
-                    <>{setLocationData(d.value.Locations)}</> 
-                    : 
-                    null
-                  }
-            }
-          </FirestoreDocument>
+        <div className={`home-search-container ${props.active ? 'fixed': ''} ${clicked ? '' : 'shrink'}`} ref={searchBar}>
           <Select 
           options={locationArray}
           styles={customStyles}
@@ -380,12 +423,7 @@ const SearchFilter = (props) => {
           closeMenuOnSelect={false}
           ref={multiselect}
           placeholder={t('Select Locations')}/>
-          <div className="InputFromTo" style={{display: "flex",
-              justifyContent: "center",
-              position: "relative",
-              margin: "5px auto",
-              height:"50px",
-              minWidth: "200px"}}
+          <div className="InputFromTo daypicker-container"
               ref={fromToContainer}>
           <DayPickerInput
             value={from}
@@ -444,8 +482,14 @@ const SearchFilter = (props) => {
           closeMenuOnSelect={true}
           ref={bedrooms}
           placeholder={t("Bedrooms")}/>
-        
-        <div role="button" tabindex="0" onClick={submitSearch} onKeyDown={(e)=>{if(e.key==="Enter"){submitSearch()}}}>
+        <div className='expand-search' 
+              onClick={()=>{
+                setClicked(!clicked)
+              }
+          }>
+          <FontAwesomeIcon icon={faCalendarAlt} />
+        </div>
+        <div role="button" className="submitBtn" tabindex="0" onClick={submitSearch} onKeyDown={(e)=>{if(e.key==="Enter"){submitSearch()}}} style={{margin:"0 5px"}}>
         <SubmitButton text={t("See What We Have!")}/>
         </div>
         <Helmet>
@@ -468,14 +512,17 @@ const SearchFilter = (props) => {
   .InputFromTo .DayPickerInput-Overlay {
     display: flex;
     flex-wrap: nowrap;
-    width: ${datesWidth}px;
+    width: fit-content;
     max-width: 550px;
     border-radius: 5px;
+    background-color: #fff
   }
 
   .InputFromTo-to .DayPickerInput-Overlay {
     right: 0;
     left: auto;
+    background-color: #fff;
+    width: fit-content;
   }
 
   .DayPicker{
@@ -487,6 +534,7 @@ const SearchFilter = (props) => {
   }
   .DayPickerInput-OverlayWrapper{
     z-index: 100;
+    width: inherit;
   }
   .DayPicker-Months {
     max-width: 100%;

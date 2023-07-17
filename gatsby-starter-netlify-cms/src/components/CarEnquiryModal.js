@@ -16,23 +16,17 @@ const CarEnquiryModal = (props) => {
     const { language } = useI18next()
 
     useEffect(() => {
-      console.log(props)
       return () => {
         setQuoteRequest(true)
       }
     }, [])
 
     useEffect(() => {
-      console.log(props.quoteRequest)
       setQuoteRequest(props.quoteRequest)
       return () => {
         setQuoteRequest(true)
       }
     }, [props.quoteRequest])
-
-    useEffect(() => {
-      console.log(quoteRequest)
-    }, [quoteRequest])
 
 
     const sendEnquiry = (formInfo) => {
@@ -133,9 +127,7 @@ const CarEnquiryModal = (props) => {
           <input type="hidden" name={'lang'} id={'lang'} value={language} />
           <input type="hidden" name={'car_class'} id={'car_class'} value={props.carClass} />
           <div className="field">
-            <label className="label" htmlFor={'from_name'}>
-              {t("Your name")}
-            </label>
+           
             <div className="control">
               <input
                 className="input"
@@ -144,13 +136,15 @@ const CarEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'from_name'}
                 required={true}
+                placeholder=" "
               />
+               <label className="label" htmlFor={'from_name'}>
+              {t("Your name")}
+            </label>
             </div>
           </div>
           <div className="field">
-            <label className="label" htmlFor={'email'}>
-              {t("Email")}
-            </label>
+         
             <div className="control">
               <input
                 className="input"
@@ -159,7 +153,11 @@ const CarEnquiryModal = (props) => {
                 onChange={(e) => handleChange(e)}
                 id={'email'}
                 required={true}
+                placeholder=" "
               />
+                 <label className="label" htmlFor={'email'}>
+              {t("Email")}
+            </label>
             </div>
           </div>
       <div className="field">
@@ -194,8 +192,8 @@ const CarEnquiryModal = (props) => {
           />
         </div>
       </div>
-      <div style={{display: "flex"}}>
-        <button className="submit-search-btn"  type="submit" style={{border:"none", backgroundColor:"transparent", marginLeft: "0",
+      <div className="wrap-on-mobile" style={{display: "flex"}}>
+        <button className="submit-search-btn"  type="submit" style={{border:"none", backgroundColor:"transparent", marginLeft: "0", marginTop:"5px",
           paddingLeft: "0"}}>
           <a>
               <svg className="icon-arrow before">
@@ -215,7 +213,7 @@ const CarEnquiryModal = (props) => {
           </defs>
           </svg>
         </button>
-        <button className="submit-search-btn"  onClick={()=>props.handlebook()} style={{border:"none", backgroundColor:"transparent", marginLeft: "0",
+        <button className="submit-search-btn"  onClick={()=>props.handlebook()} style={{border:"none", backgroundColor:"transparent", marginLeft: "0", marginTop:"5px",
           paddingLeft: "0"}}>
           <a>
               <svg className="icon-arrow before">

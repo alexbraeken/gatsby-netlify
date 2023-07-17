@@ -3,7 +3,8 @@ import Layout from '../../components/Layout'
 import { Helmet } from 'react-helmet'
 import Newsletter from '../../components/Newsletter'
 import emailjs from 'emailjs-com';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import GoogleMapComponent from '../../components/GoogleMapComponent';
 
 const Contact = class extends React.Component {
   constructor(props) {
@@ -38,7 +39,6 @@ const Contact = class extends React.Component {
       const form = e.target
 
       let enquiryResult = this.sendEnquiry(form);
-      console.log(enquiryResult)
 
       if(!enquiryResult){
         this.setState({sent: !this.state.sent})
@@ -70,17 +70,37 @@ const Contact = class extends React.Component {
   </script>
 </Helmet>
       <Layout propTitle="Smartavillas - Contact Us" >
-        <section className="section">
-          <div className="container">
+        <section className="section contact-section" style={{padding: 0, position: "relative"}}>
+          <div className='bg-map' style={{position: "absolute", width: "100vw", height: "100%"}}>
+            <GoogleMapComponent 
+            isMarkerShown="true" 
+            zoom={15} 
+            lat={37.1391462} 
+            lng={-7.6286182} 
+            activities={false} 
+            height="100%" 
+            width="100vw" 
+            position="absolute" 
+            tilt={45} 
+            saturation={-100} 
+            visibility={"off"} 
+            roadStroke={"#302822"} 
+            roadFill={"#564638"} 
+            lightness={-60}/>
+            <div style={{backgroundColor:"rgba(0,0,0,0.2)", position: "absolute", width: "100%", height: "100%", left:0, top: 0, pointerEvents: "none"}}>
+            </div>
+          </div>
+
+          <div className="container contact-form">
             <div className="content">
-              <h1>{t("Contact")}</h1>
+              <h1  className="orangeText" style={{color: "#f5821e"}}>{t("Contact")}</h1>
               {this.state.sent ? 
               <div>
-                <h3>{t("thanks")}!</h3>
+                <h3 className="orangeText" style={{color: "#f5821e"}}>{t("thanks")}!</h3>
                 <p>{t("We'll get back to you as soon as possible")}.</p>
               </div>: 
               <>
-              <p>
+              <p style={{color: "#fff"}}>
                 {t("Get in touch with our team here")}!
               </p>
               <form
@@ -100,7 +120,7 @@ const Contact = class extends React.Component {
                   </label>
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor={'name'}>
+                  <label className="label orangeText" htmlFor={'name'}>
                     {t("Your name")}
                   </label>
                   <div className="control">
@@ -115,7 +135,7 @@ const Contact = class extends React.Component {
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor={'email'}>
+                  <label className="label orangeText" htmlFor={'email'}>
                     {t("email")}
                   </label>
                   <div className="control">
@@ -130,7 +150,7 @@ const Contact = class extends React.Component {
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor={'message'}>
+                  <label className="label orangeText" htmlFor={'message'}>
                     {t("Message")}
                   </label>
                   <div className="control">
@@ -144,27 +164,29 @@ const Contact = class extends React.Component {
                   </div>
                 </div>
                 <div className="field">
-                  <button className="button is-link" type="submit">
+                  <button className="button is-link" type="submit" style={{backgroundColor:"#f5821e"}}>
                     {t("Send")}
                   </button>
                 </div>
               </form>
               </>}
               <br />
-              <Newsletter lang={language}/>
+              <Newsletter lang={language} transparent={true}/>
               <br />
-              <h3>Smartavillas.com {t("Algarve Holiday Rentals")}</h3>
-              <ul style={{listStyle:"none"}}>
+              <div>
+              <h3 className="orangeText" style={{color: "#f5821e"}}>Smartavillas.com {t("Algarve Holiday Rentals")}</h3>
+              <ul style={{listStyle:"none", color: "#fff"}}>
                 <li>
                 <b>{t("Phone")}:</b> {process.env.GATSBY_LANDLINE} / {process.env.GATSBY_MOBILE_NUMBER} ({t("National landline and mobile call")}) 
                 </li>
                 <li>
-                <b>{t("email")}:</b> <a href="mailto:reservas@smartavillas.com">reservas@smartavillas.com</a>
+                <b style={{color: "#f5821e"}}>{t("email")}:</b> <a href="mailto:reservas@smartavillas.com">reservas@smartavillas.com</a>
                 </li>
                 <li>
-                <b>{t("Address")}:</b> Smartavillas Unipessoal Lda (513548211) Rua Maria Helena Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal
+                <b style={{color: "#f5821e"}}>{t("Address")}:</b> Smartavillas Unipessoal Lda (513548211) Rua Maria Helena Viera da Silva, 15-C Mato Santo Espirito Tavira 8800-601 Portugal
                 </li>
               </ul>
+              </div>
             </div>
           </div>
         </section>

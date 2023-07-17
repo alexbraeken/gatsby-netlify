@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import React, { useState, useEffect } from 'react'
+import {Link} from 'gatsby-plugin-react-i18next';
 import { connect } from "react-redux"
-import {Container, Col, Row, Card} from 'react-bootstrap'
+import {Col, Row, Card} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import PropTypes from "prop-types"
@@ -52,7 +52,7 @@ const Favourites = (props) => {
       infinite: true,
       dots: true,
       className: "fav-slider center",
-      centerPadding: "30px",
+      centerPadding: "10px",
       slidesToShow: Object.keys(favProps).length > 4 ? 4 : Object.keys(favProps).length,
       slidesToScroll: 1,
       swipeToSlide: true,

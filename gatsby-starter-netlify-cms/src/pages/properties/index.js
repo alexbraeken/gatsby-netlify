@@ -1,9 +1,7 @@
-import React, {useState, useEffect, Component, useCallback} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { graphql } from 'gatsby'
-import 'firebase/firestore';
-import { FirestoreCollection } from "@react-firebase/firestore";
 import { Router, useLocation } from "@reach/router"
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import { useTranslation, useI18next} from 'gatsby-plugin-react-i18next'
 import PropertyTemplate from "../../templates/property-page"
 import Layout from '../../components/Layout'
 import PropFeatures from '../../components/PropFeatures'
@@ -13,18 +11,30 @@ import Row from 'react-bootstrap/Row'
 import queryString from 'query-string'
 import Loading from '../../components/Loading'
 import SideBarModal from '../../components/SideBarModal'
-import StickyBox from "react-sticky-box";
-import { Col } from 'react-bootstrap';
-import GoogleMapComponent from '../../components/GoogleMapComponent';
-import ReactBnbGallery from 'react-bnb-gallery';
-import { gsap } from "gsap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import CalendarModal from '../../components/CalendarModal'
+import StickyBox from "react-sticky-box"
+import { Col } from 'react-bootstrap'
+import GoogleMapComponent from '../../components/GoogleMapComponent'
+import ReactBnbGallery from 'react-bnb-gallery'
+import { gsap } from "gsap"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faChevronLeft, faUsers, faBed, faShower, faFan, faDog, faWifi, faSwimmingPool, faTree, faCalendarAlt, faArrowRight, faTag } from '@fortawesome/free-solid-svg-icons'
+import { connect } from "react-redux"
 import { Helmet } from 'react-helmet'
+import { BsFillHouseFill } from "@react-icons/all-files/bs/BsFillHouseFill"
+import { GiBarbecue   } from "@react-icons/all-files/gi/GiBarbecue";
+import { GrElevator   } from "@react-icons/all-files/gr/GrElevator";
+import { FaWheelchair  } from "@react-icons/all-files/fa/FaWheelchair";
 
-gsap.registerPlugin(gsap);
+if (typeof window !== `undefined`) {
+    gsap.registerPlugin(gsap);
+}
+const mapStateToProps = (state) => {
 
-const Properties = React.memo((props) => {
+    return  {featuredProps: state.featuredProps}
+  }
+
+const ConnectedProperties = React.memo((props) => {
 
     const [show, setShow]=useState(false)
     const [showSidebarModal, setShowSidebarModal] = useState(false)
@@ -40,6 +50,10 @@ const Properties = React.memo((props) => {
     const [filterExpanded, setFilterExpanded] = useState(true)
     const [cardDisplayNum, setCardDisplayNum] = useState(null)
     const [fetchError, setFetchError] = useState(false)
+    const [heroBg, setHeroBg] = useState(null)
+    const [showCalendar, setShowCalendar] = useState(false)
+    const [mapBoundedProperties, setMapBoundedProperties] = useState([])
+
     
     const [amenitiesList, setAmenitiesList] = useState({
         hasPool: false,
@@ -64,7 +78,40 @@ const Properties = React.memo((props) => {
 
 
     useEffect(() => {
+
         props.handlePathChange(window.location.href)
+        let properties = []
+        const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+        const getFireData = async () => {
+            if(typeof window !== `undefined`){
+                fetch(uri, 
+                    {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                        source: "db",
+                        col:"Properties",
+                        fields:"['name','rank','amenities','type','latitude','longitude','picture','city','currencySymbol','customData','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
+                        })
+                    })
+                        .then(response => {
+                            return response.text()
+                        })
+                        .then(data => {
+                        let propsObj = JSON.parse(data)
+                        Object.keys(propsObj).forEach(prop => {
+                            properties.push(propsObj[prop])
+                        })
+                        setData(properties)
+                        })
+            }
+        }
+        
+        getFireData()
         return () => {
             setPropertyIds([])
             setAmenitiesList({
@@ -94,22 +141,33 @@ const Properties = React.memo((props) => {
     useEffect(() => {
         if(props.state.searchArray.from?.[0] && props.state.searchArray.to[0]){
             try{
-            const uri = `https://api.hostfully.com/v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`
-            fetch(uri, {
-            headers:{
-            "X-HOSTFULLY-APIKEY": process.env.GATSBY_HOSTFULLY_API_KEY
+                let properties = []
+                const url = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+                const getFireData = async () => {
+                    if(typeof window !== `undefined`){
+                        fetch(url, 
+                            {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(
+                                {
+                                source: "hf",
+                                request:`v2/properties?checkInDate=${props.state.searchArray.from[0]}&checkOutDate=${props.state.searchArray.to[0]}&limit=100&agencyUid=ab8e3660-1095-4951-bad9-c50e0dc23b6f`,
+                                })
+                            })
+                                .then(response => {
+                                    return response.text()
+                                })
+                                .then(data => {
+                                    setPropertyIds(JSON.parse(data))
+                                })
+                    }
                 }
-            })
-                .then(response => {
-                    
-                    return response.text()
-                })
-                .then(data => {
-                setPropertyIds(JSON.parse(data).propertiesUids)
-                })
-                .catch((error) => {
-                    setFetchError(true)
-                });
+                
+            getFireData()
             setDates({from: props.state.searchArray.from[0], to: props.state.searchArray.to[0]})
             setAdvancedSearch(true)    
         }
@@ -129,15 +187,38 @@ const Properties = React.memo((props) => {
     useEffect(() => {
         if(data){
             props.filterList(data);
+            if(props.featuredProps){
+                let i = Math.floor(Math.random()*(props.featuredProps.length))
+                setHeroBg(data.find(prop=>{
+                    return prop.uid === props.featuredProps[i]
+                }))
+            }
         }
     }, [data])
 
     useEffect(() => {
+        
+        filterData(data)
+        
+        return () => {
+            setPropList([])
+        }
+    }, [data, advancedSearch, props.state, sort, propertyIds, amenitiesList])
+
+
+    useEffect(() => {
+        filterData(data)
+
+        return () => {
+            setPropList([])
+        }
+    }, [mapBoundedProperties])
+
+    const filterData = (data) => {
         const amenities = []
         Object.keys(amenitiesList).forEach(amenity => {
             return amenitiesList[amenity] ? amenities.push(amenity) : null
         })
-
         const list = []
         if(data){
             data.forEach((item, index) => {
@@ -146,7 +227,6 @@ const Properties = React.memo((props) => {
                 if(amenities.length > 0 && item.amenities){
                     amenities.forEach(amenity => {
                         amenityBool.push((item.amenities[`${amenity}`] === null || item.amenities[`${amenity}`] === false) ? false : true )
-                        console.log(item.amenities[`${amenity}`])
                     })
                 }else{
                     amenityBool.push(true)
@@ -157,8 +237,11 @@ const Properties = React.memo((props) => {
                     && (parseInt(item.bedrooms) <= props.state.bedrooms[1])
                     && (props.state.bathrooms[0] <= parseInt(item.bathrooms)) 
                     && (parseInt(item.bathrooms) <= props.state.bathrooms[1])
+                    && (props.state.prices[0] <= parseInt(item.baseDailyRate))
+                    && (parseInt(item.baseDailyRate) <= props.state.prices[1])
                     && (advancedSearch === (propertyIds.indexOf(item.uid) !== -1))
                     && !amenityBool.includes(false)
+                    && (mapBoundedProperties.length > 0 ? mapBoundedProperties.includes(item.uid) : true) 
                     && (winterLets ? !!item.customData.Winter_Let_Price === winterLets : true)){  
                     list.push(item)
                 } 
@@ -183,13 +266,12 @@ const Properties = React.memo((props) => {
     
             setPropList(list)
         }
-        
-        return () => {
-            setPropList([])
-        }
-    }, [data, advancedSearch, props.state, sort, propertyIds, amenitiesList, winterLets])
+    }
 
 
+    const handleMapBoundProperties = (propList) => {
+        setMapBoundedProperties(propList)
+    }
     const handleGalleryClick = useCallback((photos) => {
         setShow(true);
         setPhotos(photos);
@@ -199,6 +281,15 @@ const Properties = React.memo((props) => {
         setShow(false)
     };
 
+
+    const handleCalendarClose = () => setShowCalendar(false);
+    const handleShowCalendar = (e) => {
+        if(e){
+            e.stopPropagation()
+            e.preventDefault()
+        }
+        setShowCalendar(true)
+    }
 
     const handleSort = useCallback((sort) => {
         setSort(sort)
@@ -230,7 +321,6 @@ const Properties = React.memo((props) => {
     }
 
     const handleWinterLets = (e) => {
-        console.log(e)
         setWinterLets(e)
     }
 
@@ -238,12 +328,7 @@ const Properties = React.memo((props) => {
 
         return(
             <div>
-                <FirestoreCollection path="/Properties/">
-                    {data => {       
-                        return (!data.isLoading && data.value) ?  
-                        <>
-                        {setData(data.value)}
-
+                    {data ?      
                         <Container style={{width:"100vw", maxWidth:"none", minHeight: "100vh"}} >
                             <Row>
                                 <Col xs={12} md={horizontalExpanded? 6 : 3} id="filter-sidebar" style={{transition:"all 1s"}}>
@@ -252,13 +337,15 @@ const Properties = React.memo((props) => {
                                         display: "flex",
                                         justifyContent: "space-between",
                                         height: "6vh",
-                                        minHeight: "55px"}}>
+                                        minHeight: "55px",
+                                        width: "inherit"}}
+                                        className="fixed-mobile">
                                             <div style={{display:"flex", flexWrap:"nowrap", margin: "auto 10px auto 0"}}>
                                         <Form.Group style={{margin:"10px auto"}}>
-                                            <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm">
+                                            <Form.Control as="select" onChange={(e)=>handleSort(e.target.value)} size="sm" style={{boxShadow: "0 3px 1px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 13%), 0 0 0 1px rgb(0 0 0 / 2%)", cursor: "pointer"}}>
                                                 <option value="">{t("Sort By")}</option>
-                                                <option value="price-min">{t("Daily Rate")}€ &#8594; €€€</option>
-                                                <option value="price-max">{t("Daily Rate")}€€€ &#8594; €</option>
+                                                <option value="price-min">{t("Daily Rate")} € &#8594; €€€</option>
+                                                <option value="price-max">{t("Daily Rate")} €€€ &#8594; €</option>
                                                 <option value="bedrooms-min">{t("Bedrooms")} {t("Increasing")}</option>
                                                 <option value="bedrooms-max">{t("Bedrooms")} {t("Decreasing")}</option>
                                                 <option value="a-z">A &#8594; Z</option>
@@ -266,13 +353,13 @@ const Properties = React.memo((props) => {
                                             </Form.Control>
                                         </Form.Group>
                                         </div>
-                                        <div className="expandBtn" role="button" tabindex="0" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>  
+                                        <div className="expandBtn hide-mobile" role="button" tabIndex="0" style={{float:"right", margin:"10px auto"}} onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>  
                                                 <p style={{margin: "auto"}}>{t("Filters")}</p>
                                                 <FontAwesomeIcon icon={faChevronRight} style={{margin:"auto 5px"}}/> 
                                         </div>
                                     </Container>
-                                <GoogleMapComponent isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"94vh"} cardDisplayNum={cardDisplayNum}/>
-                                <div className="expandBtn filterExpand" role="button" tabindex="0" onClick={handleExpand} onKeyDown={(e)=>{if(e.key === 'Enter'){handleExpand()}}} >
+                                <GoogleMapComponent handleMapBoundProperties={handleMapBoundProperties} boundProps={mapBoundedProperties} isMarkerShown="true" lat={37.150231} lng={-7.6457664} list={propList} state={props.state} propertyIds={propertyIds}  height={"94vh"} cardDisplayNum={cardDisplayNum}/>
+                                <div className="expandBtn filterExpand" role="button" tabIndex="0" onClick={handleExpand} onKeyDown={(e)=>{if(e.key === 'Enter'){handleExpand()}}} >
                                     {horizontalExpanded ? 
                                     <>
                                         <p>{t("Shrink")}</p>
@@ -286,8 +373,83 @@ const Properties = React.memo((props) => {
                                 </div>
                                 </StickyBox>
                                 </Col>
-                                <Col xs={12} md={horizontalExpanded? 6 : 9} style={{transition:"all 1s"}}>
-                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick}  dates={dates} amenitiesList={amenitiesList} winterLets={winterLets} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds}  handleClearDates={props.handleClearDates} handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError}/>
+                                <Col xs={12} md={horizontalExpanded? 6 : 9} className="prop-features-container">
+                                    <div style={{position:"absolute", height:"100%", width: "100%", pointerEvents:"none"}}>
+                                    <StickyBox className="filter-sidebar-sticky" >
+                                        <div className="filter-tab-container" onClick={handleSidebarModal} onKeyDown={(e)=>{if(e.key === 'Enter'){handleSidebarModal()}}}>
+                                            <div className="filter-tab" style={{display: "flex", flexDirection: "column"}}>
+                                                <div className="expandBtn" style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center", margin: "2px 2px", padding: "5px", minHeight:"46px"}} onClick={handleShowCalendar}>
+                                                    <FontAwesomeIcon icon={faCalendarAlt} style={{margin:"auto"}}/> 
+                                                    {props.state.searchArray.from &&
+                                                        <p>{props.state.searchArray.from && 
+                                                        <small>{`${new Date(props.state.searchArray.from).getDate()}/${new Date(props.state.searchArray.from).getMonth()+1}`}</small>
+                                                        }
+                                                        <br />
+                                                        {props.state.searchArray.to && 
+                                                        <small>{`${new Date(props.state.searchArray.to).getDate()}/${new Date(props.state.searchArray.to).getMonth()+1}`}</small>
+                                                        }</p>
+                                                    }
+                                                </div>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
+                                                    <BsFillHouseFill style={{margin:"auto"}}/>
+                                                    <small>{propList.length}</small>
+                                                </div>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
+                                                    <FontAwesomeIcon icon={faTag} style={{margin: "auto"}}/>
+                                                    <small>{props.state.prices[0]}€ - {props.state.prices[1]}€</small>
+                                                </div>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
+                                                    <FontAwesomeIcon icon={faBed} style={{margin: "auto"}} />
+                                                    <small>{props.state.bedrooms[0]} - {props.state.bedrooms[1]}</small>
+                                                </div>
+                                                <div style={{margin:"auto", display: "flex", flexDirection: "column", padding:"10px 0", textAlign: "center"}}>
+                                                    <FontAwesomeIcon icon={faShower} style={{margin: "auto"}}/>
+                                                    <small>{props.state.bathrooms[0]} - {props.state.bathrooms[1]}</small>
+                                                </div>
+                                                <div className="filter-tab-amenities">
+                                                    {Object.keys(amenitiesList).map((amenity, i) => {
+                                                        switch(amenity){
+                                                        case "hasPool":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faSwimmingPool} style={{margin: "5px auto"}}/></div> : null
+                                                        case "isWheelchairAccessible":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FaWheelchair style={{margin: "5px auto"}}/></div> : null
+                                                        case "allowsPets":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faDog} style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasAirConditioning":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faFan} style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasBarbecue":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><GiBarbecue style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasElevator":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><GrElevator style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasGarden":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faTree} style={{margin: "5px auto"}}/></div> : null
+                                                        case "hasInternetWifi":
+                                                            return amenitiesList[amenity] ? <div className="icon-info amenity-icon" key={`amenity-key-${i}`}><FontAwesomeIcon icon={faWifi} style={{margin: "5px auto"}}/></div> : null
+                                                        default:
+                                                        return null
+                                                        }
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <SideBarModal 
+                                                    show={showSidebarModal} 
+                                                    close={handleSidebarModal}
+                                                    data= {data} 
+                                                    handleChange={props.handleChange} 
+                                                    amenitiesList={amenitiesList}
+                                                    handleAmenityChange= {handleAmenityChange}
+                                                    state={props.state}
+                                                    handleSliderChange={props.handleSliderChange}
+                                                    handleSelectDeselectAll={props.handleSelectDeselectAll}
+                                                    handleWinterLets = {handleWinterLets}
+                                                    winterLets={winterLets}
+                                                    />
+
+                                    </StickyBox>
+                                    </div>
+                                    
+                                <PropFeatures propList={propList} state={props.state} handleGalleryClick={handleGalleryClick} winterLets={winterLets} dates={dates} amenitiesList={amenitiesList}  handleDisplayNumChange={handleDisplayNumChange} fetchError={fetchError} heroBg={heroBg} handleShowCalendar={handleShowCalendar} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleClearDates={props.handleClearDates}/>
                                 </Col>
                             </Row>
                             <ReactBnbGallery
@@ -303,37 +465,25 @@ const Properties = React.memo((props) => {
                                     </style>
                                 </Helmet> 
                         </Container>
-                        <SideBarModal 
-                            show={showSidebarModal} 
-                            close={handleSidebarModal}
-                            data= {data} 
-                            handleChange={props.handleChange} 
-                            amenitiesList={amenitiesList}
-                            handleWinterLets = {handleWinterLets}
-                            winterLets={winterLets}
-                            handleAmenityChange= {handleAmenityChange}
-                            state={props.state}
-                            handleSliderChange={props.handleSliderChange}
-                            handleSelectDeselectAll={props.handleSelectDeselectAll}/>
-                        </> 
                         : 
-                        <>
-                            <Container style={{width:"100vw", maxWidth:"none"}} >
-                            <Row>
-                                <Col xs={12} md={3} id="filter-sidebar">
-                                <div className="placeholder-box blink" style={{height:"100%", minHeight:"90vh"}}></div>
-                                </Col>
-                                <Col>
-                                    <Loading />
-                                </Col> 
-                                </Row>
-                            </Container>
-                        </>
-                    }}
-                </FirestoreCollection>
+                        <Container style={{width:"100vw", maxWidth:"none"}} >
+                        <Row>
+                            <Col xs={12} md={3} id="filter-sidebar">
+                            <div className="placeholder-box blink" style={{height:"100%", minHeight:"90vh"}}></div>
+                            </Col>
+                            <Col>
+                                <Loading />
+                            </Col> 
+                            </Row>
+                        </Container>
+                    }
+            <CalendarModal show={showCalendar} handleClose={handleCalendarClose} dates={{from: props.state.searchArray.from, to: props.state.searchArray.to}} handleDateChange={props.handleDateChange} handleNewIds={handleNewIds} handleClearDates={props.handleClearDates}/>
+
             </div>
         )
 })
+
+const Properties = connect(mapStateToProps)(ConnectedProperties)
 
 
 
@@ -348,6 +498,7 @@ const PropertiesClass = class extends React.Component {
             amenities:[],
             bedrooms: [1, 10],
             bathrooms: [1, 10],
+            prices: [0, 1000],
             filteredSearch: {},
             searchArray: [],
             dataLength: 0,
@@ -489,6 +640,7 @@ const PropertiesClass = class extends React.Component {
 
 
     handleSliderChange(array, type){
+
         this.setState({
             [`${type}`]: array
         })

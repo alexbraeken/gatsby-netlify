@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation} from 'gatsby-plugin-react-i18next';
 import queryString from 'query-string';
 import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
@@ -76,11 +76,9 @@ export default function Balance(props) {
                         setFetching(false)
                         setInitial(false)
                         let details = JSON.parse(data)
-                        console.log(details)
                         if(details.balance >= 0){
                             setBalance(details.balance)
                             if(details.balance !== 0){
-                                console.log(details.expire)
                                 setPaymentInfo({redirectUrl: details.redirectUrl, reference: details.reference, entity: details.entity, expire: details.expire, amount: details.amount, status: details.status})
                                 setPropInfo({img: details.propImg, link: details.propLink, name: details.propName}) 
 

@@ -1,6 +1,7 @@
 @import "~bulma/sass/utilities/initial-variables"
 @import "~slick-carousel/slick/slick.css"
 @import "~slick-carousel/slick/slick-theme.css"
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap')
 
 // Config vars
 // Kaldi logo brand color: #FD461E
@@ -18,6 +19,11 @@ $fb-blue: #4267B2
 $twitter-blue: #1DA1F2
 $insta-purple: #833AB4
 
+$scrollbarBG: $primary
+$scrollbarBorderRadius: 40px
+$scrollbarTrackColor: transparent 
+$scrollbarWidth: 10px
+$scrollbarGradient: linear-gradient(90deg, rgba(255,166,0,1) 0%, rgba(255,132,0,1) 17%, rgba(255,124,0,1) 48%, rgba(255,98,0,1) 88%, rgba(233,46,0,1) 100%)
 
 .navbar .navbar-menu
   box-shadow: none !important
@@ -76,11 +82,11 @@ $insta-purple: #833AB4
     font-size: 1rem
     line-height: 1
     background-color: #fff
-    border-radius: .25rem
+    border-radius: 40px
     border-color: initial
     text-decoration: none
     font-weight: 700
-    color: #CC3700
+    color: $primary
     text-align: center
     -webkit-box-shadow: inset 0 0 0 1px #CC3700
     box-shadow: inset 0 0 0 1px #f40
@@ -90,8 +96,6 @@ $insta-purple: #833AB4
 .margin-top-0
   margin-top: 0 !important
 
-.navbar-item
-  font-weight: bold
 
 .navbar-item .icon
   color: $primary
@@ -104,7 +108,6 @@ $insta-purple: #833AB4
   padding: 0 1rem
 footer.footer
   padding: 3rem 0rem 0rem
-  background-color: transparent
 
 
 .primary-color
@@ -170,6 +173,8 @@ $menu-label-color: $white-ter
     text-align: center
     max-width: 70%
     margin: 0 0 1em
+  .wrap-on-mobile
+    flex-wrap: wrap
 
 
 @import url(https://fonts.googleapis.com/css2?family=Didact+Gothic)
@@ -273,22 +278,30 @@ a:hover
   display: -webkit-box
   display: -ms-flexbox
   display: flex
-  width: 150px
   -ms-flex-wrap: no-wrap
   flex-wrap: no-wrap
-  margin-left: 10px
+  & .icon-info
+      margin: auto
+      display: -webkit-box
+      display: -ms-flexbox
+      display: flex
+      width: 100%;
+      position: relative
+      min-width: 60px
+      font-size: 1.6rem
+      justify-content: center
+      border-left: 1px solid white
+      &:last-child
+        border-right: 1px solid white
+      & svg
+          margin: auto 0
 
-.header-icons .icon-info
-  margin: auto
-  display: -webkit-box
-  display: -ms-flexbox
+.icon-info .text-number
   display: flex
-  width: 100%
-  position: relative
-  padding: 0 5px
-
-.icon-info .text-number h3
-  font-size: 20px
+  padding-left: 5px
+  & h3
+      font-size: 1.7rem
+      margin: auto
 
 .header-icons img
   margin: auto 2px auto auto
@@ -302,7 +315,6 @@ a:hover
   -o-transition: opacity 0.5s
   transition: opacity 0.5s
   visibility: hidden
-  width: 120px
   background-color: black
   color: #fff
   text-align: center
@@ -335,17 +347,26 @@ a:hover
 .icon-info.amenity-icon
   display: flex
 
-.icon-info:hover .tooltiptext
+.table-tooltip-icon
+  cursor: pointer
+  position: relative
+
+.icon-info:hover .tooltiptext, .table-tooltip-icon:hover .tooltiptext
   opacity: 1
   visibility: visible
 
 //Property Cards
 
 .prop-card-container
-  margin: 10px 5px
-  min-width: 333px
+  min-width: 310px
   max-width: 400px
   flex: 1 1
+  z-index: 1
+  margin: 35px
+
++mobile
+  .prop-card-container
+      margin: 30px 30px
 
 .prop-card
   max-width: 1000px
@@ -361,6 +382,7 @@ a:hover
   backface-visibility: hidden
   -webkit-font-smoothing: subpixel-antialiased
   box-shadow: none
+  z-index: 1
   &:hover
     & .card-buttons-right
         right: 0
@@ -368,8 +390,7 @@ a:hover
         visibility: visible
 
 .prop-card-container:hover 
-  & .prop-card
-      transform: scale(1.019) translateZ(0)
+  z-index: 2
   & .prop-card-text
       text-decoration: none
   & .prop-card-title
@@ -387,14 +408,6 @@ a:hover
   padding: 1.3rem
   height: 250px
 
-.prop-card-text:before
-  position: absolute
-  left: 0
-  top: 0
-  width: 100%
-  height: 100%
-  content: ""
-  box-shadow:  20px 20px 60px #d9d9d9
 
 .prop-card-description-ps
     position: absolute
@@ -415,7 +428,7 @@ a:hover
       cursor: pointer
       display: flex
       & svg
-          margin: auto 5px auto auto
+          margin: 5px 5px auto auto
           color: #000
           width: 25px
 
@@ -434,8 +447,9 @@ a:hover
   bottom: 0
   left: 0 
   z-index: 3
-  background-color: transparent
+  background-color: #000
   border-radius: 0 0 5px 5px
+  opacity: 0
 
 .footer-btn-container
   flex: 1 1 30%
@@ -452,6 +466,7 @@ a:hover
       box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02)
       cursor: pointer
       transition: all 0.3s
+      overflow: hidden
   &:hover
     & .footer-btn
         max-width: 500px
@@ -502,6 +517,7 @@ a:hover
   height: 300px
   background-color: grey
   border-radius: 5px
+  overflow: hidden
   & .slick-prev
       left: 5px
       z-index: 2
@@ -518,6 +534,21 @@ a:hover
   background-size: cover
   border-radius: 5px
   padding: 10px
+  position: relative
+  & .card-slider-glow
+      background-repeat: no-repeat
+      background: grey
+      background-position: center
+      background-size: cover
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 100%
+      height: 100%
+      z-index: -1
+      transform: translate(-50%, -50%)
+      filter: blur(8px) saturate(3)
+
 
 .prop-card-slider
   width: 100%
@@ -632,9 +663,12 @@ a:hover
   flex-wrap: wrap
   max-width: 60%
   & a
-      flex: 1 1 15%
+      flex: 1 1 25%
       padding: 0 5px
       max-width: 150px
+      display: flex
+      & span
+          margin-right: 5px
 
 +mobile
   #prop-nav 
@@ -670,7 +704,7 @@ a:hover
   background-repeat: no-repeat
   background-size: cover
   background-color: #cae6fe
-  z-index: 2
+  z-index: 3
 
 .hero-container
   position: relative
@@ -732,6 +766,7 @@ a:hover
   width: 40vw
   z-index: 0
   margin: auto
+  overflow: hidden
 
 #logo-shadow
   margin: auto
@@ -809,6 +844,18 @@ $min-margin: 10px
   padding: 0
   background:#fff
   box-shadow: 1px 0px 10px -4px black
+  z-index: 2
+
+.filter-sidebar-sticky
+  z-index: 2
+  
+@media (max-width: 991px)
+  #filter-sidebar
+    & .fixed-mobile
+        position: fixed
+        top: 70px
+        left: 0
+        z-index: 1
 
 .filter-container
   background: rgba(256,256,256,0.4)
@@ -849,7 +896,7 @@ $min-margin: 10px
 
 
 .filter-checkbox-container 
-  flex: 1 1 50%
+  flex: 1 1 100%
   display: block
   position: relative
   padding-left: 35px
@@ -940,6 +987,72 @@ $min-margin: 10px
     100%
         transform: scale(1)
 
+.filter-tab-container
+  height: fit-content
+  width: 50px
+  position: absolute
+  left: 0
+  top: 50vh
+  transform: translateY(-50%)
+  cursor: pointer
+  pointer-events: all
+  &:after
+    content: ''
+    position: absolute
+    box-shadow: 2px 0px 6px 0px $primary
+    top: 50%
+    left: 49px
+    width: 2px
+    transform: translateY(-50%)
+    height: 10px
+    background: $primary
+    transition: all 0.3s
+  &:hover:after
+    height: 100%
+  & .filter-tab
+      background: #fff
+      height: 100%
+      width: 100%
+      position: relative
+      filter: drop-shadow(2px 1px 2px #666666)
+      &:after
+        position: absolute
+        content: ''
+        background: #fff
+        height: 50px
+        width: 50px
+        bottom: -49px
+        left: 0
+        border-radius: 0 0 50px 0
+        -moz-border-radius: 0 0 50px 0
+        -webkit-border-radius: 0 0 50px 0
+      &:before
+        position: absolute
+        height: 50px
+        background: #fff
+        content: ''
+        width: 50px
+        top: -49px
+        left: 0
+        border-radius: 0 50px 0 0
+        -moz-border-radius: 0 50px 0 0
+        -webkit-border-radius: 0 50px 0 0
+      & .filter-tab-amenities
+          display: flex
+          flex-flow: column wrap
+          border-radius: 4px
+          margin: 2px 2px
+          -webkit-box-shadow: inset 5px 0px 11px -3px #000000, inset -5px 0px 11px -3px #000000
+          box-shadow: inset 2px 0px 8px -2px #a5a5a5, inset -2px 0px 8px -2px #a5a5a5
+          padding: 5px
+          &:empty
+            display: none
+
+
+
+
+
+
 .expandBtn
   position: relative
   border-radius: 4px
@@ -998,6 +1111,7 @@ $min-margin: 10px
   background: #fff
   color: #000
   border-radius: 5px
+
   
 .calendar-container
   z-index: 5
@@ -1009,6 +1123,7 @@ $min-margin: 10px
   box-shadow: 0px 11px 12px -8px black
   transform: translate(-50%, 0px)
   margin-left: 50%
+  font-size: 0.8rem
   
 
 .DayPicker-Weekday
@@ -1087,60 +1202,63 @@ $min-margin: 10px
   border-top: 3px solid #1E5799
 
 //prop page ribbon
-.prdtitlesolo
-  & .prop-ribbon 
-      position: absolute
-      right: 20%
-      top: 100%
-      z-index: 1
-      overflow: hidden
-      width: 75px
-      text-align: right
+.prop-ribbon 
+  position: absolute
+  right: 320px
+  top: 0
+  z-index: 1
+  overflow: hidden
+  width: 75px
+  text-align: right
+  border-radius: 0px 0px 30px 30px
+  height: 110px
+  cursor: pointer
+  transition: all 0.5s
+  & div 
+      font-size: 9px
+      font-weight: bold
+      color: #FFF
+      text-transform: uppercase
+      text-align: center
+      line-height: 20px
+      display: block
+      background: linear-gradient(#2989D8 0%, #1E5799 100%)
+      box-shadow: 0 3px 10px -5px black
       border-radius: 0px 0px 30px 30px
-      height: 110px
-      cursor: pointer
+      position: absolute
+      padding: 3px
+      object-fit: cover
+      width: 100%
+      height: 80px
       transition: all 0.5s
-      & div 
-          font-size: 9px
-          font-weight: bold
-          color: #FFF
-          text-transform: uppercase
-          text-align: center
-          line-height: 20px
-          display: block
-          background: linear-gradient(#2989D8 0%, #1E5799 100%)
-          box-shadow: 0 3px 10px -5px black
-          border-radius: 0px 0px 30px 30px
-          position: absolute
-          padding: 3px
-          object-fit: cover
-          width: 100%
-          height: 80px
+      & svg
+          opacity: 0
           transition: all 0.5s
-          & svg
-              opacity: 0
-              transition: all 0.5s
-              position: absolute
-              width: 18px
-              height: 18px
-              left: 50%
-              transform: translateX(-50%)
-              bottom: 30px
-          & p
-              margin: auto
-              position: absolute
-              left: 50%
-              top: 15px
-              transform: translateX(-50%)
-              font-size: 0.7rem
-      &:hover
+          position: absolute
+          width: 18px
+          height: 18px
+          left: 50%
+          transform: translateX(-50%)
+          bottom: 30px
+      & p
+          margin: auto
+          position: absolute
+          left: 50%
+          top: 15px
+          transform: translateX(-50%)
+          font-size: 0.7rem
+  &:hover
+    border-radius: 0px 0px 80px 80px
+    height: 170px
+    & div
         border-radius: 0px 0px 80px 80px
-        height: 170px
-        & div
-            border-radius: 0px 0px 80px 80px
-            height: 130px
-            & svg
-                opacity: 1
+        height: 130px
+        & svg
+            opacity: 1
+
++mobile
+  .prop-ribbon
+    right: 5px
 
 //featured
 
@@ -1198,13 +1316,15 @@ $min-margin: 10px
           height: 100%
           width: 100%
           border: none
-          border-radius: 4px
+          border-radius: 40px
           cursor: pointer
-          padding: .375rem .75rem
-      & input:focus
-          border-color: $light-orange
-          box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
+          padding: 10px
+          transition: all 0.3s
           outline: none!important
+          border: 1px solid transparent
+      & input:focus, input:hover
+          box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
+          border: 1px solid $primary
 
 @media (max-width: 991px)
   .InputFromTo .DayPickerInput
@@ -1212,11 +1332,17 @@ $min-margin: 10px
   .InputFromTo-to .DayPickerInput
     padding: 5px 0
 
-.InputFromTo-to
-  padding-right: 5px
+.InputFromTo.daypicker-container
+  display: flex
+  justify-content: center
+  position: relative
+  margin: 5px auto
+  height: 50px
+  minWidth: 200px
 
 .InputFromTo .DayPickerInput, .InputFromTo-to
   flex: 1 1 48%
+    
 
 .InputFromTo-to .DayPickerInput
   padding: 0 0 0 5px
@@ -1232,8 +1358,8 @@ $min-margin: 10px
 
 .submit-search-btn
   flex: 1 1 10%
-  margin: 5px
-  min-width: fit-content
+  margin: 5px auto
+  width: fit-content
   height: 50px
   & a 
     border: 4px solid #3F3F3F
@@ -1250,7 +1376,7 @@ $min-margin: 10px
     position: relative
     text-decoration: none
     background: $primary
-    border-radius: 4px
+    border-radius: 40px
     & .label, .icon-arrow 
         backface-visibility: hidden
         transform: translateZ(0)
@@ -1312,15 +1438,86 @@ $min-margin: 10px
   border-color: $light-orange
   box-shadow: 0 0 0 0.2rem rgba(245,130,30,.25)
 
+.search-filter
+  position: relative
+  min-height: 350px
+
 .home-search-container
   width: 80%
+  max-width: 1400px
   display: flex
-  flex-wrap: wrap
+  flex-wrap: nowrap
   justify-content: center
   margin: 100px auto auto auto
   height: auto
-  position: relative
+  position: absolute
+  top: 0
+  left: 50%
   z-index: 2
+  background-color: #fff
+  border-radius: 40px
+  padding: 15px
+  pointer-events: all
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9))
+  & .expand-search
+      max-width: 0
+      min-width: 0
+      opacity: 0
+      margin: 0
+      transition: all 0.3s
+      pointer-events: none
+  & > *:not(.submitBtn):not(.expand-search)
+          max-width: 1000px
+          opacity: 1
+          transition: all 0.3s
+  &.fixed
+    position: fixed
+    & .expand-search
+        opacity: 1
+        max-width: 1000px
+        width: 35px
+        display: flex
+        align-content: center
+        pointer-events: all
+        & svg
+            cursor: pointer
+            margin: auto 
+            margin-right: 0
+            width: 30px
+            height: 30px
+            transition: all 0.3s
+            &:hover
+              color: $primary
+              transform: scale(1.0)
+              margin-right: 5px
+  &.shrink
+    max-width: 350px
+    padding: 5px
+    & .expand-search
+        opacity: 1
+        max-width: 1000px
+        width: 35px
+        display: flex
+        align-content: center
+        pointer-events: all
+    & > *:not(.submitBtn):not(.expand-search)
+          max-width: 0
+          min-width: 0
+          opacity: 0
+          margin: 0
+          pointer-events: none
+    
+
+@media (max-width: 991px)
+  .home-search-container
+    max-width: 80%
+    flex-wrap: wrap
+    & > *:not(.submitBtn):not(.expand-search)
+          max-width: 90%
+    &.shrink
+      & .expand-search
+          max-width: 90%
+
 
 //Top Date Picker
 .top-date-picker
@@ -1388,8 +1585,9 @@ $min-margin: 10px
 
   & .InputFromTo-to .DayPickerInput
       width: 100%
-  &.scroll-modal
-    overflow-y: scroll
+  
+.scroll-modal
+  overflow-y: scroll
 
 //traveler tips Cards
 .card__img 
@@ -1659,15 +1857,76 @@ $min-margin: 10px
       transform: translateY(0%)
       opacity: 1
 
+
+.gallery-btn-container
+  position: absolute
+  bottom: 2rem 
+  right: calc(15px + 2%)
+  z-index: 1
+  & .gallery-btn
+      position: relative
+      color: $primary
+      background: #000
+      background-clip: padding-box 
+      border: solid 2px transparent  
+      border-radius: 40px
+      background-position: center center 
+      background-blend-mode: luminosity
+      background-size: cover
+      width: 5em 
+      height: 2em 
+      max-width: 400px 
+      max-height: 200px 
+      min-width: 100px 
+      min-height: 50px 
+      border-radius: 40px 
+      font-size: 1.5em 
+      display: flex 
+      place-content: center 
+      background-clip: padding-box
+      cursor: pointer
+      transition: all 0.3s
+      & span
+          margin: auto
+          filter: drop-shadow(1px 1px 2px black)
+          font-weight: 800
+      &:before, &:after
+        content: ''
+        position: absolute
+        top: 0 
+        right: 0 
+        bottom: 0 
+        left: 0
+        z-index: -2
+        margin: -2px 
+        border-radius: 40px
+        transition: all 0.3s
+      &:before
+        background: linear-gradient(90deg, #ffa600 0%, #ff8400 12%, #ff6200 33%, #ff4400 100%)
+      &:after
+        z-index: -1
+        opacity: 0
+        background: linear-gradient(180deg, #ffa600 0%, #ff8400 12%, #ff6200 33%, #ff4400 100%)
+      &:hover
+        &:after
+          opacity: 1
+          margin: -4px
+
 //navbar
 .navbar-start
   & a
       display: flex
 
 .navbar .container
-  max-width: 1300px;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  max-width: 1300px
+  flex-direction: row
+  flex-wrap: nowrap
+
+@media only screen and (max-width: 900px)
+  .container
+    max-width: 95%
+  .navbar .container
+    max-width: 95%
 
 .dropdown-submenu
   position: absolute
@@ -1688,9 +1947,7 @@ $min-margin: 10px
   transition: all 0.3s
 
 .dropdown-title
-  font-weight: bold
-  color: $primary
-  text-decoration: underline
+  color: #fff
 
 .submenu-return-arrow
   margin: 10px 0
@@ -1733,9 +1990,17 @@ $min-margin: 10px
 
 a.navbar-item, .navbar-item
   font-weight: unset
+  cursor: pointer
+  border-bottom: solid 1px #4a4a4a
+  transition: all 0.5s
+  letter-spacing: 1px
+  & svg
+      color: #fff
   &:hover
-    color: #fff
-    background-color: $primary
+    border-color: $primary
+    color: $primary
+    & svg
+        color: $primary
 
 
 @media only screen and (max-width: 1000px) 
@@ -1746,7 +2011,9 @@ a.navbar-item, .navbar-item
 
 .drop-item
   transition: all 0.3s
+  color: #fff
   &:hover
+    color: $primary
     padding-left: 10px
 
 //Meet the team
@@ -1856,24 +2123,39 @@ a.navbar-item, .navbar-item
   display: flex
   flex-wrap: wrap
   justify-content: center
+  transform: translateY(50%)
   & .filter-button
       flex: 1 1 100%
       height: 80px
       border-top-right-radius: 4px
       border-bottom-right-radius: 4px
       display: flex
-      box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.02)
       padding-left: 15px
       cursor: pointer
       transform: translateX(calc(-100% + 70px))
       transition: all 0.3s
-      & span
-          margin: auto
-          font-size: 1.5rem
-      & svg
-          margin: auto 10px
-          height: auto
-          width: 50px
+      position: relative
+      background-color: white
+      & .filter-button-content
+          display: flex
+          position: absolute
+          right: 0
+          width: 100%
+          top: 0
+          height: 100%
+          border-top-right-radius: 4px
+          border-bottom-right-radius: 4px
+          box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02)
+          padding-left: 15px
+          transition: all 0.3s
+          & span
+              margin: auto
+              font-size: 1.5rem
+              padding-left: 10px;
+          & svg
+              margin: auto 10px
+              height: auto
+              width: 50px
   & .filter-button:hover
       box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02)
       transform: translateX(0)
@@ -1882,8 +2164,23 @@ a.navbar-item, .navbar-item
           & path
               fill: #fff
   & .selected
-      background-color: $light-orange
+      & .filter-button-content
+          background-color: $light-orange
 
+@media only screen and (max-width: 650px)
+  .activities-filter
+    & .selected
+      & .filter-button-content
+          left: unset
+    & .filter-button.selected:hover
+        & .filter-button-content
+            left: 0
+    & .filter-button
+        transform: translateX(calc(-100% + 50px))
+        & .filter-button-content
+            width: fit-content
+            & svg
+                width: 30px
 
 //Home Cards
 
@@ -1892,20 +2189,30 @@ a.navbar-item, .navbar-item
   flex-wrap: wrap
   min-width: 330px
   padding: 0 15px
+  margin: 30px auto
+  &:after
+      position: absolute
+      content: ""
+      bottom: 0
+      width: 0%
+      height: 0
+      opacity: 0
+      background-color: white
+      border-radius: 50%
+      box-shadow: 0px 6px 3px 2px white
+      transition: all 0.3s
+      left: 50%
+      transform: translateX(-50%)
   &:hover
     .home-card-bg
       filter: brightness(1) drop-shadow(2px 4px 6px black)
     .home-card .home-card-button-link .btn
+      background-color: $primary
       color: #fff
     &:after
-      position: absolute
-      content: ""
-      bottom: 0
+      opacity: 1
       width: 90%
-      height: 0
-      background-color: white
-      border-radius: 50%
-      box-shadow: 0px 6px 3px 2px white
+      
 
 
   
@@ -1918,7 +2225,6 @@ a.navbar-item, .navbar-item
   flex: 0 1 300px
   margin: auto
   background-color: transparent
-  transition: all 0.3s ease-in-out
   & a
       position: absolute
       width: 100%
@@ -1933,6 +2239,8 @@ a.navbar-item, .navbar-item
           height: max-content
           margin: auto
           background-color: transparent
+          border-radius: 40px
+          transition: all 0.3s
 
 .home-card-bg
   width: 100%
@@ -2111,9 +2419,15 @@ a.navbar-item, .navbar-item
       opacity: 0.5
 
 .intro-para
-  background-color: rgba(256,256,256, 0.9)
-  border-radius: 4px
   padding: 10px
+  margin: auto
+  & p
+      font-size: 1.2rem
+      &::first-letter
+        font-size: 4rem
+        float: left
+        line-height: 0.9
+        margin: 0 0.3rem 0 0
 
 .slick-slider
   cursor: grab
@@ -2185,19 +2499,26 @@ a.navbar-item, .navbar-item
   overflow: auto
   min-width: min-content
   max-width: 25%
+  position: absolute
+  max-width: 400px
   &.active
     transform: translateX(0)
-
-@media (max-width: 1600px) 
-  .sidebar-modal
-    max-width: 400px
+    &::-webkit-scrollbar
+      width: $scrollbarWidth
+    &::-webkit-scrollbar-track
+      background-color: $scrollbarTrackColor
+    &::-webkit-scrollbar-thumb
+      background: $scrollbarBG
+      border-radius: $scrollbarBorderRadius
+      background: $scrollbarGradient
   
-
 
 .sidebar-modal-container
   z-index: -1
+  pointer-events: none
   &.active
     z-index: 10
+    pointer-events: all
     & .sidebar-overlay
         background-color: rgba(0, 0, 0, 0.7)
 
@@ -2211,9 +2532,9 @@ a.navbar-item, .navbar-item
     
 
 .sidebar-modal-container, .sidebar-modal, .sidebar-overlay
-  position: fixed
   top: 0
   height: 100vh
+  
 
 .search-icon
   color: #000
@@ -2235,9 +2556,15 @@ a.navbar-item, .navbar-item
   right: 20px
   z-index: 10
   cursor: pointer
+  transition: all 0.3s
+  &:hover
+    color: $primary
 
 .orangeText
-  color: $primary
+  color: $primary !important
+
+.lightOrangeText
+  color: $light-orange !important
 
 .hover-highlight
   position: relative
@@ -2255,7 +2582,10 @@ a.navbar-item, .navbar-item
     z-index: -1
   &:hover:before
     width: 110%
-    
+
+.hover-primary:hover
+  & b
+      color: $primary  
 
 .content-header
   box-shadow: -4px 0 0 $primary
@@ -2454,12 +2784,15 @@ a.navbar-item, .navbar-item
 
 .instagram-feed
   padding-top: 40px
-  height: 400px
+  margin: auto
   & div .insta-post
       position: relative
-      width: 200px
+      margin: auto
+      height: 33vw
+      max-height: 350px
+      max-width: 350px
+      min-height: 300px
       display: flex
-      height: 200px
       user-drag: none 
       user-select: none
       -moz-user-select: none
@@ -2498,7 +2831,7 @@ a.navbar-item, .navbar-item
           height: 100%
           & .slick-slide
               position: relative
-              margin: auto
+              margin: auto 10px
       & .slick-prev, .slick-next
           z-index: 20
           &:before
@@ -2737,9 +3070,11 @@ a.navbar-item, .navbar-item
   transition: all 0.3s
   & .nav-prop-name
       flex: 1 1 30%
+      margin: 0 auto 0 0
   & .nav-prop-location-container
       float: right 
       margin: auto
+      font-size: 0.7rem
       & .nav-prop-location
           margin-left: auto 
           color: #ccc
@@ -2749,33 +3084,25 @@ a.navbar-item, .navbar-item
 @media only screen and (max-width: 900px)
   .nav-name-search
     flex-wrap: wrap
+    text-align: left
     & .nav-prop-name
+        flex: 1 1 100%
         min-width: 150px
+        display: flex
     & .nav-prop-location-container
+        flex: 1 1 100%
         float: none
-        margin: auto 10px
+        margin: auto auto auto 0
+    & .dropdown-option-img
+        display: none
+        
 
-.nav-column-1
-  grid-column: 1
+.nav-column
+  margin: 50px 0
 
-.nav-column-2
-  grid-column: 2
 
-.nav-column-3
-  grid-column: 3
-
-@media only screen and (max-width: 600px)
-  .nav-column-1
-    grid-column: 1
-
-  .nav-column-2
-    grid-column: 1
-
-  .nav-column-3
-    grid-column: 1
-
-$card-height-large-screen: 20rem;
-$card-height-mobile: 12rem;
+$card-height-large-screen: 20rem
+$card-height-mobile: 12rem
 
 .news-card 
   border: 0px solid aqua
@@ -3113,6 +3440,31 @@ button.calendar-btn
   &.insta-icon:hover
     background-color: $insta-purple
 
+.socials-container
+  display: flex
+  justify-content: flex-start
+  margin-left: -10px
+  transition: all 0.3s
+  & .add-favs
+      display: flex
+      margin: auto 10px
+      cursor: pointer
+      & svg
+          margin: auto
+          width: 27px
+          height: 27px
+      &:hover
+        color: $primary
+  & .share-btn, .subscribe-icon
+      position: relative
+      margin: auto 10px
+      cursor: pointer
+      width: 27px
+      height: 27px
+      &:hover
+        color: $primary
+
+
 .review-card-container
   padding: 5px 10px
 
@@ -3199,7 +3551,7 @@ button.calendar-btn
 .placeholder-box
   width: 100%
   background-color: rgb(222, 220, 220)
-  border-radius: 5px
+  border-radius: 20px
   
 .blink
   animation: blink 2s linear infinite
@@ -3223,7 +3575,7 @@ $yellow: #FECEAB
 $white: #FFF
 
 @mixin mobile
-  @media screen and (max-width: 1000px)
+  @media screen and (max-width: 900px)
     @content
 
 .languages
@@ -3399,9 +3751,9 @@ $white: #FFF
   opacity: 0
   visibility: hidden
   transition: all 0.3s
-  border-radius: 4px;
-  background-color: $primary;
-  min-height: 80px;
+  border-radius: 4px
+  background-color: $primary
+  min-height: 80px
   z-index: 2
 
 
@@ -3415,8 +3767,8 @@ $white: #FFF
   transition: all 0.3s
   display: flex
   & svg
-      width: 25px
-      height: 25px
+      width: 30px
+      height: 30px
       margin: auto
   &:hover
     color: $light-orange
@@ -3465,6 +3817,7 @@ $white: #FFF
   left: 0 
   width: 100% 
   z-index: 999
+  pointer-events: none
   & .show-favs
       justify-content: center
       display: flex
@@ -3474,6 +3827,7 @@ $white: #FFF
           position: relative
           transition: all 0.3s
           cursor: pointer
+          pointer-events: all
           & .favs-heart
               margin: auto
               height: 40px
@@ -3502,12 +3856,15 @@ $white: #FFF
       opacity: 0
       padding: 10px
       max-height: 0
+      overflow: hidden
       justify-content: center
+      pointer-events: all
       &.active
         opacity: 1
         max-height: 100vh
         background-color: #fff
         transition: all 0.3s
+        box-shadow: 0px 9px 20px 0px black
       & .favs-card
           margin: auto 10px
           border-radius: 5px
@@ -3543,6 +3900,868 @@ $white: #FFF
       & .fav-slider
           text-align: center
 
+
+header
+  position: fixed
+  width: 100%
+  max-width: 100vw
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: calc(5px + 2%) calc(15px + 2%) calc(5px + 2%) calc(25px + 2%)
+  z-index: 9997
+  pointer-events: none
+  overflow: hidden
+  & > *:not(.nav-menu)
+    z-index: 10
+    pointer-events: auto
+  & > .right 
+    margin-left: auto
+    display: flex
+    align-items: center
+  & .hl
+      & .header-logo
+          width: 200px 
+          overflow-x: hidden
+          cursor: pointer
+          & img
+              width: 200px !important
+              max-width: none
+
+
+.menu-btn
+  transition: opacity .2s
+  cursor: pointer
+  width: calc(55px + 7 * (100vw - 320px) / 1080)
+  height: calc(55px + 7 * (100vw - 320px) / 1080)
+  border-radius: 50%
+  display: flex
+  align-items: center
+  justify-content: center
+  position: relative
+  & svg
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      & circle 
+          stroke-dashoffset: 0
+          transition: all 0.3s
+  & div
+      width: calc(22px + 4 * (100vw - 320px) / 1080)
+      height: 10px
+      position: relative
+      & span
+          transition: background .4s
+          position: absolute
+          width: 100%
+          height: 2px
+          background-color: #000
+          &:nth-child(1) 
+            top: 0
+            transition: background .4s, top .2s .2s, transform .2s
+          &:nth-child(2) 
+            top: 50%
+            left: 50%
+            transform: translateY( -50%)
+            transition: background .4s, width .2s, left .2s
+            width: 0
+          &:nth-child(3) 
+            bottom: 0
+            transition: background .4s, top .2s .2s, transform .2s
+  & .menu-tag
+      position: absolute
+      left: 0
+      transform: translateX(-100%)
+      font-size: 1.2rem
+      width: 50px
+      overflow: hidden
+      height: fit-content
+      text-align: center
+      &:after
+        content: ''
+        position: absolute
+        width: 0%
+        height: 100%
+        border-bottom: 1px solid $primary
+        left: 0
+        top: 0
+        transition: all 0.3s
+  &:hover 
+    & svg circle
+      animation: btn-circle-anim 1s forwards
+      animation-timing-function: ease-in-out
+      -webkit-animation-timing-function: ease-in-out
+    & div span
+      &:nth-child(1)
+        transform : translateY(-5px)
+      &:nth-child(2)
+        width : 100%
+        left: 0
+      &:nth-child(3)
+        transform : translateY(5px)
+    & .menu-tag
+        &:after
+          width: 100%
+  &.active 
+    & div span
+        background-color: #fff
+        &:nth-child(1)
+          transform : translateY(4px) rotate(45deg)
+        &:nth-child(2)
+          width : 0
+          left: 0
+        &:nth-child(3)
+          transform : translateY(-4px) rotate(-45deg)
+    &:hover
+      & div span
+          &:nth-child(1)
+            transform : translateY(4px) rotate(30deg)
+          &:nth-child(2)
+            width : 0
+            left: 0
+          &:nth-child(3)
+            transform : translateY(-4px) rotate(-30deg)
+
+.nav-menu
+  position: fixed
+  width: 0
+  max-width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  z-index: 5
+  pointer-events: auto
+  & .lm, .rm
+      opacity: 0
+      height: 0
+      width: 50%
+      transition: 0.5s
+      transition-timing-function: cubic-bezier(1, 0.29, 0.38, 0.88)
+  & .lm
+      background: rgb(255,166,0)
+      background: linear-gradient(90deg, rgba(255,166,0,1) 0%, rgba(255,132,0,1) 17%, rgba(255,124,0,1) 48%, rgba(255,98,0,1) 88%, rgba(233,46,0,1) 100%)
+      position: absolute
+      bottom: 0
+      left: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      & .nav-container
+          width: 100%
+          font-weight: 800
+          font-size: calc(15px + 23 * (100vw - 320px) / 1080)
+          padding-left: calc(25px + 15%)
+          line-height: 1.2
+          display: none
+          & nav ul li
+              transform: translateY(100%)
+              opacity: 0
+              transition: 0.5s
+              cursor: pointer
+  & .rm
+      background: rgb(23,11,1)
+      background: linear-gradient(270deg, rgba(23,11,1,1) 0%, rgba(0,0,0,1) 17%, rgba(14,14,14,1) 48%, rgba(1,1,0,1) 88%, rgba(0,0,0,1) 100%)
+      position: absolute
+      top: 0
+      right: 0
+      display: flex
+      align-items: center
+      & .r-content
+          padding: 0 calc(25px + 15%)
+          color: #fff
+          width: 100%
+          pointer-events: none
+          & >*
+              opacity : 0
+              transform: translateX(100%)
+          & .r-featured
+              display: flex
+              flex-direction: column
+              &.hide
+                display: none
+              & .link-content
+                  display: none
+                  max-width: 0
+                  &.active
+                    display: block
+                    flex: 1 1 50%
+                    min-width: 300px
+                    &>*
+                      opacity: 0
+                      transform: translateY(100%)
+                    @for $i from 1 through 30
+                      &:nth-child(#{$i})
+                        animation: subContent-in calc(#{$i} * 0.5s) 0.5s forwards
+              & .rm-static-content
+                  transition: 0.5s
+                  width: 100%
+                  max-height: 80vh
+                  overflow-y: scroll
+                  &::-webkit-scrollbar
+                    width: $scrollbarWidth
+                  &::-webkit-scrollbar-track
+                    background-color: $scrollbarTrackColor
+                  &::-webkit-scrollbar-thumb
+                    background: $scrollbarBG
+                    border-radius: $scrollbarBorderRadius
+                    background: $scrollbarGradient
+                  & .featured-card 
+                      margin: 10px
+                      list-style-type: none
+                      & a 
+                          color: #000
+                          text-decoration: none
+                          display: flex
+                          width: 100%
+                          flex-wrap: wrap
+                          & .featured-description
+                              color: #fff
+                              display: flex
+                              flex: 1 1 50%
+                              flex-direction: column
+                              justify-content: center
+                              min-width: 200px
+                              padding: 5px
+                              & h4 
+                                  color: #fff
+                                  z-index: 4
+                                  transition: all 0.3s
+                                  line-height: 1.7
+                                  &:nth-child(1) 
+                                      font-size: 20px
+                          & .featured-wrap 
+                              display: flex
+                              flex-direction: column
+                              align-items: center
+                              position: relative
+                              -webkit-column-break-inside: avoid
+                              page-break-inside: avoid
+                              break-inside: avoid
+                              transition: .6s ease-out
+                              flex: 1 1 50%
+                              min-width: 200px
+                              & .featured-image-wrap
+                                  overflow: hidden
+                                  border-radius: 5px
+                                  width: 100%
+                                  & img 
+                                      min-width: 250px
+                                      border-radius: 5px
+                                      transition: all 0.5s
+                              & .featured-text-wrap 
+                                  position: absolute
+                                  bottom: 0
+                                  width: 100%
+                                  height: fit-content
+                                  display: flex
+                                  flex-direction: column
+                                  align-content: center
+                                  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)
+                              & .featured-overlay 
+                                  position: absolute
+                                  width: 100%
+                                  height: 100%
+                                  background: rgba(0, 0, 0, 0.14)
+                                  cursor: pointer
+                          &:hover
+                                & .featured-image-wrap
+                                  & img
+                                      transform: scale(1.05)
+                                & .featured-description h4
+                                    color: $primary
+              & .sub-menu-links-container
+                  flex-grow: 1
+                  overflow-y: auto
+                  max-height: 70vh
+                  overflow-x: hidden
+                  padding-right: 5px
+                  &::-webkit-scrollbar
+                    width: 10px
+                  &::-webkit-scrollbar-track
+                    background-color: transparent
+                  &::-webkit-scrollbar-thumb
+                    background: $primary
+                    border-radius: 40px
+                    background: linear-gradient(90deg, rgba(255,166,0,1) 0%, rgba(255,132,0,1) 17%, rgba(255,124,0,1) 48%, rgba(255,98,0,1) 88%, rgba(233,46,0,1) 100%)
+          & h2
+              color: orange
+          & .sub-menu-links
+              display: none
+  &.active
+    & > .rm, > .lm
+        height: 100%
+        opacity: 1
+    & .lm .nav-container
+        display: initial
+        & nav ul 
+          @for $i from 1 through 30
+            & li:nth-child(#{$i})
+                animation: menu-link-in calc(#{$i} * 0.5s) 0.5s forwards
+          & li
+            & a
+                position: relative
+                transition: 0.3s
+                display: block
+                &:after
+                  content: ''
+                  position: absolute
+                  top: 0
+                  left: 0
+                  width: 0
+                  height: 100%
+                  border-bottom: 1px solid black
+                  transition: all 0.3s
+            &:hover a
+              color: white
+              transform: translateX(10px)
+              &:after
+                width: 100%
+    & .rm .r-content
+        pointer-events: all
+        & #sublinks-ul
+            width: 100%
+            line-height: normal
+            & >*
+                font-size: calc(8px + 21 * (100vw - 320px) / 1080)
+                opacity : 0
+                line-height: normal
+                transform: translateX(100%)
+            & li a
+                transition: all 0.3s
+                display: block
+                &:after
+                  content: ''
+                  position: absolute
+                  top: 0
+                  left: 0
+                  width: 0
+                  height: 100%
+                  border-bottom: 1px solid black
+                  transition: all 0.3s
+                &:hover
+                  color: $primary
+                  transform: translateX(10px)
+        & >*, #sublinks-ul>*
+          @for $i from 1 through 30
+            &:nth-child(#{$i})
+              animation: left-menu-in calc(#{$i} * 0.3s) 0.3s forwards
+
+.back-btn-container
+  display: none
+  font-size: 0.8em
+
+@keyframes menu-link-in 
+  from  
+    opacity : 0
+    transform: translateY(100%)
+  to 
+    opacity: 1
+    transform: translateY(0)
+
+
+@keyframes subContent-in 
+  0%
+    opacity : 0
+    transform: translateY(100%)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+
+@keyframes left-menu-in 
+  0% 
+    opacity : 0
+    transform: translateX(100%)
+  100% 
+    opacity: 1
+    transform: translateY(0)
+
+
+@keyframes btn-circle-anim 
+  0% 
+    stroke-dasharray: 200
+    stroke-dashoffset: 0
+  50% 
+    stroke-dasharray: 90
+    stroke-dashoffset: 300
+  100% 
+    stroke-dasharray: 200
+    stroke-dashoffset: 400
+
+@media screen and (max-width: 900px)
+  .nav-menu
+    & .lm
+        top: 0
+        bottom: initial
+        width: 100%
+        & .nav-container
+            padding: 0 calc(20px + 3%)
+            font-size: calc(25px + 30 * (100vw - 320px) / 1080)
+    &.active
+      & .lm
+          text-align: center
+      & .rm
+          width: 100%
+          transform: translateX(100%)
+          text-align: center
+          display: none
+          position: absolute
+          transition: all 0.5s
+          left: 0
+          top: 0
+          &.active
+            display: flex
+            transform: translateX(0)
+          & .r-content 
+              padding: 0 calc(20px + 3%)
+              & #sublinks-ul > *
+                  font-size: calc(20px + 30 * (100vw - 320px) / 1080)
+  .back-btn-container
+    color: #fff
+    display: flex
+    flex-wrap: nowrap
+    cursor: pointer
+    position: relative
+    &:hover
+      color: orange
+      & span:nth-child(1)
+          width: 130%
+  .back-btn
+    height: 10px
+    width: calc(22px + 4 * (100vw - 320px) / 1080)
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    & span
+        transition: .4s
+        position: absolute
+        width: 100%
+        height: 3px
+        background-color: #000
+        border-radius: 40px
+        &:nth-child(1)
+          top: 52%
+          transform: translateY(50%)
+          left: 1px
+        &:nth-child(2)
+          top: 129%
+          left: 0
+          transform: rotate(45deg)
+          width: 65%
+        &:nth-child(3)
+          top: 13%
+          left: 0
+          transform: rotate(-45deg)
+          width: 65%
+
+.section-wire
+  overflow: hidden
+  vertical-align: middle
+  position: absolute
+  top: 0
+  left: 50.1%
+  height: 100%
+  width: auto
+  transform: translateX(-50%)
+  z-index: 2;
+
+.main-section
+  padding-bottom: 100px
+  width: 100vw
+  height: 100vh
+  position: relative
+  transform: translateX(-50%)
+  left: 50%
+  display: flex
+  flex-direction: column
+  justify-content: center
+  & .submit-search-btn a
+      background: #fff
+      & p
+        font-size: 1.2rem
+  & .main-col
+      display: flex
+      flex-wrap: wrap
+      &.left
+          padding: 50px 90px 50px 0
+      &.right
+          padding: 50px 0 50px 90px
+
+.section-background
+  overflow-x: hidden
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+
+
+.half-image, .half-image-left
+  position: absolute !important
+  width: 50%
+  height: calc(100% - 8.5em)
+  height: -webkit-calc(100% - 8.5em)
+  overflow: hidden;
+
+.half-image
+  right: 0
+
+.half-image-left
+    left: 0
+    right: unset
+
+@media screen and (max-width: 900px)
+  .main-section
+    height: initial
+    & .main-col
+      &.left, &.right
+          padding: 0 15px
+  .section-background
+    height: 50vh
+    position: relative
+  .half-image, .half-image-left
+    height: 100%
+  .mobile-reverse
+    flex-direction: column-reverse
+
+.section-top-border
+  overflow: hidden
+  &::before
+    width: 0
+    position: absolute
+    top: 0
+    left: 50%
+    transform: translateX(-50%)
+    content: ''
+    border-top: solid 3px black
+    transition: all 0.5s
+  &.trigger::before 
+    width: 50%
+
+.orange-gradient
+  background: #ffa600
+  background: linear-gradient(90deg, #ffa600 0%, #ff8400 17%, #ff7c00 48%, #ff6200 88%, #e92e00 100%)
+
+.parallax-scroll
+  position: absolute
+  left: 0
+  top: 50%
+  transform: translate(-50%, -50%)
+  opacity: 0.5
+  z-index: 1
+  &.bg-logo
+    max-width: 500px
+    max-height: 500px
+    width: 30vh
+    height: 30vh
+    z-index: 0
+
+.parallax-bg
+  height: 120%
+
+.clipped-image-container
+  position: absolute
+  opacity: 0.99
+  width: 1200px
+  height: 900px
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  overflow: hidden
+  border-radius: 50%
+  opacity: 0.5
+
+.prop-city-link
+  position: relative
+  &:after
+    content: ''
+    width: 0
+    height: 2px
+    position: absolute
+    left: 0
+    bottom: 0
+    background: #ffa600
+    background: linear-gradient(90deg, #ffa600 0%, #ff8400 17%, #ff7c00 48%, #ff6200 88%, #e92e00 100%)
+    transition: all 0.3s
+  &:hover
+    &:after
+      width: 100%
+
+.home-section-title, .prop-section-title, .content .home-section-title, .content .prop-section-title
+  position: absolute
+  font-weight: 700
+  color: #f0f2f2
+  text-transform: lowercase
+  top: -123px
+  font-size: calc(130PX + 30 * (100vw - 320px) / 1080)
+  line-height: 312px
+  letter-spacing: -6.07639px
+  opacity: 0.5
+  width: 100%
+  overflow: hidden
+  max-width: 100vw
+  white-space: nowrap
+  pointer-events: none
+  &.hero-feature-title
+    pointer-events: unset
+    & a
+      transition: color 0.3s
+      &:hover
+        color: $primary
+
+.prop-page-section
+  position: relative
+  z-index: 0
+
+.footer .prop-section-title
+  font-size: calc(90PX + 30 * (50vw - 320px) / 1080)
+
+.prop-section-title
+  font-size: calc(90PX + 30 * (80vw - 320px) / 1080)
+  color: $primary
+  left: -20px
+  top: 0
+  opacity: 0.1
+  transform: translateY(-52%)
+
+
+@media screen and (min-width: 1600px)
+  .home-section-title, .prop-section-title, .content .home-section-title, .content .prop-section-title, .footer .prop-section-title
+    font-size: 10rem
+
+
+
+@media screen and (max-width: 900px)
+  .home-section-title, .prop-section-title, .content section .prop-section-title
+    font-size: calc(60px + 30 * (100vw - 320px) / 1080)
+
+.mask-container
+  width: 100vw
+  cursor: pointer
+  & img
+      object-fit: cover
+      display: block
+      width: 100%
+      height: 100vh
+      -webkit-clip-path: circle(80px)
+      clip-path: circle(80px)
+      transition: -webkit-mask-size 0.3s ease-in-out
+
+.member-img-container
+  & .member-image.primary
+      opacity: 1
+      transition: 0.3s
+  & .member-image.secondary
+      opacity: 0
+      transition: 0.3s
+  &.active
+    & .member-image.primary
+        opacity: 0
+    & .member-image.secondary
+        opacity: 1
+
+.team-section
+  position: relative
+  display: block
+  background-color: #fff
+  & article
+      width: 100%
+      height: 100vh
+      position: relative
+      clear: both
+      z-index: 1000
+      &:after
+        content: ''
+        position: absolute
+        left: 10%
+        width: 1px
+        height: 10%
+        background-color: $light-orange
+        top: 0
+      &:before
+        content: ''
+        position: absolute
+        left: 10%
+        width: 1px
+        height: 10%
+        background-color: $light-orange
+        bottom: 0
+      & hgroup
+          position: absolute
+          padding: 0 30px
+          top: 50vh
+          width: calc(100% - 30px)
+          transform: translateY(-50%)
+          max-width: 100vw
+          & h1
+              color: $primary
+              filter: drop-shadow(1px 1px 2px #b5b5b5)
+              opacity: 0.4
+              word-spacing: 5000px
+              font-size: 8rem
+              cursor: pointer
+              &:hover
+                opacity: 1
+              &.active
+                font-family: 'Kaushan Script', cursive
+          & h2
+              max-width: 400px
+          & h3
+              position: absolute
+              right: 30px
+              width: 22.6vw
+              min-width: 330px
+              max-width: 500px
+              text-align: right
+              top: 50%
+              font-size: 1.2rem
+              transform: translateY(-50%)
+              &.member-info
+                cursor: pointer
+                background: rgba(256, 256, 256, 0.3)
+                border-radius: 40px
+                padding: 30px
+                transition: all 0.3s
+                &:hover
+                  background: rgba(256, 256, 256, 0.8)
+                  color: $primary
+  & .headshot
+      position: absolute
+      width: 100%
+      height: 100vh
+      top: 0
+      left: 0
+      z-index: 10
+      -moz-clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)
+      -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)
+      clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)
+      &.first
+        -moz-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+        -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+      & figure
+          width: 40vw
+          height: 86vh
+          min-width: 600px
+          max-width: 800px
+          position: absolute !important
+          margin-top: 50vh
+          left: 50%
+          transform: translateY(-50%) translateX(-50%)
+          & .anystretch
+              z-index: 1 !important
+              & img.primary
+                  filter: grayscale(1)
+
+.team-section-container
+  & div:last-of-type
+      margin-bottom: 0
+
+.team-section
+  margin-bottom: 200px
+  & .full-team
+      display: flex 
+      flex-wrap: wrap 
+      height: 100% 
+      min-height: 100vh 
+      position: relative
+      & .team-image-container
+          flex: 1 1 40%
+          min-width: 350px
+          min-height: 500px
+      & .team-content-container
+          flex: 1 1 40%
+          min-width: 350px
+          display: flex
+          justify-content:center
+          flex-wrap: wrap
+          align-content: center
+          justify-content: center
+          & .home-section-title
+              left: 10px
+              top: 0
+              color: #ffad77
+              z-index: 1
+  &:nth-of-type(odd)
+    & .full-team
+        & .team-image-container
+            order: 1
+        & .team-content-container
+            order: 2
+  &:nth-of-type(even)
+    & .full-team
+        & .team-image-container
+            order: 2
+        & .team-content-container
+            order: 1
+  & .submit-search-btn
+      margin: 30px auto
+        
+
+@media screen and (max-width: 900px)
+  .team-section
+    &:nth-of-type(odd)
+      & .full-team
+          & .team-image-container
+            order: 2
+          & .team-content-container 
+              order: 1
+    &:nth-of-type(even)
+      & .full-team
+          & .team-image-container
+            order: 2
+          & .team-content-container 
+              order: 1
+    & .full-team
+        & .team-content-container 
+            & .home-section-title
+                top: -175px 
+
+        
+
+p.about-section
+  margin: auto 20px
+  padding: 20px
+  line-height: 1.8rem
+  letter-spacing: 1px
+  font-size: 1.3rem
+  max-width: 600px
+  &::first-letter
+    font-size: 4rem
+    float: left
+    line-height: 0.9
+    margin: 0 0.3rem 0 0
+
+
+
+@media only screen and (max-width: 900px)
+  .team-section
+    & article
+        & hgroup
+            & h1
+                font-size: 4rem
+            & h3
+                bottom: 0
+                height: fit-content
+                bottom: 0
+                top: 100%
+                transform: unset
+                &.member-info
+                  background: rgba(256, 256, 256, 1)
+                  padding: 30px
+                  font-size: 0.8rem
+
+.contact-form
+  pointer-events: none
+  position: relative
+  padding: 100px 15px
+  & form
+      pointer-events: all
+  & ul
+      pointer-events: all
+  
 .why-list
   display: block
   & ol
@@ -3575,6 +4794,291 @@ $white: #FFF
               font-size: 2rem
               font-weight: 800
 
+@media only screen and (max-width: 900px)
+  .why-list
+    & ol
+        margin-left: 0px
+        & li
+            padding-left: 70px
+            & span
+                margin-left: 20px
+
+.parallax-tone-container
+  position: relative
+  width: 100%
+  height: 100%
+  z-index: 0
+  display: flex
+  align-content: center
+  justify-content: center
+  & .img-cont
+      width: 100%
+      margin: auto
+  & .parallax-tone-img
+      transform: translateY(100px)
+      z-index: 1
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9))
+  & .parallax-tone-bg
+      transform: translateY(50px)
+      background-color: $primary
+      opacity: 0.5
+      width: 50%
+      height: 40%
+      min-height: 400px
+      position: absolute
+      z-index: -1
+      top: 50%
+      left: 55%
+      border-radius: 5px
+      &.light
+        background-color: #f8f9fa
+
+@media only screen and (max-width: 900px)
+  .parallax-tone-container
+    & .img-cont
+        transform: translateY(0)
+    & .parallax-tone-img
+        transform: translateY(30px)
+    & .parallax-tone-bg
+        min-height: 200px
+
+.team-section
+  & .back-btn-container
+      color: #fff
+      display: flex
+      flex-wrap: nowrap
+      cursor: pointer
+      position: absolute
+      top: 50%
+      left: 0
+      transform: translateY(-50%)
+      z-index: 1
+      &:hover
+        color: orange
+        & span:nth-child(1)
+            width: 130%
+      & .back-btn
+          height: 10px
+          width: calc(22px + 4 * (100vw - 320px) / 1080)
+          position: absolute
+          top: 50%
+          left: 50%
+          transform: translate(-50%, -50%)
+          & span
+              transition: .4s
+              position: absolute
+              width: 100%
+              height: 3px
+              background-color: #000
+              border-radius: 40px
+              &:nth-child(1)
+                top: 52%
+                transform: translateY(50%)
+                left: 1px
+              &:nth-child(2)
+                top: 129%
+                left: 0
+                transform: rotate(45deg)
+                width: 65%
+              &:nth-child(3)
+                top: 13%
+                left: 0
+                transform: rotate(-45deg)
+                width: 65%
+
+.props-slider
+  z-index: 1
+  & .slick-list
+      overflow: visible
+  & .slick-slide
+      min-width: 333px
+      max-width: 450px
+      position: relative
+      z-index: 1
+      &:hover
+        z-index: 2
+  & .custom-arrow
+      & svg
+          margin: auto 5px
+          height: 40px
+          width: 40px
+          filter: drop-shadow(1px 0px 2px white)
+          transition: all 0.3s
+      &:hover
+        & svg
+            color: $primary
+            transform: scale(1.2)
+  & .hovered .prop-card-text
+      border-radius: 0
+
+.category-title
+  font-size: calc(50px + 30 * (100vw - 320px) / 1080)
+  filter: drop-shadow(2px 2px 3px #333)
+  z-Index: 0
+  color: $primary
+  opacity: 0.7
+
+.category-slider
+  width: 100%
+  position: relative
+  paddingTop: 100px
+  z-index: 1
+  &:hover
+    z-index: 2
+
+
+.prop-features-container
+  transition: all 1s
+  position: relative
+  z-index: 1
+  padding-left: 0
+
+
+.prop-features-header
+  width: calc(100% + 30px)
+  height: 80vh
+  background-color: rgb(51, 51, 51)
+  position: relative
+  margin-left: -15px
+
++mobile
+  .prop-features-container
+    padding: 0
+  .prop-features-header
+    height: 50vh
+
+.prop-carousel-container
+  display: flex 
+  position: relative
+  & .bg-blur
+      position: absolute 
+      width: 100% 
+      height: 100% 
+      left: 0 
+      top: 0 
+      filter: blur(21px)
+      background-size: cover
+      background-position: center center
+  & .bg-gradient
+      position: absolute 
+      width: 30% 
+      height: 100% 
+      left: 0 
+      top: 0
+      background: rgb(23,11,1)
+      background: linear-gradient(90deg, rgba(23,11,1,1) 0%, rgba(0,0,0,0.7819502801120448) 73%, rgba(0,0,0,0) 100%)
+  & .prop-details-container
+      position: relative
+      width: 30%
+      display: flex
+      justify-content: center
+      flex-direction: column
+      & .prop-details
+          padding: 0 calc(25px + 15%)
+          line-height: 1.2
+          & h2
+              color: #f5821e
+              font-size: calc(5px + 23 * (100vw - 320px) / 1080)
+              font-weight: 800
+              filter: drop-shadow(2px 4px 6px black)
+          & .prop-stats
+              color: #fff
+              font-size: calc(3px + 23 * (100vw - 320px) / 1080)
+              display: flex
+              flex-direction: column
+  & .prop-carousel-slider
+      position: relative 
+      width: 70% 
+      margin-left: auto
+
+@media (max-width: 991px)
+  .prop-carousel-container
+    flex-direction: column-reverse
+    & .bg-gradient
+        width: 100%
+    & .prop-details-container
+        width: 100%
+        & .prop-details
+            padding: 0 2%
+            & h2
+                font-size: calc(20px + (23 * (100vw - 320px)) / 1080)
+            & .prop-stats
+                font-size: calc(13px + (23 * (100vw - 320px)) / 1080)
+                width: calc(100% - 10em)
+                padding: 0 0 10px 0
+    & .prop-carousel-slider
+        width: 100% 
+
+.center-mobile-left
+  left: 50%
+
++mobile
+  .mobile-full-width
+    width: 100%
+  .center-mobile-left
+    left: 0
+
+.black-bg
+  background-color: #333333
+
+.last
+  position: relative
+  width: 100%
+  &:after
+    content: ''
+    background-color: #fff
+    position: absolute
+    width: 100%
+    height: 40px
+    bottom: -40px
+    left: 0
+    transition: 0.3s
+    z-index: 1
+    border-bottom-right-radius: 40px
+    border-bottom-left-radius: 40px
+    box-shadow: 0px 20px 20px -10px black
+
+.footer
+  position: sticky
+  z-index: 0
+  bottom: 0
+  left: 0
+  & section
+      position: relative
+      display: flex
+      flex-wrap: wrap
+      align-items: flex-end
+      height: 100%
+      width: 80%
+      margin: 1em auto auto auto
+      & ul
+          padding-top: 150px
+      & .prop-section-title
+          overflow: visible
+          left: 0
+          transform: translateY(0)
+  & h4
+      letter-spacing: 1px
+      line-height: 1.5em
+          
+
+@media (max-width: 991px)
+  .footer
+    position: relative
+    & section
+        margin: 200px auto auto auto
+        width: 100%
+        & ul
+            padding-top: 0
+        & .prop-section-title
+            transform: translateX(-50%)
+            left: 50%
+            top: -200px
+
+.layout-children
+  position: relative
+  z-index: 1
+  background: white
 .car-alert
   position: fixed
   width: 100%
@@ -3592,10 +5096,138 @@ $white: #FFF
     height: 30px
     pointer-events: unset
 
+@media only screen and (max-width: 900px)
+  .hide-mobile
+    display: none!important
+
+.colSectionBg, .stickyImg
+  opacity: 0
+  transition: all 0.3s
+  &.active
+    opacity: 1
+
+.modal-container, .form-container
+  & .field:not(:first-child)
+      padding-top: 1rem
+      & div.control
+          position: relative
+          & label.label, select:invalid label.label
+              position: absolute
+              z-index: 1
+              height: 2.5rem
+              display: flex
+              align-items: center
+              margin-left: 5px
+              pointer-events: none
+              transition: all 0.3s
+              top: 0
+          & input, & textarea
+              &:focus, &:not(:placeholder-shown), &:-webkit-autofill
+                & + label
+                  top: -2rem
+                  font-size: 0.8rem
+              &:focus + label
+                color: $primary
+          & select
+              &:valid + label
+                top: -2rem
+                font-size: 0.8rem
+              &:focus + label
+                color: $primary
 
 .right-align
   float: right
 
+.collapse-parent
+  margin: 0
+  margin-bottom: 0
+  transition: all 0.3s
+  display: flex
+  cursor: pointer
+  position: relative
+  &:after
+    content: '';
+    position: absolute;
+    box-shadow: 2px 0px 6px 0px #f5821e;
+    bottom: 0;
+    left: 50%;
+    height: 2px;
+    transform: translateX(-50%);
+    width: 10px;
+    background: #f5821e;
+    transition: all 0.3s;
+  &:hover:after
+    width: 100%
+  & h4
+      margin-bottom: 0
+      margin-top: 5px
+  & .collapse-header
+      padding: 5px
+  & .collapse-icon
+      margin: auto 5px auto auto
+      transition: all 0.3s 
+  &[aria-expanded="true"]
+    margin: 5px
+    &:after
+      width: 100%
+    & h4
+        color: $primary
+    & .collapse-icon
+        transform: rotateZ(45deg)
+        color: $primary
+
+.collapse-body
+  box-shadow: 0 3px 1px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02)
+  margin: 5px
+  margin-top: 0
+  border-radius: 4px
+  & p
+      padding: 15px
+
+.room-name
+  margin-left: 10px
+  font-size: 1.3rem
+
+.bed-info-container
+  border: 1px solid #e9ecef
+  border-radius: 20px
+  padding: 20px
+  margin-left: 10px
+  & .bed-num
+      font-weight: bold
+      font-size: 2rem
+      & svg
+          height: 3rem
+          width: auto
+
+.bounce-animation
+  animation-duration: 2s
+  animation-iteration-count: infinite
+  animation-name: bounce-animation
+  animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1)
+    
+@keyframes bounce-animation 
+  0%   
+    transform: scale(1,1)      
+    translateY(0)
+  10%  
+    transform: scale(1.1,.9)   
+    translateY(0)
+  30%  
+    transform: scale(.9,1.1)   
+    translateY(-100px)
+  50%  
+    transform: scale(1.05,.95) 
+    translateY(0)
+  57%  
+    transform: scale(1,1)      
+    translateY(-7px)
+  64%  
+    transform: scale(1,1)      
+    translateY(0)
+  100% 
+    transform: scale(1,1)      
+    translateY(0)
 #logo-spinner .home-scroll-logo
   height: 100%
   position: relative
@@ -3668,3 +5300,209 @@ $white: #FFF
 +mobile
   .winter-let
     margin-top: 5px
+
+.stick-container
+  position: absolute
+  top: 0
+  height: 100%
+  left: 50%
+  transform: translateX(-50%)
+  zIndex: 10
+
++mobile
+  .stick-container
+    display: none
+
+.prop-dropdown-row
+  padding-top: 50px
+
++mobile
+  .prop-dropdown-row
+    padding-left: 60px
+    padding-right: 30px
+
+
+.package-table 
+  display: flex
+  flex-wrap: wrap
+  margin: 0 auto
+  padding: 2rem 0rem 2rem 0rem
+  max-width: 1100px
+
+
+.table-cell 
+  box-sizing: border-box
+  flex-grow: 1
+  width: calc(25% - 1px)
+  padding: 0.8em 1.2em
+  list-style-type: none
+  outline: 1px solid #ddd
+  text-align: center
+  font-weight: 300
+  margin: 
+    top: 1px
+    left: 1px
+  &:first-child 
+  	outline: 1px solid #fff
+    background: transparent
+  &:nth-child(3) 
+    outline: 1px solid $black
+  &:nth-child(4) 
+    outline: 1px solid $primary
+  &:nth-child(-n+4) 
+  	padding: 
+  		top: 40px
+  		bottom: 40px
+  > h3 
+      font-size: 26px
+      margin: 
+        top: 0
+        bottom: 3rem
+  &.cell-feature 
+	  text-align: left
+    font-size: 18px
+  &.silver 
+    & h3
+        color: $primary
+  &.gold 
+    background-color: $black
+    & h3
+        color: $primary
+  &.platinum 
+    background-color: $primary
+    & h3
+        color: white
+        
+    
+
+
++mobile 	
+  .table-cell 
+    &:first-child 
+      display: none
+    &.cell-feature 
+		  width: 100%
+		  text-align: center
+  
+.booking-perks-col
+  max-width: 800px
+  margin: auto
+  box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02)
+  border-radius: 4px
+  background-color: white
+  display: flex
+  flex-direction: column
+  padding: 0 50px
+  & .perk-container
+      display: flex
+      & .perk-img-container
+          width: 250px
+          min-width: 250px
+          min-height: 250px
+          & .perk-img-shadow
+              box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02) 
+              border-radius: 50% 
+              background-color: white
+              height: 250px
+              display: flex
+              &.left
+                transform: translateX(-90px)
+              &.right
+                transform: translateX(90px)
+              & img
+                    width: 200px
+                    height: 200px
+                    margin: auto
+      & .perk-text-container
+          display: flex
+          flexGrow: 1
+          & .perk-text
+              margin: auto
+              & h3
+                  color: $primary
+
++mobile
+  .booking-perks-col
+    padding: 10px
+    & .perk-container
+        flex-wrap: wrap
+        &.reverse
+          & .perk-text-container
+              order: 2
+          & .perk-img-container
+              order: 1
+        & .perk-img-container
+            width: 200px
+            min-width: 200px
+            min-height: 200px
+            margin: 20px auto
+            & .perk-img-shadow
+                height: 200px
+                &.left
+                  transform: translateX(0)
+                &.right
+                  transform: translateX(0)
+                & img
+                    width: 150px
+                    height: 150px
+
+
+.stickyImgSection
+  margin: auto auto auto 10px
+  position: relative
+  &::after
+    content: ""
+    position: absolute
+    top: 0
+    left: -10px
+    height: 0
+    width: 3px
+    background-color: $black
+    transition: all 0.3s
+  &.active::after
+    height: 100%
+    box-shadow: 0px 0px 9px 2px #fff
+
+.highlight-feature-text
+  font-size: calc(20px + 1vw)
+  margin: auto 0
+  text-align: center
+  color: #fff
+  position: absolute
+  right: 0
+  top: 50%
+  transform: translateY(-50%)
+  filter: drop-shadow(2px 4px 6px black)
+  z-index: 2
+  word-spacing: 1000px
+  width: min-intrinsic
+  width: -webkit-min-content
+  width: -moz-min-content
+  width: min-content
+  display: table-caption
+  display: -ms-grid
+  -ms-grid-columns: min-content
+
+.services-featured
+  padding: 50px 0
+  & .services-container
+      display: flex
+      flex-wrap: wrap
+      & .service-container
+          padding: 80px 40px
+          display: flex
+          max-width: 100%
+          flex-direction: column
+          & .intro-para
+              h3
+                font-size: 4rem
+                color: #fff
+
++mobile
+  .services-featured
+    & .services-container
+        & .service-container
+            padding: 40px 20px
+            & .intro-para
+              h3
+                font-size: 2.5rem

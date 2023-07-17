@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { Helmet } from 'react-helmet'
 import 'react-day-picker/lib/style.css';
 import CarEnquiryModal from '../components/CarEnquiryModal'
@@ -129,7 +129,6 @@ const CarHireCalendar = (props) => {
         to: undefined,
       });
     const [startMonthYear, setStartMonthYear] = useState({startYear: null, startMonth: null})
-    const [pricingPeriods, setPricingPeriods] = useState({})
     const [total, setTotal] = useState(0)
     const [quoteRequest, setQuoteRequest] = useState(true)
     const [showModal, setShowModal] = useState(false)
@@ -156,7 +155,6 @@ const CarHireCalendar = (props) => {
     useEffect(() => {
       if(props.est){
         setTotal(props.est)
-        console.log(props.est)
       }
       return () => {
         setTotal(0)
@@ -251,27 +249,23 @@ const CarHireCalendar = (props) => {
       }
 
     const handleBook = () => {
-      console.log("book")
         setQuoteRequest(false)
         setShowModal(true)
     }
 
     const handleQuote = () => {
-      console.log("quote")
 
       setQuoteRequest(true)
       setShowModal(true)
     }
 
     const handleAvailability = () => {
-      console.log("availability")
 
       setQuoteRequest(true)
       setShowModal(true)
     }
 
     const handleClose = () => {
-      console.log("close")
         setQuoteRequest(true)
         setShowModal(false)
     }
@@ -333,12 +327,9 @@ const CarHireCalendar = (props) => {
     };
 
     const today = new Date()
-    let nextYear = DateUtils.addMonths(today, 12)
     let limitDate = DateUtils.addMonths(today, 24)
 
     const renderDay = (day, modifiers) => {
-        const dateDay = day.getDate()
-        const dateMonth = day.getMonth()
         const dateYear = day.getFullYear()
 
         Date.prototype.addDays = function(days) {

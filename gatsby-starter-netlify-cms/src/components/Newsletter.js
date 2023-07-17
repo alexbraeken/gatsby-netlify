@@ -15,6 +15,19 @@ var ml_account = ml('accounts', '2710252', 's7t2o9x9p0', 'load');`}
 </script>
             <style>
                 {`
+                ${props.transparent ? 
+                    `
+                    #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper{
+                        background-color: transparent;
+                    }
+                    #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper.embedForm .horizontal.privacy-policy p{
+                        color: #fff
+                    }
+                    #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper.embedForm strong span{
+                        color: #fff
+                    }
+                    ` 
+                : ''}
                 #subscribe-form .ml-form-embedContainer .ml-form-align-center .ml-form-embedWrapper.embedForm{
                 max-width:80%
                 }
@@ -26,7 +39,7 @@ var ml_account = ml('accounts', '2710252', 's7t2o9x9p0', 'load');`}
                 
             </style>
             </Helmet>
-            <div className="ml-form-embed"
+            <div className="ml-form-embed" style={{minHeight:"270px"}}
                 data-account="2710252:s7t2o9x9p0"
                 data-form={props.lang === "pt" ? "4594648:g2t5i3" : "3228322:d1b6m6"}
                 id="subscribe-form">

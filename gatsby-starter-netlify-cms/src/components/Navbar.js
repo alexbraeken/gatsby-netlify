@@ -1,41 +1,115 @@
 import React, {useState, useEffect } from 'react'
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import { connect } from "react-redux"
+import {Link, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import hostfully from '../img/Hostfully logo.webp'
 import logo from '../img/smartavillas logo.png'
-import christmasLogo from '../img/christmas smartavillas logo.png'
-import Container from 'react-bootstrap/Container'
-import { FirestoreDocument } from "@react-firebase/firestore";
+import Collapse from 'react-bootstrap/Collapse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
-import Select from 'react-select'
+import { faChevronDown} from '@fortawesome/free-solid-svg-icons';
+import Select, { components } from "react-select";
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Loading from './Loading'
+import BedBathPax from './BedBathPax'
+import backArea from '../img/mobile-back-area.svg'
+
+
+if (typeof window !== `undefined`) {
+  gsap.registerPlugin(ScrollTrigger)
+  gsap.core.globals("ScrollTrigger", ScrollTrigger)
+}
 
 
 const PropertiesDropDown = React.memo((props) => {
 
-  const [data, setData] = useState(null)
-  const [options, setOptions] = useState([])
+  const [options, setOptions] = useState(null)
+  const [locationsOpen, setLocationsOpen] = useState(false)
+  const [typesOpen, setTypesOpen] = useState(false)
 
   const {t} = useTranslation();
 
   const customStyles = {
     menu: () => ({
       width: "100%",
-      overflowX: "hidden"
+      overflowX: "hidden",
+      fontSize: "font-size: calc(20px + 30 * (100vw - 320px) / 1080)"
+    }),
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent",
+      borderTop: "none",
+      borderLeft: "none",
+      borderRight: "none",
+      borderRadius: 0,
+      boxShadow: 'none',
+      color: "white"
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      "svg": {
+        fill: "#f5821e"
+      }
+    }),
+    input: (provided) => ({
+      ...provided,
+      color:"white"
     })
   }
-  
+
   useEffect(() => {
-    if(data){
-      let propArray= data.PropNames.map(prop => {
-        return {value: prop.uid, label: prop.name, city: prop.city }
-      })
-      setOptions(propArray)
+
+    if(typeof window !== `undefined`){
+      try{
+        const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
+        let propData = {}
+        const getFireData = async () => { 
+          fetch(uri, 
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(
+                {
+                  source: "db",
+                  col:"Navbar",
+                  doc:"Nav"
+                })
+              })
+                .then(response => {
+                    return response.text()
+                })
+                .then(data => {
+                  let dataObj = JSON.parse(data)
+                  Object.keys(dataObj.Nav).forEach(key=>{
+                    if(key === 'PropNames'){
+                      propData.propNames = dataObj.Nav.PropNames.map(prop => {
+                        return {value: prop.uid, label: prop.name, city: prop.city }
+                      })
+                    }else{
+                      propData[key] = dataObj.Nav[key]
+                    }
+                  })
+                  setOptions(propData)
+                })
+        }
+        getFireData()
+
+      }catch(e){
+    
+      }
     }
-  }, [data])
+    
+    return () => {
+      setOptions([])
+    }
+  }, [])
   
 
+  
   const CustomOption = props => {
     const { data, innerRef, innerProps } = props;
     return (
@@ -60,249 +134,242 @@ const PropertiesDropDown = React.memo((props) => {
 
 
   return(
-    <>
-  <div className="nav-column-1">
-    <div className="navbar-item" style={{
-      backgroundColor:"#f5821e", 
-      boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
-      <h4 className="dropdown-title" style={{color:"#fff"}}>{t("All")}</h4>
-    </div>
+      <>
+        <div className="nav-column">
           <a href={`/properties`}>
             <div  className="navbar-item drop-item">
             {t("All Properties")}
             </div>
           </a>
-          <Select 
-          options={options}
+          {options &&
+            <Select 
+          options={options.propNames}
           onChange={(e)=>onInputChange(e.value)}
           closeMenuOnSelect={true}
           components={{ Option: CustomOption}}
           placeholder={t("Enter Property Name...")}
           styles={customStyles}/>
+          }
+        </div>
+        <div className="nav-column">
+          <div className="navbar-item" onClick={()=>setLocationsOpen(!locationsOpen)}>
+            <h4 className="dropdown-title" >{t("Location")}</h4><FontAwesomeIcon className={`expand-chevron ${locationsOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto 0 auto auto"}} />
           </div>
-          <FirestoreDocument path="/Navbar/Nav">
-                      {d => {
-                                return (!d.isLoading && d.value) ?  
-                                <>
-                                {setData(d.value)}
-                                <div className="nav-column-2">
-                                  <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
-                                    <h4 className="dropdown-title" style={{color:"#fff"}}>{t("Location")}</h4>
-                                  </div>
-                                  
-                                  {d.value.Locations.map((city, index)=>(
-                                    <a href={`/properties?city=${city}`} key={index}>
-                                      <div  className="navbar-item drop-item">
-                                        {city}
-                                      </div>
-                                    </a>
-                                    ))
-                                  }
-                                  </div>
-                                  <div className="nav-column-3">
-                                  <div className="navbar-item" style={{backgroundColor:"#f5821e", boxShadow:"0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02)"}}>
-                                    <h4 className="dropdown-title" style={{color:"#fff"}}>{t("Property Type")}</h4>
-                                  </div>
-                                  {d.value.Types.map((type, index)=>(
-                                    <a href={`/properties?type=${type}`} key={index}>
-                                      <div  className="navbar-item drop-item">
-                                        {type[0].toUpperCase() + type.slice(1).toLowerCase()}
-                                      </div>
-                                    </a>
-                                    ))
-                                  }
-                                  </div>
-                                  </>
-                                  : null 
-                                
-                            }}
-                      
-          </FirestoreDocument>
-          </>
+          <Collapse in ={locationsOpen}>
+            <div>
+            {options && options.Locations.map((city, index)=>(
+              <a href={`/properties?city=${city}`} key={index}>
+                <div  className="navbar-item drop-item">
+                  {city}
+                </div>
+              </a>
+              ))
+            }
+            </div>
+          </Collapse>
+        </div>
+        <div className="nav-column">
+          <div className="navbar-item" onClick={()=>setTypesOpen(!typesOpen)}>
+            <h4 className="dropdown-title" >{t("Property Type")}</h4><FontAwesomeIcon className={`expand-chevron ${typesOpen ? "visible" : ""}`} icon={faChevronDown} style={{margin:"auto 0 auto auto"}} />
+          </div>
+          <Collapse in ={typesOpen}>
+            <div>
+            {options &&  options.Types.map((type, index)=>(
+              <a href={`/properties?type=${type}`} key={index}>
+                <div  className="navbar-item drop-item">
+                  {type[0].toUpperCase() + type.slice(1).toLowerCase()}
+                </div>
+              </a>
+              ))
+            }
+            </div>
+          </Collapse>
+        </div>                      
+      </>
           )
 })
 
 const LanguageChange = (props) => {
 
+  const [langs, setLangs] = useState([])
+
   const {languages, changeLanguage} = useI18next();
-  
+  const {t} = useTranslation();
+
+  useEffect(() => {
+    let langList = [{name: {en:'languages'}, link:''}]
+    languages.map((lng) => {
+      let langName = lng
+      switch(lng){
+        case "en": 
+          langName = 'English'
+          break;
+        case "pt":
+          langName = 'Português'
+          break;
+        case "fr":
+          langName = 'Français'
+          break;
+        case "es":
+          langName = 'Español'
+          break;
+      }
+      langList.push({name:langName, link:lng})
+    })
+    setLangs(langList)
+  }, []);
 
   return (
-    <ul className="sub-menu">
-      {languages.map((lng) => (
-        <li key={lng} className="languages-item">
-          <Link
-            to="#"
-            className="languages-sub-item"
-            onClick={(e) => {
-              e.preventDefault();
-              changeLanguage(lng);
+        <li key={'language-link'} className="">
+          <a className='nav-main-link' role="button" tabIndex="0" 
+            onClick={() => {
+              props.handleSubLinks(langs)
             }}>
-            {lng.toUpperCase()} 
-          </Link>
+            {t('Language')} 
+          </a>
         </li>
-      ))}
-    </ul>
   )
 }
 
+const mapStateToProps = (state) => {
+  return  {featuredPropsData: state.featuredPropsData}
+}
 
+const ConnectedFeaturedPropertyComp = (props) => {
+  const {language} = useI18next();
+  const lang = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`
+
+  return(
+        <>
+          {props.featuredPropsData ? 
+            <div>
+              {props.featuredPropsData.map((prop, index)=>{
+                  return (
+                  <li className="featured-card" key={index}>
+                    <Link to={`/properties/${prop.uid}`} target="_blank" rel="noopener noreferrer">
+                      <div className="featured-wrap">
+                        <div className="featured-image-wrap">
+                          <img src={prop.pictitureReducedCloudUrl || prop.picture} alt="artist headshot" />
+                        </div>
+                        <div className="featured-text-wrap">
+                          <BedBathPax bedrooms={prop.bedrooms} bathrooms={prop.bathrooms} baseGuests={prop.baseGuests} color="rgba(256,256,256)"/>
+                        </div>
+                        <div className="featured-overlay"></div>
+                      </div>
+                      <div className='featured-description'>
+                        <h4>{prop.name}</h4>
+                        <span>{prop.shortDescriptions ? prop.shortDescriptions[lang] : prop.shortDescription}</span>
+                      </div>
+                    </Link>
+                  </li>
+                  )
+                })
+              }
+            </div>
+            : <Loading />
+          }
+        </>
+        )
+}
+
+const FeaturedPropertyComp = connect(mapStateToProps)(ConnectedFeaturedPropertyComp)
 
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props)
     this.nav = React.createRef();
     this.dropdownArrow = React.createRef();
+    this.mainLinks = React.createRef();
+    this.subLinks = React.createRef();
+    this.logoContainer = React.createRef();
+    this.navMenu = React.createRef();
+    this.menuContainer = React.createRef();
+    this.tl = gsap.timeline({
+      scrollTrigger: {
+        start: 50,
+        end: 100,
+        scrub: 1,
+      }
+    });
     this.state = {
       active: false,
-      navBarActiveClass: '',
-      dropdown: false,
-      dropdownClass: '',
-      subNav: null,
-      activeSubnav: null,  
-      style: {
-      
-      },
-      navClass: '',
-      menuPadding:{},
-      burgerClass: '',
-      lang: 'en',
-      isTabletOrMobile: false
+      rightMenuActive: false,
+      linkContentActive: false,
+      staticContent: true,
+      subLinks: [],
     }
-    //this.checkPathForNav = this.checkPathForNav.bind(this)
-    //this.componentGracefulUnmount = this.componentGracefulUnmount.bind(this)
-    this.handleNavbarStyle = this.handleNavbarStyle.bind(this)
-  }
-
-  /*checkPathForNav = () => {
-
-    const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches
-    const padding =  isTabletOrMobile ? "10px" : `${this.nav.current.getBoundingClientRect().height}px`
-    const top = document.getElementsByClassName("newsAlert")?.[0].getBoundingClientRect().height || 0
-    
-    const {originalPath} = this.props.useI18next;
-    const propPage = originalPath.match(/(?:\/properties\/)([^\?]+)(?=\?*)/)
-
-    if(window && originalPath === "/"){
-      this.setState({style: {
-        position: 'absolute',
-        width: '100%',
-        background: 'transparent'},
-        menuPadding: {
-          paddingTop: padding
-        }
-    })
-  }else if(propPage?.[1].length > 1){
-        this.setState({
-          menuPadding: {
-            paddingTop: padding
-          },
-          burgerStyle: isTabletOrMobile ? {color: "#fff"} : {color : "#000"}
-        })
-  }else{
-    this.setState({
-      style: {
-       
-      },
-      navClass:'',
-      menuPadding: {
-      },
-      burgerStyle: {}
-    })
-  }
-
-  if(isTabletOrMobile) this.setState((state, props)=>({
-    ...state,
-    menuPadding:{
-        ...state.menuPadding,
-        top: `${top}px`
-    }
-    }), ()=>{
-  }); 
-
-  this.setState({isTabletOrMobile: isTabletOrMobile})
-  }*/
-
-
-
-  handleNavbarStyle = () => {
-    const { language } = this.props.useI18next;
-    const padding =  isTabletOrMobile ? "10px" : `90px`
-    const isTabletOrMobile = window.matchMedia("(max-width: 900px)").matches 
-    const newsAlert = document.getElementsByClassName("newsAlert")
-    const top = newsAlert[0] ? newsAlert[0].getBoundingClientRect().height : 0
-
-
-    this.setState({
-      lang: language,
-      menuPadding: {
-        paddingTop: this.props.navClass === 'transparent' || this.props.navClass === 'gradient' ? padding : null,
-        top: isTabletOrMobile ? top : null
-      },
-      burgerClass: isTabletOrMobile  ? 'mobile' : '',
-      isTabletOrMobile: isTabletOrMobile//{color : "#000"}
-    })
+    this.handleNav = this.handleNav.bind(this)
+    this.handleRightMenu = this.handleRightMenu.bind(this)
+    this.handleLinkContent = this.handleLinkContent.bind(this)
+    this.handleSubLinks = this.handleSubLinks.bind(this)
   }
 
 
   componentDidMount(){
-    this.handleNavbarStyle()
-  }
-
-  componentDidUpdate(prevProps){
-    if(this.props.navClass !== prevProps.navClass){
-      this.handleNavbarStyle()
-    }
-  }
-
-
-  toggleHamburger = () => {
-    // toggle the active boolean in the state
-    this.setState(
-      {
-        active: !this.state.active,
+      this.tl.fromTo(this.logoContainer.current, 
+        {
+          width: "200px",
+        },
+        {
+        ease: "Power2.easeOut",
+        width: "55px",
+        duration: 0.5,
+      }).fromTo(this.menuContainer.current, 
+        {
+          width: "50px",
+        },
+        {
+        ease: "Power2.easeOut",
+        width: "0px",
+        duration: 0.5,
       },
-      // after state has been updated,
-      () => {
-        // set the class in state for the navbar accordingly
-        this.state.active
-          ? this.setState({
-              navBarActiveClass: 'is-active',
-            })
-          : this.setState({
-              navBarActiveClass: '',
-            })
+      "<"
+      )
+  }
+
+  componentDidUpdate(){
+
+  }
+
+  handleNav = () => {
+    if(this.state.active){
+      if(typeof window !== `undefined` && window.scrollY > 100){
+        gsap.to(this.logoContainer.current, {
+          ease: "Power2.easeOut",
+          width: "55px",
+          duration: 0.5,
+        });
       }
-    )
+      this.setState({active: !this.state.active, rightMenuActive: false, linkContentActive: false, subLinks : []})
+      setTimeout(()=>{this.navMenu.current.style.width = "0"}, 500)
+    }else{ 
+      this.navMenu.current.style.width = "100%"
+      if(typeof window !== `undefined` && window.scrollY > 100){
+        gsap.to(this.logoContainer.current, {
+          ease: "Power2.easeOut",
+          width: "200px",
+          duration: 0.5,
+        });
+      }
+
+      this.setState({active: !this.state.active, staticContent: true, })
+    }
   }
 
-  toggleDropDown = (subNavLinks, index) => {
-    if(index && this.state.activeSubnav && this.state.activeSubnav !== index){
-      let arrow = document.getElementById(`arrow-${this.state.activeSubnav}`)
-      arrow.style.transform = (arrow.style.transform === 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
-      this.setState({
-        subNav: subNavLinks,
-        activeSubnav: index},
-        () => {
-          arrow = document.getElementById(`arrow-${this.state.activeSubnav}`)
-          arrow.style.transform = (arrow.style.transform === 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
-        })
-    }
-    else{
-      let arrow = this.state.activeSubnav ? document.getElementById(`arrow-${this.state.activeSubnav}`) : document.getElementById(`arrow-${index}`)
-      this.setState({
-        dropdown: !this.state.dropdown,
-        subNav: subNavLinks || null,
-        activeSubnav: index || null
-      },
-      () => {
-        this.state.dropdown?
-        this.setState({dropdownClass: 'dropdown-active'})
-        : this.setState({dropdownClass: ''});
-      })
-     if(arrow)arrow.style.transform = (arrow.style.transform === 'rotateZ(180deg)') ? 'rotateZ(0deg)' : 'rotateZ(180deg)'
-    }
+  handleRightMenu = () => {
+    this.setState({rightMenuActive: !this.state.rightMenuActive})
   }
+
+  handleLinkContent = () => {
+    this.setState({linkContentActive: !this.state.linkContentActive})
+  }
+
+  handleSubLinks = (links) => {
+    this.setState({subLinks : []}, ()=>{
+      this.setState({subLinks : links, rightMenuActive: true, staticContent: false})
+    })
+  }
+
 
   filterList = (props, type) => {
     let filter = new Set()
@@ -313,125 +380,123 @@ const Navbar = class extends React.Component {
     return [...filter].sort()
 }
 
-
-hoverArrow = () => {
-  let arrow = document.getElementById(`arrow-language`)
-  arrow.style.transform = (arrow.style.transform === 'rotateZ(0deg)') ? 'rotateZ(180deg)' : 'rotateZ(0deg)'
-}
-
-
-
-
   render() {
 
     const { data } = this.props
-    const {language} = this.props.useI18next;
+    const {language, changeLanguage} = this.props.useI18next;
     const links = data.site.siteMetadata.menuLinks
     
 
 
     return (
-      <>
-      <nav
-        className={`navbar ${this.state.navClass || ''} ${this.props.navClass || ''}`}
-        role="navigation"
-        aria-label="main-navigation"
-        style={this.state.style}     
-        ref={this.nav}>
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Smarta" />
-            </Link>
-            {/* Hamburger menu */}
-            <div
-              role="button"
-              tabIndex="0"
-              aria-label="Menu"
-              className={`navbar-burger burger ${this.state.navBarActiveClass} ${this.state.burgerClass}`}
-              data-target="navMenu"
-              onClick={() => this.toggleHamburger()}
-              onKeyDown={() => this.toggleHamburger()}
-            >
-              <span />
-              <span />
-              <span />
+      <header>
+        <div className='hl'>
+          <Link to="/">
+            <div className={`header-logo`} ref={this.logoContainer}>
+              <img src={logo} alt="Smarta logo" width="200" />
             </div>
-          </div>
-          <div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}
-          >
-            <div className="navbar-start has-text-centered">
-              {links && links.length > 0 &&
-          links.map((link, index) => {
-            return link.subNav  ? 
-            <div className="navbar-item" role="button" tabIndex="0" onClick={()=>this.toggleDropDown(link.subNav, index)} onKeyDown={(e)=>{if(e.key === 'Enter'){this.toggleDropDown(link.subNav, index)}}} style={{cursor:"pointer"}} key={index}>
-                {link.name[this.state.lang]} <div className="dropdown-arrow" id={`arrow-${index}`}><FontAwesomeIcon icon={faChevronDown}/></div>
+          </Link>
+        </div>
+        <div className='hr'>
+          <div className={`menu-btn ${this.state.active ? 'active': ''}`} onClick={()=>this.handleNav()}>
+            <div className='menu-tag' ref={this.menuContainer}>
+              <h4 style={{paddingBottom:"6px", color: "#000", filter: "drop-shadow(0px 0px 0px black)"}}>menu</h4>
             </div>
-            :
-            <>
-            <Link to={`${link.link}`} key={index}>
-                                      <div  className="navbar-item">
-                                      {link.name[this.state.lang]}
-                                      </div>
-                                    </Link> 
-            </>
-            })}
-            </div>
-            <div className="languages navbar-end has-text-centered">
-              <ul>
-                <li style={{display: "flex"}}>
-                  <a
-                    className="navbar-item"
-                    href="https://platform.hostfully.com/login.jsp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                  <span className="icon">
-                    <img src={hostfully} alt="Hostfully" /> 
-                  </span>
-                  Login
-                </a>
-                </li>
-                <li className="languages-item">
-                    <a role="button" tabIndex="0" className="navbar-item language-anchor" onMouseEnter={()=> {this.hoverArrow()}} onMouseLeave={()=>this.hoverArrow()}>{language.toUpperCase()}<div className="dropdown-arrow" id={`arrow-language`} ><FontAwesomeIcon icon={faChevronDown}/></div></a>
-                    <LanguageChange getPath={this.getOriginalPath}/>
-                </li>
-              </ul>
+            <svg height="80" width="80">
+              <defs>
+                <linearGradient id="gradient">
+                  <stop offset="0%"  stopColor="#ffa600"/>
+                  <stop offset="100%" stopColor="#ff6200"/>
+                </linearGradient>
+              </defs>
+              <circle id="firstCircle" cx="40" cy="40" r="25" stroke="url(#gradient)" fill="transparent" strokeDasharray="200" strokeDashoffset="0" strokeWidth="2"></circle>
+            </svg>
+            <div>
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
           </div>
         </div>
-      </nav>
-      <div className={`dropdown-submenu ${this.state.dropdownClass}`} style={this.state.menuPadding} 
-      onMouseLeave={!this.state.isTabletOrMobile ? ()=>this.toggleDropDown() : null}>
-        <Container style={{display:"grid"}}>
-          {this.state.isTabletOrMobile && <FontAwesomeIcon icon={faArrowLeft} onClick={()=>this.toggleDropDown()} className="submenu-return-arrow"/>}
-          {this.state.subNav && this.state.subNav[0].name.en !== "propertiesList" ? 
-          <>
-          {this.state.subNav.map((link, index)=>{
-            return link ? 
-            <Link to={`${link.link}`} key={index}>
-              <div  className="navbar-item drop-item">
-                {link.name[this.state.lang]}
+        <div className={`nav-menu ${this.state.active ? 'active': ''}`} ref={this.navMenu}>
+          <div className='lm'>
+            <div className='nav-container'>
+            {this.state.active &&
+              <nav>
+                <ul ref={this.mainLinks}>
+                {links && links.length > 0 &&
+                  links.map((link, index) => {
+                    return link.subNav ? (
+                      <li key={`list-item-${index}`}>
+                        <a className='nav-main-link' role="button" tabIndex="0" onClick={()=>this.handleSubLinks(link.subNav)} key={`list-item-link-${index}`}>{link.name[language]}</a>
+                      </li>
+                    )
+                    :
+                    <li key={`list-item-${index}`}>
+                      <Link to={`${link.link}`}>
+                        {link.name[language]}
+                      </Link>
+                    </li>
+                  })
+                }
+                <LanguageChange handleSubLinks={this.handleSubLinks}/>
+                </ul>
+              </nav>}
+            </div>
+          </div>
+          <div className={`rm ${this.state.active && this.state.rightMenuActive ? 'active': ''}`}>
+            <div className='back-btn-container' onClick={()=>this.handleRightMenu()}>
+              <img src={backArea} />
+              <div className='back-btn'>
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
-            </Link>
-            : null }
-          )}
-          </>
-          :
-          <>
-            {this.state.subNav && this.state.subNav[0].name.en === "propertiesList" ?
-            <> 
-              <PropertiesDropDown filterList={this.filterList}/>
-            </>
-            : 
-            null}
-          </>
-          }
-        </Container>
-      </div>
-      </>
+            </div>
+            <div className='r-content'>
+              <div className='r-featured'>
+                <div className={`link-content ${this.state.active && this.state.linkContentActive ? 'active': ''}`}>
+                </div>
+                {this.state.staticContent && 
+                <>
+                  <h2 style={{textAlign:"center", fontSize: "3rem", fontWeight:"bold"}}><div dangerouslySetInnerHTML={{__html: this.props.useTranslation.t('featured')}} /></h2>
+                  <div className='rm-static-content'>
+                  <FeaturedPropertyComp />
+                  </div>
+                </>
+                }
+                {this.state.subLinks.length > 0 && 
+                <div className="sub-menu-links-container">
+                  <ul id="sublinks-ul" ref={this.subLinks}>
+                    {this.state.subLinks && this.state.subLinks[0].name.en !== 'languages' && this.state.subLinks[0].name.en !== "propertiesList" && this.state.subLinks.map((link, index) => {
+                      return <li key={`sublink-${index}`}><Link to={link.link}>{link.name[language]}</Link></li>
+                    })}
+                    {this.state.subLinks && this.state.subLinks[0].name.en === "propertiesList" && 
+                    <PropertiesDropDown filterList={this.filterList}/>
+                    }
+                    {this.state.subLinks && this.state.subLinks[0].name.en === "languages" && 
+                    this.state.subLinks.map((lng, index)=>{
+                      return  index > 0 && <li key={lng.link} className="">
+                                <Link
+                                  to="#"
+                                  className=""
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    changeLanguage(lng.link);
+                                  }}>
+                                  {lng.name} 
+                                </Link>
+                              </li>
+                    })
+                    }
+                  </ul>
+                </div>
+                }
+              </div>
+            </div>  
+          </div>
+        </div>
+      </header>
     )
   }
 }

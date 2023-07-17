@@ -18,31 +18,34 @@ class SimpleSlider extends Component {
     }
     render() {
       const settings = {
-        infinite: true,
-        dots: true,
         className: "center",
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        swipeToSlide: true,
-        autoplay: true,
-        autoplaySpeed: 4000,
+      centerMode: true,
+      infinite: true,
+      centerPadding: "10px",
+      slidesToShow: 1,
+      speed: 500,
+      rows: 3,
+      slidesPerRow: 3,
         responsive: [
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToShow: 1,
+              slidesToScroll: 1,
               infinite: true,
+              rows: 2,
+              slidesPerRow: 2,
               dots: true
             }
           },
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
+              slidesToShow: 1,
+              slidesToScroll: 1,
               initialSlide: 2,
+              rows: 2,
+              slidesPerRow: 2,
               dots: false
             }
           },
@@ -51,6 +54,8 @@ class SimpleSlider extends Component {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
+              rows: 1,
+              slidesPerRow: 1,
               dots: false
             }
           }
@@ -59,7 +64,7 @@ class SimpleSlider extends Component {
       return (
         <Slider {...settings}>
         {this.state.slides.allInstagramContent.edges.map((post, index)=> {
-              return index < 12 ?
+              return index < 24 ?
               <div key={index}> 
                   <a href={post.node.permalink} target="_blank" rel="noreferrer" className="insta-post">
                       <div className="insta-icon">
@@ -68,6 +73,7 @@ class SimpleSlider extends Component {
                       <GatsbyImage
                         image={post.node.localImage?.childImageSharp?.gatsbyImageData}
                         imgStyle={{borderRadius: "5px", margin: "10px", transition:"all 0.3s"}}
+                        style={{width: "100%"}}
                         draggable={false} />
                   </a>
               </div> 

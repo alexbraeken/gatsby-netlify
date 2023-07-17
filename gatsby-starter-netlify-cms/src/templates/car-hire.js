@@ -92,7 +92,6 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
     setTimeout(()=>{
         setLoaded(true)}, 1000
         )
-        console.log(queryString.parse(location.search))
         let {carClass, date1, date2, preference, est} = queryString.parse(location.search)
         setSelected(carClass)
         if(date1 && date2)setDates({date1: date1, date2:date2})
@@ -176,11 +175,12 @@ export const CarHirePageTemplate = ({ title, langTitles, content, contentCompone
           <CarAlertModal show={showCarAlert} handleClose={handleClose} />
           
         </div>
+        <section
+    className="last"></section>
         {false &&
           <div className={`car-alert ${showCarAlert ? '' : 'show'}`} style={{}} onClick={()=>{handleShowCarAlert()}}>
           <h3>{t("No Availabilities of any class vehicles till 30th September 2022")}</h3>
         </div>
-
         }
     </div>
   )

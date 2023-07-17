@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {useTranslation} from 'gatsby-plugin-react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTv, faFan, faDog, faHotTub, faWifi, faSwimmingPool, faTree, faCompactDisc, faFireExtinguisher, faConciergeBell} from '@fortawesome/free-solid-svg-icons';
 import { CgSmartHomeWashMachine } from "@react-icons/all-files/cg/CgSmartHomeWashMachine";
@@ -124,11 +124,7 @@ import { MdDeliveryDining } from "react-icons/md";
 import { MdOutlineLight } from "react-icons/md";
 import { AiFillPrinter } from "@react-icons/all-files/ai/AiFillPrinter";
 import { GiFlatPlatform } from "@react-icons/all-files/gi/GiFlatPlatform";
-import Popover from 'react-bootstrap/Popover';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import { FirestoreCollection } from "@react-firebase/firestore";
 import Loading from '../components/Loading';
-import { FirestoreDocument } from "@react-firebase/firestore";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -291,8 +287,6 @@ const Amenities = (props) => {
                 return <div className="amenity-text"><GiElevator/><b> {t(amenity)}</b></div>
             case "hasMassageRoom":
                 return <div className="amenity-text"><MdOutlineRoomPreferences/><b> {t(amenity)}</b></div>
-            case "hasLibrary":
-                return <div className="amenity-text"><IoLibraryOutline/><b> {t(amenity)}</b></div>
             case "hasOffice":
                 return <div className="amenity-text"><GiOfficeChair/><b> {t(amenity)}</b></div>
             case "hasPoolTable":
@@ -530,47 +524,11 @@ const Amenities = (props) => {
         }
     }
 
-    //popover component for list of properties with same amenity
-    const popover = (amenity) => (
-        <Popover id="popover-basic">
-            <FirestoreCollection path="/amenities/" where={{field:`${amenity}` , operator:"==", value:true}} limit={5}>
-            {data => {
-                return (!data.isLoading && data.value) ? 
-                <>
-                    <Popover.Title as="h3">{t("Properties with")} {amenity}</Popover.Title>
-                    <Popover.Content>
-                        {data.ids.map((id, index)=> {
-                            return (
-                            <FirestoreDocument path={`/Properties/${id}`}>
-                                {data => {
-                                    return (!data.isLoading && data.value) ? 
-                                    <Container>
-                                        <Row>
-                                            <Col xs={6} md={3}>
-                                            <a href={`/properties/${id}`} className="d-block h-100">
-                                                <img className="img-fluid img-thumbnail" src={data.value.pictureThumbCloudURL || data.value.picture} alt="" />
-                                            </a>
-                                            </Col>
-                                            <Col xs={6} md={9}>
-                                                <p style={{margin:"auto"}}>{data.value.name}</p>
-                                            </Col>
-                                        </Row>
-                                    </Container> : null
-                                }}
-                            </FirestoreDocument>
-                            )
-                        })}
-                    </Popover.Content> 
-                </>: <Loading />
-            }}
-            </FirestoreCollection>
-        </Popover>
-      );
 
     return (
-        <OverlayTrigger trigger="click" placement="right" overlay={popover(props.amenity)}>
+        <div>
             {determineAmenity(props.amenity)}
-        </OverlayTrigger>
+        </div>
     )
 }
 
