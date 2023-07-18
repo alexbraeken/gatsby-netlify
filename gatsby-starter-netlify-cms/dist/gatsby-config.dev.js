@@ -240,7 +240,7 @@ module.exports = {
       },
       "link": "/contact",
       "subNav": null
-    },, {
+    }, {
       "name": {
         "en": "Owner Login",
         "pt": "Login do Proprietário",
