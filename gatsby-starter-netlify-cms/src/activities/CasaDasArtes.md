@@ -19,6 +19,7 @@ visibleLink: http://www.acasadasartes.org/
 gps:
   lat: 37.1288989774916
   lng: -7.652237357670659
+value: ""
 tags:
   - Family Activity
   - Gallery

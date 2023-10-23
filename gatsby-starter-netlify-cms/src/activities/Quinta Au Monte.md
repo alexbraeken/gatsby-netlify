@@ -10,15 +10,16 @@ category: Olive Oil Farm Tours & Tastings
 featuredpost: false
 featuredimage: ../../static/img/monterosa.jpg
 description: 
-  en: ""
-  pt: ""
-  fr: ""
-  es: ""
+  en: "Receive a warm welcome, learn about the ancient olive oil process, meet the farm animals and enjoy a hearty homemade meal served by the friendly owners."
+  pt: "Receba uma recepção calorosa, aprenda sobre o processo milenar do azeite, conheça os animais da quinta e saboreie uma farta refeição caseira servida pelos simpáticos proprietários."
+  fr: "Recevez un accueil chaleureux, découvrez l'ancien processus d'huile d'olive, rencontrez les animaux de la ferme et savourez un copieux repas fait maison servi par les sympathiques propriétaires."
+  es: "Reciba una cálida bienvenida, aprenda sobre el antiguo proceso del aceite de oliva, conozca a los animales de la granja y disfrute de una abundante comida casera servida por los amables propietarios."
 link: http://www.quintaaumonte.com/
 visibleLink: www.quintaaumonte.com
 gps:
   lat: 37.12859115175936
   lng: -7.7361951883056115
+value: ""
 tags:
   - Olive Oil Farm Tours & Tastings
   - Tavira

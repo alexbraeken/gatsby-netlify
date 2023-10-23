@@ -19,6 +19,7 @@ visibleLink: "www.centrohipicotavira.com"
 gps:
   lat: 37.140392261973695
   lng: -7.646137184657388
+value: ""
 tags:
   - Horse Riding
   - Tavira

@@ -19,6 +19,7 @@ visibleLink:
 gps:
   lat: 37.12332722221996
   lng: -7.64403118650599
+value: ""
 tags:
   - Shopping
   - Tavira

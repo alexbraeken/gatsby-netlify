@@ -19,6 +19,7 @@ visibleLink:
 gps:
   lat: 37.12530629157702
   lng: -7.646593557670657
+value: ""
 tags:
   - Restaurant
   - Tavira

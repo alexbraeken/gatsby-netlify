@@ -19,6 +19,7 @@ visibleLink: www.fishingportugal.com
 gps:
   lat: 37.08859534747809
   lng: -7.740439215975282
+value: ""
 tags:
   - Boating
   - Fishing

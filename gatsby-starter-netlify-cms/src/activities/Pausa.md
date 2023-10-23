@@ -19,6 +19,7 @@ visibleLink: pausatavira.eatbu.com
 gps:
   lat: 37.124767083796065
   lng: -7.648310186505988
+value: "€‎€‎"
 tags:
   - Restaurant
   - Tavira

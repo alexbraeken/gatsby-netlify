@@ -23,6 +23,7 @@ visibleLink: www.slidesplash.com
 gps:
   lat: 37.13958578085461
   lng: -8.473655201797309
+value: ""
 tags:
   - Family Activity
 ---

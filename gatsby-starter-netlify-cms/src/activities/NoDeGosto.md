@@ -19,6 +19,7 @@ visibleLink: www.nodegosto.com/en/
 gps:
   lat: 37.12843291772579
   lng: -7.649833
+value: "€‎€‎"
 tags:
   - Restaurant
   - Tavira

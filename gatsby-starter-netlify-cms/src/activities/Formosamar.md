@@ -19,6 +19,7 @@ visibleLink: www.formosamar.com
 gps:
   lat: 37.01545129989825
   lng: -7.937265714765458
+value: ""
 tags:
   - Boating
   - Kite Surfing

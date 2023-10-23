@@ -19,6 +19,7 @@ visibleLink: Maria Nova Website
 gps:
   lat: 37.129821422293986
   lng: -7.6510387999999985
+value: "€‎€‎"
 tags:
   - Restaurant
   - Bar

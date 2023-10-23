@@ -19,6 +19,7 @@ visibleLink: Comenagaveta.pt
 gps:
   lat: 37.12316372644815
   lng: -7.652140516180952
+value: ""
 tags:
   - Restaurant
   - Tavira

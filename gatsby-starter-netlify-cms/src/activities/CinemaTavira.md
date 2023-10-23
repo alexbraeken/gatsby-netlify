@@ -19,6 +19,7 @@ visibleLink: http://cinemas.nos.pt/
 gps:
   lat: 37.13194907993935
   lng: -7.636119471164668
+value: ""
 tags:
   - Family Activity
   - Entertainment

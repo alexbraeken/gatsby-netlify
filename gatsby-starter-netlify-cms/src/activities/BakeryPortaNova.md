@@ -19,6 +19,7 @@ visibleLink: www.facebook.com/padaria.portanova
 gps:
   lat: 37.129742161363666
   lng: -7.650023628836059
+value: ""
 tags:
   - Restaurant
   - Bakery

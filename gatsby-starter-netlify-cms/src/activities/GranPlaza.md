@@ -19,6 +19,7 @@ visibleLink: http://www.taviragranplaza.com/
 gps:
   lat: 37.13099498161097
   lng: -7.63711202883533
+value: ""
 tags:
   - Shopping
   - Tavira

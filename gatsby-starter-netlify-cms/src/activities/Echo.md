@@ -19,6 +19,7 @@ visibleLink: www.facebook.com/echotavira/
 gps:
   lat: 37.12783303901369
   lng: -7.64227567116467
+value: ""
 tags:
   - Bar
   - Echo

@@ -19,6 +19,7 @@ visibleLink: www.facebook.com/ArcadaCocktailBar
 gps:
   lat: 37.12554513722195
   lng: -7.6501895
+value: ""
 tags:
   - Bar
   - Tavira

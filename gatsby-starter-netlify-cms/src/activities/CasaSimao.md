@@ -19,6 +19,7 @@ visibleLink: tripadvisor.com - Casa Simao
 gps:
   lat: 37.12781670655869
   lng: -7.650296691213442
+value: "€‎€‎"
 tags:
   - Restaurant
   - Tavira

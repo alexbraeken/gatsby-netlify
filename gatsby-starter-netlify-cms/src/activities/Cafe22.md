@@ -19,6 +19,7 @@ visibleLink: http://cafebar22.com/
 gps:
   lat: 37.12715220472764
   lng: -7.648524328835331
+value: ""
 tags:
   - Restaurant
   - Bar

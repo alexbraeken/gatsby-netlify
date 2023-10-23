@@ -240,7 +240,7 @@ module.exports = {
       },
       "link": "/contact",
       "subNav": null
-    },, {
+    }, {
       "name": {
         "en": "Owner Login",
         "pt": "Login do Proprietário",
@@ -362,6 +362,12 @@ module.exports = {
     options: {
       path: "".concat(__dirname, "/src/jobListings"),
       name: 'hiring'
+    }
+  }, {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      path: "".concat(__dirname, "/src/foodPacks"),
+      name: 'foodPack'
     }
   }, {
     resolve: 'gatsby-source-filesystem',

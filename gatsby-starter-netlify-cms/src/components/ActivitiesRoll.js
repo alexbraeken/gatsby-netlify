@@ -41,7 +41,7 @@ const ActivityCard = React.memo((props) =>{
             {props.activity.frontmatter.gps.lat && props.activity.frontmatter.gps.lng && <div className="activity-marker" ><a href={`https://www.google.com/maps/dir/?api=1&destination=${props.activity.frontmatter.gps.lat},${props.activity.frontmatter.gps.lng}`} target="_blank"><FaMapMarkerAlt className="card-marker"/></a></div>}
             <div className="card__info"><span className="card__category">{props.activity.frontmatter.category}</span>
             
-              <h3 className="card__title">{props.activity.frontmatter.langTitles[language]}</h3>
+              <div style={{display:"flex", justifyContent: "space-between"}}><h3 className="card__title" style={{display:"flex", flexDirection: "row", justifyContent: "space-between"}}>{props.activity.frontmatter.langTitles[language]}</h3> <span className="card__title" style={{textWrap: "nowrap"}}>{props.activity.frontmatter.value}</span></div>
             <span className="card__details">{props.activity.frontmatter.description[language]}<br />
               <a className="card__link" href={props.activity.frontmatter.link}>{props.activity.frontmatter.visibleLink}</a></span></div>
             </article>
@@ -295,6 +295,7 @@ return (
             lat
             lng
           }
+          value
           templateKey
           featuredpost
           featuredimage {

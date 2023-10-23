@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Modal} from 'react-bootstrap'
 import {useTranslation} from 'gatsby-plugin-react-i18next';
 import Loading from '../components/Loading'
@@ -9,18 +9,10 @@ import { MdBed } from "react-icons/md";
 import { FaCouch } from "@react-icons/all-files/fa/FaCouch";
 
 
-const RoomComp = ({room}) => {
-    const [empty, setEmpty] = useState(true)
-
+const RoomComp = ({room, name}) => {
+    
     const {t} = useTranslation(['translation']);
 
-    useEffect(()=>{
-        Object.keys(room).map((roomKey)=>{
-            if(roomKey!=="name" && roomKey!=="roomNumber" && room[roomKey] > 0){
-                setEmpty(false)
-            }
-        })
-    })
 
     const determineBedType = (bedType) =>{
         switch(bedType){
@@ -39,11 +31,10 @@ const RoomComp = ({room}) => {
         }
     }
 
+
     return(
-        <>
-            {!empty && 
             <div>
-                <h4 className="lightOrangeText room-name" style={{fontWeight:"bold"}}>{room.name}</h4>
+                <h4 className="lightOrangeText room-name" style={{fontWeight:"bold"}}>{name}</h4>
                     <div style={{display:"flex", flexWrap:"wrap"}}>
                     {Object.keys(room).map((roomKey, i)=>{
                         if(roomKey!=="name" && roomKey!=="roomNumber" && !roomKey.includes("Private") && room[roomKey] > 0){
@@ -63,8 +54,6 @@ const RoomComp = ({room}) => {
                     </div>
                 <hr />
             </div>
-            }
-        </>
     )
 
 }
@@ -72,10 +61,12 @@ const RoomComp = ({room}) => {
 const BedroomsModal = (props) => {
 
     const {t} = useTranslation(['translation']);
-    const [bedrooms, setBedrooms] = useState([])
+    const [bedrooms, setBedrooms] = useState(null)
+    const [liveRooms, setLiveRooms] = useState(null)
+    
 
     useEffect(()=> {
-        if(bedrooms.length < 1){
+        if(!bedrooms){
             const getFireData = async (body) => {
                 let data = []
                 const uri = "https://us-central1-gatsby-test-286520.cloudfunctions.net/widgets/external"
@@ -121,6 +112,36 @@ const BedroomsModal = (props) => {
         }
     }, [])
 
+    useEffect(() => {
+        let counter = 1
+        if(bedrooms){
+            let rooms = []
+            bedrooms.map((room, index) => {
+                let correctName
+                Object.keys(room).every((roomKey)=>{
+                    if(roomKey!=="name" && roomKey!=="roomNumber" && room[roomKey] > 0){
+                        correctName = `Room ${counter}`
+                        counter++
+                        let newRoom = room
+                        newRoom.correctName = correctName
+                        rooms.push(newRoom)
+                        return false
+                    }
+                    return true
+                })
+                
+    
+            })
+            setLiveRooms(rooms)
+        }
+        
+        return () => {
+            setLiveRooms({})
+            counter = 1
+        }
+    }, [bedrooms])
+
+
 
     return(
         <Modal show={props.show} onHide={props.handleClose} centered dialogClassName="modal-container always-top">
@@ -144,11 +165,11 @@ const BedroomsModal = (props) => {
           </Modal.Title>
             </Modal.Header> 
             <Modal.Body className="scroll-modal">
-                {bedrooms ? 
+                {liveRooms ? 
                 <div>
                     {
-                    bedrooms.map((room, index) => {
-                        return <RoomComp room={room} key={`${room} + ${index}`}/>
+                    liveRooms.map((room, index) => {
+                        return <RoomComp room={room} key={`${room} + ${index}`} name={room.correctName}/>
                     })
                     }
                 </div>

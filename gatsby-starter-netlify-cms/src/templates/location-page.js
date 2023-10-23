@@ -122,7 +122,7 @@ export const LocationPageTemplate = ({
           <div className="section">
             <Row>
             <Col xs={12} md={6} style={{display:"flex", flexWrap:"wrap", padding: "50px 0", zIndex: "1"}}>
-            <div className="intro-para" style={{margin: "auto"}}>
+            <div className="intro-para" style={{margin: "auto", backgroundColor: "rgba(256, 256, 256, 0.8)"}}>
               <div style={{display: "flex", flexWrap: "no-wrap"}}>
                 <FontAwesomeIcon icon={faQuoteLeft} 
                       style={{position: "relative", 
@@ -141,8 +141,8 @@ export const LocationPageTemplate = ({
                 </div>
               </Col>
               {collage && 
-              <Col md={12} lg={6}>
-                <div style={{display:"flex", flexWrap:"wrap", width:"100%"}}>
+              <Col md={12} lg={6} style={{display:"flex"}}>
+                <div style={{display:"flex", flexWrap:"wrap", width:"100%", margin:"auto"}}>
                   {collage.map((img, index)=>{
                     return (
                     <div className="mason-image" key={index}>

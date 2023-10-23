@@ -19,6 +19,7 @@ visibleLink: www.facebook.com/padaria.portanova
 gps:
   lat: 37.125034400000004
   lng: -7.650482128836059
+value: ""
 tags:
   - Restaurant
   - Tavira

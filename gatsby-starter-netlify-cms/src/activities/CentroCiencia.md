@@ -19,6 +19,7 @@ visibleLink: https://tavira.cienciaviva.pt/
 gps:
   lat: 37.12918053865523
   lng: -7.646042828835327
+value: ""
 tags:
   - Family Activity
 ---

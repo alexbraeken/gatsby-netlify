@@ -19,6 +19,7 @@ visibleLink: http://artesisgaleria.pt/
 gps:
   lat: 37.12353008205358
   lng: -7.65192031534424
+value: ""
 tags:
   - Family Activity
   - Gallery

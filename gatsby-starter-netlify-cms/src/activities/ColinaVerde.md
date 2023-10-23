@@ -19,6 +19,7 @@ visibleLink: www.golfcolinaverde.com
 gps:
   lat: 37.08701547645919
   lng: -7.7509763576184225
+value: ""
 tags:
   - Golf
   - Moncarapacho

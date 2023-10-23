@@ -23,6 +23,7 @@ visibleLink: www.aquashowparkhotel.com
 gps:
   lat: 37.09410309906565
   lng: -8.071221226897531
+value: ""
 tags:
   - Family Activity
 ---

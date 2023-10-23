@@ -19,6 +19,7 @@ visibleLink: La Dolce Vita Site
 gps:
   lat: 37.12838771943971
   lng: -7.649892059251484
+value: "€‎€‎"
 tags:
   - Restaurant
   - Tavira

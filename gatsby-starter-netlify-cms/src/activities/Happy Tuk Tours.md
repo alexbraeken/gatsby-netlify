@@ -19,6 +19,7 @@ visibleLink: Happy Tuk Tours Facebook
 gps:
   lat: 37.12727614984453 
   lng: -7.6495100746787825
+value: ""
 tags:
   - Excursion
   - Tavira

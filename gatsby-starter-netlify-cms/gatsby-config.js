@@ -266,7 +266,7 @@ module.exports = {
         },
         "link": "/contact",
         "subNav": null
-      },,
+      },
       {
         "name": {
           "en": "Owner Login",
@@ -418,6 +418,13 @@ module.exports = {
         name: 'hiring',
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/foodPacks`,
+        name: 'foodPack',
+      },
+    }    ,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
