@@ -14,11 +14,11 @@ destinations:
     aquashow: ['Tavira', 'Cabanas', 'Manta Rota']
 prices:
     oneToFourPrices: 
-        airport: ['55', '55', '65', '65', '65', '70', '45']
-        aquashow: ['60', '65', '70']
+        airport: ['55', '55', '70', '70', '75', '75', '50']
+        aquashow: ['65', '65', '80']
     fiveToEightPrices: 
-        airport: ['65', '65', '75', '75', '75', '80', '50']
-        aquashow: ['70', '75', '75']
+        airport: ['65', '65', '75', '75', '80', '85', '60']
+        aquashow: ['70', '70', '85']
 html:
     en: "<h2 style='text-align: center; font-size: 3rem; font-weight: bold'>Airport transfers to and from <span style='color: #f5821e'>Faro Airport</span></h2>
 <hr style='width: 50%; height: 4px; background-color: #f5821e; margin: 1.5rem auto'/>
@@ -70,28 +70,28 @@ html:
 </tr>
 <tr>
 <td align='center'>Vila Nova de Cacela</td>
-<td align='center'>65€</td>
+<td align='center'>70€</td>
 <td align='center'>75€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
-<td align='center'>65€</td>
+<td align='center'>70€</td>
 <td align='center'>75€</td>
 </tr>
 <tr>
 <td align='center'>Altura</td>
-<td align='center'>65€</td>
 <td align='center'>75€</td>
-</tr>
-<tr>
-<td align='center'>Castro Marim</td>
-<td align='center'>70€</td>
 <td align='center'>80€</td>
 </tr>
 <tr>
+<td align='center'>Castro Marim</td>
+<td align='center'>75€</td>
+<td align='center'>85€</td>
+</tr>
+<tr>
 <td align='center'>Fuseta</td>
-<td align='center'>45€</td>
 <td align='center'>50€</td>
+<td align='center'>60€</td>
 </tr>
 </tbody>
 </table>
@@ -111,18 +111,18 @@ html:
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
-<td align='center'>60€</td>
+<td align='center'>65€</td>
 <td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
 <td align='center'>65€</td>
-<td align='center'>75€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
-<td align='center'>70€</td>
-<td align='center'>75€</td>
+<td align='center'>80€</td>
+<td align='center'>85€</td>
 </tr>
 </tbody>
 </table>
@@ -180,28 +180,28 @@ html:
 </tr>
 <tr>
 <td align='center'>Vila Nova de Cacela</td>
-<td align='center'>65€</td>
+<td align='center'>70€</td>
 <td align='center'>75€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
-<td align='center'>65€</td>
+<td align='center'>70€</td>
 <td align='center'>75€</td>
 </tr>
 <tr>
 <td align='center'>Altura</td>
-<td align='center'>65€</td>
 <td align='center'>75€</td>
-</tr>
-<tr>
-<td align='center'>Castro Marim</td>
-<td align='center'>70€</td>
 <td align='center'>80€</td>
 </tr>
 <tr>
+<td align='center'>Castro Marim</td>
+<td align='center'>75€</td>
+<td align='center'>85€</td>
+</tr>
+<tr>
 <td align='center'>Fuseta</td>
-<td align='center'>45€</td>
 <td align='center'>50€</td>
+<td align='center'>60€</td>
 </tr>
 </tbody>
 </table>
@@ -221,18 +221,18 @@ html:
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
-<td align='center'>60€</td>
+<td align='center'>65€</td>
 <td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
 <td align='center'>65€</td>
-<td align='center'>75€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
-<td align='center'>70€</td>
-<td align='center'>75€</td>
+<td align='center'>80€</td>
+<td align='center'>85€</td>
 </tr>
 </tbody>
 </table>
@@ -290,28 +290,28 @@ html:
 </tr>
 <tr>
 <td align='center'>Vila Nova de Cacela</td>
-<td align='center'>65€</td>
+<td align='center'>70€</td>
 <td align='center'>75€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
-<td align='center'>65€</td>
+<td align='center'>70€</td>
 <td align='center'>75€</td>
 </tr>
 <tr>
 <td align='center'>Altura</td>
-<td align='center'>65€</td>
 <td align='center'>75€</td>
-</tr>
-<tr>
-<td align='center'>Castro Marim</td>
-<td align='center'>70€</td>
 <td align='center'>80€</td>
 </tr>
 <tr>
+<td align='center'>Castro Marim</td>
+<td align='center'>75€</td>
+<td align='center'>85€</td>
+</tr>
+<tr>
 <td align='center'>Fuseta</td>
-<td align='center'>45€</td>
 <td align='center'>50€</td>
+<td align='center'>60€</td>
 </tr>
 </tbody>
 </table>
@@ -331,18 +331,18 @@ html:
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
-<td align='center'>60€</td>
+<td align='center'>65€</td>
 <td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
 <td align='center'>65€</td>
-<td align='center'>75€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
-<td align='center'>70€</td>
-<td align='center'>75€</td>
+<td align='center'>80€</td>
+<td align='center'>85€</td>
 </tr>
 </tbody>
 </table>
@@ -400,28 +400,28 @@ html:
 </tr>
 <tr>
 <td align='center'>Vila Nova de Cacela</td>
-<td align='center'>65€</td>
+<td align='center'>70€</td>
 <td align='center'>75€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
-<td align='center'>65€</td>
+<td align='center'>70€</td>
 <td align='center'>75€</td>
 </tr>
 <tr>
 <td align='center'>Altura</td>
-<td align='center'>65€</td>
 <td align='center'>75€</td>
-</tr>
-<tr>
-<td align='center'>Castro Marim</td>
-<td align='center'>70€</td>
 <td align='center'>80€</td>
 </tr>
 <tr>
+<td align='center'>Castro Marim</td>
+<td align='center'>75€</td>
+<td align='center'>85€</td>
+</tr>
+<tr>
 <td align='center'>Fuseta</td>
-<td align='center'>45€</td>
 <td align='center'>50€</td>
+<td align='center'>60€</td>
 </tr>
 </tbody>
 </table>
@@ -441,18 +441,18 @@ html:
 <tbody>
 <tr>
 <td align='center'>Tavira</td>
-<td align='center'>60€</td>
+<td align='center'>65€</td>
 <td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Cabanas</td>
 <td align='center'>65€</td>
-<td align='center'>75€</td>
+<td align='center'>70€</td>
 </tr>
 <tr>
 <td align='center'>Manta Rota</td>
-<td align='center'>70€</td>
-<td align='center'>75€</td>
+<td align='center'>80€</td>
+<td align='center'>85€</td>
 </tr>
 </tbody>
 </table>
