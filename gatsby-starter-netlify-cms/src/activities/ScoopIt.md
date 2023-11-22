@@ -10,10 +10,10 @@ category: Restaurant
 featuredpost: false
 featuredimage: "../../static/img/scoop it.jpg"
 description: 
-  en: "Delicious fresh tapas & crepes. Tel: 964 413 396"
-  pt: "Deliciosas tapas e crepes frescos. Tel: 964 413 396"
-  fr: "Délicieuses tapas et crêpes fraîches. Tel: 964 413 396"
-  es: "Deliciosas tapas y crepes recién hechos. Tel: 964 413 396"
+  en: "In the heart of lovely Tavira, this little eatery serves up a fresh menu with vegan and gluten free options too. Tel: 00351 964 413 396"
+  pt: "No coração da encantadora Tavira, este pequeno restaurante serve um menu fresco com opções veganas e sem glúten. Tel: 00351 964 413 396"
+  fr: "Au cœur de la belle Tavira, ce petit restaurant propose également un menu frais avec des options végétaliennes et sans gluten. Tél : 00351 964 413 396"
+  es: "En el corazón de la encantadora Tavira, este pequeño restaurante sirve un menú fresco con opciones veganas y sin gluten también. Teléfono: 00351 964 413 396"
 link:
 visibleLink:
 gps:

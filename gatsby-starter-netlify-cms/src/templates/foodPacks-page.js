@@ -4,12 +4,14 @@ import {useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby'
 import Content, { HTMLContent } from '../components/Content'
 import Layout from '../components/Layout'
+import {Container, Col, Row} from 'react-bootstrap'
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import FoodPackRoll from '../components/FoodPackRoll'
 import BackgroundImage from 'gatsby-background-image'
 import convertToBgImage from "../Helpers/images"
 import { getImage } from "gatsby-plugin-image"
 
-export const FoodPackPageTemplate = ({ langTitles, content, contentComponent, hero, foodpackBG, html }) => {
+export const FoodPackPageTemplate = ({ langTitles, content, contentComponent, hero, foodpackBG, html, part1Img }) => {
 
     const [loaded, setLoaded] = useState(false);
   
@@ -55,7 +57,16 @@ export const FoodPackPageTemplate = ({ langTitles, content, contentComponent, he
                   {!hero && <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
                     {langTitles[language]}
                   </h2>}
-                  <PageContent className="content" content={html[language] && html[language].length > 0 ? html[language] : content} />
+                  <Container>
+                    <Row>
+                      <Col>
+                        <PreviewCompatibleImage imageInfo={part1Img} imgStyle={{borderRadius: "5px"}} />
+                      </Col>
+                      <Col>
+                        <PageContent className="content" content={html[language] && html[language].length > 0 ? html[language] : content} />
+                      </Col>
+                    </Row>
+                  </Container>
                   <br />
                 </div>
                 <div className="section" style={{position:"relative", height: "-webkit-fill-available", display: "flex", flexWrap:"wrap"}}>
@@ -84,6 +95,7 @@ export const FoodPackPageTemplate = ({ langTitles, content, contentComponent, he
     langTitles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     hero: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     foodpackBG: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    part1Img: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     content: PropTypes.string,
     contentComponent: PropTypes.func,
     prices: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -101,6 +113,7 @@ export const FoodPackPageTemplate = ({ langTitles, content, contentComponent, he
           langTitles={post.frontmatter.langTitles}
           hero={post.frontmatter.hero}
           foodpackBG={post.frontmatter.foodpackBG}
+          part1Img={post.frontmatter.part1Img}
           content={post.html}
           prices={post.frontmatter.prices}
           html={post.frontmatter.html}
@@ -134,6 +147,12 @@ export const FoodPackPageTemplate = ({ langTitles, content, contentComponent, he
             publicURL
           }
           foodpackBG {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+            publicURL
+          }
+          part1Img {
             childImageSharp {
               gatsbyImageData(quality: 100, layout: FULL_WIDTH)
             }

@@ -10,10 +10,10 @@ category: Restaurant
 featuredpost: false
 featuredimage: "../../static/img/frangario.jpg"
 description: 
-  en: "Great atmosphere & food Tel: 963 882 952"
-  pt: "Ótimo ambiente e comida Tel: 963 882 952"
-  fr: "Bonne ambiance et nourriture Tel: 963 882 952"
-  es: "Gran ambiente y comida Tel: 963 882 952"
+  en: "Enjoy flavoursome dishes at this family run restaurant.  Tel: 963 882 952"
+  pt: "Desfrute de pratos saborosos neste restaurante familiar. Tel: 963 882 952"
+  fr: "Dégustez des plats savoureux dans ce restaurant familial. Tel: 963 882 952"
+  es: "Disfrute de sabrosos platos en este restaurante familiar. Tel: 963 882 952"
 link: 
 visibleLink: 
 gps:

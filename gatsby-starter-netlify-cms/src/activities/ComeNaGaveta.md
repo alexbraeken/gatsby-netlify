@@ -10,16 +10,16 @@ category: Restaurant
 featuredpost: false
 featuredimage: ../../static/img/come_na_gaveta_logo.jpeg
 description: 
-  en: ""
-  pt: ""
-  fr: ""
-  es: ""
+  en: "Popular gastrobar serving sumptuous dishes. Tel: 00351 926 677 879"
+  pt: "Gastrobar popular que serve pratos suntuosos. Tel: 00351 926 677 879"
+  fr: "Gastrobar populaire servant des plats somptueux. Tél : 00351 926 677 879"
+  es: "Popular gastrobar que sirve platos suntuosos. Teléfono: 00351 926 677 879"
 link: http://www.comenagaveta.pt/
 visibleLink: Comenagaveta.pt
 gps:
   lat: 37.12316372644815
   lng: -7.652140516180952
-value: ""
+value: "€€"
 tags:
   - Restaurant
   - Tavira

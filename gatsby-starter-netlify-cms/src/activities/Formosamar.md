@@ -10,10 +10,10 @@ category: Boating Trips / Kite Surfing / Diving
 featuredpost: false
 featuredimage: ../../static/img/formosamar.jpg
 description: 
-  en: ""
-  pt: ""
-  fr: ""
-  es: ""
+  en: "Ria Formosa boat trips & activities. Tel: 00351 918 720 002"
+  pt: "Passeios e atividades de barco na Ria Formosa. Tel: 00351 918 720 002"
+  fr: "Excursions et activités en bateau sur la Ria Formosa. Tél : 00351 918 720 002"
+  es: "Paseos en barco y actividades en Ría Formosa. Teléfono: 00351 918 720 002"
 link: http://www.formosamar.com 
 visibleLink: www.formosamar.com
 gps:

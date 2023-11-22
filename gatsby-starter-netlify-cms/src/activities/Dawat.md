@@ -14,12 +14,12 @@ description:
   pt: "Nosso restaurante indiano local favorito. Tel: 920 039 424"
   fr: "Notre restaurant indien local préféré. Tel: 920 039 424"
   es: "Nuestro restaurante indio local favorito. Tel: 920 039 424"
-link: 
-visibleLink: 
+link: www.dawatrestaurant.pt 
+visibleLink: www.dawatrestaurant.pt 
 gps:
   lat: 37.12530629157702
   lng: -7.646593557670657
-value: ""
+value: "€€"
 tags:
   - Restaurant
   - Tavira

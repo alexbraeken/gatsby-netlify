@@ -59,6 +59,7 @@ const GalleryModal = (props) => {
         <>
           {props.photos.map((photo, index)=> (
             <Col lg={3} md={4} key={index} >
+              <div className="gallery-modal--close" style={{display:"none"}}></div>
               <a href="#" className="d-block mb-4 h-100">
                 <div ref={srcImg}>
                   <img className="img-fluid img-thumbnail" tabindex="0" src={photo.url} alt="" onClick={()=>handleClick(photo.url)} onKeyDown={(e)=>{if(e.key="Enter"){handleClick(photo.url)}}} />

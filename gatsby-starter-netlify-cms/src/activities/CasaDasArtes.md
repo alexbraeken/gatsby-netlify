@@ -10,10 +10,10 @@ category: Gallery
 featuredpost: false
 featuredimage: ../../static/img/CasasDasArtes.jpg
 description: 
-  en: "High quality contemporary art exhibitions. Tel: 213 463 426"
-  pt: "Exposições de arte contemporânea de alta qualidade. Tel: 213 463 426"
-  fr: "Expositions d'art contemporain de grande qualité. Tel: 213 463 426"
-  es: "Exposiciones de arte contemporáneo de alta calidad. Tel: 213 463 426"
+  en: "Expositions, music, talks and more at this friendly cultural hub. Tel: 213 463 426"
+  pt: "Exposições, música, palestras e muito mais neste simpático centro cultural. Tel: 213 463 426"
+  fr: "Expositions, musique, conférences et bien plus encore dans ce centre culturel convivial. Tel: 213 463 426"
+  es: "Exposiciones, música, charlas y más en este amigable centro cultural. Tel: 213 463 426"
 link: http://www.acasadasartes.org/
 visibleLink: http://www.acasadasartes.org/
 gps:

@@ -10,10 +10,10 @@ category: Restaurant
 featuredpost: false
 featuredimage: ../../static/img/o_castelo_logo.jpeg
 description: 
-  en: "For some of the best steaks in town, try this little eatery at the top end of the main street."
-  pt: "Para alguns dos melhores bifes da cidade, experimente este pequeno restaurante no final da rua principal."
-  fr: "Pour certains des meilleurs steaks de la ville, essayez ce petit restaurant au bout de la rue principale."
-  es: "Para algunos de los mejores bistecs de la ciudad, pruebe este pequeño restaurante en el extremo superior de la calle principal."
+  en: "For some of the best steaks in town, try this little eatery at the top end of the main street. Tel: 00351 915 087 614 "
+  pt: "Para alguns dos melhores bifes da cidade, experimente este pequeno restaurante no final da rua principal. Tel: 00351 915 087 614 "
+  fr: "Pour certains des meilleurs steaks de la ville, essayez ce petit restaurant au bout de la rue principale. Tel: 00351 915 087 614 "
+  es: "Para algunos de los mejores bistecs de la ciudad, pruebe este pequeño restaurante en el extremo superior de la calle principal. Tel: 00351 915 087 614 "
 link: https://pt-pt.facebook.com/pages/category/Steakhouse/Castelo-caf%C3%A9-e-restaurante-193520480781383/
 visibleLink: O Castelo Facebook
 gps:

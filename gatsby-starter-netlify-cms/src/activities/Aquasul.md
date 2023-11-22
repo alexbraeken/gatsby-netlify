@@ -19,7 +19,7 @@ visibleLink: www.facebook.com/restaquasul
 gps:
   lat: 37.12765755402253
   lng: -7.649147557672118
-value: ""
+value: "€€"
 tags:
   - Restaurant
   - Tavira

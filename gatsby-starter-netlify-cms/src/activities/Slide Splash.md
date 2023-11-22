@@ -10,13 +10,13 @@ category: Family Activity
 featuredpost: false
 featuredimage: ../../static/img/SlideSplash-2422.jpg
 description: 
-  en: "Location: Vale de Deus, Estombar, Lagoa (off EN125 between Lagoa and Estombar heading west bound. From A22, use Lagoa Sul exit).
+  en: "Water fun frenzy at the Algarve´s largest waterpark. Try slides, pools and shows. Near Lagoa and easily accessible from the A22, junction 6. 
     Opening season: April - October"
-  pt: "Localização: Vale de Deus, Estômbar, Lagoa (saída da EN125 entre Lagoa e Estômbar em direção oeste. A partir da A22, sair para Lagoa Sul).
+  pt: "Frenesi de diversão aquática no maior parque aquático do Algarve. Experimente tobogãs, piscinas e shows. Perto de Lagoa e de fácil acesso a partir da A22, nó 6.
     Temporada de abertura: abril - outubro"
-  fr: "Emplacement : Vale de Deus, Estombar, Lagoa (hors EN125 entre Lagoa et Estombar en direction ouest. Depuis l'A22, prendre la sortie Lagoa Sul).
+  fr: "Frénésie de plaisir aquatique dans le plus grand parc aquatique de l'Algarve. Essayez les toboggans, les piscines et les spectacles. Près de Lagoa et facilement accessible depuis l'A22, sortie 6.
     Période d'ouverture : avril - octobre"
-  es: "Ubicación: Vale de Deus, Estombar, Lagoa (en la EN125 entre Lagoa y Estombar en dirección oeste. Desde la A22, tome la salida Lagoa Sul).
+  es: "Frenesí de diversión acuática en el parque acuático más grande del Algarve. Prueba toboganes, piscinas y espectáculos. Cerca de Lagoa y de fácil acceso desde la A22, salida 6.
     Temporada de apertura: abril - octubre"
 link: http://www.slidesplash.com 
 visibleLink: www.slidesplash.com

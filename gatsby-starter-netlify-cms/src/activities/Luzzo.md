@@ -14,8 +14,8 @@ description:
   pt: "Para uma pizza saborosa, este é o lugar ideal e fica a uma curta caminhada da Praça dos Jardins de Alagoas."
   fr: "Pour une pizza savoureuse, c'est l'endroit idéal et à quelques pas de la place des jardins d'Alagoas."
   es: "Para una sabrosa pizza, este es el lugar para estar y está a pocos pasos de Alagoas Gardens Square."
-link: https://www.facebook.com/LuzzoTavira/
-visibleLink: Pizzaria Luzzo Facebook
+link: www.pizzialuzzo.pt
+visibleLink: www.pizzialuzzo.pt
 gps:
   lat: 37.127766021161634
   lng: -7.650380640311054
