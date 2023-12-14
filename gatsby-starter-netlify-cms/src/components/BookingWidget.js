@@ -92,11 +92,11 @@ const lang = language === 'en' || language === 'fr' || language === 'es' ? `"${l
 "showDynamicMinStay":true,
 "backgroundColor":"#FFFFFF",
 "buttonSubmit":{
-    "backgroundColor":"#f5821e"
+    "backgroundColor":"#f60"
     },
 "showPriceDetailsLink":true,
 "showGetQuoteLink":true,
-"labelColor":"#f5821e",
+"labelColor":"#f60",
 "showTotalWithoutSD":true,
 "redirectURL":false,
 "showDiscount":true,
@@ -126,14 +126,14 @@ const lang = language === 'en' || language === 'fr' || language === 'es' ? `"${l
     {`
     .orbirental-capture-widget-quote-link{
         text-align: center;
-        border: 1px solid rgb(245, 130, 30);
+        border: 1px solid rgb(255, 102, 0);
         border-radius: 5px;
         padding: 5px;
         transition: all 0.3s
     }
     .orbirental-capture-widget-quote-link:hover{
         color: #fff;
-        background-color: rgb(245, 130, 30);
+        background-color: rgb(255, 102, 0);
     }
     .orbirental-capture-widget-details-link{
         text-align: center !important;
