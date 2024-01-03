@@ -549,18 +549,18 @@ export const PropertyPageTemplate = ( props ) =>
                                                         </Col>
                                                     </Row>
                                                     }
-                                                    { ((descriptions.value[lang]?.neighborhood || descriptions.value.en_US.neighborhood || descriptions.value[lang]?.neighbourhood || descriptions.value.en_US.neighbourhood)) && 
+                                                    { ((descriptions.value[lang]?.neighbourhood || descriptions.value.en_US.neighbourhood || descriptions.value[lang]?.neighborhood || descriptions.value.en_US.neighborhood)) && 
                                                     <Row>
                                                         <Col xs={12} md={9}>
                                                             <hr />
                                                                 <div id="neighborhood" data-title={t("Neighborhood")} className="prop-page-section">
-                                                                <div className={(descriptions.value[lang]?.neighborhood.length>400 || descriptions.value.en_US.neighborhood.length>400 || descriptions.value[lang]?.neighbourhood.length>400 || descriptions.value.en_US.neighbourhood.length>400) ? `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`: undefined}>
+                                                                <div className={(descriptions.value[lang]?.neighbourhood?.length>400 || descriptions.value.en_US.neighbourhood?.length>400 || descriptions.value[lang]?.neighborhood?.length>400 || descriptions.value.en_US.neighborhood?.length>400) ? `prop-description-box ${showNeighborhoodReadMore ? 'show' : ''}`: undefined}>
                                                                     <h2 className="prop-section-title">{t("Neighborhood")}</h2>
                                                                     <h2>{t("Neighborhood")}</h2>
                                                                     <br />
-                                                                    {descriptions.value[lang]?.neighborhood.substring(0,400) || descriptions.value.en_US.neighborhood.substring(0,400) || descriptions.value[lang]?.neighbourhood.substring(0,400) || descriptions.value.en_US.neighbourhood.substring(0,400)}
+                                                                    {descriptions.value[lang]?.neighbourhood?.substring(0,400) || descriptions.value.en_US.neighbourhood?.substring(0,400) || descriptions.value[lang]?.neighborhood?.substring(0,400) || descriptions.value.en_US.neighborhood?.substring(0,400) }
                                                                     {showNeighborhoodReadMore && <span id="more">
-                                                                        {descriptions.value[lang]?.neighborhood.substring(400) || descriptions.value.en_US.neighborhood.substring(400) || descriptions.value[lang]?.neighbourhood.substring(400) || descriptions.value.en_US.neighbourhood.substring(400)}
+                                                                        {descriptions.value[lang]?.neighbourhood?.substring(400) || descriptions.value.en_US.neighbourhood?.substring(400) || descriptions.value[lang]?.neighborhood?.substring(400) || descriptions.value.en_US.neighborhood?.substring(400)}
                                                                         <br />
                                                                         <br />
                                                                         <p>{t("Find out more about the Algarve")} <Link to="/location/algarve"><span className="orangeText hover-highlight">{t("here")}...</span></Link></p>
@@ -568,7 +568,7 @@ export const PropertyPageTemplate = ( props ) =>
                                                                     </div>
                                                                     <br />
                                                                     <br />
-                                                                    {(descriptions.value[lang]?.neighborhood.length>400 || descriptions.value.en_US.neighborhood.length>400 || descriptions.value[lang]?.neighbourhood.length>400 || descriptions.value.en_US.neighbourhood.length>400) && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<small>{t("Less")}...</small>:<small>{t("Read more")}...</small>}</button>}
+                                                                    {(descriptions.value[lang]?.neighbourhood?.length>400 || descriptions.value.en_US.neighbourhood?.length>400 || descriptions.value[lang]?.neighborhood?.length>400 || descriptions.value.en_US.neighborhood?.length>400 ) && <button className="btn" type="" onClick={()=>setShowNeighborhoodReadMore(!showNeighborhoodReadMore)}>{showNeighborhoodReadMore?<small>{t("Less")}...</small>:<small>{t("Read more")}...</small>}</button>}
                                                                     <br />
                                                                 </div>
                                                         </Col>
