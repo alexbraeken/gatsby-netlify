@@ -10,6 +10,7 @@ description:
     pt: "Saboreie as delícias da natureza com nossa cesta de frutas frescas e suculentas! Repleta de sabores vibrantes, esta cesta apresenta uma deliciosa variedade de frutas da estação."
     fr: "Savourez les délices de la nature avec notre corbeille de fruits frais et juteux ! Débordant de saveurs vibrantes, ce panier présente un délicieux assortiment de fruits de saison."
     es: "¡Saborea las delicias de la naturaleza con nuestra canasta de frutas frescas y jugosas! Llena de sabores vibrantes, esta canasta presenta una deliciosa variedad de frutas de temporada."
+price: "25€"
 img: ../../static/img/Fruit Feast.png
 ---
 
