@@ -30,9 +30,6 @@ const WinterLetInfoModal = (props) => {
             </Modal.Header> 
             <Modal.Body>
                 <p>{t("Winter Let Discount Paragraph pre price")}<b>{props.price}</b>{t("Winter Let Discount Paragraph post price")}
-                    <br />
-                    <small>
-                    {t("Winter Let Discount Paragraph asterisk")}</small>
                 </p>
             </Modal.Body>
         </Modal>
