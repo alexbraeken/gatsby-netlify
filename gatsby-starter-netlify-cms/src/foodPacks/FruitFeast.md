@@ -12,5 +12,14 @@ description:
     es: "¡Saborea las delicias de la naturaleza con nuestra canasta de frutas frescas y jugosas! Llena de sabores vibrantes, esta canasta presenta una deliciosa variedad de frutas de temporada."
 price: "25€"
 img: ../../static/img/Fruit Feast.png
+extraInfo:
+    en: "Fruit basket
+    selection of seasonal fruits"
+    pt: "Cesto de frutas
+    seleção de frutas da estação"
+    fr: "Corbeille de fruits
+    sélection de fruits de saison"  
+    es: "Canasta de frutas
+    selección de frutas de temporada"
 ---
 

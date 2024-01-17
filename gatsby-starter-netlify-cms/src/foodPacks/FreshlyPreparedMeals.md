@@ -32,5 +32,22 @@ Canelones - Carne/Vegetariano
 Korma - Pollo /Vegetariano"
 price: "8,95€ per portion"
 img: ../../static/img/Chili.png
+extraInfo:
+    en: "Sides - 2€:
+    Garlic  Bread
+    White Rice
+    Simple Salad"
+    pt: "Acompanhamentos - 2€:
+     Pão de alho
+     Arroz branco
+     Salada Simples"
+    fr: "Accompagnements - 2€ :
+     Pain à l'ail
+     Riz blanc
+     Salade simple"
+    es: "Acompañantes - 2€:
+     Pan de ajo
+     Arroz blanco
+     Ensalada Sencilla"
 ---
 

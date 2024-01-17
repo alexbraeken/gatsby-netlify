@@ -12,5 +12,18 @@ description:
     es: "Elegancia con algo especial: Eleve su celebración navideña con la efervescencia del prosecco, la riqueza de los finos chocolates y el capricho de una tarta de crema local de ensueño. ¡Un trío de sofisticación para crear un momento especial!"
 price: "30€"
 img: ../../static/img/Something Special.png
+extraInfo:
+    en: "Prosecco 750ml
+    Fancy box chocolates 1
+    Pasteis de nata 6"
+    pt: "Prosecco 750ml
+     Caixa chique de chocolates 1
+     Pastéis de nata 6"
+    fr: "Prosecco 750ml
+     Coffret fantaisie chocolats 1
+     Pasteis de nata 6"
+    es: "Prosecco 750ml
+     Caja de bombones de lujo 1
+     Pasteis de nata 6"
 ---
 

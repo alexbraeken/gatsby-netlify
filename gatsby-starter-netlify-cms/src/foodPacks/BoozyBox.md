@@ -12,5 +12,31 @@ description:
     es: "¡Libera el espíritu navideño con nuestra Boozy Box! Disfrute de una gran bienvenida con nuestra selección de vinos, cervezas y snacks locales. ¡Ideal para los huéspedes que llegan tarde y desean disfrutar de una copa o dos!"
 price: "40€"
 img: ../../static/img/R18_-_000205_boozy_box_rcvxva.jpg
+extraInfo:
+    en: | 
+        Red wine 1  
+        White wine 1  
+        Superbock mini 12  
+        Large Bag of Crisps 1  
+        Jar of black olives 1  
+        Almonds with salt 500g
+    pt: "Vinho tinto 1
+    Vinho branco 1
+    Superbock mini 12
+    Batatas fritas Grande 1
+    Jarro azeitonas preto 1
+    Amendoas com sal 500g"
+    fr: "Vin rouge 1
+    Vin blanc 1
+    Superbock mini 12
+    Frites Grandes 1
+    Pot d'olives noires 1
+    Amandes au sel 500g"
+    es: "vino tinto 1
+    vino blanco 1
+    Superbock mini 12
+    Papas fritas Grande 1
+    Tarro de aceitunas negras 1
+    Almendras con sal 500g"
 ---
 
