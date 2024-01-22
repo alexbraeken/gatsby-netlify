@@ -62,8 +62,8 @@ export const FoodPackPageTemplate = ({ langTitles, content, contentComponent, he
                       <Col>
                         <PreviewCompatibleImage imageInfo={part1Img} imgStyle={{borderRadius: "5px"}} />
                       </Col>
-                      <Col>
-                        <PageContent className="content" content={html[language] && html[language].length > 0 ? html[language] : content} />
+                      <Col style={{display:"flex"}}>
+                        <PageContent className="content" content={html[language] && html[language].length > 0 ? html[language] : content} style={{margin:"auto"}}/>
                       </Col>
                     </Row>
                   </Container>

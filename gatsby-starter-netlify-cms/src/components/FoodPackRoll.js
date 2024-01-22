@@ -28,10 +28,10 @@ const FoodPackCard = ({foodPack, language, t}) => {
             {foodPack.node.frontmatter.foodPackName[language]}
           </Accordion.Toggle>
           <Card.Text>
-            <span className="orangeText">{t("Description")}: </span>{foodPack.node.frontmatter.description[language]}
+            <span className="orangeText">{t("Description")}: </span><span dangerouslySetInnerHTML={{__html: foodPack.node.frontmatter.description[language]}} />
           </Card.Text>
           <Accordion.Collapse eventKey="0">
-            <Card.Text>{foodPack.node.frontmatter.extraInfo[language]}</Card.Text>
+            <Card.Text><span dangerouslySetInnerHTML={{__html: foodPack.node.frontmatter.extraInfo[language]}} /></Card.Text>
           </Accordion.Collapse>
           <Accordion.Toggle as={Card.Subtitle} variant="link" eventKey="0" className="mb-2 price-tag" style={{position:"absolute", bottom:"0", right:"0", borderRadius:"50%", padding:"20px", backgroundColor:"#ff6600", aspectRatio:"1 / 1", display: "flex", boxShadow: "0px 20px 20px -10px black", cursor: "pointer"}}>
             <p style={{margin:"auto", maxWidth:"100px", textAlign:"center", color: "#fff"}}>{foodPack.node.frontmatter.price}</p>
@@ -60,7 +60,7 @@ class FoodPackRoll extends React.PureComponent {
       return (
             <>
               {foodPacks && foodPacks.length > 0 ?
-              foodPacks.map((foodPack, index) => {
+              foodPacks.sort((a, b) => a.node.frontmatter.order - b.node.frontmatter.order).map((foodPack, index) => {
               return (
                 <FoodPackCard foodPack={foodPack} language={language} t={t} key={`foodpack-${index}`}/>
               )
@@ -126,6 +126,7 @@ class FoodPackRoll extends React.PureComponent {
                     }
                     publicURL
                   }
+                  order
                   extraInfo {
                     en
                     pt

@@ -40,7 +40,7 @@ const PropertyCardComp = (props) => {
     const [hover, setHover] = useState(false)
     const [displayed, setDisplayed] = useState(false)
     const [timerId, setTimerId] = useState(null)
-    const [imgList, setImgList] = useState(null)
+    const [imgList, setImgList] = useState([])
     const [amensList, setAmensList] = useState(null)
     const [pricingList, setPricingList] = useState(null)
     const [bgKey, setBgKey] = useState('')
@@ -233,7 +233,7 @@ const PropertyCardComp = (props) => {
       }
 
     const getSetPhotos = async (id) => {
-      if(!imgList){
+      if(!imgList || imgList.length < 1){
         let body = {
           source: "db",
           col:"Properties",
@@ -245,24 +245,30 @@ const PropertyCardComp = (props) => {
           fields:"['photos']",
         }
         let res = await getFireData(body)
+        
         setImgList(res.photos)
+        return res.photos
       }
+      return imgList
     }
 
     const getSetAmenities = async (id) => {
-      if(!amensList){
+      if(!amensList || amensList.length < 1){
         let body = {
           source: "db",
           col:"amenities",
           doc:id
         }
         let res = await getFireData(body)
+        console.log(res)
         setAmensList(res)
+        return res
       }
+      return amensList
     }
 
     const getSetPricing = async (id) => {
-      if(!pricingList){
+      if(!pricingList || pricingList.length < 1){
         let body = {
           source: "db",
           col:"PricingPeriods",
@@ -270,7 +276,9 @@ const PropertyCardComp = (props) => {
         }
         let res = await getFireData(body)
         setPricingList(res)
+        return res
       }
+      return pricingList
     }
 
 
@@ -350,7 +358,7 @@ const PropertyCardComp = (props) => {
         }
       {showAmenities && 
           <div className="card-img-overlay card-amenities" >
-            { amensList ? 
+            {amensList  ? 
             <div id="amenities">
               <h3 style={{textAlign:"center"}}>{t("Amenities")}</h3>
               <br />
@@ -380,9 +388,9 @@ const PropertyCardComp = (props) => {
           <a  href={`/properties/${props.item.uid}`+dateURI}style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"transparent"}} target="_blank" rel="noopener noreferrer"></a>
           <div className="card-slider-container" style={{backgroundColor: "grey", backgroundImage:`url(${bgImg})`}}>
   {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-prev card-arrow"
- aria-label="Show Slider" style={{display: "block"}} onClick={() => {getSetPhotos(props.item.uid); setShowSlider(!showSlider)}} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
+ aria-label="Show Slider" style={{display: "block"}} onClick={() => {getSetPhotos(props.item.uid).then(imgs=> setShowSlider(!showSlider))}} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowSlider(!showSlider)}}} ></button> }
   {!showSlider && <button type="button" data-role="none" className="slick-arrow slick-next card-arrow"
- aria-label="Show Slider" style={{display: "block"}} onClick={() => {getSetPhotos(props.item.uid); setShowSlider(!showSlider)}} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowSlider(!showSlider)}}} ></button> }
+ aria-label="Show Slider" style={{display: "block"}} onClick={() => {getSetPhotos(props.item.uid).then(imgs=> setShowSlider(!showSlider)) }} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowSlider(!showSlider)}}} ></button> }
           <div style={{position: "absolute", top: "0", left:"0", width:"100%", height:"100%"}}>
           {showSlider && imgList && <Slider {...settings}>
               {imgList.map((photo, index) => {
@@ -419,17 +427,17 @@ const PropertyCardComp = (props) => {
               </a>
               <Card.Footer className="prop-card-footer-container" style={{position: "absolute", bottom:0, left:0, color:"#000"}} ref={footer}>
                   <div className="footer-btn-container">
-                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Amenities" onClick={() => {getSetAmenities(props.item.uid); setShowAmenities(!showAmenities)}} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowAmenities(!showAmenities)}}} style={showAmenities ? {backgroundColor: "#ffad77"}: {}}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Amenities" onClick={async () => {getSetAmenities(props.item.uid).then(amens=>setShowAmenities(!showAmenities))}} onKeyDown={(e)=>{if(e.key === 'Enter'){ setShowAmenities(!showAmenities)}}} style={showAmenities ? {backgroundColor: "#ffad77"}: {}}>
                       <FontAwesomeIcon icon={faList} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Amenities")}</small>
                     </div>
                   </div>
                   <div className="footer-btn-container">
-                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Gallery" onClick={()=> {getSetPhotos(props.item.uid); props.handleGalleryClick(imgList)}} onKeyDown={(e)=>{if(e.key === 'Enter'){ props.handleGalleryClick(props.item.photos)}}}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Gallery" onClick={async ()=> {getSetPhotos(props.item.uid).then(imgs=>{props.handleGalleryClick(imgs)})}} onKeyDown={async (e)=>{if(e.key === 'Enter'){getSetPhotos(props.item.uid).then(imgs=>{props.handleGalleryClick(imgs)})}}}>
                     <FontAwesomeIcon icon={faImages} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Gallery")}</small>
                     </div>
                   </div>
                   <div className="footer-btn-container">
-                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Calendar" onClick={()=>{getSetPricing(props.item.uid); setShowCalendar(!showCalendar)}} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowCalendar(!showCalendar)}}} style={showCalendar ? {backgroundColor: "#ffad77"}: {}}>
+                    <div className="footer-btn" role="button" tabIndex="0" aria-label="Calendar" onClick={async ()=>{getSetPricing(props.item.uid).then(prices=>setShowCalendar(!showCalendar)) }} onKeyDown={(e)=>{if(e.key === 'Enter'){setShowCalendar(!showCalendar)}}} style={showCalendar ? {backgroundColor: "#ffad77"}: {}}>
                     <FontAwesomeIcon icon={faCalendarAlt} style={{margin: "auto 20px", transform: "translateX(-50%)"}}/><small className="card-footer-btn-txt">{t("Calendar")}</small>
                     </div>
                   </div>

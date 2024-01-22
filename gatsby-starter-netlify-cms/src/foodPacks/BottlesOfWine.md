@@ -12,10 +12,11 @@ description:
     es: "Ordene botellas de vino de su elección para entrega directa."
 price: "5€ each"
 img: ../../static/img/pexels-ata-ebem-11021166.jpg
+order: 7
 extraInfo:
-    en:
-    pt:
-    fr:
-    es:
+    en: Choose Red, White, Rose or Portuguese Green Wine
+    pt: Escolha vinho tinto, branco, rosé ou verde português
+    fr: Choisissez du vin rouge, blanc, rosé ou vert portugais
+    es: Elija vino tinto, blanco, rosado o verde portugués
 ---
 
