@@ -116,8 +116,8 @@ class PropertiesFilter extends Component {
                 )}
                 )}
                 </Row>
-                <RangeSlider name="Bedrooms" type="bedrooms" step={1} min={1} max={10} low={this.props.state.bedrooms[0]} high={this.props.state.bedrooms[1]} handleSliderChange={this.props.handleSliderChange}/>  
-                <RangeSlider name="Bathrooms" type="bathrooms" step={1} min={1} max={10} low={1} high={10} handleSliderChange={this.props.handleSliderChange}/>  
+                <RangeSlider name="Bedrooms" type="bedrooms" step={1} min={0} max={10} low={this.props.state.bedrooms[0]} high={this.props.state.bedrooms[1]} handleSliderChange={this.props.handleSliderChange}/>  
+                <RangeSlider name="Bathrooms" type="bathrooms" step={1} min={0} max={10} low={1} high={10} handleSliderChange={this.props.handleSliderChange}/>  
                 </Container>
             </Form> 
         </Container>  

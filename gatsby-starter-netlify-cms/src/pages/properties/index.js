@@ -95,7 +95,7 @@ const ConnectedProperties = React.memo((props) => {
                         {
                         source: "db",
                         col:"Properties",
-                        fields:"['name','rank','amenities','type','latitude','longitude','picture','city','currencySymbol','customData','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions']",
+                        fields:"['name','rank','amenities','type','latitude','longitude','picture','city','currencySymbol','customData','pictitureReducedCloudUrl','bedrooms','bathrooms','baseGuests','uid','description','descriptions','baseDailyRate','shortDescription','shortDescriptions','customData']",
                         })
                     })
                         .then(response => {
@@ -203,7 +203,7 @@ const ConnectedProperties = React.memo((props) => {
         return () => {
             setPropList([])
         }
-    }, [data, advancedSearch, props.state, sort, propertyIds, amenitiesList])
+    }, [data, advancedSearch, props.state, sort, propertyIds, amenitiesList, winterLets])
 
 
     useEffect(() => {
@@ -321,6 +321,7 @@ const ConnectedProperties = React.memo((props) => {
     }
 
     const handleWinterLets = (e) => {
+        console.log(e)
         setWinterLets(e)
     }
 
@@ -496,8 +497,8 @@ const PropertiesClass = class extends React.Component {
             dateStart:"",
             dateFinish:"",
             amenities:[],
-            bedrooms: [1, 10],
-            bathrooms: [1, 10],
+            bedrooms: [0, 10],
+            bathrooms: [0, 10],
             prices: [0, 1000],
             filteredSearch: {},
             searchArray: [],

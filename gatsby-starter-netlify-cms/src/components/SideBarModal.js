@@ -181,8 +181,8 @@ export default function SideBarModal(props) {
                     )}
                     )}
                     </Row>
-                    <RangeSlider name={t("Bedrooms")} type="bedrooms" step={1} min={1} max={10} low={props.state.bedrooms[0]} high={props.state.bedrooms[1]} handleSliderChange={props.handleSliderChange}/>  
-                    <RangeSlider name={t("Bathrooms")} type="bathrooms" step={1} min={1} max={10} low={1} high={10} handleSliderChange={props.handleSliderChange}/>   
+                    <RangeSlider name={t("Bedrooms")} type="bedrooms" step={1} min={0} max={10} low={props.state.bedrooms[0]} high={props.state.bedrooms[1]} handleSliderChange={props.handleSliderChange}/>  
+                    <RangeSlider name={t("Bathrooms")} type="bathrooms" step={1} min={0} max={10} low={0} high={10} handleSliderChange={props.handleSliderChange}/>   
                     <RangeSlider name={t("Price Per Night")} type="prices" step={50} min={0} max={1000} low={0} high={1000} handleSliderChange={props.handleSliderChange} marks={[
                         {
                             value: 0,label: '0€',

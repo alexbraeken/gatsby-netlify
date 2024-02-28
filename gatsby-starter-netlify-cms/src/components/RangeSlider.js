@@ -65,8 +65,8 @@ const IOSSlider = withStyles({
 
 const marks = [
     {
-      value: 1,
-      label: '1',
+      value: 0,
+      label: '0',
     },
     {
       value: 10,
